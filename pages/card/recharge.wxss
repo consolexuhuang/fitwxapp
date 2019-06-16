@@ -1,0 +1,173 @@
+/* pages/card/recharge.wxss */
+
+page {
+  background-color: #fafafa;
+}
+
+.main {
+  background-color: #fff;
+}
+
+.main .top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main .top .user-name {
+  font-size: 28rpx;
+  color: #828282;
+}
+
+.main .top .balance {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  margin: 20rpx 0 10rpx 0;
+  color: #141414;
+}
+
+.main .top .balance .label {
+  font-size: 28rpx;
+}
+
+.main .top .balance .number {
+  font-size: 60rpx;
+}
+
+.main .top .user-new {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.main .top .user-new .gift-bg {
+  width: 186rpx;
+  height: 40rpx;
+}
+
+.main .top .user-new .txt {
+  font-size: 24rpx;
+  color: #896fff;
+  /* margin-top: -36rpx; */
+  /* position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto; */
+  /* padding-left: 16rpx; */
+  text-align: center;
+  padding: 0 24rpx;
+  line-height:39rpx;
+  background:rgba(241,238,255,1);
+  border-radius:20rpx;
+}
+
+.main .list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 33rpx;
+  margin: 30rpx 0;
+}
+
+.main .list .item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 215rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 0px 12px 0px rgba(235, 235, 235, 1);
+  border-radius: 4px;
+}
+
+.main .list .item .gift {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+}
+
+.main .list .item .gift-bg {
+  width: 124rpx;
+  height: 41rpx;
+}
+
+.main .list .item .gift .txt {
+  position: absolute;
+  right: 10rpx;
+  font-size: 24rpx;
+  color: #fff;
+}
+
+.main .list .item .info {
+  display: flex;
+  flex-direction: column;
+  padding:30rpx 20rpx;
+  color: #141414;
+}
+
+.main .list .item  .info .number {
+  font-size: 36rpx;
+}
+
+.main .list .item  .info .txt {
+  font-size: 30rpx;
+}
+.main .list .item  .sheets{
+  width:100%;
+height:50rpx;
+line-height: 50rpx;
+background:rgba(137,111,255,1);
+border-bottom-left-radius: 4rpx;
+border-bottom-right-radius: 4rpx;
+font-size:24rpx;
+color:#fff;
+text-align: center;
+}
+.main .warning,
+.tip{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 0 0 33rpx ;
+  border-top:1px solid #E9E9E9;
+  height: 93rpx;
+}
+.main .warning .icon,
+.tip .icon{
+  /* width: 26rpx;
+  height: 23rpx; */
+  margin-right:20rpx;
+  color: #896fff;
+  font-size: 23rpx;
+}
+.main .warning .txt,
+.tip .txt{
+  font-size:24rpx;
+  color:#141414;
+}
+.tip {
+  align-items: flex-start;
+  margin-top:30rpx;
+  border-top: 0;
+}
+.tip .icon{
+  /* width: 24rpx;
+  height: 24rpx; */
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin-top:6rpx;
+  font-size: 24rpx
+}
+.tip .txt{
+  margin-right: 33rpx;
+  font-size:24rpx;
+  color:#B4B4B4;
+}

@@ -1,0 +1,64 @@
+/* pages/card/cardList.wxss */
+
+page {
+  background-color: #fafafa;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.list .item {
+  width: 671rpx;
+  height: 371rpx;
+  position: relative;
+  margin-top: 10rpx;
+}
+
+.list .item:first-child {
+  margin-top: 32rpx;
+}
+
+.list .item .card-bg {
+  width: 671rpx;
+  height: 371rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.list .item .term {
+  position: absolute;
+  top: 266rpx;
+  left: 54rpx;
+  font-size: 30rpx;
+  color: #fff;
+}
+
+.list .item .right {
+  position: absolute;
+  top: 200rpx;
+  right: 54rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.list .item .right text {
+  font-size: 40rpx;
+  color: #fff;
+}
+
+.list .item .right .btn {
+  margin: 10rpx 0 0 0;
+  width: 130rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 25rpx;
+  font-size: 32rpx;
+  color: #808080;
+}

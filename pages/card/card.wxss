@@ -1,0 +1,245 @@
+/* pages/card/card.wxss */
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+page {
+  background: rgba(250, 250, 250, 1);
+}
+
+.card-title {
+  display: flex;
+  flex-direction: row;
+  padding: 0 50rpx;
+  justify-content: space-between;
+  background: #fff;
+}
+
+.card-title .name {
+  font-size: 30rpx;
+  color: #141414;
+}
+
+.card-title .btn {
+  color: #8a70ff;
+  font-size: 30rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.card-title .icon {
+  width: 25rpx;
+  height: 24rpx;
+  margin-right: 11rpx;
+}
+
+.card-block {
+  position: relative;
+  padding-top: 16rpx;
+  background: #fff;
+}
+
+.card-block  .card-bg {
+  width: 666rpx;
+  height: 356rpx;
+  display: block;
+  margin: 0 auto;
+}
+
+.card-block .card-info {
+  position: absolute;
+  top: 90rpx;
+  left: 83rpx;
+  right: 100rpx;
+}
+
+.card-block .card-info .card-info-title {
+  color: #fff;
+  font-size: 28rpx;
+}
+
+.card-block .card-info .card-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.card-block .card-info .card-right .btn {
+  margin: 0;
+  /* width: 164rpx; */
+  /* height: 58rpx; */
+  line-height: 58rpx;
+  border-radius: 29rpx;
+  border: 1rpx solid rgba(187, 177, 231, 1);
+  background-color: rgba(255, 255, 255, 0);
+  color: #fff;
+  font-size: 26rpx;
+  padding: 0 30rpx;
+}
+
+.card-block .card-info .card-right .mt47 {
+  margin-top: 47rpx;
+}
+
+.card-block .card-info .card-number {
+  color: #fff;
+  font-size: 28rpx;
+}
+
+.card-block .card-info .card-right .balance-title {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 1);
+}
+
+.card-block .card-info .card-right .balance-number {
+  margin: 0;
+  font-size: 60rpx;
+  color: rgba(255, 255, 255, 1);
+}
+
+.card-type {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding-bottom: 32rpx;
+}
+
+.card-type .title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 50rpx 50rpx 32rpx 50rpx;
+}
+
+.card-type .title .title-name {
+  font-size: 30rpx;
+  color: rgba(20, 20, 20, 1);
+  align-self: flex-end
+}
+
+.card-type .title .more {
+  display: flex;
+}
+
+.card-type .title .more text {
+  font-size: 30rpx;
+  color: rgba(150, 150, 150, 1);
+}
+
+.card-type .title .more image {
+  width: 24rpx;
+  height: 24rpx;
+  margin-left: 12rpx;
+  font-size: 24rpx;
+  color: rgba(150, 150, 150, 1)
+}
+
+.card-type-scroll {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.card-type-item {
+  position: relative;
+  width: 370rpx;
+  height: 200rpx;
+  display: inline-block;
+  margin-left: 30rpx;
+}
+
+.card-type-scroll .card-type-item:first-child {
+  margin-left: 50rpx;
+}
+
+.card-type-item image {
+  width: 370rpx;
+  height: 200rpx;
+}
+
+.card-type-item text {
+  position: absolute;
+  top: 140rpx;
+  left: 30rpx;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 1);
+}
+
+.mask-swiper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10000000;
+}
+
+.mask-swiper .close {
+  position: absolute;
+  top: 70rpx;
+  right: 70rpx;
+  /* width: 53rpx;
+  height: 53rpx; */
+  font-size: 50rpx;
+  color: #896eff;
+}
+
+.mask-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.mask-swiper .arrow {
+  width: 24rpx;
+  height: 45rpx;
+  margin-top: 200rpx;
+}
+
+.mask-swiper swiper {
+  width: 500rpx;
+  height: 800rpx;
+}
+
+.mask-swiper swiper-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.mask-swiper swiper-item .title {
+  font-size: 42rpx;
+}
+
+.mask-swiper .slide-image {
+  width: 415rpx;
+  height: 211rpx;
+  margin: 80rpx 0 50rpx 0;
+}
+
+.mask-swiper swiper-item .sub-title, .mask-swiper swiper-item .text {
+  font-size: 28rpx;
+}
+
+.mask-swiper swiper-item .text {
+  margin-top: 50rpx;
+  text-align: center;
+  line-height: 40rpx;
+}
+
+.mask-swiper .btn {
+  width: 652rpx;
+  height: 77rpx;
+  line-height: 77rpx;
+  margin-top: 80rpx;
+  border-radius: 4rpx;
+  border: 2rpx solid rgba(137, 110, 255, 1);
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 34rpx;
+  color: #896eff;
+}

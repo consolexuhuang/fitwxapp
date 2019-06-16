@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "Justin&Julie",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance":50,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+     "van-switch": "../../libs/vant-weapp/dist/switch/index",
+     "tabBar_top": "/components/tabBar_top/tabBar"
+  }
+}

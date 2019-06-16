@@ -1,0 +1,8 @@
+<!--pages/noFind/noFind.wxml-->
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view class='serverBox' style='padding-top:{{marginTopBar}}px'>
+   <text class='serverImg iconfont iconicon-test49'></text>
+   <view class='serverCont'>{{serverCont}}</view>
+</view>
+
+<view class='backHome' bindtap='backHome'>返回首页</view>

@@ -1,0 +1,11 @@
+<!--components/dialog/dialog.wxml-->
+<view class='dialogBox' wx:if="{{show}}">
+  <image src='{{imgUrl}}{{dialogConfig.dialogImg}}' class='dialogImg' wx:if='{{dialogConfig.dialogImg}}'></image>
+  <view class='dialogTitle'>{{dialogConfig.dialogTitle}}</view>
+  <view class='dialogCont' style='color:{{dialogConfig.dialogContColor || "#000" }}' wx:if='{{dialogConfig.dialogCont}}'>{{dialogConfig.dialogCont}}</view>
+  <view class='dialog_footBtn'>
+    <view class='dialog_cancle' bindtap='cancleEvent' wx:if="{{dialogConfig.dialogCancleBtn}}">{{dialogConfig.dialogCancleBtn}}</view>
+    <view class='dialog_comfirm {{dialogConfig.dialogCancleBtn ? "" : "dialog_comfirmOnly"}}' bindtap='comfirmEvent'>{{dialogConfig.dialogComfirmBtn}}</view>
+  </view>
+</view>
+<view class='menban' wx:if="{{show}}" bindtap='_clickMeban'></view>

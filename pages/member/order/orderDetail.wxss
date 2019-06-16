@@ -1,0 +1,306 @@
+/* pages/member/order/orderDetail.wxss */
+page{
+  background: #fff;
+}
+.orderDetail_statusData{
+  background: #fff;
+  padding:20rpx 0 20rpx 35rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  min-height: 207rpx;
+  position: relative;
+}
+.orderDetail_headImgBox{
+  width: 132rpx;
+  height: 132rpx;
+  border-radius: 50%;
+  margin-right: 38rpx;
+  position: relative;
+}
+.orderDetail_headImg{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.orderDetail_headWxTag{
+  position: absolute;
+  right: 0;
+  bottom: 4rpx;
+  z-index: 100;
+  width: 42rpx;
+  height: 42rpx;
+}
+.orderDetail_statusInfo{
+  display: flex;
+  flex-direction: column;
+}
+.orderDetail_status{
+  text-align: left;
+  align-self: flex-start;
+  font-size:32rpx;
+  font-family:PingFangSC-Semibold;
+  font-weight:600;
+  color:rgba(20,20,20,1);
+  line-height:70rpx;
+  letter-spacing:1rpx;
+}
+.orderDetail_wait{
+  font-size:28rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(137,111,255,1);
+  line-height:60rpx;
+  text-align: left;
+}
+.orderDetail_titleBox{
+  align-self: flex-end;
+}
+.orderDetail_title{
+  font-size:32rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(20,20,20,1);
+  line-height:45rpx;
+  letter-spacing:1rpx;
+  text-align: left;
+}
+.orderDetail_time{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(20,20,20,1);
+  line-height:33rpx;
+  letter-spacing:1rpx;
+}
+.timedur{
+  color: #896DFF
+}
+.signIn{
+  position: absolute;
+  right: 0;
+  top: 30rpx;
+  padding: 0 30rpx 0 25rpx;
+  box-sizing: border-box;
+  background: #E9E4FC; 
+  font-size:26rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(137,111,255,1);
+  line-height:52rpx;
+  letter-spacing:1rpx;
+  text-align: center;
+  border-top-left-radius: 27rpx;
+  border-bottom-left-radius: 27rpx;
+}
+.orderDetail_content{
+  width: 100%;
+  padding-left: 45rpx;
+  box-sizing: border-box;
+  background: #fff;
+  border-top: 20rpx solid #fafafa;
+  /* margin-top: 20rpx; */
+}
+.admissionCodeShow{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 0;
+  box-sizing: border-box;
+  margin-left: -45rpx;
+}
+.admissionCodeShowImg{
+  width:206rpx;
+  height:206rpx;
+}
+.admissionCodeShowText{
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(120,120,120,1);
+  line-height:40rpx;
+  letter-spacing:1rpx;
+}
+.admissionCode{
+  width: 100%;
+  min-height: 100rpx;
+  /* display: flex;
+  align-items: center; */
+  border-bottom: 1rpx solid #E9E9E9;
+  padding: 30rpx 40rpx 30rpx 0;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+}
+.admissionCodeNext::after{
+  content: '';
+  position: absolute;
+  border-bottom: 2rpx solid #896DFF;
+  border-right: 2rpx solid #896DFF;
+  width: 14rpx;
+  height: 14rpx;
+  transform: rotate(-45deg);
+  right: 34rpx;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.admissionCode2{
+  width: 100%;
+  min-height: 100rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #E9E9E9;
+  padding: 30rpx 40rpx 30rpx 0;
+  box-sizing: border-box;
+}
+.admissionCode:last-child{
+  border: none;
+}
+.orderDetail_icon2{
+  vertical-align: middle;
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin-top: 6rpx;
+  font-size: 27rpx;
+  color: #787878
+}
+.orderDetail_icon{
+  vertical-align: middle;
+  flex-grow: 0;
+  flex-shrink: 0;
+  /* margin-top: 6rpx; */
+  align-self: center;
+  font-size: 27rpx;
+  color: #787878
+}
+.iconcardPay2{
+  width: 29rpx;
+  height: 27rpx;
+}
+.orderDetail_icon_careful{
+  /* width: 29rpx;
+  height: 28rpx; */
+  /* align-self: flex-start; */
+  margin-top: 6rpx;
+  flex-grow: 0;
+  flex-shrink: 0;
+  font-size: 27rpx;
+  color: #787878
+}
+.orderDetail_text{
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(120,120,120,1);
+  line-height:38rpx;
+  letter-spacing:1rpx;
+  margin: 0 0 0 20rpx;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.orderDetail_data{
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(120,120,120,1);
+  line-height:40rpx;
+  letter-spacing:1rpx;
+  margin: 0 20rpx;
+  text-align: left;
+  display: inline
+}
+/* .orderDetail_data_over{
+  overflow:hidden; 
+  text-overflow:ellipsis;
+  display:-webkit-box; 
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:3;
+} */
+.orderDetail_data_space{
+  padding-bottom: 60rpx;
+}
+.orderDetail_data_more{
+  height: 100rpx;
+  width: 100%;
+  position: absolute;
+  bottom: 5rpx;
+  margin-left: -45rpx;
+  background: linear-gradient(rgba(255, 255, 255, 0.5) 0%, #fff 64%);
+}
+.orderDetail_data_more::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 10rpx;
+  bottom: 0;
+  margin: auto;
+  width: 14rpx;
+  height: 14rpx;
+  border-bottom: 1rpx solid #787878;
+  border-right: 1rpx solid #787878;
+  transform: rotate(45deg)
+}
+.orderDetail_startShow{
+  color: #141414;
+  font-weight: bold;
+}
+.orderPriceBox{
+  background: #fff;
+  /* padding-bottom: 30rpx; */
+}
+.orderPrice{
+  width: 100%;
+  padding-left: 45rpx;
+  box-sizing: border-box;
+  background: #fff;
+  /* margin-top: 20rpx; */
+  border-top: 20rpx solid #fafafa;
+}
+.orderDetail_payData{
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(20,20,20,1);
+  line-height:40rpx;
+  text-align: right;
+  flex: 1
+}
+.invitationFriend{
+  width: 100%;
+  /* margin: 50rpx auto 30rpx; */
+  background:#896FFF;
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:100rpx;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  border-radius: 0;
+}
+.btnBox{
+  padding-bottom: 30rpx;
+}
+.cancleStatus{
+  width: 664rpx;
+  border-radius:4rpx;
+  border:1rpx solid rgba(178,178,178,1);
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(20,20,20,1);
+  line-height:80rpx;
+  text-align: center;
+  margin: 80rpx auto 20rpx
+}
+.orderDetail_Tips{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(170,170,170,1);
+  line-height:100rpx;
+  text-align: center;
+}

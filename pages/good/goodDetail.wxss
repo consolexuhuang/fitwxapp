@@ -1,0 +1,156 @@
+/* pages/good/goodDetail.wxss */
+.wrapper{
+  padding-bottom:115rpx;
+}
+.top {
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  background: #fff;
+}
+
+.top .pic {
+  width: 690rpx;
+  height: 326rpx;
+}
+
+.top .name {
+  margin: 32rpx 0;
+  font-size: 40rpx;
+  color: #141414;
+}
+
+.top .indate, .top .shope {
+  margin-bottom: 10rpx;
+  font-size: 26rpx;
+  color: #787878;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  background: #fff;
+}
+
+.info:last-child {  
+  margin-bottom: 0rpx;
+}
+
+.info .title .icon {
+  display: inline-block;
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  background: #c9bcff;
+}
+
+.info .title .text {
+  /* margin: 18rpx 0 0 -18rpx; */
+  color: #141414;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.info .introduce {
+  margin: 20rpx 0 20rpx 0rpx;
+  line-height: 33rpx;
+  font-size: 24rpx;
+  color: #787878;
+}
+
+.info .step-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info .step-box .line {
+  display: block;
+  width: 540rpx;
+  height: 2rpx;
+  background: #c8c8c8;
+  position: absolute;
+  margin-top: 59rpx;
+  z-index: 1;
+}
+
+.info .step-box .step-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.info .step-box .step-row .col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info .step-box .step-row .col .number {
+  display: block;
+  width: 48rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  margin: 35rpx 0;
+  text-align: center;
+  font-size: 30rpx;
+  background: #896eff;
+  border-radius: 50%;
+  color: #fff;
+  z-index: 2;
+}
+
+.info .step-box .step-row .col .text {
+  font-size: 26rpx;
+  color: #141414;
+}
+
+.foot {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 690rpx;
+  padding: 0 30rpx;
+  height: 115rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0rpx -2rpx 4rpx 0rpx rgba(228, 228, 228, 0.5);
+  z-index: 1000;
+}
+
+.foot .left .label {
+  font-size: 26rpx;
+  color: #141414;
+}
+
+.foot .left .price-current {
+  font-size: 28rpx;
+  color: #896eff;
+  margin: 0 20rpx 0 10rpx;
+}
+
+.foot .left .price-origin {
+  font-size: 24rpx;
+  color: #a0a0a0;
+  text-decoration: line-through;
+}
+
+.foot .btn {
+  margin: 0;
+  width: 302rpx;
+  height: 75rpx;
+  background: rgba(137, 109, 255, 1);
+  border-radius: 4rpx;
+  font-size:30rpx;
+  color:#fff;
+}
+.foot .btn.end{
+  color:#FFFFFF;
+  background: #C8C8C8;
+}

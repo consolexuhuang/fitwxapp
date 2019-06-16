@@ -1,0 +1,197 @@
+<!--pages/course/courseDetail.wxml-->
+<wxs src="../../utils/util.wxs" module="util" />
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<share_tag imgUrl='{{imgUrl}}' shareConfig='{{shareConfig}}'></share_tag>
+<view class="wrapper" wx:if='{{courseData}}' style='margin-top:{{marginTopBar}}px'>
+  <view class="header">
+    <swiper class="banner-swiper">
+      <block wx:for="{{courseData.bannerList}}" wx:key="index">
+        <swiper-item>
+          <block wx:if="{{util.include(item, 'v.qq.com') && util.getUrlParams(item).vid}}">
+            <view class="banner-item">
+              <txv-video vid="{{util.getUrlParams(item).vid}}" playerid="{{util.getUrlParams(item).vid}}" width="{{'100%'}}" height="{{'100%'}}" autoplay="{{false}}" objectFit='fill'></txv-video>
+            </view>
+          </block>
+          <block wx:else>
+            <view class="banner-item fadeIn animated">
+              <image src="{{item}}" />
+            </view>
+          </block>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="course-name fadeIn animated">{{courseData.courseName}}</view>
+    <view class="course-time fadeIn animated">
+      <view class='beginTimeBox'>
+        <text class='iconicon-test35 iconfont icon1'/>
+        <text wx:if='{{courseData}}'>{{util.timeStampFormat(courseData.beginDate, 'YYYY-MM-DD')}} {{util.timeStampFormat(courseData.beginTime, 'hh:mm')}}</text>
+      </view>
+      <view class='icon_wx_shareBigBox'>
+        <text id='line_wx'></text>
+        <view class='icon_wx_shareBox'>
+          <text class='iconicon-test31 iconfont' id='icon_wx'> </text>
+          <button open-type='share' class='icon_wx_share'></button>
+        </view>
+      </view>
+    </view>
+    <view class="course-address" data-name="{{courseData.store.storeName}}" data-address="{{courseData.store.address}}" data-latitude="{{courseData.store.latitude}}" data-longitude="{{courseData.store.longitude}}" bindtap="handleLocationTap">
+      <text class='iconfont iconicon-test40 icon1'/>
+      <text>{{courseData.store.address}}</text>
+    </view>
+  </view>
+  <view class="module-wrapper">
+    <view class="module-title-wrapper">
+      <!-- <view class="module-dot"></view> -->
+      <view class="module-title">教练简介</view>
+    </view>
+    <view class="coach-avatar-wrapper" wx:if='{{courseData.assistantCoachList.length == 0 || !courseData.assistantCoachList}}'>    
+      <view class='coach-avatarOneBox'>
+        <image class="coach-avatar fadeIn animated" src="{{courseData.coach.headUrl}}" bindtap='jumpToCoachDetail' data-coachId='{{courseData.coach.id}}'/>
+        <view class="coach-name">{{courseData.coach.coachName}}</view>
+      </view>
+      <view class="coach-name-wrapper fadeIn animated">
+        <view class="coach-description">
+          <rich-text nodes="{{courseData.coach.intro}}"></rich-text>
+        </view>
+      </view>
+    </view>
+    <view class='coach-avatar-wrapper_more' wx:if='{{courseData.assistantCoachList.length > 0 || courseData.assistantCoachList}}'>
+
+       <view class='coachBox'>
+          <view class='coach-avatarBox'
+                bindtap='jumpToCoachDetail'
+                data-coachId='{{courseData.coach.id}}'>
+            <image class="coach-avatar_more" src="{{courseData.coach.headUrl}}" />
+            <view class="coach-name">{{courseData.coach.coachName}}</view>
+          </view>
+          <view class='coach-avatarBox' 
+                wx:for='{{courseData.assistantCoachList}}' 
+                wx:key='{{index}}'
+                bindtap='jumpToCoachDetail'
+                data-coachId='{{item.id}}'>
+            <image class="coach-avatar_more" src="{{item.head_url}}" />
+            <view class="coach-name">{{item.coach_name}}</view>
+          </view>
+       </view> 
+       <view class="coach-name-wrapper coach-name-wrapper_more">
+        <view class="coach-name">{{courseData.coach.coach_name}}</view>
+        <view class="coach-description">
+          <rich-text nodes="{{courseData.coach.intro}}"></rich-text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="course-data-list fadeIn animated">
+    <view class="course-data-item">
+      <view class="course-data-item-title">燃脂</view>
+      <view class="course-data-item-text">300kcal</view>
+    </view>
+    <view class="course-data-line"></view>
+    <view class="course-data-item">
+      <view class="course-data-item-title">难度</view>
+      <view class="course-data-item-text">中强度</view>
+    </view>
+    <view class="course-data-line"></view>
+    <view class="course-data-item">
+      <view class="course-data-item-title">时长</view>
+      <view class="course-data-item-text">60分钟</view>
+    </view>
+  </view> -->
+  <view class="module-wrapper fadeIn animated">
+    <view class="module-title-wrapper">
+      <!-- <view class="module-dot"></view> -->
+      <view class="module-title">课程简介</view>
+    </view>
+    <view class="course-description">
+      <rich-text nodes="{{courseData.courseIntro}}"></rich-text>
+    </view>
+    <view class="course-column-list">
+      <view class="course-column-item">
+        <view class='ballBox'>
+          <view class='ball'></view>
+          <view class='line'></view>
+        </view>
+        <view class='trainingCamp_introduction_item'>
+          <view class='trainingCamp_introduction_itemTitle'>训练效果</view>
+          <rich-text class='trainingCamp_introduction_itemCont' nodes='{{courseData.trainingEffect}}'>
+          </rich-text>
+        </view>
+      </view>
+      <view class="course-column-item">
+        <view class='ballBox'>
+          <view class='ball'></view>
+          <view class='line'></view>
+        </view>
+        <view class='trainingCamp_introduction_item'>
+          <view class='trainingCamp_introduction_itemTitle'>适合人群</view>
+          <rich-text class='trainingCamp_introduction_itemCont' nodes='{{courseData.suitCrowds}}'>
+          </rich-text>
+        </view>
+      </view>
+      <view class="course-column-item">
+        <view class='ballBox'>
+          <view class='ball'></view>
+          <!-- <view class='line'></view> -->
+        </view>
+        <view class='trainingCamp_introduction_item'>
+          <view class='trainingCamp_introduction_itemTitle'>FAQ</view>
+          <rich-text class='trainingCamp_introduction_itemCont' nodes='{{courseData.faq.faq}}'>
+          </rich-text>
+        </view>
+      </view>
+      <!-- <view class="course-column-arrow">
+        <image src="{{imgUrl}}course/icon_arrow_down_gray.png" />
+      </view> -->
+    </view>
+  </view>
+  <view class="module-wrapper">
+    <view class="module-title-wrapper">
+      <!-- <view class="module-dot"></view> -->
+      <view class="module-title">健身步骤</view>
+    </view>
+    <view class="fitness-step-content">
+      <view class="fitness-step-line"></view>
+      <view class="fitness-step-list">
+        <view class="fitness-step-item">
+          <view class="fitness-step-item-number">1</view>
+          <view class="fitness-step-item-text">约课成功</view>
+        </view>
+        <view class="fitness-step-item">
+          <view class="fitness-step-item-number">2</view>
+          <view class="fitness-step-item-text">获得密码</view>
+        </view>
+        <view class="fitness-step-item">
+          <view class="fitness-step-item-number">3</view>
+          <view class="fitness-step-item-text">扫码开门</view>
+        </view>
+        <view class="fitness-step-item">
+          <view class="fitness-step-item-number">4</view>
+          <view class="fitness-step-item-text">签到上课</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="module-wrapper">
+    <view class="module-title-wrapper">
+      <!-- <view class="module-dot"></view> -->
+      <view class="module-title">注意事项</view>
+    </view>
+    <view class="tips-wrapper">
+      <view class="tips-content">
+        <rich-text nodes="{{courseData.needingAttention}}"></rich-text>
+      </view>
+      <!-- <view class="tips-arrow">
+        <image src="{{imgUrl}}course/icon_arrow_down_gray.png" />
+      </view> -->
+      <view class="tips-text">成功预约即表示已阅读并同意<text bindtap='showStatement'>《J&J注意事项及免责声明》</text></view>
+    </view>
+  </view>
+</view>
+<view class="price-wrapper fadeIn animated">
+  <text class="discount-price">¥{{courseData.discountPrice || '0.00'}}</text>
+  <view class="appoint-btn" wx:if='{{courseData.status === 1}}' bindtap="handleAppointBtnTap">立即预约</view>
+  <view class="appoint-btn" wx:if='{{courseData.status === 2}}' bindtap="handleAppointBtnTap">等位</view>
+  <view class="appoint-btn appoint-btnOver" wx:if='{{courseData.status === 3}}'>课程结束</view>
+</view>
+<!-- 免责声明 -->
+<statement show="{{isShowStatement}}" content="{{statementContent}}" btnText="关闭" bind:statementEvent="statementClose"></statement>

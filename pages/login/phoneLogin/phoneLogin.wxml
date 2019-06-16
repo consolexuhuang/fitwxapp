@@ -1,0 +1,28 @@
+<!--pages/login/phoneLogin/phoneLogin.wxml-->
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view class='phoneLogin_logo' style='margin-top:{{marginTopBar}}px'>
+  <image src='{{imgUrl}}icon/phoneLoginLogo.png' class='phoneLogin_logoImg'></image>
+  <image src='{{imgUrl}}icon/phoneLoginText.png' class='phoneLogin_logoText'></image>
+</view>
+
+<view class='phoneLogin_admin'>
+   <view class='phoneLogin_admin_phone'>
+     <image src='{{imgUrl}}icon/phone.png' class='phoneLogin_admin_phoneImg'></image>
+     <view class='phoneLogin_admin_phoneText'>手机号</view>
+     <input class='phoneLogin_adminInput' 
+            type='number'
+            value=''
+            bindblur='getPhoneNum'
+            bindinput='getPhoneNum_ios'></input>
+   </view>
+   <view class='phoneLogin_admin_phone'>
+     <image src='{{imgUrl}}icon/password.png' class='phoneLogin_admin_passwordImg'></image>
+     <view class='phoneLogin_admin_phoneText'>验证码</view>
+     <input class='phoneLogin_adminInput phoneLogin_codeInput' bindblur='getCodeNum' bindinput='getCodeNum_ios'></input>
+     <view class='getCodeBox' bindtap='sendCodeNum'>
+       <view class='getCode {{timeIsCount ? "timeCountStyle" : ""}}'>获取验证码 {{currentCodeTime}}</view>
+     </view>
+   </view>
+</view>
+
+<button class='loginIn' bindtap='phoneLogin'>登录/注册</button>

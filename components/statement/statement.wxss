@@ -1,0 +1,54 @@
+/* components/statement/statement.wxss */
+
+.mask {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 623rpx;
+  padding: 0 30rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 4rpx;
+}
+
+.box .title {
+  width: 100%;
+  line-height: 113rpx;
+  color: #7f56dc;
+  font-size: 30rpx;
+  border-bottom: 2rpx dashed #d9d9d9;
+  text-align: center;
+}
+
+.box .content {
+  width: 100%;
+  height: 650rpx;
+  margin: 30rpx 0 50rpx 0;
+  overflow-y: auto;
+  font-size: 26rpx;
+  line-height: 37rpx;
+  color: #5a5a5a;
+}
+
+.box .btn {
+  width: 302rpx;
+  height: 75rpx;
+  margin-bottom:60rpx;
+  background: rgba(137, 109, 255, 1);
+  border-radius: 38rpx;
+  font-size: 30rpx;
+  color: #fff;
+}

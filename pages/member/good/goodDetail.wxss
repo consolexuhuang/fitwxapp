@@ -1,0 +1,75 @@
+/* pages/member/good//goodDetail.wxss */
+page {
+  background-color: #fafafa;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding:10rpx 0 0 37rpx;
+}
+.info .label{
+font-size:26rpx;
+color:#787878;
+}
+.info .value{
+  margin-bottom:20rpx;
+  padding:20rpx 20rpx 20rpx 0;
+  font-size:30rpx;
+  color:#141414;
+  border-bottom:1px solid #E9E9E9;
+}
+.valueTimeBox{
+  
+}
+.info .value:last-child{
+  border: none;
+}
+
+.total{
+  margin-top:20rpx;
+  background: #fff;
+}
+.total .row{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  padding: 37rpx;
+  font-size:30rpx;
+  color:#141414;
+}
+.total .row .icon_card{
+  width: 36rpx;
+  height: 27rpx;
+  margin-top:8rpx;
+  margin-right: 15rpx;
+}
+.total .row .icon_wx{
+  width: 36rpx;
+  height: 27rpx;
+  margin-top:8rpx;
+  margin-right: 15rpx;
+}
+.goodDetail{
+  padding: 47rpx 42rpx 0;
+  box-sizing: border-box;
+  display: flex;
+}
+.goodDetail_iconImg{
+  /* width: 24rpx;
+  height: 24rpx; */
+  flex-shrink: 0;
+  margin-right: 23rpx;
+  align-self: flex-start;
+  margin-top: 5rpx;
+  font-size: 24rpx;
+  color: rgba(170,170,170,1)
+}
+.goodDetailCont{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(170,170,170,1);
+  line-height:33rpx;
+}

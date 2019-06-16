@@ -1,0 +1,220 @@
+/* pages/coach/evaluate/evaluate.wxss */
+.evaluate_cont{
+  background: #fff;
+}
+.coach{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 45rpx;
+}
+.coachImg{
+  width:140rpx;
+  height:140rpx;
+  border-radius: 50%;
+  margin-bottom: 14rpx;
+  margin-top: 14rpx;
+}
+.coachName{
+  font-size:34rpx;
+  font-family:PingFangSC-Semibold;
+  font-weight:600;
+  color:rgba(40,40,40,1);
+  line-height:48rpx;
+  letter-spacing:1rpx;
+}
+.coashWord{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(160,160,160,1);
+  line-height:34rpx;
+  letter-spacing:1rpx;
+  margin-top: 10rpx
+}
+.starTitle{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* margin-top: 45rpx */
+}
+.starLine{
+  width:241rpx;
+  height:2rpx;
+  background: #DCDCDC
+}
+.starCont{
+  font-size:32rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(40,40,40,1);
+  line-height:45rpx;            
+  letter-spacing:1rpx;
+}
+
+/* --------------star */
+.content{
+  display: flex;
+  align-items: center;
+}
+.starBox{
+  display: flex;
+  margin: 50rpx auto;
+}
+.star{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 34rpx;
+}
+.star:last-child{
+  margin-right: 0;
+}
+.starImg{
+  width: 56rpx;
+  height: 54rpx;
+  margin-bottom: 6rpx
+}
+.starTag{
+  font-size:20rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(160,160,160,1);
+  line-height:28rpx;
+}
+/* ------------------star */
+.evaluate_write{
+  background: #fff;
+  margin-top: 20rpx;
+  padding: 0 32rpx 40rpx;
+  position: relative;
+}
+.evaluate_writeTitle{
+  font-size:30rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(40,40,40,1);
+  line-height:90rpx;
+  letter-spacing:1rpx;
+}
+.evaluate_input{
+  width:685rpx;
+  min-height:180rpx;
+  border:1rpx solid rgba(152,128,245,1);
+  color: #000;
+  font-size:24rpx;
+  padding: 18rpx 24rpx;
+  box-sizing: border-box;
+}
+.placeholderStyle{
+  font-size:24rpx;
+  color: #A0A0A0;
+  line-height:33rpx;
+}
+
+.sub_evaluate{
+  width:468rpx;
+  background:linear-gradient(360deg,rgba(155,133,252,1) 0%,rgba(114,87,251,1) 100%);
+  box-shadow:0px 0px 16rpx 0px rgba(184,168,255,1);
+  border-radius:41rpx;
+  margin: 40rpx auto;
+  font-size:30rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:84rpx;
+  text-align: center;
+}
+
+.evaluateStyle{
+  width:580rpx;
+  min-height:466rpx;
+  background:rgba(255,255,255,1);
+  border-radius:18rpx;
+  padding: 0 50rpx 0 50rpx;
+  box-sizing: border-box
+}
+.closeBtn{
+  font-size: 45rpx;
+  position: absolute;
+  top: 30rpx;
+  right: 35rpx;
+  color: #D2D2D2;
+  z-index: 100
+}
+.evaluateComfirmTitle{
+  font-size:36rpx;
+  font-family:PingFangSC-Semibold;
+  font-weight:600;
+  color:rgba(40,40,40,1);
+  line-height:140rpx;
+  letter-spacing:1rpx;
+  text-align: center;
+  position: relative;
+}
+.evaluateComfirmCont{
+  font-size:26rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(40,40,40,1);
+  line-height:47rpx;
+  letter-spacing:1rpx;
+  /* margin-top: 30rpx; */
+  text-align: left;
+  padding: 0 50rpx;
+  box-sizing: border-box;
+}
+.evaluateComfirmBtn{
+  width:404rpx;
+  /* height:84px; */
+  background:linear-gradient(360deg,rgba(155,133,252,1) 0%,rgba(114,87,251,1) 100%);
+  box-shadow:0px 0px 16rpx 0px rgba(184,168,255,1);
+  border-radius:41rpx;
+  font-size:30rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:84rpx;
+  text-align: center;
+  margin: 80rpx auto 0;
+}
+.point{
+  width:22rpx;
+  height:22rpx;
+  background:linear-gradient(302deg,rgba(255,255,255,1) 0%,rgba(137,109,255,1) 100%);
+  opacity:0.5049;
+  position: absolute;
+  border-radius: 50%;
+  top: 71rpx;
+  left: 130rpx;
+}
+.point2{
+  width:17rpx;
+  height:17rpx;
+  background:linear-gradient(225deg,rgba(255,255,255,1) 0%,rgba(109,130,255,1) 100%);
+  opacity:0.5049;
+  position: absolute;
+  border-radius: 50%;
+  top: 34rpx;
+  left: 320rpx;
+}
+.point3{
+  width:12rpx;
+  height:12rpx;
+  background:linear-gradient(143deg,rgba(255,255,255,1) 0%,rgba(181,109,255,1) 100%);
+  opacity:0.5049;
+  position: absolute;
+  border-radius: 50%;
+  top: 91rpx;
+  left: 316rpx;
+}
+.wxCode{
+  color: #896dff;
+}
+.wxCodeCont{
+  color: #aaa;
+  font-size: 22rpx;
+  text-align: center;
+  line-height: 30rpx;
+  margin-top: 20rpx;
+}

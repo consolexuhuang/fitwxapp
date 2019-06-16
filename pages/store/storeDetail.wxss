@@ -1,0 +1,295 @@
+/* pages/store/storeDetail.wxss */
+
+.wrapper {
+  padding-bottom: 170rpx;
+}
+
+.header {
+  width: 100%;
+  height: 486rpx;
+  background-color: #fff;
+  padding-bottom: 20rpx;
+}
+
+.banner {
+  width: 100%;
+  height: 300rpx;
+}
+
+.store-name {
+  margin-top: 40rpx;
+  margin-left: 35rpx;
+  line-height: 45rpx;
+  font-weight: 500;
+  font-size: 32rpx;
+  color: #3c3c3c;
+}
+
+.store-score-wrapper {
+  margin-top: 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.store-star {
+  /* flex: 1; */
+  margin-left: 38rpx;
+  display: flex;
+}
+.shareLine{
+  width:2rpx;
+  height:38rpx;
+  background: linear-gradient(#DFD3FF,#896DFF,#ECE7FF);
+  margin:0 70rpx 0 350rpx;
+}
+.store-star image {
+  margin-right: 2rpx;
+  width: 25.1rpx;
+  height: 25.1rpx;
+}
+
+.store-share {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 89rpx;
+  height: 69rpx;
+}
+.shareBtnBox{
+  margin-right: 62rpx;
+  width: 89rpx;
+  height: 69rpx;
+  position: relative;
+}
+.shareBtn{
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100
+}
+
+.module-wrapper {
+  margin-top: 20rpx;
+  width: 100%;
+  background-color: #fff;
+}
+
+.module-title-wrapper {
+  position: relative;
+  width: 100%;
+  height: 97rpx;
+}
+
+.module-dot {
+  position: absolute;
+  top: 30rpx;
+  left: 34rpx;
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  background-color: #c9bcff;
+  z-index: 1;
+}
+
+.module-title {
+  position: absolute;
+  top: 35rpx;
+  left: 49rpx;
+  font-weight: 500;
+  font-size: 30rpx;
+  color: #141414;
+  z-index: 2;
+}
+
+.store-content {
+  margin-left: 32rpx;
+  padding-bottom: 29rpx;
+  border-bottom: 2rpx solid #e9e9e9;
+}
+
+.store-content rich-text {
+  margin-left: 15rpx;
+  display: block;
+  width: 670rpx;
+  line-height: 36rpx;
+  font-size: 26rpx;
+  color: #646464;
+}
+
+.store-position-wrapper {
+  margin-left: 32rpx;
+  height: 128rpx;
+  border-bottom: 2rpx solid #e9e9e9;
+  display: flex;
+  align-items: center;
+}
+.store-position-wrapper:last-child{
+  border-bottom: none
+}
+
+.store-position-icon {
+  margin-left: 25rpx;
+  /* width: 30rpx;
+  height: 30rpx; */
+  font-size: 30rpx;
+  color: #aaa
+}
+
+.store-address {
+  flex: 1;
+  margin-left: 15rpx;
+  width: 456rpx;
+  line-height: 36rpx;
+  font-size: 26rpx;
+  color: #141414;
+  padding-right: 12rpx;
+}
+
+.store-arrow {
+  margin-right: 37rpx;
+  /* width: 24.4rpx;
+  height: 24.3rpx; */
+  font-size: 25rpx;
+  color: #aaa
+}
+
+.route-guide-wrapper {
+  height: 129rpx;
+  display: flex;
+  align-items: center;
+}
+
+.route-guide-icon {
+  margin-left: 25rpx;
+  width: 24rpx;
+  height: 23rpx;
+}
+
+.route-guide-text {
+  flex: 1;
+  margin-left: 14rpx;
+  font-size: 26rpx;
+  color: #141414;
+}
+
+.facility-list {
+  margin-top: -12rpx;
+  padding-left: 40rpx;
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff
+}
+
+.facility-item {
+  padding-top: 30rpx;
+  padding-bottom: 39rpx;
+  width: 128rpx;
+  text-align: center;
+}
+
+.facility-item image {
+  width: 45rpx;
+  height: 45rpx;
+}
+
+.facility-item text {
+  display: block;
+  margin-top: 7rpx;
+  line-height: 33rpx;
+  font-size: 24rpx;
+  color: #141414;
+}
+
+.fitness-step-content {
+  position: relative;
+  margin-top: 24rpx;
+  width: 100%;
+  height: 159rpx;
+}
+
+.fitness-step-line {
+  position: absolute;
+  top: 23rpx;
+  left: 106rpx;
+  width: 534rpx;
+  height: 2rpx;
+  background-color: #c8c8c8;
+  z-index: 1;
+}
+
+.fitness-step-list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+}
+
+.fitness-step-item {
+  width: 178rpx;
+}
+
+.fitness-step-item-number {
+  margin: 0 auto;
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background-color: #896eff;
+  line-height: 48rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #fff;
+}
+
+.fitness-step-item-text {
+  margin-top: 33rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #141414;
+}
+
+.store-tips {
+  margin-top: 10rpx;
+  margin-left: 50rpx;
+  padding-bottom: 32rpx;
+  width: 643rpx;
+  line-height: 33rpx;
+  font-size: 24rpx;
+  color: #787878;
+}
+
+.store-tips text {
+  color: #896dff;
+}
+
+.reserve-btn-wrapper {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 130rpx;
+  background-color: #fff;
+  box-shadow: 0 -2rpx 4rpx 0 rgba(240, 237, 255, 1);
+  z-index: 10;
+}
+
+.reserve-btn {
+  margin: 23rpx auto 0;
+  width: 613rpx;
+  height: 84rpx;
+  border-radius: 41rpx;
+  background: linear-gradient(360deg, rgba(155, 133, 252, 1) 0%, rgba(114, 87, 251, 1) 100%);
+  box-shadow: 0 0 16rpx 0 rgba(184, 168, 255, 1);
+  line-height: 84rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #fff;
+}

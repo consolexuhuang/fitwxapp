@@ -1,0 +1,224 @@
+<!--pages/course/course.wxml-->
+<wxs src="../../utils/util.wxs" module="util" />
+<tabBar_top navbarData="{{navbarData}}"></tabBar_top>
+<view class="wrapper">
+
+  <view style="margin-top:{{marginTopBar}}px;position:relative;z-index:11">
+    <view class='netWork fadeIn animated' wx:if='{{!IsshowNetStatus}}'>
+      <text class='iconicon-test5 iconfont netWorkImg'></text>
+      <text class='netWorkCont'>当前网络不可用，请检查你的网络设置</text>
+    </view>
+    <view class="header">
+      <view class="search-bar fadeIn animated" bindtap="handleCourseSearchTap">
+        <text class='iconicon-test43 iconfont icon1'/>
+        <view class="search-bar-text">
+          <text>{{searchText? searchText: '搜索您喜欢的课程及教练'}}</text>
+        </view>
+      </view>
+
+      <swiper class="banner-swiper fadeIn animated" indicator-dots indicator-color="#8B6FF1" indicator-active-color="#FFFFFF" autoplay circular interval="3000">
+        <block wx:for="{{config.bannerList}}" wx:key="index">
+          <swiper-item class="banner-item">
+            <image src="{{util.imageParam(item.image)}}" lazy-load data-path="{{item.path}}" bindtap="handleBannerTap" />
+          </swiper-item>
+        </block>
+      </swiper>
+
+      <view class="screen-wrapper">
+
+        <view class="select-wrapper">
+          <view class="store-select-wrapper" bindtap="handleStoreScreenTap">
+            <text class="store-select-title">{{city}}门店</text>
+            <text class="store-select-count" wx:if="{{selectedStore.length}}">({{selectedStore.length}})</text>
+            <text class="store-select-arrow iconicon-test36 iconfont" />
+          </view>
+          <view class="course-select-wrapper" bindtap="handleCourseScreenTap">
+            <text class="course-select-title">课程</text>
+            <text class="course-select-count" wx:if="{{selectedLabel.length + selectedTimeInterval.length}}">({{selectedLabel.length + selectedTimeInterval.length}})</text>
+            <text class="course-select-arrow iconicon-test36 iconfont" />
+          </view>
+        </view>
+
+        <view class="switch-wrapper">
+          <van-switch size="34rpx" checked="{{isOver}}" bind:change="handleSwitchChange" active-color='#8b6ff1' />
+          <text class="switch-text">隐藏已结束</text>
+        </view>
+
+      </view>
+
+    </view>
+
+
+
+  </view>
+
+  <view class="date-wrapper" style='top:{{marginTopBar}}px'>
+    <view class="date-list">
+      <block wx:for="{{dateList}}" wx:key="index">
+        <view class="date-item {{index==active?'date-item-active':''}}" data-index="{{index}}" bindtap="handleDateTap">
+          <view class="date-item-day">{{item.day}}</view>
+          <view class="date-item-date">{{item.month}}.{{item.thDay}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+
+  <view class='store-block'>
+    <!-- 店铺名称固定  -->
+    <view class='store-name-postion' hidden='{{!showStoreName}}' style="top:{{marginTopBar + calendarHeight -3}}px">
+      <view class="store-name">
+        <view class="store-name-icon"></view>
+        <text>{{currentStoreInfo.storeName}}</text>
+      </view>
+      <view class="store-distance">
+        <text>距您{{currentStoreInfo.storeDist}}km</text>
+        <text class='iconicon-test1 iconfont' />
+      </view>
+    </view>
+
+    <swiper current="{{active}}" bindchange="handleCurrentChange" style="height: {{swiperHeight[dateList[active].date]}}rpx" duration="150">
+      <swiper-item wx:for="{{dateList}}" wx:for-index="dateKey" wx:for-item="dateItem" wx:key="dateKey" id='swiperItem{{dateKey}}'>
+
+        <view class="store-list" id="{{'id' + dateItem.date}}">
+
+          <!-- 当天有课程 -->
+          <block wx:if="{{courseList.courses[dateItem.date]}}">
+            <view class="store-item" id="{{'id' + dateItem.date + storeItem}}" wx:for="{{displayedStore[dateItem.date]}}" wx:for-item="storeItem" wx:for-index="storeIndex" wx:key="storeIndex">
+
+              <!-- 门店有课程 -->
+              <block wx:if="{{courseList.courses[dateItem.date][storeItem].length}}">
+
+                <view class="store-wrapper" data-store-name='{{courseList.stores[storeItem].store_name}}' data-store-dist='{{util.numberFormat(courseList.stores[storeItem].DIST/1000, 0)}}' data-store-num='{{courseList.courses[dateItem.date][storeItem].length}}' data-store-id="{{courseList.stores[storeItem].id}}"
+                  bindtap="handleStoreTap">
+                  <view class="store-name-wrapper" id='dd{{storeIndex}}'>
+                    <view class="store-name">
+                      <view class="store-name-icon"></view>
+                      <text>{{courseList.stores[storeItem].store_name}}</text>
+                    </view>
+                    <view class="store-distance" wx:if="{{courseList.stores[storeItem].DIST>=0}}">
+                      <text>距您{{util.numberFormat(courseList.stores[storeItem].DIST/1000, 0)}}km</text>
+                      <text class='iconicon-test1 iconfont' />
+                    </view>
+                  </view>
+                </view>
+
+                <view class="course-list" wx:if="{{courseList.courses[dateItem.date][storeItem].length}}">
+
+                  <block wx:for="{{courseList.courses[dateItem.date][storeItem]}}" wx:for-index="courseKey" wx:for-item="courseItem" wx:key="courseKey">
+
+                    <view class="course-item" data-course-id="{{courseItem.id}}" data-good-id="{{courseItem.good_id}}" bindtap="handleCourseTap">
+                      <view class="course-time">{{util.timeFormat(courseItem.begin_time, 'hh:mm')}}-{{util.timeFormat(courseItem.end_time, 'hh:mm')}}</view>
+                      <view class='course-content'>
+                      <view class="course-left">
+                        <view class="coach-avatar-wrapper">
+                          <block wx:if="{{courseItem.coach_head_url2}}">
+                            <view class="coach-avatar-first">
+                              <image src="{{util.imageParam(courseItem.head_url,'?imageView/1/w/120/h/120')}}" data-coach-id="{{courseItem.coach_id}}" catchtap="handleCoachTap" lazy-load />
+                            </view>
+                            <view class="coach-avatar-second">
+                              <image src="{{util.imageParam(courseItem.coach_head_url2,'?imageView/1/w/120/h/120')}}" data-coach-id="{{courseItem.coach_id}}" catchtap="handleCoachTap" lazy-load />
+                            </view>
+                          </block>
+                          <block wx:else>
+                            <view class="coach-avatar">
+                              <image src="{{util.imageParam(courseItem.head_url,'?imageView/1/w/120/h/120')}}" lazy-load data-coach-id="{{courseItem.coach_id}}" catchtap="handleCoachTap" />
+                            </view>
+                          </block>
+                          <view class="course-price-label" wx:if="{{courseItem.price_label}}">{{courseItem.price_label}}</view>
+                        </view>
+                        <view class="course-center">
+                          <view class="course-name">{{courseItem.course_name || ''}}</view>
+                          <view class="course-label">{{courseItem.LABELS || ''}}</view>
+                          <view class="course-price-wrapper">
+                            <view class="course-discount-price">¥{{courseItem.discount_price}}</view>
+                            <view class="course-price-line"></view>
+                            <block wx:if="{{courseItem.course_type===3}}">
+                              <view class="course-card-price">¥{{courseItem.price}}</view>
+                            </block>
+                            <block wx:elif="{{courseItem.discount_price}}">
+                              <view class="course-card-price">¥{{courseItem.card_price}}</view>
+                              <image class="course-price-icon" src="{{imgUrl}}course/icon_plus_price.png" />
+                            </block>
+                            <block wx:else>
+                              <view class="course-card-price">¥{{courseItem.price}}</view>
+                              <image class="course-price-icon" src="{{imgUrl}}course/icon_original_price.png" />
+                            </block>
+                          </view>
+                        </view>
+                      </view>
+                      <block wx:if="{{courseItem.good_id}}">
+                        <view class="course-appoint-btn btn-detail">详情</view>
+                      </block>
+                      <block wx:elif="{{courseItem.status === 1}}">
+                        <view class="course-appoint-btn" data-course-id="{{courseItem.id}}" catchtap="handleAppointBtnTap">立即预约</view>
+                      </block>
+                      <block wx:elif="{{courseItem.status === 2}}">
+                        <view class="course-wait-btn" data-course-id="{{courseItem.id}}" catchtap="handleAppointBtnTap">等位</view>
+                      </block>
+                      <block wx:elif="{{courseItem.status === 3}}">
+                        <view class="course-end-btn">已结束</view>
+                      </block>
+                      </view>
+
+
+
+                      
+
+                      <image wx:if="{{courseItem.status !== 3 && courseItem.num_status === 1}}" class="course-status" src="{{imgUrl}}course/icon_nervous.png" />
+                      <image wx:elif="{{courseItem.status !== 3 && courseItem.num_status === 2}}" class="course-status" src="{{imgUrl}}course/icon_full.png" />
+
+                    </view>
+
+                  </block>
+
+                </view>
+                <!-- <view class="store-none-course" wx:else>
+                  <text>今天没可约的课程～</text>
+                </view> -->
+
+              </block>
+
+              <!-- 门店无课程 -->
+              <block wx:else>
+                <view class="store-wrapper" data-store-name='{{courseList.stores[storeItem].store_name}}' data-store-dist='{{util.numberFormat(courseList.stores[storeItem].DIST/1000, 0)}}' data-store-num='{{courseList.courses[dateItem.date][storeItem].length}}' data-store-id="{{courseList.stores[storeItem].id}}"
+                  bindtap="handleStoreTap">
+
+                  <view class="store-name-wrapper" data-storename='{{courseList.stores[storeItem].store_name}}' data-storedist='{{util.numberFormat(courseList.stores[storeItem].DIST/1000, 0)}}'>
+                    <view class="store-name">
+                      <view class="store-name-icon"></view>
+                      <text>{{courseList.stores[storeItem].store_name}}</text>
+                    </view>
+                    <view class="store-distance" wx:if="{{courseList.stores[storeItem].DIST>=0}}">
+                      <text>距您{{util.numberFormat(courseList.stores[storeItem].DIST/1000, 0)}}km</text>
+                      <text class='iconfont iconicon-test1' />
+                    </view>
+                  </view>
+
+                  <view class="store-none-course">
+                    <text>向右滑，看看明天的课吧～</text>
+                  </view>
+                </view>
+              </block>
+
+            </view>
+            <view class="load-more">{{endLine[dateItem.date] || '上拉加载...'}}</view>
+
+          </block>
+
+          <!-- 当天无课程 -->
+          <block wx:else>
+            <view class="none-course">
+              <image src="{{imgUrl}}course/icon_course_big.png" />
+              <text>J&J排课中</text>
+              <text>每周五21:30发布</text>
+            </view>
+          </block>
+
+        </view>
+
+      </swiper-item>
+    </swiper>
+  </view>
+
+</view>

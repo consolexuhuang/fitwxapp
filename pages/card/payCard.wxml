@@ -1,0 +1,87 @@
+<!--pages/card/payCard.wxml-->
+<wxs src="../../utils/util.wxs" module="util" />
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view class="wrapper" wx:if="{{goodData}}" style='padding-bottom:140rpx;margin-top:{{marginTopBar}}px'>
+  <!-- card -->
+  <view class="card fadeIn animated">
+    <image class="card-bg" src="{{goodData.banner_img}}"></image>
+    <!--判断不同卡用不同的卡图片 <image class="card-bg" src="{{imgUrl}}card/card-morning.png"></image> -->
+    <text class="number">¥{{goodData.card_def.discount_price}}/{{goodData.card_def.card_total_count}}次</text>
+  </view>
+  <!-- card info -->
+  <view class="card-info fadeIn animated">
+    <view class="row">
+      <label class="label">购卡名称</label>
+      <text class="value" decode="true">{{goodData.title}}</text>
+    </view>
+    <view class="row">
+      <label class="label">支持门店</label>
+      <text class="value" decode="true">{{util.replace(goodData.store_ids__NAME, ',', '\n')}}</text>
+    </view>
+    <view class="row">
+      <label class="label">支持课程</label>
+      <text class="value" decode="true">{{goodData.good_intro}}</text>
+    </view>
+    <view class="row">
+      <label class="label">使用期限</label>
+      <text class="value" decode="true">{{util.timeFormat(goodData.begin_date, 'MM月DD日')}}-{{util.timeFormat(goodData.end_date, 'MM月DD日')}}(共{{goodData.validity_days}}天)</text>
+    </view>
+  </view>
+  <!-- pay -->
+  <view class="pay-title fadeIn animated">支付方式</view>
+  <view class="pay-type fadeIn animated">
+    <view class="item">
+      <view class="item-play-type fadeIn animated" 
+            wx:for="{{currentPayWayState}}" 
+            wx:key="{{index}}"
+            wx:if="{{item.payType}}">
+        <view class="left">
+          <image class="icon" 
+                 wx:if="{{item.type == 1 ? true : false}}" 
+                 src="{{imgUrl}}icon/cardPayIcon.png">
+          </image>
+          <text class="icon iconicon-test28 iconfont" 
+                 wx:if="{{item.type == 2 ? true : false}}"
+                 ></text>
+          <text class="name">{{item.type == 1 ? "卡支付" : (item.type == 2 ? "微信支付" : "支付")}}</text>
+        </view>
+        <text class='creditNone' 
+              wx:if="{{item.type == 1 && !item.isOpening}}"
+              bindtap='jumpTocashMoney'>还未开通，立即开通</text>
+        <text class='creditNone' 
+              wx:if="{{item.type == 1 && !item.momeyCreditState && item.isOpening}}"
+              bindtap='jumpTocashMoney'>余额{{orderData.card_amount}}元，立即充值</text>
+        <view class='choosePayWayBox' 
+              wx:if="{{item.state || (item.isOpening && item.momeyCreditState)}}"
+              data-ind='{{index}}'
+              bindtap='choosePaywayEvent'>
+          <image wx:if="{{item.state && item.isOpening && item.momeyCreditState}}" 
+                src='{{imgUrl}}icon/chooseState.png' 
+                class='choosePayWay'></image>
+          <image wx:if="{{!item.state && item.isOpening && item.momeyCreditState}}" 
+                src='{{imgUrl}}icon/noneChooseState.png' 
+                class='choosePayWay'></image>
+        </view>
+      </view>
+      <view class="tip">
+        <text class="icon-tip iconicon-test10 iconfont"></text>
+        <rich-text class="text" decode="true" nodes='{{goodData.needing_attention}}'></rich-text>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- footer -->
+<view class="footer fadeIn animated">
+  <!-- <view class="left">
+    <text class="number">¥{{orderData.pay_amount || '0.00'}}</text>
+  </view> -->
+  <button class="btn cardOver" wx:if='{{orderData.error_tip == "已结束"}}'>{{orderData.error_tip}}</button>
+  <button class="btn" bindtap="handlePayBtnTap" wx:elif='{{goodData.pay_flag != 2 || (currentPayWayState[0].momeyCreditState && currentPayWayState[0].isOpening)}}'>立即支付 ¥{{orderData.pay_amount || '0.00'}}</button>
+  <button class="btn" wx:elif='{{!currentPayWayState[0].isOpening && goodData.pay_flag == 2}}' bindtap='jumpTocashMoney'>
+     需支付¥{{orderData.pay_amount}}，点击充值
+  </button>
+  <button class="btn"  bindtap='jumpTocashMoney' wx:elif='{{goodData.pay_flag == 2 && !currentPayWayState[0].momeyCreditState}}'>
+      <!-- <text class='btnTop'>需支付¥{{orderData.pay_amount}}</text> -->
+     余额不足，点击充值
+  </button>
+</view>

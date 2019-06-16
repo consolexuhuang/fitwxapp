@@ -1,0 +1,21 @@
+<!--components/tabBar_top/tabBar.wxml-->
+<view class='nav-wrap' style='height: {{height*2 + 20}}px; background: {{navbarData.tab_topBackground || none}}'>
+  <view class='nav-title' style='line-height: {{height*2 + 44}}px; color:{{navbarData.titleColor ? navbarData.titleColor : "#000"}}'>{{navbarData.title}}</view>
+  <view style='display: flex; justify-content: space-around;flex-direction: column'>
+    <view class='nav-capsule' style='height: {{height*2 + 44}}px;' wx:if='{{navbarData.showCapsule}}'>
+       <!-- 左上角的返回按钮，wx:if='{{!share}}'空制返回按钮显示
+       从分享进入小程序时 返回上一级按钮不应该存在 -->
+      <view class='nav-capsuleBox {{navbarData.isShowBackHome &&  navbarData.tab_topBackground != "#fff" ? "nav-capsuleBoxBorder" : (navbarData.isShowBackHome &&  navbarData.tab_topBackground == "#fff" ? "nav-capsuleBoxBorder2" : "")}}'>
+          <view bindtap='_navback' style='display:flex;align-items:center'>
+            <image wx:if='{{!navbarData.tab_topBackground ||navbarData.tab_topBackground != "#fff"}}' src='../../images/tabBar/icon_arrow_up.png' mode='aspectFill' class='back-pre'></image>
+            <image wx:if='{{navbarData.tab_topBackground == "#fff"}}' src='../../images/tabBar/icon_arrow_black.png' mode='aspectFill' class='back-pre'></image>
+          </view>
+          <view class='navbar-v-line' wx:if='{{navbarData.isShowBackHome}}'></view>
+          <view bindtap='_backhome' wx:if='{{navbarData.isShowBackHome}}' style='display:flex;align-items:center'>
+            <image wx:if='{{!navbarData.tab_topBackground ||navbarData.tab_topBackground != "#fff"}}' src='../../images/tabBar/backHome.png' mode='aspectFill' class='back-home'></image>
+            <image wx:if='{{navbarData.tab_topBackground == "#fff"}}' src='../../images/tabBar/backHome_black.png' mode='aspectFill' class='back-home'></image>
+          </view>
+      </view>
+    </view>
+  </view>
+</view>

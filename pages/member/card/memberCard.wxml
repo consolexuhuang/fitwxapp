@@ -1,0 +1,46 @@
+<!--pages/member/card/memberCard.wxml-->
+<wxs src="../../../utils/util.wxs" module="util" />
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view style='margin-top:{{marginTopBar}}px;'>
+  <block wx:for="{{cardList}}" wx:if='{{cardList.length != 0}}' wx:key="_PK_">
+    <block wx:if="{{item.card_type===3}}">
+      <view class="myCard_moneyRecord fadeIn animated" bindtap="handleTransactionRecordTap">
+        <view class="myCard_moneyRecord_title">交易记录</view>
+        <view class="myCard_moneyRecord_cont">
+          <image src="{{item.background_img}}" class="myCard_moneyRecordImg"></image>
+          <!-- <image src="{{imgUrl}}card/cardNameLogo.png" class="cardNameImg"></image> -->
+          <view class="memberCardNumber">{{util.cardNumber(item.card_no)}}</view>
+          <view class="currentState">
+              <view class="currentState_title">当前余额</view>
+              <view class="currentState_momey">¥{{item.balance}}</view>
+              <view class="currentState_rechargeBox">
+                <view class="currentState_recharge" catchtap="handleRechargeTap">立即充值</view>
+              </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="buyCardRecord myCard_moneyRecord fadeIn animated" data-card-id="{{item._PK_}}" bindtap="handleCardRecordTap">
+        <view class="myCard_moneyRecord_title">购卡记录</view>
+        <view class="buyCardRecord_cont">
+          <image src="{{item.background_img}}" class="myCard_moneyRecordImg"></image>
+          <view class="buyCardRecord_numBox">
+            <view class='buyCardRecord_numBox2'>
+                <text class="buyCardRecord_num">¥{{item.discount_price}}/{{item.card_total_count}}次</text>
+                <text class="buyCardRest_num">(剩余{{item.card_left_count}}次)</text>
+            </view>
+          </view>
+          <view class="buyCardRecord_time">{{util.timeFormat(item.create_time, 'MM月DD日')}}-{{util.timeFormat(item.validity_date, 'MM月DD日')}}<text wx:if="{{item.status===2}}">(已过期)</text></view>
+        </view>
+      </view>
+    </block>
+  </block>
+  <view wx:if='{{cardList.length == 0}}' style='overflow:hidden;text-align:center'>
+     <view class='noCardBox'>
+        <text class='iconicon-test12 iconfont noCardImg'></text>
+        <text class='noCardCont'>暂无充值记录</text>
+     </view>
+     <text class='openCard' bindtap='jumpToRechange'>立即开通 ></text>
+  </view>
+</view>

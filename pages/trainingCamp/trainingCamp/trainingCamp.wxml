@@ -1,0 +1,122 @@
+<!--pages/trainingCamp/trainingCamp/trainingCamp.wxml-->
+<wxs src="../../../utils/util.wxs" module="util" />
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view class='content' style='margin-top:{{marginTopBar}}px'>
+   <image class='trainingCamp_topDataImg fadeIn animated' src='{{trainingCampData.banner_img}}'></image>
+   <view class='trainingCamp_top'>
+     <view class='trainingCamp_topName'>
+        <view class='trainingCamp_topStoreName'>{{trainingCampData.title}}</view>
+        <view class='trainingCamp_topStoreAddress'>{{trainingCampData.store_ids__NAME}}</view>
+     </view>
+   </view>
+   <view class='trainingCamp'>
+      <view class='trainingCamp_stage fadeIn animated'>
+         <view class='trainingCamp_Title trainingCamp_TitleMore' bindtap='showCoachInfo'>{{trainingCampData.period}}(共{{trainingCampData.course_count}}课时/{{trainingCampData.total_num}}人)</view>
+         <view class='trainingCamp_stageList'>
+           <view class='trainingCamp_stageItem'
+                 wx:for="{{coachList}}"
+                 wx:key='{{index}}'>
+              <image src='{{item.head_url}}' class='trainingCamp_stageHeadImg'></image>
+              <view class='trainingCamp_stageDateList'>
+                 <view class='trainingCamp_stageDateItem'
+                      wx:for='{{item.course_list}}'
+                      wx:key='{{index}}'>{{util.timeFormat(item.begin_date, 'MM月DD日')}} 星期{{item.begin_day}} {{util.timeFormat(item.begin_time, 'hh:ss')}}-{{util.timeFormat(item.end_time, 'hh:ss')}}</view>
+              </view>
+           </view>
+         </view>
+      </view>
+      <view class='trainingCamp_introduction {{showLookMore? "trainingCamp_introductionMore":""}} fadeIn animated' id='trainingCampDom'>
+         <view class='trainingCamp_Title'>课程简介</view>
+         <rich-text class='trainingCamp_introductionCont' nodes='{{trainingCampData.good_intro}}'></rich-text>
+         <view class='trainingCamp_introduction_need'>
+           <view class='trainingCamp_introduction_list'>
+              <view class='ballBox'>
+                <view class='ball'></view>
+                <view class='line'></view>
+              </view>
+              <view class='trainingCamp_introduction_item'>
+                <view class='trainingCamp_introduction_itemTitle'>训练效果</view>
+                <rich-text class='trainingCamp_introduction_itemCont' nodes='{{trainingCampData.training_effect}}'></rich-text>
+              </view>
+           </view>
+           <view class='trainingCamp_introduction_list'>
+              <view class='ballBox'>
+                <view class='ball'></view>
+                <view class='line'></view>
+              </view>
+              <view class='trainingCamp_introduction_item'>
+                <view class='trainingCamp_introduction_itemTitle'>训练效果</view>
+                <rich-text class='trainingCamp_introduction_itemCont' nodes='{{trainingCampData.suit_crowds}}'></rich-text>
+              </view>
+           </view>
+           <view class='trainingCamp_introduction_list'>
+              <view class='ballBox'>
+                <view class='ball'></view>
+                <!-- <view class='line'></view> -->
+              </view>
+              <view class='trainingCamp_introduction_item'>
+                <view class='trainingCamp_introduction_itemTitle'>训练效果</view>
+                <rich-text class='trainingCamp_introduction_itemCont' nodes='{{trainingCampData.training_effect}}'></rich-text>
+              </view>
+           </view>
+         </view>
+         <view class='lookMore' wx:if='{{showLookMore}}' bindtap='showInfoMore'></view>
+      </view>
+      <view class='trainingCamp_step fadeIn animated'>
+          <view class='trainingCamp_Title'>健身步骤</view>
+          <view class='trainingCamp_stepBox'>
+             <view class='trainingCamp_stepball'>1</view>
+             <view class='trainingCamp_stepline'></view>
+             <view class='trainingCamp_stepball'>2</view>
+             <view class='trainingCamp_stepline'></view>
+             <view class='trainingCamp_stepball'>3</view>
+             <view class='trainingCamp_stepline'></view>
+             <view class='trainingCamp_stepball'>4</view>
+          </view>
+          <view class='trainingCamp_stepCont fadeIn animated'>
+             <view class='trainingCamp_stepContItem'>约课成功</view>
+             <view class='trainingCamp_stepContItem'>获得密码</view>
+             <view class='trainingCamp_stepContItem'>扫码开门</view>
+             <view class='trainingCamp_stepContItem'>签到上课</view>
+          </view>
+      </view>
+      <view class='trainingCamp_careful {{showLookCarefulMore ? "trainingCamp_introductionMore":""}} fadeIn animated' id='trainingCampCarefulDom'>
+        <view class='trainingCamp_Title'>注意事项</view>
+        <rich-text class='trainingCamp_carefulCont' nodes='{{trainingCampData.needing_attention}}'></rich-text>
+        <view class='lookMore' wx:if='{{showLookCarefulMore}}' bindtap='showCarefulMore'></view>
+      </view>
+   </view>
+</view>
+
+<view class='trainingCamp_foot fadeIn animated'>
+   <view class='trainingCamp_footPrice'>
+    <text class='trainingCamp_footDisPrice'>¥{{trainingCampData.discount_price}}</text>
+    <!-- <text class='trainingCamp_footOrgPrice' wx:if='{{trainingCampData.discount_price !== trainingCampData.price}}'>¥{{trainingCampData.price}}</text> -->
+   </view>
+   <!-- 1:可参加倒计时结束  2:未开始 倒计时  -->
+   <view class='trainingCamp_footBtn' wx:if='{{trainingCampData.status != 1 && trainingCampData.status != 2 && !countList[0].timeObj}}'>{{!trainingCampData.status ? trainingCampData.status__NAME : "等待"}}</view>
+   <view wx:if='{{trainingCampData.status == 1 && !countList[0].timeObj}}' class='trainingCamp_footBtn trainingCamp_footBtnStyle fadeIn animated' bindtap='jumpTrainingOrder'>立即抢购</view>
+   <view class='trainingCamp_footBtnStyle footTime fadeIn animated' wx:if='{{trainingCampData.status == 2 && countList[0].timeObj}}'>
+      <view class='footTime_buyTime'>{{trainingCampData.sale_begin_time}}开抢</view>
+      <view class='footTime_count'>距开始
+         <text class='time'>{{countList[0].timeObj.hasHour || '00'}}</text> :
+         <text class='time'>{{countList[0].timeObj.hasMinute || '00'}}</text> :
+         <text class='time'>{{countList[0].timeObj.hasSecond2 || '00'}}</text>
+      </view>
+   </view>
+</view>
+
+<van-popup show='{{coachShow}}' 
+           bind:close='onclose'
+           custom-class='coachShowStyle'>
+  <view class='coachTitle'>教练介绍</view>
+  <scroll-view scroll-y style='height:478rpx; padding:20rpx 0 40rpx; box-sizing: border-box'>
+     <view class='coachItem'
+           wx:for='{{coachList}}'
+           wx:key='{{index}}'>
+        <image class='coachItem_headImg' src='{{item.head_url}}'></image>
+        <rich-text wx:for="{{item.course_list}}" wx:key="{{item.course_list}}" class='coachItem_info' nodes = '{{item.course_intro}}'></rich-text>
+     </view>
+  </scroll-view>
+  <text class='closeImg iconfont iconicon-test18' bindtap='onclose'></text>
+</van-popup>

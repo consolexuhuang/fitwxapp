@@ -1,0 +1,78 @@
+/* pages/good/good.wxss */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  margin: 30rpx;
+}
+
+.list .item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20rpx;
+  padding: 24rpx;
+  background: #fff;
+}
+
+.list .item .pic {
+  width: 651rpx;
+  height: 258rpx;
+  border-radius: 10rpx;
+}
+
+.list .item .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  margin: 30rpx 0;
+}
+.priceBox{
+  display: flex;
+  justify-content: space-between;
+}
+ .left {
+   margin-bottom: 10rpx;
+}
+
+.name {
+  font-size: 34rpx;
+  color: #141414;
+}
+
+.price {
+  /* display: flex;
+  flex-direction: row; */
+  margin-top: 20rpx;
+}
+
+.price-current {
+  margin-right: 20rpx;
+  font-size: 32rpx;
+  color: #896dff;
+  font-weight: bold;
+}
+
+.price-original {
+  font-size: 24rpx;
+  color: #aaa;
+  text-decoration: line-through;
+}
+
+.btn {
+  margin: 0;
+  width: 192rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size:28rpx;
+  color:#FFFFFF;
+  background: #896dff;
+  border-radius: 6rpx;
+  margin-top: 12rpx;
+  /* align-self: flex-end */
+}
+.btn.end{
+  color:#FFFFFF;
+  background: #C8C8C8;
+}

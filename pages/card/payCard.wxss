@@ -1,0 +1,194 @@
+/* pages/card/payCard.wxss */
+
+page {
+  background-color: #fafafa;
+}
+
+.card {
+  width: 750rpx;
+  height: 371rpx;
+  position: relative;
+  background: #fff;
+}
+
+.card .card-bg {
+  width: 671rpx;
+  height: 371rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  margin: 0 40rpx;
+}
+
+.card .number {
+  position: absolute;
+  top: 266rpx;
+  left: 94rpx;
+  font-size: 30rpx;
+  color: #fff;
+  z-index: 2;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  padding-left: 32rpx;
+  background: #fff;
+}
+
+.card-info .row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 25rpx;
+  border-bottom: 1rpx solid #e9e9e9;
+  font-size: 28rpx;
+}
+
+.card-info .row .label {
+  padding-right: 24rpx;
+  color: #828282;
+}
+
+.pay-title {
+  padding: 20rpx 52rpx;
+  font-size: 24rpx;
+  color: #828282;
+}
+
+.pay-type {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.pay-type .item {
+  display: flex;
+  flex-direction: column;
+}
+
+.pay-type .item .item-play-type {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20rpx 52rpx;
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.pay-type .item .item-play-type .icon {
+  width: 36rpx;
+  height: 27rpx;
+  margin-right: 20rpx;
+  vertical-align: middle;
+  font-size: 27rpx;
+  color: #5BCB2A;
+}
+
+.pay-type .item .item-play-type .name {
+  font-size: 28rpx;
+  color: #141414;
+}
+.creditNone{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(137,110,255,1);
+  line-height:33px;
+  position: relative;
+  padding-right: 30rpx;
+}
+.creditNone ::after{
+  content: '';
+  position: absolute;
+  width: 14rpx;
+  height: 14rpx;
+  border-bottom: 1rpx solid #787878;
+  border-right: 1rpx solid #787878;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  transform: rotate(-45deg)
+}
+.choosePayWayBox{
+  width: 40rpx;
+  height: 40rpx;
+  display: flex;
+  align-self: center;
+  padding-left: 12rpx;
+  box-sizing: border-box
+}
+.choosePayWay{
+  width: 26rpx;
+  height: 26rpx;
+  align-self: center;
+}
+
+.pay-type .item .tip {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20rpx 52rpx;
+}
+
+.pay-type .item .tip .icon-tip {
+  /* width: 24rpx;
+  height: 24rpx; */
+  flex-shrink: 0;
+  margin: 5rpx 20rpx 0 0;
+  font-size: 24rpx;
+  color: #aaa
+}
+
+.pay-type .item .tip .text {
+  font-size: 24rpx;
+  color: #787878;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 130rpx;
+  background-color: #fff;
+  box-shadow: 0px -2px 4px 0px rgba(240, 237, 255, 1);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.footer .left {
+  font-size: 34rpx;
+  color: #141414;
+  font-weight: bold
+}
+
+.footer .left .number {
+  color: rgba(137,110,255,1);
+  /* text-decoration: line-through; */
+}
+
+.footer .btn {
+  margin: 0;
+  width: 613rpx;
+  height: 84rpx;
+  line-height: 84rpx;
+  font-size: 28rpx;
+  color: #fff;
+  background: linear-gradient(360deg, rgba(155, 133, 252, 1) 0%, rgba(114, 87, 251, 1) 100%);
+  box-shadow: 0px 0px 16rpx 0px rgba(184, 168, 255, 1);
+  border-radius: 41rpx;
+}
+.cardOver{
+  background: #C5C5C5 !important;
+  color: #fff;
+  box-shadow: none !important;
+}
+.btnTop{
+  font-size: 22rpx;
+  color: #fff;
+  margin-right: 14rpx;
+}

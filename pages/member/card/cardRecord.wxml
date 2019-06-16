@@ -1,0 +1,117 @@
+<!--pages/member/card/cardRecord.wxml-->
+<wxs src="../../../utils/util.wxs" module="util" />
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view class="wrapper" wx:if="{{cardBuyRecord}}" style='margin-top:{{marginTopBar}}px'>
+  <view class="tab-title">
+    <view class="title {{active===0?'active':''}}" data-active="{{0}}" bindtap="handleTabTap">
+      <text class="txt">购卡记录</text>
+      <text class="down-line"></text>
+    </view>
+    <view class="line"></view>
+    <view class="title {{active===1?'active':''}}" data-active="{{1}}" bindtap="handleTabTap">
+      <text class="txt">消卡明细</text>
+      <text class="down-line"></text>
+    </view>
+  </view>
+  <swiper current="{{active}}" bindchange="currentChange">
+    <swiper-item>
+      <!-- 购卡记录 -->
+      <view class="content purchase">
+        <!--1 month -->
+        <view class="list">
+          <view class="item">
+            <view class="item-title">
+              <view class="left">
+                <image class="icon" src="{{imgUrl}}card/icon-bike-green.png"></image>
+                <text class="name">{{cardBuyRecord.card_title}}</text>
+              </view>
+              <view class="right">剩余{{cardBuyRecord.card_left_count}}次</view>
+            </view>
+            <view class="info">
+              <view class="row">
+                <label class="label">支持门店：</label>
+                <view class="value">
+                  <text decode="true">{{util.replace(cardBuyRecord.store, ',', '\n')}}</text>
+                </view>
+              </view>
+              <view class="row">
+                <label class="label">支持课程：</label>
+                <view class="value">
+                  <text>{{cardBuyRecord.good_intro}}</text>
+                </view>
+              </view>
+              <view class="row">
+                <text class="label" decode="{{true}}">有&ensp;效&ensp;期：</text>
+                <view class="value blue">
+                  <text>{{util.timeFormat(cardBuyRecord.begin_date, 'MM月DD日')}}-{{util.timeFormat(cardBuyRecord.end_date, 'MM月DD日')}}(共{{cardBuyRecord.validity_days}}天)</text>
+                </view>
+              </view>
+              <view class="row">
+                <text class="label" decode="{{true}}">次&ensp;&ensp;&ensp;&ensp;数：</text>
+                <view class="value blue">
+                  <text>{{cardBuyRecord.card_total_count}}次</text>
+                </view>
+              </view>
+              <view class="row">
+                <label class="label">支付金额：</label>
+                <view class="value">
+                  <text>{{cardBuyRecord.pay_amount}}元</text>
+                </view>
+              </view>
+              <view class="row">
+                <label class="label">购买时间：</label>
+                <view class="value">
+                  <text>{{cardBuyRecord.pay_time}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view scroll-y bindscrolltolower="cardRecordLower">
+        <!-- 消卡明细 -->
+        <view class="content elimination" wx:if="{{cardRecordList.length}}">
+          <block wx:for="{{cardRecordList}}" wx:key="_PK_">
+            <view class="list">
+              <view class="item" wx:if="{{item.record_type===1}}">
+                <image class="icon" src="{{imgUrl}}card/icon-refund.png"></image>
+                <view class="info">
+                  <view class="left">
+                    <text class="status">消费</text>
+                    <text class="order-number">{{item.course_name}}</text>
+                    <text class="time">{{item.course_time}}</text>
+                  </view>
+                  <view class="right">
+                    <text class="acount red">{{item.record_count}}次</text>
+                  </view>
+                </view>
+              </view>
+              <view class="item" wx:elif="{{item.record_type===2}}">
+                <image class="icon" src="{{imgUrl}}card/icon-consumption.png"></image>
+                <view class="info">
+                  <view class="left">
+                    <text class="status">退款</text>
+                    <text class="order-number">{{item.course_name}}</text>
+                    <text class="time">{{item.course_time}}</text>
+                  </view>
+                  <view class="right">
+                    <text class="acount">+{{item.record_count}}次</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </block>
+        </view>
+        <view class="content elimination" wx:else>
+          <view class="none">
+            <text class="none-img iconicon-test48 iconfont"></text>
+            <text class="txt">暂无消卡记录</text>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+
+</view>

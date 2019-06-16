@@ -1,0 +1,97 @@
+<!--pages/invite/invite.wxml-->
+<tabBar_top navbarData="{{navbarData}}"></tabBar_top>
+<block wx:if="{{userData}}">
+  <view wx:if="{{shareCoupon && invitedInfo}}">
+
+    <view class="banner" style="margin-top:{{marginTopBar}}px;">
+      <image src="{{shareCoupon.banner}}" bindtap='distinguishImg'/>
+      <view class="qrcode" wx:if="{{qrcode}}">
+        <image src="{{qrcode}}" />
+        <text>长按保存并分享</text>
+      </view>
+    </view>
+
+    <view class="content">
+
+      <view class="return-course" bindtap="handleReturnCourseTap">
+        <text>返回约课</text>
+        <image src="{{imgUrl}}invite/icon_arrow_right.png" />
+      </view>
+
+      <view class="invite-wrapper" wx:if="{{inviteMember}}">
+        <image class="invite-avatar" src="{{inviteMember.head_img}}" />
+        <view class="invite-title-wrapper">
+          <view class="invite-title"><text>{{inviteMember.name}}</text>{{inviteMember.config.info1}}</view>
+          <view class="invite-subtitle">{{inviteMember.config.info2}}</view>
+        </view>
+      </view>
+
+      <button class="invite-btn" bindtap="handleInviteBtnTap">立即邀请</button>
+
+      <view class="total-wrapper">
+        <view class="total-amount">
+          <view class="total-number">{{invitedInfo.invited_coupon_amount || 0}}</view>
+          <view class="total-tips">累计获得金额(元)</view>
+        </view>
+        <view class="totle-line"></view>
+        <view class="total-count">
+          <view class="total-number">{{invitedInfo.invited_member_count || 0}}</view>
+          <view class="total-tips">累计邀请人数</view>
+        </view>
+      </view>
+
+      <view class="invite-member-wrapper" wx:if="{{getInvitedInfo.invited_member_List.length}}">
+        <view class="invite-member-title">
+          <hr/>
+          <view class="invite-member-count">已邀请好友<text>({{getInvitedInfo.invited_member_List.length}}人)</text></view>
+          <hr/>
+        </view>
+        <view class="invite-member-list">
+          <view class="invite-member-item" wx:for="{{getInvitedInfo.invited_member_List}}" wx:key="index">
+            <image class="invite-member-avatar" src="item.head_img" />
+            <view class="invite-member-name">{{item.nick_name}}</view>
+            <view class="invite-member-time">{{item.create_time}}</view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+
+    <view class="tips">
+      <view class="tips-title">【活动细则】</view>
+      <rich-text nodes="{{shareCoupon.info}}"></rich-text>
+    </view>
+
+  </view>
+</block>
+
+<block wx:else>
+  <view style="position:relative;margin-top:{{marginTopBar}}px;">
+    <view class="header-background">
+      <image src="{{imgUrl}}invite/header_background.png" />
+    </view>
+    <view class="center-background"></view>
+    <view class="center-content">
+      <image class="center-avatar" src="{{imgUrl}}invite/avatar.png" />
+      <view class="center-name">Justin&Julie</view>
+      <image class="center-qrcode" src="{{inviteQrcode}}" data-src="{{inviteQrcode}}" bindtap="previewImage" />
+      <view class="center-tips">长按保存图片并关注<text>公众号</text>吧！</view>
+    </view>
+  </view>
+</block>
+<van-popup show="{{ showShareState }}" 
+           bind:click-overlay='onCloseShareImg' 
+           catchtouchmove="{{true}}" 
+           safe-area-inset-bottom 
+           custom-style='margin-top:-50rpx'>
+    <view class='PostImgBox'>
+      <view class='poste_box' id='canvas-container' style='width:100%;height:100%;;overflow:hidden'>
+        <canvas canvas-id="myCanvas" style="width:100%;height:100%;overflow:hidden" class='fadeIn animated'/>
+      </view>
+      <view class='sharePostBtn' bindtap='savePostLocation'>保存本地</view>
+    </view>
+</van-popup>
+
+
+
+

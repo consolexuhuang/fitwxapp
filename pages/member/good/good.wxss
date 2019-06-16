@@ -1,0 +1,84 @@
+/* pages/member/good/good.wxss */
+page {
+  background-color: #fafafa;
+}
+.list{
+  display: flex;
+  flex-direction: column;
+  background:#fff;
+  padding-left:36rpx;
+}
+.list .item{
+   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding:36rpx 36rpx 36rpx 0;
+  border-bottom:1px solid #E9E9E9;
+}
+.list .item:last-child{
+  border-bottom: 0;
+}
+.list .item .left{
+  display: flex;
+  flex-direction: row;
+}
+.list .item .pic{
+  flex-shrink: 0;
+  flex-grow: 0;
+  width: 122rpx;
+  height: 122rpx;
+}
+.list .item .info{
+  display: flex;
+  flex-direction: column;
+  margin:0 0 0 20rpx;
+  flex: 1
+}
+.coursePrice{
+  font-size:32rpx;
+  font-family:PingFangSC-Semibold;
+  font-weight:600;
+  color:rgba(137,110,255,1);
+  /* line-height:45rpx; */
+  letter-spacing:1rpx;
+  /* margin-left: 35rpx */
+  align-self: center
+}
+.list .item .info .name{
+ font-size:30rpx;
+ color:#141414;
+ /* margin-bottom:10rpx; */
+}
+.list .item .info .row{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin:5rpx 0;
+  color: #787878
+}
+.list .item .info .row .icon{
+  flex-shrink: 0;
+  flex-grow: 0;
+  /* width: 22rpx;
+  height: 20rpx; */
+  margin:8rpx 10rpx 0 0;
+  font-size: 23rpx;
+}
+.list .item .info .row text{
+  font-size:24rpx;
+}
+.list .item .arrow{  
+  flex-shrink: 0;
+  flex-grow: 0;
+  /* width: 26rpx;
+  height: 26rpx; */
+  font-size: 26rpx;
+  color: #787878
+}
+.rowOver{
+  width: 360rpx;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap
+}

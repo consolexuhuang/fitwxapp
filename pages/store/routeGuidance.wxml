@@ -1,0 +1,2 @@
+<!--pages/store/routeGuidance/routeGuidance.wxml-->
+<web-view src="{{webUrl}}"></web-view>

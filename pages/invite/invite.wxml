@@ -1,0 +1,80 @@
+<!--pages/invite/invite.wxml-->
+<tabBar_top navbarData="{{navbarData}}"></tabBar_top>
+<view wx:if="{{shareCoupon && invitedInfo}}">
+
+  <view class="banner" style="margin-top:{{marginTopBar}}px;">
+    <image src="{{shareCoupon.banner}}" bindtap='distinguishImg'/>
+    <view class="qrcode" wx:if="{{qrcode}}">
+      <image src="{{qrcode}}" />
+      <text>点击并保存分享</text>
+    </view>
+  </view>
+
+  <view class="content">
+
+    <view class="return-course" bindtap="handleReturnCourseTap">
+      <text>返回约课</text>
+      <image src="{{imgUrl}}invite/icon_arrow_right.png" />
+    </view>
+
+    <button class="invite-btn" open-type="share">立即邀请</button>
+    <view class="face-invite-btn" bindtap="handleFaceInviteBtnTap">面对面邀请</view>
+
+    <view class="total-wrapper">
+      <view class="total-amount">
+        <view class="total-number">{{invitedInfo.invited_coupon_amount || 0}}</view>
+        <view class="total-tips">累计获得金额(元)</view>
+      </view>
+      <view class="totle-line"></view>
+      <view class="total-count">
+        <view class="total-number">{{invitedInfo.invited_member_count || 0}}</view>
+        <view class="total-tips">累计邀请人数</view>
+      </view>
+    </view>
+
+    <view class="invite-member-wrapper" wx:if="{{getInvitedInfo.invited_member_List.length}}">
+      <view class="invite-member-title">
+        <hr/>
+        <view class="invite-member-count">已邀请好友<text>({{getInvitedInfo.invited_member_List.length}}人)</text></view>
+        <hr/>
+      </view>
+      <view class="invite-member-list">
+        <view class="invite-member-item" wx:for="{{getInvitedInfo.invited_member_List}}" wx:key="index">
+          <image class="invite-member-avatar" src="item.head_img" />
+          <view class="invite-member-name">{{item.nick_name}}</view>
+          <view class="invite-member-time">{{item.create_time}}</view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <view class="tips">
+    <view class="tips-title">【活动细则】</view>
+    <rich-text nodes="{{shareCoupon.info}}"></rich-text>
+  </view>
+
+  <view class="qrcode-shade" wx:if="{{qrcode}}" hidden="{{!isShadeShow}}" bindtap="handleShadeTap">
+    <view class="qrcode-content" catchtap="handleShadeContentTap">
+      <view class="qrcode-tips">
+        <text class="text" decode="true">新用户扫码\n领取共{{shareCoupon.amount}}元代金券</text>
+      </view>
+      <image src="{{qrcode}}" />
+    </view>
+  </view>
+  
+</view>
+<van-popup show="{{ showShareState }}" 
+           bind:click-overlay='onCloseShareImg' 
+           catchtouchmove="{{true}}" 
+           safe-area-inset-bottom 
+           custom-style='margin-top:-50rpx'>
+    <view class='PostImgBox'>
+      <view class='poste_box' id='canvas-container' style='width:100%;height:100%;;overflow:hidden'>
+        <canvas canvas-id="myCanvas" style="width:100%;height:100%;overflow:hidden" class='fadeIn animated'/>
+      </view>
+      <view class='sharePostBtn' bindtap='savePostLocation'>保存本地</view>
+    </view>
+</van-popup>
+
+

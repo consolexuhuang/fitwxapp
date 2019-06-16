@@ -1,0 +1,8 @@
+{
+  "navigationBarBackgroundColor":"#826AFE",
+  "navigationBarTitleText":"取消订单",
+  "usingComponents": {
+    "dialogComp": "/components/dialog/dialog",
+    "tabBar_top": "/components/tabBar_top/tabBar"
+  }
+}

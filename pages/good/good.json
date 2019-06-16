@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText":"限时优惠",
+  "usingComponents": {
+    "tabBar_top": "/components/tabBar_top/tabBar"
+  }
+}

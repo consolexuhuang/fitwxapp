@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "约课记录",
+  "usingComponents": {
+    "tabBar_top": "/components/tabBar_top/tabBar"
+  }
+}

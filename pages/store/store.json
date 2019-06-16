@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "门店",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "tabBar_top": "/components/tabBar_top/tabBar"
+  }
+}

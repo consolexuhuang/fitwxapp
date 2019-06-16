@@ -1,0 +1,169 @@
+/* pages/coach/signInCode/signInCode.wxss */
+page{
+  height: 100%
+}
+.signInCodeBg{
+  width: 100%;
+  height: 100%;
+  /* background:linear-gradient(160deg,#452DA9 0%,rgba(159,109,255,1) 50%,#634ACB 100%);
+  box-shadow:0px 1rpx 0px 0px rgba(240,240,240,1); */
+  position: relative;
+}
+.signCodeBg{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.signInCode_bgLine{
+  position: absolute;
+  top: 196rpx;
+  right: 0;
+  width: 679rpx;
+  height: 862rpx
+}
+.signInCode_bgLine2{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 330rpx;
+  height: 258rpx
+}
+.signInCode_imgBox{
+  position: absolute;
+  top: 159rpx;
+  right: 0;
+  left: 0;
+  width: 356rpx;
+  height: 477rpx;
+  margin: auto;
+  z-index: 100
+}
+.signInCode_img{
+  width: 100%;
+  height: 100%;
+}
+.signInCode_Failimg{
+  margin-left: -20rpx
+}
+.signInCode{
+  width: 234rpx;
+  height: 234rpx;
+  position: absolute;
+  left: 0rpx;
+  right: 0;
+  top: 22rpx;
+  bottom: 0;
+  margin: auto;
+}
+.signInCodeText{
+  font-size: 28rpx;
+  text-align: center;
+  color: #fff;
+  line-height: 30rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.signIn_statusBox{
+  position: absolute;
+  top: 734rpx;
+  right: 0;
+  left: 0;
+  width: 505rpx;
+  height: 119rpx;
+  margin: auto;
+  z-index: 100;
+}
+.signIn_statusText{
+  font-size:42rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  line-height:119rpx;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: 0;
+  text-align: center;
+}
+.signIn_FailstatusText{
+  color: #7F56DC;
+
+}
+.signIn_status{
+  width: 100%;
+  height: 100%
+}
+.signIn_coach{
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  /* line-height:40px; */
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: -40rpx;
+  text-align: center;
+}
+.signIn_user{
+  min-width: 134rpx;
+  height: 134rpx;
+  position: absolute;
+  top: 1020rpx;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.signIn_userImg{
+  width: 134rpx;
+  height: 100%;
+  border-radius: 50%;
+  border: 1rpx solid #fff;
+  display: block;
+  margin: 0 auto;
+}
+.signIn_userName{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -80rpx;
+  text-align: center;
+  font-size:30rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  /* line-height:42px; */
+  letter-spacing:1rpx;
+}
+.signIn_Fail{
+  position: absolute;
+  top: 1060rpx;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 600rpx;
+  display: flex;
+}
+.signIn_Tag{
+  width: 30rpx;
+  height: 27rpx;
+  align-self: flex-start;
+  flex-shrink: 0;
+  margin-right: 22rpx;
+  margin-top: 5rpx;
+}
+.signIn_Tagtext{
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:40rpx;
+  text-align: left;
+}

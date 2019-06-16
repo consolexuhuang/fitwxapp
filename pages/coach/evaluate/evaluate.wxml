@@ -1,0 +1,77 @@
+<!--pages/coach/evaluate/evaluate.wxml-->
+<tabBar_top navbarData = "{{navbarData}}"></tabBar_top>
+<view class='evaluate_cont' style='margin-top:{{marginTopBar}}px'>
+   <view class='coach'>
+      <image class='coachImg' wx:if='{{!evaluateData.coach_head_url}}' src='{{imgUrl}}icon/default_header.png'></image>
+      <image class='coachImg' wx:if='{{evaluateData.coach_head_url}}' src='{{evaluateData.coach_head_url}}'></image>
+      <view class='coachName'>{{evaluateData.coach_name}}</view>
+      <view class='coashWord'>{{evaluateData.course_name}}</view>
+   </view>
+   <view class='starTitle'>
+       <view class='starLine'></view>
+       <view class='starCont'>教练评星</view>
+       <view class='starLine'></view>
+   </view>
+   <view class='content'>
+      <view class='starBox'>
+          <view class='star' 
+                wx:for='{{coachStarList}}' 
+                wx:key='{{index}}' 
+                bindtap='clickStar'
+                data-id='{{item.id}}'
+                data-state='{{item.chooseState}}'>
+            <image wx:if='{{item.chooseState}}' class='starImg {{item.chooseState ? "bounceIn" : "fadeOut"}} animated' src='{{imgUrl}}icon/star.png'></image>
+            <image wx:if='{{!item.chooseState}}' class='starImg' src='{{imgUrl}}icon/noneStar.png'></image>
+            <view class='starTag'>{{item.idCont}}</view>
+          </view>
+      </view>
+   </view>
+   <view class='starTitle'>
+       <view class='starLine'></view>
+       <view class='starCont'>综合评星</view>
+       <view class='starLine'></view>
+   </view>
+   <view class='content'>
+      <view class='starBox'>
+          <view class='star' 
+                wx:for='{{comprehensiveStarList}}' 
+                wx:key='{{index}}' 
+                bindtap='clickStar_comprehensive'
+                data-id='{{item.id}}'
+                data-state='{{item.chooseState}}'>
+            <image wx:if='{{item.chooseState}}' class='starImg {{item.chooseState ? "bounceIn" : "fadeOut"}} animated' src='{{imgUrl}}icon/star.png'></image>
+            <image wx:if='{{!item.chooseState}}' class='starImg' src='{{imgUrl}}icon/noneStar.png'></image>
+            <view class='starTag'>{{item.idCont}}</view>
+          </view>
+      </view>
+   </view>
+</view>
+
+<view class='evaluate_write'>
+   <view class='evaluate_writeTitle'>更多建议和意见</view>
+   <textarea class='evaluate_input' 
+             maxlength='50' 
+             placeholder='最多不超过50字'
+             placeholder-class='placeholderStyle'
+             auto-height
+             disabled='{{textAreaIsStop}}'
+             bindinput = 'bindinput'></textarea>
+   <view class='sub_evaluate' bindtap='submit'>匿名提交</view>
+</view>
+
+<van-popup show='{{evaluateShow}}' 
+           custom-class='evaluateStyle'>
+    <text class='closeBtn iconfont iconicon-test18' bindtap='onclose'></text>
+    <view class='evaluateComfirmTitle'>
+       评价完成
+       <text class='point'></text>
+       <text class='point2'></text>
+       <text class='point3'></text>
+    </view>
+    <view class='evaluateComfirmCont'>更多意见和反馈，请添加客服 </view>
+    <view class='evaluateComfirmCont'>微信号 
+       <text class='wxCode' bindlongtap='pasteWx_code'>JJfitness</text>
+    </view>
+    <view class='evaluateComfirmBtn' bindtap='jumpToCourse'>继续约课</view>
+    <view class='wxCodeCont'>长摁复制微信号</view>
+</van-popup>

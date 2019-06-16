@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "tabBar_top": "/components/tabBar_top/tabBar"
+  }
+}

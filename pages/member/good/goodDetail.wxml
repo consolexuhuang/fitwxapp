@@ -1,0 +1,36 @@
+<!--pages/member/good//goodDetail.wxml-->
+<wxs src="../../../utils/util.wxs" module="util" />
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view wx:if="{{orderData}}" style='margin-top:{{marginTopBar}}px'>
+  <view class='info'>
+  <label class='label'>名称</label>
+  <text class='value'>{{orderData.good_title}}</text>
+  <label class='label'>日期</label>
+  <view class='value' wx:if='{{orderData.good_type == "COURSE"}}'>
+    <view wx:for='{{orderData.course_list}}' wx:key='{{index}}' class='valueTimeBox'>
+    {{util.timeFormat(item.begin_date, 'MM月DD日')}} 星期{{item.begin_day}} {{util.timeFormat(item.begin_time,'hh:ss')}} - {{util.timeFormat(item.end_time,'hh:ss')}}  </view>
+  </view>
+  <view class='value' wx:if='{{orderData.good_type != "COURSE"}}'>
+      {{util.timeFormat(orderData.begin_time, 'MM月DD日')}}至{{util.timeFormat(orderData.end_time, 'MM月DD日')}} ({{orderData.validity_days}}天)
+  </view>
+  <label class='label'>门店</label>
+  <rich-text class='value' nodes='{{orderData.store_ids__NAME}}'></rich-text>
+  </view>
+  <view class='total'>
+    <!-- <view class='row'>
+    <image class='icon' src='{{imgUrl}}card/icon-mony.png'></image>
+    <text class='text'>总价：{{orderData.order_amount || 0}}元</text>
+    </view> -->
+    <view class='row'>
+      <!-- <text class='icon_card iconicon-test27 iconfont' wx:if='{{orderData.pay_type === "2"}}'></text>
+      <image class='icon_wx iconicon-test28 iconfont' wx:if='{{orderData.pay_type === "1"}}'></image> -->
+      <image class='icon_card' wx:if='{{orderData.pay_type === "2"}}' src='{{imgUrl}}card/icon-card-plush-s.png'></image>
+      <image class='icon_wx' wx:if='{{orderData.pay_type === "1"}}' src='{{imgUrl}}card/icon-wx-pay.png'></image>
+      <text class='text'>实付：{{orderData.pay_amount || 0}}元</text>
+    </view>
+  </view>
+  <view class='goodDetail'>
+      <text class='goodDetail_iconImg iconicon-test10 iconfont'></text>
+      <rich-text nodes='{{orderData.needing_attention}}' class='goodDetailCont'></rich-text>
+  </view>
+</view>

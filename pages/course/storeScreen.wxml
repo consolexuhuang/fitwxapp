@@ -1,0 +1,51 @@
+<!--pages/course/storeScreen.wxml-->
+<wxs src="../../utils/util.wxs" module="util" />
+<tabBar_top navbarData = "{{navbarData}}"></tabBar_top>
+<view class="store-screen-wrapper" wx:if="{{storeList}}">
+  <view class="store-city-wrapper" style="margin-top:{{marginTopBar}}px" bindtap="handleCitySelectTap">
+    <text class="store-city-icon iconfont iconicon-test1"/>
+    <text class="store-city-name">{{city}}市</text>
+    <image class="store-city-arrow iconfont iconicon-test36"/>
+  </view>
+  <scroll-view scroll-y class="store-screen-scroll">
+    <view class="store-screen-list">
+      <block wx:for="{{storeList[city].STORE_LIST}}" wx:for-item="storeItem" wx:key="index"> 
+        <view class="store-screen-item {{util.include(selectedStore, storeItem.id)?'store-screen-item-active':''}}" id="{{storeItem.area + ',' + city}}" wx:if="{{(storeItem.area + ',' + city) === area || !area}}" data-store-id="{{storeItem.id}}" bindtap="handleStoreTap">
+          <view class="store-screen-item-left">
+            <view class="store-screen-item-name">{{storeItem.name}}</view>
+            <view class="store-screen-item-address">{{storeItem.address}}</view>
+          </view>
+          <view class="store-screen-item-distance" wx:if="{{storeItem.DIST>=0}}">
+            <text class='iconfont iconicon-test1' />
+            <text>{{util.numberFormat(storeItem.DIST/1000, 1)}}km</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  <view class="screen-btn-wrapper">
+    <view class="screen-reset-btn" bindtap="handleResetTap">重置</view>
+    <view class="screen-confirm-btn" bindtap="handleConfirmTap">确认</view>
+  </view>
+</view>
+<!-- style="top:{{marginTopBar + 103 / 750 * screenWidth}}px" -->
+<view class="city-screen-wrapper {{isScreanShow ? 'fadeInUp': 'fadeOutDown'}} animated.faster" bindtap="handleShadeTap" catchtouchmove="true" wx:if='{{isScreanShow}}' >
+  <view class="screen-content" catchtap="handleContentTap">
+    <view class="screen-city-list">
+      <block wx:for="{{storeList}}" wx:for-index="cityKey" wx:for-item="cityItem" wx:key="cityKey">
+        <view class="screen-item {{cityKey===city?'screen-item-active':''}}" data-city="{{cityKey}}" bindtap="handleCityTap">{{cityKey}}</view>
+      </block>
+    </view>
+    <view class="screen-title">位置选择</view>
+    <view class="screen-area-list">
+      <view class="{{area===''?'screen-item screen-item-active':'screen-item'}}" data-area="{{''}}" bindtap="handleAreaTap">{{city}}全城</view>
+      <block wx:for="{{storeList[city].AREAS}}" wx:for-index="areaKey" wx:for-item="areaItem" wx:key="areaKey">
+        <view class="screen-item {{(areaKey + ',' + city)===area?'screen-item-active':''}}" data-area="{{areaKey + ',' + city}}" bindtap="handleAreaTap">{{areaKey}}</view>
+      </block>
+    </view>
+    <view class="screen-btn-wrapper">
+      <view class="screen-clear-btn" bindtap="handleCityClearTap">清空</view>
+      <view class="screen-confirm-btn" bindtap="handleCityConfirmTap">确定</view>
+    </view>
+  </view>
+</view>

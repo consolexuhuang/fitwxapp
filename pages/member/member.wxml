@@ -1,0 +1,156 @@
+<!--pages/member/member.wxml-->
+<wxs src="../../utils/util.wxs" module="util" />
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view wx:if="userCard && sport" style='margin-top:{{marginTopBar}}px'>
+  <view class="top">
+    <view class="info">
+      <view class="user" bindtap='login'>
+        <image class="header" wx:if='{{!userData && !userData.head_img}}' src="{{imgUrl}}icon/default_header.png"></image>
+        <image class="header" wx:if='{{userData && userData.head_img}}' src="{{userData.head_img}}"></image>
+        <text class="name">{{userData && userData.nick_name ? userData.nick_name : '点击登录'}}</text>
+      </view>
+      <view class="concat">
+        <text class="pic iconfont iconicon-test24"></text>
+        <text class="txt">客服</text>
+        <contact-button session-from="weapp" class="contBtn"></contact-button>
+      </view>
+    </view>
+    <view class="statistics fadeIn animated">
+      <view class="col">
+        <text class="number">{{userInfoData.total.days || 0}}</text>
+        <text class="text">累计天数</text>
+      </view>
+      <view class="line"></view>
+      <view class="col">
+        <text class="number">{{userInfoData.total.count || 0}}</text>
+        <text class="text">累计次数</text>
+      </view>
+      <view class="line"></view>
+      <view class="col">
+        <text class="number">{{userInfoData.total.courses || 0}}</text>
+        <text class="text">解锁课程</text>
+      </view>
+    </view>
+    <view class="white-bar">
+      <view class="left">
+        <view class="content">
+          <text class="icon iconfont iconicon-test25"></text>
+          <text class="txt">PLUS卡支付</text>
+        </view>
+        <view class="line"></view>
+      </view>
+      <view class="middle">
+        <text class="label">余额：</text>
+        <text class="value">¥{{userInfoData.card_balance || "0.00"}}</text>
+      </view>
+      <view class="right">
+        <image class="bg" src="{{imgUrl}}member/icon-btn-pay-bg.png"></image>
+        <text class="txt" bindtap="handleRechargeTap">立即充值</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="myorder fadeIn animated">
+    <view class="title" bindtap="handleMemberOrderTap">
+      <text class="name">我的订单</text>
+      <view class="more">
+        <text class="text">更多</text>
+        <text class="icon-arrow iconfont iconicon-test42"></text>
+      </view>
+    </view>
+    <view class="content">
+      <view class="status">
+        <view class="col" bindtap='jumpToOrderStatus' data-status='0'>
+          <image class="icon" src="{{imgUrl}}member/icon-person-ing.png"></image>
+          <view class="text">
+            <text class="name">待进行</text>
+            <text class="number">({{userInfoData.order.going_count || 0}})</text>
+          </view>
+        </view>
+        <view class="col" bindtap='jumpToOrderStatus' data-status='1'>
+          <image class="icon" src="{{imgUrl}}member/icon-person-wait.png"></image>
+          <view class="text">
+            <text class="name">待付款</text>
+            <text class="number">({{userInfoData.order.unpay_count || 0}})</text>
+          </view>
+        </view>
+        <view class="col" bindtap='jumpToOrderStatus' data-status='2'>
+          <image class="icon" src="{{imgUrl}}member/icon-person-end.png"></image>
+          <view class="text">
+            <text class="name">已完成</text>
+            <text class="number">({{userInfoData.order.complete_count || 0}})</text>
+          </view>
+        </view>
+      </view>
+      <!-- 有数据 -->
+      <view class="list" wx:if="{{goingList.length && userData}}">
+        <block wx:for="{{goingList}}" wx:key="index">
+          <view class="item fadeIn animated" data-order-num="{{item.order.orderNum}}" bindtap="handleOrderItemTap">
+            <image class='isWaitImg' src='{{imgUrl}}member/isWait.png' wx:if='{{item.order.wait}}'></image>
+            <text class="item-status">即将开课</text>
+            <view class="item-c">
+              <view class="left">
+                <image class="pic" src="{{item.coach.headUrl}}"></image>
+                <view class="info">
+                  <view class="name">{{item.course.courseName}}</view>
+                  <view class="shop">
+                    <text class="icon iconfont iconicon-test23"></text>
+                    <text class="text storeName">{{item.store.storeName}}</text>
+                  </view>
+                  <view class="date">
+                    <text class="icon iconfont iconicon-test17"></text>
+                    <text class="text">{{util.timeStampFormat(item.course.beginDate, 'MM月DD日')}} 星期{{item.course.beginDay}} {{util.timeStampFormat(item.course.beginTime, 'hh:ss')}}-{{util.timeStampFormat(item.course.endTime, 'hh:ss')}}</text>
+                  </view>
+                </view>
+              </view>
+              <view class="right">
+                <view class="btn">详情</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <!-- 无数据 -->
+      <view class="none" bindtap='jumpTocourseList' wx:else>
+        <text class="pic iconfont iconicon-test48"></text>
+        <text class="text">立即预约</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="menu fadeIn animated">
+    <view class="item" bindtap="handleMemberCardTap">
+      <text class="name">我的卡包</text>
+      <view class="right">
+        <text class="value">更多</text>
+        <text class="icon iconfont iconicon-test42"></text>
+      </view>
+    </view>
+    <view class="item" bindtap="handleMemberCouponTap">
+      <text class="name">我的礼券</text>
+      <view class="right">
+        <text class="value blue">{{userInfoData.coupon_count || 0}}张</text>
+        <text class="icon iconfont iconicon-test42"></text>
+      </view>
+    </view>
+    <view class="item" bindtap="handleInviteTap">
+      <text class="name">邀请好友</text>
+      <view class="right">
+        <text class="value blue">邀请有礼</text>
+        <text class="icon iconfont iconicon-test42"></text>
+      </view>
+    </view>
+    <view class="item" wx:if="{{orderCount}}" bindtap="handleGoodTap">
+      <text class="name">课程礼包</text>
+      <view class="right">
+        <text class="icon iconfont iconicon-test42"></text>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- <view class="account">
+    <text class="item" bindtap="switchAdmin">切换帐号</text>
+    <text class="item" bindtap="loginOut">退出当前帐号</text>
+  </view> -->
+</view>

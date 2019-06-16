@@ -1,0 +1,35 @@
+<!--pages/course/courseSearch.wxml-->
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view class="wrapper" style='margin-top:{{marginTopBar}}px'>
+  <view class="header">
+    <view class="search-bar-wrapper">
+      <view class="search-bar">
+        <input placeholder="搜索您喜欢的课程及教练" value="{{searchText}}" bindinput="handleSearchTextChange" focus bindconfirm="handleSearchBtnTap" placeholder-class='placeholderStyle'></input>
+        <text class='iconicon-test43 iconfont icon1' bindtap="handleSearchBtnTap" />
+      </view>
+      <view class="cancel" bindtap="handleCancelTap">取消</view>
+    </view>
+
+    <view class="hot-search-wrapper" wx:if="{{searchKeyWords.length}}">
+      <view class="hot-search-title">热门搜索</view>
+      <view class="hot-search-list">
+        <block wx:for="{{searchKeyWords}}" wx:key="id">
+          <view class="hot-search-item" data-search-text="{{item.name}}" bindtap="handleSearchKeyWordsTap">{{item.name}}</view>
+        </block>
+      </view>
+
+    </view>
+  </view>
+  <view class="history-search-wrapper" wx:if="{{historySearch.length}}">
+    <view class="history-search-title">
+      <text>历史搜索</text>
+      <text class='iconicon-test38 iconfont icon2'
+      bindtap="handleClearTap" />
+    </view>
+    <view class="history-search-list">
+      <block wx:for="{{historySearch}}" wx:key="index">
+        <view class="history-search-item" data-search-text="{{item}}" bindtap="handleSearchKeyWordsTap">{{item}}</view>
+      </block>
+    </view>
+  </view> 
+</view>

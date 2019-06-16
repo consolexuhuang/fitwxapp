@@ -1,0 +1,84 @@
+<!--pages/trainingCamp/trainingCampOrder/trainingCampOrder.wxml-->
+<wxs src="../../../utils/util.wxs" module="util" />
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view class="wrapper" style='margin-top:{{marginTopBar}}px'>
+  <view class="content">
+    <view class="content-footer-shadow"></view>
+    <view class="course-name">{{goodData.title}}</view>
+    <view class='course-step' wx:if='{{goodData.period}}'>（{{goodData.period}}）</view>
+    <view class="course-position {{coachList ? 'course-position2':''}}">
+      <text class='iconfont iconicon-test23 icon1' />
+      <text class='course-positionCont'>{{goodData.store_ids__NAME}}</text>
+    </view>
+    <view class='lineBox'>
+        <view class="left-circle"></view>
+        <view class="right-circle"></view>
+        <view class="dashed-line"></view>
+    </view>
+    <view class='trainingCampOrder_time'>
+      <text class='trainingCampOrder_timeImg iconfont iconicon-test35'></text>
+      <view class='trainingCampOrder_timeBox'>
+          <block wx:for='{{coachList}}' wx:key='{{index}}' wx:if='{{coachList}}'>
+             <view class='trainingCampOrder_timeItem' wx:for='{{item.course_list}}' wx:key='{{index}}'>{{util.timeFormat(item.begin_date, 'MM月DD日')}} 星期{{item.begin_day}} {{util.timeFormat(item.begin_time, 'hh:ss')}}-{{util.timeFormat(item.end_time, 'hh:ss')}}</view>
+          </block>
+          <view class='trainingCampOrder_timeItem fadeIn animated' wx:if='{{!coachList && goodData.begin_date}}'>{{util.timeFormat(goodData.begin_date, 'MM月DD日')}}-{{util.timeFormat(goodData.end_date, 'MM月DD日')}}(有效期{{goodData.validity_days}}天)</view>
+      </view>
+    </view>
+  </view>
+
+<!-- pay -->
+  <view>
+    <view class="pay-title">支付方式</view>
+    <view class="pay-type">
+      <view class="item">
+        <view class="item-play-type fadeIn animated" 
+              wx:for="{{currentPayWayState}}" 
+              wx:key="{{index}}"
+              wx:if="{{item.payType}}">
+          <view class="left">
+            <image class="icon" 
+                  wx:if="{{item.type == 1 ? true : false}}" 
+                  src="{{imgUrl}}icon/cardPayIcon.png">
+            </image>
+            <image class="icon" 
+                  wx:if="{{item.type == 2 ? true : false}}"
+                  src="{{imgUrl}}card/icon-wx-pay.png"></image>
+            <text class="name">{{item.type == 1 ? "卡支付" : (item.type == 2 ? "微信支付" : "支付")}}</text>
+          </view>
+          <text class='creditNone' 
+                wx:if="{{item.type == 1 && !item.isOpening}}"
+                bindtap='jumpToCardOpening'>还未开通，立即开通</text>
+          <text class='creditNone' 
+                wx:if="{{item.type == 1 && !item.momeyCreditState && item.isOpening}}"
+                bindtap='jumpTocashMoney'>余额{{card_amount || 0}}元，立即充值</text>
+          <view class='choosePayWayBox' 
+                wx:if="{{item.state || (item.isOpening && item.momeyCreditState)}}"
+                data-ind='{{index}}'
+                bindtap='choosePaywayEvent'>
+            <image wx:if="{{item.state && item.isOpening && item.momeyCreditState}}" 
+                  src='{{imgUrl}}icon/chooseState.png' 
+                  class='choosePayWay'></image>
+            <image wx:if="{{!item.state && item.isOpening && item.momeyCreditState}}" 
+                  src='{{imgUrl}}icon/noneChooseState.png' 
+                  class='choosePayWay'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="tip">
+      <text class="icon-tip iconicon-test5 iconfont"></text>
+      <rich-text class="text" decode="true" nodes='{{"1.本优惠包包含3节课时; <br/>2.课程优惠包自购买日起有效期为30天; <br/>3.购买前请仔细阅读并理解优惠包的购买及使用规则. "}}'></rich-text>
+    </view>
+  </view>  
+</view>
+
+<view class='trainingCampOrderBtnBox'>
+  <button class="trainingCampOrderBtn" bindtap="handlePayBtnTap" wx:if='{{goodData.pay_flag != 2 || (currentPayWayState[0].momeyCreditState && currentPayWayState[0].isOpening)}}'>立即支付 ¥{{orderData.pay_amount}}</button>
+  <button class="trainingCampOrderBtn" wx:if='{{!currentPayWayState[0].isOpening && goodData.pay_flag == 2}}'>
+     需支付¥{{orderData.pay_amount}}，点击充值
+  </button>
+  <button class="trainingCampOrderBtn" wx:elif='{{goodData.pay_flag == 2 && !currentPayWayState[0].momeyCreditState}}'>
+     余额不足，点击充值
+  </button>
+</view>
+

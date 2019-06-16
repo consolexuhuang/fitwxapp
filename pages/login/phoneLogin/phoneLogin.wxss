@@ -1,0 +1,101 @@
+/* pages/login/phoneLogin/phoneLogin.wxss */
+page{
+  background: #fff;
+}
+.phoneLogin_logo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 25rpx;
+}
+.phoneLogin_logoImg{
+  width: 70rpx;
+  height: 100rpx;
+}
+.phoneLogin_logoText{
+  width: 166rpx;
+  height: 38rpx;
+}
+.phoneLogin_admin{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 150rpx;
+}
+.phoneLogin_admin_phone{
+  width: 570rpx;
+  border-bottom:1rpx solid #8970FF;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 80rpx;
+  position: relative;
+}
+.phoneLogin_admin_phoneImg{
+  width: 21rpx;
+  height: 30rpx;
+}
+.phoneLogin_admin_passwordImg{
+  width: 28rpx;
+  height: 30rpx;
+}
+.phoneLogin_admin_phoneText{
+  font-size:30rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(137,113,255,1);
+  line-height:80rpx;
+  margin: 0 30rpx 0 22rpx;
+}
+.phoneLogin_adminInput{
+  width: 300rpx;
+  border: none;
+  background: #fff;
+  font-size:30rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(70,70,70,1);
+  line-height:42rpx;
+}
+.phoneLogin_codeInput{
+  width: 200rpx;
+}
+.getCodeBox{
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+.getCode{
+  background:rgba(137,111,255,1);
+  border-radius:32rpx;
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:60rpx;
+  text-align: center;
+  padding: 0 28rpx;
+  box-sizing: border-box;
+  height: 60rpx;
+}
+.timeCountStyle{
+  background: #dcdcdc !important;
+  color: #787878 !important;
+}
+.loginIn{
+  width: 613rpx;
+  margin: 122rpx auto 0;
+  background:linear-gradient(360deg,rgba(155,133,252,1) 0%,rgba(114,87,251,1) 100%);
+  box-shadow:0rpx 0rpx 16rpx 0rpx rgba(184,168,255,1);
+  border-radius:41rpx;
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:84rpx;
+  text-align: center;
+}

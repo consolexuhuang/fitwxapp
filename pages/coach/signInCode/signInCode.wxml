@@ -1,0 +1,34 @@
+<!--pages/coach/signInCode/signInCode.wxml-->
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view class='signInCodeBg'>
+  <!-- 签到成功 --> 
+  <view class='signInCode_imgBox fadeIn animated' wx:if='{{siginUpData.success}}'>
+    <image class='signInCode_img' src='{{imgUrl}}icon/signInCode_img.png'></image>
+    <image src='{{signData.coach_qr_code_url}}' class='signInCode'></image>
+    <text class='signInCodeText'>长按加教练聊聊吧!</text>
+  </view>
+  <!-- 失败 -->
+  <view class='signInCode_imgBox fadeIn animated' wx:if='{{!siginUpData.success}}'>
+    <image class='signInCode_img signInCode_Failimg' src='{{imgUrl}}icon/siginInCode_failImg.png'></image>
+  </view>
+
+  <view class='signIn_statusBox fadeIn animated'>
+    <image class='signIn_status' wx:if='{{siginUpData.success}}' src='{{imgUrl}}icon/signIn_status.png'></image>
+    <image class='signIn_status' wx:if='{{!siginUpData.success}}' src='{{imgUrl}}icon/siginIn_failStatus.png'></image>
+    <text class='signIn_statusText {{!siginUpData.success ? "signIn_FailstatusText" : ""}}'>{{siginUpData.success ? "签到成功" : "签到中"}}</text>
+    <text class='signIn_coach' wx:if='{{siginUpData.success}}'>向{{signData.coach_name}}教练出示次界面</text>
+    <text class='signIn_coach' wx:if='{{!siginUpData.success}}'>请检查签到课程订单是否正确</text>
+  </view>
+  <image src='{{imgUrl}}icon/signCodeBg.png' class='signCodeBg fadeIn animated'></image>
+  <!-- <image class='signInCode_bgLine' src='{{imgUrl}}icon/signInCode_bgLine.png'></image> -->
+  <!-- <image class='signInCode_bgLine2' src='{{imgUrl}}icon/signInCode_bgLine2.png'></image> -->
+
+  <view class='signIn_user fadeIn animated' wx:if='{{siginUpData.success}}'>
+    <image class='signIn_userImg' src='{{signData.head_img}}'></image>
+    <view class='signIn_userName'>-{{signData.update_by}}-</view>
+  </view>
+  <view class='signIn_Fail fadeIn animated' wx:if='{{!siginUpData.success}}'>
+     <image src='{{imgUrl}}icon/signIn_Tag.png' class='signIn_Tag'></image>
+     <text class='signIn_Tagtext'>签到会员信息不正确！朋友赠送课程，请拍照 签到二维码发送给购买会员签到哦！</text>
+  </view>
+</view>

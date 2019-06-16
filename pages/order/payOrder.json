@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "statement": "/components/statement/statement",
+     "tabBar_top": "/components/tabBar_top/tabBar"
+  }
+}

@@ -1,0 +1,420 @@
+/* pages/trainingCamp/trainingCamp/trainingCamp.wxss */
+page{
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  /* background: #896DFF */
+}
+.content{
+  /* width: 686rpx; */
+  margin: 0 auto;
+  /* padding-top: 145rpx; */
+  padding-bottom: 150rpx;
+}
+.trainingCamp_top{
+  width: 100%;
+  position: relative;
+  /* height: 498rpx; */
+}
+.trainingCamp_topDataImg{
+  width: 100%;
+  height: 360rpx
+}
+.trainingCamp_topName{
+  padding: 20rpx 50rpx;
+  box-sizing: border-box;
+  /* z-index: 100;
+  position: absolute;
+  bottom: 0; */
+}
+.trainingCamp_topStoreName{
+  font-size:32rpx;
+  font-family:PingFangSC-Semibold;
+  font-weight:600;
+  color:rgba(50,50,50,1);
+  line-height:60rpx;
+  letter-spacing:1rpx;
+  text-align: left;
+}
+.trainingCamp_topStoreAddress{
+  font-size:30rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(50,50,50,1);
+  line-height:42rpx;
+  letter-spacing:1rpx;
+  text-align: left
+}
+/* --------------cont 1 */
+.trainingCamp{
+  background: #fff;
+  padding: 0 0rpx 20rpx;
+  box-sizing: border-box;
+  width: 688rpx;
+  margin: -2rpx auto 0;
+  zoom: 0
+}
+.trainingCamp_stage{
+  border-top: 1rpx solid #E6E6E6;
+  padding: 0 16rpx;
+  box-sizing: border-box;
+}
+.trainingCamp_Title{
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(50,50,50,1);
+  line-height:88rpx;
+  letter-spacing:1rpx;
+  text-align: left;
+  position: relative;
+  /* padding-left: 10rpx; */
+  z-index: 100;
+}
+/* .trainingCamp_Title::before{
+  content: '';
+  width: 36rpx;
+  height: 36rpx;
+  position: absolute;
+  left: -4rpx;
+  top: 15rpx;
+  border-radius: 50%;
+  background: #C9BCFF;
+  z-index: -10;
+} */
+.trainingCamp_TitleMore::after{
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border-bottom: 1rpx solid #787878;
+  border-right: 1rpx solid #787878;
+  transform: rotate(-45deg);
+  width: 15rpx;
+  height: 15rpx;
+}
+.trainingCamp_stageList{
+  padding-left: 32rpx;
+  box-sizing: border-box;
+}
+.trainingCamp_stageItem{
+  border-bottom: 1rpx dashed #E6E6E6;
+  display: flex;
+  padding: 20rpx 0;
+}
+.trainingCamp_stageItem:last-child{
+  border-bottom: none !important;
+}
+.trainingCamp_stageHeadImg{
+  align-self: center;
+  margin-right: 27rpx;
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%
+}
+.trainingCamp_stageDateList{
+  align-self: center;
+}
+.trainingCamp_stageDateItem{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(50,50,50,1);
+  line-height:33rpx;
+  letter-spacing:1rpx;
+}
+/* ----------------------cont 2 */
+.trainingCamp_introduction{
+  border-top: 2rpx solid #E6E6E6;
+  padding: 0 16rpx;
+  box-sizing: border-box;
+  position: relative;
+}
+.trainingCamp_introductionMore{
+  max-height: 400rpx;
+  overflow: hidden
+}
+.trainingCamp_introductionCont{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(120,120,120,1);
+  line-height:33rpx;
+  letter-spacing:1rpx;
+  /* padding-left: 24rpx; */
+  margin-bottom: 30rpx;
+  display: block;
+}
+.trainingCamp_introduction_need{
+   margin-left: 10rpx
+}
+.trainingCamp_introduction_list{
+  display: flex;
+  margin-bottom: 20rpx;
+}
+.ballBox{
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+  margin-right: 20rpx;
+}
+.ball{
+  width:20rpx;
+  height:20rpx;
+  background:rgba(201,188,255,1);
+  border-radius: 50%;
+  margin-top: 4rpx;
+  flex-shrink: 0;
+}
+.line{
+  height: 100%;
+  width: 2rpx;
+  background: #cdcdcd;
+  margin: 0 auto
+}
+.trainingCamp_introduction_item{
+
+}
+.trainingCamp_introduction_itemTitle{
+  font-size:24rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(20,20,20,1);
+  line-height:33rpx;
+  letter-spacing:1rpx;
+}
+.trainingCamp_introduction_itemCont{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(120,120,120,1);
+  line-height:33rpx;
+  letter-spacing:1rpx;
+  padding: 10rpx 0;
+  display: block;
+}
+/* ---------------------- cont 3 */
+.trainingCamp_step{
+  border-top: 1rpx solid #E6E6E6;
+  padding: 0 16rpx;
+  box-sizing: border-box;
+}
+.trainingCamp_stepBox{
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+  padding: 0 40rpx;
+  justify-content: space-around;
+}
+.trainingCamp_stepball{
+  width:48rpx;
+  height:48rpx;
+  background:rgba(137,110,255,1);
+  text-align: center;
+  font-size:30rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  line-height:46rpx;
+  letter-spacing:1rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.trainingCamp_stepline{
+  width: 100%;
+  height: 2rpx;
+  background: #cdcdcd;
+}
+.trainingCamp_stepCont{
+  margin: 36rpx 0 30rpx;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16rpx;
+}
+.trainingCamp_stepContItem{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(20,20,20,1);
+  line-height:33rpx;
+}
+/* -------------cont 4 */
+.trainingCamp_careful{
+  border-top: 2rpx solid #E6E6E6;
+  padding: 0 16rpx 50rpx;
+  box-sizing: border-box;
+  position: relative;
+}
+.trainingCamp_carefulCont{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(120,120,120,1);
+  line-height:33rpx;
+  letter-spacing:1rpx;
+  /* padding-left: 24rpx; */
+  display: block;
+}
+/* ----------------- footer */
+.trainingCamp_foot{
+  position: fixed;
+  height: 115rpx;
+  width: 100%;
+  /* background:rgba(137,109,255,1); */
+  box-shadow:0px -2px 6px 0px rgba(240,237,255,1);
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 0 34rpx;
+  box-sizing: border-box;
+  align-items: center;
+  z-index: 100;
+  background: #fff;
+}
+.trainingCamp_footPrice{
+  font-size:42rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:bold;
+  color:rgba(100,78,195,1);
+  line-height:37rpx;
+}
+.trainingCamp_footDisPrice{
+  font-weight: bold;
+  margin: 0 20rpx;
+  
+}
+.trainingCamp_footOrgPrice{
+  font-size:24rpx;
+  text-decoration: line-through;
+}
+
+.trainingCamp_footBtn{
+  min-width: 436rpx;
+  height: 100%;
+  background: #DEDEDE;
+  color: #8E8E8E;
+  /* box-shadow:0px 2rpx 10rpx 0rpx rgba(100,78,195,1); */
+  /* border-radius:44rpx; */
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  line-height:115rpx;
+  letter-spacing:2rpx;
+  text-align: center;
+  padding: 0 68rpx;
+  box-sizing: border-box;
+}
+.trainingCamp_footBtnStyle{
+  background:#896EFF;
+  color:rgba(255,255,255,1);
+  min-width: 436rpx;
+  height: 100%;
+}
+/* ----------------弹窗 */
+.coachShowStyle{
+  width: 686rpx;
+  height: 590rpx;
+  border-radius: 8rpx;
+}
+.coachTitle{
+  font-size:30rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(74,74,74,1);
+  line-height:110rpx;
+  text-align: center;
+  border-bottom: 1rpx solid #E9E9E9;
+}
+.coachItem{
+  padding: 0 34rpx;
+  box-sizing: border-box;
+  display: flex;
+  margin-top: 23rpx;
+}
+.coachItem_headImg{
+  width: 115rpx;
+  height: 115rpx;
+  border-radius: 50%;
+  margin-right: 24rpx;
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+.coachItem_info{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(74,74,74,1);
+  line-height:31rpx;
+  display: block;
+}
+.lookMore{
+  position: absolute;
+  width: 100%;
+  height: 70rpx;
+  background: linear-gradient(rgba(255, 255, 255, 0.5) 0%, #fff 64%);
+  bottom: 0;
+  left: 0;
+  right: 0
+}
+.lookMore::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  margin: auto;
+  border-bottom: 1rpx solid #aaa;
+  border-right: 1rpx solid #aaa;
+  transform: rotate(45deg);
+  width: 14rpx;
+  height: 14rpx;
+}
+.footTime{
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+}
+.footTime_buyTime{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:56rpx;
+}
+.footTime_count{
+  font-size:26rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:37rpx;
+  letter-spacing:1rpx;
+}
+.time{
+  background:rgba(255,255,255,1);
+  border-radius:4rpx;
+  min-width: 54rpx;
+  /* padding: 0 8rpx; */
+  text-align: center;
+  font-size:24rpx;
+  font-family:Digital-7Mono;
+  font-weight:normal;
+  color:rgba(137,109,255,1);
+  line-height: 37rpx;
+  box-sizing: border-box;
+  display: inline-block
+}
+.closeImg{
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  bottom: -100rpx;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-size: 60rpx;
+  color: #7A63DA
+}
+

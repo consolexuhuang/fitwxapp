@@ -1,0 +1,133 @@
+/* pages/course/courseSearch.wxss */
+.header{
+  overflow: hidden;
+  width: 100%;
+  background-color: #FFFFFF;
+  /* box-shadow:0 2rpx 0 0 rgba(240,240,240,1) */
+}
+
+.search-bar-wrapper{
+  margin-top: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-bar{
+  width: 581rpx;
+  height: 70rpx;
+  border-radius: 38rpx;
+  background-color: #F5F5F5;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar input{
+  margin-left: 32rpx;
+  flex: 1;
+  height: 37rpx;
+  line-height: 37rpx;
+  font-size: 26rpx;
+  color: #282828;
+}
+.placeholderStyle{
+  color: #b4b4b4
+}
+.search-bar .icon1{
+  margin-left: 25rpx;
+  margin-right: 25rpx;
+  line-height: 33rpx;
+  color: #aaa;
+}
+
+.cancel{
+  margin-left: 32rpx;
+  font-size: 26rpx;
+  color: #939393;
+}
+
+.hot-search-wrapper{
+  margin-top: 33rpx;
+  padding-bottom: 30rpx;
+}
+
+.hot-search-title{
+  margin-left: 33rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 2rpx solid #E6E6E6;
+  text-indent: 14rpx;
+  font-size: 26rpx;
+  color: #8C8C8C;
+}
+
+.hot-search-list{
+  margin-left: 36rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hot-search-item{
+  margin: 20rpx 27rpx 10rpx 0;
+  min-width: 150rpx;
+  height: 54rpx;
+  border-radius: 27rpx;
+  background-color: #f5f5f5;
+  line-height: 54rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #555555;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+
+.history-search-wrapper{
+  overflow: hidden;
+  margin-top: 20rpx;
+  padding-bottom: 30rpx;
+  background-color: #FFFFFF;
+}
+
+.history-search-title{
+  margin-top: 30rpx;
+  margin-left: 33rpx;
+  padding: 10rpx 40rpx 10rpx 10rpx;
+  border-bottom: 1rpx solid #E6E6E6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.history-search-title text{
+  /* flex: 1; */
+  text-indent: 14rpx;
+  font-size: 26rpx;
+  color: #8C8C8C;
+}
+
+.history-search-title icon2{
+  margin-right: 48rpx;
+  /* width: 33rpx;
+  height: 33rpx; */
+  font-size: 33rpx;
+  color: #aaa;
+}
+
+.history-search-list{
+  margin-left: 36rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.history-search-item{
+  margin: 20rpx 21rpx 10rpx 0;
+  min-width: 155rpx;
+  height: 56rpx;
+  border-radius: 4rpx;
+  background-color: #F0F0F0;
+  line-height: 56rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #555555;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}

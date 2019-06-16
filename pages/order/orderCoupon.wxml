@@ -1,0 +1,102 @@
+<!--pages/order/orderCoupon.wxml-->
+<wxs src="../../utils/util.wxs" module="util" />
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view class="wrapper" style='margin-top:{{marginTopBar}}px'>
+  <view class="rule" bindtap='showCouponRule'>
+    <text class='iconicon-test20 iconfont'/>
+    <text>使用规则</text>
+  </view>
+  <view class="nonuse-coupon" data-coupon="{{''}}" bindtap="handleCouponTap">不使用代金券</view>
+  <!-- <scroll-view class="coupon-scroll" scroll-y> -->
+    <view class="coupon-list">
+      <block wx:for="{{couponList}}" wx:key="index">
+        <block wx:if="{{item.reduce_amount}}">
+          <view class="coupon-item coupon-item-available" data-coupon-id="{{item.id}}" bindtap="handleCouponTap">
+            <image class="coupon-backgrond" src="{{imgUrl}}order/coupon_purple.png" />
+            <view class="coupon-content">
+              <view class="coupon-left">
+                <view class="coupon-subtitle">{{item.coupon_sub_title}}</view>
+                <view class="coupon-amount-first" wx:if="{{item.coupon_type===1}}">¥ <text>{{item.coupon_amount}}</text></view>
+                <view class="coupon-amount-second" wx:elif="{{item.coupon_type===2}}">{{item.coupon_amount}}元</view>
+                <view class="coupon-amount-second" wx:elif="{{item.coupon_type===3}}">{{item.coupon_amount}}折</view>
+                <view class="coupon-type-wrapper">
+                  <view class="coupon-type-line"></view>
+                  <view class="coupon-type-text" wx:if="{{item.coupon_type===1}}">立减券</view>
+                  <view class="coupon-type-text" wx:elif="{{item.coupon_type===2}}">约课券</view>
+                  <view class="coupon-type-text" wx:elif="{{item.coupon_type===3}}">折扣券</view>
+                  <view class="coupon-type-line"></view>
+                </view>
+              </view>
+              <view class="coupon-right">
+                <view class="coupon-title-wrapper">
+                  <view class="coupon-title">{{item.coupon_title}}</view>
+                  <block wx:if="{{item.id===couponId}}">
+                    <image class="coupon-selected" src="{{imgUrl}}order/icon_coupon_selected.png" />
+                  </block>
+                  <block wx:else>
+                    <view class="coupon-btn">立即使用</view>
+                  </block>
+                </view>
+                <view class="coupon-term">有效期至{{util.timeFormat(item.term_validity, 'YYYY.MM.DD')}}(剩余{{item.validity_days}}天)</view>
+              </view>
+            </view>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="coupon-item coupon-item-unavailable">
+            <image class="coupon-backgrond" src="{{imgUrl}}order/coupon_gray.png" />
+            <view class="coupon-content">
+              <view class="coupon-left">
+                <view class="coupon-subtitle">{{item.coupon_sub_title}}</view>
+                <view class="coupon-amount-first" wx:if="{{item.coupon_type===1}}">¥ <text>{{item.coupon_amount}}</text></view>
+                <view class="coupon-amount-second" wx:elif="{{item.coupon_type===2}}">{{item.coupon_amount}}元</view>
+                <view class="coupon-amount-second" wx:elif="{{item.coupon_type===3}}">{{item.coupon_amount}}折</view>
+                <view class="coupon-type-wrapper">
+                  <view class="coupon-type-line"></view>
+                  <view class="coupon-type-text" wx:if="{{item.coupon_type===1}}">立减券</view>
+                  <view class="coupon-type-text" wx:elif="{{item.coupon_type===2}}">约课券</view>
+                  <view class="coupon-type-text" wx:elif="{{item.coupon_type===3}}">折扣券</view>
+                  <view class="coupon-type-line"></view>
+                </view>
+              </view>
+              <view class="coupon-right">
+                <view class="coupon-title-wrapper">
+                  <view class="coupon-title">{{item.coupon_title}}</view>
+                </view>
+                <view class="coupon-term">有效期至{{util.timeFormat(item.term_validity, 'YYYY.MM.DD')}}(剩余{{item.validity_days}}天)</view>
+                <view class="coupon-tips">不可用:{{item.tip}}</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </block>
+      <view class='noCouponBox' wx:if='{{couponList.length == 0}}'>
+        <image class='noCouponImg' src='{{imgUrl}}member/noCoupon.png'></image>
+        <view class='noCouponCont'>暂无代金券</view>
+      </view>
+    </view>
+  <!-- </scroll-view> -->
+</view>
+
+<van-popup show='{{couponRuleShow}}' 
+           bind:close='onclose'
+           custom-class='couponRuleStyle'>
+  <view class='couponRuleTitle'>使用规则</view>
+  <view class='couponRuleCont'>
+     <text class='point' style='background:#896EFF'></text>
+     <text class='couponRuleItem'>提示兑换成功后，可在“分享礼券”中查看</text>
+  </view>
+  <view class='couponRuleCont'>
+     <text class='point' style='background:#2AB282'></text>
+     <text class='couponRuleItem'>用户每次约课支付仅限使用一张券</text>
+  </view>
+  <view class='couponRuleCont'>
+     <text class='point' style='background:#896EFF'></text>
+     <text class='couponRuleItem'>代金券有效期均以实际获得有效期说明为准</text>
+  </view>
+  <view class='couponRuleCont'>
+     <text class='point' style='background:#D47972'></text>
+     <text class='couponRuleItem'>J&J对兑换码使用拥有最终解释权</text>
+  </view>
+  <view class='makeSureBtn' bindtap='onclose'>我知道了</view>
+</van-popup>

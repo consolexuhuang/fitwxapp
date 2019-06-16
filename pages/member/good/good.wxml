@@ -1,0 +1,25 @@
+<!--pages/member/good/good.wxml-->
+<wxs src="../../../utils/util.wxs" module="util" />
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view class='list' style='margin-top:{{marginTopBar}}px'>
+<!-- 1 -->
+ <view class='item fadeIn aminated' bindtap='gotoDiscountDetail' wx:for='{{courseList}}' wx:key='{{index}}' data-orderId='{{item.id}}'>
+   <view class='left'>
+      <image class='pic' src='{{item.index_img}}'></image>
+      <view class='info'>
+        <text class='name'>{{item.good_title}}</text>
+        <view class='row' wx:if='{{item.good_type != "COURSE"}}'>
+          <text class='icon iconicon-test17 iconfont'></text>
+          <text>{{item.begin_end_time}}</text>
+        </view>
+        <view class='row'>
+          <text class='icon iconfont iconicon-test21'></text>
+          <text class='rowOver'>{{item.store_ids__NAME}}</text>
+        </view>
+      </view>
+      <view class='coursePrice'>¥{{item.pay_amount}}</view>
+   </view>
+   <text class='arrow iconfont iconicon-test42'></text>
+ </view>
+</view>
+

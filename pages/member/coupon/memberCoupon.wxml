@@ -1,0 +1,100 @@
+<!--pages/member/coupon/memberCoupon.wxml-->
+<wxs src="../../../utils/util.wxs" module="util" />
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view class="top" style='margin-top:{{marginTopBar}}px'>
+  <view class="top-coupon">
+    <image class="coupon-bg" src="{{imgUrl}}member/coupon-bg.png"></image>
+    <view class="coupon-info">
+      <view class="left">
+        <view class="main">
+          <text class="marker">￥</text>
+          <text class="number">20</text>
+          <view class="unit-name">
+            <text class="unit">YUAN</text>
+            <text class="name">代金券</text>
+          </view>
+        </view>
+        <view class="text">每邀请一位好友成功关注公众号</view>
+      </view>
+      <view class="right">
+        <button class="btn" open-type='share'>立即邀请</button>
+      </view>
+    </view>
+  </view>
+  <!-- 开始做这里了 -->
+  <view class="redeem-code_line"></view>
+  <view class="redeem-code">
+    <input class="redeem-code_left" placeholder="请输入兑换码" placeholder-class="placeholderStyle" bindinput="inputContent"></input>
+    <view class="redeem-code_exchange" bindtap="handleExchangeCouponTap">立即兑换</view>
+  </view>
+</view>
+
+<view class="coupon_module">
+  <view class="coupom_rule" bindtap='showCouponRule'>
+    <text class="coupom_ruleImg iconicon-test20 iconfont"></text>
+    <text class="coupom_ruleCont">使用规则</text>
+  </view>
+  <view class="couponList">
+    <block wx:for="{{couponList}}" wx:key="{{id}}" wx:if='{{couponList.length > 0}}'>
+      <view class="coupon_item fadeIn animated" bindtap="handleCouponItemTap">
+        <image src="{{imgUrl}}member/coupon_item_bg.png" class="coupon_item_bg"></image>
+        <view class="coupon_item_left">
+          <view class="coupon_item_left_name">{{item.couponSubTitle}}</view>
+          <view class="coupon_item_left_price">
+            <block wx:if="{{item.couponType===1}}">
+              <text class="dollor">￥</text>{{item.couponAmount}}
+            </block>
+            <block wx:elif="{{item.couponType===2}}">
+              <text class="yuan">{{item.couponAmount}}元</text>
+            </block>
+            <block wx:elif="{{item.couponType===3}}">
+              <text class="yuan">{{item.couponAmount}}折</text>
+            </block>
+          </view>
+          <view class="coupon_item_left_tag" wx:if="{{item.couponType===1}}">— 立减券 —</view>
+          <view class="coupon_item_left_tag" wx:elif="{{item.couponType===2}}">— 约课券 —</view>
+          <view class="coupon_item_left_tag" wx:elif="{{item.couponType===3}}">— 折扣券 —</view>
+        </view>
+        <view class="coupon_item_right">
+          <view class="coupon_item_rightBox">
+            <view class="coupon_item_right_head">
+              <view class="coupon_item_right_headTitle">{{item.couponTitle}}</view>
+              <view class="coupon_item_right_headBtn">立即使用</view>
+            </view>
+            <view class="termofValidity">有效期至{{util.timeStampFormat(item.termValidity, 'YYYY.MM.DD')}}(剩余{{item.leftDay}}天)</view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view class='noCouponBox' wx:if='{{couponList.length == 0}}'>
+       <image class='noCouponImg' src='{{imgUrl}}member/noCoupon.png'></image>
+       <view class='noCouponCont'>暂无代金券</view>
+    </view>
+  </view>
+</view>
+<dialogComp show="{{isDialogShow}}" 
+            dialogConfig="{{dialogConfig}}" 
+            imgUrl="{{imgUrl}}" 
+            bindcancleEventComp="cancleEventComp"            bindcomfirmEventComp="comfirmEventComp"></dialogComp>
+<van-popup show='{{couponRuleShow}}' 
+           bind:close='onclose'
+           custom-class='couponRuleStyle'>
+  <view class='couponRuleTitle'>使用规则</view>
+  <view class='couponRuleCont'>
+     <text class='point' style='background:#896EFF'></text>
+     <text class='couponRuleItem'>提示兑换成功后，可在“分享礼券”中查看</text>
+  </view>
+  <view class='couponRuleCont'>
+     <text class='point' style='background:#2AB282'></text>
+     <text class='couponRuleItem'>用户每次约课支付仅限使用一张券</text>
+  </view>
+  <view class='couponRuleCont'>
+     <text class='point' style='background:#896EFF'></text>
+     <text class='couponRuleItem'>代金券有效期均以实际获得有效期说明为准</text>
+  </view>
+  <view class='couponRuleCont'>
+     <text class='point' style='background:#D47972'></text>
+     <text class='couponRuleItem'>J&J对兑换码使用拥有最终解释权</text>
+  </view>
+  <view class='makeSureBtn' bindtap='onclose'>我知道了</view>
+</van-popup>

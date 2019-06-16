@@ -1,0 +1,107 @@
+/* pages/trainingCamp/trainingCampPaySuccess/trainingCampPaySuccess.wxss */
+.header-backgroundBox{
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 540rpx;
+}
+.header-background {
+  position: absolute;
+  top: 0;
+  width: 160%;
+  z-index: -1;
+  height: 540rpx;
+  border-radius: 70%;
+  background: #826AFE;
+  top: -100rpx;
+  left: -30%;
+}
+
+.header {
+  padding-top: 115rpx;
+  text-align: center;
+}
+
+.order-icon {
+  width: 110rpx;
+  height: 110rpx;
+}
+
+.order-tips {
+  margin-top: 16rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  font-weight: 500;
+  font-size: 34rpx;
+  color: #fff;
+}
+
+.pay-mode {
+  margin-top: 10rpx;
+  height: 37rpx;
+  line-height: 37rpx;
+  font-weight: 500;
+  font-size: 26rpx;
+  color: #fff;
+}
+
+.course-name {
+  margin-top: 140rpx;
+  text-align: center;
+  line-height: 50rpx;
+  font-weight: 600;
+  font-size: 36rpx;
+  color: #141414;
+}
+.course-step{
+  font-size:26rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(74,74,74,1);
+  line-height:67rpx;
+  text-align: center;
+}
+.course-position {
+  padding-top: 16rpx;
+  /* height: 90rpx; */
+  display: flex;
+  margin-top: 60rpx
+}
+
+.course-position .icon1 {
+  margin-left: 50rpx;
+  margin-top: 7rpx;
+  /* width: 27rpx;
+  height: 27rpx; */
+  font-size: 25rpx;
+  align-self: flex-start;
+}
+
+.course-position .course-positionCont {
+  margin-left: 21rpx;
+  width: 400rpx;
+  line-height: 37rpx;
+  font-size: 26rpx;
+  color: #323232;
+}
+.trainingCampOrder_time{
+  display: flex;
+  padding: 50rpx;
+}
+.trainingCampOrder_timeImg{
+  /* width: 26rpx;
+  height: 26rpx; */
+  flex-shrink: 0;
+  margin-right: 14rpx;
+  align-self: flex-start;
+  margin-top: 6rpx;
+  font-size: 26rpx;
+}
+
+.trainingCampOrder_timeItem{
+  font-size:26rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(74,74,74,1);
+  line-height:46rpx;
+}

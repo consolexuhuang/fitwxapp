@@ -1,0 +1,388 @@
+/* pages/coach/coach.wxss */
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding-bottom: 20rpx;
+  width: 100%;
+  background-color: #FFFFFF;
+  display: flex;
+}
+
+.coach-avatar {
+  margin-top: 20rpx;
+  margin-left: 34rpx;
+  width: 126rpx;
+  height: 126rpx;
+  border-radius: 50%;
+}
+
+.coach-wrapper {
+  flex: 1;
+  /* padding-bottom: 18rpx;
+  margin-bottom: 20rpx; */
+  padding-right: 20rpx
+}
+
+.coach-name {
+  margin-top: 28rpx;
+  margin-left: 37rpx;
+  font-size: 32rpx;
+  color: #323232;
+}
+
+.coach-sign-count {
+  margin-top: 8rpx;
+  margin-left: 37rpx;
+  font-size: 24rpx;
+  color: #323232;
+  display: flex;
+  align-items: center;
+}
+.shareLine{
+  width:2rpx;
+  height:38rpx;
+  background: linear-gradient(#DFD3FF,#896DFF,#ECE7FF);
+  margin:0 65rpx 0 175rpx;
+}
+.shareImgBox{
+  overflow: hidden;
+  position: relative;
+}
+.shareImg{
+  width: 89rpx;
+  height: 69rpx;
+}
+.shareImgBtn{
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%
+}
+.coach-sign-countBox{
+  /* font-size:24rpx;
+  color:#323232; */
+}
+
+.coach-sign-count text {
+  line-height: 53rpx;
+  font-size: 46rpx;
+  color: #896dff;
+}
+
+.coach-description {
+  /* margin-top: 25rpx; */
+  padding: 26rpx 32rpx 26rpx;
+  /* width: 516rpx; */
+  border-top: 1rpx solid #e6e6e6;
+  font-size: 24rpx;
+  color: #787878;
+  display: block;
+  background: #fff;
+  margin-bottom: 20rpx
+}
+
+.date-wrapper{
+  width: 100%;
+  height: 150rpx;
+  background-color: #FFFFFF;
+}
+
+.date-list {
+  width: 100%;
+  height: 150rpx;
+  background-color: #FFFFFF;
+  box-shadow:0 2rpx 6rpx 0 rgba(241,241,241,0.5);
+  display: flex;
+  justify-content: center;
+}
+
+.date-item {
+  flex: 1;
+}
+
+.date-item .date-item-day {
+  margin-top: 30rpx;
+  line-height: 33rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #141414;
+}
+
+.date-item .date-item-date {
+  margin: 9rpx auto 0;
+  width: 58rpx;
+  height: 58rpx;
+  border-radius: 50%;
+  line-height: 58rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #141414;
+}
+
+.date-item-active .date-item-date {
+  background-color: #8B6FF1;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.scroll-swiper {
+  flex: 1;
+  width: 100%;
+  /* height: 0; */
+  
+}
+
+.scroll-swiper swiper-item {
+  width: 100%;
+  height: 100%;
+}
+
+.scroll-swiper swiper-item scroll-view {
+  width: 100%;
+  height: 100%;
+}
+.store-list {
+  overflow: hidden;
+  padding-bottom: 20rpx;
+}
+
+.store-item {
+  overflow: hidden;
+  padding-bottom: 20rpx;
+}
+
+.store-wrapper {
+  width: 100%;
+  background-color: #fff;
+}
+
+.store-name-wrapper {
+  margin-left: 33rpx;
+  height: 131rpx;
+  display: flex;
+  align-items: center;
+}
+
+.store-name {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.store-name-icon{
+  width: 7rpx;
+  height: 28rpx;
+  background-color: #8B6FF1;
+}
+
+.store-name text {
+  margin-left: 15rpx;
+  font-size: 28rpx;
+  color: #3c3c3c;
+}
+
+.store-distance {
+  display: flex;
+  align-items: center;
+}
+
+.store-distance text {
+  margin-right: 11rpx;
+  font-size: 24rpx;
+  color: #aaa;
+}
+
+.store-distance image {
+  margin-right: 35rpx;
+  width: 22rpx;
+  height: 20rpx;
+  font-size: 20rpx;
+  color: #aaa;
+}
+
+.course-list {
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.course-item {
+  position: relative;
+  margin-left: 33rpx;
+  height: 260rpx;
+  border-top: 2rpx solid #F0F0F0;
+  display: flex;
+}
+
+.course-left{
+  flex: 1;
+}
+
+.course-time{
+  margin-top: 25rpx;
+  width: 208rpx;
+  /* height: 33rpx; */
+  border-top-right-radius:17rpx;
+  border-bottom-right-radius:17rpx;
+  background-color: #e6e6e6;
+  line-height: 38rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #8b6ff0;
+  font-weight: bold
+}
+
+.course-name{
+  overflow: hidden;
+  margin-top: 20rpx;
+  width: 350rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 30rpx;
+  color: #000000;
+  font-weight: bold;
+}
+
+.course-label{
+  margin-top: 10rpx;
+  width: 350rpx;
+  height: 33rpx;
+  line-height: 33rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 24rpx;
+  color: #A0A0A0;
+}
+
+.course-price-wrapper{
+  margin-top: 24rpx;
+  display: flex;
+  align-items: center;
+}
+
+.course-discount-price{
+  margin-left: 4rpx;
+  margin-right: 30rpx;
+  font-size: 32rpx;
+  color: #494949;
+}
+.course-price-line{
+  width: 2rpx;
+  height: 19rpx;
+  background-color: rgba(137,110,255,0.5)
+}
+
+.course-card-price{
+  margin-left: 30rpx;
+  font-weight: 500;
+  font-size: 32rpx;
+  color: #896EFF;
+}
+
+.course-price-icon{
+  margin-left: 20rpx;
+  width: 71rpx;
+  height: 29rpx;
+}
+
+.course-price-label {
+  margin-left: 12rpx;
+  width: 106rpx;
+  height: 27rpx;
+  border-radius: 4rpx;
+  background-color: #BDAFFF;
+  line-height: 27rpx;
+  text-align: center;
+  font-size: 20rpx;
+  color: #fff;
+}
+
+.course-appoint-btn {
+  margin-top: 124rpx;
+  margin-right: 39rpx;
+  width: 145rpx;
+  height: 52rpx;
+  border-radius: 29rpx;
+  background: linear-gradient(360deg, rgba(155, 133, 252, 1) 0%, rgba(114, 87, 251, 1) 100%);
+  box-shadow: 0 0 16rpx 0 rgba(184, 168, 255, 1);
+  line-height: 52rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #fff;
+}
+
+.course-wait-btn {
+  margin-top: 124rpx;
+  margin-right: 39rpx;
+  width: 145rpx;
+  height: 52rpx;
+  border-radius: 29rpx;
+  background-color: #fafafa;
+  border: 2rpx solid #896eff;
+  line-height: 52rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #896eff;
+}
+
+.course-end-btn {
+  margin-top: 124rpx;
+  margin-right: 39rpx;
+  width: 145rpx;
+  height: 52rpx;
+  border-radius: 29rpx;
+  background-color: #f2f2f2;
+  /* border: 2rpx solid #b8b8b8; */
+  line-height: 52rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #a0a0a0;
+}
+
+.course-status {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 72rpx;
+  height: 73rpx;
+  z-index: 2;
+}
+
+.none-course {
+  margin-top: 135rpx;
+  text-align: center;
+}
+
+.none-course image {
+  display: block;
+  margin: 0 auto;
+  width: 70rpx;
+  height: 70rpx;
+}
+
+.none-course text:first-of-type {
+  display: block;
+  margin-top: 22rpx;
+  font-size: 24rpx;
+  color: #896eff;
+}
+
+.none-course text:last-of-type {
+  display: block;
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  color: #896eff;
+}

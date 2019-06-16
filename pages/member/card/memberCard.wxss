@@ -1,0 +1,177 @@
+/* pages/member/card/memberCard.wxss */
+page{
+  background: #FAFAFA;
+}
+.myCard_moneyRecord{
+  background: #fff;
+  width: 100%;
+  padding-bottom: 34rpx;
+  margin-bottom: 20rpx;
+}
+.myCard_moneyRecord_title{
+  padding: 0 56rpx;
+  box-sizing: border-box;
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(128,128,128,1);
+  line-height:72rpx;
+  letter-spacing:2rpx;
+  position: relative;
+}
+.myCard_moneyRecord_title::after{
+  content: '';
+  position: absolute;
+  border-bottom: 2rpx solid #787878;
+  border-right: 2rpx solid #787878;
+  width: 15rpx;
+  height: 15rpx;
+  transform: rotate(-45deg);
+  bottom: 0;
+  top: 0;
+  right: 56rpx;
+  margin: auto
+}
+.myCard_moneyRecord_cont{
+  width: 662rpx;
+  height: 392rpx;
+  position: relative;
+  margin: 0 auto;
+  overflow:hidden;
+  display: flex;
+  flex-direction: column;
+}
+.myCard_moneyRecordImg{
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+  position: absolute;
+}
+.cardNameImg{
+  z-index: 100;
+  width: 247rpx;
+  height: 37rpx;
+  margin: 45rpx 0 0 40rpx;
+}
+.memberCardNumber{
+  z-index: 100;
+  font-size:36rpx;
+  font-family:SourceHanSansCN-Normal;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:54rpx;
+  letter-spacing:2rpx;
+  margin: 86rpx 0 0 0;
+  padding-left: 40rpx;
+}
+.currentState{
+  padding-right: 40rpx;
+  box-sizing: border-box;
+  margin-top: 28rpx;
+  z-index: 100
+}
+.currentState_title{
+  text-align: right;
+  font-size:24rpx;
+  font-family:SourceHanSansCN-Normal;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:36rpx;
+}
+.currentState_momey{
+    text-align: right;
+  font-size:50rpx;
+  font-family:ArialMT;
+  color:rgba(255,255,255,1);
+  line-height:69rpx;
+  letter-spacing:3rpx;
+}
+.currentState_rechargeBox{
+  text-align: right;
+}
+.currentState_recharge{
+  border-radius:3rpx;
+  border:1rpx solid rgba(255,255,255,1);
+  font-size:28rpx;
+  font-family:SourceHanSansCN-Normal;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:50rpx;
+  width: 173rpx;
+  text-align: center;
+  display: inline-block
+}
+.buyCardRecord_cont{
+  width: 662rpx;
+  height: 392rpx;
+  position: relative;
+  margin: 0 auto;
+  overflow:hidden;
+}
+.buyCardRecord_numBox{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 54rpx;
+  margin: auto;
+  font-size:40rpx;
+  font-family:SourceHanSansCN-Medium;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  line-height:46rpx;
+  display: flex;
+  align-items: center;
+  /* flex-direction: column */
+}
+.buyCardRecord_num{
+  align-self: center
+}
+.buyCardRecord_numBox2{
+  display: flex;
+  align-items: center;
+  flex-direction: column
+}
+.buyCardRest_num{
+  font-size:28rpx;
+}
+.buyCardRecord_time{
+  position: absolute;
+  bottom: 75rpx;
+  left: 54rpx;
+  font-size:30rpx;
+  font-family:SourceHanSansCN-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:45rpx;
+}
+/* -----------缺省图 */
+.noCardBox{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 330rpx auto 100rpx;
+}
+.noCardImg{
+  width: 217rpx;
+  height: 142rpx;
+  color: #C4C4C4;
+  font-size: 142rpx;
+  margin-bottom: 30rpx;
+}
+.noCardCont{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(190,190,190,1);
+  line-height:33rpx;
+}
+.openCard{
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(130,106,254,1);
+  line-height:40rpx;
+  text-align: center;
+  margin: 100rpx auto 0;
+  border-bottom: 1rpx solid rgba(130,106,254,1);
+}

@@ -1,0 +1,75 @@
+<!--pages/good/goodDetail.wxml-->
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view class='wrapper' style='margin-top:{{marginTopBar}}px'>
+  <view class='top'>
+    <image class='pic' src='{{goodData.banner_img}}'></image>
+    <text class='name'>{{ goodData.title }}</text>
+    <text class='indate'>有效期：{{ goodData.validity_days }}天</text>
+    <text class='shope'>适用门店：{{ goodData.store_ids__NAME }}</text>
+  </view>
+  <view class='info' wx:if="{{goodData.good_intro}}">
+    <view class='title'>
+      <!-- <text class='icon'></text> -->
+      <text class='text'>课程简介</text>
+    </view>
+    <rich-text nodes="{{goodData.good_intro}}"  class='introduce'></rich-text>
+  </view>
+  <view class='info'  wx:if="{{goodData.training_effect}}">
+    <view class='title'>
+      <!-- <text class='icon'></text> -->
+      <text class='text'>训练效果</text>
+    </view>
+    <rich-text nodes="{{goodData.training_effect}}" class='introduce'></rich-text>
+  </view>
+  <view class='info' wx:if="{{goodData.suit_crowds}}">
+    <view class='title'>
+      <!-- <text class='icon'></text> -->
+      <text class='text'>适合人群</text>
+    </view>
+    <rich-text nodes="{{goodData.suit_crowds}}" class='introduce'></rich-text>
+  </view>
+  <view class='info'>
+    <view class='title'>
+      <!-- <text class='icon'></text> -->
+      <text class='text'>健身步骤</text>
+    </view>
+    <view class='step-box'>
+      <text class='line'></text>
+      <view class='step-row'>
+        <view class='col'>
+          <text class='number'>1</text>
+          <text class='text'>约课成功</text>
+        </view>
+        <view class='col'>
+          <text class='number'>2</text>
+          <text class='text'>获得密码</text>
+        </view>
+        <view class='col'>
+          <text class='number'>3</text>
+          <text class='text'>扫码开门</text>
+        </view>
+        <view class='col'>
+          <text class='number'>4</text>
+          <text class='text'>签到上课</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='info' wx:if="{{goodData.needing_attention}}">
+    <view class='title'>
+      <!-- <text class='icon'></text> -->
+      <text class='text'>注意事项</text>
+    </view>
+     <rich-text nodes="{{goodData.needing_attention}}" class='introduce'></rich-text>
+  </view>
+</view>
+
+<view class='foot'>
+  <view class='left'>
+    <text class='label'>总价：</text>
+    <text class='price-current'>¥{{ goodData.discount_price }}</text>
+    <text class='price-origin'>¥{{ goodData.price }}</text>
+  </view>
+  <button class='btn' wx:if="{{goodData.status}}" bindtap='payGood'>立即预约</button>
+  <button class='btn end' wx:else>{{ goodData.status__NAME }}</button>
+</view>

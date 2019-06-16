@@ -1,0 +1,21 @@
+<!--pages/index/index.wxml-->
+<view class='startUp'>
+  <image src='{{imgUrl}}icon/startUp_logo.png' class='startUp_logo'></image>
+  <view class='startUpCont'>
+    <!-- <image src='{{imgUrl}}icon/startUp_title.png' class='startUpCont_Img'></image>
+    <view class='startUpCont_title'>你身边的团课教室</view> -->
+    <view class='loading'>
+      <view class='loadingBox'>
+        <view style='display:flex; align-items:center'>
+          <text>{{'正在寻找离你最近的门店' || loadText}}</text>
+          <text id="loading1">
+            <text class="demo1"></text>
+            <text class="demo1"></text>
+            <text class="demo1"></text>
+          </text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- <image src='{{imgUrl}}icon/startUp_bottom.png' class='startUp_bottom'></image> -->
+</view>

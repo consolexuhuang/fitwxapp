@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "购卡记录",
+  "usingComponents": {
+    "tabBar_top": "/components/tabBar_top/tabBar" 
+  }
+}

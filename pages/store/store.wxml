@@ -1,0 +1,72 @@
+<!--pages/store/store.wxml-->
+<wxs src="../../utils/util.wxs" module="util" />
+<tabBar_top navbarData = "{{navbarData}}"></tabBar_top>
+<view class="wrapper">
+  <view class="select-list" catchtouchmove="true" style="top:{{marginTopBar}}px">
+    <view class="{{isScreanShow===1?'select-item select-item-active':'select-item'}}" data-is-screan-show="{{1}}" bindtap="handleSelectTap">
+      <text>{{isScreanShow===1?'城市选择':city+'全城'}}</text>
+      <text class='iconicon-test36 iconfont icon2'/>
+    </view>
+    <view class="{{isScreanShow===2?'select-item select-item-active':'select-item'}}" data-is-screan-show="{{2}}" bindtap="handleSelectTap">
+      <text>全部门店</text>
+      <text class='iconicon-test36 iconfont icon2' />
+    </view>
+  </view>
+  <!-- <scroll-view class="store-scroll" scroll-y bindscrolltoupper='bindscrolltoupper'> -->
+    <view class="store-list fadeIn animated" style="margin-top:{{marginTopBar + 80 / 750 * screenWidth}}px">
+      <block wx:for="{{storeList}}" wx:key="id">
+        <view class="store-item fadeIn animated" data-store-id="{{item.id}}" bindtap="handleStoreTap">
+          <image class="store-image" src="{{item.storeUrl}}" lazy-load show-menu-by-longpress/>
+          <view class="store-name-wrapper">
+            <view class="store-name">{{item.storeName}}</view>
+            <view class="store-distance">
+              <text>距您{{util.numberFormat(item.distance, 1)}}km</text>
+              <text class='iconfont iconicon-test41'/>
+            </view>
+          </view>
+          <view class="store-address">
+            <text class='iconfont iconicon-test1 icon3'/>
+            <text class='store-addressCont'>{{item.address}}</text>
+          </view>
+          <view class="store-top-icon" data-store-id="{{item.id}}" data-is-top="{{item.isTop}}" catchtap="handleTopTap">
+            <image wx:if="{{item.isTop}}" src="{{imgUrl}}store/icon_top_solid.png" />
+            <image wx:else src="{{imgUrl}}store/icon_top_hollow.png" />
+          </view>
+        </view>
+      </block>
+    </view>
+  <!-- </scroll-view> -->
+</view>
+<view class="screen-wrapper" style="top:{{marginTopBar + 80 / 750 * screenWidth}}px" wx:if="{{isScreanShow}}" bindtap="handleShadeTap" catchtouchmove="{{true}}">
+  <view class="screen-content" wx:if="{{isScreanShow===1}}" catchtap="handleContentTap">
+    <view class="screen-city-list">
+      <block wx:for="{{cityList}}" wx:for-index="key" wx:key="key">
+        <view class="{{city===key?'screen-item screen-item-active':'screen-item'}}" data-city="{{key}}" bindtap="handleCityTap">{{key}}</view>
+      </block>
+    </view>
+    <view class="screen-title">位置选择</view>
+    <view class="screen-area-list">
+      <view class="{{area===''?'screen-item screen-item-active':'screen-item'}}" data-area="{{''}}" bindtap="handleAreaTap">{{city}}全城</view>
+      <block wx:for="{{cityItem}}" wx:for="{{cityList[city]}}" wx:key="index">
+        <view class="{{area===item?'screen-item screen-item-active':'screen-item'}}" data-area="{{item}}" bindtap="handleAreaTap">{{item}}</view>
+      </block>
+    </view>
+    <view class="screen-btn-wrapper">
+      <view class="screen-clear-btn" bindtap="handleClearTap">清空</view>
+      <view class="screen-confirm-btn" bindtap="handleConfirmTap">确定</view>
+    </view>
+  </view>
+  <view class="screen-content" wx:elif="{{isScreanShow===2}}" catchtap="handleContentTap">
+    <view class="screen-title">类型选择</view>
+    <view class="screen-type-list">
+      <view class="{{storeType===''?'screen-item screen-item-active':'screen-item'}}" data-store-type="{{''}}" bindtap="handleStoreTypeTap">全部门店</view>
+      <block wx:for="{{storeTypeList}}" wx:key="index">
+        <view class="{{storeType===item?'screen-item screen-item-active':'screen-item'}}" data-store-type="{{item}}" bindtap="handleStoreTypeTap">{{item}}</view>
+      </block>
+    </view>
+    <view class="screen-btn-wrapper">
+      <view class="screen-clear-btn" bindtap="handleClearTap">清空</view>
+      <view class="screen-confirm-btn" bindtap="handleConfirmTap">确定</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,22 @@
+<!--pages/good/good.wxml-->
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view class='list' style='margin-top:{{marginTopBar}}px' wx:if="{{goodListData.length}}">
+<!-- 1 -->
+   <view class='item' wx:for="{{goodListData}}" data-item="{{item}}" bindtap='goodView'>
+      <image class='pic fadeIn animated' mode='widthFix' src='{{item.banner_img}}'></image>
+      <view class='info'>
+       <view class='left'>
+         <view class='name'>{{ item.title }}</view>
+       </view>
+       <view class='priceBox'>
+          <view class='price'>
+            <text class='price-current'>¥{{ item.discount_price }}</text>
+            <text class='price-original'>¥{{ item.price }}</text>
+          </view>
+          <button class='btn' wx:if="item.status">立即抢购</button>
+          <button class='btn end' wx:else>{{ item.status__NAME }}</button>
+       </view>
+      </view>
+   </view>
+  
+</view>

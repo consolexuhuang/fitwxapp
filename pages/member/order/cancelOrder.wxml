@@ -1,0 +1,70 @@
+<!--pages/member/order/cancelOrder.wxml-->
+<wxs src="../../../utils/util.wxs" module="util" />
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view class="wrapper" style='margin-top:{{marginTopBar}}px'>
+  <view class="header">
+    <view class='header-backgroundBox'>
+      <view class="header-background">
+      </view>
+    </view>
+    
+  </view>
+  <view class='user'>
+    <image class="avatar" src="{{orderData.coach.headUrl}}" />
+    <view class='name'>{{ orderData.course.courseName }}</view>
+     <view class='date'>
+      <text class='date-w'>{{util.timeStampFormat(orderData.course.beginDate, 'MM月DD日')}} 星期{{orderData.course.beginDay}}</text>
+      <text class='date-t'> {{util.timeStampFormat(orderData.course.beginTime,'hh:mm')}}</text>
+    </view>
+  </view>
+  <!-- refund type -->
+  <view class='refund' wx:if="{{(orderData.canRefundAmount || orderData.canRefundCoupon) || orderData.canRefundCard}}">
+    <view class='refund-title'>退款方式</view>
+    <view class='refund-type' wx:if="{{orderData.canRefundAmount || orderData.canRefundCoupon}}">
+      <view class='item' wx:if="{{orderData.order.paymentWay === 1}}">
+        <view class='left'>
+          <image class='icon' src='/images/member/icon-wx-pay.png'></image>
+          <text class='name'>微信</text>
+        </view>
+        <text class='number'>{{ orderData.canRefundAmount }}元</text>
+      </view>
+      <view class='item' wx:if="{{orderData.order.paymentWay === 2}}">
+        <view class='left'>
+          <image class='icon' src='/images/member/icon-pluspay-blue.png'></image>
+          <text class='name'>卡支付</text>
+        </view>
+        <text class='number'>{{ orderData.canRefundAmount }}元</text>
+      </view>
+      <view class='item' wx:if="{{orderData.canRefundCard && orderData.order.paymentWay === 7}}">
+        <view class='left'>
+          <image wx:if="{{orderData.canRefundCard.title=='早课卡'}}" class='icon' src='/images/member/icon-morning-red.png'></image>
+          <image wx:if="{{orderData.canRefundCard.title=='单车卡'}}" class='icon' src='/images/member/icon-bike-green.png'></image>
+          <text class='name'>{{ orderData.canRefundCard.title }}</text>
+        </view>
+        <text class='number'>{{ orderData.canRefundCard.count }}次</text>
+      </view>
+      <view class='item' wx:if="{{orderData.canRefundCoupon}}">
+        <view class='left'>
+          <image class='icon' src='/images/member/iocn-coupon-blue.png'></image>
+          <text class='name'>代金券</text>
+        </view>
+        <text class='number'>{{ orderData.canRefundCoupon.couponTitle }} {{ orderData.canRefundCoupon.couponAmount }}元</text>
+      </view>
+    </view>
+  </view>
+  <!-- tip -->
+  <view class='tip'>
+    <view class='tip-title'>温馨提示</view>
+    <text class='tip-c'>1.开课前6小时取消，全额退款；</text>
+    <text class='tip-c'>2.开课前6小时内取消，不支持退款；</text>
+  </view>
+</view>
+<!-- 底部 -->
+<view class='foot'>
+  <button class='btn-refund' wx:if="{{orderData.cancelFlag === 2 || orderData.cancelFlag === 4}}" bindtap="refund">确认退款，取消预约</button>
+  <button class='btn-refund' wx:if="{{orderData.cancelFlag === 5}}" bindtap="refund">取消预约</button>
+  <text class='copyright' wx:if="{{orderData.cancelFlag === 4 || orderData.cancelFlag === 5}}">{{ orderData.canelTime }} 后取消，不支持退款</text>
+</view>
+
+<!-- 弹层 -->
+<dialogComp wx:if="{{orderData.cancelFlag === 5}}" show="{{warningShadeStatus}}" dialogConfig="{{dialogConfig}}" imgUrl="{{imgUrl}}" bindcomfirmEventComp="warningShadeChange"></dialogComp>

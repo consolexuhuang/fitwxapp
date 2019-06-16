@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "确认订单",
+  "navigationBarBackgroundColor": "#896DFF",
+  "usingComponents": {
+    "tabBar_top": "/components/tabBar_top/tabBar"
+  }
+}

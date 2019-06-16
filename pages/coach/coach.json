@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "教练详情",
+  "usingComponents": {
+    "tabBar_top": "/components/tabBar_top/tabBar"
+  }
+}

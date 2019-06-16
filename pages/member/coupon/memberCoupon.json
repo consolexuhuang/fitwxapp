@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText":"我的礼券",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "dialogComp":"/components/dialog/dialog",
+    "van-popup": "../../../libs/vant-weapp/dist/popup/index",
+    "tabBar_top": "/components/tabBar_top/tabBar"
+  }
+}

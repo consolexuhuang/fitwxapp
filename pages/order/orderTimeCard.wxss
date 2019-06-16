@@ -1,0 +1,64 @@
+/* pages/order/orderTimeCard.wxss */
+.orderCard_item{
+  width: 686rpx;
+  height: 340rpx;
+  position: relative;
+  margin: 10rpx auto;
+  display: flex;
+}
+.orderCard_itemImg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.orderCard_itemTime{
+  font-size:22rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  line-height:30rpx;
+  position: absolute;
+  left: 62rpx;
+  top: 240rpx;
+}
+.orderCard_itemCount{
+  font-size:36rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  line-height:50rpx;
+  text-shadow:0rpx 0rpx 8rpx rgba(57,177,211,1);
+  position: absolute;
+  align-self: center;
+  right: 86rpx;
+}
+.chooseCard{
+  /* color: #896EFF; */
+  /* font-size: 14rpx;
+  line-height: 38rpx; */
+  /* text-align: center; */
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  /* position: relative; */
+  top: 27rpx;
+  right: 27rpx;
+  width: 38rpx;
+  height: 38rpx;
+}
+.chooseCard::after{
+  content: "";
+  position: absolute;
+  left: 8rpx;
+  top: 10rpx;
+  width: 50%; 
+  height: 25%;
+  border: 2px solid #896EFF;
+  border-radius: 1rpx;
+  border-top: none;
+  border-right: none;
+  background: transparent;transform: rotate(-45deg);
+
+}

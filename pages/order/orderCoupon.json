@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "van-popup": "../../libs/vant-weapp/dist/popup/index",
+    "tabBar_top": "/components/tabBar_top/tabBar"
+  }
+}

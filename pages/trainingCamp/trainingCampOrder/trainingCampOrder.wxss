@@ -1,0 +1,318 @@
+/* pages/trainingCamp/trainingCampOrder/trainingCampOrder.wxss */
+/* pages/order/order.wxss */
+
+.wrapper {
+  margin-bottom: 128rpx;
+  width: 100%;
+  height: 379rpx;
+  background-color: #896dff;
+  border-top: 1px solid transparent;
+}
+
+.content {
+  position: relative;
+  margin: 5rpx auto 0;
+  width: 687rpx;
+  min-height: 374rpx;
+  background-color: #fff;
+}
+.lineBox{
+  position: relative;
+  height: 28rpx;
+  /* display: flex; */
+}
+.left-circle {
+  position: absolute;
+  top: 0;
+  left: -14rpx;
+  width: 28rpx;
+  height: 28rpx;
+  border-radius: 50%;
+  background-color: #896dff;
+}
+
+.right-circle {
+  position: absolute;
+  top: 0;
+  right: -14rpx;
+  width: 28rpx;
+  height: 28rpx;
+  border-radius: 50%;
+  background-color: #896dff;
+}
+
+.dashed-line {
+  position: absolute;
+  /* top: 0; */
+  /* bottom: 0; */
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 628rpx;
+  border-bottom: 3rpx dashed #d7d7d7;
+  height: 14rpx
+}
+
+.content-footer-shadow {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: calc(100% - 371rpx);
+  border-radius: 4rpx;
+  box-shadow: 0 3rpx 10rpx 0 rgba(240, 237, 255, 1);
+  z-index: -1;
+}
+
+.course-name {
+  padding-top: 35rpx;
+  text-align: center;
+  line-height: 50rpx;
+  font-weight: 600;
+  font-size: 36rpx;
+  color: #141414;
+}
+.course-step{
+  font-size:26rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(74,74,74,1);
+  line-height:67rpx;
+  text-align: center;
+}
+.wait-wrapper{
+  margin-top: 7rpx;
+  padding-bottom: 26rpx;
+}
+.wait-count-wrapper{
+  margin-left: 222rpx;
+  width: 100%;
+  height: 67rpx;
+  display: flex;
+}
+.wait-count-text{
+  margin-top: 21rpx;
+  line-height: 40rpx;
+  font-size: 28rpx;
+  color: #141414;
+}
+
+.wait-count-number{
+  margin-left: 8rpx;
+  margin-right: 8rpx;
+  line-height: 67rpx;
+  font-weight: bold;
+  font-size: 58rpx;
+  color: #896EFF;
+}
+.wait-tips{
+  margin-top: 14rpx;
+  margin-left: 64rpx;
+  width: 550rpx;
+  height: 73rpx;
+  line-height: 30rpx;
+  font-size: 24rpx;
+  color: #969696;
+}
+.course-time {
+  padding-top: 41rpx;
+  height: 37rpx;
+  display: flex;
+  align-items: center;
+}
+
+.course-time image {
+  margin-left: 40rpx;
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.course-time text {
+  margin-left: 18rpx;
+  font-size: 26rpx;
+  color: #787878;
+}
+
+.course-position {
+  /* padding-top: 80rpx; */
+  /* height: 90rpx; */
+  display: flex;
+  margin-top: 76rpx;
+  margin-bottom: 20rpx;
+}
+.course-position2{
+  margin-top: 28rpx !important;
+}
+
+.course-position .icon1 {
+  margin-left: 43rpx;
+  /* margin-top: 1rpx; */
+  /* width: 25rpx;
+  height: 26rpx; */
+  font-size: 24rpx;
+  align-self: flex-start;
+  margin-top: 6rpx
+}
+
+.course-position .course-positionCont {
+  margin-left: 21rpx;
+  width: 400rpx;
+  line-height: 37rpx;
+  font-size: 26rpx;
+  color: #323232;
+}
+.solid-line{
+  margin: 0 auto;
+  width: 606rpx;
+  border-bottom: 2rpx solid #E6E6E6;
+}
+
+.trainingCampOrder_time{
+  display: flex;
+  padding: 20rpx 43rpx 60rpx;
+  /* margin-top: 30rpx; */
+}
+.trainingCampOrder_timeImg{
+  /* width: 26rpx;
+  height: 26rpx; */
+  flex-shrink: 0;
+  margin-right: 21rpx;
+  align-self: flex-start;
+  margin-top: 10rpx;
+  font-size: 26rpx
+}
+
+.trainingCampOrder_timeItem{
+  font-size:26rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(74,74,74,1);
+  line-height:46rpx;
+}
+
+/* -----------pay */
+.pay-title {
+  padding: 20rpx 52rpx;
+  font-size: 24rpx;
+  color: #828282;
+}
+
+.pay-type {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  background:rgba(255,255,255,1);
+  box-shadow:0rpx 0rpx 10rpx 0rpx rgba(240,237,255,1);
+  border-radius:4rpx;
+  width: 687rpx;
+  margin:  0 auto;
+}
+
+.pay-type .item {
+  display: flex;
+  flex-direction: column;
+}
+
+.pay-type .item .item-play-type {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20rpx 52rpx;
+  /* border-bottom: 1px solid #e9e9e9; */
+}
+
+.pay-type .item .item-play-type .icon {
+  width: 31rpx;
+  height: 24rpx;
+  margin-right: 20rpx;
+  vertical-align: middle;
+}
+
+.pay-type .item .item-play-type .name {
+  font-size: 28rpx;
+  color: #141414;
+}
+.creditNone{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(137,110,255,1);
+  line-height:33px;
+  position: relative;
+  padding-right: 30rpx;
+}
+.creditNone ::after{
+  content: '';
+  position: absolute;
+  width: 14rpx;
+  height: 14rpx;
+  border-bottom: 1rpx solid #787878;
+  border-right: 1rpx solid #787878;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  transform: rotate(-45deg)
+}
+.choosePayWayBox{
+  width: 40rpx;
+  height: 40rpx;
+  display: flex;
+  align-self: center;
+  padding-left: 12rpx;
+  box-sizing: border-box
+}
+.choosePayWay{
+  width: 26rpx;
+  height: 26rpx;
+  align-self: center;
+}
+
+.tip {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  padding: 20rpx 69rpx;
+  margin-top: 30rpx;
+}
+
+.icon-tip {
+  /* width: 24rpx;
+  height: 24rpx; */
+  flex-shrink: 0;
+  margin: 5rpx 24rpx 0 0;
+  font-size: 24rpx;
+}
+
+.text {
+  font-size: 24rpx;
+  color: #787878;
+}
+
+.trainingCampOrderBtnBox {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 130rpx;
+  background-color: #fff;
+  box-shadow: 0px -2px 4px 0px rgba(240, 237, 255, 1);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.trainingCampOrderBtn{
+  width:613rpx;
+  /* height:84px; */
+  background:linear-gradient(360deg,rgba(155,133,252,1) 0%,rgba(114,87,251,1) 100%);
+  box-shadow:0px 0px 16rpx 0px rgba(184,168,255,1);
+  border-radius:41rpx;
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:84rpx;
+  text-align: center;
+}
+

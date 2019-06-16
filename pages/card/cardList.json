@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "尊享次卡类型",
+  "usingComponents": {
+     "tabBar_top": "/components/tabBar_top/tabBar"
+  }
+}

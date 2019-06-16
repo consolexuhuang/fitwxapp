@@ -1,0 +1,146 @@
+/* pages/member/order/cancelOrder.wxss */
+
+page {
+  background-color: #fff;
+}
+
+.header {
+  position: relative;
+}
+.header-backgroundBox{
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 540rpx;
+}
+.header-background {
+  position: absolute;
+  width: 160%;
+  z-index: -1;
+  height: 540rpx;
+  border-radius: 70%;
+  background: #826AFE;
+  top: -300rpx;
+  left: -30%;
+}
+
+.hader-bg {
+  width: 750rpx;
+  height: 200rpx;
+}
+.avatar {
+  width: 148rpx;
+  height: 149rpx;
+  border-radius: 50%;
+  margin-bottom: 10rpx;
+  /* position: absolute;
+  bottom: -30rpx;
+  left: 50%;
+  transform: translateX(-50%); */
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 150rpx 0 60rpx 0;
+  /* border-bottom: 2rpx solid #e9e9e9; */
+  color: #141414;
+  line-height: 55rpx;
+}
+
+.user .name {
+  font-size: 32rpx;
+}
+
+.user .date {
+  font-size: 24rpx;
+}
+
+.user .date .date-t {
+  color: #826afe;
+}
+
+.refund {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 30rpx 0 0 30rpx;
+  color: #141414;
+}
+
+.refund-title {
+  font-size: 28rpx;
+}
+
+.refund-type {
+  display: flex;
+  flex-direction: column;
+}
+
+.refund-type .item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100rpx;
+  border-bottom: 2rpx solid #e9e9e9;  
+  font-size:28rpx;
+}
+
+.refund-type .item .left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.refund-type .item .left .icon {
+  width: 36rpx;
+  height: 27rpx;
+  margin-right: 20rpx;
+}
+.refund-type .item .number{
+  margin-right: 30rpx;
+  color:#828282;
+}
+.tip{
+  display: flex;
+  flex-direction: column;
+  margin:30rpx;
+  font-size:24rpx;
+  color:#828282;
+}
+.tip-title{
+  padding:20rpx 0;
+}
+.tip-c{
+  line-height: 50rpx;
+}
+
+.foot{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left:0;
+  right: 0;
+  background:#fff;
+}
+.foot .btn-refund{
+width:686rpx;
+height:80rpx;
+line-height: 80rpx;
+background:#896FFF;
+border-radius:4rpx;
+font-size:28rpx;
+color:#FFFFFF;
+}
+.foot .copyright{
+  height: 103rpx;
+  line-height: 103rpx;
+ font-size:24rpx;
+ color:#AAAAAA;
+}

@@ -1,0 +1,259 @@
+/* pages/order/paySuccess.wxss */
+
+page {
+  background-color: #fff;
+  width: 100%;
+  /* overflow-x: hidden; */
+}
+.wrapper{
+  width: 100%;
+  overflow-x: hidden;
+}
+.header-backgroundBox{
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 540rpx;
+}
+.header-background {
+  position: absolute;
+  top: 0;
+  width: 160%;
+  z-index: -1;
+  height: 540rpx;
+  border-radius: 70%;
+  background: #826AFE;
+  top: -100rpx;
+  left: -30%;
+}
+
+.header-background image {
+  width: 100%;
+  height: 440rpx;
+}
+
+.header {
+  padding-top: 115rpx;
+  text-align: center;
+}
+
+.order-icon {
+  width: 110rpx;
+  height: 110rpx;
+}
+
+.order-tips {
+  margin-top: 16rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  font-weight: 500;
+  font-size: 34rpx;
+  color: #fff;
+}
+
+.pay-mode {
+  margin-top: 10rpx;
+  height: 37rpx;
+  line-height: 37rpx;
+  font-weight: 500;
+  font-size: 26rpx;
+  color: #fff;
+}
+
+.coach-wrapper {
+  position: relative;
+  margin: 21rpx auto 0;
+  width: 162rpx;
+}
+
+.coach-avatar {
+  width: 148rpx;
+  height: 148rpx;
+  border-radius: 50%;
+  border: 7rpx solid #fff;
+}
+
+.coach-wechat {
+  position: absolute;
+  right: 9rpx;
+  bottom: 9rpx;
+  width: 46rpx;
+  height: 46rpx;
+  border-radius: 50%;
+  border: 2rpx solid #fff;
+}
+
+.QR-code-wrapper {
+  margin-top: 13rpx;
+}
+
+.QR-code-label {
+  font-size: 26rpx;
+  color: #969696;
+}
+.waitBox{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: 40rpx auto;
+}
+.waitImg{
+  width: 30rpx !important;
+  height: 26rpx !important;
+    margin: 0 !important;
+  align-self: flex-start;
+}
+.waitImg2{
+  width: 30rpx !important;
+  height: 26rpx !important;
+  margin: 0 !important;
+  align-self: flex-end
+}
+.waitCont{
+  font-size:30rpx;
+  font-family:PingFangSC-Semibold;
+  font-weight:600;
+  color:rgba(0,0,0,1);
+  line-height:42rpx;
+  letter-spacing:1rpx;
+}
+
+.QR-code-wrapper image {
+  margin-top: 25rpx;
+  width: 206rpx;
+  height: 206rpx;
+}
+
+.QR-code-wrapper text {
+  margin-top: 39rpx;
+  padding-bottom: 90rpx;
+  display: block;
+  font-weight: 500;
+  font-size: 30rpx;
+  color: #141414;
+}
+
+.footer {
+  /* position: absolute; */
+  /* bottom: 0; */
+  width: 100%;
+  padding-bottom: 120rpx;
+}
+
+.column-item {
+  margin-left: 34rpx;
+  /* width: 100%; */
+  min-height: 88rpx;
+  border-bottom: 1rpx solid #e9e9e9;
+  display: flex;
+  align-items: center;
+  padding: 18rpx 20rpx;
+  box-sizing: border-box
+}
+
+.column-item-label {
+  font-size: 28rpx;
+  color: #969696;
+  flex-shrink: 0;
+  flex-grow: 0;
+  /* align-self: flex-start */
+}
+
+.column-item-content {
+  font-size: 28rpx;
+  color: #141414;
+}
+
+.btn-wrapper {
+  /* margin-top: 50rpx;
+  padding-bottom: 46rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center; */
+}
+
+.return-course-btn {
+  width: 100%;
+  /* height: 70rpx; */
+  position: fixed;
+  line-height: 110rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #fff;
+  background: #896dff;
+  font-weight: bold;
+  bottom: 0;
+  left: 0;
+}
+.shareBtn{
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 110rpx;
+  left: 0;
+  top: 0;
+}
+
+.invite-btn {
+  margin-left: 22rpx;
+  width: 302rpx;
+  height: 70rpx;
+  border-radius: 4rpx;
+  background-color: #896dff;
+  line-height: 70rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #fff;
+}
+.invite-btnStyle{
+  width:636rpx;
+  margin: 0 auto !important;
+}
+.paySuccessShowStyle{
+  border-radius: 8rpx;
+  background: none !important;
+}
+.paySuccessShowImg_good{
+   width: 534rpx;
+   height: 687rpx
+}
+.paySuccessShowImg_charge{
+   width: 734rpx;
+   height: 643rpx
+}
+.paySuccessShowImg_share{
+   width: 552rpx;
+   height: 710rpx
+}
+.coachWxCodepaySuccessShowStyle{
+  /* width: 550rpx;
+  height: 600rpx; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.coachWxImg{
+  width: 430rpx;
+  height: 430rpx;
+  margin: 60rpx 60rpx 0
+}
+.coachWxCont{
+  margin-top: 33rpx;
+  text-align: center;
+  font-size:32rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(137,109,255,1);
+  line-height:45rpx;
+  letter-spacing:1rpx;
+  margin-bottom: 32rpx;
+}
+.colseBtn{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -140rpx;
+  margin: auto;
+  width: 79rpx;
+  height: 79rpx;
+}

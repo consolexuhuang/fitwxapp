@@ -1,0 +1,111 @@
+<!--pages/member/card/transactionRecord.wxml-->
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view class="wrapper" style='margin-top:{{marginTopBar}}px'>
+  <view class="tab-title">
+    <view class="title {{active===0?'active':''}}" data-active="{{0}}" bindtap="handleTabTap">
+      <text class="txt">充值记录</text>
+      <text class="down-line"></text>
+    </view>
+    <view class="line"></view>
+    <view class="title {{active===1?'active':''}}" data-active="{{1}}" bindtap="handleTabTap">
+      <text class="txt">消费记录</text>
+      <text class="down-line"></text>
+    </view>
+  </view>
+  <swiper current="{{active}}" bindchange="currentChange">
+    <swiper-item>
+      <scroll-view scroll-y bindscrolltolower="chargeLower">
+        <!-- 充值记录 -->
+        <view class="content recharge">
+          <!-- 有内容 -->
+          <view wx:if="{{chargeList.length}}">
+            <view class="summary">
+              <text>累计充值：{{chargeRecord.charge_amount}}</text>
+              <text>PLUS卡余额：{{chargeRecord.left_amount}}</text>
+            </view>
+            <!--1 month -->
+            <block wx:for="{{chargeList}}" wx:key="_PK_">
+              <view class="list">
+                <!-- 1 -->
+                <view class="item">
+                  <image class="icon" src="{{imgUrl}}card/card-icon-plus.png"></image>
+                  <view class="info">
+                    <view class="left">
+                      <text class="status">充值成功</text>
+                      <text class="order-number">订单号：{{item.order_num}}</text>
+                      <text class="time">{{item.create_time}}</text>
+                    </view>
+                    <view class="right">
+                      <text class="acount">+{{item.charge_amount}}</text>
+                      <text class="acount-actual">到账：{{item.charge_amount + item.gift_amount}}</text>
+                    </view>
+                  </view>
+                </view>
+                <view class="item" wx:if="{{item.refund_amount}}">
+                  <view class="icon"></view>
+                  <view class="info">
+                    <view class="left">
+                      <text class="status">退款成功</text>
+                      <text class="time">{{item.create_time}}</text>
+                    </view>
+                    <view class="right">
+                      <text class="acount"> </text>
+                      <text class="acount-refund">-{{item.refund_amount}}</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </block>
+          </view>
+          <!-- 无内容 -->
+          <view class="none" wx:else>
+            <text class="none-img iconicon-test12 iconfont"></text>
+            <text class="txt">暂无充值记录</text>
+            <view class="btn" bindtap='jumpToRecharge'>
+              <text>马上去开通 ></text>
+              <!-- <image class="icon-arrow" src="{{imgUrl}}card/icon-arror-blue-right.png"></image> -->
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view scroll-y bindscrolltolower="consumeLower">
+        <!-- 消费记录 -->
+        <view class="content consumption">
+          <!-- 有内容 -->
+          <view wx:if="{{consumeList.length}}">
+            <view class="summary">
+              <text>累计消费：{{consumeRecord.consume_amount}}</text>
+              <text>PLUS卡优惠：{{consumeRecord.discount_amount}}</text>
+            </view>
+            <!--1 month -->
+            <view class="list">
+              <!-- 1 -->
+              <block wx:for="{{consumeList}}" wx:key="_PK_">
+                <view class="item">
+                  <image class="icon" src="{{imgUrl}}card/card-icon-plus.png"></image>
+                  <view class="info">
+                    <view class="left">
+                      <text class="status">已支付</text>
+                      <text class="order-number">{{item.course_name}}</text>
+                      <text class="time">{{item.create_time}}</text>
+                    </view>
+                    <view class="right">
+                      <text class="acount">-{{item.act_price}}</text>
+                    </view>
+                  </view>
+                </view>
+              </block>
+            </view>
+          </view>
+          <!-- 无内容 -->
+          <view class="none" wx:else>
+            <text class="none-img iconicon-test9 iconfont"></text>
+            <text class="txt">暂无消费记录</text>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+</view>

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "确认购卡信息",
+  "usingComponents": {
+    "tabBar_top": "/components/tabBar_top/tabBar"
+  }
+}

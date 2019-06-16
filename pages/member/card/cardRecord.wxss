@@ -1,0 +1,242 @@
+/* pages/member/card/cardRecord.wxss */
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-title {
+  height: 110rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid #e9e9e9;
+  color: rgba(128, 128, 128, 1);
+  font-size: 30rpx;
+}
+
+.tab-title .title {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.tab-title .title .down-line {
+  display: none;
+  position: absolute;
+  width: 79rpx;
+  height: 2rpx;
+  background-color: #896fff;
+  bottom: -36rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tab-title .title:first-child {
+  margin-left: 60rpx;
+}
+
+.tab-title .title:last-child {
+  margin-right: 60rpx;
+}
+
+.tab-title .line {
+  flex-basis: 1px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  align-self: center;
+  background-color: #e9e9e9;
+  height: 26rpx;
+}
+
+.tab-title .title.active {
+  color: #896fff;
+}
+
+.tab-title .title.active .down-line {
+  display: block;
+}
+.wrapper swiper {
+  flex: 1;
+  width: 100%;
+  height: 0;
+}
+.wrapper swiper swiper-item {
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper swiper swiper-item scroll-view {
+  width: 100%;
+  height: 100%;
+}
+.content {
+}
+
+.content .title {
+  height: 87rpx;
+  line-height: 87rpx;
+  background-color: #fafafa;
+  font-size: 26rpx;
+  color: #505050;
+  padding: 0 25rpx;
+}
+
+.content.purchase .list .item {
+  display: flex;
+  flex-direction: column;
+  padding-left: 32rpx;
+  border-bottom:10rpx solid #fafafa;
+}
+
+.content.purchase .list .item .item-title {
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32rpx 0 0;
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.content.purchase .list .item .item-title .icon {
+  width: 36rpx;
+  height: 27rpx;
+  margin-right: 18rpx;
+  vertical-align: middle;
+}
+
+.content.purchase .list .item .item-title .name {
+  font-size: 28rpx;
+  color: #5a5a5a;
+}
+
+.content.purchase .list .item .item-title .right {
+  font-size: 24rpx;
+  color: #896fff;
+}
+
+.content.purchase .list .item .info {
+  display: flex;
+  flex-direction: column;
+  padding:10px 0;
+}
+
+.content.purchase .list .item .info .row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin:10rpx 0;
+}
+
+.content.purchase .list .item .info .row .label {
+  width: 135rpx;
+  font-size: 26rpx;
+  color: #969696;
+  text-align: right;
+}
+.content.purchase .list .item .info .row .value{
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  font-size:26rpx;
+  color:#3C3C3C;
+}
+.content.purchase .list .item .info .row .value.blue{
+  color:#896FFF;
+}
+
+.content.elimination .list {
+}
+
+.content.elimination .list .item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content.elimination .list .item .icon {
+  flex-basis: 88rpx;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 88rpx;
+  height: 88rpx;
+  margin: 0 27rpx 0 33rpx;
+}
+
+.content.elimination .list .item .info {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e9e9e9;
+  padding-right: 33rpx;
+  padding: 30rpx 30rpx 30rpx 0;
+}
+
+.content.elimination .list .item:last-child .info {
+  border: 0;
+}
+
+.content .list .item .info .left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.content.elimination .list .item .info .left .status {
+  margin-bottom: 10rpx;
+  font-size: 28rpx;
+  color: #141414;
+}
+
+.content.elimination .list .item .info .left .order-number,
+.content.elimination .list .item .info .left .time {
+  line-height: 40rpx;
+  font-size: 26rpx;
+  color: #646464;
+}
+
+.content.elimination .list .item .info .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.content.elimination .list .item .info .right .acount {
+  font-size: 26rpx;
+  color: #141414;
+  line-height: 40rpx;
+}
+
+.content.elimination .list .item .info .right .acount.red {
+  color: #ff5a5a;
+}
+.content .none {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 265rpx;
+  background-color: #fafafa;
+}
+
+.content .none .none-img {
+  /* width: 150rpx;
+  height: 142rpx; */
+  font-size: 142rpx;
+  color: #aaa
+}
+
+.content .none .txt {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: #bebebe;
+}

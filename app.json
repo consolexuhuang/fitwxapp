@@ -1,0 +1,97 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/course/course",
+    "pages/invite/invite",
+    "pages/store/store",
+    "pages/noFind/noFind",
+    "pages/course/storeScreen",
+    "pages/course/courseScreen",
+    "pages/course/courseSearch",
+    "pages/course/courseDetail",
+    "pages/store/storeDetail",
+    "pages/store/routeGuidance",
+    "pages/coach/coach",
+    "pages/order/payOrder",
+    "pages/order/orderTimeCard",
+    "pages/order/orderCoupon",
+    "pages/order/paySuccess",
+    "pages/card/card",
+    "pages/card/cardList",
+    "pages/card/payCard",
+    "pages/card/recharge",
+    "pages/member/member",
+    "pages/member/order/memberOrder",
+    "pages/member/order/monthRecord",
+    "pages/member/order/monthOrder",
+    "pages/member/order/orderDetail",
+    "pages/member/order/cancelOrder",
+    "pages/member/card/memberCard",
+    "pages/member/card/transactionRecord",
+    "pages/member/card/cardRecord",
+    "pages/member/coupon/memberCoupon",
+    "pages/member/good/good",
+    "pages/member/good/goodDetail",
+    "pages/login/phoneLogin/phoneLogin",
+    "pages/login/wxLogin/wxLogin",
+    "pages/login/sureAdminLogin/sureAdminLogin",
+    "pages/good/good",
+    "pages/good/goodDetail",
+    "pages/trainingCamp/trainingCamp/trainingCamp",
+    "pages/trainingCamp/trainingCampOrder/trainingCampOrder",
+    "pages/trainingCamp/trainingCampPaySuccess/trainingCampPaySuccess",
+    "pages/invite/inviteShare",
+    "pages/coach/evaluate/evaluate"
+  ],
+  "workers": "workers",
+  "window": {
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom",
+    "onReachBottomDistance": 50
+  },
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#B2AEC5",
+    "selectedColor": "#8B6FF1",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/store/store",
+        "text": "门店",
+        "iconPath": "/images/tabBar/icon_store.png",
+        "selectedIconPath": "/images/tabBar/icon_store_selected.png"
+      },
+      {
+        "pagePath": "pages/course/course",
+        "text": "课程",
+        "iconPath": "/images/tabBar/icon_course.png",
+        "selectedIconPath": "/images/tabBar/icon_course_selected.png"
+      },
+      {
+        "pagePath": "pages/card/card",
+        "text": "卡包",
+        "iconPath": "/images/tabBar/icon_card.png",
+        "selectedIconPath": "/images/tabBar/icon_card_selected.png"
+      },
+      {
+        "pagePath": "pages/member/member",
+        "text": "我的",
+        "iconPath": "/images/tabBar/icon_bespeak.png",
+        "selectedIconPath": "/images/tabBar/icon_bespeak_selected.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "plugins": {
+    "tencentvideo": {
+      "version": "1.3.2",
+      "provider": "wxa75efa648b60994b"
+    }
+  }
+}

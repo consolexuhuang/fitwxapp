@@ -1,0 +1,9 @@
+<!--components/statement/statement.wxml-->
+<view class='mask' wx:if="{{show}}">
+<view class='box'>
+  <view class='title'>免责声明</view>
+  <rich-text class='content' nodes="{{content}}"></rich-text>
+  <button class='btn' bindtap='onClick'>{{btnText}}</button>
+</view>
+</view>
+

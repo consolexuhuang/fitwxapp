@@ -1,0 +1,104 @@
+<!--pages/store/storeDetail.wxml-->
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view class="wrapper" wx:if="{{storeData}}" style='margin-top:{{marginTopBar}}px'>
+  <view class="header">
+    <swiper autoplay="{{true}}" wx:if="{{picList.length}}" style='height:300rpx'>
+      <block wx:for="{{picList}}" wx:key="index">
+        <swiper-item>
+          <image class="banner fadeIn animated" src="{{item}}" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="store-name fadeIn animated">{{storeData.storeName}}</view>
+    <view class="store-score-wrapper fadeIn animated">
+      <view class="store-star">
+        <image wx:if="{{storeData.star>=0.5 || !storeData.star}}" src="{{imgUrl}}course/icon_star.png" />
+        <image wx:if="{{storeData.star>=1.5 || !storeData.star}}" src="{{imgUrl}}course/icon_star.png" />
+        <image wx:if="{{storeData.star>=2.5 || !storeData.star}}" src="{{imgUrl}}course/icon_star.png" />
+        <image wx:if="{{storeData.star>=3.5 || !storeData.star}}" src="{{imgUrl}}course/icon_star.png" />
+        <image wx:if="{{storeData.star>=4.5 || !storeData.star}}" src="{{imgUrl}}course/icon_star.png" />
+      </view>
+       <view class='shareLine'></view>
+      <view class='shareBtnBox'>
+        <button open-type='share' hover-class='none' class='shareBtn'>
+        </button>
+        <image class="store-share" src='{{imgUrl}}icon/shareImg.png'/>
+      </view>    
+    </view>
+  </view>
+  <view class="module-wrapper fadeIn animated">
+    <view class="module-title-wrapper">
+      <!-- <view class="module-dot"></view> -->
+      <view class="module-title">场地简介</view>
+    </view>
+    <view class="store-content">
+      <rich-text nodes="{{storeData.placeIntro}}"></rich-text>
+    </view>
+    <view class="route-guide-wrapper" data-name="{{storeData.storeName}}" data-address="{{storeData.address}}" data-latitude="{{storeData.latitude}}" data-longitude="{{storeData.longitude}}" bindtap="handleLocationTap">
+      <text class="store-position-icon iconfont iconicon-test1"/>
+      <view class="store-address">{{storeData.address}}</view>
+      <text class="store-arrow iconfont iconicon-test42"/>
+    </view>
+    <view class="route-guide-wrapper" wx:if='{{storeData.mapPic}}'>
+      <image class="route-guide-icon" src="{{imgUrl}}store/icon_route.png" />
+      <view class="route-guide-text" bindtap='handleRouteGuidanceTap'>路线指引</view>
+      <text class="store-arrow iconfont iconicon-test42" />
+    </view>
+  </view>
+  <view class="module-wrapper" wx:if='{{storeFacilitiesList &&storeFacilitiesList.length > 0}}'>
+    <view class="module-title-wrapper">
+      <!-- <view class="module-dot"></view> -->
+      <view class="module-title">场地设施</view>
+    </view>
+  </view>
+  <view class="facility-list" wx:if='{{storeFacilitiesList && storeFacilitiesList.length > 0}}'>
+    <view class="facility-item" wx:for='{{storeFacilitiesList}}' wx:key='{{index}}'>
+      <image src="{{item.facilitiesPicUrl}}" />
+      <text>{{item.facilitiesName}}</text>
+    </view>
+  </view>
+  <view class="module-wrapper">
+    <view class="module-title-wrapper">
+      <!-- <view class="module-dot"></view> -->
+      <view class="module-title">健身步骤</view>
+    </view>
+    <view class="fitness-step-content">
+      <view class="fitness-step-line"></view>
+      <view class="fitness-step-list">
+        <view class="fitness-step-item">
+          <view class="fitness-step-item-number">1</view>
+          <view class="fitness-step-item-text">约课成功</view>
+        </view>
+        <view class="fitness-step-item">
+          <view class="fitness-step-item-number">2</view>
+          <view class="fitness-step-item-text">获得密码</view>
+        </view>
+        <view class="fitness-step-item">
+          <view class="fitness-step-item-number">3</view>
+          <view class="fitness-step-item-text">扫码开门</view>
+        </view>
+        <view class="fitness-step-item">
+          <view class="fitness-step-item-number">4</view>
+          <view class="fitness-step-item-text">签到上课</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="module-wrapper">
+    <view class="module-title-wrapper">
+      <!-- <view class="module-dot"></view> -->
+      <view class="module-title">进店需知</view>
+    </view>
+    <view class="store-tips">
+      <view><rich-text nodes="{{storeData.needingAttention}}"></rich-text></view>
+      <view>成功预约即表示已阅读并同意
+        <text bindtap='showStatement'>《J&J注意事项及免责声明》</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="reserve-btn-wrapper">
+  <view class="reserve-btn" bindtap="handleAppointBtnTap">立即预约</view>
+</view>
+<!-- 免责声明 -->
+<statement show="{{isShowStatement}}" content="{{statementContent}}" btnText="关闭" bind:statementEvent="statementClose"></statement>
