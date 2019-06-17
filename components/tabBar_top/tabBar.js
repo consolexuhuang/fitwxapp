@@ -7,10 +7,12 @@ Component({
     navbarData: {   //navbarData   由父页面传递的数据，变量名字自命名
       type: Object,
       value: {},
+
     },
     isShowBackHome:{
       type:Boolean,
       value: false
+      
     }
   },
 
