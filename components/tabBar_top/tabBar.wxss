@@ -43,7 +43,7 @@
   /* height: 100%; */
   border-radius: 64rpx;
   /* padding: 8rpx 10rpx; */
-  padding: 10rpx 16rpx;
+  /* padding: 10rpx 16rpx; */
 }
 .nav-capsuleBoxBorder{
   border: 1px solid rgba(234,234,234,1);
@@ -62,7 +62,7 @@
   height: 33rpx;
   /* margin-top: 4rpx; */
   padding-left: 14rpx;
-  padding-right: 20rpx;
+  padding-right: 14rpx;
   /* transform: rotate(-90deg) */
 }
 .back-home {
@@ -70,7 +70,7 @@
   height: 36rpx;
   /* margin-top: 4rpx; */
   margin-right: 10rpx;
-  padding-left: 20rpx
+  padding-left: 14rpx
 }
 .nav-capsule .back-home {
   width: 39rpx;
