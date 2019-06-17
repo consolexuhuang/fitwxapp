@@ -20,7 +20,7 @@ function request(path, data, method) {
             resolve(res.data)
             getApp().globalData.redirectToState = true
           }
-          else {
+          else if (res.data.code !== 401){
             console.error('serve error:')
             console.error(res);
             wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })

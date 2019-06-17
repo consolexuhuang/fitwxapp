@@ -6,12 +6,12 @@
        <!-- 左上角的返回按钮，wx:if='{{!share}}'空制返回按钮显示
        从分享进入小程序时 返回上一级按钮不应该存在 -->
       <view class='nav-capsuleBox {{navbarData.isShowBackHome &&  navbarData.tab_topBackground != "#fff" ? "nav-capsuleBoxBorder" : (navbarData.isShowBackHome &&  navbarData.tab_topBackground == "#fff" ? "nav-capsuleBoxBorder2" : "")}}'>
-          <view bindtap='_navback' style='display:flex;align-items:center'>
+          <view bindtap='_navback' style='display:flex;align-items:center;padding:10rpx 16rpx;box-sizing:border-box'>
             <image wx:if='{{!navbarData.tab_topBackground ||navbarData.tab_topBackground != "#fff"}}' src='../../images/tabBar/icon_arrow_up.png' mode='aspectFill' class='back-pre'></image>
             <image wx:if='{{navbarData.tab_topBackground == "#fff"}}' src='../../images/tabBar/icon_arrow_black.png' mode='aspectFill' class='back-pre'></image>
           </view>
           <view class='navbar-v-line' wx:if='{{navbarData.isShowBackHome}}'></view>
-          <view bindtap='_backhome' wx:if='{{navbarData.isShowBackHome}}' style='display:flex;align-items:center'>
+          <view bindtap='_backhome' wx:if='{{navbarData.isShowBackHome}}' style='display:flex;align-items:center;padding:10rpx 16rpx;box-sizing:border-box'>
             <image wx:if='{{!navbarData.tab_topBackground ||navbarData.tab_topBackground != "#fff"}}' src='../../images/tabBar/backHome.png' mode='aspectFill' class='back-home'></image>
             <image wx:if='{{navbarData.tab_topBackground == "#fff"}}' src='../../images/tabBar/backHome_black.png' mode='aspectFill' class='back-home'></image>
           </view>
