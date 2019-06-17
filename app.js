@@ -69,14 +69,12 @@ App({
   },
   onShow() {
     //后台切到前台刷新
-    let interval=1*60*1000;//间隔设为2分钟
+    let interval=2*60*1000;//间隔设为2分钟
     let showMilliseconds = new Date().getTime();
     let hideMilliseconds = wx.getStorageSync('hideTime');
     if (hideMilliseconds && (showMilliseconds - hideMilliseconds >= interval)){
-      console.log('interval 1')
       wx.startPullDownRefresh({})
     }
-
     Store.getItem('userData') ? console.log('无需重新登陆') : this.wx_loginIn()
   },
   onHide(){

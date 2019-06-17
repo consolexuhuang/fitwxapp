@@ -11,6 +11,7 @@ const store = app.store;
 const topInit = (120 + 160 + 112) / 2;
 let query; //选择元素
 let scrollLock = 0; //滑动计算锁
+let onLoaded = false;//是否走了onLoad声明周期
 Page({
 
   /**
@@ -56,78 +57,21 @@ Page({
    */
 
   onLoad: function(options) {
-    //loading
-    ui.showLoading();
+    //进入onLoad
+    onLoaded = true;
+    //初始化
+    this.initFun();
+    
+  },
+  onShow(){
+    //恢复设置
+    onLoaded = false;
+    if (onLoaded){
+      return;
+    };
+    //初始化
+    this.initFun();
 
-    //app方法
-    app.setWatcher(this);
-
-    //断网 
-    wx.onNetworkStatusChange(res => {
-      this.setData({
-        IsshowNetStatus: res.isConnected
-      })
-    })
-
-
-    //暂时不改为缓存里的数据，因为其他页面用到的这块东西太多，后面有时间再改
-    let courseConfig = getApp().globalData.courseConfig;
-    if (courseConfig) {
-      const city = courseConfig.city || ''
-      const selectedStore = courseConfig.selectedStore || []
-      const selectedTimeInterval = courseConfig.selectedTimeInterval || []
-      const selectedLabel = courseConfig.selectedLabel || []
-      const isOver = courseConfig.isOver || false
-      const searchText = courseConfig.searchText || ''
-      this.setData({
-        city,
-        selectedStore,
-        selectedTimeInterval,
-        selectedLabel,
-        isOver,
-        searchText
-      })
-      getApp().globalData.courseConfig = '';
-    }
-
-    /* 缓存里拿数据 */
-    //获取缓存数据    
-    let courseData = wx.getStorageSync('courseData');
-    //有缓存
-    if (courseData && courseData.dateList && courseData.courseList && courseData.config && courseData.city) { //缓存的courseData里缺少数据
-      //赋值缓存里数据
-      this.setData({
-        dateList: courseData.dateList || '',
-        courseList: courseData.courseList || '',
-        pageList: courseData.pageList || '',
-        displayedStore: courseData.displayedStore || '',
-        endLine: courseData.endLine || {},
-        config: courseData.config || '',
-        cityList: courseData.cityList || [],
-        city: courseData.city || '',
-        active: courseData.active || 0,
-        swiperHeight: courseData.swiperHeight || {}
-      }, function() {
-        //设置当前数据的高度
-        this.setCourseSwiperHeight();
-        //获取日历列表高度
-        this.dateBoxHeight();
-        //关闭loading
-        ui.hideLoading();
-      })
-    } else {
-      //获取数据
-      CourseCom.getDateList(this)
-      this.getCourseList()
-      CourseCom.getConfig(this)
-
-    }
-
-    //清除缓存
-    wx.removeStorage({
-      key: 'courseData',
-      success: function(res) {},
-    })
   },
 
   // 下拉刷新
@@ -236,6 +180,80 @@ Page({
   //卸载
   onUnload: function() {
     //app.worker.terminate()
+  },
+  initFun(){
+    //loading
+    ui.showLoading();
+
+    //app方法
+    app.setWatcher(this);
+
+    //断网 
+    wx.onNetworkStatusChange(res => {
+      this.setData({
+        IsshowNetStatus: res.isConnected
+      })
+    })
+
+
+    //暂时不改为缓存里的数据，因为其他页面用到的这块东西太多，后面有时间再改
+    let courseConfig = getApp().globalData.courseConfig;
+    if (courseConfig) {
+      const city = courseConfig.city || ''
+      const selectedStore = courseConfig.selectedStore || []
+      const selectedTimeInterval = courseConfig.selectedTimeInterval || []
+      const selectedLabel = courseConfig.selectedLabel || []
+      const isOver = courseConfig.isOver || false
+      const searchText = courseConfig.searchText || ''
+      this.setData({
+        city,
+        selectedStore,
+        selectedTimeInterval,
+        selectedLabel,
+        isOver,
+        searchText
+      })
+      getApp().globalData.courseConfig = '';
+    }
+
+    /* 缓存里拿数据 */
+    //获取缓存数据    
+    let courseData = wx.getStorageSync('courseData');
+    //有缓存
+    if (courseData && courseData.dateList && courseData.courseList && courseData.config && courseData.city) { //缓存的courseData里缺少数据
+      //赋值缓存里数据
+      this.setData({
+        dateList: courseData.dateList || '',
+        courseList: courseData.courseList || '',
+        pageList: courseData.pageList || '',
+        displayedStore: courseData.displayedStore || '',
+        endLine: courseData.endLine || {},
+        config: courseData.config || '',
+        cityList: courseData.cityList || [],
+        city: courseData.city || '',
+        active: courseData.active || 0,
+        swiperHeight: courseData.swiperHeight || {}
+      }, function () {
+        //设置当前数据的高度
+        this.setCourseSwiperHeight();
+        //获取日历列表高度
+        this.dateBoxHeight();
+        //关闭loading
+        ui.hideLoading();
+      })
+    } else {
+      //获取数据
+      CourseCom.getDateList(this)
+      this.getCourseList()
+      CourseCom.getConfig(this)
+
+    }
+
+    //清除缓存
+    wx.removeStorage({
+      key: 'courseData',
+      success: function (res) { },
+    })
   },
   watch: {
     active: function(newValue, oldValue) {

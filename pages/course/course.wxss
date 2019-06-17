@@ -437,7 +437,7 @@
   white-space: nowrap;
   font-size: 29rpx;
   color: #000;
-  font-weight: 500
+  font-weight: bold;
 }
 
 .course-label {
