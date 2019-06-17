@@ -34,9 +34,9 @@ Page({
     api.post('payOrder/orderInfo', data).then(res => {
       wx.hideLoading()
       console.log('订单详情', res)
-      res.msg.course.beginDate = utils.formatTime2(res.msg.course.beginDate)
-      res.msg.course.beginTime = utils.formatTime3(res.msg.course.beginTime * 1000)
-      res.msg.course.endTime = utils.formatTime3(res.msg.course.endTime * 1000)
+      // res.msg.course.beginDate = utils.formatTime2(res.msg.course.beginDate)
+      // res.msg.course.beginTime = utils.formatTime3(res.msg.course.beginTime * 1000)
+      // res.msg.course.endTime = utils.formatTime3(res.msg.course.endTime * 1000)
       this.setData({
         orderDetailData: res.msg
       })
