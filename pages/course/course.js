@@ -413,7 +413,7 @@ Page({
     const storeList = this.data.config.storeList
     const cityList = this.data.cityList
     const city = this.data.city
-    const searchText = this.data.searchText
+    //const searchText = this.data.searchText
     const selectedStore = this.data.selectedStore
     const selectedTimeInterval = this.data.selectedTimeInterval
     const selectedLabel = this.data.selectedLabel
@@ -423,7 +423,7 @@ Page({
       storeList,
       cityList,
       city,
-      searchText,
+      //searchText,
       selectedStore,
       selectedTimeInterval,
       selectedLabel,
@@ -439,7 +439,7 @@ Page({
   handleCourseScreenTap: function(event) {
     const typeLabelList = this.data.config.typeLabelList
     const city = this.data.city
-    const searchText = this.data.searchText
+    //const searchText = this.data.searchText
     const selectedStore = this.data.selectedStore
     const selectedTimeInterval = this.data.selectedTimeInterval
     const selectedLabel = this.data.selectedLabel
@@ -448,7 +448,7 @@ Page({
     const courseScreen = {
       typeLabelList,
       city,
-      searchText,
+      //searchText,
       selectedStore,
       selectedTimeInterval,
       selectedLabel,

@@ -35,7 +35,7 @@ Page({
       const storeList = getApp().globalData.storeScreen.storeList
       const cityList = getApp().globalData.storeScreen.cityList
       const city = getApp().globalData.storeScreen.city
-      const searchText = getApp().globalData.storeScreen.searchText
+     // const searchText = getApp().globalData.storeScreen.searchText
       const selectedStore = getApp().globalData.storeScreen.selectedStore
       const selectedTimeInterval = getApp().globalData.storeScreen.selectedTimeInterval
       const selectedLabel = getApp().globalData.storeScreen.selectedLabel
@@ -45,7 +45,7 @@ Page({
         storeList,
         cityList,
         city,
-        searchText,
+       // searchText,
         selectedStore,
         selectedTimeInterval,
         selectedLabel,
@@ -134,7 +134,7 @@ Page({
   // 确认
   handleConfirmTap: function(event) {
     const city = this.data.city
-    const searchText = this.data.searchText
+    //const searchText = this.data.searchText
     const selectedStore = this.data.selectedStore
     const selectedTimeInterval = this.data.selectedTimeInterval
     const selectedLabel = this.data.selectedLabel
@@ -142,7 +142,7 @@ Page({
     const isOver = this.data.isOver
     const courseConfig = {
       city,
-      searchText,
+    //  searchText,
       selectedStore,
       selectedTimeInterval,
       selectedLabel,

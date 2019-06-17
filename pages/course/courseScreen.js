@@ -7,7 +7,7 @@ Page({
   data: {
     typeLabelList: '',
     city: '',
-    searchText:'',
+    //searchText:'',
     selectedStore: [],
     selectedTimeInterval: [],
     selectedLabel: [],
@@ -31,7 +31,7 @@ Page({
     if (getApp().globalData.courseScreen) {
       const typeLabelList = getApp().globalData.courseScreen.typeLabelList
       const city = getApp().globalData.courseScreen.city
-      const searchText = getApp().globalData.courseScreen.searchText
+      //const searchText = getApp().globalData.courseScreen.searchText
       const selectedStore = getApp().globalData.courseScreen.selectedStore
       const selectedTimeInterval = getApp().globalData.courseScreen.selectedTimeInterval
       const selectedLabel = getApp().globalData.courseScreen.selectedLabel
@@ -40,7 +40,7 @@ Page({
       this.setData({
         typeLabelList,
         city,
-        searchText,
+        //searchText,
         selectedStore,
         selectedTimeInterval,
         selectedLabel,
@@ -90,7 +90,7 @@ Page({
   },
   handleConfirmTap: function(event) {
     const city = this.data.city
-    const searchText = this.data.searchText
+   // const searchText = this.data.searchText
     const selectedStore = this.data.selectedStore
     const selectedTimeInterval = this.data.selectedTimeInterval
     const selectedLabel = this.data.selectedLabel
@@ -98,7 +98,7 @@ Page({
     const isOver = this.data.isOver
     const courseConfig = {
       city,
-      searchText,
+     // searchText,
       selectedStore,
       selectedTimeInterval,
       selectedLabel,
