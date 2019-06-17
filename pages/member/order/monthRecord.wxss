@@ -6,7 +6,7 @@ page{
   background: #fff;
   border-radius:8rpx;
   border:1rpx solid rgba(215,215,215,1);
-  width: 685rpx;
+  width: 682rpx;
   margin: 30rpx auto
 }
 .mounth{
