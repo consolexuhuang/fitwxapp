@@ -25,7 +25,7 @@ Page({
       console.log(options.type)
       this.setData({ type: options.type})
       switch (options.type){
-        case '1': this.setData({ serverCont: '服务器维修中，请耐心等待…', ['navbarData.title']: '维护中…'})
+        case '1': this.setData({ serverCont: '服务器维护中，请耐心等待…', ['navbarData.title']: '维护中…'})
          break;
         case '2' : this.setData({ serverCont: '页面消失不见了～' })
           break;

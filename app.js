@@ -164,8 +164,14 @@ App({
           }
           api.get('authorizationLite', data).then(res => {
             if (res.msg) {
-              // 已关联公众号
-              Store.setItem('userData', res.msg)
+              if (res.code === -1) { //如果出现登陆未知错误
+                setTimeout(() => {
+                  wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
+                }, 0)
+              } else {
+                // 已关联公众号
+                Store.setItem('userData', res.msg)
+              }
             } else {
               // 未关联
               setTimeout(() => {

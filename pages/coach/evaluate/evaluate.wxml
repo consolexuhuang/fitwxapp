@@ -73,5 +73,5 @@
        <text class='wxCode' bindlongtap='pasteWx_code'>JJfitness</text>
     </view>
     <view class='evaluateComfirmBtn' bindtap='jumpToCourse'>继续约课</view>
-    <view class='wxCodeCont'>长摁复制微信号</view>
+    <view class='wxCodeCont'>长按复制微信号</view>
 </van-popup>
