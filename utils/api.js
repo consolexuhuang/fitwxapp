@@ -16,7 +16,7 @@ function request(path, data, method) {
       success: function(res) {
         console.log('noFind',res)
         if (getApp().globalData.redirectToState){
-          if (res.statusCode != 502) {
+          if (res.code) {
             resolve(res.data)
             getApp().globalData.redirectToState = true
           }
