@@ -41,8 +41,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (true) {
-      // this.setData({ orderNum: options.orderNum})
+    if (options.orderNum) {
+      this.setData({ orderNum: options.orderNum})
       let data = {
         orderNum: options.orderNum || '',
       }
