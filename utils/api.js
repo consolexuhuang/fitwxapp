@@ -31,6 +31,7 @@ function request(path, data, method) {
           else if ((path.indexOf('/getConfig') != -1) && (res.data.code === 401)) {
             resolve(res.data)
             wx.clearStorageSync();
+            //重启            
             wx.navigateTo({
               url: '/pages/index/index',
             });
