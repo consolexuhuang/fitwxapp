@@ -50,7 +50,7 @@
 
 .store-screen-item {
   margin: 20rpx auto 0;
-  width: 685rpx;
+  width: 682rpx;
   height: 208rpx;
   border-radius: 4rpx;
   background-color: #fff;
@@ -214,7 +214,7 @@
 
 .screen-clear-btn {
   width: 230rpx;
-  height: 80rpx;
+  height: 78rpx;
   border-radius:40rpx;
   border: 1rpx solid #979797;
   line-height: 80rpx;
