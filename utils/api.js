@@ -17,8 +17,11 @@ function request(path, data, method) {
         // console.log('noFind',res)
         if (getApp().globalData.redirectToState){
           if (res.code === -1) {
+            console.error('serve error:')
+            console.error(res);
             wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
-            getApp().globalData.redirectToState = false
+            getApp().globalData.redirectToState = false;
+            reject(res.data)
           }
           else {
             resolve(res.data)
