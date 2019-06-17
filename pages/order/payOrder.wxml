@@ -46,7 +46,7 @@
           <view class="count-list">
             <view class="{{count===1?'count-item count-item-active':'count-item'}}" data-count="{{1}}" bindtap="handleCountTap">1</view>
             <view class="{{count===2?'count-item count-item-active':'count-item'}}" wx:if="{{courseData.orderLimit === 0 || courseData.orderLimit >= 2}}" data-count="{{2}}" bindtap="handleCountTap">2
-               <view class='reduceTag' wx:if='{{courseData.priceLabel == "买二免一"}}'>
+               <view class='reduceTag' wx:if='{{courseData.promotion == "2pay1"}}'>
                   <view class='reduceTagCont'>一人免单</view>
                   <view class='reduceTagPoint'></view>
                </view>

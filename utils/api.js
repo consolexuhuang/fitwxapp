@@ -14,23 +14,24 @@ function request(path, data, method) {
       data: data,
       method: method,
       success: function(res) {
-        // console.log('noFind',res)
+        console.log('noFind',res)
         if (getApp().globalData.redirectToState){
-          if (res.code === -1) {
+          if (res.statusCode != 502) {
+            resolve(res.data)
+            getApp().globalData.redirectToState = true
+          }
+          else {
             console.error('serve error:')
             console.error(res);
             wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
             getApp().globalData.redirectToState = false;
             reject(res.data)
           }
-          else {
-            resolve(res.data)
-            getApp().globalData.redirectToState = true
-          }
         }
 
       },
       fail: function(res) {
+        console.log('noFind2', res)
         if (getApp().globalData.redirectToState) {
           wx.navigateTo({ url: `/pages/noFind/noFind?type=4`})//无网络
           reject(res.data)

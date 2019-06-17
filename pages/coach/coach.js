@@ -139,7 +139,7 @@ Page({
   onShareAppMessage() {
     const storeId = this.data.storeId
     return {
-      title: `J+教练明星团队教练 ${this.data.coachData.coachName}`,
+      title: `Justin&Julie教练- ${this.data.coachData.coachName}`,
       path: '/pages/coach/coach?coachId=' + this.data.coachId,
       imageUrl: this.data.coachData.headUrl,
       success: function (res) {
