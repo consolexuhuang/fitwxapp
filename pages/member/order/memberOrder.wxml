@@ -35,7 +35,7 @@
   </view>
   <swiper class="tab_content" current-item-id="{{active}}" bindchange="handleCurrentChange">
     <swiper-item item-id = '0'>
-      <scroll-view scroll-y bindscrolltolower='bindscrolltolower' lower-threshold='10'>
+      <scroll-view scroll-y bindscrolltolower='bindscrolltolower'>
         <block wx:if="{{goingList.length}}">
           <block wx:for="{{goingList}}" wx:key="index">
             <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
@@ -71,7 +71,7 @@
       </scroll-view>
     </swiper-item>
     <swiper-item item-id = '1'>
-      <scroll-view scroll-y bindscrolltolower='bindscrolltolower' lower-threshold='10'>
+      <scroll-view scroll-y bindscrolltolower='bindscrolltolower'>
         <block wx:if="{{payingList.length}}">
           <block wx:for="{{payingList}}" wx:key="index">
             <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
@@ -106,7 +106,7 @@
       </scroll-view>
     </swiper-item>
     <swiper-item item-id = '2'>
-      <scroll-view scroll-y bindscrolltolower='bindscrolltolower' lower-threshold='10'>
+      <scroll-view scroll-y bindscrolltolower='bindscrolltolower'>
         <block wx:if="{{completedList.length}}">
           <block wx:for="{{completedList}}" wx:key="index">
             <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">

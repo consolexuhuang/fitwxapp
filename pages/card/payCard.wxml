@@ -53,7 +53,8 @@
               bindtap='jumpTocashMoney'>余额{{orderData.card_amount}}元，立即充值</text>
         <view class='choosePayWayBox' 
               wx:if="{{item.state || (item.isOpening && item.momeyCreditState)}}"
-              data-ind='{{index}}'>
+              data-ind='{{index}}'
+              >
           <image wx:if="{{item.state && item.isOpening && item.momeyCreditState}}" 
                 src='{{imgUrl}}icon/chooseState.png' 
                 class='choosePayWay'></image>

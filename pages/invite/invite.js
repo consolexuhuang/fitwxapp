@@ -14,7 +14,7 @@ Page({
     showShareState:false, // 长摁状态
     navbarData: {
       title: '邀请好友',
-      showCapsule: 0,
+      showCapsule: 1,
       isShowBackHome: true,
       titleColor: "#000",
       tab_topBackground:'#fff'
@@ -40,7 +40,7 @@ Page({
     return {
       title: title,
       path: '/pages/invite/inviteShare?shareMemberId=' + shareMemberId,
-      imageUrl: '',
+      imageUrl: 'https://img.cdn.powerpower.net/5d08ca81e4b090e5af4fcd77.png?imageView/1/w/500/h/400',
       success:function(res){
         console.log(res)
       },

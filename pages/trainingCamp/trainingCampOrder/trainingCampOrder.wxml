@@ -50,10 +50,11 @@
                 bindtap='jumpTocashMoney'>还未开通，立即开通</text>
           <text class='creditNone' 
                 wx:if="{{item.type == 1 && !item.momeyCreditState && item.isOpening}}"
-                bindtap='jumpTocashMoney'>余额{{card_amount || 0}}元，立即充值</text>
+                bindtap='jumpTocashMoney'>余额{{orderData.card_amount || 0}}元，立即充值</text>
           <view class='choosePayWayBox' 
                 wx:if="{{item.state || (item.isOpening && item.momeyCreditState)}}"
-                data-ind='{{index}}'>
+                data-ind='{{index}}'
+                >
             <image wx:if="{{item.state && item.isOpening && item.momeyCreditState}}" 
                   src='{{imgUrl}}icon/chooseState.png' 
                   class='choosePayWay'></image>
@@ -76,10 +77,10 @@
   <button class="trainingCampOrderBtn" bindtap="handlePayBtnTap" wx:elif='{{orderData.pay_type == "1" || orderData.pay_type == "2" || orderData.pay_type == "5"}}'>
      立即支付 ¥{{orderData.pay_amount}}
   </button>
-  <button class="trainingCampOrderBtn" wx:elif='{{orderData.pay_type == "3"}}'>
+  <button class="trainingCampOrderBtn" bindtap='jumpTocashMoney' wx:elif='{{orderData.pay_type == "3"}}'>
      需支付¥{{orderData.pay_amount}}，点击充值
   </button>
-  <button class="trainingCampOrderBtn" wx:elif='{{orderData.pay_type == "3" && orderData.has_card}}'>
+  <button class="trainingCampOrderBtn" bindtap='jumpTocashMoney' wx:elif='{{orderData.pay_type == "3" && orderData.has_card}}'>
      余额不足，点击充值
   </button>
 </view>

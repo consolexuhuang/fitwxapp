@@ -27,20 +27,33 @@ Page({
   //校验当前余额状态
   checkCardCredict() {
     //支付方式
-    if (this.data.orderData.pay_type == '0') {
+    if (this.data.orderData.pay_type == '0') { // no
       this.setData({
         ['currentPayWayState[1].state']: false,
         ['currentPayWayState[0].state']: false,
       })
-    } else if (this.data.orderData.pay_type == '1' || this.data.orderData.pay_type == '5') {
+    } else if (this.data.orderData.pay_type == '5') { //wx
+      this.setData({
+        ['currentPayWayState[0].state']: false,
+        ['currentPayWayState[1].state']: true,
+        ['currentPayWayState[0].payType']: false,
+      })
+    } else if (this.data.orderData.pay_type == '3') { //card
+      this.setData({
+        ['currentPayWayState[0].state']: true,
+        ['currentPayWayState[1].state']: false,
+        ['currentPayWayState[1].payType']: false,
+      })
+    } else if (this.data.orderData.pay_type == '1') { //< !--PLUS余额不足，默认微信支付-- >
       this.setData({
         ['currentPayWayState[0].state']: false,
         ['currentPayWayState[1].state']: true,
       })
-    } else if (this.data.orderData.pay_type == '2') {
+    } else if (this.data.orderData.pay_type == '2') { //<!--PLUS余额充足,PLUS支付-->
       this.setData({
         ['currentPayWayState[0].state']: true,
         ['currentPayWayState[1].state']: false,
+        ['currentPayWayState[1].payType']: false,
       })
     }
     //是否开通
@@ -113,7 +126,7 @@ Page({
         if (res.code === 0) {
           this.setData({
             takeOrderCallBack: res.msg
-          }, () => { resolve() })
+          }, () => { resolve(res.msg) })
         } else {
           reject(res)
         }
@@ -163,22 +176,13 @@ Page({
     if(options.goodId){
       this.setData({ goodId: options.goodId})
     }
-    this.getGoodInfo()
-    this.checkOrder()
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getGoodInfo()
+    this.checkOrder()
   },
   //支付
   handlePayBtnTap: function (event) {
@@ -186,8 +190,9 @@ Page({
     let currentPayType = _this.data.currentPayWayState.filter(val => {
       if (val.state) return val
     })
-    _this.createOrder().then(() => {
-      if (currentPayType[0].type == 1) {
+    _this.createOrder().then((orderData) => {
+      console.log(orderData)
+      if (orderData.payType == 'card') {
         wx.showToast({ title: '支付成功', icon: 'none', mask: true })
         setTimeout(() => {
           wx.redirectTo({
@@ -197,7 +202,7 @@ Page({
       }
       // 微信支付
       // console.log(currentPayType[0].type)
-      if (currentPayType[0].type == 2) {
+      if (orderData.payType == 'wx') {
         _this.wxPayAction().then(res => {
           wx.redirectTo({
             url: '../trainingCampPaySuccess/trainingCampPaySuccess?goodId=' + _this.data.goodId,

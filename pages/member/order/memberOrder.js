@@ -99,13 +99,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    orderPageIng = orderPageWait = orderPageComplate = 1
     if (options.status) this.setData({ active: parseInt(options.status) })
+  },
+  onShow(){
+    orderPageIng = orderPageWait = orderPageComplate = 1
+    this.setData({ goingList: '', payingList: '', completedList: '' })
     this.getUserInfo()
     this.getSport()
     loadMoreOrder(this, this.data.active == 0 ? orderPageIng : (this.data.active == 1 ? orderPageWait : (this.data.active == 2 ? orderPageComplate : orderPageIng)))
+
   },
-  onReachBottom() {
+  bindscrolltolower() {
     console.log('触底')
     if (this.data.active == 0 && this.data.goingList.length != this.data.userInfoData.order.going_count) loadMoreOrder(this, ++orderPageIng)
     if (this.data.active == 1 && this.data.payingList.length != this.data.userInfoData.order.unpay_count) loadMoreOrder(this, ++orderPageWait)

@@ -30,20 +30,33 @@ Page({
   //校验当前余额状态
   checkCardCredict(){
     //支付方式
-    if (this.data.orderData.pay_type == '0'){
+    if (this.data.orderData.pay_type == '0') { // no
       this.setData({
         ['currentPayWayState[1].state']: false,
         ['currentPayWayState[0].state']: false,
       })
-    } else if (this.data.orderData.pay_type == '1' || this.data.orderData.pay_type == '5') {
+    } else if (this.data.orderData.pay_type == '5') { //wx
+      this.setData({
+        ['currentPayWayState[0].state']: false,
+        ['currentPayWayState[1].state']: true,
+        ['currentPayWayState[0].payType']: false,
+      })
+    } else if (this.data.orderData.pay_type == '3') { //只能PLUS支付，例如排队等候的状态
+      this.setData({
+        ['currentPayWayState[0].state']: true,
+        ['currentPayWayState[1].state']: false,
+        ['currentPayWayState[1].payType']: false,
+      })
+    } else if (this.data.orderData.pay_type == '1') { //< !--PLUS余额不足，默认微信支付-- >
       this.setData({
         ['currentPayWayState[0].state']: false,
         ['currentPayWayState[1].state']: true,
       })
-    } else if (this.data.orderData.pay_type == '2') {
+    } else if (this.data.orderData.pay_type == '2') { //<!--PLUS余额充足,PLUS支付-->
       this.setData({
         ['currentPayWayState[0].state']: true,
         ['currentPayWayState[1].state']: false,
+        ['currentPayWayState[1].payType']: false,
       })
     }
     //是否开通
@@ -133,6 +146,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log(options)
     if (options.cardId){
       this.setData({
         cardId: options.cardId
@@ -158,11 +172,10 @@ Page({
       this.setData({
         goodId
       })
-      this.checkOrder()
-      
+      this.getGoodInfo()
     })
   },
-  getGoodInfo: function(event) {
+  getGoodInfo: function() {
     const goodId = this.data.goodId
     const data = {
       goodId
@@ -172,7 +185,7 @@ Page({
       this.setData({
         goodData
       })
-      this.checkCardCredict()
+      this.checkOrder()
     })
   },
   checkOrder: function(event) {
@@ -185,8 +198,8 @@ Page({
       this.setData({
         orderData
       }, ()=>{
-        this.getGoodInfo()
-        
+        // this.getGoodInfo()
+        this.checkCardCredict()
       })
     })
   },
@@ -202,7 +215,7 @@ Page({
             if (val.state) return val
           })
           _this.createOrder().then(() => {
-            if (currentPayType[0].type == 1) {
+            if (this.data.orderData.pay_type == '3' || this.data.orderData.pay_type == '2') {
               wx.showToast({ title: '支付成功', icon: 'none', mask: true })
               setTimeout(() => {
                 wx.redirectTo({
@@ -211,7 +224,7 @@ Page({
               }, 1000)
             }
             // 微信支付
-            if (currentPayType[0].type == 2) {
+            if (this.data.orderData.pay_type == '1' || this.data.orderData.pay_type == '5') {
               _this.wxPayAction().then(res => {
                 wx.navigateBack()
               })
