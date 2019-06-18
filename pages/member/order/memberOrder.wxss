@@ -71,6 +71,8 @@
 }
 .myOrder{
   background: #fff;
+  position: sticky;
+  z-index: 100;
 }
 .myOrder_head{
   padding: 0 35rpx;
@@ -78,18 +80,12 @@
   text-align: left;
 
 }
-.myOrderNavBox{
-  position: sticky;
-  z-index: 1000
-}
 .myOrderNav{
   padding: 0 35rpx;
   box-sizing: border-box;
   display: flex;
   justify-content: space-around;
-  border-bottom: 1rpx solid #E9E9E9;
-  background: #fff
-
+  border-bottom: 1rpx solid #E9E9E9
 }
 .myOrderNav_item{
   font-size:30rpx;
@@ -126,8 +122,6 @@
 .wrapper swiper swiper-item {
   width: 100%;
   height: 100%;
-  /* padding-bottom: 25rpx;
-  box-sizing: border-box; */
 }
 
 .wrapper swiper swiper-item scroll-view {
@@ -207,7 +201,7 @@
   font-family:PingFangSC-Regular;
   font-weight:400;
   color:rgba(137,109,255,1);
-  line-height:42rpx;
+  line-height:40rpx;
   text-align: center;
   align-self: center;
 }
@@ -237,10 +231,4 @@
   font-size: 24rpx;
   color: #bebebe;
 }
-.goBottom{
-  text-align: center;
-  color: #aaa;
-  font-size: 24rpx;
-  line-height: 75rpx;
-  margin-left: -34rpx;
-}
+
