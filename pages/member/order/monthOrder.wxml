@@ -30,7 +30,7 @@
                   </view>
                   <view class="item_info_title_detail">
                     <text class="item_info_shopImg iconicon-test17 iconfont"></text>
-                    {{util.timeFormat(item.begin_date, 'MM月DD日')}} 星期{{item.begin_day}} {{util.timeFormat(item.begin_time, 'hh:ss')}}-{{util.timeFormat(item.end_time, 'hh:ss')}}
+                    {{util.timeFormat(item.begin_date, 'MM月DD日')}} 星期{{item.begin_day}} {{util.timeFormat(item.begin_time, 'hh:mm')}}-{{util.timeFormat(item.end_time, 'hh:mm')}}
                   </view>
                 </view>
                 <view class="item_info_seeBox">
@@ -64,7 +64,7 @@
                   </view>
                   <view class="item_info_title_detail">
                     <text class="item_info_shopImg iconicon-test17 iconfont"></text>
-                    {{util.timeFormat(item.begin_date, 'MM月DD日')}} 星期{{item.begin_day}} {{util.timeFormat(item.begin_time, 'hh:ss')}}-{{util.timeFormat(item.end_time, 'hh:ss')}}
+                    {{util.timeFormat(item.begin_date, 'MM月DD日')}} 星期{{item.begin_day}} {{util.timeFormat(item.begin_time, 'hh:mm')}}-{{util.timeFormat(item.end_time, 'hh:mm')}}
                   </view>
                 </view>
                 <view class="item_info_seeBox">

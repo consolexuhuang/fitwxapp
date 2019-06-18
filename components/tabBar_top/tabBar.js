@@ -46,6 +46,12 @@ Component({
       if (this.data.share){
         wx.switchTab({
           url: '/pages/course/course',
+          success:()=>{
+            getApp().globalData.share = false
+            this.setData({
+              share: false
+            })
+          }
         })
       }else{
         wx.navigateBack()

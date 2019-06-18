@@ -20,7 +20,7 @@
               <view class='trainingCamp_stageDateList'>
                  <view class='trainingCamp_stageDateItem'
                       wx:for='{{item.course_list}}'
-                      wx:key='{{index}}'>{{util.timeFormat(item.begin_date, 'MM月DD日')}} 星期{{item.begin_day}} {{util.timeFormat(item.begin_time, 'hh:ss')}}-{{util.timeFormat(item.end_time, 'hh:ss')}}</view>
+                      wx:key='{{index}}'>{{util.timeFormat(item.begin_date, 'MM月DD日')}} 星期{{item.begin_day}} {{util.timeFormat(item.begin_time, 'hh:mm')}}-{{util.timeFormat(item.end_time, 'hh:mm')}}</view>
               </view>
            </view>
          </view>

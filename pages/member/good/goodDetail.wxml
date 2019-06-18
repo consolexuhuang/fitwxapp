@@ -8,7 +8,7 @@
   <label class='label'>日期</label>
   <view class='value' wx:if='{{orderData.good_type == "COURSE"}}'>
     <view wx:for='{{orderData.course_list}}' wx:key='{{index}}' class='valueTimeBox'>
-    {{util.timeFormat(item.begin_date, 'MM月DD日')}} 星期{{item.begin_day}} {{util.timeFormat(item.begin_time,'hh:ss')}} - {{util.timeFormat(item.end_time,'hh:ss')}}  </view>
+    {{util.timeFormat(item.begin_date, 'MM月DD日')}} 星期{{item.begin_day}} {{util.timeFormat(item.begin_time,'hh:mm')}} - {{util.timeFormat(item.end_time,'hh:mm')}}  </view>
   </view>
   <view class='value' wx:if='{{orderData.good_type != "COURSE"}}'>
       {{util.timeFormat(orderData.begin_time, 'MM月DD日')}}至{{util.timeFormat(orderData.end_time, 'MM月DD日')}} ({{orderData.validity_days}}天)

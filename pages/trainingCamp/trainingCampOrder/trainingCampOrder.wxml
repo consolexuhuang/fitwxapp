@@ -19,7 +19,7 @@
       <text class='trainingCampOrder_timeImg iconfont iconicon-test35'></text>
       <view class='trainingCampOrder_timeBox'>
           <block wx:for='{{coachList}}' wx:key='{{index}}' wx:if='{{coachList}}'>
-             <view class='trainingCampOrder_timeItem' wx:for='{{item.course_list}}' wx:key='{{index}}'>{{util.timeFormat(item.begin_date, 'MM月DD日')}} 星期{{item.begin_day}} {{util.timeFormat(item.begin_time, 'hh:ss')}}-{{util.timeFormat(item.end_time, 'hh:ss')}}</view>
+             <view class='trainingCampOrder_timeItem' wx:for='{{item.course_list}}' wx:key='{{index}}'>{{util.timeFormat(item.begin_date, 'MM月DD日')}} 星期{{item.begin_day}} {{util.timeFormat(item.begin_time, 'hh:mm')}}-{{util.timeFormat(item.end_time, 'hh:mm')}}</view>
           </block>
           <view class='trainingCampOrder_timeItem fadeIn animated' wx:if='{{!coachList && goodData.begin_date}}'>{{util.timeFormat(goodData.begin_date, 'MM月DD日')}}-{{util.timeFormat(goodData.end_date, 'MM月DD日')}}(有效期{{goodData.validity_days}}天)</view>
       </view>
