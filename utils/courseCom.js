@@ -8,11 +8,6 @@ var getConfig = function (_this) {
     longitude: app.globalData.location && app.globalData.location.longitude || '121.487899486',
   }
   return api.post('v2/course/getConfig', data).then(res => {
-    console.log('res.code')
-    console.log(res.code)
-    /* if (res.code =='401'){//无效的用户
-      app.wx_loginIn()
-    }else{ */
       const config = res.msg
       const cityList = config.storeList ? Object.keys(config.storeList) : ''
       const city = _this.data.city || cityList[0] || ''

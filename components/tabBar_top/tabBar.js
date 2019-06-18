@@ -27,7 +27,6 @@ Component({
     }
   },
   attached: function () {
-    // console.log(getApp().globalData)
     // 获取是否是通过分享进入的小程序
     this.setData({
       share: getApp().globalData.share,
@@ -44,7 +43,6 @@ Component({
   methods: {
     // 返回上一页面
     _navback() {
-      console.log('share', this.data.share)
       if (this.data.share){
         wx.switchTab({
           url: '/pages/course/course',

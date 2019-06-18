@@ -54,17 +54,14 @@ Page({
       path: '/pages/invite/inviteShare?shareMemberId=' + shareMemberId,
       imageUrl: '',
       success:function(res){
-        console.log(res)
       },
       fail:function(res){
-        console.log(res)
       }
     }
   },
   // 获取页面的数据及分享的配置参数
   getShareCouponInfo: function() {
     api.post('v2/coupon/shareCouponInfo').then(res => {
-      console.log(res)
       const shareCoupon = res.msg
       this.setData({
         shareCoupon
@@ -99,7 +96,6 @@ Page({
     }
     api.post('v2/member/inviteMemberInfo', data).then(res => {
       const inviteMember = res.msg
-      console.log(inviteMember)
       this.setData({
         inviteMember
       })
@@ -159,7 +155,6 @@ Page({
     wx.downloadFile({
       url: banner,
       success: res => {
-        // console.log(res)
         if (res.statusCode === 200) {
           let shareBgImg = res.tempFilePath;
           // that.getCodeImg(shareBgImg)
@@ -176,7 +171,6 @@ Page({
         }
       },
       fail: res => {
-        console.log(res)
       }
     })
   },
@@ -188,7 +182,6 @@ Page({
       success: res => {
         if (res.statusCode === 200) {
           let codeImg = res.tempFilePath;
-          console.log('getCodeImg', codeImg)
           // that.showCanvas(shareBgImg, codeImg)
           this.setData({ ['postConfig.codeImg']: codeImg })
         } else {
@@ -204,7 +197,6 @@ Page({
         }
       },
       complete: res => {
-        console.log(res)
         if (res.errMsg == 'downloadFile:fail Error: read ECONNRESET') {
           if (count == 10) {
             clearTimeout(timer)
@@ -226,7 +218,6 @@ Page({
     let that = this;
     const ctx = wx.createCanvasContext('myCanvas'); //创建画布
     wx.createSelectorQuery().select('#canvas-container').boundingClientRect(function (rect) {
-      console.log(rect)
       var height = rect.height;
       var width = rect.width;
       ctx.setFillStyle("#fff")
@@ -266,7 +257,6 @@ Page({
           wx.saveImageToPhotosAlbum({
             filePath: tempFilePath,
             success: function (res) {
-              console.log(res)
               wx.showModal({
                 title: '提示',
                 content: '您的推广海报已存入手机相册，赶快分享给好友吧',
@@ -274,7 +264,6 @@ Page({
               })
             },
             fail: function (err) {
-              console.log(err)
               // 防止用户禁止了授权,这须手动调起权限了
               if (err.errMsg === "saveImageToPhotosAlbum:fail:auth denied" || err.errMsg === "saveImageToPhotosAlbum:fail auth deny" || err.errMsg === "saveImageToPhotosAlbum:fail authorize no response") {
                 // 这边微信做过调整，必须要在按钮中触发，因此需要在弹框回调中进行调用
@@ -285,7 +274,6 @@ Page({
                   success: modalSuccess => {
                     wx.openSetting({
                       success(settingdata) {
-                        console.log("settingdata", settingdata)
                         if (settingdata.authSetting['scope.writePhotosAlbum']) {
                           wx.showModal({
                             title: '提示',
@@ -301,10 +289,8 @@ Page({
                         }
                       },
                       fail(failData) {
-                        console.log("failData", failData)
                       },
                       complete(finishData) {
-                        console.log("finishData", finishData)
                       }
                     })
                   }

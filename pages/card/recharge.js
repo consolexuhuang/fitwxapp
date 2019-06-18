@@ -26,7 +26,6 @@ Page({
     let stepMomey = this.data.userCard.balance
     wx.getSystemInfo({
       success: res => {
-        // console.log(res, this.data.userCard)安卓不使用该功能
         if (res.platform == "ios" || res.platform == "devtools") {
           let numberAnimate = new NumberAnimate({
             from: stepMomey,//开始时的数字
@@ -34,7 +33,6 @@ Page({
             refreshTime: 45,//  刷新一次的时间
             decimals: 1,//小数点后的位数
             onUpdate: () => {//更新回调函数
-              // console.log(numberAnimate)
               _this.setData({
                 stepMomey: numberAnimate.tempValue
               });
@@ -53,13 +51,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // if (getApp().globalData.rechargeSuccessRoute) {
-    //   const rechargeSuccessRoute = getApp().globalData.rechargeSuccessRoute
-    //   this.setData({
-    //     rechargeSuccessRoute
-    //   })
-    //   getApp().globalData.rechargeSuccessRoute = ''
-    // }
     this.getUserCard()
     this.getChargeInfo()
   },
@@ -67,7 +58,6 @@ Page({
     wx.showLoading({ title: '加载中...',})
     api.post('card/getUserCard').then(res => {
       wx.hideLoading()
-      console.log('充值', res.msg)
       const userCard = res.msg
       this.setData({
         userCard

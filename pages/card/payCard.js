@@ -73,7 +73,6 @@ Page({
         ['currentPayWayState[0].state']: false,
       })
     }
-    console.log(this.data.currentPayWayState)
   },
   // 创建订单
   createOrder(){
@@ -86,7 +85,6 @@ Page({
       wx.showLoading({ title: '加载中...',})
       api.post('v2/good/takeOrder', data).then(res => {
         wx.hideLoading()
-        console.log('生成订单', res)
         if(res.code === 0){
           this.setData({
             takeOrderCallBack: res.msg
@@ -112,7 +110,6 @@ Page({
         payMode:'wxlite',
       }
       api.post('payment/wxPay', data).then(res => {
-        console.log('微信支付回调',res)
         wx.requestPayment({
           timeStamp: res.msg.timeStamp,
           nonceStr: res.msg.nonceStr,
@@ -120,11 +117,9 @@ Page({
           signType: res.msg.signType,
           paySign: res.msg.paySign,
           success : (res) => {
-            console.log(res)
             resolve()
           },
           fail : (res) => {
-            console.log(res)
             reject()
           }
         })
@@ -136,7 +131,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options)
     if (options.cardId){
       this.setData({
         cardId: options.cardId
@@ -172,7 +166,6 @@ Page({
       goodId
     }
     api.post('v2/good/getGoodInfo', data).then(res => {
-      console.log('gooddata', res.msg)
       const goodData = res.msg
       this.setData({
         goodData
@@ -190,7 +183,6 @@ Page({
       this.setData({
         orderData
       }, ()=>{
-        console.log(this.data.orderData)
         this.getGoodInfo()
         
       })
@@ -217,7 +209,6 @@ Page({
               }, 1000)
             }
             // 微信支付
-            // console.log(currentPayType[0].type)
             if (currentPayType[0].type == 2) {
               _this.wxPayAction().then(res => {
                 wx.navigateBack()
@@ -234,7 +225,6 @@ Page({
   //现在支付方式
   choosePaywayEvent(e){
     let currentIdx = e.currentTarget.dataset.ind + 1
-    console.log('当前选择的支付方式', currentIdx == 1 ? "卡支付" : (currentIdx == 2 ? "微信支付" : '未知'))
     for (let i = 0; i < this.data.currentPayWayState.length; i ++ ){
       this.setData({
         ['currentPayWayState[' + i + '].state'] : false

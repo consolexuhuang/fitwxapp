@@ -56,7 +56,6 @@ App({
     //获取不同设备高度
     wx.getSystemInfo({
       success: res => {
-        console.log('设备', res)
         this.globalData.tab_height = res.statusBarHeight
         this.globalData.systemInfo = res
         if (res.model.indexOf('iPhone X') > -1) {
@@ -74,7 +73,6 @@ App({
     if (hideMilliseconds && (showMilliseconds - hideMilliseconds >= interval)){
       wx.startPullDownRefresh({})
     }
-    //Store.getItem('userData') ? console.log('无需重新登陆') : this.wx_loginIn()
   },
   onHide(){
     let hideMilliseconds = new Date().getTime();
@@ -196,7 +194,6 @@ App({
         return newValue
       },
       set: function (value) {
-        // console.log(value) 
         newValue = value
         callback(value)
       }
@@ -211,8 +208,6 @@ App({
           type: 'wgs84',
           success(res) {
             _this.globalData.location = res;
-            console.log('location')
-            console.log(res)
             resolve(res)
           }
         })
