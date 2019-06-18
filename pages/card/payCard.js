@@ -21,8 +21,8 @@ Page({
     orderData: '',
     takeOrderCallBack:'',//创建订单回调结果
     imgUrl: getApp().globalData.imgUrl,
-    currentPayWayState: [{ type: 1, state: true, momeyCreditState: true, isOpening: true, payType:true}, 
-                         { type: 2, state: false, momeyCreditState: true, isOpening: true, payType: false}], //当前支付方式状态  1:卡支付； 2:微信支付
+    currentPayWayState: [{ type: 1, state: false, momeyCreditState: true, isOpening: true, payType:true}, 
+                         { type: 2, state: false, momeyCreditState: true, isOpening: true, payType: true}], //当前支付方式状态  1:卡支付； 2:微信支付
 
     //myCardCredit: 10, //卡余额  this.data.orderData.card_amount 可以替换                                //checkCardCredict方法下的值
     //myCardIsOpening: true, //卡是否开通 this.data.order.has_card
@@ -30,20 +30,20 @@ Page({
   //校验当前余额状态
   checkCardCredict(){
     //支付方式
-    if (this.data.goodData.pay_flag == 1){
+    if (this.data.orderData.pay_type == '0'){
       this.setData({
-        ['currentPayWayState[1].payType']: true,
-        ['currentPayWayState[0].payType']: false,
+        ['currentPayWayState[1].state']: false,
+        ['currentPayWayState[0].state']: false,
       })
-    } else if (this.data.goodData.pay_flag == 2) {
+    } else if (this.data.orderData.pay_type == '1' || this.data.orderData.pay_type == '5') {
       this.setData({
-        ['currentPayWayState[0].payType']: true,
-        ['currentPayWayState[1].payType']: false,
+        ['currentPayWayState[0].state']: false,
+        ['currentPayWayState[1].state']: true,
       })
-    } else if (this.data.goodData.pay_flag == 3) {
+    } else if (this.data.orderData.pay_type == '2') {
       this.setData({
-        ['currentPayWayState[0].payType']: true,
-        ['currentPayWayState[1].payType']: true,
+        ['currentPayWayState[0].state']: true,
+        ['currentPayWayState[1].state']: false,
       })
     }
     //是否开通
@@ -73,6 +73,7 @@ Page({
         ['currentPayWayState[0].state']: false,
       })
     }
+    console.log(this.data.orderData)
   },
   // 创建订单
   createOrder(){
@@ -99,32 +100,33 @@ Page({
   // 微信支付
   wxPayAction(){
     return new Promise((resolve,reject) => {
-      let data = {
-        openid: Store.getItem('userData').wx_lite_openid,
-        outTradeNo: this.data.takeOrderCallBack.orderId,
-        transactionId:'',
-        outRefundNo:'',
-        totalFee: this.data.orderData.pay_amount * 100, //后台分进制
-        type:'',
-        clientIp: '',
-        payMode:'wxlite',
-      }
-      api.post('payment/wxPay', data).then(res => {
-        wx.requestPayment({
-          timeStamp: res.msg.timeStamp,
-          nonceStr: res.msg.nonceStr,
-          package: res.msg.package,
-          signType: res.msg.signType,
-          paySign: res.msg.paySign,
-          success : (res) => {
-            resolve()
-          },
-          fail : (res) => {
-            reject()
-          }
-        })
+      wx.requestPayment({
+        timeStamp: this.data.takeOrderCallBack.timeStamp,
+        nonceStr: this.data.takeOrderCallBack.nonceStr,
+        package: this.data.takeOrderCallBack.package,
+        signType: this.data.takeOrderCallBack.signType,
+        paySign: this.data.takeOrderCallBack.paySign,
+        success: (res) => {
+          resolve()
+        },
+        fail: (res) => {
+          reject()
+        }
+      })
+      // let data = {
+      //   openid: Store.getItem('userData').wx_lite_openid,
+      //   outTradeNo: this.data.takeOrderCallBack.orderId,
+      //   transactionId:'',
+      //   outRefundNo:'',
+      //   totalFee: this.data.orderData.pay_amount * 100, //后台分进制
+      //   type:'',
+      //   clientIp: '',
+      //   payMode:'wxlite',
+      // }
+      // api.post('payment/wxPay', data).then(res => {
+        
 
-    })
+      // })
     })
   },
   /**

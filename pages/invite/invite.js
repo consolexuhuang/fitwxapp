@@ -14,7 +14,7 @@ Page({
     showShareState:false, // 长摁状态
     navbarData: {
       title: '邀请好友',
-      showCapsule: 1,
+      showCapsule: 0,
       isShowBackHome: true,
       titleColor: "#000",
       tab_topBackground:'#fff'

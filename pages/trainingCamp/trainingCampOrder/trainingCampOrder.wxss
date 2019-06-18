@@ -315,4 +315,9 @@
   line-height:84rpx;
   text-align: center;
 }
+.cardOver{
+  background: #C5C5C5 !important;
+  color: #fff;
+  box-shadow: none !important;
+}
 

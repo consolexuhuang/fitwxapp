@@ -56,6 +56,7 @@ App({
     //获取不同设备高度
     wx.getSystemInfo({
       success: res => {
+        console.log(res)
         this.globalData.tab_height = res.statusBarHeight
         this.globalData.systemInfo = res
         if (res.model.indexOf('iPhone X') > -1) {
