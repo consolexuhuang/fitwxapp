@@ -189,8 +189,9 @@
 
 .store-name text {
   margin-left: 15rpx;
-  font-size: 28rpx;
+  font-size: 32rpx;
   color: #3c3c3c;
+  font-weight: bold
 }
 
 .store-distance {
@@ -233,10 +234,10 @@
   margin-top: 25rpx;
   width: 208rpx;
   /* height: 33rpx; */
-  border-top-right-radius:17rpx;
-  border-bottom-right-radius:17rpx;
-  background-color: #e6e6e6;
-  line-height: 38rpx;
+  border-top-right-radius:20rpx;
+  border-bottom-right-radius:20rpx;
+  background-color: #f3f3f3;
+  line-height: 40rpx;
   text-align: center;
   font-size: 30rpx;
   color: #8b6ff0;
