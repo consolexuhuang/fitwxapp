@@ -44,7 +44,7 @@ Page({
   },
   backHome(){
     wx.switchTab({
-      url: '/pages/course/course',
+      url: '/pages/index/index',
     })
   }
 })

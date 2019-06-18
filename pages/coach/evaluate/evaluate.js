@@ -150,7 +150,7 @@ Page({
   //返回课程
   jumpToCourse(){
     wx.switchTab({
-      url: '/pages/course/course',
+      url: '/pages/index/index',
     })
   },
   //复制微信号

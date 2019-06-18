@@ -112,7 +112,7 @@ Page({
   },
   handleReturnCourseTap: function(event) {
     wx.switchTab({
-      url: '/pages/course/course',
+      url: '/pages/index/index',
     })
   },
   // 获取带分享者信息的二维码
