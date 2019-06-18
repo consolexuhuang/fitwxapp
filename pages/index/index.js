@@ -22,7 +22,14 @@ Page({
     complete: {},
     imgUrl: app.globalData.imgUrl,
     everyPageNum: 5,//每页显示店铺数量
-    swiperHeight:{}
+    swiperHeight:{},
+    navbarData: {
+      title: '',
+      showCapsule: 0,
+      isShowBackHome: false,
+      titleColor: "#8969FF",
+      tab_topBackground: '#8969FF'
+    },
   },
 
   /**

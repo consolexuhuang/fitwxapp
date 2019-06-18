@@ -16,8 +16,7 @@ var getConfig = function (_this) {
         cityList,
         city
       })
-    
-    
+        
   })
 }
 

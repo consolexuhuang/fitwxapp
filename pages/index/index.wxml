@@ -1,4 +1,5 @@
 <!--pages/index/index.wxml-->
+<tabBar_top navbarData="{{navbarData}}"></tabBar_top>
 <view class='startUp'>
   <image src='{{imgUrl}}icon/startUp_logo.png' class='startUp_logo'></image>
   <view class='startUpCont'>

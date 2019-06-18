@@ -3,5 +3,7 @@
   "navigationBarTitleText": "",
   "navigationStyle": "custom",
   "navigationBarTextStyle": "white",
-  "usingComponents": {}
+  "usingComponents": {
+    "tabBar_top": "/components/tabBar_top/tabBar"
+  }
 }
