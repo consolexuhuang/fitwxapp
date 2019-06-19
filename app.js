@@ -7,7 +7,6 @@ const worker = wx.createWorker('workers/scrollWorker.js');
 
 App({
   onLaunch: function (options) {
-    console.log(options)
     this.api = api
     this.store = Store;
     this.worker = worker;
@@ -64,7 +63,6 @@ App({
     //获取不同设备高度
     wx.getSystemInfo({
       success: res => {
-        console.log(res)
         this.globalData.tab_height = res.statusBarHeight
         this.globalData.systemInfo = res
         if (res.model.indexOf('iPhone X') > -1) {
@@ -72,7 +70,7 @@ App({
         }
       },
     })
-    this.getLocation()
+    this.getLocation();
   },
   onShow() {
     //后台切到前台刷新
@@ -208,8 +206,9 @@ App({
       }
     })
   },
-  getLocation: function () {
-    return new Promise((resolve, reject) => {
+
+  getLocation: function () {  
+     return new Promise((resolve, reject) => {
       const location = this.globalData.location;
       if (!location) {
         const _this = this
@@ -217,13 +216,15 @@ App({
           type: 'wgs84',
           success(res) {
             _this.globalData.location = res;
-            resolve(res)
+            resolve();
+          },
+          fail(err){
+            resolve();
           }
         })
       } else {
         reject();
       }
-    })
-
-  }
+    });
+  } 
 })
