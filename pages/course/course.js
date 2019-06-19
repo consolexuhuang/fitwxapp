@@ -65,10 +65,9 @@ Page({
 
   },
   onShow() {
-    console.log('onSHOW 01')
     /* 设置刷新时间 */
     let startMilliseconds = wx.getStorageSync('startMilliseconds');
-    let interval = 0.5 * 60 * 1000; //间隔设为10分钟
+    let interval = 10 * 60 * 1000; //间隔设为10分钟
     let nowGetTime = new Date().getTime();
     //有开始时间
     if (startMilliseconds && (nowGetTime - startMilliseconds <= interval)) {
@@ -88,9 +87,6 @@ Page({
     //初始化
     this.initFun();
 
-  },
-  onHide() {
-    console.log('onHide')
   },
 
   // 下拉刷新
