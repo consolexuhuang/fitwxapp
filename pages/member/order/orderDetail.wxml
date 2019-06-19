@@ -13,7 +13,7 @@
     <view class="orderDetail_titleBox">
       <view class="orderDetail_title">{{orderData.course.courseName}}</view>
       <view class="orderDetail_time fadeIn animated" wx:if='{{orderData.course.beginDate}}'>{{util.timeStampFormat(orderData.course.beginDate, 'MM月DD日')}} 星期{{orderData.course.beginDay}}
-        <text class="timedur">{{util.timeStampFormat(orderData.course.beginTime, 'hh:ss')}}-{{util.timeStampFormat(orderData.course.endTime, 'hh:ss')}}</text>
+        <text class="timedur">{{util.timeStampFormat(orderData.course.beginTime, 'hh:mm')}}-{{util.timeStampFormat(orderData.course.endTime, 'hh:mm')}}</text>
       </view>
     </view>
   </view>

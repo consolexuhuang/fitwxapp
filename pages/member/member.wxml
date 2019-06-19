@@ -99,7 +99,7 @@
                   </view>
                   <view class="date">
                     <text class="icon iconfont iconicon-test17"></text>
-                    <text class="text">{{util.timeStampFormat(item.course.beginDate, 'MM月DD日')}} 星期{{item.course.beginDay}} {{util.timeStampFormat(item.course.beginTime, 'hh:ss')}}-{{util.timeStampFormat(item.course.endTime, 'hh:ss')}}</text>
+                    <text class="text">{{util.timeStampFormat(item.course.beginDate, 'MM月DD日')}} 星期{{item.course.beginDay}} {{util.timeStampFormat(item.course.beginTime, 'hh:mm')}}-{{util.timeStampFormat(item.course.endTime, 'hh:mm')}}</text>
                   </view>
                 </view>
               </view>
