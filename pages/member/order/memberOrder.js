@@ -17,29 +17,31 @@ function loadMoreOrder(_this, pageNum) {
     wx, wx.hideLoading()
     console.log('订单分页数据', res, pageNum)
     if (_this.data.active == 0) {
-      if (res.msg.result.length == 0 && pageNum != 1) {
-
+      if (pageNum == 1) {
+         _this.setData({ goingList: res.msg.result })
       } else {
         _this.setData({ goingList: [..._this.data.goingList, ...res.msg.result] },() => {
-          _this.getSwiperHeight(_this.data.goingList, 0)
         })
       }
+      _this.getSwiperHeight(_this.data.goingList, 0)
     }
     if (_this.data.active == 1) {
-      if (res.msg.result.length == 0 && pageNum != 1) {
+      if (pageNum == 1) {
+        _this.setData({ payingList: res.msg.result })
       } else {
         _this.setData({ payingList: [..._this.data.payingList, ...res.msg.result] }, () => {
-          _this.getSwiperHeight(_this.data.payingList, 1)
         })
       }
+      _this.getSwiperHeight(_this.data.payingList, 1)
     }
     if (_this.data.active == 2) {
-      if (res.msg.result.length == 0 && pageNum != 1) {
+      if (pageNum == 1) {
+        _this.setData({ completedList: res.msg.result })
       } else {
         _this.setData({ completedList: [..._this.data.completedList, ...res.msg.result] }, () => {
-          _this.getSwiperHeight(_this.data.completedList, 2)
         })
       }
+      _this.getSwiperHeight(_this.data.completedList, 2)
     }
   })
 }
@@ -66,6 +68,14 @@ Page({
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
     swiperHeight: [getApp().globalData.systemInfo.screenHeight, getApp().globalData.systemInfo.screenHeight, getApp().globalData.systemInfo.screenHeight]
 
+  },
+  // 初始化数据
+  dataInit(){
+    orderPageIng = orderPageWait = orderPageComplate = 1
+    this.setData({ goingList: '', payingList: '', completedList: '' })
+    this.getUserInfo()
+    this.getSport()
+    loadMoreOrder(this, this.data.active == 0 ? orderPageIng : (this.data.active == 1 ? orderPageWait : (this.data.active == 2 ? orderPageComplate : orderPageIng)))
   },
   // 获取用户所有订单
   getUserInfo() {
@@ -102,14 +112,9 @@ Page({
     if (options.status) this.setData({ active: parseInt(options.status) })
   },
   onShow(){
-    orderPageIng = orderPageWait = orderPageComplate = 1
-    this.setData({ goingList: '', payingList: '', completedList: '' })
-    this.getUserInfo()
-    this.getSport()
-    loadMoreOrder(this, this.data.active == 0 ? orderPageIng : (this.data.active == 1 ? orderPageWait : (this.data.active == 2 ? orderPageComplate : orderPageIng)))
-
+    this.dataInit()
   },
-  bindscrolltolower() {
+  onReachBottom() {
     console.log('触底')
     if (this.data.active == 0 && this.data.goingList.length != this.data.userInfoData.order.going_count) loadMoreOrder(this, ++orderPageIng)
     if (this.data.active == 1 && this.data.payingList.length != this.data.userInfoData.order.unpay_count) loadMoreOrder(this, ++orderPageWait)
@@ -160,20 +165,18 @@ Page({
     console.log('点击下标', event.currentTarget.dataset.index)
     this.setData({
       active: event.currentTarget.dataset.index
+    },()=>{
+      if (event.currentTarget.dataset.index == 0) {
+        orderPageIng = 1;
+        loadMoreOrder(this, orderPageIng)
+      }
     })
-    if (event.currentTarget.dataset.index == 0) {
-      orderPageIng = 1;
-      this.setData({ goingList: [] })
-      loadMoreOrder(this, orderPageIng)
-    }
     if (event.currentTarget.dataset.index == 1) {
       orderPageWait = 1;
-      this.setData({ payingList: [] })
       loadMoreOrder(this, orderPageWait)
     }
     if (event.currentTarget.dataset.index == 2) {
       orderPageComplate = 1;
-      this.setData({ completedList: [] })
       loadMoreOrder(this, orderPageComplate)
     }
   },
@@ -204,11 +207,7 @@ Page({
     })
   },
   onPullDownRefresh() {
-    orderPageIng = orderPageWait = orderPageComplate = 1
-    this.setData({ goingList: '', payingList: '', completedList: '' })
-    this.getUserInfo()
-    this.getSport()
-    loadMoreOrder(this, this.data.active == 0 ? orderPageIng : (this.data.active == 1 ? orderPageWait : (this.data.active == 2 ? orderPageComplate : orderPageIng)))
+    this.dataInit()
     wx.stopPullDownRefresh()
   }
 })

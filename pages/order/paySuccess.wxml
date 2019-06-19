@@ -79,6 +79,6 @@
            bind:close='onclose'
            class='coachWxCodepaySuccessShowStyle'>
     
-    <image src='{{orderDetailData.coach.wxQrCodeUrl}}' class='coachWxImg' show-menu-by-longpress data-imgSrc='{{orderDetailData.coach.wxQrCodeUrl}}'></image>
+    <image src='{{orderDetailData.coach.wxQrCodeUrl}}' class='coachWxImg' show-menu-by-longpress bindtap='showPrevICoachWxImg' data-imgSrc='{{orderDetailData.coach.wxQrCodeUrl}}'></image>
     <view class='coachWxCont'>长按保存教练微信二维码</view>
 </van-popup>

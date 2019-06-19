@@ -13,7 +13,7 @@
       <view class="trainRescord_timeCount">{{sport.month.mins}}</view>分钟
     </view>
   </view>
-
+ 
   <view class="myOrder" >
     <view class="myOrder_head trainRescord_headCont">我的订单</view>
   </view>
@@ -33,9 +33,9 @@
       </view>
     </view>
   </view>
-  <swiper class="tab_content" current-item-id="{{active}}" bindchange="handleCurrentChange">
+  <swiper class="tab_content" current-item-id="{{active}}" bindchange="handleCurrentChange" style='height:{{swiperHeight[active]}}px'>
     <swiper-item item-id = '0'>
-      <scroll-view scroll-y bindscrolltolower='bindscrolltolower'>
+      <!-- <scroll-view scroll-y bindscrolltolower='bindscrolltolower'> -->
         <block wx:if="{{goingList.length}}">
           <block wx:for="{{goingList}}" wx:key="index">
             <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
@@ -68,10 +68,10 @@
             <text class="txt">暂无消费记录</text>
           </view>
         </block>
-      </scroll-view>
+      <!-- </scroll-view> -->
     </swiper-item>
     <swiper-item item-id = '1'>
-      <scroll-view scroll-y bindscrolltolower='bindscrolltolower'>
+      <!-- <scroll-view scroll-y bindscrolltolower='bindscrolltolower'> -->
         <block wx:if="{{payingList.length}}">
           <block wx:for="{{payingList}}" wx:key="index">
             <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
@@ -103,10 +103,10 @@
             <text class="txt">暂无消费记录</text>
           </view>
         </block>
-      </scroll-view>
+      <!-- </scroll-view> -->
     </swiper-item>
     <swiper-item item-id = '2'>
-      <scroll-view scroll-y bindscrolltolower='bindscrolltolower'>
+      <!-- <scroll-view scroll-y bindscrolltolower='bindscrolltolower'> -->
         <block wx:if="{{completedList.length}}">
           <block wx:for="{{completedList}}" wx:key="index">
             <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
@@ -138,7 +138,7 @@
             <text class="txt">暂无消费记录</text>
           </view>
         </block>
-      </scroll-view>
+      <!-- </scroll-view> -->
     </swiper-item>
   </swiper>
 </view>

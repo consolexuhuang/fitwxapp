@@ -102,7 +102,7 @@ Page({
         if(res.code === 0){
           this.setData({
             takeOrderCallBack: res.msg
-          }, () => { resolve() })
+          }, () => { resolve(res.msg) })
         } else {
           reject()
         }
@@ -214,8 +214,8 @@ Page({
           let currentPayType = _this.data.currentPayWayState.filter(val => {
             if (val.state) return val
           })
-          _this.createOrder().then(() => {
-            if (this.data.orderData.pay_type == '3' || this.data.orderData.pay_type == '2') {
+          _this.createOrder().then((orderData) => {
+            if (orderData.payType == 'card') {
               wx.showToast({ title: '支付成功', icon: 'none', mask: true })
               setTimeout(() => {
                 wx.redirectTo({
@@ -224,7 +224,7 @@ Page({
               }, 1000)
             }
             // 微信支付
-            if (this.data.orderData.pay_type == '1' || this.data.orderData.pay_type == '5') {
+            if (orderData.payType == 'wx') {
               _this.wxPayAction().then(res => {
                 wx.navigateBack()
               })

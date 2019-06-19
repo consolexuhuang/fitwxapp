@@ -11,8 +11,8 @@ Page({
     imgUrl: getApp().globalData.imgUrl,
     navbarData:{
       title:'会员签到',
-      showCapsule:0,
-      isShowBackHome:false,
+      showCapsule:1,
+      isShowBackHome:true,
       titleColor:"#fff"
     },
     signData:'' ,//签到信息

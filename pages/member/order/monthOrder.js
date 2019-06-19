@@ -17,15 +17,15 @@ function loadMoreOrder(_this, pageNum) {
     wx, wx.hideLoading()
     console.log('订单分页数据', res, pageNum)
     if (_this.data.active == 0) {
-      if (res.msg.result.length == 0 && pageNum != 1) {
-        // wx.showToast({ title: '暂无更多订单', icon: 'none' })
+      if (pageNum == 1) {
+        _this.setData({ completedList: res.msg.result })
       } else {
         _this.setData({ completedList: [..._this.data.completedList, ...res.msg.result] })
       }
     }
     if (_this.data.active == 1) {
-      if (res.msg.result.length == 0 && pageNum != 1) {
-        // wx.showToast({ title: '暂无更多订单', icon: 'none' })
+      if (pageNum == 1) {
+        _this.setData({ cancelList: res.msg.result })
       } else {
         _this.setData({ cancelList: [..._this.data.cancelList, ...res.msg.result] })
       }
@@ -98,12 +98,10 @@ Page({
     },()=>{
       if (event.currentTarget.dataset.index == 0) {
         orderPageComplate = 1;
-        this.setData({ completedList: [] })
         loadMoreOrder(this, orderPageComplate)
       }
       if (event.currentTarget.dataset.index == 1) {
         orderPageCancel = 1;
-        this.setData({ cancelList: [] })
         loadMoreOrder(this, orderPageCancel)
       }
     })
