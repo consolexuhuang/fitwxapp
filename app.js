@@ -219,6 +219,12 @@ App({
             resolve();
           },
           fail(err){
+            //默认值
+            let location = {
+              latitude : '31.24916171',
+              longitude : '121.487899486'
+            }
+            _this.globalData.location = location;
             resolve();
           }
         })

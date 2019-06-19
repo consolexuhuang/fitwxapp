@@ -85,8 +85,8 @@ Page({
   getData() {
     //课程参数
     const courseParam = {
-      latitude: app.globalData.location && app.globalData.location.latitude || '31.24916171',
-      longitude: app.globalData.location && app.globalData.location.longitude || '121.487899486',
+      latitude: app.globalData.location && app.globalData.location.latitude,
+      longitude: app.globalData.location && app.globalData.location.longitude,
       city: this.data.city,
       isOver: 0
     }
