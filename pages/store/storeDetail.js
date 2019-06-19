@@ -123,7 +123,7 @@ Page({
       success: function(event) {
         var page = getCurrentPages().pop() //当前页面
         if (page == undefined || page == null) return
-        page.onLoad() //或者其它操作
+        //page.onLoad() //或者其它操作
       }
     })
   },
