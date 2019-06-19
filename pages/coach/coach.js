@@ -135,6 +135,7 @@ Page({
       })
     } else this.setData({ isDescriptionShow : true})
   },
+
   //分享
   onShareAppMessage() {
     const storeId = this.data.storeId

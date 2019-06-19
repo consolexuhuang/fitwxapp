@@ -33,9 +33,9 @@
       </view>
     </view>
   </view>
-  <swiper class="tab_content" current-item-id="{{active}}" bindchange="handleCurrentChange" style='height:{{swiperHeight[active]}}px'>
+  <swiper class="tab_content" current-item-id="{{active}}" bindchange="handleCurrentChange" style='height:{{swiperHeight}}px'>
     <swiper-item item-id = '0'>
-      <!-- <scroll-view scroll-y bindscrolltolower='bindscrolltolower'> -->
+      <scroll-view scroll-y bindscrolltolower='bindscrolltolower'>
         <block wx:if="{{goingList.length}}">
           <block wx:for="{{goingList}}" wx:key="index">
             <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
@@ -59,7 +59,7 @@
               </view>
             </view>
           </block>
-          <view class='goBottom fadeIn animated' wx:if='{{goingList.length > 10}}'>{{goingList.length == userInfoData.order.going_count && goingList.length > 10 ? '-拉伸完成-' : ''}}</view>
+          <view class='goBottom fadeIn animated' wx:if='{{goingList.length > 10}}'>{{goingList.length == userInfoData.order.going_count && goingList.length > 10 ? '-拉伸完成-' : '加载中...'}}</view>
         </block>
         <!-- 无数据 -->
         <block wx:else>
@@ -68,10 +68,10 @@
             <text class="txt">暂无消费记录</text>
           </view>
         </block>
-      <!-- </scroll-view> -->
+      </scroll-view>
     </swiper-item>
     <swiper-item item-id = '1'>
-      <!-- <scroll-view scroll-y bindscrolltolower='bindscrolltolower'> -->
+      <scroll-view scroll-y bindscrolltolower='bindscrolltolower'>
         <block wx:if="{{payingList.length}}">
           <block wx:for="{{payingList}}" wx:key="index">
             <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
@@ -103,10 +103,10 @@
             <text class="txt">暂无消费记录</text>
           </view>
         </block>
-      <!-- </scroll-view> -->
+      </scroll-view>
     </swiper-item>
     <swiper-item item-id = '2'>
-      <!-- <scroll-view scroll-y bindscrolltolower='bindscrolltolower'> -->
+      <scroll-view scroll-y bindscrolltolower='bindscrolltolower'>
         <block wx:if="{{completedList.length}}">
           <block wx:for="{{completedList}}" wx:key="index">
             <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
@@ -129,7 +129,7 @@
               </view>
             </view>
           </block>
-          <view class='goBottom fadeIn animated'>{{completedList.length == userInfoData.order.complete_count && completedList.length > 10 ? '-拉伸完成-' : ''}}</view>
+          <view class='goBottom fadeIn animated'>{{completedList.length == userInfoData.order.complete_count && completedList.length > 10 ? '-拉伸完成-' : '加载中...'}}</view>
         </block>
         <!-- 无数据 -->
         <block wx:else>
@@ -138,7 +138,7 @@
             <text class="txt">暂无消费记录</text>
           </view>
         </block>
-      <!-- </scroll-view> -->
+      </scroll-view>
     </swiper-item>
   </swiper>
 </view>

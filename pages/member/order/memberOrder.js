@@ -23,7 +23,7 @@ function loadMoreOrder(_this, pageNum) {
         _this.setData({ goingList: [..._this.data.goingList, ...res.msg.result] },() => {
         })
       }
-      _this.getSwiperHeight(_this.data.goingList, 0)
+      // _this.getSwiperHeight(_this.data.goingList, 0)
     }
     if (_this.data.active == 1) {
       if (pageNum == 1) {
@@ -32,7 +32,7 @@ function loadMoreOrder(_this, pageNum) {
         _this.setData({ payingList: [..._this.data.payingList, ...res.msg.result] }, () => {
         })
       }
-      _this.getSwiperHeight(_this.data.payingList, 1)
+      // _this.getSwiperHeight(_this.data.payingList, 1)
     }
     if (_this.data.active == 2) {
       if (pageNum == 1) {
@@ -41,7 +41,7 @@ function loadMoreOrder(_this, pageNum) {
         _this.setData({ completedList: [..._this.data.completedList, ...res.msg.result] }, () => {
         })
       }
-      _this.getSwiperHeight(_this.data.completedList, 2)
+      // _this.getSwiperHeight(_this.data.completedList, 2)
     }
   })
 }
@@ -66,8 +66,8 @@ Page({
       tab_topBackground: '#fff'
     },
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
-    swiperHeight: [getApp().globalData.systemInfo.screenHeight, getApp().globalData.systemInfo.screenHeight, getApp().globalData.systemInfo.screenHeight]
-
+    // swiperHeight: [getApp().globalData.systemInfo.screenHeight, getApp().globalData.systemInfo.screenHeight, getApp().globalData.systemInfo.screenHeight],
+    swiperHeight: getApp().globalData.systemInfo.screenHeight - getApp().globalData.tab_height - 100
   },
   // 初始化数据
   dataInit(){
@@ -98,8 +98,9 @@ Page({
     })
   },
   //计算轮播图高度
-  getSwiperHeight(list, type){
-    let height = (list.length == 0 ? list.length + 1 : list.length) * 98
+  getSwiperHeight(list, type){ //40底部拉升完成高度
+    let loadHeight = 40
+    let height = (list.length == 0 ? list.length + 1 : list.length) * 92 + loadHeight
       this.setData({
         ['swiperHeight[' + type +']']: height
       })
@@ -114,7 +115,7 @@ Page({
   onShow(){
     this.dataInit()
   },
-  onReachBottom() {
+  bindscrolltolower() {
     console.log('触底')
     if (this.data.active == 0 && this.data.goingList.length != this.data.userInfoData.order.going_count) loadMoreOrder(this, ++orderPageIng)
     if (this.data.active == 1 && this.data.payingList.length != this.data.userInfoData.order.unpay_count) loadMoreOrder(this, ++orderPageWait)

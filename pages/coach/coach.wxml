@@ -3,7 +3,7 @@
 <tabBar_top navbarData = "{{navbarData}}"></tabBar_top>
 <view class="wrapper">
   <view class="header" style="margin-top:{{marginTopBar}}px">
-    <image class="coach-avatar fadeIn animated" src="{{coachData.headUrl}}" />
+    <image class="coach-avatar fadeIn animated" src="{{coachData.headUrl}}"/>
     <view class="coach-wrapper fadeIn animated">
       <view class="coach-name">{{coachData.coachName}}</view>
       <view class="coach-sign-count">

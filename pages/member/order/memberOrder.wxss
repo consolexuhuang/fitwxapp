@@ -80,8 +80,12 @@
 }
 .myOrderNavBox{
   position: sticky;
-  z-index: 1000
+  z-index: 100
 }
+/* .myOrderNavBoxFixed{
+  position: fixed;
+  z-index: 1000
+} */
 .myOrderNav{
   padding: 0 35rpx;
   box-sizing: border-box;
@@ -135,12 +139,13 @@
   height: 100%;
 }
 .myOrder_listItem{
-  padding: 30rpx 0 30rpx 0;
+  /* padding: 30rpx 0 30rpx 0; */
   box-sizing: border-box;
   display: flex;
   border-bottom: 1rpx solid #E9E9E9;
   position: relative;
-  height: 196rpx
+  height: 196rpx;
+  align-items: center;
 }
 .isWait{
   position: absolute;
@@ -242,6 +247,7 @@
   text-align: center;
   color: #aaa;
   font-size: 24rpx;
-  line-height: 75rpx;
+  line-height: 80rpx;
   margin-left: -34rpx;
+  height: 80rpx
 }

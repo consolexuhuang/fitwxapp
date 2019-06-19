@@ -423,6 +423,16 @@
   font-size: 42rpx;
   color: #896EFF;
 }
+.origin-price{
+  flex: 1;
+  margin-top: 28rpx;
+  /* margin-left: 37rpx; */
+  line-height: 59rpx;
+  /* font-weight: 600; */
+  font-size: 38rpx;
+  color: #a0a0a0;
+  text-decoration: line-through;
+}
 .appoint-btn{
   width: 436rpx;
   height: 120rpx;
