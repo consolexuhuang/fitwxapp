@@ -14,15 +14,19 @@
 
 <view class="course-name">{{goodData.title}}</view>
     <view class='course-step' wx:if='{{goodData.period}}'>（{{goodData.period}}）</view>
-    <view class="course-position">
-      <text class='iconicon-test23 iconfont icon1'/>
-      <text class='course-positionCont'>{{goodData.store_ids__NAME}}</text>
-    </view>
-    <view class='trainingCampOrder_time' wx:if='{{coachList}}'>
-      <text class='trainingCampOrder_timeImg iconfont iconicon-test35'></text>
-      <view class='trainingCampOrder_timeBox'>
-          <block wx:for='{{coachList}}' wx:key='{{index}}'>
-             <view class='trainingCampOrder_timeItem' wx:for='{{item.course_list}}' wx:key='{{index}}'>{{util.timeFormat(item.begin_date, 'MM月DD日')}} 星期{{item.begin_day}} {{util.timeFormat(item.begin_time, 'hh:mm')}}-{{util.timeFormat(item.end_time, 'hh:mm')}}</view>
-          </block>
-      </view>
+<view class="course-position">
+  <text class='iconicon-test23 iconfont icon1'/>
+  <text class='course-positionCont'>{{goodData.store_ids__NAME}}</text>
+</view>
+<view class='trainingCampOrder_time' wx:if='{{coachList}}'>
+  <text class='trainingCampOrder_timeImg iconfont iconicon-test35'></text>
+  <view class='trainingCampOrder_timeBox'>
+      <block wx:for='{{coachList}}' wx:key='{{index}}'>
+          <view class='trainingCampOrder_timeItem' wx:for='{{item.course_list}}' wx:key='{{index}}'>{{util.timeFormat(item.begin_date, 'MM月DD日')}} 星期{{item.begin_day}} {{util.timeFormat(item.begin_time, 'hh:mm')}}-{{util.timeFormat(item.end_time, 'hh:mm')}}</view>
+      </block>
+  </view>
+</view>
+<view class="tip">
+      <text class="icon-tip iconicon-test5 iconfont"></text>
+      <rich-text class="text" decode="true" nodes='{{goodData.needing_attention}}'></rich-text>
 </view>

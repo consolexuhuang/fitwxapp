@@ -149,7 +149,7 @@ Page({
   },
   //返回课程
   jumpToCourse(){
-    wx.switchTab({
+    wx.redirectTo({
       url: '/pages/index/index',
     })
   },

@@ -4,7 +4,7 @@
 <share_tag imgUrl='{{imgUrl}}' shareConfig='{{shareConfig}}' wx:if='{{orderData.cancelFlag != 1}}'></share_tag>
 <view class="orderDetail_statusData fadeIn animated" style='margin-top:{{marginTopBar}}px'>
   <view class="orderDetail_headImgBox">
-    <image class="orderDetail_headImg" src="{{orderData.coach.headUrl}}"></image>
+    <image bindtap='handleCoachTap' data-coachId='{{orderData.coach.id}}' class="orderDetail_headImg" src="{{orderData.coach.headUrl}}"></image>
     <image class="orderDetail_headWxTag" src="{{imgUrl}}/icon/wx_logo.png"></image>
   </view>
   <view class="orderDetail_statusInfo">

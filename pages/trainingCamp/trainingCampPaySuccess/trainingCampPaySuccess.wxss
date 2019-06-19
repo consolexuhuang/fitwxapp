@@ -105,3 +105,23 @@
   color:rgba(74,74,74,1);
   line-height:46rpx;
 }
+.tip {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  padding: 20rpx 50rpx;
+  /* margin-top: 30rpx; */
+}
+
+.icon-tip {
+  /* width: 24rpx;
+  height: 24rpx; */
+  flex-shrink: 0;
+  margin: 5rpx 24rpx 0 0;
+  font-size: 24rpx;
+}
+
+.text {
+  font-size: 24rpx;
+  color: #b4b4b4;
+}

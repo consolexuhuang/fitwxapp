@@ -128,6 +128,14 @@ Page({
       url: '/pages/store/routeGuidance?webUrl=' + this.data.orderData.store.mapPic
     })
   }, 
+  // 跳转教练课程列表
+  handleCoachTap: function (event) {
+    // console.log(event)
+    const coachId = event.currentTarget.dataset.coachid
+    wx.navigateTo({
+      url: '/pages/coach/coach?coachId=' + coachId
+    })
+  },
   //分享
   onShareAppMessage() {
     const storeId = this.data.storeId

@@ -67,7 +67,7 @@
     </view>
     <view class="tip">
       <text class="icon-tip iconicon-test5 iconfont"></text>
-      <rich-text class="text" decode="true" nodes='{{"1.本优惠包包含3节课时; <br/>2.课程优惠包自购买日起有效期为30天; <br/>3.购买前请仔细阅读并理解优惠包的购买及使用规则. "}}'></rich-text>
+      <rich-text class="text" decode="true" nodes='{{goodData.needing_attention}}'></rich-text>
     </view>
   </view>  
 </view>

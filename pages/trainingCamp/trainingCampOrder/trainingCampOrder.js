@@ -91,9 +91,11 @@ Page({
     }
     api.post('v2/good/getGoodInfo', data).then(res => {
       console.log('getGoodInfo',res)
-      if (res.code == 0) 
+      if (res.code == 0)
+        res.msg.store_ids__NAME = res.msg.store_ids__NAME.replace(/\,/g, "\n")
         this.setData({ 
           goodData : res.msg,
+
           coachList: res.msg.coach_course ? Object.values(res.msg.coach_course) : '',
         })
     })
