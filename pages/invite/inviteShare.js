@@ -18,7 +18,7 @@ Page({
     navbarData: {
       title: 'Justin&Julie',
       showCapsule: 0,
-      isShowBackHome: false,
+      isShowBackHome: true,
       titleColor: "#000",
       tab_topBackground:'#fff'
     },

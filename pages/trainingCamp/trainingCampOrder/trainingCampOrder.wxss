@@ -230,13 +230,14 @@
 .pay-type .item .item-play-type .name {
   font-size: 28rpx;
   color: #141414;
+  line-height: 66rpx;
 }
 .creditNone{
   font-size:24rpx;
   font-family:PingFangSC-Regular;
   font-weight:400;
   color:rgba(137,110,255,1);
-  line-height:33px;
+  line-height:66rpx;
   position: relative;
   padding-right: 30rpx;
 }
@@ -314,5 +315,10 @@
   color:rgba(255,255,255,1);
   line-height:84rpx;
   text-align: center;
+}
+.cardOver{
+  background: #C5C5C5 !important;
+  color: #fff;
+  box-shadow: none !important;
 }
 

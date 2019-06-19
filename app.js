@@ -7,6 +7,7 @@ const worker = wx.createWorker('workers/scrollWorker.js');
 
 App({
   onLaunch: function (options) {
+    console.log(options)
     this.api = api
     this.store = Store;
     this.worker = worker;
@@ -49,13 +50,21 @@ App({
     }
     // 校验场景值
     if (options.scene == 1007 || options.scene == 1008 || options.scene == 1035 || options.scene == 1043) {
-      this.globalData.share = true
+      if (options.path.indexOf('index') != -1 || 
+          options.path.indexOf('pages/store/store') != -1 || 
+          options.path.indexOf('pages/card/card') != -1 || 
+          options.path.indexOf('pages/member/member') != -1){
+          this.globalData.share = false
+      } else {
+        this.globalData.share = true
+      }
     } else {
       this.globalData.share = false
     }
     //获取不同设备高度
     wx.getSystemInfo({
       success: res => {
+        console.log(res)
         this.globalData.tab_height = res.statusBarHeight
         this.globalData.systemInfo = res
         if (res.model.indexOf('iPhone X') > -1) {

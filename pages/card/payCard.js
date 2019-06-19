@@ -21,8 +21,8 @@ Page({
     orderData: '',
     takeOrderCallBack:'',//创建订单回调结果
     imgUrl: getApp().globalData.imgUrl,
-    currentPayWayState: [{ type: 1, state: true, momeyCreditState: true, isOpening: true, payType:true}, 
-                         { type: 2, state: false, momeyCreditState: true, isOpening: true, payType: false}], //当前支付方式状态  1:卡支付； 2:微信支付
+    currentPayWayState: [{ type: 1, state: false, momeyCreditState: true, isOpening: true, payType:true}, 
+                         { type: 2, state: false, momeyCreditState: true, isOpening: true, payType: true}], //当前支付方式状态  1:卡支付； 2:微信支付
 
     //myCardCredit: 10, //卡余额  this.data.orderData.card_amount 可以替换                                //checkCardCredict方法下的值
     //myCardIsOpening: true, //卡是否开通 this.data.order.has_card
@@ -30,20 +30,33 @@ Page({
   //校验当前余额状态
   checkCardCredict(){
     //支付方式
-    if (this.data.goodData.pay_flag == 1){
+    if (this.data.orderData.pay_type == '0') { // no
       this.setData({
-        ['currentPayWayState[1].payType']: true,
+        ['currentPayWayState[1].state']: false,
+        ['currentPayWayState[0].state']: false,
+      })
+    } else if (this.data.orderData.pay_type == '5') { //wx
+      this.setData({
+        ['currentPayWayState[0].state']: false,
+        ['currentPayWayState[1].state']: true,
         ['currentPayWayState[0].payType']: false,
       })
-    } else if (this.data.goodData.pay_flag == 2) {
+    } else if (this.data.orderData.pay_type == '3') { //只能PLUS支付，例如排队等候的状态
       this.setData({
-        ['currentPayWayState[0].payType']: true,
+        ['currentPayWayState[0].state']: true,
+        ['currentPayWayState[1].state']: false,
         ['currentPayWayState[1].payType']: false,
       })
-    } else if (this.data.goodData.pay_flag == 3) {
+    } else if (this.data.orderData.pay_type == '1') { //< !--PLUS余额不足，默认微信支付-- >
       this.setData({
-        ['currentPayWayState[0].payType']: true,
-        ['currentPayWayState[1].payType']: true,
+        ['currentPayWayState[0].state']: false,
+        ['currentPayWayState[1].state']: true,
+      })
+    } else if (this.data.orderData.pay_type == '2') { //<!--PLUS余额充足,PLUS支付-->
+      this.setData({
+        ['currentPayWayState[0].state']: true,
+        ['currentPayWayState[1].state']: false,
+        ['currentPayWayState[1].payType']: false,
       })
     }
     //是否开通
@@ -73,6 +86,7 @@ Page({
         ['currentPayWayState[0].state']: false,
       })
     }
+    console.log(this.data.orderData)
   },
   // 创建订单
   createOrder(){
@@ -88,7 +102,7 @@ Page({
         if(res.code === 0){
           this.setData({
             takeOrderCallBack: res.msg
-          }, () => { resolve() })
+          }, () => { resolve(res.msg) })
         } else {
           reject()
         }
@@ -99,38 +113,40 @@ Page({
   // 微信支付
   wxPayAction(){
     return new Promise((resolve,reject) => {
-      let data = {
-        openid: Store.getItem('userData').wx_lite_openid,
-        outTradeNo: this.data.takeOrderCallBack.orderId,
-        transactionId:'',
-        outRefundNo:'',
-        totalFee: this.data.orderData.pay_amount * 100, //后台分进制
-        type:'',
-        clientIp: '',
-        payMode:'wxlite',
-      }
-      api.post('payment/wxPay', data).then(res => {
-        wx.requestPayment({
-          timeStamp: res.msg.timeStamp,
-          nonceStr: res.msg.nonceStr,
-          package: res.msg.package,
-          signType: res.msg.signType,
-          paySign: res.msg.paySign,
-          success : (res) => {
-            resolve()
-          },
-          fail : (res) => {
-            reject()
-          }
-        })
+      wx.requestPayment({
+        timeStamp: this.data.takeOrderCallBack.timeStamp,
+        nonceStr: this.data.takeOrderCallBack.nonceStr,
+        package: this.data.takeOrderCallBack.package,
+        signType: this.data.takeOrderCallBack.signType,
+        paySign: this.data.takeOrderCallBack.paySign,
+        success: (res) => {
+          resolve()
+        },
+        fail: (res) => {
+          reject()
+        }
+      })
+      // let data = {
+      //   openid: Store.getItem('userData').wx_lite_openid,
+      //   outTradeNo: this.data.takeOrderCallBack.orderId,
+      //   transactionId:'',
+      //   outRefundNo:'',
+      //   totalFee: this.data.orderData.pay_amount * 100, //后台分进制
+      //   type:'',
+      //   clientIp: '',
+      //   payMode:'wxlite',
+      // }
+      // api.post('payment/wxPay', data).then(res => {
+        
 
-    })
+      // })
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log(options)
     if (options.cardId){
       this.setData({
         cardId: options.cardId
@@ -156,11 +172,10 @@ Page({
       this.setData({
         goodId
       })
-      this.checkOrder()
-      
+      this.getGoodInfo()
     })
   },
-  getGoodInfo: function(event) {
+  getGoodInfo: function() {
     const goodId = this.data.goodId
     const data = {
       goodId
@@ -170,7 +185,7 @@ Page({
       this.setData({
         goodData
       })
-      this.checkCardCredict()
+      this.checkOrder()
     })
   },
   checkOrder: function(event) {
@@ -183,8 +198,8 @@ Page({
       this.setData({
         orderData
       }, ()=>{
-        this.getGoodInfo()
-        
+        // this.getGoodInfo()
+        this.checkCardCredict()
       })
     })
   },
@@ -199,8 +214,8 @@ Page({
           let currentPayType = _this.data.currentPayWayState.filter(val => {
             if (val.state) return val
           })
-          _this.createOrder().then(() => {
-            if (currentPayType[0].type == 1) {
+          _this.createOrder().then((orderData) => {
+            if (orderData.payType == 'card') {
               wx.showToast({ title: '支付成功', icon: 'none', mask: true })
               setTimeout(() => {
                 wx.redirectTo({
@@ -209,7 +224,7 @@ Page({
               }, 1000)
             }
             // 微信支付
-            if (currentPayType[0].type == 2) {
+            if (orderData.payType == 'wx') {
               _this.wxPayAction().then(res => {
                 wx.navigateBack()
               })
