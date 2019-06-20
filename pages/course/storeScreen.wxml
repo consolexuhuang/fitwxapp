@@ -1,8 +1,8 @@
 <!--pages/course/storeScreen.wxml-->
 <wxs src="../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = "{{navbarData}}"></tabBar_top>
-<view class="store-screen-wrapper" wx:if="{{storeList}}">
-  <view class="store-city-wrapper" style="margin-top:{{marginTopBar}}px" bindtap="handleCitySelectTap">
+<view class="store-screen-wrapper" wx:if="{{storeList}}" style="margin-top:{{marginTopBar}}px">
+  <view class="store-city-wrapper"  bindtap="handleCitySelectTap">
     <text class="store-city-icon iconfont iconicon-test1"/>
     <text class="store-city-name">{{city}}市</text>
     <image class="store-city-arrow iconfont iconicon-test36"/>
