@@ -47,19 +47,6 @@ App({
         content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
       })
     }
-    // 校验场景值
-    if (options.scene == 1007 || options.scene == 1008 || options.scene == 1035 || options.scene == 1043) {
-      if (options.path.indexOf('index') != -1 || 
-          options.path.indexOf('pages/store/store') != -1 || 
-          options.path.indexOf('pages/card/card') != -1 || 
-          options.path.indexOf('pages/member/member') != -1){
-          this.globalData.share = false
-      } else {
-        this.globalData.share = true
-      }
-    } else {
-      this.globalData.share = false
-    }
     //获取不同设备高度
     wx.getSystemInfo({
       success: res => {
@@ -72,7 +59,21 @@ App({
     })
     this.getLocation();
   },
-  onShow() {
+  onShow(options) {
+    console.log('onshow',options)
+    // 校验场景值
+    if (options.scene == 1007 || options.scene == 1008 || options.scene == 1035 || options.scene == 1043) {
+      if (options.path.indexOf('index') != -1 ||
+        options.path.indexOf('pages/store/store') != -1 ||
+        options.path.indexOf('pages/card/card') != -1 ||
+        options.path.indexOf('pages/member/member') != -1) {
+        this.globalData.share = false
+      } else {
+        this.globalData.share = true
+      }
+    } else {
+      this.globalData.share = false
+    }
     //后台切到前台刷新
     let interval=2*60*1000;//间隔设为2分钟
     let showMilliseconds = new Date().getTime();
