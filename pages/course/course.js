@@ -65,6 +65,13 @@ Page({
 
   },
   onShow() {
+    //搜索进来的
+    if (getApp().globalData.courseConfig){
+      //初始化    
+      this.initFun();
+      return;
+    }
+    
     /* 设置刷新时间 */
     let startMilliseconds = wx.getStorageSync('startMilliseconds');
     let interval = 10 * 60 * 1000; //间隔设为10分钟
@@ -84,9 +91,12 @@ Page({
     if (onLoaded) {
       return;
     };
-    //初始化
+    //初始化    
     this.initFun();
 
+  },
+  onHide(){
+    getApp().globalData.courseConfig ='';
   },
 
   // 下拉刷新

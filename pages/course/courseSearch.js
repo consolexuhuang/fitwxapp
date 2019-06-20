@@ -136,6 +136,8 @@ Page({
   // 搜索功能
   handleCourseSearch: function(courseConfig){
     getApp().globalData.courseConfig = courseConfig
+    console.log('courseSearch')
+    console.log(getApp().globalData.courseConfig)
     let historySearch = this.data.historySearch
     if (courseConfig.searchText) {
       historySearch = [courseConfig.searchText].concat(historySearch)
@@ -149,7 +151,7 @@ Page({
       success: function(event) {
         const page = getCurrentPages().pop() //当前页面
         if (page == undefined || page == null) return
-        page.onLoad() //或者其它操作
+        //page.onLoad() //或者其它操作
       }
     })
   },

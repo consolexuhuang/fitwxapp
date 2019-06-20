@@ -17,7 +17,6 @@
           <view class="hot-search-item" data-search-text="{{item.name}}" bindtap="handleSearchKeyWordsTap">{{item.name}}</view>
         </block>
       </view>
-
     </view>
   </view>
   <view class="history-search-wrapper" wx:if="{{historySearch.length}}">
