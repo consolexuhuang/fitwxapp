@@ -107,7 +107,7 @@ Page({
     })
   },
   handleReturnCourseTap: function(event) {
-    wx.switchTab({
+    wx.redirectTo({
       url: '/pages/index/index',
     })
   },

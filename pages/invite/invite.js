@@ -87,8 +87,8 @@ Page({
     })
   },
   handleReturnCourseTap: function(event) {
-    wx.switchTab({
-      url: '/pages/course/course',
+    wx.redirectTo({
+      url: '/pages/index/index',
     })
   },
   handleFaceInviteBtnTap: function(event) {
