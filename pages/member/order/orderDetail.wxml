@@ -58,7 +58,7 @@
       <view class="orderDetail_payData">¥{{orderData.course.discountPrice}}</view>
     </view>
     <view class="admissionCode2" wx:if="{{orderData.order.paymentWay == 7 && orderData.order.cardTitle == '单车卡'}}">
-      <image class="orderDetail_icon iconcardPay2" src="{{imgUrl}}icon/orderIcon_cardPay.png"></image>
+      <image class="orderDetail_icon iconcardPay2" src="{{imgUrl}}icon/orderIcon_car.png"></image>
       <text class="orderDetail_text">单车卡</text>
       <view class="orderDetail_payData">-1次</view>
     </view>
