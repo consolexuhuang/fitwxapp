@@ -14,6 +14,7 @@
         <view class="search-bar-text">
           <text style='color:{{searchText ? "#000" : "#b4b4b4"}}'>{{searchText? searchText: '搜索您喜欢的课程及教练'}}</text>
         </view>
+        <text class='iconfont iconclose-circle' wx:if="{{searchText}}" catchtap='clearSearch'></text>
       </view>
 
       <swiper class="banner-swiper fadeIn animated" indicator-dots indicator-color="#8B6FF1" indicator-active-color="#FFFFFF" autoplay circular interval="3000">
