@@ -11,7 +11,7 @@ const store = app.store;
 const topInit = (120 + 160 + 112) / 2;
 let query; //选择元素
 let scrollLock = 0; //滑动计算锁
-let onLoaded = false;//是否走了onLoad声明周期
+let onLoaded = false; //是否走了onLoad声明周期
 Page({
 
   /**
@@ -57,16 +57,31 @@ Page({
    */
 
   onLoad: function(options) {
+    console.log('onLoad')
     //进入onLoad
     onLoaded = true;
     //初始化
     this.initFun();
-    
+
   },
-  onShow(){
+  onShow() {
+    /* 设置刷新时间 */
+    let startMilliseconds = wx.getStorageSync('startMilliseconds');
+    let interval = 10 * 60 * 1000; //间隔设为10分钟
+    let nowGetTime = new Date().getTime();
+    //有开始时间
+    if (startMilliseconds && (nowGetTime - startMilliseconds <= interval)) {
+      return;
+    }
+    //无开始时间、超出10分钟
+    else {
+      wx.setStorageSync('startMilliseconds', nowGetTime)
+    };
+
+    /* 预防onload和onShow都执行 */
     //恢复设置
     onLoaded = false;
-    if (onLoaded){
+    if (onLoaded) {
       return;
     };
     //初始化
@@ -181,7 +196,7 @@ Page({
   onUnload: function() {
     //app.worker.terminate()
   },
-  initFun(){
+  initFun() {
     //loading
     ui.showLoading();
 
@@ -233,7 +248,7 @@ Page({
         city: courseData.city || '',
         active: courseData.active || 0,
         swiperHeight: courseData.swiperHeight || {}
-      }, function () {
+      }, function() {
         //设置当前数据的高度
         this.setCourseSwiperHeight();
         //获取日历列表高度
@@ -252,7 +267,7 @@ Page({
     //清除缓存
     wx.removeStorage({
       key: 'courseData',
-      success: function (res) { },
+      success: function(res) {},
     })
   },
   watch: {
