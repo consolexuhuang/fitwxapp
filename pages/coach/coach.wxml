@@ -21,7 +21,7 @@
   <view class="date-wrapper">
     <view class="date-list">
       <block wx:for="{{dateList}}" wx:key="index">
-        <view class="date-item {{index===active?'date-item-active':''}}" data-index="{{index}}" bindtap="handleDateTap">
+        <view class="date-item {{index==active?'date-item-active':''}}" data-index="{{index}}" bindtap="handleDateTap">
           <view class="date-item-day">{{item.day}}</view>
           <view class="date-item-date">{{item.month}}.{{item.thDay}}</view>
         </view>

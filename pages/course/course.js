@@ -500,6 +500,16 @@ Page({
       url: '/pages/course/courseSearch'
     })
   },
+  //清除搜索
+  clearSearch: function () {
+    this.setData({
+      searchText:''
+    })
+    CourseCom.getDateList(this)
+    this.getCourseList()
+    CourseCom.getConfig(this)
+  },
+  //隐藏已结束
   handleSwitchChange: function({
     detail
   }) {
@@ -590,7 +600,7 @@ Page({
   handleCoachTap: function(event) {
     const coachId = event.currentTarget.dataset.coachId
     wx.navigateTo({
-      url: '/pages/coach/coach?coachId=' + coachId
+      url: `/pages/coach/coach?coachId=${coachId}&&active=${this.data.active}`
     })
   },
   //获取日历列表高度

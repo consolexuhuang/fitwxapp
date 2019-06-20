@@ -1,5 +1,5 @@
 // pages/coach/coach.js
-const api = getApp().api
+const api = getApp().api;
 Page({
 
   /**
@@ -28,7 +28,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    const coachId = options.coachId
+    const coachId = options.coachId;
+    //从课程页面过来的
+    let active = options.active;
+    if (active){
+      this.setData({
+        active
+      })
+    };
     this.setData({
       coachId
     })
@@ -52,11 +59,20 @@ Page({
   getDateList: function(event) {
     api.post('course/getDateList').then(res => {
       const dateList = res.msg.list
-      const active = res.msg.active
-      this.setData({
-        dateList,
-        active
-      })
+      const active = res.msg.active;
+      //从课程页面过来
+      if (this.data.active){
+        this.setData({
+          dateList
+        })
+      }
+      //其他页面过来
+      else{
+        this.setData({
+          dateList,
+          active
+        })
+      };      
       this.getCourseList()
     })
   },

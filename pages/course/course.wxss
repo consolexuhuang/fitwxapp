@@ -2,7 +2,7 @@
 
 .wrapper {
   width: 100%;
-/*   display: flex;
+  /*   display: flex;
   flex-direction: column; */
 }
 
@@ -11,32 +11,35 @@
   width: 100%;
   background-color: #fff;
 }
-.netWork{
+
+.netWork {
   width: 100%;
-  background: #FFECEC;
+  background: #ffecec;
   padding-left: 70rpx;
-  /* text-align: center; */
-  /* display: flex;
+  /* text-align: center; *//* display: flex;
   align-items: center; */
 }
-.netWorkImg{
+
+.netWorkImg {
   font-size: 28rpx;
   height: 28rpx;
   width: 28rpx;
-  color: #EA6A72;
+  color: #ea6a72;
   margin-right: 20rpx;
 }
-.netWorkCont{
-  font-size:26rpx;
-  font-family:SourceHanSansCN-Regular;
-  font-weight:400;
-  color:rgba(120,120,120,1);
-  line-height:88rpx;
+
+.netWorkCont {
+  font-size: 26rpx;
+  font-family: SourceHanSansCN-Regular;
+  font-weight: 400;
+  color: rgba(120, 120, 120, 1);
+  line-height: 88rpx;
 }
-.date-wrapper{
-  box-shadow: 0 4rpx 15rpx rgba(0,0,0, 0.03);
-  position:sticky;
-  z-index:10;
+
+.date-wrapper {
+  box-shadow: 0 4rpx 15rpx rgba(0, 0, 0, 0.03);
+  position: sticky;
+  z-index: 10;
   border-top: 1rpx solid rgba(241, 241, 241, 1);
 }
 
@@ -49,7 +52,8 @@
   display: flex;
   align-items: center;
 }
-.icon1{
+
+.icon1 {
   color: #aaa;
   font-size: 35rpx;
   margin-left: 24rpx;
@@ -77,6 +81,11 @@
   margin-left: 19rpx;
   font-size: 26rpx;
   color: #b4b4b4;
+}
+
+.search-bar .iconclose-circle {
+  margin-right: 39rpx;
+  color:#D6D6D6;
 }
 
 .banner-swiper {
@@ -166,7 +175,7 @@
   width: 20rpx;
   height: 13rpx;
   font-size: 10rpx;
-  color: #aaa
+  color: #aaa;
 }
 
 .switch-wrapper {
@@ -186,7 +195,6 @@
   color: #aaa;
 }
 
-
 .date-list {
   width: 100%;
   height: 160rpx;
@@ -199,7 +207,6 @@
 .date-item {
   flex: 1;
 }
-
 
 .date-item .date-item-day {
   margin-top: 30rpx;
@@ -222,12 +229,12 @@
 
 /* .date-item:hover .date-item-date,
 .date-item:active .date-item-date, */
+
 .date-item-active .date-item-date {
   background-color: #8b6ff1;
   font-weight: 500;
   color: #fff;
 }
-
 
 .store-list {
   overflow: hidden;
@@ -291,8 +298,8 @@
 .store-none-course {
   margin-left: 33rpx;
   height: 100rpx;
-  border-top: 1rpx solid rgba(240,240,240,1);
-  text-align:center;
+  border-top: 1rpx solid rgba(240, 240, 240, 1);
+  text-align: center;
 }
 
 .store-none-course text {
@@ -314,7 +321,7 @@
   position: relative;
   margin-left: 33rpx;
   height: 272rpx;
-  border-top: 1rpx solid rgba(240,240,240,1);
+  border-top: 1rpx solid rgba(240, 240, 240, 1);
 }
 
 .course-left {
@@ -329,20 +336,22 @@
   align-items: center;
   width: 222rpx;
   line-height: 40rpx;
-  margin:25rpx 0;
+  margin: 25rpx 0;
   border-top-right-radius: 19rpx;
   border-bottom-right-radius: 19rpx;
   background-color: #f3f3f3;
   font-size: 32rpx;
-  color: #8B6FF1;
-  font-weight: bold
+  color: #8b6ff1;
+  font-weight: bold;
 }
-.course-content{
+
+.course-content {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
+
 .coach-avatar-wrapper {
   position: relative;
   width: 150rpx;
@@ -405,11 +414,11 @@
 
 .course-price-label {
   position: absolute;
-  bottom:0;
+  bottom: 0;
   left: 0;
   width: 98rpx;
   height: 29rpx;
-  background-color: rgba(139, 111, 241, .8);
+  background-color: rgba(139, 111, 241, 0.8);
   line-height: 29rpx;
   text-align: center;
   font-size: 18rpx;
@@ -423,7 +432,7 @@
   display: flex;
   flex-direction: column;
   align-content: space-between;
-  justify-content:space-between;
+  justify-content: space-between;
   margin-left: 23rpx;
   height: 150rpx;
 }
@@ -494,11 +503,12 @@
   font-size: 24rpx;
   color: #fff;
 }
-.course-appoint-btn.btn-detail{
+
+.course-appoint-btn.btn-detail {
   background: #fff;
-box-shadow:0 0 0 0;
-border:1rpx solid rgba(139,111,241,1);
-color:#8B6FF1;
+  box-shadow: 0 0 0 0;
+  border: 1rpx solid rgba(139, 111, 241, 1);
+  color: #8b6ff1;
 }
 
 .course-wait-btn {
@@ -602,14 +612,14 @@ color:#8B6FF1;
   z-index: 20;
 }
 
-.store-name-postion{
+.store-name-postion {
   position: sticky;
-  top:280rpx;
-  padding-left:33rpx;
+  top: 280rpx;
+  padding-left: 33rpx;
   right: 0;
   height: 112rpx;
   display: flex;
   align-items: center;
-  background:#fff;  
+  background: #fff;
   z-index: 9;
 }
