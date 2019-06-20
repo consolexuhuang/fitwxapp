@@ -40,7 +40,7 @@
           <block wx:for="{{goingList}}" wx:key="index">
             <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
               <image class='isWait' wx:if='{{item.is_wait}}' src='{{imgUrl}}member/isWait.png'></image>
-              <image class="item_headerImg" src="{{item.head_url}}"></image>
+              <image catchtap='handleCoachTap' data-coachId='{{item.coach_id}}' class="item_headerImg" src="{{item.head_url}}"></image>
               <view class="item_info">
                 <view class="item_info_title">{{item.course_name}}</view>
                 <view class="item_info_title_detail">
@@ -75,7 +75,7 @@
         <block wx:if="{{payingList.length}}">
           <block wx:for="{{payingList}}" wx:key="index">
             <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
-              <image class="item_headerImg" src="{{item.head_url}}"></image>
+              <image catchtap='handleCoachTap' data-coachId='{{item.coach_id}}' class="item_headerImg" src="{{item.head_url}}"></image>
               <view class="item_info">
                 <view class="item_info_title">{{item.course_name}}</view>
                 <view class="item_info_title_detail">
@@ -110,7 +110,7 @@
         <block wx:if="{{completedList.length}}">
           <block wx:for="{{completedList}}" wx:key="index">
             <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
-              <image class="item_headerImg" src="{{item.head_url}}"></image>
+              <image catchtap='handleCoachTap' data-coachId='{{item.coach_id}}' class="item_headerImg" src="{{item.head_url}}"></image>
               <view class="item_info">
                 <view class="item_info_title">{{item.course_name}}</view>
                 <view class="item_info_title_detail">

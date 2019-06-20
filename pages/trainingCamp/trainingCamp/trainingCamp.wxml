@@ -45,7 +45,7 @@
                 <view class='line'></view>
               </view>
               <view class='trainingCamp_introduction_item'>
-                <view class='trainingCamp_introduction_itemTitle'>训练效果</view>
+                <view class='trainingCamp_introduction_itemTitle'>适合人群</view>
                 <rich-text class='trainingCamp_introduction_itemCont' nodes='{{trainingCampData.suit_crowds}}'></rich-text>
               </view>
            </view>
@@ -55,7 +55,7 @@
                 <!-- <view class='line'></view> -->
               </view>
               <view class='trainingCamp_introduction_item'>
-                <view class='trainingCamp_introduction_itemTitle'>训练效果</view>
+                <view class='trainingCamp_introduction_itemTitle'>FAQ</view>
                 <rich-text class='trainingCamp_introduction_itemCont' nodes='{{trainingCampData.training_effect}}'></rich-text>
               </view>
            </view>

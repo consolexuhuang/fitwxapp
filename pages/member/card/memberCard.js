@@ -11,7 +11,7 @@ Page({
     navbarData: {
       title: '我的卡包',
       showCapsule: 1,
-      isShowBackHome: false,
+      isShowBackHome: true,
       titleColor: "#000",
       tab_topBackground: '#fff'
     },

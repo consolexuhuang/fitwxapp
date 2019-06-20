@@ -207,6 +207,14 @@ Page({
       url: '/pages/member/order/orderDetail?orderNum=' + orderNum
     })
   },
+  // 跳转教练课程列表
+  handleCoachTap: function (event) {
+    // console.log(event)
+    const coachId = event.currentTarget.dataset.coachid
+    wx.navigateTo({
+      url: '/pages/coach/coach?coachId=' + coachId
+    })
+  },
   onPullDownRefresh() {
     this.dataInit()
     wx.stopPullDownRefresh()

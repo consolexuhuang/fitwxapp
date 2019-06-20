@@ -52,7 +52,7 @@ color:#787878;
   margin-right: 15rpx;
 }
 .goodDetail{
-  padding: 47rpx 42rpx 0;
+  padding: 47rpx 42rpx 20rpx;
   box-sizing: border-box;
   display: flex;
 }

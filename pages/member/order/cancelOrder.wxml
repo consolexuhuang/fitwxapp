@@ -20,7 +20,7 @@
   <!-- refund type -->
   <view class='refund' wx:if="{{(orderData.canRefundAmount || orderData.canRefundCoupon) || orderData.canRefundCard}}">
     <view class='refund-title'>退款方式</view>
-    <view class='refund-type' wx:if="{{orderData.canRefundAmount || orderData.canRefundCoupon}}">
+    <view class='refund-type' wx:if="{{orderData.canRefundAmount || orderData.canRefundCoupon || orderData.canRefundCard}}">
       <view class='item' wx:if="{{orderData.order.paymentWay === 1}}">
         <view class='left'>
           <image class='icon' src='/images/member/icon-wx-pay.png'></image>

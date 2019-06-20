@@ -10,7 +10,7 @@ Page({
     navbarData: {
       title: '限时优惠',
       showCapsule: 1,
-      isShowBackHome: false,
+      isShowBackHome: true,
       titleColor: "#000",
       tab_topBackground: '#fff'
     },
