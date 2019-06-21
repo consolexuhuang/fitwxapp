@@ -179,8 +179,13 @@ Page({
     const courses = this.data.courseList.courses
     const dateCourse = courses[date]
 
-    let displayedStoreLength = displayedStore[date] ? displayedStore[date].length:0;
-    let dateCourseLength = Object.keys(dateCourse) ? Object.keys(dateCourse).length :0;
+    let displayedStoreLength = 0, dateCourseLength = 0;
+    if (displayedStore instanceof Object){
+      displayedStoreLength = displayedStore[date] ? displayedStore[date].length : 0;
+    }
+    if (dateCourse instanceof Object) {
+      dateCourseLength = Object.keys(dateCourse) ? Object.keys(dateCourse).length : 0;
+    }
 
 
     //设置数据
@@ -191,7 +196,10 @@ Page({
       displayedStore,
     })
     //判断是否到底
-    let dateDisplayedStore = this.data.displayedStore[date] ? this.data.displayedStore[date].length : 0;
+    let dateDisplayedStore = 0;
+    if (this.data.displayedStore instanceof Object){
+      dateDisplayedStore = this.data.displayedStore[date] ? this.data.displayedStore[date].length : 0;
+    }
     if (dateDisplayedStore >= dateCourseLength) {
       const endLine = this.data.endLine
       endLine[date] = '-拉伸完毕-'
