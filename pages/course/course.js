@@ -619,11 +619,12 @@ Page({
     const query = wx.createSelectorQuery();
     query.select('.date-wrapper').boundingClientRect()
     query.exec((res) => {
-      this.setData({
-        calendarHeight: res[0]?res[0].height:0    
-      })
-    })
-
+      if(res){
+        this.setData({
+          calendarHeight: res[0] ? res[0].height : 0
+        })
+      };      
+    });
   },
 
 })
