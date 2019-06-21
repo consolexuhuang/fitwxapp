@@ -21,7 +21,8 @@ Page({
       titleColor: "#fff",
       tab_topBackground: '#896DFF'
     },
-    marginTopBar: getApp().globalData.tab_height * 2 + 20
+    marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    lineUpState:false, 
 
   },
   //校验当前余额状态
@@ -89,7 +90,9 @@ Page({
     let data = {
       goodId : this.data.goodId
     }
+    wx.showLoading({ title: '加载中...'})
     api.post('v2/good/getGoodInfo', data).then(res => {
+      wx.hideLoading()
       console.log('getGoodInfo',res)
       if (res.code == 0)
         res.msg.store_ids__NAME = res.msg.store_ids__NAME.replace(/\,/g, "\n")
@@ -101,11 +104,13 @@ Page({
     })
   },
   checkOrder() {
+    this.setData({ lineUpState : true})
     let data = {
       goodId: this.data.goodId
     }
     api.post('v2/good/checkOrder', data).then(res => {
       console.log('checkOrder', res)
+      wx.hideLoading()
       if (res.code == 0) {
         this.setData({ orderData: res.msg }, () => {
           this.checkCardCredict()
@@ -242,5 +247,12 @@ Page({
     wx.switchTab({
       url: '/pages/card/card',
     })
+  },
+  //排队
+  lineUp(){
+    wx.showLoading({
+      title: '排队中...',
+    })
+    !this.data.lineUpState ? this.checkOrder() : ''
   }
 })
