@@ -61,7 +61,7 @@
               <text>不可用券</text>
             </block>
             <block wx:elif="{{orderData.coupon_amount}}">
-              <text bindtap="handleCouponTap">-{{orderData.coupon_amount}}元</text>
+              <text>-{{orderData.coupon_amount}}元</text>
             </block>
             <block wx:else>
               <text>{{orderData.coupon_available_count}}张可用</text>

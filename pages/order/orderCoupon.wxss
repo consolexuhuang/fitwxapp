@@ -9,10 +9,11 @@ page{
   flex-direction: column;
 }
 .rule{
-  padding-top: 29rpx;
+  /* padding-top: 29rpx; */
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  margin-top: 40rpx
 }
 .rule image{
   margin-right: 11rpx;
@@ -25,9 +26,13 @@ page{
   margin-right: 31rpx;
   font-size: 24rpx;
   color: #808080;
+  line-height: 60rpx;
+}
+.icon1{
+  margin-right: 20rpx !important;
 }
 .nonuse-coupon{
-  margin: 26rpx auto 0;
+  margin: 10rpx auto 0;
   width: 685rpx;
   height: 66rpx;
   border-radius: 3rpx;
