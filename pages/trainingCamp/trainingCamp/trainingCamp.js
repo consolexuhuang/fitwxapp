@@ -60,8 +60,8 @@ Page({
   getDomHeight(selectDom, baseHeight){
     return new Promise( resolve => {
       wx.createSelectorQuery().select(selectDom).boundingClientRect((rect) => {
-        let clientHeight = rect.height;
-        let clientWidth = rect.width;
+        let clientHeight = rect.height || 0;
+        let clientWidth = rect.width || 0;
         let ratio = 750 / clientWidth;
         let height = clientHeight * ratio;
         console.log(height);

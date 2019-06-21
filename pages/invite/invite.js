@@ -197,9 +197,8 @@ Page({
     let that = this;
     const ctx = wx.createCanvasContext('myCanvas'); //创建画布
     wx.createSelectorQuery().select('#canvas-container').boundingClientRect(function (rect) {
-      console.log(rect)
-      var height = rect.height;
-      var width = rect.width;
+      var height = rect.height || 0;
+      var width = rect.width || 0;
       ctx.setFillStyle("#fff")
       ctx.fillRect(0, 0, width, height)
       //素材展示 所有的比例按照 750宽和 670高算

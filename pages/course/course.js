@@ -179,8 +179,8 @@ Page({
     const courses = this.data.courseList.courses
     const dateCourse = courses[date]
 
-    let displayedStoreLength = displayedStore[date].length;
-    let dateCourseLength = Object.keys(dateCourse).length;
+    let displayedStoreLength = displayedStore[date] ? displayedStore[date].length:0;
+    let dateCourseLength = Object.keys(dateCourse) ? Object.keys(dateCourse).length :0;
 
 
     //设置数据
@@ -191,7 +191,8 @@ Page({
       displayedStore,
     })
     //判断是否到底
-    if (this.data.displayedStore[date].length >= dateCourseLength) {
+    let dateDisplayedStore = this.data.displayedStore[date] ? this.data.displayedStore[date].length : 0;
+    if (dateDisplayedStore >= dateCourseLength) {
       const endLine = this.data.endLine
       endLine[date] = '-拉伸完毕-'
       this.setData({
@@ -619,7 +620,7 @@ Page({
     query.select('.date-wrapper').boundingClientRect()
     query.exec((res) => {
       this.setData({
-        calendarHeight: res[0].height
+        calendarHeight: res[0]?res[0].height:0    
       })
     })
 

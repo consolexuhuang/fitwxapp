@@ -218,7 +218,7 @@ Page({
     let that = this;
     const ctx = wx.createCanvasContext('myCanvas'); //创建画布
     wx.createSelectorQuery().select('#canvas-container').boundingClientRect(function (rect) {
-      var height = rect.height;
+      var height = rect.height || 0;
       var width = rect.width;
       ctx.setFillStyle("#fff")
       ctx.fillRect(0, 0, width, height)
