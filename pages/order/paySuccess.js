@@ -135,7 +135,7 @@ Page({
   onShareAppMessage() {
     console.log(this.data.orderDetailData.course.beginDate)
     return {
-      title: `【 ${this.data.orderDetailData.course.courseName} 】${this.data.orderDetailData.course.beginDate}星期${this.data.orderDetailData.course.beginDay}${this.data.orderDetailData.course.beginTime}，快和我一起来运动
+      title: `【 ${this.data.orderDetailData.course.courseName} 】${utils.formatTime2(this.data.orderDetailData.course.beginDate)}星期${this.data.orderDetailData.course.beginDay}${utils.formatTime3(this.data.orderDetailData.course.beginTime)}，快和我一起来运动
 `,
       path: '/pages/member/order/orderDetail?orderNum=' + this.data.orderId,
       // imageUrl: this.data.picList[0],
