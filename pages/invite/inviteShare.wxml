@@ -79,6 +79,10 @@
     </view>
   </view>
 </block>
+<!-- <view class='officialAccount'>
+  <official-account bindload = 'bindload' binderror = 'binderror'></official-account>
+</view> -->
+
 <van-popup show="{{ showShareState }}" 
            bind:click-overlay='onCloseShareImg' 
            catchtouchmove="{{true}}" 
