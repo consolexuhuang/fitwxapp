@@ -128,21 +128,12 @@ Page({
       this.getUserInfo()
       wx.stopPullDownRefresh()
     })
-  }
+  },
   //登陆
-  // login(){
+  // bindgetuserinfo(e){
   //   if (!Store.getItem('userData')){
-  //     if (Store.getItem('userIsLinkPublic')) { //已关联公众号
-  //       wx.reLaunch({
-  //         url: '../login/sureAdminLogin/sureAdminLogin',
-  //       })
-  //     } else {
-  //       console.log('非关联公众号用户')
-  //       // wx.reLaunch({
-  //       //   url: '../login/wxLogin/wxLogin',
-  //       // })
-  //     } 
-  //   }
+  //     getApp().wx_loginIn();
+  //   } 
   // },
   //切换账号
   // switchAdmin(){

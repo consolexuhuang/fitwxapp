@@ -22,6 +22,7 @@ page{
   display: flex;
   flex-direction: row;
   align-items: center;
+  position: relative;
 }
 
 .top .info .user .header {
@@ -35,7 +36,12 @@ page{
 .top .info .user .name {
   font-size: 30rpx;
 }
-
+.getUserInfoBtn{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
 .top .info .concat {
   display: flex;
   flex-direction: column;
