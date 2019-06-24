@@ -2,7 +2,6 @@
   "pages": [
     "pages/index/index",
     "pages/course/course",
-    "pages/invite/invite",
     "pages/store/store",
     "pages/noFind/noFind",
     "pages/course/storeScreen",
@@ -40,7 +39,6 @@
     "pages/trainingCamp/trainingCamp/trainingCamp",
     "pages/trainingCamp/trainingCampOrder/trainingCampOrder",
     "pages/trainingCamp/trainingCampPaySuccess/trainingCampPaySuccess",
-    "pages/invite/inviteShare",
     "pages/coach/evaluate/evaluate",
     "pages/coach/signInCode/signInCode"
   ],
@@ -94,5 +92,8 @@
       "version": "1.3.2",
       "provider": "wxa75efa648b60994b"
     }
-  }
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wx322a8a72b755aa57"
+  ]
 }

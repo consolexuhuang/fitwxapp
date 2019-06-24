@@ -98,12 +98,6 @@ Page({
   onShow: function () {
 
   },
-  //邀请好友
-  // jumpInvite(){
-  //   wx.navigateTo({
-  //     url: `/pages/invite/invite`,
-  //   })
-  // },
   onclose(){
     this.setData({ paySuccessShow: false, coachWxCodeState: false})
   },
