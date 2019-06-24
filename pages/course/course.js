@@ -66,12 +66,12 @@ Page({
   },
   onShow() {
     //搜索进来的
-    if (getApp().globalData.courseConfig){
+    if (getApp().globalData.courseConfig) {
       //初始化    
       this.initFun();
       return;
     }
-    
+
     /* 设置刷新时间 */
     let startMilliseconds = wx.getStorageSync('startMilliseconds');
     let interval = 10 * 60 * 1000; //间隔设为10分钟
@@ -95,8 +95,8 @@ Page({
     this.initFun();
 
   },
-  onHide(){
-    getApp().globalData.courseConfig ='';
+  onHide() {
+    getApp().globalData.courseConfig = '';
   },
 
   // 下拉刷新
@@ -108,12 +108,14 @@ Page({
     const selectedLabel = []
     const isOver = false
     const searchText = ''
+    const active = 0
     this.setData({
       selectedStore,
       selectedTimeInterval,
       selectedLabel,
       isOver,
-      searchText
+      searchText,
+      active
     })
     //获取数据
     CourseCom.getDateList(this)
@@ -179,8 +181,9 @@ Page({
     const courses = this.data.courseList.courses
     const dateCourse = courses[date]
 
-    let displayedStoreLength = 0, dateCourseLength = 0;
-    if (displayedStore instanceof Object){
+    let displayedStoreLength = 0,
+      dateCourseLength = 0;
+    if (displayedStore instanceof Object) {
       displayedStoreLength = displayedStore[date] ? displayedStore[date].length : 0;
     }
     if (dateCourse instanceof Object) {
@@ -197,7 +200,7 @@ Page({
     })
     //判断是否到底
     let dateDisplayedStore = 0;
-    if (this.data.displayedStore instanceof Object){
+    if (this.data.displayedStore instanceof Object) {
       dateDisplayedStore = this.data.displayedStore[date] ? this.data.displayedStore[date].length : 0;
     }
     if (dateDisplayedStore >= dateCourseLength) {
@@ -530,9 +533,9 @@ Page({
     })
   },
   //清除搜索
-  clearSearch: function () {
+  clearSearch: function() {
     this.setData({
-      searchText:''
+      searchText: ''
     })
     CourseCom.getDateList(this)
     this.getCourseList()
@@ -637,11 +640,11 @@ Page({
     const query = wx.createSelectorQuery();
     query.select('.date-wrapper').boundingClientRect()
     query.exec((res) => {
-      if(res){
+      if (res) {
         this.setData({
           calendarHeight: res[0] ? res[0].height : 0
         })
-      };      
+      };
     });
   },
 
