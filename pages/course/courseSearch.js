@@ -30,13 +30,7 @@ Page({
    */
   onLoad: function (options) {
     let courseSearch = getApp().globalData.courseSearch
-    console.log('search load')
-    console.log(courseSearch)
-    console.log(getApp().globalData)
-    console.log(typeof courseSearch)
-    console.log(!!courseSearch)
     if (getApp().globalData.courseSearch) {
-      console.log('search courseSearch')
       const searchKeyWords = getApp().globalData.courseSearch.searchKeyWords
       const city = getApp().globalData.courseSearch.city
       // const selectedStore = getApp().globalData.courseSearch.selectedStore
@@ -45,6 +39,7 @@ Page({
       // const selectedShortCutLabel = getApp().globalData.courseSearch.selectedShortCutLabel
       const isOver = getApp().globalData.courseSearch.isOver
       const searchText = getApp().globalData.courseSearch.searchText
+      const active = getApp().globalData.courseSearch.active
       this.setData({
         searchKeyWords,
         city,
@@ -53,7 +48,8 @@ Page({
         // selectedLabel,
         // selectedShortCutLabel,
         isOver,
-        searchText
+        searchText,
+        active
       })
       if (getApp().globalData.historySearch) {
         const historySearch = getApp().globalData.historySearch
@@ -80,6 +76,8 @@ Page({
     // const selectedShortCutLabel = this.data.selectedShortCutLabel
     const isOver = this.data.isOver
     const searchText = event.currentTarget.dataset.searchText
+    const active = this.data.active
+
     const courseConfig = {
       city,
       // selectedStore,
@@ -87,7 +85,8 @@ Page({
       // selectedLabel,
       // selectedShortCutLabel,
       isOver,
-      searchText
+      searchText,
+      active
     }
     // getApp().globalData.courseConfig = courseConfig
     this.handleCourseSearch(courseConfig)
@@ -100,7 +99,8 @@ Page({
     // const selectedLabel = this.data.selectedLabel
     // const selectedShortCutLabel = this.data.selectedShortCutLabel
     const isOver = this.data.isOver
-    const searchText = this.data.searchText
+    const searchText = this.data.searchTexts
+    const active = this.data.active
     const courseConfig = {
       city,
       // selectedStore,
@@ -108,7 +108,8 @@ Page({
       // selectedLabel,
       // selectedShortCutLabel,
       isOver,
-      searchText
+      searchText,
+      active
     }
     this.handleCourseSearch(courseConfig)
   },
@@ -120,6 +121,7 @@ Page({
     // const selectedLabel = this.data.selectedLabel
     // const selectedShortCutLabel = this.data.selectedShortCutLabel
     const isOver = this.data.isOver
+    const active = this.data.active
     const searchText = ''
     const courseConfig = {
       city,
@@ -128,7 +130,8 @@ Page({
       // selectedLabel,
       // selectedShortCutLabel,
       isOver,
-      searchText
+      searchText,
+      active
     }
     // getApp().globalData.courseConfig = courseConfig
     this.handleCourseSearch(courseConfig)
@@ -136,8 +139,6 @@ Page({
   // 搜索功能
   handleCourseSearch: function(courseConfig){
     getApp().globalData.courseConfig = courseConfig
-    console.log('courseSearch')
-    console.log(getApp().globalData.courseConfig)
     let historySearch = this.data.historySearch
     if (courseConfig.searchText) {
       historySearch = [courseConfig.searchText].concat(historySearch)

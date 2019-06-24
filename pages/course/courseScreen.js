@@ -37,6 +37,7 @@ Page({
       const selectedLabel = getApp().globalData.courseScreen.selectedLabel
       // const selectedShortCutLabel = getApp().globalData.courseScreen.selectedShortCutLabel
       const isOver = getApp().globalData.courseScreen.isOver
+      const active = getApp().globalData.courseScreen.active
       this.setData({
         typeLabelList,
         city,
@@ -45,7 +46,8 @@ Page({
         selectedTimeInterval,
         selectedLabel,
         // selectedShortCutLabel
-        isOver
+        isOver,
+        active
       })
       getApp().globalData.courseScreen = ''
     }
@@ -96,6 +98,7 @@ Page({
     const selectedLabel = this.data.selectedLabel
     // const selectedShortCutLabel = this.data.selectedShortCutLabel
     const isOver = this.data.isOver
+    const active = this.data.active
     const courseConfig = {
       city,
      // searchText,
@@ -103,7 +106,8 @@ Page({
       selectedTimeInterval,
       selectedLabel,
       // selectedShortCutLabel
-      isOver
+      isOver,
+      active
     }
     getApp().globalData.courseConfig = courseConfig
     wx.switchTab({

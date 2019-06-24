@@ -239,13 +239,15 @@ Page({
       const selectedLabel = courseConfig.selectedLabel || []
       const isOver = courseConfig.isOver || false
       const searchText = courseConfig.searchText || ''
+      const active = courseConfig.active || 0
       this.setData({
         city,
         selectedStore,
         selectedTimeInterval,
         selectedLabel,
         isOver,
-        searchText
+        searchText,
+        active
       })
       getApp().globalData.courseConfig = '';
     }
@@ -253,6 +255,8 @@ Page({
     /* 缓存里拿数据 */
     //获取缓存数据    
     let courseData = wx.getStorageSync('courseData');
+    console.log('active01')
+    console.log(this.data.active)
     //有缓存
     if (courseData && courseData.dateList && courseData.courseList && courseData.config && courseData.city) { //缓存的courseData里缺少数据
       //赋值缓存里数据
@@ -453,6 +457,7 @@ Page({
     const selectedLabel = this.data.selectedLabel
     // const selectedShortCutLabel = this.data.selectedShortCutLabel
     const isOver = this.data.isOver
+    const active = this.data.active
     const storeScreen = {
       storeList,
       cityList,
@@ -462,7 +467,8 @@ Page({
       selectedTimeInterval,
       selectedLabel,
       // selectedShortCutLabel,
-      isOver
+      isOver,
+      active
     }
     getApp().globalData.storeScreen = storeScreen
     wx.navigateTo({
@@ -479,6 +485,7 @@ Page({
     const selectedLabel = this.data.selectedLabel
     // const selectedShortCutLabel = this.data.selectedShortCutLabel
     const isOver = this.data.isOver
+    const active = this.data.active
     const courseScreen = {
       typeLabelList,
       city,
@@ -487,7 +494,8 @@ Page({
       selectedTimeInterval,
       selectedLabel,
       // selectedShortCutLabel,
-      isOver
+      isOver,
+      active
     }
     getApp().globalData.courseScreen = courseScreen
     wx.navigateTo({
@@ -504,6 +512,7 @@ Page({
     // const selectedShortCutLabel = this.data.selectedShortCutLabel
     const isOver = this.data.isOver
     const searchText = this.data.searchText
+    const active = this.data.active
     const courseSearch = {
       searchKeyWords,
       city,
@@ -512,7 +521,8 @@ Page({
       // selectedLabel,
       // selectedShortCutLabel,
       isOver,
-      searchText
+      searchText,
+      active
     }
     getApp().globalData.courseSearch = courseSearch
     wx.navigateTo({

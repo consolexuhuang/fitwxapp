@@ -24,7 +24,7 @@ var getConfig = function (_this) {
 var getDateList = function (_this) {
   return api.post('course/getDateList').then(res => {
     const dateList = res.msg.list
-    const active = res.msg.active
+    const active = _this.data.active || res.msg.active
     //设置swiper
     let swiperHeight={};
     for (let item of dateList){
