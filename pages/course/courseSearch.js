@@ -93,13 +93,14 @@ Page({
   },
   // 点击搜索按钮
   handleSearchBtnTap: function(event){
+    console.log('search001')
     const city = this.data.city
     // const selectedStore = this.data.selectedStore
     // const selectedTimeInterval = this.data.selectedTimeInterval
     // const selectedLabel = this.data.selectedLabel
     // const selectedShortCutLabel = this.data.selectedShortCutLabel
     const isOver = this.data.isOver
-    const searchText = this.data.searchTexts
+    const searchText = this.data.searchText
     const active = this.data.active
     const courseConfig = {
       city,
@@ -138,6 +139,7 @@ Page({
   },
   // 搜索功能
   handleCourseSearch: function(courseConfig){
+    console.log('search02')
     getApp().globalData.courseConfig = courseConfig
     let historySearch = this.data.historySearch
     if (courseConfig.searchText) {
