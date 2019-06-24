@@ -615,7 +615,6 @@ Page({
         url: '/pages/course/courseDetail?courseId=' + courseId
       })
     }
-
   },
   // 课程预约
   handleAppointBtnTap: function(event) {
@@ -628,9 +627,16 @@ Page({
   // 跳转教练课程列表
   handleCoachTap: function(event) {
     const coachId = event.currentTarget.dataset.coachId
-    wx.navigateTo({
-      url: `/pages/coach/coach?coachId=${coachId}&&active=${this.data.active}`
-    })
+    const goodId = event.currentTarget.dataset.goodId
+    if (goodId){
+      wx.navigateTo({
+        url: '/pages/trainingCamp/trainingCamp/trainingCamp?goodId=' + goodId
+      })
+    } else {
+      wx.navigateTo({
+        url: `/pages/coach/coach?coachId=${coachId}&&active=${this.data.active}`
+      })
+    }
   },
   //获取日历列表高度
   dateBoxHeight: function() {

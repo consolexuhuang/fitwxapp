@@ -17,7 +17,8 @@
     <image class='signIn_status' wx:if='{{!siginUpData.success}}' src='{{imgUrl}}icon/siginIn_failStatus.png'></image>
     <text class='signIn_statusText {{!siginUpData.success ? "signIn_FailstatusText" : ""}}'>{{siginUpData.success ? "签到成功" : siginUpMsg}}</text>
     <text class='signIn_coach' wx:if='{{siginUpData.success}}'>向{{signData.coach_name}}教练出示此界面</text>
-    <text class='signIn_coach' wx:if='{{!siginUpData.success}}'>请检查签到课程订单是否正确</text>
+    <text class='signIn_coach' wx:elif='{{!siginUpData.success && siginUpMsg != "已签到"}}'>请检查签到课程订单是否正确</text>
+     <text class='signIn_coach' wx:elif='{{!siginUpData.success && siginUpMsg == "已签到"}}'>您已签到，请勿重复签到</text>
   </view>
   <image src='{{imgUrl}}icon/signCodeBg.png' class='signCodeBg fadeIn animated'></image>
   <!-- <image class='signInCode_bgLine' src='{{imgUrl}}icon/signInCode_bgLine.png'></image> -->

@@ -115,15 +115,15 @@
                         <view class="coach-avatar-wrapper">
                           <block wx:if="{{courseItem.coach_head_url2}}">
                             <view class="coach-avatar-first">
-                              <image src="{{util.imageParam(courseItem.head_url,'?imageView/1/w/120/h/120')}}" data-coach-id="{{courseItem.coach_id}}" catchtap="handleCoachTap" lazy-load />
+                              <image src="{{util.imageParam(courseItem.head_url,'?imageView/1/w/120/h/120')}}" data-coach-id="{{courseItem.coach_id}}" catchtap="handleCoachTap" data-good-id="{{courseItem.good_id}}" lazy-load />
                             </view>
                             <view class="coach-avatar-second">
-                              <image src="{{util.imageParam(courseItem.coach_head_url2,'?imageView/1/w/120/h/120')}}" data-coach-id="{{courseItem.coach_id}}" catchtap="handleCoachTap" lazy-load />
+                              <image src="{{util.imageParam(courseItem.coach_head_url2,'?imageView/1/w/120/h/120')}}" data-coach-id="{{courseItem.coach_id}}" catchtap="handleCoachTap" data-good-id="{{courseItem.good_id}}" lazy-load />
                             </view>
                           </block>
                           <block wx:else>
                             <view class="coach-avatar">
-                              <image src="{{util.imageParam(courseItem.head_url,'?imageView/1/w/120/h/120')}}" lazy-load data-coach-id="{{courseItem.coach_id}}" catchtap="handleCoachTap" />
+                              <image src="{{util.imageParam(courseItem.head_url,'?imageView/1/w/120/h/120')}}" lazy-load data-coach-id="{{courseItem.coach_id}}" catchtap="handleCoachTap" data-good-id="{{courseItem.good_id}}"/>
                             </view>
                           </block>
                           <view class="course-price-label" wx:if="{{courseItem.price_label}}">{{courseItem.price_label}}</view>

@@ -35,7 +35,7 @@ Page({
       wx.hideLoading()
       console.log('签到', res)
       if (res.msg.success) {
-        this.setData({ siginUpData: res.msg, siginUpMsg: res.msg.result || '签到失败'})
+        this.setData({ siginUpData: res.msg, siginUpMsg: (res.msg.result == '您已经签到过了' ? '已签到' : '签到失败') || '签到失败'})
         this.checkSignIn()
       } else {
         wx.showToast({

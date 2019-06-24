@@ -12,9 +12,9 @@ function loadMoreOrder(_this, pageNum) {
     size: 10,
     needTotalCount: true
   }
-  wx.showLoading({ title: '加载中...' })
+  // wx.showLoading({ title: '加载中...' })
   api.post('v2/payOrder/getOrderListByPage', data).then(res => {
-    wx, wx.hideLoading()
+    // wx.hideLoading()
     console.log('订单分页数据', res, pageNum)
     if (_this.data.active == 0) {
       if (pageNum == 1) {
@@ -66,7 +66,7 @@ Page({
       tab_topBackground: '#fff'
     },
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
-    // swiperHeight: [getApp().globalData.systemInfo.screenHeight, getApp().globalData.systemInfo.screenHeight, getApp().globalData.systemInfo.screenHeight],
+    // swiperHeight: [getApp().globalData.systemInfo.screenHeight - getApp().globalData.tab_height - 100, getApp().globalData.systemInfo.screenHeight - getApp().globalData.tab_height - 100, getApp().globalData.systemInfo.screenHeight - getApp().globalData.tab_height - 100],
     swiperHeight: getApp().globalData.systemInfo.screenHeight - getApp().globalData.tab_height - 100
   },
   // 初始化数据
@@ -99,8 +99,8 @@ Page({
   },
   //计算轮播图高度
   getSwiperHeight(list, type){ //40底部拉升完成高度
-    let loadHeight = 40
-    let height = (list.length == 0 ? list.length + 1 : list.length) * 92 + loadHeight
+    let loadHeight = 50
+    let height = (list.length == 0 ? list.length + 1 : list.length) * 98 + loadHeight
       this.setData({
         ['swiperHeight[' + type +']']: height
       })
