@@ -9,8 +9,8 @@
         <view class="course-screen-item-title">时间</view>
         <view class="course-screen-label-list">
           <view class="{{!selectedTimeInterval.length?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-time-interval="{{''}}" bindtap="handleTimeIntervalTap">全天</view>
-          <view class="{{util.include(selectedTimeInterval, '6:00-9:00')?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-time-interval="{{'6:00-9:00'}}" bindtap="handleTimeIntervalTap">06:00-09:00</view>
-          <view class="{{util.include(selectedTimeInterval, '9:00-12:00')?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-time-interval="{{'9:00-12:00'}}" bindtap="handleTimeIntervalTap">09:00-12:00</view>
+          <view class="{{util.include(selectedTimeInterval, '06:00-09:00')?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-time-interval="{{'06:00-09:00'}}" bindtap="handleTimeIntervalTap">06:00-09:00</view>
+          <view class="{{util.include(selectedTimeInterval, '09:00-12:00')?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-time-interval="{{'09:00-12:00'}}" bindtap="handleTimeIntervalTap">09:00-12:00</view>
           <view class="{{util.include(selectedTimeInterval, '12:00-14:00')?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-time-interval="{{'12:00-14:00'}}" bindtap="handleTimeIntervalTap">12:00-14:00</view>
           <view class="{{util.include(selectedTimeInterval, '14:00-18:00')?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-time-interval="{{'14:00-18:00'}}" bindtap="handleTimeIntervalTap">14:00-18:00</view>
           <view class="{{util.include(selectedTimeInterval, '18:00-22:30')?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-time-interval="{{'18:00-22:30'}}" bindtap="handleTimeIntervalTap">18:00-22:30</view>

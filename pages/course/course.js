@@ -65,7 +65,6 @@ Page({
 
   },
   onShow() {
-    console.log('on show')
     //搜索进来的
     if (getApp().globalData.courseConfig) {
       //初始化    
