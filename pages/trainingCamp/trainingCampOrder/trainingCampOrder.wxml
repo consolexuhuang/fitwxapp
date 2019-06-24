@@ -73,6 +73,7 @@
 </view>
 
 <view class='trainingCampOrderBtnBox'>
+  <button class="trainingCampOrderBtn" bindtap='lineUp' wx:if='{{!orderData}}'>排队中...</button>
   <button class="trainingCampOrderBtn cardOver" wx:if='{{orderData.pay_type == "0"}}'>{{orderData.error_tip}}</button>
   <button class="trainingCampOrderBtn" bindtap="handlePayBtnTap" wx:elif='{{orderData.pay_type == "1" || orderData.pay_type == "2" || orderData.pay_type == "5"}}'>
      立即支付 ¥{{orderData.pay_amount}}

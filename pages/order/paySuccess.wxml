@@ -38,7 +38,7 @@
       </view>
       <view class="column-item">
         <view class="column-item-label">时间：</view>
-        <view class="column-item-content">{{util.timeStampFormat(orderDetailData.course.beginDate, 'YYYY年MM月')}} 星期{{orderDetailData.course.beginDay}} {{util.timeStampFormat(orderDetailData.course.beginTime, 'hh:mm')}}-{{util.timeStampFormat(orderDetailData.course.endTime, 'hh:mm')}}</view>
+        <view class="column-item-content">{{util.timeStampFormat(orderDetailData.course.beginDate, 'YYYY年MM月DD日')}} 星期{{orderDetailData.course.beginDay}} {{util.timeStampFormat(orderDetailData.course.beginTime, 'hh:mm')}}-{{util.timeStampFormat(orderDetailData.course.endTime, 'hh:mm')}}</view>
       </view>
       <view class="column-item">
         <view class="column-item-label">地点：</view>

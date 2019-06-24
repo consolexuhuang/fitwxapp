@@ -26,7 +26,8 @@ Page({
       titleColor: '#fff'
     },
     marginTop: getApp().globalData.tab_height * 2 + 20,
-    isShowJurisdiction:false //电话授权功能
+    isShowJurisdiction:false, //电话授权功能
+    lineUpState:false,
   },
   /**
    * 生命周期函数--监听页面加载
@@ -124,6 +125,8 @@ Page({
       data.couponId = couponId
     }
     api.post('v2/payOrder/checkOrder', data).then(res => {
+      this.setData({ lineUpState : true})
+      wx.hideLoading()
       if (res.code === 0) {
         const orderData = res.msg
         const firstCheck = false
@@ -334,4 +337,11 @@ Page({
         this.checkOrder()
     })
   },
+  //排队
+  lineUp() {
+    wx.showLoading({
+      title: '排队中...',
+    })
+    !this.data.lineUpState ? this.checkOrder() : ''
+  }
 })

@@ -1,7 +1,7 @@
 <!--pages/order/order.wxml-->
 <wxs src="../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class="wrapper" wx:if="{{courseData && orderData}}" style='margin-top:{{marginTop}}px'>
+<view class="wrapper" wx:if="{{courseData}}" style='margin-top:{{marginTop}}px'>
   <view class="content">
     <view class="left-circle"></view>
     <view class="right-circle"></view>
@@ -61,7 +61,7 @@
               <text>不可用券</text>
             </block>
             <block wx:elif="{{orderData.coupon_amount}}">
-              <text bindtap="handleCouponTap">-{{orderData.coupon_amount}}元</text>
+              <text>-{{orderData.coupon_amount}}元</text>
             </block>
             <block wx:else>
               <text>{{orderData.coupon_available_count}}张可用</text>
@@ -73,7 +73,7 @@
           <view class="column-item-label" wx:if="{{orderData.card_discount}}">PLUS价</view>
           <view class="column-item-label" wx:else>课程价</view>
           <view class="plus-wrapper">
-            <view class="plus-price">¥{{orderData.pay_amount_pre_coupoon}}</view>
+            <view class="plus-price">¥{{orderData.pay_amount_pre_coupoon || '0.00'}}</view>
             <view class="plus-line"></view>
             <block wx:if="{{isDetailShow}}">
               <view class="plus-detail" data-is-detail-show="{{false}}" bindtap="handleDetailTap">明细</view>
@@ -86,7 +86,7 @@
           </view>
         </view>
         <view class="price-detail-list" hidden="{{!isDetailShow}}">
-          <view class="price-detail-item">需支付：<text>¥{{orderData.pay_amount}}</text></view>
+          <view class="price-detail-item">需支付：<text>¥{{orderData.pay_amount || '0.00'}}</text></view>
           <view class="price-detail-item" wx:if="{{orderData.order_amount}}">课程价：¥{{orderData.order_amount}}</view>
           <view class="price-detail-item">人数：{{count}}</view>
           <view class="price-detail-item" wx:if="{{orderData.card_discount}}">PLUS卡：-¥{{orderData.card_discount}}</view>
@@ -94,7 +94,7 @@
         </view>
         <view class="column-item">
           <view class="column-item-label">需支付</view>
-          <view class="need-pay">¥{{orderData.pay_amount}}</view>
+          <view class="need-pay">¥{{orderData.pay_amount || '0.00'}}</view>
         </view>
       </block>
     </view>
@@ -103,7 +103,7 @@
       <rich-text class="tips-content" nodes="{{'1.开课前6小时取消，全额退款 <br/>2.开课6小时内取消，不支持退款'}}"></rich-text>
     </view>
   </view>
-  <view class="pay-mode-wrapper">
+  <view class="pay-mode-wrapper" wx:if='{{orderData}}'>
     <view class="pay-mode-title">支付方式</view>
     <!--次卡支付模式-->
     <block wx:if="{{orderData.pay_type===7}}">
@@ -227,6 +227,9 @@
   </view>
 </view>
 <view class="pay-btn-wrapper">
+  <block wx:if='{{!orderData}}'>
+    <view class="pay-btn" bindtap="lineUp">排队中...</view>
+  </block>
   <block wx:if="{{orderData.pay_type===7}}">
     <button wx:if='{{isShowJurisdiction}}' class="pay-btn" open-type="getPhoneNumber" bindgetphonenumber='getPhoneNumber'>立即支付</button>
     <button wx:if='{{!isShowJurisdiction}}' class="pay-btn" bindtap='getPhoneNumber'>立即支付</button>

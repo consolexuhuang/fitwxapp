@@ -94,7 +94,7 @@
               </view>
             </view>
           </block>
-          <view class='goBottom fadeIn animated'>{{payingList.length == userInfoData.order.unpay_count && payingList.length > 10 ? '-拉伸完成-' : ''}}</view>
+          <view class='goBottom fadeIn animated' wx:if='{{payingList.length > 10}}'>{{payingList.length == userInfoData.order.unpay_count && payingList.length > 10 ? '-拉伸完成-' : '加载中...'}}</view>
         </block>
         <!-- 无数据 -->
         <block wx:else>
@@ -129,7 +129,7 @@
               </view>
             </view>
           </block>
-          <view class='goBottom fadeIn animated'>{{completedList.length == userInfoData.order.complete_count && completedList.length > 10 ? '-拉伸完成-' : '加载中...'}}</view>
+          <view class='goBottom fadeIn animated' wx:if='{{completedList.length > 10}}'>{{completedList.length == userInfoData.order.complete_count && completedList.length > 10 ? '-拉伸完成-' : '加载中...'}}</view>
         </block>
         <!-- 无数据 -->
         <block wx:else>

@@ -16,7 +16,8 @@ Page({
       titleColor:"#fff"
     },
     signData:'' ,//签到信息
-    siginUpData:''//签到
+    siginUpData:'',//签到
+    siginUpMsg:''
   },
   //签到信息
   checkSignIn(){
@@ -34,7 +35,7 @@ Page({
       wx.hideLoading()
       console.log('签到', res)
       if (res.msg.success) {
-        this.setData({ siginUpData: res.msg })
+        this.setData({ siginUpData: res.msg, siginUpMsg: res.msg.result || '签到失败'})
         this.checkSignIn()
       } else {
         wx.showToast({
