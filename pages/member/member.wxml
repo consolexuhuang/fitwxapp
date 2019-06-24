@@ -8,7 +8,7 @@
         <image class="header" wx:if='{{!userData && !userData.head_img}}' src="{{imgUrl}}icon/default_header.png"></image>
         <image class="header" wx:if='{{userData && userData.head_img}}' src="{{userData.head_img}}"></image>
         <text class="name">{{userData && userData.nick_name ? userData.nick_name : '点击登录'}}</text>
-        <button open-type='getUserInfo' bindgetuserinfo = 'bindgetuserinfo' class='getUserInfoBtn'></button>
+        <!-- <button open-type='getUserInfo' bindgetuserinfo = 'bindgetuserinfo' class='getUserInfoBtn'></button> -->
       </view>
       <view class="concat">
         <text class="pic iconfont iconicon-test24"></text>
