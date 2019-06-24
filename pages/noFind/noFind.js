@@ -43,7 +43,7 @@ Page({
 
   },
   backHome(){
-    wx.switchTab({
+    wx.navigateTo({
       url: '/pages/index/index',
     })
   }

@@ -26,8 +26,8 @@ Page({
       titleColor: '#fff'
     },
     marginTop: getApp().globalData.tab_height * 2 + 20,
-    isShowJurisdiction:false, //电话授权功能
-    lineUpState:false,
+    isShowJurisdiction: false, //电话授权功能
+    lineUpState: false,
   },
   /**
    * 生命周期函数--监听页面加载
@@ -40,11 +40,11 @@ Page({
     })
     wx.login({
       success: res_code => {
-        this.setData({code : res_code.code})
+        this.setData({ code: res_code.code })
       }
     })
   },
-  onShow(){
+  onShow() {
     try {
       const orderConfig = wx.getStorageSync('orderConfig')
       if (orderConfig) {
@@ -68,7 +68,7 @@ Page({
     this.getWaitCount()
     this.checkOrder()
   },
-  watch:{
+  watch: {
     // count: function(newValue,oldValue){
     //   if (newValue !== oldValue) {
     //     console.log(newValue,oldValue)
@@ -125,7 +125,7 @@ Page({
       data.couponId = couponId
     }
     api.post('v2/payOrder/checkOrder', data).then(res => {
-      this.setData({ lineUpState : true})
+      this.setData({ lineUpState: true })
       wx.hideLoading()
       if (res.code === 0) {
         const orderData = res.msg
@@ -142,14 +142,14 @@ Page({
     })
   },
   // 显示详细
-  handleDetailTap: function(event){
+  handleDetailTap: function (event) {
     const isDetailShow = event.currentTarget.dataset.isDetailShow
     this.setData({
       isDetailShow
     })
   },
   // 选择次卡
-  handleTimeCardTap: function(evnet) {
+  handleTimeCardTap: function (evnet) {
     const timeCardList = this.data.orderData.time_card_list
     const count = this.data.count
     const couponId = this.data.couponId
@@ -215,16 +215,17 @@ Page({
       memberId: Store.getItem('userData').id
     }
     api.post('member/getMemberByMemberId', data).then(res => {
-      console.log('getMemberInfo', res)
-      this.setData({ memberInfo: res.msg }, () => {
-        if (this.data.memberInfo.cellphone) {
-          this.setData({ isShowJurisdiction : false})
-        } else this.setData({ isShowJurisdiction: true })
-      })
+      this.setData({ memberInfo: res.msg });
+      if (this.data.memberInfo.cellphone) {
+        this.setData({ isShowJurisdiction: false })
+      } 
+      else { 
+        this.setData({ isShowJurisdiction: true }) 
+        }
     })
   },
   // 充值
-  handleRechargeTap: function(event) {
+  handleRechargeTap: function (event) {
     const courseId = this.data.courseId
     // const rechargeSuccessRoute = '/pages/order/payOrder?courseId=' + courseId
     // getApp().globalData.rechargeSuccessRoute = rechargeSuccessRoute
@@ -232,8 +233,8 @@ Page({
       url: '/pages/card/recharge'
     })
   },
-  
-  wxPay: function(obj){
+
+  wxPay: function (obj) {
     wx.requestPayment({
       timeStamp: obj.timeStamp,
       nonceStr: obj.nonceStr,
@@ -255,7 +256,7 @@ Page({
       }
     })
   },
-  getPhoneNumber (e) {//这个事件同样需要拿到e
+  getPhoneNumber(e) {//这个事件同样需要拿到e
     let that = this
     const courseId = this.data.courseId
     const timeCardId = this.data.timeCardId
@@ -273,7 +274,7 @@ Page({
       data.count = count
       data.couponId = couponId
     }
-    wx.showLoading({ title: '预约中...',})
+    wx.showLoading({ title: '预约中...', })
     api.post('payOrder/takeOrder', data).then(res => {
       wx.hideLoading()
       console.log(res)
@@ -285,7 +286,7 @@ Page({
           const orderId = orderData.orderNum
           wx.redirectTo({
             url: '/pages/order/paySuccess?orderId=' + orderId,
-            success:()=>{
+            success: () => {
               if (this.data.isShowJurisdiction) {
                 let ency = e.detail.encryptedData;
                 let iv = e.detail.iv;
@@ -311,17 +312,17 @@ Page({
 
             }
           })
-        }   
+        }
       } else {
         wx.showToast({
           title: res.msg || '预约失败！',
-          icon:'none'
+          icon: 'none'
         })
       }
     })
-   
 
-    
+
+
     // //把获取手机号需要的参数取到，然后存到头部data里面
     // that.setData({
     //   ency: ency,
@@ -333,8 +334,8 @@ Page({
   },
   //关闭免责声明
   agreeDisclaimer() {
-    api.post('v2/member/agreeDisclaimer').then(ret => {      
-        this.checkOrder()
+    api.post('v2/member/agreeDisclaimer').then(ret => {
+      this.checkOrder()
     })
   },
   //排队
