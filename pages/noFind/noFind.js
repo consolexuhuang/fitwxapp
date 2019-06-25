@@ -21,6 +21,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('onload noFind')
     if(options.type){
       console.log(options.type)
       this.setData({ type: options.type})
@@ -33,7 +34,10 @@ Page({
           break;
         case '4': this.setData({ serverCont: '网络连接出现了问题', ['navbarData.title']: '连接失败'})
       }
-    }
+    };
+
+    //设置进入状态
+    wx.setStorageSync('noFind', true)
   },
 
   /**
@@ -42,8 +46,12 @@ Page({
   onShow: function () {
 
   },
+  onHide:function(){
+    console.log('onHide noFind')
+    
+  },
   backHome(){
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/index/index',
     })
   }

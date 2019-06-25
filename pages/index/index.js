@@ -21,8 +21,8 @@ Page({
     active: 0,
     complete: {},
     imgUrl: app.globalData.imgUrl,
-    everyPageNum: 5,//每页显示店铺数量
-    swiperHeight:{},
+    everyPageNum: 5, //每页显示店铺数量
+    swiperHeight: {},
     navbarData: {
       title: '',
       showCapsule: 0,
@@ -35,13 +35,17 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
+    console.log('index onload')
+    //删除进入状态
+    wx.removeStorageSync('noFind');
+    
     this.checkSessionFun();
   },
 
 
   // 获取展示的店铺
-  getDisplayedStore: function (event) {
+  getDisplayedStore: function(event) {
     const courses = this.data.courseList.courses
     const displayedStore = {}
     const pageList = {}
@@ -91,8 +95,8 @@ Page({
       isOver: 0
     }
     CourseCom.getConfig(this).then(() => {
-      return Promise.all([CourseCom.getDateList(this), CourseCom.getCourseList(courseParam, this)])
-    })
+        return Promise.all([CourseCom.getDateList(this), CourseCom.getCourseList(courseParam, this)])
+      })
       .then(() => {
         const dateList = this.data.dateList
         const courseList = this.data.courseList
@@ -138,7 +142,7 @@ Page({
       success: () => {
         //session_key 未过期，并且在本生命周期一直有效
         Store.getItem('userData') ? this.getDataInit() : this.wxLogin();
-       // this.getDataInit();
+        // this.getDataInit();
       },
       fail: () => {
         // session_key 已经失效，需要重新执行登录流程

@@ -3,13 +3,14 @@ const topInit = (120 + 160 + 112) / 2;
 let showStoreName, currentStoreInfo = {};
 //接受数据
 worker.onMessage(function (res) {
-  let nodeRefArr = res.res[0];
+  let nodeRefArr = res.res[0];  
+  let top = nodeRefArr[0].top || 0;
   //判断第一个店铺距离顶部的距离（用于是否显示固定标题）
-  if (nodeRefArr[0].top < topInit) {
+  if (top < topInit) {
     showStoreName = true
   };
   //判断第一个店铺距离顶部的距离（用于是否显示固定标题）
-  if (nodeRefArr[0].top > topInit) {
+  if (top > topInit) {
     showStoreName = false
   };
   //当前显示的店铺

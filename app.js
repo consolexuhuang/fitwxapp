@@ -95,7 +95,6 @@ App({
     // openid:'',
     location: '',
     isIpX: false, //是否是ipHonex
-    redirectToState: true,
   },
 
   /**

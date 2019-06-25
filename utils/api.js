@@ -2,6 +2,9 @@
 const API_URI = 'https://dev.jlife.vip/wx/api/'
 import Store from './store.js'
 function request(path, data, method) {
+  //获取存储报错数据
+  let noFind = wx.getStorageSync('noFind');
+
   return new Promise(function(resolve, reject) {
     wx.request({
       //项目的真正接口，通过字符串拼接方式实现   02076356e4034f1b98c65c7ef0d88443 Store.getItem('userData').token
@@ -14,14 +17,13 @@ function request(path, data, method) {
       data: data,
       method: method,
       success: function(res) {
-        if (getApp().globalData.redirectToState){
-          if (res.data.code === 0 || res.data.code === -1){
+        //没报错
+        if (!noFind){
+          if (res.data.code === 0 || res.data.code === -1) {
             resolve(res.data)
-            getApp().globalData.redirectToState = true
           }
-          else if (res.data.code !== 401){
-            wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
-            getApp().globalData.redirectToState = false;
+          else if (res.data.code !== 401) {
+            wx.redirectTo({ url: `/pages/noFind/noFind?type=1` })
             reject(res.data)
           }
           //有缓存数据‘无效的用户信息’
@@ -38,10 +40,10 @@ function request(path, data, method) {
 
       },
       fail: function(res) {
-        if (getApp().globalData.redirectToState) {
-          wx.navigateTo({ url: `/pages/noFind/noFind?type=4`})//无网络
+        //没报错
+        if (!noFind) {
+          wx.redirectTo({ url: `/pages/noFind/noFind?type=4`})//无网络
           reject(res.data)
-          getApp().globalData.redirectToState = false
         }
       }
     })
