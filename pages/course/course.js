@@ -183,17 +183,18 @@ Page({
 
     let displayedStoreLength = 0,
       dateCourseLength = 0;
+
+    const length = (page - 1) * 7 + 5
     if (displayedStore instanceof Object) {
       displayedStoreLength = displayedStore[date] ? displayedStore[date].length : 0;
     }
     if (dateCourse instanceof Object) {
       dateCourseLength = Object.keys(dateCourse) ? Object.keys(dateCourse).length : 0;
+      displayedStore[date] = Object.keys(dateCourse).splice(0, length)
     }
 
 
     //设置数据
-    const length = (page - 1) * 7 + 5
-    displayedStore[date] = Object.keys(dateCourse).splice(0, length)
     this.setData({
       pageList,
       displayedStore,
