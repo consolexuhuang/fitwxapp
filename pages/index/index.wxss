@@ -34,6 +34,28 @@ page {
   margin: auto;
   text-align: center;
 }
+.startUpCont2 {
+  left: 0;
+  right: 0;
+  bottom: 300rpx;
+  margin: auto;
+  text-align: center;
+  width:613rpx;
+  line-height:84rpx;
+  border-radius:41rpx;
+  border:1px solid rgba(255,255,255,1);
+  font-size:32rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  position: absolute;
+}
+.getUserInfoBtn{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
 
 .startUpCont_Img {
   width: 316rpx;

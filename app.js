@@ -102,7 +102,7 @@ App({
     isIpX: false, //是否是ipHonex
     redirectToState: true,
     scene:'',
-     
+    
     JumpAppId: {                    //测试
       appid: 'wx322a8a72b755aa57',
       envVersion: 'trial' //体验版
@@ -186,7 +186,7 @@ App({
           let data = {
             code: res_code.code,
             sourceData: _this.globalData.scene,
-            shareChannel: '',
+            shareChannel: _this.globalData.shareMemberId || '',
             nickName: Store.getItem('wx_userInfo').nickName || '',
             headImg: Store.getItem('wx_userInfo').avatarUrl || '',
             city: Store.getItem('wx_userInfo').city || '',
@@ -218,17 +218,22 @@ App({
   },
   //修改用户信息接口
   wx_modifyUserInfo(){
-    let data = {
-      nickName: Store.getItem('wx_userInfo').nickName || '',
-      headImg: Store.getItem('wx_userInfo').avatarUrl || '',
-      city: Store.getItem('wx_userInfo').city || '',
-      gender: Store.getItem('wx_userInfo').gender || ''
-    }
-    api.post('modifyUserInfo', data).then(res => {
-      console.log('修改用户信息接口', res)
-      if(res.msg) {
-        Store.setItem('userData', res.msg)
+    return new Promise(resolve => {
+      let data = {
+        nickName: Store.getItem('wx_userInfo').nickName || '',
+        headImg: Store.getItem('wx_userInfo').avatarUrl || '',
+        city: Store.getItem('wx_userInfo').city || '',
+        gender: Store.getItem('wx_userInfo').gender || ''
       }
+      wx.showLoading({ title: '加载中...',})
+      api.post('modifyUserInfo', data).then(res => {
+        wx.hideLoading()
+        console.log('修改用户信息接口', res)
+        if(res.msg) {
+          Store.setItem('userData', res.msg)
+          resolve()
+        }
+      })
     })
   },
   watchLocation: function (callback) {

@@ -137,7 +137,8 @@ Page({
     wx.checkSession({
       success: () => {
         //session_key 未过期，并且在本生命周期一直有效
-        Store.getItem('userData') ? this.getDataInit() : this.wxLogin();
+        Store.getItem('userData').nick_name ? this.getDataInit() : '';
+        this.setData({ userData :  Store.getItem('userData')})
        // this.getDataInit();
       },
       fail: () => {
@@ -146,7 +147,23 @@ Page({
       }
     })
   },
-
+  //更新用户
+  bindgetuserinfo(e) {
+    wx.getUserInfo({
+      success: res => {
+        console.log('用户授权信息', res.userInfo)
+        Store.setItem('wx_userInfo', res.userInfo)
+        this.setData({ wx_userInfo: res.userInfo || '' })
+        getApp().wx_modifyUserInfo().then(res => {
+          this.setData({ userData: Store.getItem('userData') })
+          this.getDataInit();
+        });
+      },
+      fail:res => {
+        this.getDataInit();
+      }
+    })
+  },
   //微信登录
   wxLogin() {
     //登录
