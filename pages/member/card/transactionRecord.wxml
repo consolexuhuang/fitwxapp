@@ -46,7 +46,7 @@
                   <view class="info">
                     <view class="left">
                       <text class="status">退款成功</text>
-                      <text class="time">{{item.create_time}}</text>
+                      <text class="time">{{item.refund_time}}</text>
                     </view>
                     <view class="right">
                       <text class="acount"> </text>
@@ -89,7 +89,7 @@
                     <view class="left">
                       <text class="status">已支付</text>
                       <text class="order-number">{{item.course_name}}</text>
-                      <text class="time">{{item.create_time}}</text>
+                      <text class="time">{{item.begin_date}} {{item.begin_time}}</text>
                     </view>
                     <view class="right">
                       <text class="acount">-{{item.act_price}}</text>
@@ -101,11 +101,11 @@
                   <view class="info">
                     <view class="left">
                       <text class="status">退款成功</text>
-                      <text class="time">{{item.create_time}}</text>
+                      <text class="time">{{item.refund_time}}</text>
                     </view>
                     <view class="right">
                       <text class="acount"> </text>
-                      <text class="acount-refund">-{{item.refund_amount}}</text>
+                      <text class="acount-refund">+{{item.refund_amount}}</text>
                     </view>
                   </view>
                 </view>
