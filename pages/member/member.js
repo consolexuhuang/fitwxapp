@@ -111,12 +111,12 @@ Page({
   // 跳转邀请页面
   handleInviteTap: function(event) {
     wx.navigateToMiniProgram({
-      appId: 'wx322a8a72b755aa57',
+      appId: getApp().globalData.JumpAppId.appid,
       path: 'pages/inviteShare/inviteShare',
       extraData: {
         foo: '我是拉新数据'
       },
-      envVersion: 'trial',
+      envVersion: getApp().globalData.JumpAppId.envVersion,
       success(res) {
         // 打开成功
         console.log(res)
