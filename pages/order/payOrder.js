@@ -256,7 +256,7 @@ Page({
       }
     })
   },
-  getPhoneNumber(e) {//这个事件同样需要拿到e
+  getPhoneNumber(e) {//这个事件同样需要拿到
     let that = this
     const courseId = this.data.courseId
     const timeCardId = this.data.timeCardId

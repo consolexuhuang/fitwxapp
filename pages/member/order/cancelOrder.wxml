@@ -55,7 +55,7 @@
   <!-- tip -->
   <view class='tip'>
     <view class='tip-title'>温馨提示</view>
-    <text class='tip-c'>1.开课前6小时取消，全额退款；</text>
+    <text class='tip-c'>1.开课前6小时取消，券在有效期内全额退款；</text>
     <text class='tip-c'>2.开课前6小时内取消，不支持退款；</text>
   </view>
 </view>
