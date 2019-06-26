@@ -20,13 +20,14 @@
         <view class="content recharge">
           <!-- 有内容 -->
           <view wx:if="{{chargeList.length}}">
-            <view class="summary">
+            <view class="summary ">
               <text>累计充值：{{chargeRecord.charge_amount}}</text>
               <text>PLUS卡余额：{{chargeRecord.left_amount}}</text>
             </view>
             <!--1 month -->
             <block wx:for="{{chargeList}}" wx:key="_PK_">
               <view class="list">
+              <view class='sameitem'>
                 <!-- 1 -->
                 <view class="item">
                   <image class="icon" src="{{imgUrl}}card/card-icon-plus.png"></image>
@@ -54,6 +55,7 @@
                       <text class="acount-refund">-{{item.refund_amount}}</text>
                     </view>
                   </view>
+                </view>
                 </view>
               </view>
             </block>
@@ -84,6 +86,7 @@
             <view class="list">
               <!-- 1 -->
               <block wx:for="{{consumeList}}" wx:key="_PK_">
+              <view class='sameitem'>
                 <view class="item">
                   <image class="icon" src="{{imgUrl}}card/card-icon-plus.png"></image>
                   <view class="info">
@@ -109,6 +112,7 @@
                       <text class="acount-refund">+{{item.refund_amount}}</text>
                     </view>
                   </view>
+                </view>
                 </view>
               </block>
             </view>

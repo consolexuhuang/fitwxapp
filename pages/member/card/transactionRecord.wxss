@@ -1,4 +1,7 @@
 /* pages/member/card/transactionRecord.wxss */
+page{
+  background:#fff;
+}
 
 .wrapper {
   width: 100%;
@@ -84,8 +87,9 @@
   flex-direction: column;
   color: #828282;
   font-size: 24rpx;
-  margin: 30rpx 52rpx;
+  padding: 30rpx 52rpx;
   line-height: 40rpx;
+  border-bottom: 20rpx solid #FAFAFA;
 }
 
 .content .title {
@@ -182,6 +186,10 @@
   color: #ff5a5a;
 }
 
+.list .sameitem{
+border-bottom: 20rpx solid #FAFAFA;
+}
+
 .content .none {
   display: flex;
   flex-direction: column;
@@ -221,3 +229,5 @@
   height: 26rpx;
   margin-left: 20rpx;
 }
+
+
