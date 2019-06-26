@@ -112,6 +112,7 @@
           <image class="pay-mode-item-icon" src="{{imgUrl}}order/icon_card_pay.png" />
           <view class="pay-mode-item-content">
             <text class="pay-mode-item-title">{{orderData.time_card_title}}</text>
+            <text class="pay-mode-item-tips">{{orderData.time_card_list[0].card_left_count}}张可用</text>
           </view>
           <text class="arrow-icon iconfont iconicon-test41" />
         </view>
@@ -144,7 +145,8 @@
         <view class="pay-mode-item pay-mode-item-first" wx:if="{{orderData.time_card_available_count}}" data-time-card-id="{{orderData.if_time_card_id}}" bindtap="handlePayModeTap">
           <image class="pay-mode-item-icon" src="{{imgUrl}}order/icon_card_pay.png" />
           <view class="pay-mode-item-content">
-            <text class="pay-mode-item-title">{{orderData.if_time_card_title}}<text>(暂不使用)</text></text>
+            <text class="pay-mode-item-title">{{orderData.if_time_card_title}}</text>
+            <text class="pay-mode-item-tips">(暂不使用)</text>
           </view>
           <image class="selected-icon" src="{{imgUrl}}order/icon_unselected.png" />
         </view>
