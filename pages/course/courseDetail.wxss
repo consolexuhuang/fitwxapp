@@ -446,3 +446,8 @@
   background: #DADADA !important;
   color: #8C8C8C !important;
 }
+.officialAccount{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

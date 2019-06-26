@@ -232,7 +232,7 @@
     <text class='guideBtnImg iconfont iconclose-circle' bindtap='closeguideLogin'></text>
     <image src='https://img.cdn.powerpower.net/5d11d55de4b080ee42fe2f30.png?imageView/1/w/686/h/120' class='guideLoginBg'></image>
     <view class='guideLoginBox'>
-      <view class='guideLoginText'>点我关注，活动福利不再错过</view>
+      <view class='guideLoginText'>点我关注，活动福利全知道</view>
       <button class='guideLoginBtn' bindtap='showNotice'>开启通知</button>
     </view>
   </view>

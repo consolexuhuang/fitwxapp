@@ -196,3 +196,5 @@
 </view>
 <!-- 免责声明 -->
 <statement show="{{isShowStatement}}" content="{{statementContent}}" btnText="关闭" bind:statementEvent="statementClose"></statement>
+
+  <official-account class='officialAccount'></official-account>

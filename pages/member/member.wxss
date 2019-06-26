@@ -436,3 +436,8 @@ page{
   left: 0;
   top: 0;
 }
+.officialAccount{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

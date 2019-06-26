@@ -158,3 +158,4 @@
     <text class="item" bindtap="loginOut">退出当前帐号</text>
   </view> -->
 </view>
+  <official-account class='officialAccount'></official-account>
