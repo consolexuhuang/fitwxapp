@@ -1,4 +1,5 @@
 <!--pages/member/card/transactionRecord.wxml-->
+<wxs src="../../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
 <view class="wrapper" style='margin-top:{{marginTopBar}}px'>
   <view class="tab-title">
@@ -89,7 +90,7 @@
                     <view class="left">
                       <text class="status">已支付</text>
                       <text class="order-number">{{item.course_name}}</text>
-                      <text class="time">{{item.begin_date}} {{item.begin_time}}</text>
+                      <text class="time">{{item.begin_date}} {{util.timeFormat(item.begin_time, 'hh:mm')}}</text>
                     </view>
                     <view class="right">
                       <text class="acount">-{{item.act_price}}</text>

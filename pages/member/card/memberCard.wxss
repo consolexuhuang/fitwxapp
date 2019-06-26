@@ -1,12 +1,15 @@
 /* pages/member/card/memberCard.wxss */
 page{
-  background: #FAFAFA;
+  background: #fff;
 }
 .myCard_moneyRecord{
   background: #fff;
   width: 100%;
   padding-bottom: 34rpx;
-  margin-bottom: 20rpx;
+  border-bottom: 20rpx solid #FAFAFA;
+}
+.myCard_moneyRecord:last-child{
+  border-bottom: 20rpx solid #fff;
 }
 .myCard_moneyRecord_title{
   padding: 0 56rpx;
