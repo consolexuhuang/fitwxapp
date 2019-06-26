@@ -3,6 +3,7 @@
   "navigationStyle": "custom",
   "usingComponents": {
     "statement": "/components/statement/statement",
-     "tabBar_top": "/components/tabBar_top/tabBar"
+     "tabBar_top": "/components/tabBar_top/tabBar",
+     "dialogComp": "/components/dialog/dialog"
   }
 }

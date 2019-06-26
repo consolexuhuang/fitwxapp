@@ -28,16 +28,24 @@ Page({
     marginTop: getApp().globalData.tab_height * 2 + 20,
     isShowJurisdiction: false, //电话授权功能
     lineUpState: false,
+    dialogConfig: {
+      cancleBl: false,
+      dialogTitle: '',
+      dialogCont: '此课已满员，可预约其他的课程',
+      dialogContColor: '#896FFF',
+      dialogComfirmBtn: '返回首页',
+      dialogCancleBtn: '',
+      dialogImg: 'member/icon-top-blue.png'
+    },
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    getApp().setWatcher(this)
     const courseId = options.courseId
     this.setData({
       courseId
-    })
+    }) 
     wx.login({
       success: res_code => {
         this.setData({ code: res_code.code })
@@ -63,18 +71,20 @@ Page({
     } catch (e) {
       // Do something when catch error
     }
-    this.getMemberInfo()
+    //获取会员手机号（如果有手机号则支付不需要授权，否则需要授权手机号）
+    let userData = wx.getStorageSync('userData');
+    let memberMobile = userData ? userData.cellphone : '';
+    if (memberMobile) {
+      this.setData({ isShowJurisdiction: false })
+    }
+    else {
+      this.setData({ isShowJurisdiction: true })
+    }
+
+    //this.getMemberInfo()
     this.getCourse()
     this.getWaitCount()
     this.checkOrder()
-  },
-  watch: {
-    // count: function(newValue,oldValue){
-    //   if (newValue !== oldValue) {
-    //     console.log(newValue,oldValue)
-    //     this.checkOrder()
-    //   }
-    // }
   },
   getCourse: function (event) {
     const courseId = this.data.courseId
@@ -210,7 +220,7 @@ Page({
       url: '/pages/order/orderCoupon'
     })
   },
-  getMemberInfo() {
+  /* getMemberInfo() {
     let data = {
       memberId: Store.getItem('userData').id
     }
@@ -223,7 +233,7 @@ Page({
         this.setData({ isShowJurisdiction: true }) 
         }
     })
-  },
+  }, */
   // 充值
   handleRechargeTap: function (event) {
     const courseId = this.data.courseId
@@ -344,5 +354,11 @@ Page({
       title: '排队中...',
     })
     !this.data.lineUpState ? this.checkOrder() : ''
+  },
+  //返回首页
+  goBackHome(){
+    wx.switchTab({
+      url: '/pages/course/course',
+    })
   }
 })

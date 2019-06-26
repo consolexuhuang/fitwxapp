@@ -1,7 +1,7 @@
 <!--pages/order/order.wxml-->
 <wxs src="../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class="wrapper" wx:if="{{courseData}}" style='margin-top:{{marginTop}}px'>
+<view class="wrapper"  style='margin-top:{{marginTop}}px'>
   <view class="content">
     <view class="left-circle"></view>
     <view class="right-circle"></view>
@@ -136,28 +136,6 @@
             <image class="selected-icon" src="{{imgUrl}}order/icon_unselected.png" />
           </view>
         </block>
-        <!--只能PLUS支付，例如排队等候的状态-->
-        <block wx:elif="{{orderData.second_pay_type===3}}"> 
-          <view class="pay-mode-item" data-time-card-id="{{''}}" bindtap="handlePayModeTap">
-            <image class="pay-mode-item-icon" src="{{imgUrl}}order/icon_plus_pay.png" />
-            <view class="pay-mode-item-content">
-              <text class="pay-mode-item-title">卡支付</text>
-              <text class="pay-mode-item-tips" bindtap="handleRechargeTap" wx:if="{{orderData.has_card}}">余额 ¥{{orderData.card_amount}}</text>
-              <text class="pay-mode-item-tips" wx:else bindtap="handleRechargeTap">立享95折，点击开通</text>
-            </view>
-            <image class="selected-icon" src="{{imgUrl}}order/icon_unselected.png" />
-          </view>
-        </block>
-        <!--免支付-->
-        <block wx:elif="{{orderData.second_pay_type===4}}"> 
-          <view class="pay-mode-item" data-time-card-id="{{''}}" bindtap="handlePayModeTap">
-            <image class="pay-mode-item-icon" src="{{imgUrl}}order/icon_wechat_pay.png" />
-            <view class="pay-mode-item-content">
-              <text class="pay-mode-item-title">免支付</text>
-            </view>
-            <image class="selected-icon" src="{{imgUrl}}order/icon_unselected.png" />
-          </view>
-        </block>
       </view>
     </block>
     <!--非次卡支付模式-->
@@ -247,3 +225,6 @@
 </view>
 <!-- 免责声明 -->
 <statement show="{{!!disclaimer}}" content="{{disclaimer}}" btnText="已阅读并同意" bind:statementEvent="agreeDisclaimer"></statement>
+
+<!-- 弹层 -->
+<dialogComp show="{{orderData.pay_type===0}}" maskIsClose="{{false}}" dialogConfig="{{dialogConfig}}" imgUrl="{{imgUrl}}" bindcomfirmEventComp="goBackHome"></dialogComp>

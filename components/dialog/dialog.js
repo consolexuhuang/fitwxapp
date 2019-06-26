@@ -15,6 +15,10 @@ Component({
     imgUrl: {
       type: String,
       value: ''
+    },
+    maskIsClose:{//点击蒙版是否可以关掉弹层
+      type:Boolean,
+      value: true
     }
   },
 
@@ -34,9 +38,11 @@ Component({
    */
   methods: {
     _clickMeban() {
-      this.setData({
-        show: false
-      })
+      if (this.data.maskIsClose){
+        this.setData({
+          show: false
+        })
+      }
     },
     _cancleEvent() {
       this.setData({
