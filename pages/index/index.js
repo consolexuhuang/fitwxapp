@@ -137,8 +137,8 @@ Page({
     wx.checkSession({
       success: () => {
         //session_key 未过期，并且在本生命周期一直有效
-        Store.getItem('userData').nick_name ? this.getDataInit() : '';
-        this.setData({ userData :  Store.getItem('userData')})
+        Store.getItem('userData').nick_name ? this.getDataInit() : this.wxLogin();
+        // this.setData({ userData: Store.getItem('userData') })
        // this.getDataInit();
       },
       fail: () => {
@@ -168,11 +168,13 @@ Page({
   wxLogin() {
     //登录
     getApp().wx_loginIn().then(() => {
-      this.getDataInit();
+      Store.getItem('userData').nick_name ? this.getDataInit() : '';
+      this.setData({ userData: Store.getItem('userData') })
     })
   },
   //加载数据
   getDataInit() {
+    this.setData({ userData: Store.getItem('userData') })
     //加载数据
     if (app.globalData.location) {
       this.loadingText();

@@ -201,6 +201,7 @@ App({
               } else {
                 // 已关联公众号
                 Store.setItem('userData', res.msg)
+                resolve()
               }
             } else {
               // 未关联
@@ -210,7 +211,6 @@ App({
                 })
               }, 0)
             }
-            resolve()
           })
         }
       })

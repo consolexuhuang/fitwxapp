@@ -51,7 +51,7 @@ Page({
     calendarHeight: '',
     swiperHeight: {},
 
-    officialData:{}, //获取当前场景值对象
+    officialData:'', //获取当前场景值对象
     officialDataState: true, //关注通知显示
     showNoticeState: false //关注弹窗显示
   },
