@@ -81,7 +81,7 @@
                   <view class="left">
                     <text class="status">消费</text>
                     <text class="order-number">{{item.course_name}}</text>
-                    <text class="time">{{item.course_time}}</text>
+                    <text class="time">{{item.act_time}}</text>
                   </view>
                   <view class="right">
                     <text class="acount red">{{item.record_count}}次</text>
@@ -94,7 +94,7 @@
                   <view class="left">
                     <text class="status">退款</text>
                     <text class="order-number">{{item.course_name}}</text>
-                    <text class="time">{{item.course_time}}</text>
+                    <text class="time">{{item.act_time}}</text>
                   </view>
                   <view class="right">
                     <text class="acount">+{{item.record_count}}次</text>

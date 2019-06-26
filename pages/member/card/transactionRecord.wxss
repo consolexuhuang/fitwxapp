@@ -175,7 +175,7 @@
   line-height: 40rpx;
 }
 .content .list .item .info .right .acount-refund {
-  color: #FF5B5B;
+  /* color: #FF5B5B; */
 }
 
 .content.consumption .list .item .info .right .acount {
