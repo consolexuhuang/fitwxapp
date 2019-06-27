@@ -11,7 +11,7 @@ Page({
     firstCheck: true,
     timeCardId: '',
     courseId: '',
-    couponRuleShow: false, //规则弹窗
+    couponRuleShow: false, //规则弹窗wx29946485f206d315wx29946485f206d315
     imgUrl: getApp().globalData.imgUrl,
     navbarData: {
       title: '',
