@@ -12,7 +12,7 @@ App({
     this.worker = worker;
     this.globalData.scene = options.scene
     //登录
-    this.checkSessionFun();
+    // this.checkSessionFun();
     //版本更新
     if (wx.canIUse('getUpdateManager')) {
       const updateManager = wx.getUpdateManager()
@@ -204,11 +204,8 @@ App({
                 resolve()
               }
             } else {
-              // 未关联
               setTimeout(() => {
-                wx.switchTab({
-                  url: '/pages/member/member',
-                })
+                wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
               }, 0)
             }
           })

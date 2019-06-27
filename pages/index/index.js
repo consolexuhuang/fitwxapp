@@ -30,6 +30,7 @@ Page({
       titleColor: "#8969FF",
       tab_topBackground: '#8969FF'
     },
+    memberFollowState:''
   },
 
   /**
@@ -41,8 +42,6 @@ Page({
 
     this.checkSessionFun();
   },
-
-
   // 获取展示的店铺
   getDisplayedStore: function(event) {
     const courses = this.data.courseList.courses
@@ -71,8 +70,12 @@ Page({
       pageList,
     })
   },
-
-  // 检查数据是否都已经获取
+  // 检查是否显示需要授权登陆嗯妞
+  cheakAuthWXLogin(){
+    Store.getItem('userData') && !Store.getItem('userData').nick_name
+      ? this.setData({ userData: Store.getItem('userData') })
+      : (Store.getItem('userData') ? this.getDataInit() : '')
+  },
 
   //loading
   loadingText() {
@@ -140,11 +143,10 @@ Page({
     wx.checkSession({
       success: () => {
         //session_key 未过期，并且在本生命周期一直有效
-        Store.getItem('userData').nick_name ? this.getDataInit() : this.wxLogin();
-        // this.setData({ userData: Store.getItem('userData') })
-       // this.getDataInit();
+        this.cheakAuthWXLogin()
       },
       fail: () => {
+        console.log('indexFail')
         // session_key 已经失效，需要重新执行登录流程
         this.wxLogin();
       }
@@ -171,8 +173,8 @@ Page({
   wxLogin() {
     //登录
     getApp().wx_loginIn().then(() => {
-      Store.getItem('userData').nick_name ? this.getDataInit() : '';
-      this.setData({ userData: Store.getItem('userData') })
+      console.log('userData', Store.getItem('userData'))
+      this.cheakAuthWXLogin()
     })
   },
   //加载数据
