@@ -157,7 +157,7 @@ Page({
     const storeId = this.data.storeId
     return {
       title: `Justin&Julie教练- ${this.data.coachData.coachName}`,
-      path: '/pages/coach/coach?coachId=' + this.data.coachId,
+      path: '/pages/coach/coach?coachId=' + this.data.coachId + '&shareMemberId=' + getApp().globalData.shareMemberId,
       imageUrl: this.data.coachData.headUrl,
       success: function (res) {
         console.log(res)

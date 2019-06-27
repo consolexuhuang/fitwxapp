@@ -44,3 +44,4 @@
      <text class='openCard' bindtap='jumpToRechange'>立即开通 ></text>
   </view>
 </view>
+  <official-account class='officialAccount'></official-account>

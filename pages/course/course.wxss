@@ -623,3 +623,127 @@
   background: #fff;
   z-index: 9;
 }
+/* -------------指引关注 */
+.officialAccount{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.guideBtnImg{
+  /* width:22rpx;
+  height:22rpx; */
+  /* background:rgba(255,255,255,1); */
+  position: absolute;
+  top: 11rpx;
+  left: 11rpx;
+  color: #d2c8ff;
+  font-size: 24rpx
+}
+.guide{
+  position: fixed;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  bottom: 27rpx;
+  flex-direction: column
+}
+.guideLogin{
+  width:686rpx;
+  height:120rpx;
+  border-radius:12rpx;
+  position: relative;
+  box-shadow: 0 0 12rpx #9c8ce2;
+  /* flex-direction: column; */
+}
+.guideLoginBg{
+  width:100%;
+  height:100%;
+  border-radius:12rpx;
+  align-self: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  z-index: -1
+}
+.guideLoginBox{
+  /* position: absolute;
+  right: 20rpx;
+  top: 0;
+  bottom: 0;
+  margin: auto; */
+  text-align: right;
+  z-index: 100;
+  padding-right: 20rpx;
+}
+.guideLoginText{
+  text-align: right;
+  font-size:28rpx;
+  font-family:PingFangSC-Semibold;
+  font-weight:600;
+  color:rgba(255,255,255,1);
+  line-height:60rpx;
+  letter-spacing:1rpx;
+}
+.guideLoginBtn{
+  width:131rpx;
+  background:rgba(255,255,255,1);
+  border-radius:22rpx;
+  line-height: 44rpx;
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(141,115,255,1);
+  letter-spacing:1rpx;
+  text-align: center;
+  padding: 0;
+  display: inline-block;
+}
+.showNoticeStyle{
+  background: #fff;
+  border-radius: 12rpx;
+  padding-top: 20rpx;
+  box-sizing: border-box;
+  width: 570rpx;
+}
+.showNoticeTitle{
+  font-size:34rpx;
+  font-family:PingFangSC-Semibold;
+  font-weight:600;
+  color:rgba(44,44,44,1);
+  line-height:74rpx;
+  text-align: center;
+}
+.showNoticeBox{
+  width: 100%;
+  margin-bottom: 26rpx;
+}
+.showNoticeImg{
+  width: 520rpx;
+  height: 648rpx;
+  display: block;
+  margin: 0 auto;
+}
+.showNoticeBtn{
+  width:100%;
+  background:rgba(137,110,255,1);
+  font-size:34rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  line-height:100rpx;
+  letter-spacing:2rpx;
+  text-align: center;
+  border-bottom-right-radius: 12rpx;
+  border-bottom-left-radius: 12rpx;
+  position: relative;
+}
+.showNoticeBtn2{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  top: 0;
+}

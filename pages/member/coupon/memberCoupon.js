@@ -161,20 +161,35 @@ Page({
   onPullDownRefresh(){
     this.getUserCoupons()
   },
-  onShareAppMessage () {
-    // console.log(this.data.shareCoupon)
-    const title = this.data.shareCoupon.linkTitle
-    const shareMemberId = this.data.invitedInfo.share_member_id
-    return {
-      title: title,
-      path: '/pages/invite/inviteShare?shareMemberId=' + shareMemberId,
-      imageUrl: 'https://img.cdn.powerpower.net/5d08ca81e4b090e5af4fcd77.png?imageView/1/w/500/h/400',
-      success: function (res) {
-        console.log(res)
+  // onShareAppMessage () {
+  //   // console.log(this.data.shareCoupon)
+  //   const title = this.data.shareCoupon.linkTitle
+  //   const shareMemberId = this.data.invitedInfo.share_member_id
+  //   return {
+  //     title: title,
+  //     path: '/pages/invite/inviteShare?shareMemberId=' + shareMemberId,
+  //     imageUrl: 'https://img.cdn.powerpower.net/5d08ca81e4b090e5af4fcd77.png?imageView/1/w/500/h/400',
+  //     success: function (res) {
+  //       console.log(res)
+  //     },
+  //     fail: function (res) {
+  //       console.log(res)
+  //     }
+  //   }
+  // },
+  // 跳转邀请页面
+  handleInviteTap: function (event) {
+    wx.navigateToMiniProgram({
+      appId: getApp().globalData.JumpAppId.appid,
+      path: 'pages/inviteShare/inviteShare',
+      extraData: {
+        foo: '我是拉新数据'
       },
-      fail: function (res) {
+      envVersion: getApp().globalData.JumpAppId.envVersion,
+      success(res) {
+        // 打开成功
         console.log(res)
       }
-    }
+    })
   },
 })

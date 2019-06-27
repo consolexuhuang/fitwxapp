@@ -76,6 +76,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (options.shareMemberId) {
+      getApp().globalData.shareMemberId = options.shareMemberId
+    }
     console.log(options)
     this.checkPromotion()
     if (options.orderId) 
@@ -98,12 +101,6 @@ Page({
   onShow: function () {
 
   },
-  //邀请好友
-  // jumpInvite(){
-  //   wx.navigateTo({
-  //     url: `/pages/invite/invite`,
-  //   })
-  // },
   onclose(){
     this.setData({ paySuccessShow: false, coachWxCodeState: false})
   },
@@ -137,7 +134,7 @@ Page({
     return {
       title: `【 ${this.data.orderDetailData.course.courseName} 】${utils.formatTime2(this.data.orderDetailData.course.beginDate)}星期${this.data.orderDetailData.course.beginDay}${utils.formatTime3(this.data.orderDetailData.course.beginTime)}，快和我一起来运动
 `,
-      path: '/pages/member/order/orderDetail?orderNum=' + this.data.orderId,
+      path: '/pages/member/order/orderDetail?orderNum=' + this.data.orderId + '&shareMemberId=' + getApp().globalData.shareMemberId,
       // imageUrl: this.data.picList[0],
       success: function (res) {
         console.log(res)

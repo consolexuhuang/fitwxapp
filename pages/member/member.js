@@ -11,6 +11,7 @@ Page({
     imgUrl: getApp().globalData.imgUrl,
     userData:'', //用户信息
     userInfoData:'',// 用户首页数据
+    wx_userInfo:'',// 微信账户信息
     orderCount: 0,
     navbarData: {
       title: '我的',
@@ -25,7 +26,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.setData({ userData: Store.getItem('userData') || ''})
+    this.setData({ 
+      userData: Store.getItem('userData') || '' ,
+      wx_userInfo: Store.getItem('wx_userInfo') || ''
+    })
     // this.getGoingList()
     // this.getOrderCount()
   },
@@ -106,8 +110,17 @@ Page({
   },
   // 跳转邀请页面
   handleInviteTap: function(event) {
-    wx.navigateTo({
-      url: '/pages/invite/invite'
+    wx.navigateToMiniProgram({
+      appId: getApp().globalData.JumpAppId.appid,
+      path: 'pages/inviteShare/inviteShare',
+      extraData: {
+        foo: '我是拉新数据'
+      },
+      envVersion: getApp().globalData.JumpAppId.envVersion,
+      success(res) {
+        // 打开成功
+        console.log(res)
+      }
     })
   },
   // 立即预约
@@ -130,11 +143,16 @@ Page({
     })
   },
   //登陆
-  // bindgetuserinfo(e){
-  //   if (!Store.getItem('userData')){
-  //     getApp().wx_loginIn();
-  //   } 
-  // },
+  bindgetuserinfo(e){
+    wx.getUserInfo({
+      success: res => {
+        console.log('用户授权信息', res.userInfo)
+        Store.setItem('wx_userInfo', res.userInfo)
+        this.setData({ wx_userInfo: res.userInfo || '' })
+        getApp().wx_modifyUserInfo();
+      }
+    })
+  },
   //切换账号
   // switchAdmin(){
   //   wx.reLaunch({

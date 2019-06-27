@@ -50,6 +50,11 @@ Page({
     IsshowNetStatus: true, //网络显示状态
     calendarHeight: '',
     swiperHeight: {},
+
+    officialData:'', //获取当前场景值对象
+    officialDataState: true, //关注通知显示
+    showNoticeState: false, //关注弹窗显示
+    memberFollowState: 1, //当前关注状态
   },
 
   /**
@@ -58,6 +63,12 @@ Page({
 
   onLoad: function (options) {
     console.log('onLoad')
+    // sub_flag 1:关注 0:未关注
+    if (store.getItem('userData') && store.getItem('userData').sub_flag === 0){
+      this.setData({ officialDataState: true })
+    } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1){
+      this.setData({ officialDataState: false })
+    }
     //进入onLoad
     onLoaded = true;
     //初始化
@@ -65,6 +76,7 @@ Page({
 
   },
   onShow() {
+    this.getMemberFollowState()
     //搜索进来的
     if (getApp().globalData.courseConfig) {
       //初始化    
@@ -98,7 +110,43 @@ Page({
   onHide() {
     getApp().globalData.courseConfig = '';
   },
-
+  /**
+   * write@xuhuang  start
+   */
+  // 获取当前用户关注状态
+  getMemberFollowState(){
+    api.post('v2/member/memberInfo').then(res => {
+      console.log('getMemberFollowState',res)
+      this.setData({ memberFollowState: res.msg.sub_flag})
+    })
+  },
+  bindload(e){
+    console.log('official-account_success',e.detail)
+    this.setData({ officialData: e.detail})
+  },
+  binderror(e) {
+    console.log('official-account_fail',e.detail)
+    this.setData({ officialData: e.detail })
+  },
+  //关闭通知
+  closeguideLogin(){
+    this.setData({ officialDataState : false})
+  },
+  //显示关注弹窗
+  showNotice(){
+    this.setData({ showNoticeState: true })
+  },
+  //关闭关注弹窗
+  onclose(){
+    this.setData({ showNoticeState : false})
+  },
+  //客服事件
+  handleContact(e){
+    this.setData({ showNoticeState: false })
+  }, 
+  /**
+   * write@xuhuang  end
+   */
   // 下拉刷新
   onPullDownRefresh: function () {
     //loading
