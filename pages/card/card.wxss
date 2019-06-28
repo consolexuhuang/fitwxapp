@@ -244,6 +244,11 @@ page {
   color: #896eff;
 }
 /* -------------------------------------- */
+.officialAccount{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
 .guideBtnImg{
   /* width:22rpx;
   height:22rpx; */

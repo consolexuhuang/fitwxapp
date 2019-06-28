@@ -158,10 +158,10 @@
     <text class="item" bindtap="loginOut">退出当前帐号</text>
   </view> -->
 </view>
-<!-- <view class='officialAccount' wx:if='{{officialData.status === 0}}'> -->
+<view class='officialAccount' class='officialAccount fadeIn animated' wx:if='{{memberFollowState == 0}}'>
   <official-account bindload='bindload' binderror='binderror' class='officialAccount'></official-account>
-<!-- </view> -->
-<view class='guide fadeIn animated' wx:if= '{{memberFollowState == 0 &&  officialDataState && officialData.status !== 0}}' bindtap='showNotice'>
+</view>
+<view class='guide fadeIn animated' wx:if= '{{memberFollowState == 0 &&  officialDataState && officialData && officialData.status !== 0}}' bindtap='showNotice'>
   <view class='guideLogin'>
     <text class='guideBtnImg iconfont iconclose-circle' catchtap='closeguideLogin'></text>
     <image src='https://img.cdn.powerpower.net/5d11d55de4b080ee42fe2f30.png?imageView/1/w/686/h/120' class='guideLoginBg'></image>

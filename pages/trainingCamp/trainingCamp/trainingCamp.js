@@ -9,13 +9,13 @@ Page({
    */
   data: {
     imgUrl: getApp().globalData.imgUrl,
-    goodId:'',
+    goodId: '',
 
-    countList:[], //定时器列表 [{endTime : 2121212221,timeObj:{}}]
-    timerIdList:[], //定时器编号列表 [34,44]
+    countList: [], //定时器列表 [{endTime : 2121212221,timeObj:{}}]
+    timerIdList: [], //定时器编号列表 [34,44]
 
-    trainingCampData:'', //训练营数据
-    coachList:[],
+    trainingCampData: '', //训练营数据
+    coachList: [],
     navbarData: {
       title: '训练营',
       showCapsule: 1,
@@ -23,22 +23,21 @@ Page({
       titleColor: "#000",
       tab_topBackground: '#fff'
     },
-    coachShow:false, //教练弹窗
-    showLookMore:false, //课程简介more
+    coachShow: false, //教练弹窗
+    showLookMore: false, //课程简介more
     showLookCarefulMore: false, //注意more
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
     goodCoachsList:'',
-
   },
-  
+
   // 清楚所有定时器
-  clearTimeCount(){
+  clearTimeCount() {
     this.data.timerIdList.forEach(val => {
       clearInterval(val)
     })
   },
   // 获取训练营详情
-  getTrainingDetail(){
+  getTrainingDetail() {
     let data = {
       goodId: this.data.goodId
     }
@@ -47,8 +46,8 @@ Page({
       let obj = {
         endTime: new Date(res.msg.sale_begin_time.replace(/-/g, '/')).getTime()
       }
-      this.setData({ 
-        trainingCampData : res.msg ,
+      this.setData({
+        trainingCampData: res.msg,
         coachList: res.msg.coach_course ? Object.values(res.msg.coach_course) : '',
         countList: [obj],
       })
@@ -57,18 +56,19 @@ Page({
       Store.setItem(res.msg.id, res.msg)
     })
   },
-  getGoodCoach(){
+
+  getGoodCoach() {
     let data = {
       goodId: this.data.goodId
     }
-    api.post('v2/good/getGoodCoachs',data).then(res => {
-      console.log('getGoodCoachs',res)
-      this.setData({ goodCoachsList : res.msg})
+    api.post('v2/good/getGoodCoachs', data).then(res => {
+      console.log('getGoodCoachs', res)
+      this.setData({ goodCoachsList: res.msg })
     })
   },
   //获取元素高度
-  getDomHeight(selectDom, baseHeight){
-    return new Promise( resolve => {
+  getDomHeight(selectDom, baseHeight) {
+    return new Promise(resolve => {
       wx.createSelectorQuery().select(selectDom).boundingClientRect((rect) => {
         let clientHeight = rect.height || 0;
         let clientWidth = rect.width || 0;
@@ -78,17 +78,17 @@ Page({
         if (height > baseHeight) {
           resolve()
         }
-      }).exec()  
+      }).exec()
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (options.goodId){ 
+    if (options.goodId) {
       this.setData({
         goodId: options.goodId
-      }, ()=> {
+      }, () => {
         this.getTrainingDetail()
         this.getGoodCoach()
       })
@@ -105,32 +105,32 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({ timerIdList : []})
+    this.setData({ timerIdList: [] })
     CountDown.timeCount(this, 2).then(() => {
       this.getTrainingDetail()
     })
   },
-  onUnload(){
+  onUnload() {
     this.clearTimeCount()
   },
-  onHide(){
+  onHide() {
     this.clearTimeCount()
   },
-  showCoachInfo(){
+  showCoachInfo() {
     this.setData({ coachShow: true })
   },
-  onclose(){
-    this.setData({ coachShow : false})
+  onclose() {
+    this.setData({ coachShow: false })
   },
-  jumpTrainingOrder(){
+  jumpTrainingOrder() {
     wx.navigateTo({
       url: `../trainingCampOrder/trainingCampOrder?goodId=${this.data.goodId}`,
     })
   },
-  showInfoMore(){
+  showInfoMore() {
     this.setData({ showLookMore: false })
   },
-  showCarefulMore(){
+  showCarefulMore() {
     this.setData({ showLookCarefulMore: false })
   }
 })
