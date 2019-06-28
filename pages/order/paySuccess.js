@@ -136,7 +136,6 @@ Page({
   },
   //分享
   onShareAppMessage() {
-    console.log(this.data.orderDetailData.course.beginDate)
     return {
       title: `【 ${this.data.orderDetailData.course.courseName} 】${utils.formatTime2(this.data.orderDetailData.course.beginDate)}星期${this.data.orderDetailData.course.beginDay}${utils.formatTime3(this.data.orderDetailData.course.beginTime)}，快和我一起来运动
 `,

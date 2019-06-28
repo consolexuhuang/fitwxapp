@@ -2,6 +2,7 @@
 const app = getApp();
 const api = app.api
 import Store from '../../utils/store.js'
+// const store = getApp().store;
 Page({
 
   /**
@@ -21,12 +22,22 @@ Page({
       titleColor: "#fff",
       tab_topBackground: '#8a73ff'
     },
-    marginTopBar: getApp().globalData.tab_height * 2 + 20
+    marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    officialData: '', //获取当前场景值对象
+    officialDataState: true, //关注通知显示
+    showNoticeState: false, //关注弹窗显示
+    memberFollowState: 1, //当前关注状态
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    // sub_flag 1:关注 0:未关注
+    if (Store.getItem('userData') && Store.getItem('userData').sub_flag === 0) {
+      this.setData({ officialDataState: true })
+    } else if (Store.getItem('userData') && Store.getItem('userData').sub_flag === 1) {
+      this.setData({ officialDataState: false })
+    }
     this.setData({ 
       userData: Store.getItem('userData') || '' ,
       wx_userInfo: Store.getItem('wx_userInfo') || ''
@@ -35,15 +46,52 @@ Page({
     // this.getOrderCount()
   },
   onShow(){
-
     //检测登录
     app.checkSessionFun().then(() => {
+    this.getMemberFollowState()
     this.getUserInfo()
     this.getOrderCount()
     this.getGoingList()
     })
 
   },
+  /**
+   * write@xuhuang  start
+   */
+  // 获取当前用户关注状态
+  getMemberFollowState() {
+    api.post('v2/member/memberInfo').then(res => {
+      console.log('getMemberFollowState', res)
+      this.setData({ memberFollowState: res.msg.sub_flag })
+    })
+  },
+  bindload(e) {
+    console.log('official-account_success', e.detail)
+    this.setData({ officialData: e.detail })
+  },
+  binderror(e) {
+    console.log('official-account_fail', e.detail)
+    this.setData({ officialData: e.detail })
+  },
+  //关闭通知
+  closeguideLogin() {
+    this.setData({ officialDataState: false })
+  },
+  //显示关注弹窗
+  showNotice() {
+    this.setData({ showNoticeState: true })
+  },
+  //关闭关注弹窗
+  onclose() {
+    this.setData({ showNoticeState: false })
+  },
+  //客服事件
+  handleContact(e) {
+    this.setData({ showNoticeState: false })
+  },
+  /**
+   * write@xuhuang  end
+   */
   getUserInfo(){
     wx.showLoading({ title: '加载中...'})
     api.post('v2/member/liteMyInfo').then(res => {
