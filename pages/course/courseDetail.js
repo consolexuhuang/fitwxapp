@@ -1,5 +1,6 @@
 // pages/course/courseDetail.js
-const api = getApp().api
+const app = getApp();
+const api = app.api
 const format = require('../../utils/util.js')
 Page({
 
@@ -49,7 +50,11 @@ Page({
     this.setData({
       courseId
     })
+
+    //检测登录
+    app.checkSessionFun().then(() => {
     this.getCourse()
+    })
   },
   getCourse: function (event) {
     const courseId = this.data.courseId

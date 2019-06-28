@@ -1,5 +1,6 @@
 // pages/member/member.js
-const api = getApp().api
+const app = getApp();
+const api = app.api
 import Store from '../../utils/store.js'
 Page({
 
@@ -34,9 +35,14 @@ Page({
     // this.getOrderCount()
   },
   onShow(){
+
+    //检测登录
+    app.checkSessionFun().then(() => {
     this.getUserInfo()
     this.getOrderCount()
     this.getGoingList()
+    })
+
   },
   getUserInfo(){
     wx.showLoading({ title: '加载中...'})

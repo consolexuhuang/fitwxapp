@@ -1,5 +1,6 @@
 // pages/coach/evaluate/evaluate.js
-const api = getApp().api
+const app = getApp();
+const api = app.api
 Page({
 
   /**
@@ -47,10 +48,14 @@ Page({
         orderNum: options.orderNum || '',
       }
       wx.showLoading({ title: '加载中...'})
+ 
+      //检测登录
+      app.checkSessionFun().then(() => {
       api.post('v2/payOrder/getSignStar', data).then(res => {
         wx.hideLoading()
         console.log('获取签到和评价信息', res)
         this.setData({ evaluateData : res.msg})
+      })
       })
     }
     this.setData({

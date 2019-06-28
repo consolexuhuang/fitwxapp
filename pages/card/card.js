@@ -1,5 +1,6 @@
 // pages/card/card.js
-const api = getApp().api;
+const app = getApp();
+const api = app.api;
 Page({
 
   /**
@@ -28,7 +29,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    //检测登录
+    app.checkSessionFun().then(() => {
     this.getCardDefList()
+    })
   },
   getCardDefList: function(event) {
     wx.showLoading({ title: '加载中...'})

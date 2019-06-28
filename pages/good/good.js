@@ -1,5 +1,6 @@
 // pages/good/good.js
-const api = getApp().api;
+const app = getApp();
+const api = app.api;
 Page({
 
   /**
@@ -28,7 +29,12 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+  
+
+    //检测登录
+    app.checkSessionFun().then(() => {
     this.getGoodList()
+    })
   },
 
   /**

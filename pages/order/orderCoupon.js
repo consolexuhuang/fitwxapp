@@ -1,4 +1,5 @@
 // pages/order/orderCoupon.js
+const app = getApp();
 Page({
 
   /**
@@ -67,6 +68,8 @@ Page({
         })
       }
     })
+
+
   },
   handleCouponTap: function (event) {
     const couponId = event.currentTarget.dataset.couponId

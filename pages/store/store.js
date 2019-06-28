@@ -1,5 +1,6 @@
 // pages/store/store.js
-const api = getApp().api
+const app = getApp();
+const api = app.api
 Page({
 
   /**
@@ -31,7 +32,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+
+    //检测登录
+    app.checkSessionFun().then(() => {
     this.getCityList()
+    })
   },
   watch:{
     city: function(){

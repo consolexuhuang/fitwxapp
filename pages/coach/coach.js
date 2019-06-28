@@ -1,5 +1,6 @@
 // pages/coach/coach.js
-const api = getApp().api;
+const app = getApp();
+const api = app.api;
 Page({
 
   /**
@@ -39,8 +40,12 @@ Page({
     this.setData({
       coachId
     })
+
+    //检测登录
+    app.checkSessionFun().then(() => {
     this.getCoach()
     this.getDateList()
+    })
   },
   // 教练详情
   getCoach: function(event) {
@@ -160,10 +165,8 @@ Page({
       path: '/pages/coach/coach?coachId=' + this.data.coachId + '&shareMemberId=' + getApp().globalData.shareMemberId,
       imageUrl: this.data.coachData.headUrl,
       success: function (res) {
-        console.log(res)
       },
       fail: function (res) {
-        console.log(res)
       }
     }
   },

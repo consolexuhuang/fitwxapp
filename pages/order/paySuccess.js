@@ -1,5 +1,6 @@
 // pages/order/paySuccess.js
-const api = getApp().api
+const app = getApp();
+const api = app.api
 const utils = require('../../utils/util.js')
 import Store from '../../utils/store.js'
 Page({
@@ -83,8 +84,13 @@ Page({
     this.checkPromotion()
     if (options.orderId) 
       this.setData({ orderId: options.orderId },()=>{
+      
+        //检测登录
+        app.checkSessionFun().then(() => {
         this.getOrderDetail()
         this.getMemberInfo(options.orderId)
+        })
+
       })
   },
 

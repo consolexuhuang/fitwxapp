@@ -1,5 +1,6 @@
 // pages/order/order.js
-const api = getApp().api
+const app = getApp();
+const api = app.api
 import Store from '../../utils/store.js'
 Page({
 
@@ -81,7 +82,6 @@ Page({
       this.setData({ isShowJurisdiction: true })
     }
 
-    //this.getMemberInfo()
     this.getCourse()
     this.getWaitCount()
     this.checkOrder()

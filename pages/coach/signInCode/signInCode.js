@@ -1,7 +1,8 @@
 // pages/coach/signInCode/signInCode.js
 import Store from '../../../utils/store.js'
 import utils from '../../../utils/util.js'
-const api = getApp().api
+const app = getApp();
+const api = app.api
 Page({
 
   /**
@@ -58,7 +59,11 @@ Page({
       }
       this.siginUp(data)
     }
+
+    //检测登录
+    app.checkSessionFun().then(() => {
     this.checkSignIn()
+    })
   },
 
   /**

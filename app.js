@@ -11,8 +11,6 @@ App({
     this.store = Store;
     this.worker = worker;
     this.globalData.scene = options.scene
-    //登录
-    // this.checkSessionFun();
     //版本更新
     if (wx.canIUse('getUpdateManager')) {
       const updateManager = wx.getUpdateManager()
@@ -61,7 +59,6 @@ App({
     this.getLocation();
   },
   onShow(options) {
-    console.log('onshow',options)
     // const accountInfo = wx.getAccountInfoSync();
     // console.log('appid',accountInfo.miniProgram.appId)
     // this.globalData.appId = accountInfo.miniProgram.appId
@@ -164,17 +161,27 @@ App({
   },
   //检查登录态是否过期
   checkSessionFun() {
-    wx.checkSession({
-      success: () => {
-        //session_key 未过期，并且在本生命周期一直有效
-        Store.getItem('userData') ? console.log('无需重新登陆') : this.wx_loginIn()
-      },
-      fail: () => {
-        console.log('fail')
-        // session_key 已经失效，需要重新执行登录流程
-        this.wx_loginIn();
-      }
+    return new Promise((resolve,reject)=>{
+      wx.checkSession({
+        success: () => {
+          //session_key 未过期，并且在本生命周期一直有效
+          if (Store.getItem('userData')){
+            resolve();
+          }else{
+            this.wx_loginIn().then(() => {
+              resolve();
+            })
+          }
+        },
+        fail: () => {
+          // session_key 已经失效，需要重新执行登录流程
+          this.wx_loginIn().then(()=>{
+            resolve();
+          })
+        }
+      })
     })
+    
   },
   wx_loginIn: function () {
     let _this = this
@@ -200,6 +207,7 @@ App({
                 }, 0)
               } else {
                 // 已关联公众号
+                _this.globalData.shareMemberId = res.msg.id;
                 Store.setItem('userData', res.msg)
                 resolve()
               }
@@ -209,6 +217,9 @@ App({
               }, 0)
             }
           })
+        },
+        fail:()=>{
+          console.error('登录失败！')
         }
       })
     })
@@ -225,7 +236,6 @@ App({
       wx.showLoading({ title: '加载中...',})
       api.post('modifyUserInfo', data).then(res => {
         wx.hideLoading()
-        console.log('修改用户信息接口', res)
         if(res.msg) {
           Store.setItem('userData', res.msg)
           resolve()

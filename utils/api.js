@@ -17,6 +17,8 @@ function request(path, data, method) {
       data: data,
       method: method,
       success: function(res) {
+        
+
         //没报错
         if (!noFind){
           if (res.data.code === 0 || res.data.code === -1) {
@@ -26,15 +28,15 @@ function request(path, data, method) {
             wx.redirectTo({ url: `/pages/noFind/noFind?type=1` })
             reject(res.data)
           }
-          //有缓存数据‘无效的用户信息’
-          else if ((path.indexOf('/getConfig') != -1) && (res.data.code === 401)) {
-            resolve(res.data)
-            wx.clearStorageSync();
-            //重启            
-            wx.navigateTo({
-              url: '/pages/index/index',
-            });
-          }
+          //‘无效的用户信息’
+          else if (res.data.code === 401) {
+              resolve(res.data)
+              wx.clearStorageSync();
+              //重启            
+              wx.navigateTo({
+                url: '/pages/index/index',
+              });
+            }
         }
         
 

@@ -1,5 +1,6 @@
 // pages/card/cardList.js
-const api = getApp().api
+const app = getApp();
+const api = app.api
 Page({
 
   /**
@@ -27,7 +28,11 @@ Page({
     this.setData({
       cardType
     })
+    //检测登录
+    app.checkSessionFun().then(() => {
     this.getCardDefList()
+    })
+
   },
   /**
    * 自定义方法

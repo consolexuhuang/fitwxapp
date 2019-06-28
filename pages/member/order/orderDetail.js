@@ -1,5 +1,6 @@
 // pages/member/order/orderDetail.js
-const api = getApp().api
+const app = getApp();
+const api = app.api
 const utils = require('../../../utils/util.js')
 Page({
 
@@ -29,6 +30,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log('order detail option')
+    console.log(options)
+    
     if (options.shareMemberId) {
       getApp().globalData.shareMemberId = options.shareMemberId
     }
@@ -39,7 +43,11 @@ Page({
     // this.getOrderDetail()
   },
   onShow(){
+
+    //检测登录
+    app.checkSessionFun().then(() => {
     this.getOrderDetail()
+    })
   },
   //订单详情初始化
   getOrderDetail() {

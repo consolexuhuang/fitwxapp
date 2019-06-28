@@ -51,7 +51,7 @@ Page({
     calendarHeight: '',
     swiperHeight: {},
 
-    officialData:'', //获取当前场景值对象
+    officialData: '', //获取当前场景值对象
     officialDataState: true, //关注通知显示
     showNoticeState: false, //关注弹窗显示
     memberFollowState: 1, //当前关注状态
@@ -61,26 +61,37 @@ Page({
    * 生命周期函数--监听页面加载
    */
 
-  onLoad: function (options) {
+  onLoad: function(options) {
     console.log('onLoad')
     // sub_flag 1:关注 0:未关注
-    if (store.getItem('userData') && store.getItem('userData').sub_flag === 0){
-      this.setData({ officialDataState: true })
-    } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1){
-      this.setData({ officialDataState: false })
+    if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
+      this.setData({
+        officialDataState: true
+      })
+    } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
+      this.setData({
+        officialDataState: false
+      })
     }
     //进入onLoad
     onLoaded = true;
-    //初始化
-    this.initFun();
 
+    //检测登录
+    app.checkSessionFun().then(() => {
+      //初始化
+      this.initFun();
+      //判断用户是否关注公众号
+      this.getMemberFollowState()
+    })
   },
   onShow() {
-    this.getMemberFollowState()
     //搜索进来的
     if (getApp().globalData.courseConfig) {
+      console.log('course onShow')
       //初始化    
       this.initFun();
+      //判断用户是否关注公众号
+      this.getMemberFollowState()
       return;
     }
 
@@ -98,13 +109,15 @@ Page({
     };
 
     /* 预防onload和onShow都执行 */
-    //恢复设置
-    onLoaded = false;
     if (onLoaded) {
       return;
     };
+    //恢复设置
+    onLoaded = false;
     //初始化    
     this.initFun();
+    //判断用户是否关注公众号
+    this.getMemberFollowState()
 
   },
   onHide() {
@@ -114,41 +127,55 @@ Page({
    * write@xuhuang  start
    */
   // 获取当前用户关注状态
-  getMemberFollowState(){
+  getMemberFollowState() {
     api.post('v2/member/memberInfo').then(res => {
-      console.log('getMemberFollowState',res)
-      this.setData({ memberFollowState: res.msg.sub_flag})
+      console.log('getMemberFollowState', res)
+      this.setData({
+        memberFollowState: res.msg.sub_flag
+      })
     })
   },
-  bindload(e){
-    console.log('official-account_success',e.detail)
-    this.setData({ officialData: e.detail})
+  bindload(e) {
+    console.log('official-account_success', e.detail)
+    this.setData({
+      officialData: e.detail
+    })
   },
   binderror(e) {
-    console.log('official-account_fail',e.detail)
-    this.setData({ officialData: e.detail })
+    console.log('official-account_fail', e.detail)
+    this.setData({
+      officialData: e.detail
+    })
   },
   //关闭通知
-  closeguideLogin(){
-    this.setData({ officialDataState : false})
+  closeguideLogin() {
+    this.setData({
+      officialDataState: false
+    })
   },
   //显示关注弹窗
-  showNotice(){
-    this.setData({ showNoticeState: true })
+  showNotice() {
+    this.setData({
+      showNoticeState: true
+    })
   },
   //关闭关注弹窗
-  onclose(){
-    this.setData({ showNoticeState : false})
+  onclose() {
+    this.setData({
+      showNoticeState: false
+    })
   },
   //客服事件
-  handleContact(e){
-    this.setData({ showNoticeState: false })
-  }, 
+  handleContact(e) {
+    this.setData({
+      showNoticeState: false
+    })
+  },
   /**
    * write@xuhuang  end
    */
   // 下拉刷新
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     //loading
     ui.showLoading();
     const selectedStore = []
@@ -172,7 +199,7 @@ Page({
     wx.stopPullDownRefresh()
   },
   // 滚动过程中的监听
-  onPageScroll: function (event) {
+  onPageScroll: function(event) {
 
     //创建节点选择器
     query = wx.createSelectorQuery();
@@ -213,7 +240,7 @@ Page({
     this.data.currentScrollTop = currentScrollTop
   },
   // 滚动到底部上拉加载数据
-  onReachBottom: function (event) {
+  onReachBottom: function(event) {
 
     const dateList = this.data.dateList
     const active = this.data.active
@@ -264,7 +291,7 @@ Page({
     this.setCourseSwiperHeight();
   },
   //卸载
-  onUnload: function () {
+  onUnload: function() {
     //app.worker.terminate()
   },
   initFun() {
@@ -323,7 +350,7 @@ Page({
         city: courseData.city || '',
         active: courseData.active || 0,
         swiperHeight: courseData.swiperHeight || {}
-      }, function () {
+      }, function() {
         //设置当前数据的高度
         this.setCourseSwiperHeight();
         //获取日历列表高度
@@ -342,11 +369,11 @@ Page({
     //清除缓存
     wx.removeStorage({
       key: 'courseData',
-      success: function (res) { },
+      success: function(res) {},
     })
   },
   watch: {
-    active: function (newValue, oldValue) {
+    active: function(newValue, oldValue) {
       if (newValue !== oldValue) { // 把每次滚动的距离记录进切换之前的日期里，然后在切换之后的日期下滚动到当前日期下记录的位置
         const dateList = this.data.dateList
         const oldDate = dateList[oldValue].date
@@ -367,7 +394,7 @@ Page({
   },
 
   // 获取课程列表
-  getCourseList: function (event) {
+  getCourseList: function(event) {
     const city = this.data.city
     const storeIds = this.data.selectedStore.join()
     const timeIntervals = this.data.selectedTimeInterval.join()
@@ -393,7 +420,7 @@ Page({
     });
   },
   // 获取展示的店铺
-  getDisplayedStore: function (event) {
+  getDisplayedStore: function(event) {
     const courses = this.data.courseList.courses
     const displayedStore = {}
     const pageList = {}
@@ -422,7 +449,7 @@ Page({
     this.setData({
       displayedStore,
       pageList
-    }, function () {
+    }, function() {
       ui.hideLoading();
     })
   },
@@ -449,7 +476,7 @@ Page({
   },
 
   //设置swiper高度   swiperHeight
-  setSwiperHeight: function (courseList) { //courseList为7天的日期对象
+  setSwiperHeight: function(courseList) { //courseList为7天的日期对象
     let swiperHeight = this.data.swiperHeight;
     let courses = courseList;
     let titleHeight = 120 + 20,
@@ -484,7 +511,7 @@ Page({
     })
   },
   //scrollTop
-  scrollTopFun: function (event) {
+  scrollTopFun: function(event) {
     try {
       const scrollTop = {}
       const dateList = this.data.dateList
@@ -494,12 +521,12 @@ Page({
       this.setData({
         scrollTop
       })
-    } catch (error) { }
+    } catch (error) {}
   },
 
 
   // 跳转店铺筛选页面
-  handleStoreScreenTap: function (event) {
+  handleStoreScreenTap: function(event) {
     const storeList = this.data.config.storeList
     const cityList = this.data.cityList
     const city = this.data.city
@@ -528,7 +555,7 @@ Page({
     })
   },
   // 跳转课程筛选页面
-  handleCourseScreenTap: function (event) {
+  handleCourseScreenTap: function(event) {
     const typeLabelList = this.data.config.typeLabelList
     const city = this.data.city
     //const searchText = this.data.searchText
@@ -555,7 +582,7 @@ Page({
     })
   },
   // 跳转课程搜索页面
-  handleCourseSearchTap: function (event) {
+  handleCourseSearchTap: function(event) {
     const searchKeyWords = this.data.config.searchKeyWords
     const city = this.data.city
     const selectedStore = this.data.selectedStore
@@ -582,7 +609,7 @@ Page({
     })
   },
   //清除搜索
-  clearSearch: function () {
+  clearSearch: function() {
     this.setData({
       searchText: ''
     })
@@ -591,7 +618,7 @@ Page({
     CourseCom.getConfig(this)
   },
   //隐藏已结束
-  handleSwitchChange: function ({
+  handleSwitchChange: function({
     detail
   }) {
     const isOver = detail
@@ -605,7 +632,7 @@ Page({
 
 
   // 点击切换日期
-  handleDateTap: function (event) {
+  handleDateTap: function(event) {
     //充值顶部
     this.scrollTopFun();
     const active = event.currentTarget.dataset.index;
@@ -616,7 +643,7 @@ Page({
 
 
   // 切换列表
-  handleCurrentChange: function (event) {
+  handleCurrentChange: function(event) {
     //充值顶部
     this.scrollTopFun();
     const active = event.detail.current;
@@ -631,7 +658,7 @@ Page({
     })
   },
   // 点击banner跳转
-  handleBannerTap: function (event) {
+  handleBannerTap: function(event) {
     const path = event.currentTarget.dataset.path;
     //如果地址里面有‘storeId=’就筛选出当前页面里的门店  util
     if (path.indexOf('storeId=') != -1) {
@@ -648,14 +675,14 @@ Page({
   },
 
   // 点击店铺跳转
-  handleStoreTap: function (event) {
+  handleStoreTap: function(event) {
     const storeId = event.currentTarget.dataset.storeId
     wx.navigateTo({
       url: '/pages/store/storeDetail?storeId=' + storeId
     })
   },
   // 跳转课程详情
-  handleCourseTap: function (event) {
+  handleCourseTap: function(event) {
     const goodId = event.currentTarget.dataset.goodId;
     const courseId = event.currentTarget.dataset.courseId
     if (goodId) {
@@ -669,7 +696,7 @@ Page({
     }
   },
   // 课程预约
-  handleAppointBtnTap: function (event) {
+  handleAppointBtnTap: function(event) {
     const courseId = event.currentTarget.dataset.courseId
     wx.navigateTo({
       url: '/pages/order/payOrder?courseId=' + courseId
@@ -677,7 +704,7 @@ Page({
   },
 
   // 跳转教练课程列表
-  handleCoachTap: function (event) {
+  handleCoachTap: function(event) {
     const coachId = event.currentTarget.dataset.coachId
     const goodId = event.currentTarget.dataset.goodId
     if (goodId) {
@@ -691,7 +718,7 @@ Page({
     }
   },
   //获取日历列表高度
-  dateBoxHeight: function () {
+  dateBoxHeight: function() {
     const query = wx.createSelectorQuery();
     query.select('.date-wrapper').boundingClientRect()
     query.exec((res) => {

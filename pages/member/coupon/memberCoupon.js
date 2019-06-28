@@ -1,5 +1,6 @@
 // pages/member/coupon/memberCoupon.js
-const api = getApp().api
+const app = getApp();
+const api = app.api
 Page({
 
   /**
@@ -47,9 +48,13 @@ Page({
       },
       // isDialogShow: true
     })
+
+    //检测登录
+    app.checkSessionFun().then(() => {
     this.agreeNotifyShow()
     this.getShareCouponInfo()
     this.getInvitedInfo()
+    })
   },
   getUserCoupons: function(event) {
     const page = 1

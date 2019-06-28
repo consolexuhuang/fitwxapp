@@ -1,5 +1,6 @@
 // pages/store/storeDetail.js
-const api = getApp().api
+const app = getApp();
+const api = app.api;
 Page({
 
   /**
@@ -57,9 +58,13 @@ Page({
     this.setData({
       storeId
     })
+
+    //检测登录
+    app.checkSessionFun().then(() => {
     this.getStorePicList()
     this.getStore()
     this.getStoreFacilitiesList()
+    })
   },
   getStorePicList: function(event) {
     const storeId = this.data.storeId
