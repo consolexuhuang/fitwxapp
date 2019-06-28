@@ -56,7 +56,7 @@
               </view>
               <view class='trainingCamp_introduction_item'>
                 <view class='trainingCamp_introduction_itemTitle'>FAQ</view>
-                <rich-text class='trainingCamp_introduction_itemCont' nodes='{{trainingCampData.training_effect}}'></rich-text>
+                <rich-text class='trainingCamp_introduction_itemCont' nodes='{{trainingCampData.course_faq}}'></rich-text>
               </view>
            </view>
          </view>
