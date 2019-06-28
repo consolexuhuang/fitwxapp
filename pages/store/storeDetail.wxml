@@ -99,7 +99,7 @@
   </view>
 </view>
 <view class="reserve-btn-wrapper">
-  <view class="reserve-btn" bindtap="handleAppointBtnTap">立即预约</view>
+  <view class="reserve-btn" bindtap="handleAppointBtnTap">查看课表</view>
 </view>
 <!-- 免责声明 -->
 <statement show="{{isShowStatement}}" content="{{statementContent}}" btnText="关闭" bind:statementEvent="statementClose"></statement>

@@ -110,12 +110,12 @@
            bind:close='onclose'
            custom-class='coachShowStyle'>
   <view class='coachTitle'>教练介绍</view>
-  <scroll-view scroll-y style='height:478rpx; padding:20rpx 0 40rpx; box-sizing: border-box'>
+  <scroll-view scroll-y style='height:450rpx; padding:20rpx 0 40rpx; box-sizing: border-box'>
      <view class='coachItem'
-           wx:for='{{coachList}}'
+           wx:for='{{goodCoachsList}}'
            wx:key='{{index}}'>
         <image class='coachItem_headImg' src='{{item.head_url}}'></image>
-        <rich-text wx:for="{{item.course_list}}" wx:key="{{item.course_list}}" class='coachItem_info' nodes = '{{item.course_intro}}'></rich-text>
+        <rich-text class='coachItem_info' nodes = '{{item.intro}}'></rich-text>
      </view>
   </scroll-view>
   <text class='closeImg iconfont iconicon-test18' bindtap='onclose'></text>

@@ -26,7 +26,8 @@ Page({
     coachShow:false, //教练弹窗
     showLookMore:false, //课程简介more
     showLookCarefulMore: false, //注意more
-    marginTopBar: getApp().globalData.tab_height * 2 + 20
+    marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    goodCoachsList:'',
 
   },
   
@@ -56,6 +57,15 @@ Page({
       Store.setItem(res.msg.id, res.msg)
     })
   },
+  getGoodCoach(){
+    let data = {
+      goodId: this.data.goodId
+    }
+    api.post('v2/good/getGoodCoachs',data).then(res => {
+      console.log('getGoodCoachs',res)
+      this.setData({ goodCoachsList : res.msg})
+    })
+  },
   //获取元素高度
   getDomHeight(selectDom, baseHeight){
     return new Promise( resolve => {
@@ -80,6 +90,7 @@ Page({
         goodId: options.goodId
       }, ()=> {
         this.getTrainingDetail()
+        this.getGoodCoach()
       })
     }
     this.getDomHeight('#trainingCampDom', 150).then(res => {

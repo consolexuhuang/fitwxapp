@@ -315,7 +315,7 @@ page{
 /* ----------------弹窗 */
 .coachShowStyle{
   width: 686rpx;
-  height: 590rpx;
+  height: 450rpx;
   border-radius: 8rpx;
 }
 .coachTitle{
