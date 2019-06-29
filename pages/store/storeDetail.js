@@ -51,9 +51,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    //分享过来的参数
     if (options.shareMemberId) {
-      getApp().globalData.shareMemberId = options.shareMemberId
+      wx.setStorageSync('shareMemberId', options.shareMemberId)
     }
+    
     const storeId = options.storeId
     this.setData({
       storeId
@@ -146,7 +148,7 @@ Page({
     return {
       title: `${this.data.storeData.storeName},点击查看门店位置
 `,
-      path: '/pages/store/storeDetail?storeId=' + storeId + '&shareMemberId=' + getApp().globalData.shareMemberId,
+      path: '/pages/store/storeDetail?storeId=' + storeId + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
       // imageUrl: this.data.picList[0],
       success:function(res){
         console.log(res)

@@ -30,12 +30,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log('order detail option')
-    console.log(options)
-    
+    //分享过来的参数
     if (options.shareMemberId) {
-      getApp().globalData.shareMemberId = options.shareMemberId
+      wx.setStorageSync('shareMemberId', options.shareMemberId)
     }
+    
     const orderNum = options.orderNum
     this.setData({
       orderNum
@@ -154,7 +153,7 @@ Page({
     return {
       title: `【 ${this.data.orderData.course.courseName} 】${utils.formatTime2(this.data.orderData.course.beginDate)}星期${this.data.orderData.course.beginDay}${utils.formatTime3(this.data.orderData.course.beginTime)}，快和我一起来运动
 `,
-      path: '/pages/member/order/orderDetail?orderNum=' + this.data.orderNum + '&shareMemberId=' + getApp().globalData.shareMemberId,
+      path: '/pages/member/order/orderDetail?orderNum=' + this.data.orderNum + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
       // imageUrl: this.data.picList[0],
       success: function (res) {
         console.log(res)

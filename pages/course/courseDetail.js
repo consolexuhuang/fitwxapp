@@ -43,9 +43,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    //分享过来的参数
     if (options.shareMemberId) {
-      getApp().globalData.shareMemberId = options.shareMemberId
+      wx.setStorageSync('shareMemberId', options.shareMemberId)
     }
+    
     const courseId = options.courseId
     this.setData({
       courseId
@@ -116,7 +118,7 @@ Page({
     console.log(format.formatTime3(this.data.courseData.beginTime))
     return {
       title: `【 ${this.data.courseData.courseName} 】 周${this.data.courseData.beginDay}${format.formatTime3(this.data.courseData.beginTime)}，我们一起？`,
-      path: '/pages/course/courseDetail?courseId=' + this.data.courseId + '&shareMemberId=' + getApp().globalData.shareMemberId,
+      path: '/pages/course/courseDetail?courseId=' + this.data.courseId + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
       // imageUrl: this.data.picList[0],
       success: function (res) {
         console.log(res)

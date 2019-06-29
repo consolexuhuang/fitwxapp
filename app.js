@@ -10,7 +10,7 @@ App({
     this.api = api
     this.store = Store;
     this.worker = worker;
-    this.globalData.scene = options.scene
+    this.globalData.scene = options.scene;
     //版本更新
     if (wx.canIUse('getUpdateManager')) {
       const updateManager = wx.getUpdateManager()
@@ -161,9 +161,14 @@ App({
   },
   //检查登录态是否过期
   checkSessionFun() {
+    console.log(111111)
+    console.log(wx.getStorageSync('shareMemberId'))
+    console.log(getCurrentPages())
     return new Promise((resolve,reject)=>{
       wx.checkSession({
         success: () => {
+          console.log(2222)
+          console.log(wx.getStorageSync('shareMemberId'))
           //session_key 未过期，并且在本生命周期一直有效
           if (Store.getItem('userData')){
             resolve();
@@ -174,6 +179,8 @@ App({
           }
         },
         fail: () => {
+          console.log(3333)
+          console.log(wx.getStorageSync('shareMemberId'))
           // session_key 已经失效，需要重新执行登录流程
           this.wx_loginIn().then(()=>{
             resolve();
@@ -184,21 +191,30 @@ App({
     
   },
   wx_loginIn: function () {
+    console.log(4444)
+    console.log(wx.getStorageSync('shareMemberId'))
     let _this = this
     return new Promise((resolve, reject) => {
       wx.login({
         success: res_code => {
           _this.globalData.code = res_code.code
           Store.setItem('code', res_code.code)
+          console.log('app success 3333')
+          console.log(wx.getStorageSync('shareMemberId'))
+          console.log(Store.getItem('shareMemberId'))
+          console.log('555')
+          let shareMemberId = wx.getStorageSync('shareMemberId') ? wx.getStorageSync('shareMemberId') : '';
           let data = {
             code: res_code.code,
             sourceData: _this.globalData.scene,
-            shareChannel: _this.globalData.shareMemberId || '',
+            shareChannel: shareMemberId,
             nickName: Store.getItem('wx_userInfo').nickName || '',
             headImg: Store.getItem('wx_userInfo').avatarUrl || '',
             city: Store.getItem('wx_userInfo').city || '',
             gender: Store.getItem('wx_userInfo').gender || ''
           }
+          console.log('data app')
+          console.log(data)
           api.get('authorizationLite', data).then(res => {
             if (res.msg) {
               if (res.code === -1) { //如果出现登陆未知错误
@@ -207,8 +223,9 @@ App({
                 }, 0)
               } else {
                 // 已关联公众号
-                _this.globalData.shareMemberId = res.msg.id;
-                Store.setItem('userData', res.msg)
+                wx.setStorageSync('shareMemberId', res.msg.id)
+                wx.setStorageSync('userData', res.msg)
+                //Store.setItem('userData', res.msg)
                 resolve()
               }
             } else {

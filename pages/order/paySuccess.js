@@ -77,13 +77,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    //分享过来的参数
     if (options.shareMemberId) {
-      getApp().globalData.shareMemberId = options.shareMemberId
+      wx.setStorageSync('shareMemberId', options.shareMemberId)
     }
-    console.log(options)
+    
     this.checkPromotion()
     if (options.orderId) 
-      this.setData({ orderId: options.orderId },()=>{
+      this.setData({ 
+        orderId: options.orderId
+         },()=>{
       
         //检测登录
         app.checkSessionFun().then(() => {
@@ -139,7 +142,7 @@ Page({
     return {
       title: `【 ${this.data.orderDetailData.course.courseName} 】${utils.formatTime2(this.data.orderDetailData.course.beginDate)}星期${this.data.orderDetailData.course.beginDay}${utils.formatTime3(this.data.orderDetailData.course.beginTime)}，快和我一起来运动
 `,
-      path: '/pages/member/order/orderDetail?orderNum=' + this.data.orderId + '&shareMemberId=' + getApp().globalData.shareMemberId,
+      path: '/pages/member/order/orderDetail?orderNum=' + this.data.orderId + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
       // imageUrl: this.data.picList[0],
       success: function (res) {
         console.log(res)
