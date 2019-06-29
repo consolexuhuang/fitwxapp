@@ -38,7 +38,6 @@ Page({
       type: cardType
     }
     api.post('card/getCardDefList', data).then(res => {
-      console.log(res)
         const cardDefList = res.msg
         const key = Object.keys(cardDefList)[0]
         const cardList = cardDefList[key].list

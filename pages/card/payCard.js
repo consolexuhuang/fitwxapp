@@ -86,7 +86,6 @@ Page({
         ['currentPayWayState[0].state']: false,
       })
     }
-    console.log(this.data.orderData)
   },
   // 创建订单
   createOrder(){
@@ -146,7 +145,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options)
     if (options.cardId){
       this.setData({
         cardId: options.cardId

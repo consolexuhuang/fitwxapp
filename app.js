@@ -60,7 +60,6 @@ App({
     this.getLocation();
   },
   onShow(options) {
-    console.log('onshow',options)
     // 校验场景值
     if (options.scene == 1007 || options.scene == 1008 || options.scene == 1035 || options.scene == 1043) {
       if (options.path.indexOf('index') != -1 ||
