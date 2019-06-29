@@ -54,16 +54,13 @@ Page({
   // 获取当前用户关注状态
   getMemberFollowState() {
     api.post('v2/member/memberInfo').then(res => {
-      console.log('getMemberFollowState', res)
       this.setData({ memberFollowState: res.msg.sub_flag })
     })
   },
   bindload(e) {
-    console.log('official-account_success', e.detail)
     this.setData({ officialData: e.detail })
   },
   binderror(e) {
-    console.log('official-account_fail', e.detail)
     this.setData({ officialData: e.detail })
   },
   //关闭通知

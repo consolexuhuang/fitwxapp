@@ -59,9 +59,7 @@ App({
     this.getLocation();
   },
   onShow(options) {
-    // const accountInfo = wx.getAccountInfoSync();
-    // console.log('appid',accountInfo.miniProgram.appId)
-    // this.globalData.appId = accountInfo.miniProgram.appId
+    
     this.globalData.scene = options.scene
     // 校验场景值
     if (options.scene == 1007 || options.scene == 1008 || options.scene == 1035 || options.scene == 1043) {
@@ -161,14 +159,9 @@ App({
   },
   //检查登录态是否过期
   checkSessionFun() {
-    console.log(111111)
-    console.log(wx.getStorageSync('shareMemberId'))
-    console.log(getCurrentPages())
     return new Promise((resolve,reject)=>{
       wx.checkSession({
         success: () => {
-          console.log(2222)
-          console.log(wx.getStorageSync('shareMemberId'))
           //session_key 未过期，并且在本生命周期一直有效
           if (Store.getItem('userData')){
             resolve();
@@ -179,8 +172,6 @@ App({
           }
         },
         fail: () => {
-          console.log(3333)
-          console.log(wx.getStorageSync('shareMemberId'))
           // session_key 已经失效，需要重新执行登录流程
           this.wx_loginIn().then(()=>{
             resolve();
@@ -191,18 +182,12 @@ App({
     
   },
   wx_loginIn: function () {
-    console.log(4444)
-    console.log(wx.getStorageSync('shareMemberId'))
     let _this = this
     return new Promise((resolve, reject) => {
       wx.login({
         success: res_code => {
           _this.globalData.code = res_code.code
           Store.setItem('code', res_code.code)
-          console.log('app success 3333')
-          console.log(wx.getStorageSync('shareMemberId'))
-          console.log(Store.getItem('shareMemberId'))
-          console.log('555')
           let shareMemberId = wx.getStorageSync('shareMemberId') ? wx.getStorageSync('shareMemberId') : '';
           let data = {
             code: res_code.code,
@@ -213,8 +198,6 @@ App({
             city: Store.getItem('wx_userInfo').city || '',
             gender: Store.getItem('wx_userInfo').gender || ''
           }
-          console.log('data app')
-          console.log(data)
           api.get('authorizationLite', data).then(res => {
             if (res.msg) {
               if (res.code === -1) { //如果出现登陆未知错误

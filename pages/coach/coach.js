@@ -30,18 +30,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log('tokennnnnnnnn')
-    console.log(wx.getStorageSync('userData').token)
-    console.log('options.shareMemberId onload')
-    console.log(options.shareMemberId)
     //loading
     ui.showLoadingMask();
 
     //分享过来的参数
     if (options.shareMemberId){
       wx.setStorageSync('shareMemberId', options.shareMemberId)
-      console.log('2222 options.shareMemberId onload')
-      console.log(wx.getStorageSync('shareMemberId'))
     }
     const coachId = options.coachId;
     //从课程页面过来的
@@ -70,12 +64,7 @@ Page({
     let data = {
       id: coachId
     }
-    console.log('token coach/getCoach')
-    console.log(wx.getStorageSync('userData').token)
     api.post('coach/getCoach', data).then(res => {
-      console.log('api coach/getCoach')
-      console.log(res)
-
       let coachData = res.msg.coach
       this.setData({
         coachData
@@ -84,11 +73,7 @@ Page({
   },
   // 获取日期列表
   getDateList: function(event) {
-    console.log('token course/getDateList')
-    console.log(wx.getStorageSync('userData').token)
     api.post('course/getDateList').then(res => {
-      console.log('api course/getDateList')
-      console.log(res)
       let dateList = res.msg.list
       let active = res.msg.active;
       //从课程页面过来
@@ -118,15 +103,8 @@ Page({
       longitude
     }
 
-    console.log('api after0000 data')
-    console.log(data)
-    console.log('token v2/course/getCourseList2')
-    console.log(wx.getStorageSync('userData').token)
     api.post('v2/course/getCourseList2', data).then(res => {
-      console.log('api after11111 data')
-      console.log(data)
-      console.log('api v2/course/getCourseList2')
-      console.log(res)
+      
       let courseList = res.msg
       this.setData({
         courseList
@@ -202,8 +180,6 @@ Page({
       path: '/pages/coach/coach?coachId=' + this.data.coachId + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
       imageUrl: this.data.coachData.headUrl,
       success: function (res) {
-        console.log('onShareAppMessage success')
-        console.log(this.path)
       },
       fail: function (res) {
       }

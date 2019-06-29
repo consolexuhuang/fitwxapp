@@ -62,7 +62,6 @@ Page({
    */
 
   onLoad: function(options) {
-    console.log('onLoad')
     // sub_flag 1:关注 0:未关注
     if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
       this.setData({
@@ -87,7 +86,6 @@ Page({
   onShow() {
     //搜索进来的
     if (getApp().globalData.courseConfig) {
-      console.log('course onShow')
       //初始化    
       this.initFun();
       //判断用户是否关注公众号
@@ -129,20 +127,17 @@ Page({
   // 获取当前用户关注状态
   getMemberFollowState() {
     api.post('v2/member/memberInfo').then(res => {
-      console.log('getMemberFollowState', res)
       this.setData({
         memberFollowState: res.msg.sub_flag
       })
     })
   },
   bindload(e) {
-    console.log('official-account_success', e.detail)
     this.setData({
       officialData: e.detail
     })
   },
   binderror(e) {
-    console.log('official-account_fail', e.detail)
     this.setData({
       officialData: e.detail
     })
@@ -334,8 +329,6 @@ Page({
     /* 缓存里拿数据 */
     //获取缓存数据    
     let courseData = wx.getStorageSync('courseData');
-    console.log('active01')
-    console.log(this.data.active)
     //有缓存
     if (courseData && courseData.dateList && courseData.courseList && courseData.config && courseData.city) { //缓存的courseData里缺少数据
       //赋值缓存里数据
