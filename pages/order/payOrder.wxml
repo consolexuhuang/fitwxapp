@@ -112,7 +112,7 @@
           <image class="pay-mode-item-icon" src="{{imgUrl}}order/icon_card_pay.png" />
           <view class="pay-mode-item-content">
             <text class="pay-mode-item-title">{{orderData.time_card_title}}</text>
-            <text class="pay-mode-item-tips">{{orderData.time_card_list[0].card_left_count}}张可用</text>
+            <text class="pay-mode-item-tips">{{orderData.time_card_available_count}}张可用</text>
           </view>
           <text class="arrow-icon iconfont iconicon-test41" />
         </view>
