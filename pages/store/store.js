@@ -36,6 +36,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    //获取本地存储数据
+    this.setData({
+      topStoreIds: wx.getStorageSync('topStoreIds') ? wx.getStorageSync('topStoreIds'):[]
+    })
+    
 
     //检测登录
     app.checkSessionFun().then(() => {
@@ -147,6 +152,9 @@ Page({
     this.setData({
       topStoreIds
     })
+    /* 存储到本地 后续删除 */
+    wx.setStorageSync('topStoreIds', topStoreIds)
+
     this.getStoreList()
   },
   handleSelectTap: function(event){
