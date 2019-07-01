@@ -29,6 +29,7 @@ Component({
   data: {
     showNoticeState: false, //关注弹窗显示
     officialData: '', //获取当前场景值对象
+    guideImgUrl:''  //指引图片
   },
   lifetimes: {
     attached() {
@@ -47,6 +48,12 @@ Component({
   methods: {
     //显示关注弹窗
     _showNotice() {
+      getApp().api.post('v2/coupon/shareCouponInfo').then(res => {
+        // console.log(res)
+        this.setData({
+          guideImgUrl: res.msg.imgurl1
+        })
+      })
       this.setData({ showNoticeState: true })
     },
     //关闭关注弹窗

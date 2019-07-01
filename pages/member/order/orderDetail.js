@@ -82,6 +82,7 @@ Page({
       orderNum
     }
     api.post('payOrder/orderInfo', data).then(res => {
+      console.log("订单详情", res.msg)
       wx.hideLoading()
       const orderData = res.msg
       this.setData({

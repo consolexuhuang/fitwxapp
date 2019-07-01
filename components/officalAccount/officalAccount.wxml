@@ -19,7 +19,8 @@
            z-index = '1001'>
     <view class='showNoticeTitle'>三步关注公众号</view>
     <view class='showNoticeBox'>
-       <image class='showNoticeImg'         src='https://img.cdn.powerpower.net/5d19732ce4b07bc63b17acc5.png?imageView/1/w/530/h/648'></image>
+       <image class='showNoticeImg'         
+              src='{{guideImgUrl || "https://img.cdn.powerpower.net/5d19732ce4b07bc63b17acc5.png?imageView/1/w/530/h/648"}}'></image>
     </view>
     <view class='showNoticeBtn'>立即关注
        <button class='showNoticeBtn2' open-type='contact' bindcontact="_handleContact"></button>

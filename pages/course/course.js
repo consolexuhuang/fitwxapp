@@ -62,7 +62,7 @@ Page({
   onLoad: function(options) {
     //进入onLoad
     onLoaded = true;
-
+    // this.getShareCouponInfo()
     //检测登录
     app.checkSessionFun().then(() => {
       //初始化

@@ -93,6 +93,7 @@ Page({
       
         //检测登录
         app.checkSessionFun().then(() => {
+        this.getMemberFollowState()
         this.getOrderDetail()
         this.getMemberInfo(options.orderId)
         })
@@ -111,9 +112,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    app.checkSessionFun().then(() => {
-      this.getMemberFollowState()
-    })
+
   },
   /**
    * write@xuhuang  start

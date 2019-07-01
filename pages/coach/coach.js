@@ -54,13 +54,9 @@ Page({
 
     //检测登录
     app.checkSessionFun().then(() => {
+    this.getMemberFollowState()
     this.getCoach()
     this.getDateList()
-    })
-  },
-  onShow:function(){
-    app.checkSessionFun().then(() => {
-      this.getMemberFollowState()
     })
   },
   /**

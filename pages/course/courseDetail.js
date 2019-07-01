@@ -61,12 +61,10 @@ Page({
     //检测登录
     app.checkSessionFun().then(() => {
     this.getCourse()
+    this.getMemberFollowState()
     })
   },
   onShow(){
-    app.checkSessionFun().then(() => {
-      this.getMemberFollowState()
-    })
   },
   /**
    * write@xuhuang  start
