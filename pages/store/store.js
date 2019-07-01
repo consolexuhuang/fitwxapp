@@ -28,8 +28,6 @@ Page({
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
 
     officialData: '', //获取当前场景值对象
-    officialDataState: false, //关注通知显示
-    showNoticeState: false, //关注弹窗显示
     memberFollowState: 1, //当前关注状态
 
   },
@@ -41,12 +39,6 @@ Page({
 
     //检测登录
     app.checkSessionFun().then(() => {
-    // sub_flag 1:关注 0:未关注
-    if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
-      this.setData({ officialDataState: true })
-    } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
-      this.setData({ officialDataState: false })
-    }
     this.getCityList()
     })
   },
@@ -70,22 +62,6 @@ Page({
   binderror(e) {
     console.log('official-account_fail', e.detail)
     this.setData({ officialData: e.detail })
-  },
-  //关闭通知
-  closeguideLogin() {
-    this.setData({ officialDataState: false })
-  },
-  //显示关注弹窗
-  showNotice() {
-    this.setData({ showNoticeState: true })
-  },
-  //关闭关注弹窗
-  onclose() {
-    this.setData({ showNoticeState: false })
-  },
-  //客服事件
-  handleContact(e) {
-    this.setData({ showNoticeState: false })
   },
   /**
    * write@xuhuang  end

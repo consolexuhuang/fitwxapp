@@ -82,3 +82,14 @@
     <image src='{{orderDetailData.coach.wxQrCodeUrl}}' class='coachWxImg' show-menu-by-longpress bindtap='showPrevICoachWxImg' data-imgSrc='{{orderDetailData.coach.wxQrCodeUrl}}'></image>
     <view class='coachWxCont'>长按保存教练微信二维码</view>
 </van-popup>
+
+<!-- <view class='officialAccount fadeIn animated' 
+      wx:if='{{memberFollowState == 0}}'>
+  <official-account bindload='bindload' 
+                    binderror='binderror'
+                    class='officialAccount'>
+  </official-account>
+</view> -->
+<officalAccount memberFollowState='{{memberFollowState}}' 
+                bottomStyle='{{bottomStyle}}'>
+</officalAccount>

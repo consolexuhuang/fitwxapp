@@ -293,3 +293,8 @@
   font-size: 26rpx;
   color: #fff;
 }
+.officialAccount{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

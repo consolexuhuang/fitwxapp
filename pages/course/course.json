@@ -6,6 +6,7 @@
   "usingComponents": {
      "van-switch": "../../libs/vant-weapp/dist/switch/index",
      "tabBar_top": "/components/tabBar_top/tabBar",
-     "van-popup": "../../../libs/vant-weapp/dist/popup/index"
+     "van-popup": "../../../libs/vant-weapp/dist/popup/index",
+     "officalAccount": "/components/officalAccount/officalAccount"
   }
 }

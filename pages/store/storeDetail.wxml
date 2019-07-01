@@ -103,3 +103,14 @@
 </view>
 <!-- 免责声明 -->
 <statement show="{{isShowStatement}}" content="{{statementContent}}" btnText="关闭" bind:statementEvent="statementClose"></statement>
+
+<!-- <view class='officialAccount fadeIn animated' 
+      wx:if='{{memberFollowState == 0}}'>
+  <official-account bindload='bindload' 
+                    binderror='binderror'
+                    class='officialAccount'>
+  </official-account>
+</view> -->
+<officalAccount memberFollowState='{{memberFollowState}}' 
+                bottomStyle='{{bottomStyle}}'>
+</officalAccount>

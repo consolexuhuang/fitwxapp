@@ -1,11 +1,14 @@
 <!--components/officalAccount/officalAccount.wxml-->
-<view class='guide fadeIn animated' wx:if= '{{memberFollowState == 0 &&  officialDataState && officialData.status !== 0}}' bindtap='_showNotice'>
+<view class='guide fadeIn animated' 
+      wx:if= '{{memberFollowState == 0 &&  officialDataState && officialData && officialData.status !== 0}}' 
+      bindtap='_showNotice'
+      style='bottom:{{27 + bottomStyle}}rpx'>
   <view class='guideLogin'>
     <text class='guideBtnImg iconfont iconclose-circle' catchtap='_closeguideLogin'></text>
     <image src='https://img.cdn.powerpower.net/5d11d55de4b080ee42fe2f30.png?imageView/1/w/686/h/120' class='guideLoginBg'></image>
     <view class='guideLoginBox'>
-      <view class='guideLoginText'>点我关注，活动福利全知道</view>
-      <button class='guideLoginBtn'>开启通知</button>
+      <view class='guideLoginText'>点这里，送50元代金券</view>
+      <button class='guideLoginBtn'>免费领取</button>
     </view>
   </view>
 </view>
@@ -16,9 +19,9 @@
            z-index = '1001'>
     <view class='showNoticeTitle'>三步关注公众号</view>
     <view class='showNoticeBox'>
-       <image class='showNoticeImg'         src='https://img.cdn.powerpower.net/5d11d55de4b080ee42fe2f31.png?imageView/1/w/530/h/648'></image>
+       <image class='showNoticeImg'         src='https://img.cdn.powerpower.net/5d19732ce4b07bc63b17acc5.png?imageView/1/w/530/h/648'></image>
     </view>
-    <view class='showNoticeBtn'>点击关注
+    <view class='showNoticeBtn'>立即关注
        <button class='showNoticeBtn2' open-type='contact' bindcontact="_handleContact"></button>
     </view>     
 </van-popup>

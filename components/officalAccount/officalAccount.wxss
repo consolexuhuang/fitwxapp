@@ -1,4 +1,6 @@
 /* components/officalAccount/officalAccount.wxss */
+@import '/style/animate.wxss';
+@import '/style/iconfont.wxss';
 .guideBtnImg{
   /* width:22rpx;
   height:22rpx; */
@@ -15,7 +17,8 @@
   width: 100%;
   align-items: center;
   bottom: 27rpx;
-  flex-direction: column
+  flex-direction: column;
+  z-index: 100;
 }
 .guideLogin{
   width:686rpx;

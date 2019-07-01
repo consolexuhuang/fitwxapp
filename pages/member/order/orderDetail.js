@@ -24,7 +24,9 @@ Page({
       toTop: 50, //px
       marginTopBar: getApp().globalData.tab_height * 2 + 20
     }, //悬浮分享组件配置
-    marginTopBar: getApp().globalData.tab_height * 2 + 20
+    marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    // officialData: '', //获取当前场景值对象
+    memberFollowState: 1, //当前关注状态
   },
   /**
    * 生命周期函数--监听页面加载
@@ -46,8 +48,30 @@ Page({
     //检测登录
     app.checkSessionFun().then(() => {
     this.getOrderDetail()
+    this.getMemberFollowState()
     })
   },
+  /**
+   * write@xuhuang  start
+   */
+  // 获取当前用户关注状态
+  getMemberFollowState() {
+    api.post('v2/member/memberInfo').then(res => {
+      console.log('getMemberFollowState', res)
+      this.setData({ memberFollowState: res.msg.sub_flag })
+    })
+  },
+  // bindload(e) {
+  //   console.log('official-account_success', e.detail)
+  //   this.setData({ officialData: e.detail })
+  // },
+  // binderror(e) {
+  //   console.log('official-account_fail', e.detail)
+  //   this.setData({ officialData: e.detail })
+  // },
+  /**
+   * write@xuhuang  end
+   */
   //订单详情初始化
   getOrderDetail() {
     wx.showLoading({

@@ -52,8 +52,6 @@ Page({
     swiperHeight: {},
 
     officialData: '', //获取当前场景值对象
-    officialDataState: true, //关注通知显示
-    showNoticeState: false, //关注弹窗显示
     memberFollowState: 1, //当前关注状态
   },
 
@@ -62,16 +60,6 @@ Page({
    */
 
   onLoad: function(options) {
-    // sub_flag 1:关注 0:未关注
-    if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
-      this.setData({
-        officialDataState: true
-      })
-    } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
-      this.setData({
-        officialDataState: false
-      })
-    }
     //进入onLoad
     onLoaded = true;
 
@@ -84,12 +72,12 @@ Page({
     })
   },
   onShow() {
+    //判断用户是否关注公众号
+    this.getMemberFollowState()
     //搜索进来的
     if (getApp().globalData.courseConfig) {
       //初始化    
       this.initFun();
-      //判断用户是否关注公众号
-      this.getMemberFollowState()
       return;
     }
 
@@ -140,30 +128,6 @@ Page({
   binderror(e) {
     this.setData({
       officialData: e.detail
-    })
-  },
-  //关闭通知
-  closeguideLogin() {
-    this.setData({
-      officialDataState: false
-    })
-  },
-  //显示关注弹窗
-  showNotice() {
-    this.setData({
-      showNoticeState: true
-    })
-  },
-  //关闭关注弹窗
-  onclose() {
-    this.setData({
-      showNoticeState: false
-    })
-  },
-  //客服事件
-  handleContact(e) {
-    this.setData({
-      showNoticeState: false
     })
   },
   /**

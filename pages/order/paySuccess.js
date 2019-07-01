@@ -21,9 +21,12 @@ Page({
       tab_topBackground:''
     },
     paySuccessShow: false,
-    coachWxCodeState: false
+    coachWxCodeState: false,
     // 此页面 页面内容距最顶部的距离
     // contMargin_height: getApp().globalData.tab_height * 2 + 20,
+    // officialData: '', //获取当前场景值对象
+    memberFollowState: 1, //当前关注状态
+    bottomStyle: 100,
   },
   
   // 订单详情
@@ -108,8 +111,31 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    app.checkSessionFun().then(() => {
+      this.getMemberFollowState()
+    })
   },
+  /**
+   * write@xuhuang  start
+   */
+  // 获取当前用户关注状态
+  getMemberFollowState() {
+    api.post('v2/member/memberInfo').then(res => {
+      console.log('getMemberFollowState', res)
+      this.setData({ memberFollowState: res.msg.sub_flag })
+    })
+  },
+  // bindload(e) {
+  //   console.log('official-account_success', e.detail)
+  //   this.setData({ officialData: e.detail })
+  // },
+  // binderror(e) {
+  //   console.log('official-account_fail', e.detail)
+  //   this.setData({ officialData: e.detail })
+  // },
+  /**
+   * write@xuhuang  end
+   */
   onclose(){
     this.setData({ paySuccessShow: false, coachWxCodeState: false})
   },

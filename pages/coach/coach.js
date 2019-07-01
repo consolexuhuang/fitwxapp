@@ -23,7 +23,10 @@ Page({
       tab_topBackground: '#fff'
     },
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
-    swiperHeight: getApp().globalData.systemInfo.screenHeight - (getApp().globalData.tab_height * 2 + 20) - 75
+    swiperHeight: getApp().globalData.systemInfo.screenHeight - (getApp().globalData.tab_height * 2 + 20) - 75,
+    // officialData: '', //获取当前场景值对象
+    memberFollowState: 1, //当前关注状态
+    bottomStyle: 0,
   },
 
   /**
@@ -56,8 +59,31 @@ Page({
     })
   },
   onShow:function(){
-    
+    app.checkSessionFun().then(() => {
+      this.getMemberFollowState()
+    })
   },
+  /**
+   * write@xuhuang  start
+   */
+  // 获取当前用户关注状态
+  getMemberFollowState() {
+    api.post('v2/member/memberInfo').then(res => {
+      console.log('getMemberFollowState', res)
+      this.setData({ memberFollowState: res.msg.sub_flag })
+    })
+  },
+  // bindload(e) {
+  //   console.log('official-account_success', e.detail)
+  //   this.setData({ officialData: e.detail })
+  // },
+  // binderror(e) {
+  //   console.log('official-account_fail', e.detail)
+  //   this.setData({ officialData: e.detail })
+  // },
+  /**
+   * write@xuhuang  end
+   */
   // 教练详情
   getCoach: function(event) {
     let coachId = this.data.coachId
