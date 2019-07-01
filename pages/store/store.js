@@ -29,6 +29,7 @@ Page({
 
     officialData: '', //获取当前场景值对象
     memberFollowState: 1, //当前关注状态
+    officialDataState: false,
 
   },
 
@@ -49,7 +50,7 @@ Page({
     })
   },
   onShow(){
-   
+    this.getOfficialDataState()
   },
   /**
    * write@xuhuang  start
@@ -60,6 +61,14 @@ Page({
       console.log('getMemberFollowState', res)
       this.setData({ memberFollowState: res.msg.sub_flag })
     })
+  },
+  getOfficialDataState() {
+    // sub_flag 1:关注 0:未关注
+    if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
+      this.setData({ officialDataState: true })
+    } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
+      this.setData({ officialDataState: false })
+    }
   },
   bindload(e) {
     console.log('official-account_success', e.detail)

@@ -2,6 +2,8 @@
 const app = getApp();
 const api = app.api;
 const ui = require('../../utils/ui.js');
+const store = app.store;
+
 Page({
 
   /**
@@ -27,6 +29,7 @@ Page({
     // officialData: '', //获取当前场景值对象
     memberFollowState: 1, //当前关注状态
     bottomStyle: 0,
+    officialDataState: false,
   },
 
   /**
@@ -57,6 +60,7 @@ Page({
     this.getMemberFollowState()
     this.getCoach()
     this.getDateList()
+    this.getOfficialDataState()
     })
   },
   /**
@@ -68,6 +72,14 @@ Page({
       console.log('getMemberFollowState', res)
       this.setData({ memberFollowState: res.msg.sub_flag })
     })
+  },
+  getOfficialDataState() {
+    // sub_flag 1:关注 0:未关注
+    if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
+      this.setData({ officialDataState: true })
+    } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
+      this.setData({ officialDataState: false })
+    }
   },
   // bindload(e) {
   //   console.log('official-account_success', e.detail)

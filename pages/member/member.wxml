@@ -166,5 +166,6 @@
   </official-account>
 </view>
 <officalAccount memberFollowState='{{memberFollowState}}' 
-                officialData= '{{officialData}}'>
+                officialData= '{{officialData}}'
+                officialDataState='{{officialDataState}}'>
 </officalAccount>

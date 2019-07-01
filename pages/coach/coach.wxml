@@ -128,5 +128,6 @@
   </official-account>
 </view> -->
 <officalAccount memberFollowState='{{memberFollowState}}' 
-                bottomStyle='{{bottomStyle}}'>
+                bottomStyle='{{bottomStyle}}'
+                officialDataState='{{officialDataState}}'>
 </officalAccount>

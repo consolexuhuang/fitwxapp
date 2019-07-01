@@ -92,6 +92,7 @@
                     class='officialAccount'>
   </official-account>
 </view> -->
-<officalAccount memberFollowState='{{memberFollowState}}' 
-                bottomStyle='{{bottomStyle}}'>
+<officalAccount memberFollowState='{{memberFollowState}}'
+                officialDataState='{{officialDataState}}'
+                bottomStyle='{{orderData.cancelFlag == 1 ? 100 : bottomStyle}}'>
 </officalAccount>

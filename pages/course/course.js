@@ -53,6 +53,8 @@ Page({
 
     officialData: '', //获取当前场景值对象
     memberFollowState: 1, //当前关注状态
+    officialDataState: false
+
   },
 
   /**
@@ -74,6 +76,7 @@ Page({
   onShow() {
     //判断用户是否关注公众号
     this.getMemberFollowState()
+    this.getOfficialDataState()
     //搜索进来的
     if (getApp().globalData.courseConfig) {
       //初始化    
@@ -119,6 +122,14 @@ Page({
         memberFollowState: res.msg.sub_flag
       })
     })
+  },
+  getOfficialDataState() {
+    // sub_flag 1:关注 0:未关注
+    if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
+      this.setData({ officialDataState: true })
+    } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
+      this.setData({ officialDataState: false })
+    }
   },
   bindload(e) {
     this.setData({

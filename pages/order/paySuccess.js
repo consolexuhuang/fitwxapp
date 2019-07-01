@@ -3,6 +3,7 @@ const app = getApp();
 const api = app.api
 const utils = require('../../utils/util.js')
 import Store from '../../utils/store.js'
+const store = app.store;
 Page({
 
   /**
@@ -27,6 +28,7 @@ Page({
     // officialData: '', //获取当前场景值对象
     memberFollowState: 1, //当前关注状态
     bottomStyle: 100,
+    officialDataState: false,
   },
   
   // 订单详情
@@ -96,6 +98,7 @@ Page({
         this.getMemberFollowState()
         this.getOrderDetail()
         this.getMemberInfo(options.orderId)
+        this.getOfficialDataState()
         })
 
       })
@@ -123,6 +126,14 @@ Page({
       console.log('getMemberFollowState', res)
       this.setData({ memberFollowState: res.msg.sub_flag })
     })
+  },
+  getOfficialDataState() {
+    // sub_flag 1:关注 0:未关注
+    if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
+      this.setData({ officialDataState: true })
+    } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
+      this.setData({ officialDataState: false })
+    }
   },
   // bindload(e) {
   //   console.log('official-account_success', e.detail)

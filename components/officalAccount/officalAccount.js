@@ -34,12 +34,12 @@ Component({
   lifetimes: {
     attached() {
       console.log('officalAccount',this.data)
-      // sub_flag 1:关注 0:未关注
-      if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
-        this.setData({ officialDataState: true })
-      } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
-        this.setData({ officialDataState: false })
-      }
+      // // sub_flag 1:关注 0:未关注
+      // if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
+      //   this.setData({ officialDataState: true })
+      // } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
+      //   this.setData({ officialDataState: false })
+      // }
     }
   },
   /**
