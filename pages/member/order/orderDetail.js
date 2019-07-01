@@ -44,9 +44,9 @@ Page({
     // this.getOrderDetail()
   },
   onShow(){
-
     //检测登录
     app.checkSessionFun().then(() => {
+      console.log('checkSessionFun')
     this.getOrderDetail()
     this.getMemberFollowState()
     })
@@ -82,7 +82,6 @@ Page({
       orderNum
     }
     api.post('payOrder/orderInfo', data).then(res => {
-      console.log("订单详情", res.msg)
       wx.hideLoading()
       const orderData = res.msg
       this.setData({
