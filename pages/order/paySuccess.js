@@ -23,12 +23,15 @@ Page({
     },
     paySuccessShow: false,
     coachWxCodeState: false,
+    memberInfo:'', //用户数据
     // 此页面 页面内容距最顶部的距离
     // contMargin_height: getApp().globalData.tab_height * 2 + 20,
     // officialData: '', //获取当前场景值对象
     memberFollowState: 1, //当前关注状态
     bottomStyle: 100,
     officialDataState: false,
+    // forcedEjection:false, //是否强制弹出
+    // pageShowNoticeState:false
   },
   
   // 订单详情
@@ -45,6 +48,13 @@ Page({
       // res.msg.course.endTime = utils.formatTime3(res.msg.course.endTime * 1000)
       this.setData({
         orderDetailData: res.msg
+      })
+    })
+  },
+  getMemberFollowData() {
+    api.post('v2/member/memberInfo').then(res => {
+      this.setData({
+        memberInfo: res.msg,
       })
     })
   },
@@ -99,16 +109,10 @@ Page({
         this.getOrderDetail()
         this.getMemberInfo(options.orderId)
         this.getOfficialDataState()
+        this.getMemberFollowData()
         })
 
       })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
   },
 
   /**
@@ -127,6 +131,7 @@ Page({
       this.setData({ memberFollowState: res.msg.sub_flag })
     })
   },
+  //获取用户实时数据
   getOfficialDataState() {
     // sub_flag 1:关注 0:未关注
     if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {

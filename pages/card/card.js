@@ -26,7 +26,8 @@ Page({
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
     officialData: '', //获取当前场景值对象
     memberFollowState: 1, //当前关注状态
-    officialDataState:false
+    officialDataState:false,
+    memberInfo:''
   },
 
   /**
@@ -48,7 +49,10 @@ Page({
   // 获取当前用户关注状态
   getMemberFollowState() {
     api.post('v2/member/memberInfo').then(res => {
-      this.setData({ memberFollowState: res.msg.sub_flag })
+      this.setData({ 
+        memberFollowState: res.msg.sub_flag ,
+        memberInfo: res.msg
+      })
     })
   },
   getOfficialDataState() {

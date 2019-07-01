@@ -7,8 +7,8 @@
     <text class='guideBtnImg iconfont iconclose-circle' catchtap='_closeguideLogin'></text>
     <image src='https://img.cdn.powerpower.net/5d11d55de4b080ee42fe2f30.png?imageView/1/w/686/h/120' class='guideLoginBg'></image>
     <view class='guideLoginBox'>
-      <view class='guideLoginText'>点这里，送50元代金券</view>
-      <button class='guideLoginBtn'>免费领取</button>
+      <view class='guideLoginText'>{{!pageShowNoticeState ? '点这里，送50元代金券': '点这里，活动福利全知道'}}</view>
+      <button class='guideLoginBtn'>{{!pageShowNoticeState ? '免费领取': '立即领取'}}</button>
     </view>
   </view>
 </view>

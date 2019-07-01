@@ -53,8 +53,8 @@ Page({
 
     officialData: '', //获取当前场景值对象
     memberFollowState: 1, //当前关注状态
-    officialDataState: false
-
+    officialDataState: false,
+    memberInfo:''
   },
 
   /**
@@ -119,7 +119,8 @@ Page({
   getMemberFollowState() {
     api.post('v2/member/memberInfo').then(res => {
       this.setData({
-        memberFollowState: res.msg.sub_flag
+        memberFollowState: res.msg.sub_flag,
+        memberInfo: res.msg
       })
     })
   },

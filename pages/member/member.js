@@ -25,7 +25,8 @@ Page({
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
     officialData: '', //获取当前场景值对象
     memberFollowState: 1, //当前关注状态
-    officialDataState:false
+    officialDataState:false,
+    memberInfo:''
   },
   /**
    * 生命周期函数--监听页面加载
@@ -56,7 +57,10 @@ Page({
   getMemberFollowState() {
     api.post('v2/member/memberInfo').then(res => {
       console.log('getMemberFollowState', res)
-      this.setData({ memberFollowState: res.msg.sub_flag })
+      this.setData({ 
+        memberFollowState: res.msg.sub_flag,
+        memberInfo: res.msg
+      })
     })
   },
   getOfficialDataState() {

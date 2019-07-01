@@ -20,6 +20,14 @@ Component({
     bottomStyle:{
       type:null,
       value:0
+    },
+    pageShowNoticeState:{
+      type:Boolean,
+      value:false
+    },
+    forcedEjection:{
+      type:Boolean,
+      value:false,
     }
   },
 
@@ -31,15 +39,28 @@ Component({
     officialData: '', //获取当前场景值对象
     guideImgUrl:''  //指引图片
   },
+  observers:{
+    'pageShowNoticeState': function(){
+      if (this.data.pageShowNoticeState){
+        getApp().api.post('v2/coupon/shareCouponInfo').then(res => {
+          console.log('shareCouponInfo', res)
+          this.setData({
+            guideImgUrl: res.msg.imgurl2,
+          })
+        })
+      }
+    },
+    'forcedEjection':function(){
+      if (this.data.forcedEjection) {
+        this.setData({
+          showNoticeState: true
+        })
+      }
+    }
+  },
   lifetimes: {
     attached() {
       console.log('officalAccount',this.data)
-      // // sub_flag 1:关注 0:未关注
-      // if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
-      //   this.setData({ officialDataState: true })
-      // } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
-      //   this.setData({ officialDataState: false })
-      // }
     }
   },
   /**
@@ -51,14 +72,14 @@ Component({
       getApp().api.post('v2/coupon/shareCouponInfo').then(res => {
         // console.log(res)
         this.setData({
-          guideImgUrl: res.msg.imgurl1
+          guideImgUrl: this.data.pageShowNoticeState ? res.msg.imgurl2 : res.msg.imgurl1
         })
       })
       this.setData({ showNoticeState: true })
     },
     //关闭关注弹窗
     _onclose() {
-      this.setData({ showNoticeState: false })
+      this.setData({ showNoticeState: false})
     },
     //关闭通知
     _closeguideLogin() {

@@ -28,6 +28,7 @@ Page({
     memberFollowState: 1, //当前关注状态
     bottomStyle: 130,
     officialDataState: false,
+    memberInfo: '',
 
     statementContent: `<p>1、参与Justin&Julie健身服务的用户，具有完全的民事行为能力，同意遵守Justin&Julie的相关管理规章制度，已接受Justin&Julie的相关服务协议，并已知晓有关的健身规则与警示，承诺遵守Justin&Julie的相关健身规则与警示规定。</p>
       <p>2、Justin&Julie员工及教练不提供任何形式的体检服务，Justin&Julie员工及教练对用户身体情况的任何询问、了解和建议都不构成本公司对用户身体状况是否符合任意健身课程和产品要求的承诺及保证。在确认本声明前，用户应自行到医疗机构进行体检，了解自身身体情况，以确保用户具备参与Justin&Julie健身产品的身体条件，且没有任何不宜运动的疾病、损伤和其他缺陷。因用户自身的任何疾病、损伤或其他缺陷导致用户在接受服务时发生任何损害的，Justin&Julie不承担任何法律责任。</p>
@@ -88,7 +89,10 @@ Page({
   getMemberFollowState() {
     api.post('v2/member/memberInfo').then(res => {
       console.log('getMemberFollowState', res)
-      this.setData({ memberFollowState: res.msg.sub_flag })
+      this.setData({ 
+        memberFollowState: res.msg.sub_flag ,
+        memberInfo: res.msg
+      })
     })
   },
   getOfficialDataState() {

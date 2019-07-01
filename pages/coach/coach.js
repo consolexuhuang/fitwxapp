@@ -30,6 +30,8 @@ Page({
     memberFollowState: 1, //当前关注状态
     bottomStyle: 0,
     officialDataState: false,
+    pageShowNoticeState: false,
+    memberInfo:''
   },
 
   /**
@@ -70,7 +72,10 @@ Page({
   getMemberFollowState() {
     api.post('v2/member/memberInfo').then(res => {
       console.log('getMemberFollowState', res)
-      this.setData({ memberFollowState: res.msg.sub_flag })
+      this.setData({ 
+        memberFollowState: res.msg.sub_flag ,
+        memberInfo: res.msg
+      })
     })
   },
   getOfficialDataState() {
