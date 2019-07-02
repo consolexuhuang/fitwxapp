@@ -3,11 +3,14 @@
 #### 正式环境
 "appid": "wx29946485f206d315",
 const API_URI = 'https://fit.jlife.vip/wx/api/'
+app.json 跳转id wxec1fe04fad9d4e02
+app.js 更换正式全局跳转
 
 #### 开发环境
 "appid": "wx6b00bfc932f22210",
 const API_URI = 'https://dev.jlife.vip/wx/api/'
-
+app.json 跳转id wx322a8a72b755aa57
+app.js 更换测试全局跳转
 
 #### 安装教程
 
