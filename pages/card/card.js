@@ -1,5 +1,7 @@
 // pages/card/card.js
-const api = getApp().api;
+const app = getApp();
+const api = app.api;
+const store = app.store;
 Page({
 
   /**
@@ -21,15 +23,55 @@ Page({
       titleColor: "#000",
       tab_topBackground:'#fff'
     },
-    marginTopBar: getApp().globalData.tab_height * 2 + 20
+    marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    officialData: '', //获取当前场景值对象
+    memberFollowState: 1, //当前关注状态
+    officialDataState:false,
+    memberInfo:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    //检测登录
+    app.checkSessionFun().then(() => {
     this.getCardDefList()
+    })
   },
+  onShow(){
+    this.getMemberFollowState()
+    this.getOfficialDataState()
+  },
+  /**
+   * write@xuhuang  start
+   */
+  // 获取当前用户关注状态
+  getMemberFollowState() {
+    api.post('v2/member/memberInfo').then(res => {
+      this.setData({ 
+        memberFollowState: res.msg.sub_flag ,
+        memberInfo: res.msg
+      })
+    })
+  },
+  getOfficialDataState() {
+    // sub_flag 1:关注 0:未关注
+    if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
+      this.setData({ officialDataState: true })
+    } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
+      this.setData({ officialDataState: false })
+    }
+  },
+  bindload(e) {
+    this.setData({ officialData: e.detail })
+  },
+  binderror(e) {
+    this.setData({ officialData: e.detail })
+  },
+  /**
+   * write@xuhuang  end
+   */
   getCardDefList: function(event) {
     wx.showLoading({ title: '加载中...'})
     api.post('card/getCardDefList').then(res => {

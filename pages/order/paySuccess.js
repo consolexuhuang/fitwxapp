@@ -1,7 +1,9 @@
 // pages/order/paySuccess.js
-const api = getApp().api
+const app = getApp();
+const api = app.api
 const utils = require('../../utils/util.js')
 import Store from '../../utils/store.js'
+const store = app.store;
 Page({
 
   /**
@@ -20,9 +22,16 @@ Page({
       tab_topBackground:''
     },
     paySuccessShow: false,
-    coachWxCodeState: false
+    coachWxCodeState: false,
+    memberInfo:'', //用户数据
     // 此页面 页面内容距最顶部的距离
     // contMargin_height: getApp().globalData.tab_height * 2 + 20,
+    // officialData: '', //获取当前场景值对象
+    memberFollowState: 1, //当前关注状态
+    bottomStyle: 100,
+    officialDataState: false,
+    // forcedEjection:false, //是否强制弹出
+    // pageShowNoticeState:false
   },
   
   // 订单详情
@@ -39,6 +48,13 @@ Page({
       // res.msg.course.endTime = utils.formatTime3(res.msg.course.endTime * 1000)
       this.setData({
         orderDetailData: res.msg
+      })
+    })
+  },
+  getMemberFollowData() {
+    api.post('v2/member/memberInfo').then(res => {
+      this.setData({
+        memberInfo: res.msg,
       })
     })
   },
@@ -76,20 +92,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    //分享过来的参数
+    if (options.shareMemberId) {
+      wx.setStorageSync('shareMemberId', options.shareMemberId)
+    }
+    
     this.checkPromotion()
     if (options.orderId) 
-      this.setData({ orderId: options.orderId },()=>{
+      this.setData({ 
+        orderId: options.orderId
+         },()=>{
+      
+        //检测登录
+        app.checkSessionFun().then(() => {
+        this.getMemberFollowState()
         this.getOrderDetail()
         this.getMemberInfo(options.orderId)
-      })
-  },
+        this.getOfficialDataState()
+        this.getMemberFollowData()
+        })
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
+      })
   },
 
   /**
@@ -98,12 +121,36 @@ Page({
   onShow: function () {
 
   },
-  //邀请好友
-  // jumpInvite(){
-  //   wx.navigateTo({
-  //     url: `/pages/invite/invite`,
-  //   })
+  /**
+   * write@xuhuang  start
+   */
+  // 获取当前用户关注状态
+  getMemberFollowState() {
+    api.post('v2/member/memberInfo').then(res => {
+      console.log('getMemberFollowState', res)
+      this.setData({ memberFollowState: res.msg.sub_flag })
+    })
+  },
+  //获取用户实时数据
+  getOfficialDataState() {
+    // sub_flag 1:关注 0:未关注
+    if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
+      this.setData({ officialDataState: true })
+    } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
+      this.setData({ officialDataState: false })
+    }
+  },
+  // bindload(e) {
+  //   console.log('official-account_success', e.detail)
+  //   this.setData({ officialData: e.detail })
   // },
+  // binderror(e) {
+  //   console.log('official-account_fail', e.detail)
+  //   this.setData({ officialData: e.detail })
+  // },
+  /**
+   * write@xuhuang  end
+   */
   onclose(){
     this.setData({ paySuccessShow: false, coachWxCodeState: false})
   },
@@ -133,11 +180,10 @@ Page({
   },
   //分享
   onShareAppMessage() {
-    console.log(this.data.orderDetailData.course.beginDate)
     return {
       title: `【 ${this.data.orderDetailData.course.courseName} 】${utils.formatTime2(this.data.orderDetailData.course.beginDate)}星期${this.data.orderDetailData.course.beginDay}${utils.formatTime3(this.data.orderDetailData.course.beginTime)}，快和我一起来运动
 `,
-      path: '/pages/member/order/orderDetail?orderNum=' + this.data.orderId,
+      path: '/pages/member/order/orderDetail?orderNum=' + this.data.orderId + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
       // imageUrl: this.data.picList[0],
       success: function (res) {
         console.log(res)

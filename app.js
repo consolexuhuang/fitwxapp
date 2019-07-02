@@ -10,8 +10,7 @@ App({
     this.api = api
     this.store = Store;
     this.worker = worker;
-    //登录
-    this.checkSessionFun();
+    this.globalData.scene = options.scene;
     //版本更新
     if (wx.canIUse('getUpdateManager')) {
       const updateManager = wx.getUpdateManager()
@@ -60,6 +59,11 @@ App({
     this.getLocation();
   },
   onShow(options) {
+<<<<<<< HEAD
+=======
+    
+    this.globalData.scene = options.scene
+>>>>>>> dev
     // 校验场景值
     if (options.scene == 1007 || options.scene == 1008 || options.scene == 1035 || options.scene == 1043) {
       if (options.path.indexOf('index') != -1 ||
@@ -94,6 +98,19 @@ App({
     // openid:'',
     location: '',
     isIpX: false, //是否是ipHonex
+    redirectToState: true,
+    scene:'',
+    
+    JumpAppId: {                    //测试
+      appid: 'wx322a8a72b755aa57',
+      envVersion: 'trial' //体验版
+      // envVersion: 'release' //正式版
+    },
+    // JumpAppId: {                   //正式
+    //   appid: 'wxec1fe04fad9d4e02',
+    //   envVersion: 'trial' //体验版
+    //   // envVersion: 'release' //正式版
+    // }, 
   },
 
   /**
@@ -145,16 +162,27 @@ App({
   },
   //检查登录态是否过期
   checkSessionFun() {
-    wx.checkSession({
-      success: () => {
-        //session_key 未过期，并且在本生命周期一直有效
-        Store.getItem('userData') ? console.log('无需重新登陆') : this.wx_loginIn()
-      },
-      fail: () => {
-        // session_key 已经失效，需要重新执行登录流程
-        this.wx_loginIn();
-      }
+    return new Promise((resolve,reject)=>{
+      wx.checkSession({
+        success: () => {
+          //session_key 未过期，并且在本生命周期一直有效
+          if (Store.getItem('userData')){
+            resolve();
+          }else{
+            this.wx_loginIn().then(() => {
+              resolve();
+            })
+          }
+        },
+        fail: () => {
+          // session_key 已经失效，需要重新执行登录流程
+          this.wx_loginIn().then(()=>{
+            resolve();
+          })
+        }
+      })
     })
+    
   },
   wx_loginIn: function () {
     let _this = this
@@ -163,8 +191,15 @@ App({
         success: res_code => {
           _this.globalData.code = res_code.code
           Store.setItem('code', res_code.code)
+          let shareMemberId = wx.getStorageSync('shareMemberId') ? wx.getStorageSync('shareMemberId') : '';
           let data = {
-            code: res_code.code
+            code: res_code.code,
+            sourceData: _this.globalData.scene,
+            shareChannel: shareMemberId,
+            nickName: Store.getItem('wx_userInfo').nickName || '',
+            headImg: Store.getItem('wx_userInfo').avatarUrl || '',
+            city: Store.getItem('wx_userInfo').city || '',
+            gender: Store.getItem('wx_userInfo').gender || ''
           }
           api.get('authorizationLite', data).then(res => {
             if (res.msg) {
@@ -174,18 +209,39 @@ App({
                 }, 0)
               } else {
                 // 已关联公众号
-                Store.setItem('userData', res.msg)
+                wx.setStorageSync('shareMemberId', res.msg.id)
+                wx.setStorageSync('userData', res.msg)
+                //Store.setItem('userData', res.msg)
+                resolve()
               }
             } else {
-              // 未关联
               setTimeout(() => {
-                wx.redirectTo({
-                  url: '/pages/invite/inviteShare',
-                })
+                wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
               }, 0)
             }
-            resolve()
           })
+        },
+        fail:()=>{
+          console.error('登录失败！')
+        }
+      })
+    })
+  },
+  //修改用户信息接口
+  wx_modifyUserInfo(){
+    return new Promise(resolve => {
+      let data = {
+        nickName: Store.getItem('wx_userInfo').nickName || '',
+        headImg: Store.getItem('wx_userInfo').avatarUrl || '',
+        city: Store.getItem('wx_userInfo').city || '',
+        gender: Store.getItem('wx_userInfo').gender || ''
+      }
+      wx.showLoading({ title: '加载中...',})
+      api.post('modifyUserInfo', data).then(res => {
+        wx.hideLoading()
+        if(res.msg) {
+          Store.setItem('userData', res.msg)
+          resolve()
         }
       })
     })

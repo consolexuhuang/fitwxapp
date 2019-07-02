@@ -2,7 +2,7 @@
 <tabBar_top navbarData="{{navbarData}}"></tabBar_top>
 <view class='startUp'>
   <image src='{{imgUrl}}icon/startUp_logo.png' class='startUp_logo'></image>
-  <view class='startUpCont'>
+  <view class='startUpCont' wx:if='{{userData.nick_name}}'>
     <!-- <image src='{{imgUrl}}icon/startUp_title.png' class='startUpCont_Img'></image>
     <view class='startUpCont_title'>你身边的团课教室</view> -->
     <view class='loading'>
@@ -17,6 +17,10 @@
         </view>
       </view>
     </view>
+  </view>
+  <view class='startUpCont2 fadeIn animated' wx:if='{{userData && !userData.nick_name}}'>
+    <button open-type='getUserInfo' bindgetuserinfo = 'bindgetuserinfo' class='getUserInfoBtn'></button>
+    微信授权登陆
   </view>
   <!-- <image src='{{imgUrl}}icon/startUp_bottom.png' class='startUp_bottom'></image> -->
 </view>

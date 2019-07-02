@@ -1,5 +1,6 @@
 // pages/member/card/memberCard.js
-const api = getApp().api
+const app = getApp();
+const api = app.api
 Page({
 
   /**
@@ -25,7 +26,12 @@ Page({
     
   },
   onShow(){
+
+    //检测登录
+    app.checkSessionFun().then(() => {
     this.getCardList()
+    })
+
   },
   getCardList: function(event) {
     wx.showLoading({ title: '加载中...' })

@@ -1,6 +1,8 @@
 // pages/member/order/orderDetail.js
-const api = getApp().api
+const app = getApp();
+const api = app.api
 const utils = require('../../../utils/util.js')
+const store = getApp().store;
 Page({
 
   /**
@@ -23,12 +25,26 @@ Page({
       toTop: 50, //px
       marginTopBar: getApp().globalData.tab_height * 2 + 20
     }, //悬浮分享组件配置
-    marginTopBar: getApp().globalData.tab_height * 2 + 20
+    marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    coachWxCodeState: false,
+
+    // officialData: '', //获取当前场景值对象
+    memberFollowState: 1, //当前关注状态
+    bottomStyle: 0,
+    officialDataState:false,
+    memberInfo:'',
+
+
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    //分享过来的参数
+    if (options.shareMemberId) {
+      wx.setStorageSync('shareMemberId', options.shareMemberId)
+    }
+    
     const orderNum = options.orderNum
     this.setData({
       orderNum
@@ -36,7 +52,52 @@ Page({
     // this.getOrderDetail()
   },
   onShow(){
+    //检测登录
+    app.checkSessionFun().then(() => {
+      console.log('checkSessionFun')
     this.getOrderDetail()
+    this.getMemberFollowState()
+    this.getOfficialDataState()
+    })
+  },
+  /**
+   * write@xuhuang  start
+   */
+  // 获取当前用户关注状态
+  getMemberFollowState() {
+    api.post('v2/member/memberInfo').then(res => {
+      console.log('getMemberFollowState', res)
+      this.setData({
+        memberFollowState: res.msg.sub_flag,
+        memberInfo: res.msg
+      })
+    })
+  },
+  getOfficialDataState(){
+    // sub_flag 1:关注 0:未关注
+    if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
+      this.setData({ officialDataState: true })
+    } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
+      this.setData({ officialDataState: false })
+    }
+  },
+  // bindload(e) {
+  //   console.log('official-account_success', e.detail)
+  //   this.setData({ officialData: e.detail })
+  // },
+  // binderror(e) {
+  //   console.log('official-account_fail', e.detail)
+  //   this.setData({ officialData: e.detail })
+  // },
+  /**
+   * write@xuhuang  end
+   */
+  // 显示教练二维码
+  showCoachWxCode() {
+    this.setData({ coachWxCodeState: true })
+  },
+  onclose() {
+    this.setData({ coachWxCodeState: false })
   },
   //订单详情初始化
   getOrderDetail() {
@@ -143,7 +204,7 @@ Page({
     return {
       title: `【 ${this.data.orderData.course.courseName} 】${utils.formatTime2(this.data.orderData.course.beginDate)}星期${this.data.orderData.course.beginDay}${utils.formatTime3(this.data.orderData.course.beginTime)}，快和我一起来运动
 `,
-      path: '/pages/member/order/orderDetail?orderNum=' + this.data.orderNum,
+      path: '/pages/member/order/orderDetail?orderNum=' + this.data.orderNum + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
       // imageUrl: this.data.picList[0],
       success: function (res) {
         console.log(res)

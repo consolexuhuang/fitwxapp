@@ -4,11 +4,14 @@
 <view wx:if="userCard && sport" style='margin-top:{{marginTopBar}}px'>
   <view class="top">
     <view class="info">
-      <view class="user">
-        <image class="header" wx:if='{{!userData && !userData.head_img}}' src="{{imgUrl}}icon/default_header.png"></image>
-        <image class="header" wx:if='{{userData && userData.head_img}}' src="{{userData.head_img}}"></image>
-        <text class="name">{{userData && userData.nick_name ? userData.nick_name : '点击登录'}}</text>
-        <!-- <button open-type='getUserInfo' bindgetuserinfo = 'bindgetuserinfo' class='getUserInfoBtn'></button> -->
+      <view class="user" wx:if='{{!userData.head_img && !wx_userInfo}}'>
+        <image class="header" src="{{imgUrl}}icon/default_header.png"></image>
+        <text class="name">点击授权</text>
+        <button open-type='getUserInfo' bindgetuserinfo = 'bindgetuserinfo' class='getUserInfoBtn'></button>
+      </view>
+      <view class='user' wx:elif='{{userData.head_img || wx_userInfo}}'>
+        <image class="header" src="{{userData.head_img ? userData.head_img : (wx_userInfo ? wx_userInfo.avatarUrl : '')}}"></image>
+        <text class="name">{{userData && userData.nick_name ? userData.nick_name : wx_userInfo.nickName}}</text>
       </view>
       <view class="concat">
         <text class="pic iconfont iconicon-test24"></text>
@@ -155,3 +158,15 @@
     <text class="item" bindtap="loginOut">退出当前帐号</text>
   </view> -->
 </view>
+<view class='officialAccount fadeIn animated' 
+      wx:if='{{memberFollowState == 0}}'>
+  <official-account bindload='bindload' 
+                    binderror='binderror'
+                    class='officialAccount'>
+  </official-account>
+</view>
+<officalAccount memberFollowState='{{memberFollowState}}' 
+                officialData= '{{officialData}}'
+                officialDataState='{{officialDataState}}'
+                pageShowNoticeState='{{memberInfo.sub_flag == 0 && memberInfo.order_count >= 1 ? true : false}}'>
+</officalAccount>

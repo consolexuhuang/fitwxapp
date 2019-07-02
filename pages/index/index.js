@@ -30,6 +30,7 @@ Page({
       titleColor: "#8969FF",
       tab_topBackground: '#8969FF'
     },
+    memberFollowState: ''
   },
 
   /**
@@ -39,10 +40,17 @@ Page({
     //删除进入状态
     wx.removeStorageSync('noFind');
 
-    this.checkSessionFun();
+    app.checkSessionFun().then(()=>{
+      this.setData({
+        userData: Store.getItem('userData')
+      })
+      if (Store.getItem('userData') && Store.getItem('userData').nick_name) {
+        this.getDataInit();
+      };
+    })
+
+    //this.checkSessionFun();
   },
-
-
   // 获取展示的店铺
   getDisplayedStore: function(event) {
     const courses = this.data.courseList.courses
@@ -71,9 +79,6 @@ Page({
       pageList,
     })
   },
-
-  // 检查数据是否都已经获取
-
   //loading
   loadingText() {
     if (this.data.loadText) {
@@ -136,29 +141,61 @@ Page({
       })
   },
   //检查登录态是否过期
-  checkSessionFun() {
+ /*  checkSessionFun() {
     wx.checkSession({
       success: () => {
         //session_key 未过期，并且在本生命周期一直有效
-        Store.getItem('userData') ? this.getDataInit() : this.wxLogin();
-        // this.getDataInit();
+        Store.getItem('userData') ? this.cheakAuthWXLogin() : this.wxLogin();        
       },
       fail: () => {
+        console.log('indexFail')
         // session_key 已经失效，需要重新执行登录流程
         this.wxLogin();
       }
     })
-  },
-
-  //微信登录
-  wxLogin() {
-    //登录
-    getApp().wx_loginIn().then(() => {
-      this.getDataInit();
+  }, */
+  //更新用户
+  bindgetuserinfo(e) {
+    wx.getUserInfo({
+      success: res => {
+        console.log('用户授权信息', res.userInfo)
+        Store.setItem('wx_userInfo', res.userInfo)
+        this.setData({
+          wx_userInfo: res.userInfo || ''
+        })
+        getApp().wx_modifyUserInfo().then(res => {
+          this.setData({
+            userData: Store.getItem('userData')
+          })
+          this.getDataInit();
+        });
+      },
+      fail: res => {
+        this.getDataInit();
+      }
     })
   },
+  //微信登录
+ /*  wxLogin() {
+    //登录
+    getApp().wx_loginIn().then(() => {
+      this.cheakAuthWXLogin()
+    })
+  },
+  // 检查是否显示需要授权登陆嗯妞
+  cheakAuthWXLogin() {
+    this.setData({
+      userData: Store.getItem('userData')
+    })
+    if (Store.getItem('userData') && Store.getItem('userData').nick_name) {
+      this.getDataInit();
+    };
+  }, */
   //加载数据
   getDataInit() {
+    /* this.setData({
+      userData: Store.getItem('userData')
+    }) */
     //加载数据
     if (app.globalData.location) {
       this.loadingText();

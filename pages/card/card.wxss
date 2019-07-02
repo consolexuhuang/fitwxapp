@@ -243,3 +243,9 @@ page {
   font-size: 34rpx;
   color: #896eff;
 }
+/* -------------------------------------- */
+.officialAccount{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

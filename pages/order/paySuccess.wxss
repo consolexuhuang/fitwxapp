@@ -257,3 +257,8 @@ page {
   width: 79rpx;
   height: 79rpx;
 }
+.officialAccount{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

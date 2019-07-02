@@ -1,5 +1,7 @@
 // pages/store/store.js
-const api = getApp().api
+const app = getApp();
+const api = app.api
+const store = app.store;
 Page({
 
   /**
@@ -23,16 +25,65 @@ Page({
       titleColor: "#000",
       tab_topBackground: '#fff'
     },
-    marginTopBar: getApp().globalData.tab_height * 2 + 20
+    marginTopBar: getApp().globalData.tab_height * 2 + 20,
 
+    officialData: '', //获取当前场景值对象
+    memberFollowState: 1, //当前关注状态
+    officialDataState: false,
+    memberInfo:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    //获取本地存储数据
+    this.setData({
+      topStoreIds: wx.getStorageSync('topStoreIds') ? wx.getStorageSync('topStoreIds'):[]
+    })
+    
+
+    //检测登录
+    app.checkSessionFun().then(() => {
     this.getCityList()
+    this.getMemberFollowState()
+    })
   },
+  onShow(){
+    this.getOfficialDataState()
+  },
+  /**
+   * write@xuhuang  start
+   */
+  // 获取当前用户关注状态
+  getMemberFollowState() {
+    api.post('v2/member/memberInfo').then(res => {
+      console.log('getMemberFollowState', res)
+      this.setData({ 
+        memberFollowState: res.msg.sub_flag ,
+        memberInfo: res.msg
+      })
+    })
+  },
+  getOfficialDataState() {
+    // sub_flag 1:关注 0:未关注
+    if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
+      this.setData({ officialDataState: true })
+    } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
+      this.setData({ officialDataState: false })
+    }
+  },
+  bindload(e) {
+    console.log('official-account_success', e.detail)
+    this.setData({ officialData: e.detail })
+  },
+  binderror(e) {
+    console.log('official-account_fail', e.detail)
+    this.setData({ officialData: e.detail })
+  },
+  /**
+   * write@xuhuang  end
+   */
   watch:{
     city: function(){
       const area = ''
@@ -113,6 +164,9 @@ Page({
     this.setData({
       topStoreIds
     })
+    /* 存储到本地 后续删除 */
+    wx.setStorageSync('topStoreIds', topStoreIds)
+
     this.getStoreList()
   },
   handleSelectTap: function(event){

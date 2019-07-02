@@ -1,5 +1,9 @@
 // pages/coach/coach.js
-const api = getApp().api;
+const app = getApp();
+const api = app.api;
+const ui = require('../../utils/ui.js');
+const store = app.store;
+
 Page({
 
   /**
@@ -21,13 +25,26 @@ Page({
       tab_topBackground: '#fff'
     },
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
-    swiperHeight: getApp().globalData.systemInfo.screenHeight - (getApp().globalData.tab_height * 2 + 20) - 75
+    swiperHeight: getApp().globalData.systemInfo.screenHeight - (getApp().globalData.tab_height * 2 + 20) - 75,
+    // officialData: '', //获取当前场景值对象
+    memberFollowState: 1, //当前关注状态
+    bottomStyle: 0,
+    officialDataState: false,
+    pageShowNoticeState: false,
+    memberInfo:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    //loading
+    ui.showLoadingMask();
+
+    //分享过来的参数
+    if (options.shareMemberId){
+      wx.setStorageSync('shareMemberId', options.shareMemberId)
+    }
     const coachId = options.coachId;
     //从课程页面过来的
     let active = options.active;
@@ -39,17 +56,55 @@ Page({
     this.setData({
       coachId
     })
+
+    //检测登录
+    app.checkSessionFun().then(() => {
+    this.getMemberFollowState()
     this.getCoach()
     this.getDateList()
+    this.getOfficialDataState()
+    })
   },
+  /**
+   * write@xuhuang  start
+   */
+  // 获取当前用户关注状态
+  getMemberFollowState() {
+    api.post('v2/member/memberInfo').then(res => {
+      console.log('getMemberFollowState', res)
+      this.setData({ 
+        memberFollowState: res.msg.sub_flag ,
+        memberInfo: res.msg
+      })
+    })
+  },
+  getOfficialDataState() {
+    // sub_flag 1:关注 0:未关注
+    if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
+      this.setData({ officialDataState: true })
+    } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
+      this.setData({ officialDataState: false })
+    }
+  },
+  // bindload(e) {
+  //   console.log('official-account_success', e.detail)
+  //   this.setData({ officialData: e.detail })
+  // },
+  // binderror(e) {
+  //   console.log('official-account_fail', e.detail)
+  //   this.setData({ officialData: e.detail })
+  // },
+  /**
+   * write@xuhuang  end
+   */
   // 教练详情
   getCoach: function(event) {
-    const coachId = this.data.coachId
-    const data = {
+    let coachId = this.data.coachId
+    let data = {
       id: coachId
     }
     api.post('coach/getCoach', data).then(res => {
-      const coachData = res.msg.coach
+      let coachData = res.msg.coach
       this.setData({
         coachData
       })
@@ -58,8 +113,8 @@ Page({
   // 获取日期列表
   getDateList: function(event) {
     api.post('course/getDateList').then(res => {
-      const dateList = res.msg.list
-      const active = res.msg.active;
+      let dateList = res.msg.list
+      let active = res.msg.active;
       //从课程页面过来
       if (this.data.active){
         this.setData({
@@ -78,18 +133,22 @@ Page({
   },
   // 获取课程列表
   getCourseList: function(event) {
-    const coachId = this.data.coachId
-    const latitude = getApp().globalData.location.latitude
-    const longitude = getApp().globalData.location.longitude
-    const data = {
+    let coachId = this.data.coachId
+    let latitude = getApp().globalData.location.latitude
+    let longitude = getApp().globalData.location.longitude
+    let data = {
       coachId,
       latitude,
       longitude
     }
+
     api.post('v2/course/getCourseList2', data).then(res => {
-      const courseList = res.msg
+      
+      let courseList = res.msg
       this.setData({
         courseList
+      },function(){
+        ui.hideLoading();
       })
     })
   },
@@ -157,13 +216,11 @@ Page({
     const storeId = this.data.storeId
     return {
       title: `Justin&Julie教练- ${this.data.coachData.coachName}`,
-      path: '/pages/coach/coach?coachId=' + this.data.coachId,
+      path: '/pages/coach/coach?coachId=' + this.data.coachId + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
       imageUrl: this.data.coachData.headUrl,
       success: function (res) {
-        console.log(res)
       },
       fail: function (res) {
-        console.log(res)
       }
     }
   },

@@ -387,3 +387,8 @@
   font-size: 24rpx;
   color: #896eff;
 }
+.officialAccount{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

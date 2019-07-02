@@ -1,5 +1,6 @@
 // pages/order/order.js
-const api = getApp().api
+const app = getApp();
+const api = app.api
 import Store from '../../utils/store.js'
 Page({
 
@@ -72,16 +73,15 @@ Page({
       // Do something when catch error
     }
     //获取会员手机号（如果有手机号则支付不需要授权，否则需要授权手机号）
-    let userData = wx.getStorageSync('userData');
-    let memberMobile = userData ? userData.cellphone : '';
-    if (memberMobile) {
-      this.setData({ isShowJurisdiction: false })
-    }
-    else {
-      this.setData({ isShowJurisdiction: true })
-    }
-
-    //this.getMemberInfo()
+    // let userData = wx.getStorageSync('userData');
+    // let memberMobile = userData ? userData.cellphone : '';
+    // if (memberMobile) {
+    //   this.setData({ isShowJurisdiction: false })
+    // }
+    // else {
+    //   this.setData({ isShowJurisdiction: true })
+    // }
+    this.getMemberInfo()
     this.getCourse()
     this.getWaitCount()
     this.checkOrder()
@@ -220,7 +220,7 @@ Page({
       url: '/pages/order/orderCoupon'
     })
   },
-  /* getMemberInfo() {
+   getMemberInfo() {
     let data = {
       memberId: Store.getItem('userData').id
     }
@@ -233,7 +233,7 @@ Page({
         this.setData({ isShowJurisdiction: true }) 
         }
     })
-  }, */
+  }, 
   // 充值
   handleRechargeTap: function (event) {
     const courseId = this.data.courseId
@@ -291,6 +291,29 @@ Page({
       if (res.code === 0) {
         const orderData = res.msg
         if (orderData.payType === 'wx') {
+          if (this.data.isShowJurisdiction) {
+            let ency = e.detail.encryptedData;
+            let iv = e.detail.iv;
+            let errMsg = e.detail.errMsg
+            console.log(e.detail, getApp().globalData)
+            if (iv == null || ency == null) {
+              wx.showToast({
+                title: "授权失败,请重新授权！",
+                icon: 'none',
+              })
+              return false
+            } else {
+              let data = {
+                code: this.data.code,
+                encryptedData: ency,
+                iv: iv,
+              }
+              api.post('v2/member/liteMobile', data).then(res => {
+                this.getMemberInfo()
+                console.log('后台电话解密授权', res)
+              })
+            }
+          }
           this.wxPay(orderData)
         } else {
           const orderId = orderData.orderNum
@@ -315,14 +338,15 @@ Page({
                     iv: iv,
                   }
                   api.post('v2/member/liteMobile', data).then(res => {
+                    this.getMemberInfo()
                     console.log('后台电话解密授权', res)
                   })
                 }
               }
-
             }
           })
         }
+        
       } else {
         wx.showToast({
           title: res.msg || '预约失败！',

@@ -623,3 +623,9 @@
   background: #fff;
   z-index: 9;
 }
+/* -------------指引关注 */
+.officialAccount{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

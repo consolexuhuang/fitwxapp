@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "邀请好友",
-  "usingComponents": {
-    "tabBar_top": "/components/tabBar_top/tabBar",
-    "van-popup": "/libs/vant-weapp/dist/popup/index"
-  }
-}
