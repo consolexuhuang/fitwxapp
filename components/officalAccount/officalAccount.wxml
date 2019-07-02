@@ -8,7 +8,7 @@
     <image src='https://img.cdn.powerpower.net/5d11d55de4b080ee42fe2f30.png?imageView/1/w/686/h/120' class='guideLoginBg'></image>
     <view class='guideLoginBox'>
       <view class='guideLoginText'>{{!pageShowNoticeState ? '点这里，送50元代金券': '点这里，活动福利全知道'}}</view>
-      <button class='guideLoginBtn'>{{!pageShowNoticeState ? '免费领取': '立即领取'}}</button>
+      <button class='guideLoginBtn'>{{!pageShowNoticeState ? '免费领取': '立即关注'}}</button>
     </view>
   </view>
 </view>
@@ -17,7 +17,7 @@
            bind:close='_onclose'
            custom-class='showNoticeStyle'
            z-index = '1001'>
-    <view class='showNoticeTitle'>三步关注公众号</view>
+    <view class='showNoticeTitle'>{{forcedEjection ? '重要通知':'三步关注公众号'}}</view>
     <view class='showNoticeBox'>
        <image class='showNoticeImg'         
               src='{{guideImgUrl || "https://img.cdn.powerpower.net/5d19732ce4b07bc63b17acc5.png?imageView/1/w/530/h/648"}}'></image>

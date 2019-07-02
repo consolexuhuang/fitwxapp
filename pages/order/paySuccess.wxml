@@ -93,6 +93,6 @@
 <officalAccount memberFollowState='{{memberFollowState}}' 
                 bottomStyle='{{bottomStyle}}'
                 officialDataState='{{officialDataState}}'
-                pageShowNoticeState='{{memberInfo.sub_flag == 0 && memberInfo.order_count > 1 ? true : false}}'
-                forcedEjection='{{memberInfo.sub_flag == 0 && memberInfo.order_count > 1 ? true : false}}'>
+                pageShowNoticeState='{{memberInfo.sub_flag == 0 ? true : false}}'
+                forcedEjection='{{memberInfo.sub_flag == 0 ? true : false}}'>
 </officalAccount>

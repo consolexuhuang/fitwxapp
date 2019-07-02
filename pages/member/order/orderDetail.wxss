@@ -28,8 +28,8 @@ page{
   right: 0;
   bottom: 4rpx;
   z-index: 100;
-  width: 42rpx;
-  height: 42rpx;
+  width: 48rpx;
+  height: 48rpx;
 }
 .orderDetail_statusInfo{
   display: flex;
@@ -303,6 +303,38 @@ page{
   color:rgba(170,170,170,1);
   line-height:100rpx;
   text-align: center;
+}
+.coachWxCodepaySuccessShowStyle{
+  /* width: 550rpx;
+  height: 600rpx; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.coachWxImg{
+  width: 430rpx;
+  height: 430rpx;
+  margin: 60rpx 60rpx 0
+}
+.coachWxCont{
+  margin-top: 33rpx;
+  text-align: center;
+  font-size:32rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(137,109,255,1);
+  line-height:45rpx;
+  letter-spacing:1rpx;
+  margin-bottom: 32rpx;
+}
+.colseBtn{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -140rpx;
+  margin: auto;
+  width: 79rpx;
+  height: 79rpx;
 }
 .officialAccount{
   position: fixed;

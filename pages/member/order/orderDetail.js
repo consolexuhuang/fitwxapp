@@ -26,11 +26,14 @@ Page({
       marginTopBar: getApp().globalData.tab_height * 2 + 20
     }, //悬浮分享组件配置
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    coachWxCodeState: false,
+
     // officialData: '', //获取当前场景值对象
     memberFollowState: 1, //当前关注状态
     bottomStyle: 0,
     officialDataState:false,
-    memberInfo:''
+    memberInfo:'',
+
 
   },
   /**
@@ -89,6 +92,13 @@ Page({
   /**
    * write@xuhuang  end
    */
+  // 显示教练二维码
+  showCoachWxCode() {
+    this.setData({ coachWxCodeState: true })
+  },
+  onclose() {
+    this.setData({ coachWxCodeState: false })
+  },
   //订单详情初始化
   getOrderDetail() {
     wx.showLoading({

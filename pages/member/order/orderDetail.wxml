@@ -5,7 +5,7 @@
 <view class="orderDetail_statusData fadeIn animated" style='margin-top:{{marginTopBar}}px'>
   <view class="orderDetail_headImgBox">
     <image bindtap='handleCoachTap' data-coachId='{{orderData.coach.id}}' class="orderDetail_headImg" src="{{orderData.coach.headUrl}}"></image>
-    <image class="orderDetail_headWxTag" src="{{imgUrl}}/icon/wx_logo.png"></image>
+    <image class="orderDetail_headWxTag" src="{{imgUrl}}icon/wx_logo.png" bindtap='showCoachWxCode'></image>
   </view>
   <view class="orderDetail_statusInfo">
     <view class="orderDetail_status">{{orderData.statusName}}</view>
@@ -95,5 +95,13 @@
 <officalAccount memberFollowState='{{memberFollowState}}'
                 officialDataState='{{officialDataState}}'
                 bottomStyle='{{orderData.cancelFlag == 1 ? 100 : bottomStyle}}'
-                pageShowNoticeState='{{memberInfo.sub_flag == 0 && memberInfo.order_count > 1 ? true : false}}'>
+                pageShowNoticeState='{{memberInfo.sub_flag == 0 && memberInfo.order_count >= 1 ? true : false}}'>
 </officalAccount>
+
+<van-popup show='{{coachWxCodeState}}' 
+           bind:close='onclose'
+           class='coachWxCodepaySuccessShowStyle'>
+    
+    <image src='{{orderData.coach.wxQrCodeUrl}}' class='coachWxImg' show-menu-by-longpress data-imgSrc='{{orderData.coach.wxQrCodeUrl}}'></image>
+    <view class='coachWxCont'>长按保存教练微信二维码</view>
+</van-popup>
