@@ -59,11 +59,8 @@ App({
     this.getLocation();
   },
   onShow(options) {
-<<<<<<< HEAD
-=======
     
     this.globalData.scene = options.scene
->>>>>>> dev
     // 校验场景值
     if (options.scene == 1007 || options.scene == 1008 || options.scene == 1035 || options.scene == 1043) {
       if (options.path.indexOf('index') != -1 ||
@@ -106,11 +103,11 @@ App({
       envVersion: 'trial' //体验版
       // envVersion: 'release' //正式版
     },
-    // JumpAppId: {                   //正式
-    //   appid: 'wxec1fe04fad9d4e02',
-    //   envVersion: 'trial' //体验版
-    //   // envVersion: 'release' //正式版
-    // }, 
+    /* JumpAppId: {                   //正式
+      appid: 'wxec1fe04fad9d4e02',
+      envVersion: 'trial' //体验版
+      // envVersion: 'release' //正式版
+    },  */
   },
 
   /**
