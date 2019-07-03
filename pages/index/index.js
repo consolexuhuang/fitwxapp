@@ -158,7 +158,7 @@ Page({
   bindgetuserinfo(e) {
     wx.getUserInfo({
       success: res => {
-        console.log('用户授权信息', res.userInfo)
+        console.log('用户授权信息', res)
         Store.setItem('wx_userInfo', res.userInfo)
         this.setData({
           wx_userInfo: res.userInfo || ''
