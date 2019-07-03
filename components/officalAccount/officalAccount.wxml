@@ -1,6 +1,6 @@
 <!--components/officalAccount/officalAccount.wxml-->
 <view class='guide fadeIn animated' 
-      wx:if= '{{memberFollowState == 0 &&  officialDataState && officialData && officialData.status !== 0}}' 
+      wx:if= '{{memberFollowState == 0 &&  officialDataState}}' 
       bindtap='_showNotice'
       style='bottom:{{27 + bottomStyle}}rpx'>
   <view class='guideLogin'>

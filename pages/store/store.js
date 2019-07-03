@@ -27,7 +27,6 @@ Page({
     },
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
 
-    officialData: '', //获取当前场景值对象
     memberFollowState: 1, //当前关注状态
     officialDataState: false,
     memberInfo:''
@@ -46,11 +45,11 @@ Page({
     //检测登录
     app.checkSessionFun().then(() => {
     this.getCityList()
-    this.getMemberFollowState()
     })
   },
   onShow(){
     this.getOfficialDataState()
+    this.getMemberFollowState()
   },
   /**
    * write@xuhuang  start
@@ -72,14 +71,6 @@ Page({
     } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
       this.setData({ officialDataState: false })
     }
-  },
-  bindload(e) {
-    console.log('official-account_success', e.detail)
-    this.setData({ officialData: e.detail })
-  },
-  binderror(e) {
-    console.log('official-account_fail', e.detail)
-    this.setData({ officialData: e.detail })
   },
   /**
    * write@xuhuang  end

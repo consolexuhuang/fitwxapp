@@ -5,10 +5,6 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    officialData:{
-      type:null,
-      value:{}
-    },
     officialDataState:{
       type:Boolean,
       value:false
@@ -36,7 +32,6 @@ Component({
    */
   data: {
     showNoticeState: false, //关注弹窗显示
-    officialData: '', //获取当前场景值对象
     guideImgUrl:''  //指引图片
   },
   observers:{

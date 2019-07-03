@@ -34,7 +34,7 @@ Page({
     officialDataState:false,
     memberInfo:'',
 
-
+    jurisdictionState: false, //授权显示
   },
   /**
    * 生命周期函数--监听页面加载
@@ -54,10 +54,21 @@ Page({
   onShow(){
     //检测登录
     app.checkSessionFun().then(() => {
-      console.log('checkSessionFun')
-    this.getOrderDetail()
-    this.getMemberFollowState()
-    this.getOfficialDataState()
+      this.getOrderDetail()
+      this.getMemberFollowState()
+      this.getOfficialDataState()
+    },()=>{
+      this.setData({ jurisdictionState: true })
+    })
+  },
+  bindgetuserinfo(){
+    app.checkSessionFun().then(() => {
+      this.setData({ jurisdictionState: false })
+      this.getOrderDetail()
+      this.getMemberFollowState()
+      this.getOfficialDataState()
+    }, () => {
+      this.setData({ jurisdictionState: true })
     })
   },
   /**

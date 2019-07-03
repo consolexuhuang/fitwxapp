@@ -31,15 +31,15 @@ Page({
     bottomStyle: 0,
     officialDataState: false,
     pageShowNoticeState: false,
-    memberInfo:''
+    memberInfo:'',
+
+    jurisdictionState: false, //授权显示
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    //loading
-    ui.showLoadingMask();
 
     //分享过来的参数
     if (options.shareMemberId){
@@ -63,6 +63,20 @@ Page({
     this.getCoach()
     this.getDateList()
     this.getOfficialDataState()
+    }, () => {
+      this.setData({ jurisdictionState: true })
+    })
+  },
+  bindgetuserinfo(){
+    //检测登录
+    app.checkSessionFun().then(() => {
+      this.setData({ jurisdictionState: false })
+      this.getMemberFollowState()
+      this.getCoach()
+      this.getDateList()
+      this.getOfficialDataState()
+    }, () => {
+      this.setData({ jurisdictionState: true })
     })
   },
   /**
@@ -141,7 +155,8 @@ Page({
       latitude,
       longitude
     }
-
+    //loading
+    ui.showLoadingMask();
     api.post('v2/course/getCourseList2', data).then(res => {
       
       let courseList = res.msg

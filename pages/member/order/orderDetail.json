@@ -4,6 +4,7 @@
      "tabBar_top": "/components/tabBar_top/tabBar",
      "share_tag": "/components/shareTag/shareTag",
      "van-popup": "/libs/vant-weapp/dist/popup/index",
-     "officalAccount": "/components/officalAccount/officalAccount"
+     "officalAccount": "/components/officalAccount/officalAccount",
+     "jurisdictionPopup": "/components/jurisdictionPopup/jurisdictionPopup"
   }
 }

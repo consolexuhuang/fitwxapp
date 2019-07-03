@@ -103,11 +103,11 @@ App({
       envVersion: 'trial' //体验版
       // envVersion: 'release' //正式版
     },
-    // JumpAppId: {                   //正式
-    //   appid: 'wxec1fe04fad9d4e02',
-    //   envVersion: 'trial' //体验版
-    //   // envVersion: 'release' //正式版
-    // }, 
+    /* JumpAppId: {                   //正式
+      appid: 'wxec1fe04fad9d4e02',
+      envVersion: 'trial' //体验版
+      // envVersion: 'release' //正式版
+    },  */
   },
 
   /**
@@ -168,6 +168,8 @@ App({
           }else{
             this.wx_loginIn().then(() => {
               resolve();
+            }, () => {
+              reject()
             })
           }
         },
@@ -175,6 +177,8 @@ App({
           // session_key 已经失效，需要重新执行登录流程
           this.wx_loginIn().then(()=>{
             resolve();
+          },()=>{
+            reject()
           })
         }
       })
@@ -189,34 +193,49 @@ App({
           _this.globalData.code = res_code.code
           Store.setItem('code', res_code.code)
           let shareMemberId = wx.getStorageSync('shareMemberId') ? wx.getStorageSync('shareMemberId') : '';
-          let data = {
-            code: res_code.code,
-            sourceData: _this.globalData.scene,
-            shareChannel: shareMemberId,
-            nickName: Store.getItem('wx_userInfo').nickName || '',
-            headImg: Store.getItem('wx_userInfo').avatarUrl || '',
-            city: Store.getItem('wx_userInfo').city || '',
-            gender: Store.getItem('wx_userInfo').gender || ''
-          }
-          api.get('authorizationLite', data).then(res => {
-            if (res.msg) {
-              if (res.code === -1) { //如果出现登陆未知错误
-                setTimeout(() => {
-                  wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
-                }, 0)
-              } else {
-                // 已关联公众号
-                wx.setStorageSync('shareMemberId', res.msg.id)
-                wx.setStorageSync('userData', res.msg)
-                //Store.setItem('userData', res.msg)
-                resolve()
+          wx.getUserInfo({
+            success(res_userInfo){
+              console.log('用户信息', res_userInfo)
+              let data = {
+                code: res_code.code,
+                sourceData: _this.globalData.scene,
+                shareChannel: shareMemberId,
+                nickName: res_userInfo.userInfo.nickName || '',
+                headImg: res_userInfo.userInfo.avatarUrl || '',
+                city: res_userInfo.userInfo.city || '',
+                gender: res_userInfo.userInfo.gender || '',
+                encryptedData: res_userInfo.encryptedData || '',
+                iv: res_userInfo.iv || '',
+                rawData: res_userInfo.rawData || '',
+                signature: res_userInfo.signature || ''
               }
-            } else {
-              setTimeout(() => {
-                wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
-              }, 0)
+              wx.showLoading({ title: '登陆中...',})
+              api.get('authorizationLite', data).then(res => {
+                wx.hideLoading()
+                if (res.msg) {
+                  if (res.code === -1) { //如果出现登陆未知错误
+                    setTimeout(() => {
+                      wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
+                    }, 0)
+                  } else {
+                    // 已关联公众号
+                    wx.setStorageSync('shareMemberId', res.msg.id)
+                    wx.setStorageSync('userData', res.msg)
+                    //Store.setItem('userData', res.msg)
+                    resolve()
+                  }
+                } else {
+                  setTimeout(() => {
+                    wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
+                  }, 0)
+                }
+              })
+            },
+            fail(){
+              reject('拒绝授权')
             }
           })
+          
         },
         fail:()=>{
           console.error('登录失败！')

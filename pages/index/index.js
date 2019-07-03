@@ -47,6 +47,8 @@ Page({
       if (Store.getItem('userData') && Store.getItem('userData').nick_name) {
         this.getDataInit();
       };
+    },()=>{
+      console.log('拒绝授权')
     })
 
     //this.checkSessionFun();
@@ -140,40 +142,36 @@ Page({
         }
       })
   },
-  //检查登录态是否过期
- /*  checkSessionFun() {
-    wx.checkSession({
-      success: () => {
-        //session_key 未过期，并且在本生命周期一直有效
-        Store.getItem('userData') ? this.cheakAuthWXLogin() : this.wxLogin();        
-      },
-      fail: () => {
-        console.log('indexFail')
-        // session_key 已经失效，需要重新执行登录流程
-        this.wxLogin();
-      }
-    })
-  }, */
   //更新用户
   bindgetuserinfo(e) {
-    wx.getUserInfo({
-      success: res => {
-        console.log('用户授权信息', res.userInfo)
-        Store.setItem('wx_userInfo', res.userInfo)
-        this.setData({
-          wx_userInfo: res.userInfo || ''
-        })
-        getApp().wx_modifyUserInfo().then(res => {
-          this.setData({
-            userData: Store.getItem('userData')
-          })
-          this.getDataInit();
-        });
-      },
-      fail: res => {
+    app.checkSessionFun().then(() => {
+      this.setData({
+        userData: Store.getItem('userData')
+      })
+      if (Store.getItem('userData') && Store.getItem('userData').nick_name) {
         this.getDataInit();
-      }
+      };
+    }, () => {
+      console.log('拒绝授权')
     })
+    // wx.getUserInfo({
+    //   success: res => {
+    //     console.log('用户授权信息', res)
+    //     Store.setItem('wx_userInfo', res.userInfo)
+    //     this.setData({
+    //       wx_userInfo: res.userInfo || ''
+    //     })
+    //     getApp().wx_modifyUserInfo().then(res => {
+    //       this.setData({
+    //         userData: Store.getItem('userData')
+    //       })
+    //       this.getDataInit();
+    //     });
+    //   },
+    //   fail: res => {
+    //     this.getDataInit();
+    //   }
+    // })
   },
   //微信登录
  /*  wxLogin() {

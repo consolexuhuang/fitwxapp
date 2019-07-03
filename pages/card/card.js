@@ -24,7 +24,6 @@ Page({
       tab_topBackground:'#fff'
     },
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
-    officialData: '', //获取当前场景值对象
     memberFollowState: 1, //当前关注状态
     officialDataState:false,
     memberInfo:''
@@ -62,12 +61,6 @@ Page({
     } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
       this.setData({ officialDataState: false })
     }
-  },
-  bindload(e) {
-    this.setData({ officialData: e.detail })
-  },
-  binderror(e) {
-    this.setData({ officialData: e.detail })
   },
   /**
    * write@xuhuang  end

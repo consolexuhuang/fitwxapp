@@ -88,15 +88,14 @@
   <button class="btn" bindtap="handleRechargeTap">立即开通</button>
 </view>
 
-<view class='officialAccount fadeIn animated' 
+<!-- <view class='officialAccount fadeIn animated' 
       wx:if='{{memberFollowState == 0}}'>
   <official-account bindload='bindload' 
                     binderror='binderror'
                     class='officialAccount'>
   </official-account>
-</view>
+</view> -->
 <officalAccount memberFollowState='{{memberFollowState}}' 
-                officialData= '{{officialData}}'
                 officialDataState='{{officialDataState}}'
                 pageShowNoticeState='{{memberInfo.sub_flag == 0 && memberInfo.order_count >= 1 ? true : false}}'>
 </officalAccount>

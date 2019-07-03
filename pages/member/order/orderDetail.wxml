@@ -105,3 +105,6 @@
     <image src='{{orderData.coach.wxQrCodeUrl}}' class='coachWxImg' show-menu-by-longpress data-imgSrc='{{orderData.coach.wxQrCodeUrl}}'></image>
     <view class='coachWxCont'>长按保存教练微信二维码</view>
 </van-popup>
+
+<jurisdictionPopup state = '{{jurisdictionState}}'
+                   bindmyevent='bindgetuserinfo'></jurisdictionPopup>
