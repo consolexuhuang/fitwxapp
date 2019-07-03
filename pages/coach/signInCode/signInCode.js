@@ -18,7 +18,8 @@ Page({
     },
     signData:'' ,//签到信息
     siginUpData:'',//签到
-    siginUpMsg:''
+    siginUpMsg:'',
+    coachWxCodeState: false,
   },
   //签到信息
   checkSignIn(){
@@ -46,6 +47,17 @@ Page({
         })
       }
     })
+  },
+  // 显示教练二维码
+  showCoachWxCode() {
+    app.compareVersionPromise('2.7.0').then((res)=>{
+      if(res==0){
+        this.setData({ coachWxCodeState: true })
+      }
+    })    
+  },
+  onclose() {
+    this.setData({ coachWxCodeState: false })
   },
   /**
    * 生命周期函数--监听页面加载
