@@ -1,42 +1,34 @@
 # fitwxapp
 
-#### 正式环境
-"appid": "wx29946485f206d315",
-const API_URI = 'https://fit.jlife.vip/wx/api/'
-app.json 跳转id wxec1fe04fad9d4e02
-app.js 更换正式全局跳转
+#### 正式环境参数
+课程端小程序appid: "wx29946485f206d315",
+API接口： 'https://fit.jlife.vip/wx/api/'
+拉新小程序appid： wxec1fe04fad9d4e02
 
-#### 开发环境
-"appid": "wx6b00bfc932f22210",
-const API_URI = 'https://dev.jlife.vip/wx/api/'
-app.json 跳转id wx322a8a72b755aa57
-app.js 更换测试全局跳转
+#### 开发环境参数
+课程端小程序appid: "wx6b00bfc932f22210",
+API接口： 'https://dev.jlife.vip/wx/api/'
+拉新小程序appid： wx322a8a72b755aa57
 
-#### 安装教程
+#### 上线需要修改如下文件
+1.project.config.json文件里"appid": "wx29946485f206d315"；
+2.api.js里 API_URI = 'https://fit.jlife.vip/wx/api/'；
+3.app.json里"navigateToMiniProgramAppIdList": [ "wxec1fe04fad9d4e02" ]；
+4.app.js 里 JumpAppId: {          
+      appid: 'wxec1fe04fad9d4e02',
+      envVersion: 'release' //正式版
+    }
 
-1. xxxx
-2. xxxx
-3. xxxx
-
-#### 使用说明
-
-1. xxxx
-2. xxxx
-3. xxxx
-
-#### 参与贡献
-
-1. Fork 本仓库
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
+#### 测试需要修改如下文件
+1.project.config.json文件里"appid": "wx6b00bfc932f22210"；
+2.api.js里 API_URI = 'https://dev.jlife.vip/wx/api/'；
+3.app.json里"navigateToMiniProgramAppIdList": [ "wx322a8a72b755aa57" ]；
+4.app.js 里 JumpAppId: {          
+      appid: 'wx322a8a72b755aa57',
+      envVersion: 'trial' //develop:开发版   trial：体验版  release：正式版
+    }
 
 
-#### 码云特技
 
-1. 使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2. 码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4. [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5. 码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6. 码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+
+

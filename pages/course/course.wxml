@@ -209,10 +209,18 @@
 
           <!-- 当天无课程 -->
           <block wx:else>
-            <view class="none-course">
+            <!-- 当前页面无课显示 -->
+            <view class="none-course" wx:if="{{!searchIn}}">
               <image src="{{imgUrl}}course/icon_course_big.png" />
-              <text>J&J排课中</text>
-              <text>每周五21:30发布</text>
+              <text class='text1'>J&J排课中</text>
+              <text class='text2'>每周五21:30发布</text>
+            </view>
+            <!-- 搜素进来显示 -->
+            <view class="none-course" wx:if="{{searchIn}}">
+              <text class='none-course-icon iconfont iconsearch-none'></text>
+              <text class='none-course-icon-shadow'></text>
+              <text class='text-b'>无搜索结果</text>
+              <text class='text-s'>换个筛选条件试试吧~</text>
             </view>
           </block>
 

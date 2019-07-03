@@ -559,20 +559,46 @@
   height: 70rpx;
 }
 
-.none-course text:first-of-type {
+.none-course .text1 {
   display: block;
   margin-top: 22rpx;
   font-size: 24rpx;
   color: #896eff;
 }
 
-.none-course text:last-of-type {
+.none-course .text2 {
   display: block;
   margin-top: 14rpx;
   font-size: 24rpx;
   color: #896eff;
 }
 
+.none-course .none-course-icon{
+  display: block;
+  font-size:76rpx;
+  color:#D5D5D5;
+}
+
+.none-course .none-course-icon-shadow{
+  display: block;
+  width:62rpx;
+  height:11rpx;
+  border-radius: 62rpx;
+  background-color: #F6F6F6;
+  margin:5rpx auto 0 auto;
+}
+.none-course .text-b{
+display: block;
+margin-top:18rpx;
+font-size:24rpx;
+color:#848484;
+}
+.none-course .text-s{
+display: block;
+margin-top:8rpx;
+font-size:24rpx;
+color:#BEBEBE;
+}
 .show-end-course {
   margin: 20rpx auto 0;
   width: 261rpx;

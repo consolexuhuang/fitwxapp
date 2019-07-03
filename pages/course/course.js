@@ -54,7 +54,8 @@ Page({
     officialData: '', //获取当前场景值对象
     memberFollowState: 1, //当前关注状态
     officialDataState: false,
-    memberInfo:''
+    memberInfo:'',
+    searchIn:false,//是否是搜素进来的
   },
 
   /**
@@ -81,6 +82,10 @@ Page({
     if (getApp().globalData.courseConfig) {
       //初始化    
       this.initFun();
+      //设置是否是搜索页进入
+      this.setData({
+        searchIn:true
+      })
       return;
     }
 
@@ -155,13 +160,15 @@ Page({
     const isOver = false
     const searchText = ''
     const active = 0
+    const searchIn = false
     this.setData({
       selectedStore,
       selectedTimeInterval,
       selectedLabel,
       isOver,
       searchText,
-      active
+      active,
+      searchIn
     })
     //获取数据
     CourseCom.getDateList(this)
