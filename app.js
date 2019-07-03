@@ -196,7 +196,7 @@ App({
             nickName: Store.getItem('wx_userInfo').nickName || '',
             headImg: Store.getItem('wx_userInfo').avatarUrl || '',
             city: Store.getItem('wx_userInfo').city || '',
-            gender: Store.getItem('wx_userInfo').gender || ''
+            gender: Store.getItem('wx_userInfo').gender || '',
           }
           api.get('authorizationLite', data).then(res => {
             if (res.msg) {

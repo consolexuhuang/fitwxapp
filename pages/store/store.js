@@ -46,11 +46,11 @@ Page({
     //检测登录
     app.checkSessionFun().then(() => {
     this.getCityList()
-    this.getMemberFollowState()
     })
   },
   onShow(){
     this.getOfficialDataState()
+    this.getMemberFollowState()
   },
   /**
    * write@xuhuang  start
