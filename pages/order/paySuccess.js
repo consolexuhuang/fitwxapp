@@ -156,8 +156,11 @@ Page({
   },
   // 显示教练二维码
   showCoachWxCode(){
-    console.log('cc')
-    this.setData({coachWxCodeState : true})
+    app.compareVersionPromise('2.7.0').then((res) => {
+      if (res == 0) {
+        this.setData({ coachWxCodeState: true })
+      }
+    })
   },
   //预览图
   showPrevICoachWxImg(e) {

@@ -153,47 +153,11 @@ Page({
       };
     }, () => {
       console.log('拒绝授权')
-    })
-    // wx.getUserInfo({
-    //   success: res => {
-    //     console.log('用户授权信息', res)
-    //     Store.setItem('wx_userInfo', res.userInfo)
-    //     this.setData({
-    //       wx_userInfo: res.userInfo || ''
-    //     })
-    //     getApp().wx_modifyUserInfo().then(res => {
-    //       this.setData({
-    //         userData: Store.getItem('userData')
-    //       })
-    //       this.getDataInit();
-    //     });
-    //   },
-    //   fail: res => {
-    //     this.getDataInit();
-    //   }
-    // })
+    })    
   },
-  //微信登录
- /*  wxLogin() {
-    //登录
-    getApp().wx_loginIn().then(() => {
-      this.cheakAuthWXLogin()
-    })
-  },
-  // 检查是否显示需要授权登录嗯妞
-  cheakAuthWXLogin() {
-    this.setData({
-      userData: Store.getItem('userData')
-    })
-    if (Store.getItem('userData') && Store.getItem('userData').nick_name) {
-      this.getDataInit();
-    };
-  }, */
+  
   //加载数据
   getDataInit() {
-    /* this.setData({
-      userData: Store.getItem('userData')
-    }) */
     //加载数据
     if (app.globalData.location) {
       this.loadingText();

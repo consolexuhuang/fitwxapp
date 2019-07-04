@@ -105,7 +105,11 @@ Page({
    */
   // 显示教练二维码
   showCoachWxCode() {
-    this.setData({ coachWxCodeState: true })
+    app.compareVersionPromise('2.7.0').then((res) => {
+      if (res == 0) {
+        this.setData({ coachWxCodeState: true })
+      }
+    }) 
   },
   onclose() {
     this.setData({ coachWxCodeState: false })

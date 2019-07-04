@@ -3,6 +3,7 @@
   "navigationBarTextStyle": "white",
   "navigationStyle": "custom",
   "usingComponents": {
-    "tabBar_top": "/components/tabBar_top/tabBar"
+    "tabBar_top": "/components/tabBar_top/tabBar",
+    "van-popup": "/libs/vant-weapp/dist/popup/index"
   }
 }
