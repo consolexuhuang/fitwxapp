@@ -59,7 +59,7 @@ App({
     this.getLocation();
   },
   onShow(options) {
-    
+    console.log('scene', options.scene)
     this.globalData.scene = options.scene
     // 校验场景值
     if (options.scene == 1007 || options.scene == 1008 || options.scene == 1035 || options.scene == 1043) {
@@ -193,48 +193,76 @@ App({
           _this.globalData.code = res_code.code
           Store.setItem('code', res_code.code)
           let shareMemberId = wx.getStorageSync('shareMemberId') ? wx.getStorageSync('shareMemberId') : '';
-          wx.getUserInfo({
-            success(res_userInfo){
-              console.log('用户信息', res_userInfo)
-              let data = {
-                code: res_code.code,
-                sourceData: _this.globalData.scene,
-                shareChannel: shareMemberId,
-                nickName: res_userInfo.userInfo.nickName || '',
-                headImg: res_userInfo.userInfo.avatarUrl || '',
-                city: res_userInfo.userInfo.city || '',
-                gender: res_userInfo.userInfo.gender || '',
-                encryptedData: res_userInfo.encryptedData || '',
-                iv: res_userInfo.iv || '',
-                rawData: res_userInfo.rawData || '',
-                signature: res_userInfo.signature || ''
-              }
-              wx.showLoading({ title: '登陆中...',})
-              api.get('authorizationLite', data).then(res => {
-                wx.hideLoading()
-                if (res.msg) {
-                  if (res.code === -1) { //如果出现登陆未知错误
-                    setTimeout(() => {
-                      wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
-                    }, 0)
-                  } else {
-                    // 已关联公众号
-                    wx.setStorageSync('shareMemberId', res.msg.id)
-                    wx.setStorageSync('userData', res.msg)
-                    //Store.setItem('userData', res.msg)
-                    resolve()
-                  }
-                } else {
+          if (this.globalData.scene == 1043 || this.globalData.scene == 1035){
+            let data = {
+              code: res_code.code,
+              sourceData: _this.globalData.scene,
+            }
+            api.get('authorizationLite', data).then(res => {
+              wx.hideLoading()
+              if (res.msg) {
+                if (res.code === -1) { //如果出现登录未知错误
                   setTimeout(() => {
                     wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
                   }, 0)
+                } else {
+                  // 已关联公众号
+                  wx.setStorageSync('shareMemberId', res.msg.id)
+                  wx.setStorageSync('userData', res.msg)
+                  //Store.setItem('userData', res.msg)
+                  resolve()
                 }
-              })
-            },
-            fail(){
-              reject('拒绝授权')
-            }
-          })
+              } else {
+                setTimeout(() => {
+                  wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
+                }, 0)
+              }
+            })
+          } else {
+            wx.getUserInfo({
+              lang: 'zh_CN',
+              success(res_userInfo){
+                console.log('用户信息', res_userInfo)
+                let data = {
+                  code: res_code.code,
+                  sourceData: _this.globalData.scene,
+                  shareChannel: shareMemberId,
+                  nickName: res_userInfo.userInfo.nickName || '',
+                  headImg: res_userInfo.userInfo.avatarUrl || '',
+                  city: res_userInfo.userInfo.city || '',
+                  gender: res_userInfo.userInfo.gender || '',
+                  encryptedData: res_userInfo.encryptedData || '',
+                  iv: res_userInfo.iv || '',
+                  rawData: res_userInfo.rawData || '',
+                  signature: res_userInfo.signature || ''
+                }
+                wx.showLoading({ title: '登录中...',})
+                api.get('authorizationLite', data).then(res => {
+                  wx.hideLoading()
+                  if (res.msg) {
+                    if (res.code === -1) { //如果出现登录未知错误
+                      setTimeout(() => {
+                        wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
+                      }, 0)
+                    } else {
+                      // 已关联公众号
+                      wx.setStorageSync('shareMemberId', res.msg.id)
+                      wx.setStorageSync('userData', res.msg)
+                      //Store.setItem('userData', res.msg)
+                      resolve()
+                    }
+                  } else {
+                    setTimeout(() => {
+                      wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
+                    }, 0)
+                  }
+                })
+              },
+              fail(){
+                reject('拒绝授权')
+              }
+            })
+          }
           
         },
         fail:()=>{

@@ -177,7 +177,7 @@ Page({
       wx.stopPullDownRefresh()
     })
   },
-  //登陆
+  //登录
   bindgetuserinfo(e){
     wx.getUserInfo({
       success: res => {
@@ -198,7 +198,7 @@ Page({
   // loginOut(){
   //   wx.showModal({
   //     title: '提示！',
-  //     content: '是否退出登陆？',
+  //     content: '是否退出登录？',
   //     success : res => {
   //       if(res.confirm){
   //         if (Store.getItem('userData')){

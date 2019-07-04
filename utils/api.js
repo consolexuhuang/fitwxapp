@@ -23,10 +23,10 @@ function request(path, data, method) {
 
         //没报错
         if (!noFind){
-          if (res.data.code === 0 || res.data.code === -1) {
+          if (res.data.code !== -1 && res.data.code !== 401) {
             resolve(res.data)
           }
-          else if (res.data.code !== 401) {
+          else if (res.data.code === -1) {
             wx.redirectTo({ url: `/pages/noFind/noFind?type=1` })
             reject(res.data)
           }
@@ -38,7 +38,7 @@ function request(path, data, method) {
               wx.navigateTo({
                 url: '/pages/index/index',
               });
-            }
+          }
         }
         
 

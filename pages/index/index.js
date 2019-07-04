@@ -180,7 +180,7 @@ Page({
       this.cheakAuthWXLogin()
     })
   },
-  // 检查是否显示需要授权登陆嗯妞
+  // 检查是否显示需要授权登录嗯妞
   cheakAuthWXLogin() {
     this.setData({
       userData: Store.getItem('userData')

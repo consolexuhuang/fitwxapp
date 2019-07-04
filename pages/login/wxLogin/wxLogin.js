@@ -32,7 +32,7 @@ Page({
   onShow: function () {
 
   },
-  //微信登陆
+  //微信登录
   wx_loginIn(){
     getApp().wx_loginIn().then(res => {
       wx.switchTab({

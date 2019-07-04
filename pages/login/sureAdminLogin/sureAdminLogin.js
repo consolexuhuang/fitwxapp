@@ -33,7 +33,7 @@ Page({
   onShow: function () {
 
   },
-  //确认该账号登陆
+  //确认该账号登录
   userAdminLogin(){
     getApp().wx_loginIn().then(res => {
       wx.switchTab({

@@ -18,10 +18,10 @@
       </view>
     </view>
   </view>
-  <view class='startUpCont2_noneLogin' wx:if='{{!userData && !userData.nick_name}}'>需登陆后方可使用</view>
+  <view class='startUpCont2_noneLogin' wx:if='{{!userData && !userData.nick_name}}'>需登录后方可使用</view>
   <view class='startUpCont2 fadeIn animated' wx:if='{{!userData && !userData.nick_name}}'>
     <button open-type='getUserInfo' bindgetuserinfo = 'bindgetuserinfo' class='getUserInfoBtn'></button>
-    微信授权登陆
+    微信授权登录
   </view>
   <!-- <image src='{{imgUrl}}icon/startUp_bottom.png' class='startUp_bottom'></image> -->
 </view>
