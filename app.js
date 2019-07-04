@@ -63,10 +63,11 @@ App({
     this.globalData.scene = options.scene
     // 校验场景值
     if (options.scene == 1007 || options.scene == 1008 || options.scene == 1035 || options.scene == 1043) {
+      console.log(options.path)
       if (options.path.indexOf('index') != -1 ||
-        options.path.indexOf('pages/store/store') != -1 ||
-        options.path.indexOf('pages/card/card') != -1 ||
-        options.path.indexOf('pages/member/member') != -1) {
+        options.path === 'pages/store/store' ||
+        options.path === 'pages/card/card' ||
+        options.path === 'pages/member/member') {
         this.globalData.share = false
       } else {
         this.globalData.share = true

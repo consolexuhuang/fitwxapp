@@ -24,9 +24,11 @@ Component({
     //默认值  默认显示左上角
     navbarData: {
       showCapsule: 1
-    }
+    },
+    share:false,
   },
   attached: function () {
+    console.log('share', getApp().globalData.share)
     // 获取是否是通过分享进入的小程序
     this.setData({
       share: getApp().globalData.share,
