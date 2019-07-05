@@ -75,6 +75,10 @@
   height: 54rpx;
   margin-bottom: 6rpx
 }
+.starImg2{
+  font-size: 54rpx;
+  color: #E1E1E1;
+}
 .starTag{
   font-size:20rpx;
   font-family:PingFangSC-Regular;

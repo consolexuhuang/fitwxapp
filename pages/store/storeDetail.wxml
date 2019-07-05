@@ -13,18 +13,20 @@
     <view class="store-name fadeIn animated">{{storeData.storeName}}</view>
     <view class="store-score-wrapper fadeIn animated">
       <view class="store-star">
-        <image wx:if="{{storeData.star>=0.5 || !storeData.star}}" src="{{imgUrl}}course/icon_star.png" />
-        <image wx:if="{{storeData.star>=1.5 || !storeData.star}}" src="{{imgUrl}}course/icon_star.png" />
-        <image wx:if="{{storeData.star>=2.5 || !storeData.star}}" src="{{imgUrl}}course/icon_star.png" />
-        <image wx:if="{{storeData.star>=3.5 || !storeData.star}}" src="{{imgUrl}}course/icon_star.png" />
-        <image wx:if="{{storeData.star>=4.5 || !storeData.star}}" src="{{imgUrl}}course/icon_star.png" />
+        <text wx:if="{{storeData.star>=0.5 || !storeData.star}}" class='store-starIcon iconxingzhuang-1 iconfont' />
+        <text wx:if="{{storeData.star>=1.5 || !storeData.star}}" class='store-starIcon iconxingzhuang-1 iconfont' />
+        <text wx:if="{{storeData.star>=2.5 || !storeData.star}}" class='store-starIcon iconxingzhuang-1 iconfont' />
+        <text wx:if="{{storeData.star>=3.5 || !storeData.star}}" class='store-starIcon iconxingzhuang-1 iconfont' />
+        <text wx:if="{{storeData.star>=4.5 || !storeData.star}}" class='store-starIcon iconxingzhuang-1 iconfont' />
       </view>
-       <view class='shareLine'></view>
-      <view class='shareBtnBox'>
-        <button open-type='share' hover-class='none' class='shareBtn'>
-        </button>
-        <image class="store-share" src='{{imgUrl}}icon/shareImg.png'/>
-      </view>    
+      <view class='shareLineBox'>
+         <view class='shareLine'></view>
+         <view class='shareBtnBox'>
+          <button open-type='share' hover-class='none' class='shareBtn'>
+          </button>
+          <image class="store-share" src='{{imgUrl}}icon/shareImg.png'/>
+         </view>    
+      </view>
     </view>
   </view>
   <view class="module-wrapper fadeIn animated">
@@ -35,15 +37,17 @@
     <view class="store-content">
       <rich-text nodes="{{storeData.placeIntro}}"></rich-text>
     </view>
-    <view class="route-guide-wrapper" data-name="{{storeData.storeName}}" data-address="{{storeData.address}}" data-latitude="{{storeData.latitude}}" data-longitude="{{storeData.longitude}}" bindtap="handleLocationTap">
-      <text class="store-position-icon iconfont iconicon-test1"/>
-      <view class="store-address">{{storeData.address}}</view>
-      <text class="store-arrow iconfont iconicon-test42"/>
-    </view>
-    <view class="route-guide-wrapper" wx:if='{{storeData.mapPic}}'>
-      <image class="route-guide-icon" src="{{imgUrl}}store/icon_route.png" />
-      <view class="route-guide-text" bindtap='handleRouteGuidanceTap'>路线指引</view>
-      <text class="store-arrow iconfont iconicon-test42" />
+    <view class='route-guide-wrapperBox'>
+      <view class="route-guide-wrapper" data-name="{{storeData.storeName}}" data-address="{{storeData.address}}" data-latitude="{{storeData.latitude}}" data-longitude="{{storeData.longitude}}" bindtap="handleLocationTap">
+        <text class="store-position-icon iconfont iconicon-test1"/>
+        <view class="store-address">{{storeData.address}}</view>
+        <text class="store-arrow iconfont iconicon-test42"/>
+      </view>
+      <view class="route-guide-wrapper route-guide-wrapper2" wx:if='{{storeData.mapPic}}'>
+        <text class="route-guide-icon iconxingzhuang-2 iconfont" />
+        <view class="route-guide-text" bindtap='handleRouteGuidanceTap'>路线指引</view>
+        <text class="store-arrow iconfont iconicon-test42" />
+      </view>
     </view>
   </view>
   <view class="module-wrapper" wx:if='{{storeFacilitiesList &&storeFacilitiesList.length > 0}}'>

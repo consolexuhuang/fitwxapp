@@ -234,8 +234,8 @@ page{
   margin-top: 250rpx
 }
 .noCouponImg{
-  width: 206rpx;
-  height: 134rpx;
+  font-size: 134rpx;
+  color: #DCDCDC;
   margin-bottom:18rpx; 
 }
 .noCouponCont{

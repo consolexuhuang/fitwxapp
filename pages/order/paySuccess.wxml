@@ -20,9 +20,9 @@
       <image wx:if='{{orderDetailData.qrPath && !orderDetailData.order.wait}}' src="{{orderDetailData.qrPath}}" />
       <text wx:if='{{!orderDetailData.qrPath && !orderDetailData.order.wait}}' >开课前 1 小时显示</text>
       <view class='waitBox' wx:if='{{orderDetailData.order.wait}}'>
-        <image src='{{imgUrl}}icon/punctuation.png' class='waitImg'></image>
+        <text class='waitImg iconxingzhuang iconfont'></text>
         <view class='waitCont'>当前等候{{orderDetailData.waiCount}}人，您是第{{orderDetailData.beforeWaiCount}}位呦</view>
-        <image src='{{imgUrl}}icon/punctuation2.png' class='waitImg2'></image>
+        <text class='waitImg2 iconfont iconxingzhuang-'></text>
       </view>
     </view>
   </view>
@@ -73,7 +73,7 @@
            src='{{checkPromotion.image}}' 
            class='paySuccessShowImg_share' 
            ></image>
-    <image src='{{imgUrl}}icon/colseBtn.png' class='colseBtn' bindtap='onclose'></image>
+    <text class='colseBtn iconicon-test18 iconfont' bindtap='onclose'></text>
 </van-popup>
 <van-popup show='{{coachWxCodeState}}' 
            bind:close='onclose'

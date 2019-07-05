@@ -30,8 +30,8 @@ page {
 }
 
 .card-title .icon {
-  width: 25rpx;
-  height: 24rpx;
+  font-size: 25rpx;
+  color: #8A70FF;
   margin-right: 11rpx;
 }
 
@@ -194,8 +194,8 @@ page {
 }
 
 .mask-swiper .arrow {
-  width: 24rpx;
-  height: 45rpx;
+  font-size: 40rpx;
+  color: #fff;
   margin-top: 200rpx;
 }
 
@@ -217,8 +217,8 @@ page {
 }
 
 .mask-swiper .slide-image {
-  width: 415rpx;
-  height: 211rpx;
+  font-size: 211rpx;
+  color: #896EFF;
   margin: 80rpx 0 50rpx 0;
 }
 

@@ -97,17 +97,23 @@ page {
   width: 60%;
   margin: 40rpx auto;
 }
-.waitImg{
-  width: 30rpx !important;
-  height: 26rpx !important;
-    margin: 0 !important;
-  align-self: flex-start;
-}
-.waitImg2{
-  width: 30rpx !important;
-  height: 26rpx !important;
+.waitBox .waitImg{
+  font-size: 26rpx !important;
+  /* width: 30rpx !important;
+  height: 26rpx !important; */
   margin: 0 !important;
-  align-self: flex-end
+  align-self: flex-start;
+  padding-bottom: 0;
+  color: #e3e3e3
+}
+.waitBox .waitImg2{
+  font-size: 26rpx !important;
+  /* width: 30rpx !important;
+  height: 26rpx !important; */
+  margin: 0 !important;
+  align-self: flex-end;
+  padding-bottom: 0;
+  color: #e3e3e3
 }
 .waitCont{
   font-size:30rpx;
@@ -254,8 +260,11 @@ page {
   right: 0;
   bottom: -140rpx;
   margin: auto;
-  width: 79rpx;
-  height: 79rpx;
+  font-size: 79rpx;
+  color: #8175A1;
+  text-align: center;
+  /* width: 79rpx;
+  height: 79rpx; */
 }
 .officialAccount{
   position: fixed;

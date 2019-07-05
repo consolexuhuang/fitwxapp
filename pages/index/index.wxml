@@ -1,7 +1,7 @@
 <!--pages/index/index.wxml-->
 <tabBar_top navbarData="{{navbarData}}"></tabBar_top>
 <view class='startUp'>
-  <image src='{{imgUrl}}icon/startUp_logo.png' class='startUp_logo'></image>
+  <text class='startUp_logo iconfont iconfenzu-'></text>
   <view class='startUpCont' wx:if='{{userData.nick_name}}'>
     <!-- <image src='{{imgUrl}}icon/startUp_title.png' class='startUpCont_Img'></image>
     <view class='startUpCont_title'>你身边的团课教室</view> -->

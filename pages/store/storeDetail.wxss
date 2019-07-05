@@ -29,23 +29,29 @@
   margin-top: 30rpx;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 38rpx;
+  box-sizing: border-box;
 }
 
 .store-star {
   /* flex: 1; */
-  margin-left: 38rpx;
+  /* margin-left: 38rpx; */
   display: flex;
+}
+.shareLineBox{
+  display: flex;
+  align-items: center;
 }
 .shareLine{
   width:2rpx;
   height:38rpx;
   background: linear-gradient(#DFD3FF,#896DFF,#ECE7FF);
-  margin:0 70rpx 0 350rpx;
+  margin:0 76rpx 0 0;
 }
-.store-star image {
-  margin-right: 2rpx;
-  width: 25.1rpx;
-  height: 25.1rpx;
+.store-star .store-starIcon {
+  font-size: 25rpx;
+  color: #896DFF
 }
 
 .store-share {
@@ -59,7 +65,7 @@
   height: 69rpx;
 }
 .shareBtnBox{
-  margin-right: 62rpx;
+  margin-right: 38rpx;
   width: 89rpx;
   height: 69rpx;
   position: relative;
@@ -134,7 +140,7 @@
 }
 
 .store-position-icon {
-  margin-left: 25rpx;
+  /* margin-left: 25rpx; */
   /* width: 30rpx;
   height: 30rpx; */
   font-size: 30rpx;
@@ -158,17 +164,22 @@
   font-size: 25rpx;
   color: #aaa
 }
-
+.route-guide-wrapperBox{
+  padding-left: 50rpx;
+  box-sizing: border-box;
+}
 .route-guide-wrapper {
   height: 129rpx;
   display: flex;
   align-items: center;
 }
-
+.route-guide-wrapper2{
+  border-top: 1rpx solid #E9E9E9
+}
 .route-guide-icon {
-  margin-left: 25rpx;
-  width: 24rpx;
-  height: 23rpx;
+  font-size: 23rpx;
+  color: #A0A0A0;
+  /* margin-left: 25rpx; */
 }
 
 .route-guide-text {

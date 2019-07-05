@@ -21,7 +21,7 @@
                 data-id='{{item.id}}'
                 data-state='{{item.chooseState}}'>
             <image wx:if='{{item.chooseState}}' class='starImg {{item.chooseState ? "bounceIn" : "fadeOut"}} animated' src='{{imgUrl}}icon/star.png'></image>
-            <image wx:if='{{!item.chooseState}}' class='starImg' src='{{imgUrl}}icon/noneStar.png'></image>
+           <image wx:if='{{!item.chooseState}}' class='starImg' src='{{imgUrl}}icon/noneStar.png'></image>
             <view class='starTag'>{{item.idCont}}</view>
           </view>
       </view>

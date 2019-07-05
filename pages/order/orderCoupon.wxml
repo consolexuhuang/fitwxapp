@@ -71,7 +71,7 @@
         </block>
       </block>
       <view class='noCouponBox' wx:if='{{couponList.length == 0}}'>
-        <image class='noCouponImg' src='{{imgUrl}}member/noCoupon.png'></image>
+        <text class='noCouponImg iconGroup1 iconfont'></text>
         <view class='noCouponCont'>暂无代金券</view>
       </view>
     </view>

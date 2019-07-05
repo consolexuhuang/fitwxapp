@@ -152,10 +152,10 @@ page{
   display: flex;
 }
 .signIn_Tag{
-  width: 30rpx;
-  height: 27rpx;
-  align-self: flex-start;
-  flex-shrink: 0;
+  font-size: 27rpx;
+  color: #fff;
+  /* align-self: flex-start;
+  flex-shrink: 0; */
   margin-right: 22rpx;
   margin-top: 5rpx;
 }
