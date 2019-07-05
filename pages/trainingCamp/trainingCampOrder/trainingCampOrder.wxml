@@ -81,8 +81,8 @@
   <button class="trainingCampOrderBtn" bindtap='jumpTocashMoney' wx:elif='{{orderData.pay_type == "3"}}'>
      需支付¥{{orderData.pay_amount}}，点击充值
   </button>
-  <button class="trainingCampOrderBtn" bindtap='jumpTocashMoney' wx:elif='{{orderData.pay_type == "3" && orderData.has_card}}'>
+ <!--  <button class="trainingCampOrderBtn" bindtap='jumpTocashMoney' wx:elif='{{orderData.pay_type == "3" && orderData.has_card}}'>
      余额不足，点击充值
-  </button>
+  </button> -->
 </view>
 
