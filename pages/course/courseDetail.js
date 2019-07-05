@@ -53,6 +53,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  onShow(){
+    // wx.showShareMenu({
+    //   withShareTicket: true,
+    // })
+  },
   onLoad: function (options) {
     console.log(options)
     //分享过来的参数
@@ -179,7 +184,7 @@ Page({
       path: '/pages/course/courseDetail?courseId=' + this.data.courseId + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
       // imageUrl: this.data.picList[0],
       success: function (res) {
-        console.log(res)
+        console.log('分享成功',res)
       },
       fail: function (res) {
         console.log(res)
