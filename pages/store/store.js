@@ -49,7 +49,9 @@ Page({
   },
   onShow(){
     this.getOfficialDataState()
-    this.getMemberFollowState()
+    app.checkSessionFun().then(() => {
+      this.getMemberFollowState()
+    })
   },
   /**
    * write@xuhuang  start

@@ -85,19 +85,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (options.goodId) {
-      this.setData({
-        goodId: options.goodId
-      }, () => {
-        this.getTrainingDetail()
-        this.getGoodCoach()
-      })
-    }
-    this.getDomHeight('#trainingCampDom', 150).then(res => {
-      this.setData({ showLookMore: true })
-    })
-    this.getDomHeight('#trainingCampCarefulDom', 120).then(res => {
-      this.setData({ showLookCarefulMore: true })
+    getApp().checkSessionFun().then(() => {
+      if (options.goodId) {
+        this.setData({
+          goodId: options.goodId
+        }, () => {
+          this.getTrainingDetail()
+          this.getGoodCoach()
+          this.getDomHeight('#trainingCampDom', 150).then(res => {
+            this.setData({ showLookMore: true })
+          })
+          this.getDomHeight('#trainingCampCarefulDom', 120).then(res => {
+            this.setData({ showLookCarefulMore: true })
+          })
+        })
+      }
     })
   },
 

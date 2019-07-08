@@ -36,7 +36,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getUserCoupons()
     this.setData({
       dialogConfig: { ...this.data.dialogConfig,
         dialogTitle: '优惠不过期，约课更开心 ',
@@ -51,6 +50,7 @@ Page({
 
     //检测登录
     app.checkSessionFun().then(() => {
+    this.getUserCoupons()
     this.agreeNotifyShow()
     this.getShareCouponInfo()
     this.getInvitedInfo()

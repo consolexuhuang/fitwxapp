@@ -70,12 +70,14 @@ Page({
       //初始化
       this.initFun();
       //判断用户是否关注公众号
-      this.getMemberFollowState()
+      // this.getMemberFollowState()
     })
   },
   onShow() {
     //判断用户是否关注公众号
-    this.getMemberFollowState()
+    app.checkSessionFun().then(() => {
+      this.getMemberFollowState()
+    })
     this.getOfficialDataState()
     //搜索进来的
     if (getApp().globalData.courseConfig) {

@@ -175,7 +175,7 @@ App({
       wx.checkSession({
         success: () => {
           //session_key 未过期，并且在本生命周期一直有效
-          if (Store.getItem('userData')){
+          if (Store.getItem('userData') && Store.getItem('userData').token){
             resolve();
           }else{
             this.wx_loginIn().then(() => {
