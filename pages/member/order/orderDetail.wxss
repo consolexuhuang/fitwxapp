@@ -208,7 +208,8 @@ page{
   letter-spacing:1rpx;
   margin: 0 20rpx;
   text-align: left;
-  display: inline
+  display: inline;
+  padding-right: 10rpx;
 }
 /* .orderDetail_data_over{
   overflow:hidden; 

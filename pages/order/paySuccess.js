@@ -24,6 +24,7 @@ Page({
     paySuccessShow: false,
     coachWxCodeState: false,
     memberInfo:'', //用户数据
+    courseShareData:'', //课程分享文案
     // 此页面 页面内容距最顶部的距离
     // contMargin_height: getApp().globalData.tab_height * 2 + 20,
     // officialData: '', //获取当前场景值对象
@@ -49,6 +50,7 @@ Page({
       this.setData({
         orderDetailData: res.msg
       })
+      this.getCourseInfo(res.msg.course.id)
     })
   },
   getMemberFollowData() {
@@ -88,6 +90,20 @@ Page({
       })
     })
   },
+  getCourseInfo(courseId) {
+    const data = {
+      id: courseId,
+      picType: 1
+    }
+    api.post('course/getCourse', data).then(res => {
+      if (res.code === 0) {
+        const courseShareData = res.msg.config.info
+        this.setData({
+          courseShareData,
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -97,7 +113,6 @@ Page({
       wx.setStorageSync('shareMemberId', options.shareMemberId)
     }
     
-    this.checkPromotion()
     if (options.orderId) 
       this.setData({ 
         orderId: options.orderId
@@ -105,6 +120,7 @@ Page({
       
         //检测登录
         app.checkSessionFun().then(() => {
+        this.checkPromotion()
         this.getMemberFollowState()
         this.getOrderDetail()
         this.getMemberInfo(options.orderId)
@@ -140,14 +156,6 @@ Page({
       this.setData({ officialDataState: false })
     }
   },
-  // bindload(e) {
-  //   console.log('official-account_success', e.detail)
-  //   this.setData({ officialData: e.detail })
-  // },
-  // binderror(e) {
-  //   console.log('official-account_fail', e.detail)
-  //   this.setData({ officialData: e.detail })
-  // },
   /**
    * write@xuhuang  end
    */
@@ -160,6 +168,21 @@ Page({
       if (res == 0) {
         this.setData({ coachWxCodeState: true })
       }
+    })
+  },
+  //查看地图
+  handleLocationTap: function (event) {
+    console.log(event)
+    const name = event.currentTarget.dataset.name
+    const address = event.currentTarget.dataset.address
+    const latitude = Number(event.currentTarget.dataset.latitude)
+    const longitude = Number(event.currentTarget.dataset.longitude)
+    wx.openLocation({
+      name,
+      address,
+      latitude,
+      longitude,
+      scale: 18
     })
   },
   //预览图
@@ -184,9 +207,8 @@ Page({
   //分享
   onShareAppMessage() {
     return {
-      title: `【 ${this.data.orderDetailData.course.courseName} 】${utils.formatTime2(this.data.orderDetailData.course.beginDate)}星期${this.data.orderDetailData.course.beginDay}${utils.formatTime3(this.data.orderDetailData.course.beginTime)}，快和我一起来运动
-`,
-      path: '/pages/member/order/orderDetail?orderNum=' + this.data.orderId + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
+      title: this.data.courseShareData,
+      path: '/pages/course/courseDetail?courseId=' + this.data.orderDetailData.course.id + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
       // imageUrl: this.data.picList[0],
       success: function (res) {
         console.log(res)

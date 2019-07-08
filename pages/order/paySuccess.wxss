@@ -153,7 +153,7 @@ page {
   border-bottom: 1rpx solid #e9e9e9;
   display: flex;
   align-items: center;
-  padding: 18rpx 20rpx;
+  padding: 30rpx 20rpx;
   box-sizing: border-box
 }
 
@@ -164,10 +164,23 @@ page {
   flex-grow: 0;
   /* align-self: flex-start */
 }
+.column-item-label2{
+  font-size: 28rpx;
+  color: #969696;
+  flex-shrink: 0;
+  flex-grow: 0;
+  align-self: flex-start
+}
+  
 
 .column-item-content {
   font-size: 28rpx;
   color: #141414;
+}
+.column-item-content2 {
+  font-size: 28rpx;
+  color: #141414;
+  text-decoration: underline;
 }
 
 .btn-wrapper {

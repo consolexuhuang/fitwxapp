@@ -27,7 +27,7 @@ Page({
     }, //悬浮分享组件配置
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
     coachWxCodeState: false,
-
+    courseShareData:'', //分享课程文案
     // officialData: '', //获取当前场景值对象
     memberFollowState: 1, //当前关注状态
     bottomStyle: 0,
@@ -92,14 +92,20 @@ Page({
       this.setData({ officialDataState: false })
     }
   },
-  // bindload(e) {
-  //   console.log('official-account_success', e.detail)
-  //   this.setData({ officialData: e.detail })
-  // },
-  // binderror(e) {
-  //   console.log('official-account_fail', e.detail)
-  //   this.setData({ officialData: e.detail })
-  // },
+  getCourseInfo(courseId){
+    const data = {
+      id: courseId,
+      picType: 1
+    }
+    api.post('course/getCourse', data).then(res => {
+      if (res.code === 0) {
+        const courseShareData = res.msg.config.info
+        this.setData({
+          courseShareData,
+        })
+      }
+    })
+  },
   /**
    * write@xuhuang  end
    */
@@ -129,6 +135,7 @@ Page({
       this.setData({
         orderData
       })
+      this.getCourseInfo(res.msg.course.id)
       this.getContent()
     })
   },
@@ -198,6 +205,21 @@ Page({
       duration: 3000
     });
   },
+  //查看地图
+  handleLocationTap: function (event) {
+    console.log(event)
+    const name = event.currentTarget.dataset.name
+    const address = event.currentTarget.dataset.address
+    const latitude = Number(event.currentTarget.dataset.latitude)
+    const longitude = Number(event.currentTarget.dataset.longitude)
+    wx.openLocation({
+      name,
+      address,
+      latitude,
+      longitude,
+      scale: 18
+    })
+  },
   //跳转线webUrl
   handleRouteGuidanceTap() {
     wx.navigateTo({
@@ -215,11 +237,10 @@ Page({
   //分享
   onShareAppMessage() {
     const storeId = this.data.storeId
-    console.log(utils.formatTime2(this.data.orderData.course.beginDate))
+    // console.log(utils.formatTime2(this.data.orderData.course.beginDate))
     return {
-      title: `【 ${this.data.orderData.course.courseName} 】${utils.formatTime2(this.data.orderData.course.beginDate)}星期${this.data.orderData.course.beginDay}${utils.formatTime3(this.data.orderData.course.beginTime)}，快和我一起来运动
-`,
-      path: '/pages/member/order/orderDetail?orderNum=' + this.data.orderNum + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
+      title: this.data.courseShareData,
+      path: '/pages/course/courseDetail?courseId=' + this.data.orderData.course.id + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
       // imageUrl: this.data.picList[0],
       success: function (res) {
         console.log(res)

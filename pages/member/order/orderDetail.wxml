@@ -1,7 +1,7 @@
 <!--pages/member/order/orderDetail.wxml-->
 <wxs src="../../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<share_tag imgUrl='{{imgUrl}}' shareConfig='{{shareConfig}}' wx:if='{{orderData.cancelFlag != 1}}'></share_tag>
+<share_tag imgUrl='{{imgUrl}}' shareConfig='{{shareConfig}}' wx:if='{{orderData.cancelFlag != 1 && courseShareData}}'></share_tag>
 <view class="orderDetail_statusData fadeIn animated" style='margin-top:{{marginTopBar}}px'>
   <view class="orderDetail_headImgBox">
     <image bindtap='handleCoachTap' data-coachId='{{orderData.coach.id}}' class="orderDetail_headImg" src="{{orderData.coach.headUrl}}"></image>
@@ -35,7 +35,7 @@
     <text class="orderDetail_text">预约人数：</text>
     <view class="orderDetail_data">{{orderData.order.pCount}}人</view>
   </view>
-  <view class="admissionCode">
+  <view class="admissionCode admissionCodeNext" data-name="{{orderData.store.storeName}}" data-address="{{orderData.store.address}}" data-latitude="{{orderData.store.latitude}}" data-longitude="{{orderData.store.longitude}}" bindtap="handleLocationTap">
     <text class="orderDetail_icon2 iconfont iconicon-test39"></text>
     <text class="orderDetail_text">地点：</text>
     <view class="orderDetail_data">{{orderData.store.address}}</view>
@@ -78,7 +78,7 @@
       <view class="orderDetail_payData">¥{{orderData.order.actPrice}}</view>
     </view>
   </view>
-  <button class="invitationFriend" open-type='share' wx:if='{{orderData.cancelFlag == 1}}'>邀请好友一起来</button>
+  <button class="invitationFriend fadeIn aminated" open-type='share' wx:if='{{orderData.cancelFlag == 1 && courseShareData}}'>邀请好友一起来</button>
   <view class='btnBox'>
     <view class="cancleStatus" bindtap='cancelOrder' wx:if="{{orderData.cancelFlag === 3 || orderData.cancelFlag === 4 || orderData.cancelFlag === 5}}">取消订单</view>
     <view class="cancleStatus" wx:if="{{orderData.cancelFlag == 2}}" bindtap='cancelWait'>取消等候</view>
