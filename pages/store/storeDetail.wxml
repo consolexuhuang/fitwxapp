@@ -76,11 +76,11 @@
         </view>
         <view class="fitness-step-item">
           <view class="fitness-step-item-number">2</view>
-          <view class="fitness-step-item-text">获得密码</view>
+          <view class="fitness-step-item-text">{{storeData.ownerType == 1 ? '获得密码' : (storeData.ownerType == 2 || storeData.ownerType == 3 ? "到达门店" : "获得密码")}}</view>
         </view>
         <view class="fitness-step-item">
           <view class="fitness-step-item-number">3</view>
-          <view class="fitness-step-item-text">扫码开门</view>
+          <view class="fitness-step-item-text">{{storeData.ownerType == 1 ? '扫码开门' : (storeData.ownerType == 2 || storeData.ownerType == 3 ? "前台扫码":"扫码开门")}}</view>
         </view>
         <view class="fitness-step-item">
           <view class="fitness-step-item-number">4</view>
