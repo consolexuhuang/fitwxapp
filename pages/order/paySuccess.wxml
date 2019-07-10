@@ -40,7 +40,7 @@
         <view class="column-item-label">时间：</view>
         <view class="column-item-content">{{util.timeStampFormat(orderDetailData.course.beginDate, 'YYYY年MM月DD日')}} 星期{{orderDetailData.course.beginDay}} {{util.timeStampFormat(orderDetailData.course.beginTime, 'hh:mm')}}-{{util.timeStampFormat(orderDetailData.course.endTime, 'hh:mm')}}</view>
       </view>
-      <view class="column-item" data-name="{{orderDetailData.store.storeName}}" data-address="{{orderDetailData.store.address}}" data-latitude="{{orderDetailData.store.latitude}}" data-longitude="{{orderDetailData.store.longitude}}" bindtap="handleLocationTap">
+      <view class="column-item admissionCodeNext" data-name="{{orderDetailData.store.storeName}}" data-address="{{orderDetailData.store.address}}" data-latitude="{{orderDetailData.store.latitude}}" data-longitude="{{orderDetailData.store.longitude}}" bindtap="handleLocationTap">
         <view class="column-item-label2">地点：</view>
         <view class="column-item-content2">{{orderDetailData.store.address}}</view>
       </view>
