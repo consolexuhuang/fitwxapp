@@ -1,0 +1,22 @@
+<!--pages/coursePhoto/coursePhoto.wxml-->
+<tabBar_top navbarData='{{navbarData}}'></tabBar_top>
+<view class='wrapper'  style='margin-top:{{marginTopBar}}px;'>
+<view class='photo-box'  style='width:{{boxWidthScale}}rpx;height:514rpx;'>
+  <image src='/images/delete.png' style='width:686rpx;height:514rpx;'></image>
+  <view class='row' style='padding:{{infoPadding}}rpx 0'>
+    <view class='col' style='height:82rpx;'>
+      <text class='shope-name'>中信泰富旗舰店</text>
+      <text class='adv'>扫码和我一起变瘦变美</text>
+    </view>
+    <view class='col'>
+     <image class='qrcode' src='/images/delete.png' style='width:{{qrCodeWidthScale}}rpx;height:{{qrCodeHeightScale}}rpx;'></image>
+    </view>
+  </view>
+</view>
+
+<view class='download'>
+  <text class='text'>下载至相册</text>
+  <text class='icon'></text>
+</view>
+
+</view>

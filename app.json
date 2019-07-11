@@ -37,7 +37,8 @@
     "pages/trainingCamp/trainingCampOrder/trainingCampOrder",
     "pages/trainingCamp/trainingCampPaySuccess/trainingCampPaySuccess",
     "pages/coach/evaluate/evaluate",
-    "pages/coach/signInCode/signInCode"
+    "pages/coach/signInCode/signInCode",
+    "pages/coursePhoto/coursePhoto"
   ],
   "workers": "workers",
   "window": {

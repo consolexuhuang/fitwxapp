@@ -1,0 +1,70 @@
+/* pages/coursePhoto/coursePhoto.wxss */
+
+page {
+  background: #fafafa;
+}
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.photo-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 116rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 4rpx;
+  box-shadow: 0rpx 8rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.photo-box .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+.photo-box .row .qrcode {
+}
+
+.photo-box .row .col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.photo-box .row .col:first-child {
+  margin-right: 15rpx;
+}
+
+.photo-box .row .col:last-child {
+  margin-right: 24rpx;
+}
+
+.photo-box .shope-name {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #464646;
+}
+
+.photo-box .adv {
+  font-size: 20rpx;
+  color: #5a5a5a;
+}
+
+.download {
+  margin-top:200rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.download .text{
+  font-size:28rpx;
+  color:#896DFF;
+}
