@@ -22,7 +22,9 @@
           <view class="item">
             <view class="item-title">
               <view class="left">
-                <image class="icon" src="{{imgUrl}}card/icon-bike-green.png"></image>
+                <!-- <image class="icon" src="{{imgUrl}}card/icon-bike-green.png"></image> -->
+                <text wx:if='{{cardBuyRecord.card_title == "单车卡"}}' class='icon iconfont iconhuiyuanqiagoumai-1'></text>
+                <text wx:else class='icon icon2 iconfont iconhuiyuanqiagoumai-'></text>
                 <text class="name">{{cardBuyRecord.card_title}}</text>
               </view>
               <view class="right">剩余{{cardBuyRecord.card_left_count}}次</view>

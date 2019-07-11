@@ -45,8 +45,9 @@ page {
 }
 
 .main .top .user-new .gift-bg {
-  width: 186rpx;
-  height: 40rpx;
+  /* width: 186rpx;
+  height: 40rpx; */
+  
 }
 
 .main .top .user-new .txt {
@@ -94,8 +95,8 @@ page {
 }
 
 .main .list .item .gift-bg {
-  width: 124rpx;
-  height: 41rpx;
+  font-size: 43rpx;
+  color: #896fff
 }
 
 .main .list .item .gift .txt {

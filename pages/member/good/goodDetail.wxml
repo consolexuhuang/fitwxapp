@@ -22,10 +22,8 @@
     <text class='text'>总价：{{orderData.order_amount || 0}}元</text>
     </view> -->
     <view class='row'>
-      <!-- <text class='icon_card iconicon-test27 iconfont' wx:if='{{orderData.pay_type === "2"}}'></text>
-      <image class='icon_wx iconicon-test28 iconfont' wx:if='{{orderData.pay_type === "1"}}'></image> -->
-      <image class='icon_card' wx:if='{{orderData.pay_type === "2"}}' src='{{imgUrl}}card/icon-card-plush-s.png'></image>
-      <image class='icon_wx' wx:if='{{orderData.pay_type === "1"}}' src='{{imgUrl}}card/icon-wx-pay.png'></image>
+      <text class='icon_card iconhuiyuanqiagoumai-3 iconfont' wx:if='{{orderData.pay_type === "2"}}'></text>
+      <text class='icon_wx iconicon-test28 iconfont' wx:if='{{orderData.pay_type === "1"}}'></text>
       <text class='text'>实付：{{orderData.pay_amount || 0}}元</text>
     </view>
   </view>

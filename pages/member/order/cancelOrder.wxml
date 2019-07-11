@@ -23,7 +23,8 @@
     <view class='refund-type' wx:if="{{orderData.canRefundAmount || orderData.canRefundCoupon || orderData.canRefundCard}}">
       <view class='item' wx:if="{{orderData.order.paymentWay === 1}}">
         <view class='left'>
-          <image class='icon' src='/images/member/icon-wx-pay.png'></image>
+          <!-- <image class='icon' src='/images/member/icon-wx-pay.png'></image> -->
+          <text class='icon icon3 iconfont iconicon-test28'></text>
           <text class='name'>微信</text>
         </view>
         <text class='number'>{{ orderData.canRefundAmount }}元</text>
@@ -37,8 +38,9 @@
       </view>
       <view class='item' wx:if="{{orderData.canRefundCard && orderData.order.paymentWay === 7}}">
         <view class='left'>
-          <image wx:if="{{orderData.canRefundCard.title=='早课卡'}}" class='icon' src='/images/member/icon-morning-red.png'></image>
-          <image wx:if="{{orderData.canRefundCard.title=='单车卡'}}" class='icon' src='/images/member/icon-bike-green.png'></image>
+
+          <text wx:if='{{orderData.canRefundCard.title == "单车卡"}}' class='icon iconfont iconhuiyuanqiagoumai-1'></text>
+           <text wx:else class='icon icon2 iconfont iconhuiyuanqiagoumai-'></text>
           <text class='name'>{{ orderData.canRefundCard.title }}</text>
         </view>
         <text class='number'>{{ orderData.canRefundCard.count }}次</text>
