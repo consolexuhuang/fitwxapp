@@ -309,7 +309,11 @@
   font-size: 26rpx;
   color: #a2a2a2;
 }
-
+.none-course .none-courseIcon{
+  font-size: 70rpx;
+  color: #DCDCDC;
+  margin-bottom: 22rpx
+}
 .course-list {
   overflow: hidden;
   background-color: #fff;
@@ -568,7 +572,7 @@
 
 .none-course .text2 {
   display: block;
-  margin-top: 14rpx;
+  /* margin-top: 14rpx; */
   font-size: 24rpx;
   color: #896eff;
 }

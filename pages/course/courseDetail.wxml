@@ -158,11 +158,11 @@
         </view>
         <view class="fitness-step-item">
           <view class="fitness-step-item-number">2</view>
-          <view class="fitness-step-item-text">获得密码</view>
+          <view class="fitness-step-item-text">{{courseData.store.ownerType == 1 ? '获得密码' : (courseData.store.ownerType == 2 || courseData.store.ownerType == 3 ? "到达门店" : "获得密码")}}</view>
         </view>
         <view class="fitness-step-item">
           <view class="fitness-step-item-number">3</view>
-          <view class="fitness-step-item-text">扫码开门</view>
+          <view class="fitness-step-item-text">{{courseData.store.ownerType == 1 ? '扫码开门' : (courseData.store.ownerType == 2 || courseData.store.ownerType == 3 ? "前台扫码":"扫码开门")}}</view>
         </view>
         <view class="fitness-step-item">
           <view class="fitness-step-item-number">4</view>

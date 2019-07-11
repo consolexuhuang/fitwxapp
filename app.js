@@ -59,6 +59,18 @@ App({
     this.getLocation();
   },
   onShow(options) {
+    let _this = this
+    // 获取加密群信息
+    // if (options.scene == 1044) {
+    //   console.log('options.shareTicket', options.shareTicket)
+    //   wx.getShareInfo({
+    //     shareTicket: options.shareTicket,
+    //     success(shareTicket_res){
+    //       _this.globalData.shareTicket_res = shareTicket_res
+    //       console.log('shareTicket_res', shareTicket_res)
+    //     }
+    //   })
+    // }
     console.log('scene', options.scene)
     this.globalData.scene = options.scene
     // 校验场景值
@@ -163,7 +175,7 @@ App({
       wx.checkSession({
         success: () => {
           //session_key 未过期，并且在本生命周期一直有效
-          if (Store.getItem('userData')){
+          if (Store.getItem('userData') && Store.getItem('userData').token){
             resolve();
           }else{
             this.wx_loginIn().then(() => {
@@ -263,7 +275,6 @@ App({
               }
             })
           }
-          
         },
         fail:()=>{
           console.error('登录失败！')

@@ -20,9 +20,9 @@
       <image wx:if='{{orderDetailData.qrPath && !orderDetailData.order.wait}}' src="{{orderDetailData.qrPath}}" />
       <text wx:if='{{!orderDetailData.qrPath && !orderDetailData.order.wait}}' >开课前 1 小时显示</text>
       <view class='waitBox' wx:if='{{orderDetailData.order.wait}}'>
-        <image src='{{imgUrl}}icon/punctuation.png' class='waitImg'></image>
+        <text class='waitImg iconxingzhuang iconfont'></text>
         <view class='waitCont'>当前等候{{orderDetailData.waiCount}}人，您是第{{orderDetailData.beforeWaiCount}}位呦</view>
-        <image src='{{imgUrl}}icon/punctuation2.png' class='waitImg2'></image>
+        <text class='waitImg2 iconfont iconxingzhuang-'></text>
       </view>
     </view>
   </view>
@@ -40,13 +40,13 @@
         <view class="column-item-label">时间：</view>
         <view class="column-item-content">{{util.timeStampFormat(orderDetailData.course.beginDate, 'YYYY年MM月DD日')}} 星期{{orderDetailData.course.beginDay}} {{util.timeStampFormat(orderDetailData.course.beginTime, 'hh:mm')}}-{{util.timeStampFormat(orderDetailData.course.endTime, 'hh:mm')}}</view>
       </view>
-      <view class="column-item">
-        <view class="column-item-label">地点：</view>
-        <view class="column-item-content">{{orderDetailData.store.address}}</view>
+      <view class="column-item admissionCodeNext" data-name="{{orderDetailData.store.storeName}}" data-address="{{orderDetailData.store.address}}" data-latitude="{{orderDetailData.store.latitude}}" data-longitude="{{orderDetailData.store.longitude}}" bindtap="handleLocationTap">
+        <view class="column-item-label2">地点：</view>
+        <view class="column-item-content2">{{orderDetailData.store.address}}</view>
       </view>
     </view>
     <view class="btn-wrapper">
-      <view class="return-course-btn" wx:if='{{!orderDetailData.order.wait}}'>
+      <view class="return-course-btn" wx:if='{{!orderDetailData.order.wait && courseShareData}}'>
       <button class='shareBtn' open-type='share'></button>
       邀请好友，一起上课</view>
       <!-- <view class="invite-btn {{orderDetailData.order.wait ? 'invite-btnStyle' :''}}" >邀请好友，惊喜连连</view> -->
@@ -73,7 +73,7 @@
            src='{{checkPromotion.image}}' 
            class='paySuccessShowImg_share' 
            ></image>
-    <image src='{{imgUrl}}icon/colseBtn.png' class='colseBtn' bindtap='onclose'></image>
+    <text class='colseBtn iconicon-test18 iconfont' bindtap='onclose'></text>
 </van-popup>
 <van-popup show='{{coachWxCodeState}}' 
            bind:close='onclose'

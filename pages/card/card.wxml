@@ -8,7 +8,7 @@
       <view class="card-title">
         <text class="name">{{typeItem.name}}</text>
         <view class="btn" bindtap="privilegeView">
-          <image class="icon" src="{{imgUrl}}card/icon_privilege.png" />
+          <text class="icon iconxingzhuang1 iconfont"/>
           <text>查看特权</text>
         </view>
       </view>
@@ -62,28 +62,28 @@
 <view class="mask-swiper" hidden="{{!isShowPrivilege}}" style='padding-top:{{marginTopBar}}px'>
   <text class="close iconicon-test18 iconfont" bindtap="closePrivilege" style='top:{{marginTopBar+20}}px'></text>
   <view class="mask-main">
-    <image src="{{imgUrl}}card/icon-arrow-left-white.png" class="arrow" bindtap="swiperPre"></image>
+    <text class="arrow iconfont iconShape" bindtap="swiperPre"></text>
     <swiper indicator-dots="true" indicator-color="rgba(170,170,170,1)" indicator-active-color="#8B6FF1" autoplay="true" circular="true" current="{{swiperCurrentIndex}}" bindchange="swiperchange">
       <swiper-item>
         <text class="title">PLUS卡特权</text>
-        <image src="{{imgUrl}}card/icon-plus-01.png" class="slide-image" />
+        <text class="slide-image iconGroup iconfont" />
         <text class="sub-title">PLUS卡会员权益</text>
         <text class="text" decode="true">预约课程全场95折,可叠加优惠券; \n大师课、折扣课通用(课程优惠礼包除外)</text>
       </swiper-item>
       <swiper-item>
         <text class="title">PLUS卡特权</text>
-        <image src="{{imgUrl}}card/icon-plus-02.png" class="slide-image" />
+        <text class="slide-image iconGroup- iconfont" />
         <text class="sub-title">满员等候特权</text>
         <text class="text" decode="true">Plus卡支付可自动等候满员课程,\n 补排空位,未排上自动退款</text>
       </swiper-item>
       <swiper-item>
         <text class="title">PLUS卡特权</text>
-        <image src="{{imgUrl}}card/icon-plus-03.png" class="slide-image" />
+        <text class="slide-image iconGroup-1 iconfont" />
         <text class="sub-title">Plus卡特权日</text>
         <text class="text" decode="true">Plus卡特权日,精品课程秒杀价</text>
       </swiper-item>
     </swiper>
-    <image src="{{imgUrl}}card/icon-arrow-right-white.png" class="arrow" bindtap="swiperNext"></image>
+    <text class="arrow iconfont iconShape-" bindtap="swiperNext"></text>
   </view>
   <button class="btn" bindtap="handleRechargeTap">立即开通</button>
 </view>

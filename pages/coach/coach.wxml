@@ -109,7 +109,7 @@
           <!-- 当天无课程 -->
           <block wx:else>
             <view class="none-course">
-              <image src="{{imgUrl}}course/icon_course_big.png" />
+              <text class='none-courseIcon iconfont iconicon-test46'/>
               <text>J&J排课中</text>
               <text>每周五21:30发布</text>
             </view>

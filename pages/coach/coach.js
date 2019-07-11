@@ -229,10 +229,19 @@ Page({
   //分享
   onShareAppMessage() {
     const storeId = this.data.storeId
+    let coachHeadUrl = ''
+    // console.log('aa', this.data.coachData.headUrl.indexOf('?'))
+    if (this.data.coachData.headUrl.indexOf('?') !== -1){
+      const idx = this.data.coachData.headUrl.indexOf('?')
+      coachHeadUrl = this.data.coachData.headUrl.substring(0, idx)
+    } else {
+      coachHeadUrl = this.data.coachData.headUrl
+    }
+    console.log('coachHeadUrl', coachHeadUrl)
     return {
       title: `Justin&Julie教练- ${this.data.coachData.coachName}`,
       path: '/pages/coach/coach?coachId=' + this.data.coachId + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
-      imageUrl: this.data.coachData.headUrl,
+      imageUrl: coachHeadUrl,
       success: function (res) {
       },
       fail: function (res) {

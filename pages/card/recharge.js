@@ -51,8 +51,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getUserCard()
-    this.getChargeInfo()
+    getApp().checkSessionFun().then(() => {
+      this.getUserCard()
+      this.getChargeInfo()
+    })
   },
   getUserCard: function(event){
     wx.showLoading({ title: '加载中...',})

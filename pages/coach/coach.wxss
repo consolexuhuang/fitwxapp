@@ -365,25 +365,26 @@
 .none-course {
   margin-top: 135rpx;
   text-align: center;
+  font-size: 24rpx;
+  color: #896eff;
 }
 
-.none-course image {
-  display: block;
-  margin: 0 auto;
-  width: 70rpx;
-  height: 70rpx;
+.none-course .none-courseIcon {
+  font-size: 70rpx;
+  color: #DCDCDC;
+  margin-bottom: 22rpx
 }
 
 .none-course text:first-of-type {
   display: block;
   margin-top: 22rpx;
-  font-size: 24rpx;
-  color: #896eff;
+  /* font-size: 24rpx;
+  color: #896eff; */
 }
 
 .none-course text:last-of-type {
   display: block;
-  margin-top: 14rpx;
+  /* margin-top: 14rpx; */
   font-size: 24rpx;
   color: #896eff;
 }

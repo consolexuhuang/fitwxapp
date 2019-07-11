@@ -13,10 +13,13 @@ page {
 }
 
 .startUp_logo {
-  width: 275rpx;
-  height: 324rpx;
+  /* width: 275rpx;
+  height: 324rpx; */
+  font-size: 340rpx;
+  color: #fff;
   margin: 299rpx auto 0;
   display: block;
+  text-align: center
 }
 
 .startUp_bottom {

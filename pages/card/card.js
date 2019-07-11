@@ -39,7 +39,9 @@ Page({
     })
   },
   onShow(){
-    this.getMemberFollowState()
+    app.checkSessionFun().then(() => {
+      this.getMemberFollowState()
+    })
     this.getOfficialDataState()
   },
   /**

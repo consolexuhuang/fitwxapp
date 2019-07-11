@@ -3,13 +3,13 @@
 <view class='signInCodeBg'>
   <!-- 签到成功 --> 
   <view class='signInCode_imgBox fadeIn animated' wx:if='{{siginUpData.success}}' bindtap='showCoachWxCode'> 
-    <image class='signInCode_img' src='{{imgUrl}}icon/signInCode_img.png'></image>
+    <image class='signInCode_img' src='https://img.cdn.powerpower.net/5d1ef0c8e4b0655afef541ae.png'></image>
     <image src='{{signData.coach_qr_code_url}}' class='signInCode'></image>
     <text class='signInCodeText'>长按加教练聊聊吧!</text>
   </view>
   <!-- 失败 bindtap='showCoachWxCode' 要删掉 -->
   <view class='signInCode_imgBox fadeIn animated' wx:if='{{!siginUpData.success}}'>
-    <image class='signInCode_img signInCode_Failimg' src='{{imgUrl}}icon/siginInCode_failImg.png' ></image>
+    <image class='signInCode_img signInCode_Failimg' src='https://img.cdn.powerpower.net/5d1ef0c7e4b0655afef541ac.png' ></image>
   </view>
 
   <view class='signIn_statusBox fadeIn animated'>
@@ -20,7 +20,7 @@
     <text class='signIn_coach' wx:elif='{{!siginUpData.success && siginUpMsg != "已签到"}}'>请检查签到课程订单是否正确</text>
      <text class='signIn_coach' wx:elif='{{!siginUpData.success && siginUpMsg == "已签到"}}'>您已签到，请勿重复签到</text>
   </view>
-  <image src='{{imgUrl}}icon/signCodeBg.png' class='signCodeBg fadeIn animated'></image>
+  <image src='https://img.cdn.powerpower.net/5d1ef0c8e4b0655afef541ad.png' class='signCodeBg fadeIn animated'></image>
   <!-- <image class='signInCode_bgLine' src='{{imgUrl}}icon/signInCode_bgLine.png'></image> -->
   <!-- <image class='signInCode_bgLine2' src='{{imgUrl}}icon/signInCode_bgLine2.png'></image> -->
 
@@ -29,7 +29,7 @@
     <view class='signIn_userName'>-{{signData.update_by}}-</view>
   </view>
   <view class='signIn_Fail fadeIn animated' wx:if='{{!siginUpData.success}}'>
-     <image src='{{imgUrl}}icon/signIn_Tag.png' class='signIn_Tag'></image>
+     <text class='signIn_Tag iconzhuyi- iconfont'></text>
      <text class='signIn_Tagtext'>签到会员信息不正确！朋友赠送课程，请拍照 签到二维码发送给购买会员签到哦！</text>
   </view>
 </view>

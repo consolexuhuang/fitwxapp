@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "",
-  "navigationBarBackgroundColor": "#4D428B",
-  "navigationBarTextStyle": "white",
-  "usingComponents": {
-    "tabBar_top": "/components/tabBar_top/tabBar"
-  }
-}
