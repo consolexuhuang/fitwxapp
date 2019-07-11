@@ -7,8 +7,10 @@
   flex-direction: column;
 }
 .serverImg{
-  font-size: 109rpx;
-  color: #aaa;
+  /* font-size: 109rpx;
+  color: #aaa; */
+  width: 253rpx;
+  height: 109rpx;
 }
 .serverCont{
   font-size:24rpx;
