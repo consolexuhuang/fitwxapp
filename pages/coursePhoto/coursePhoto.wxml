@@ -2,11 +2,14 @@
 <tabBar_top navbarData='{{navbarData}}'></tabBar_top>
 <view class='wrapper'  style='margin-top:{{marginTopBar}}px;'>
 <view class='photo-box'  style='width:{{boxWidthScale}}rpx;height:514rpx;'>
-  <image src='/images/delete.png' style='width:686rpx;height:514rpx;'></image>
+  <image src='{{photoUrl}}' style='width:686rpx;height:514rpx;'></image>
   <view class='row' style='padding:{{infoPadding}}rpx 0'>
     <view class='col' style='height:82rpx;'>
-      <text class='shope-name'>中信泰富旗舰店</text>
-      <text class='adv'>扫码和我一起变瘦变美</text>
+      <text class='shope-name' style='font-size:{{shopNameFontSize}}rpx'>中信泰富旗舰店</text>
+      <view class='adv'>
+      <text class='advtext' style='font-size:{{advFontSize}}rpx'>扫码和我一起变瘦变美</text>
+      <text class='icon-arrow iconfont iconlujing-1' style='font-size:{{iconArrowFontsize}}rpx;margin-left:{{iconArrowMarginLeft}}rpx'></text>
+      </view>
     </view>
     <view class='col'>
      <image class='qrcode' src='/images/delete.png' style='width:{{qrCodeWidthScale}}rpx;height:{{qrCodeHeightScale}}rpx;'></image>
@@ -16,7 +19,7 @@
 
 <view class='download'>
   <text class='text'>下载至相册</text>
-  <text class='icon'></text>
+  <text class='icon iconfont iconxingzhuang-3'></text>
 </view>
 
 </view>

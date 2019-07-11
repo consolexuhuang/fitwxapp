@@ -1,5 +1,3 @@
-/* pages/coursePhoto/coursePhoto.wxss */
-
 page {
   background: #fafafa;
 }
@@ -47,14 +45,20 @@ page {
 }
 
 .photo-box .shope-name {
-  font-size: 32rpx;
   font-weight: 500;
   color: #464646;
 }
 
 .photo-box .adv {
-  font-size: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items:center;
   color: #5a5a5a;
+}
+
+.photo-box .adv .icon-arrow{
+  
 }
 
 .download {
@@ -67,4 +71,7 @@ page {
 .download .text{
   font-size:28rpx;
   color:#896DFF;
+}
+.download .icon{
+  margin-left:11rpx;
 }
