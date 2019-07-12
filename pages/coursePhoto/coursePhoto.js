@@ -348,10 +348,10 @@ Page({
   },
 
 
-  //保存图片到本地
+  //保存图片到系统相册
   savePhoto(tempFilePath){
-    wx.saveFile({
-      tempFilePath: tempFilePath,
+    wx.saveImageToPhotosAlbum({
+      filePath: tempFilePath,
       success(res) {
         ui.showToast('图片保存成功')
         const savedFilePath = res.savedFilePath
