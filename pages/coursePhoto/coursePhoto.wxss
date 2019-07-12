@@ -75,3 +75,8 @@ page {
 .download .icon{
   margin-left:11rpx;
 }
+
+.canvas-box{
+  position:fixed;
+  top:999999999999999999999rpx;
+}

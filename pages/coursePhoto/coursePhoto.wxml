@@ -1,25 +1,30 @@
 <!--pages/coursePhoto/coursePhoto.wxml-->
 <tabBar_top navbarData='{{navbarData}}'></tabBar_top>
 <view class='wrapper'  style='margin-top:{{marginTopBar}}px;'>
-<view class='photo-box'  style='width:{{boxWidthScale}}rpx;height:514rpx;'>
-  <image src='{{photoUrl}}' style='width:686rpx;height:514rpx;'></image>
-  <view class='row' style='padding:{{infoPadding}}rpx 0'>
+<view class='photo-box'  style='width:{{boxWidthScale}}rpx;' id='photoBox'>
+  <image src='{{photoUrl}}' style='width:{{boxWidthScale}}rpx;height:{{imgHeightScale}}rpx;'></image>
+  <view class='row' style='height:{{rowHeightScale}}rpx;padding:{{rowPaddingScale}}rpx 0;' id='row'>
     <view class='col' style='height:82rpx;'>
-      <text class='shope-name' style='font-size:{{shopNameFontSize}}rpx'>中信泰富旗舰店</text>
-      <view class='adv'>
-      <text class='advtext' style='font-size:{{advFontSize}}rpx'>扫码和我一起变瘦变美</text>
-      <text class='icon-arrow iconfont iconlujing-1' style='font-size:{{iconArrowFontsize}}rpx;margin-left:{{iconArrowMarginLeft}}rpx'></text>
+      <text class='shope-name' style='font-size:{{shopNameFontSize}}rpx' id='shopeName'>{{storeName}}</text><!-- {{storeName}} -->
+      <view class='adv' id='adv'>
+      <text class='advtext' style='font-size:{{advFontSize}}rpx'>{{advText}}</text><!-- {{advText}} -->
+      <text class='icon-arrow iconfont iconlujing-1' style='font-size:{{iconArrowFontsize}}rpx;margin-left:{{iconArrowMarginLeft}}rpx' id='arrow'></text>
       </view>
     </view>
     <view class='col'>
-     <image class='qrcode' src='/images/delete.png' style='width:{{qrCodeWidthScale}}rpx;height:{{qrCodeHeightScale}}rpx;'></image>
+     <image class='qrcode' src='{{qrCodeUrl}}' style='width:{{qrCodeWidthScale}}rpx;height:{{qrCodeHeightScale}}rpx;' id='qrcode'></image>
     </view>
   </view>
 </view>
 
-<view class='download'>
+<view class='download' bindtap='downloadPhoto'>
   <text class='text'>下载至相册</text>
   <text class='icon iconfont iconxingzhuang-3'></text>
 </view>
 
+</view>
+
+<!-- canvas -->
+<view class='canvas-box'>
+<canvas canvas-id="photoCanva" style="width: {{boxWidth}}px; height: {{boxHeight}}px;"></canvas>
 </view>

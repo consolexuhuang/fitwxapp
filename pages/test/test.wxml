@@ -1,0 +1,5 @@
+<!--pages/test/test.wxml-->
+<view>pages/test/test.wxml</view>
+<view>pages/test/test.wxml11111</view>
+<view>pages/test/test.wxml222</view>
+<image style="width: {{width}}rpx; height: {{height}}rpx;" src="{{imgUrl}}" mode="aspectFit" lazy-load='true'></image>
