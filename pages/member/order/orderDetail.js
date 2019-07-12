@@ -33,8 +33,8 @@ Page({
     bottomStyle: 0,
     officialDataState:false,
     memberInfo:'',
-
     jurisdictionState: false, //授权显示
+    hasPhoto:false,//是否有照片
   },
   /**
    * 生命周期函数--监听页面加载
@@ -137,6 +137,7 @@ Page({
       })
       this.getCourseInfo(res.msg.course.id)
       this.getContent()
+      this.getCourseFiles()
     })
   },
   //处理显示更多
@@ -250,5 +251,29 @@ Page({
       }
     }
   },
+
+  //获取课程图片
+  getCourseFiles() {
+    let form = {
+      courseId: this.data.orderData.course.id
+    }
+      api.post('v2/course/getCourseFiles', form).then(res => {
+        let photoUrls = res.msg;
+        if (photoUrls.length>=1){
+          this.setData({
+            hasPhoto:true
+          })
+        }
+        
+      })
+  },
+
+  //跳转到照片页面
+  //courseId=5d12c35be4b06bfda7ba080c&orderNum=1907100590334900&shareMemberId=1121655406372982784
+  gotoCoursePhoto(){
+    wx.navigateTo({
+      url: `/pages/coursePhoto/coursePhoto?courseId=${this.data.orderData.course.id}&orderNum=${this.data.orderNum}&shareMemberId=${wx.getStorageSync('shareMemberId')}`,
+    })
+  }
 
 })

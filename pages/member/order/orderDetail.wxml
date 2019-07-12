@@ -44,6 +44,10 @@
     <text class="orderDetail_icon2 iconfont iconluxian-luxianfenlei"></text>
     <text class="orderDetail_text">线路指引</text>
   </view>
+  <view class="admissionCode admissionCodeNext" wx:if="{{hasPhoto}}" bindtap='gotoCoursePhoto'>
+    <text class="orderDetail_icon2 iconfont iconxingzhuangjiehe1"></text>
+    <text class="orderDetail_text">查看照片</text>
+  </view>
   <!-- <view class="admissionCode {{isMoreContentShow ? 'orderDetail_data_space' : ''}}" wx:if='{{content}}'>
     <text class="orderDetail_icon_careful iconicon-test10 iconfont"></text>
     <rich-text class="orderDetail_data orderDetail_data_over" nodes="{{content}}"></rich-text>
