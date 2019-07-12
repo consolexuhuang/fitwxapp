@@ -110,6 +110,9 @@ page {
 .refund-type .item .left .icon3 {
   color: #5BCB2A;
 }
+.refund-type .item .left .icon4 {
+  color: #896FFF;
+}
 .refund-type .item .number{
   margin-right: 30rpx;
   color:#828282;

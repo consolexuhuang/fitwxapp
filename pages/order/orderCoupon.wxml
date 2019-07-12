@@ -31,7 +31,7 @@
                 <view class="coupon-title-wrapper">
                   <view class="coupon-title">{{item.coupon_title}}</view>
                   <block wx:if="{{item.id===couponId}}">
-                    <image class="coupon-selected" src="{{imgUrl}}order/icon_coupon_selected.png" />
+                    <text class='coupon-selected iconfont iconfenzu-6'></text>
                   </block>
                   <block wx:else>
                     <view class="coupon-btn">立即使用</view>

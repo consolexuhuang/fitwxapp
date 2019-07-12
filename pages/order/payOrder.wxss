@@ -359,10 +359,21 @@
 
 .pay-mode-item-icon {
   margin-left: 32rpx;
-  width: 31rpx;
-  height: 24rpx;
+  margin-top: 3rpx;
+  /* width: 31rpx;
+  height: 24rpx; */
+  font-size: 24rpx;
+  color: #F6A781
 }
-
+.pay-mode-item-icon2{
+  color: #F6A781
+}
+.pay-mode-item-icon3{
+  color: #5BCB2A
+}
+.pay-mode-item-icon4{
+  color: #896dff;
+}
 .pay-mode-item-content {
   flex: 1;
   margin-left: 28rpx;

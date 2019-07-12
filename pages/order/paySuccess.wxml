@@ -13,7 +13,7 @@
     </view>
     <view class="coach-wrapper" bindtap='showCoachWxCode'>
       <image class="coach-avatar" src="{{orderDetailData.coach.headUrl}}" />
-      <image class="coach-wechat" src="{{imgUrl}}order/icon_coach_wechat.png" />
+      <image class="coach-wechat" src="{{imgUrl}}icon/wx_logo.png" />
     </view>
     <view class="QR-code-wrapper">
       <view class="QR-code-label">{{orderDetailData.order.wait ? "已加入等待" : "入场二维码"}}</view>

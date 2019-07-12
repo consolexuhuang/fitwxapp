@@ -173,9 +173,15 @@
   flex-basis: 88rpx;
   flex-grow: 0;
   flex-shrink: 0;
-  width: 88rpx;
-  height: 88rpx;
+  /* width: 88rpx;
+  height: 88rpx; */
+  font-size: 88rpx;
+  color: #F6A781;
   margin: 0 27rpx 0 33rpx;
+}
+.content.elimination .list .item .icon3 {
+  font-size: 88rpx;
+  color: #75D3A4;
 }
 
 .content.elimination .list .item .info {

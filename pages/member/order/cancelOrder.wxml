@@ -23,7 +23,6 @@
     <view class='refund-type' wx:if="{{orderData.canRefundAmount || orderData.canRefundCoupon || orderData.canRefundCard}}">
       <view class='item' wx:if="{{orderData.order.paymentWay === 1}}">
         <view class='left'>
-          <!-- <image class='icon' src='/images/member/icon-wx-pay.png'></image> -->
           <text class='icon icon3 iconfont iconicon-test28'></text>
           <text class='name'>微信</text>
         </view>
@@ -31,7 +30,7 @@
       </view>
       <view class='item' wx:if="{{orderData.order.paymentWay === 2}}">
         <view class='left'>
-          <image class='icon' src='/images/member/icon-pluspay-blue.png'></image>
+          <text class='icon icon4 iconfont iconhuiyuanqiagoumai-3'></text>
           <text class='name'>卡支付</text>
         </view>
         <text class='number'>{{ orderData.canRefundAmount }}元</text>
@@ -47,7 +46,7 @@
       </view>
       <view class='item' wx:if="{{orderData.canRefundCoupon}}">
         <view class='left'>
-          <image class='icon' src='/images/member/iocn-coupon-blue.png'></image>
+          <text class='icon icon4 iconfont iconhuiyuanqiagoumai-2'></text>
           <text class='name'>代金券</text>
         </view>
         <text class='number'>{{ orderData.canRefundCoupon.couponTitle }} {{ orderData.canRefundCoupon.couponAmount }}元</text>
