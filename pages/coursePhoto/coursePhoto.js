@@ -66,54 +66,54 @@ Page({
 
     //检测登录
     app.checkSessionFun().then(() => {
-      Promise.all([this.getCourseFiles(), this.getMemberData(), this.getOrderInfo(), this.getPxToRpxScale()]).then(() => {
-        let pxToRpxScale = this.data.pxToRpxScale;
-        //rpx和px的比例
-        let photoBoxX, photoBoxY;
-        //获取photoBox位置信息
-        this.queryElementInfo('photoBox').then(rect => {
+      let pxToRpxScale, photoBoxX, photoBoxY;
+      Promise.all([this.getCourseFiles(), this.getMemberData(), this.getOrderInfo(), this.getPxToRpxScale()])
+        .then(() => {
+          pxToRpxScale = this.data.pxToRpxScale;
+          //获取photoBox位置信息
+          return this.queryElementInfo('photoBox');
+        })
+        .then(rect => {
           photoBoxX = rect.left;
           photoBoxY = rect.top;
           //获取shopeName位置信息
-          return this.queryElementInfo('shopeName');
-        }).then(rectShopeName => {
-          let shopNameScaleX = (rectShopeName.left - photoBoxX) * pxToRpxScale;
-          let shopNameScaleY = (rectShopeName.top - photoBoxY) * pxToRpxScale;
-
-          this.setData({
-            shopNameScaleX,
-            shopNameScaleY,
-          })
+          this.queryElementInfo('shopeName').then(rectShopeName => {
+            let shopNameScaleX = (rectShopeName.left - photoBoxX) * pxToRpxScale;
+            let shopNameScaleY = (rectShopeName.top - photoBoxY) * pxToRpxScale;
+            this.setData({
+              shopNameScaleX,
+              shopNameScaleY,
+            })
+          });
           //获取adv位置信息
-          return this.queryElementInfo('adv');
-        }).then(rectAdv => {
-          let advScaleX = (rectAdv.left - photoBoxX) * pxToRpxScale;
-          let advScaleY = (rectAdv.top - photoBoxY) * pxToRpxScale;
-          this.setData({
-            advScaleX,
-            advScaleY,
-          })
+          this.queryElementInfo('adv').then(rectAdv => {
+            let advScaleX = (rectAdv.left - photoBoxX) * pxToRpxScale;
+            let advScaleY = (rectAdv.top - photoBoxY) * pxToRpxScale;
+            this.setData({
+              advScaleX,
+              advScaleY,
+            })
+          });
           //获取二维码位置信息
-          return this.queryElementInfo('qrcode');
-        }).then(rectQrcode => {
-          let qrCodeScaleX = (rectQrcode.left - photoBoxX) * pxToRpxScale;
-          let qrCodeScaleY = (rectQrcode.top - photoBoxY) * pxToRpxScale;
-          this.setData({
-            qrCodeScaleX,
-            qrCodeScaleY,
-          })
+          this.queryElementInfo('qrcode').then(rectQrcode => {
+            let qrCodeScaleX = (rectQrcode.left - photoBoxX) * pxToRpxScale;
+            let qrCodeScaleY = (rectQrcode.top - photoBoxY) * pxToRpxScale;
+            this.setData({
+              qrCodeScaleX,
+              qrCodeScaleY,
+            })
+          });
           //获取小箭头位置信息
-          return this.queryElementInfo('arrow');
-        }).then(rectIconArrow => {
-          let iconArrowScaleX = (rectIconArrow.left - photoBoxX) * pxToRpxScale;
-          let iconArrowScaleY = (rectIconArrow.top - photoBoxY) * pxToRpxScale;
-          this.setData({
-            iconArrowScaleX,
-            iconArrowScaleY,
-          })
-          ui.hideLoading()
-        });
-      })
+          this.queryElementInfo('arrow').then(rectIconArrow => {
+            let iconArrowScaleX = (rectIconArrow.left - photoBoxX) * pxToRpxScale;
+            let iconArrowScaleY = (rectIconArrow.top - photoBoxY) * pxToRpxScale;
+            this.setData({
+              iconArrowScaleX,
+              iconArrowScaleY,
+            })
+            ui.hideLoading()
+          });
+        })
     })
 
   },
@@ -128,8 +128,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
-  },
+  onShow: function() {},
 
   /**
    * 自定义函数--监听页面隐藏
@@ -140,45 +139,45 @@ Page({
       courseId: courseId
     }
     let photoUrl, imgInfo;
-    return  api.post('v2/course/getCourseFiles', form).then(res => {
-        let photoUrls = res.msg;
-        photoUrl = photoUrls ? photoUrls[photoUrls.length - 1] : '';
-        //获取图片的宽高
+    return api.post('v2/course/getCourseFiles', form).then(res => {
+      let photoUrls = res.msg;
+      photoUrl = photoUrls ? photoUrls[photoUrls.length - 1] : '';
+      //获取图片的宽高
       return Promise.all([this.getImgWH(photoUrl), this.networkUrlToLocal(photoUrl)]);
-      }).then(resArr=>{
-        let resImgInfo = resArr[0];
-        photoUrl = resArr[1];
-        //设置图片
-        let imgInfo = this.setPhotoWH(resImgInfo, this.data.boxWidthScale);
-        this.setData({
-          photoUrl,
-          scale: imgInfo.scale,
-          imgHeight: imgInfo.height, //原图片的高度
-          imgWidth: imgInfo.width, //原图片的宽度
-          imgHeightScale: imgInfo.heightScale, //屏幕图片的高度
-          boxHeightScale: Number(imgInfo.heightScale) + Number(this.data.rowHeightScale)
-        }, () => {
-          return;
-        })
+    }).then(resArr => {
+      let resImgInfo = resArr[0];
+      photoUrl = resArr[1];
+      //设置图片
+      let imgInfo = this.setPhotoWH(resImgInfo, this.data.boxWidthScale);
+      this.setData({
+        photoUrl,
+        scale: imgInfo.scale,
+        imgHeight: imgInfo.height, //原图片的高度
+        imgWidth: imgInfo.width, //原图片的宽度
+        imgHeightScale: imgInfo.heightScale, //屏幕图片的高度
+        boxHeightScale: Number(imgInfo.heightScale) + Number(this.data.rowHeightScale)
+      }, () => {
+        return;
       })
+    })
   },
   // 把网络图片改成临时路径
-  networkUrlToLocal(netWorkUrl){    
-    return new Promise((resolve,reject)=>{
+  networkUrlToLocal(netWorkUrl) {
+    return new Promise((resolve, reject) => {
       if (!netWorkUrl) {
         resolve('');
       };
       wx.downloadFile({
-        url: netWorkUrl,//网络路径
+        url: netWorkUrl, //网络路径
         success: (res3) => {
           resolve(res3.tempFilePath)
         },
-        fail:()=>{
+        fail: () => {
           reject()
         }
       })
     })
-   
+
   },
   //获取分享二维码
   getMemberData() {
@@ -227,7 +226,7 @@ Page({
         success: (res) => {
           resolve(res)
         },
-        fail:(err)=>{
+        fail: (err) => {
           reject()
         }
       })
@@ -272,8 +271,6 @@ Page({
         }
       })
     })
-
-
   },
 
   //画图片
@@ -348,7 +345,7 @@ Page({
           resolve(res);
           //保存图片到本地
           this.savePhoto(res.tempFilePath)
-          
+
           //测试
           /* wx.navigateTo({
             url: `/pages/test/test?imgUrl=${res.tempFilePath}&width=${this.data.boxWidthScale}&height=${this.data.boxHeightScale}`,
@@ -368,11 +365,15 @@ Page({
 
 
   //保存图片到系统相册
-  savePhoto(tempFilePath){
+  savePhoto(tempFilePath) {
     wx.saveImageToPhotosAlbum({
       filePath: tempFilePath,
       success(res) {
         ui.showToast('图片保存成功')
+        ui.hideLoading();
+      },
+      fail(err){
+        ui.showToast('保存失败：'+err)
         ui.hideLoading();
       }
     })
