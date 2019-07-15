@@ -184,8 +184,8 @@ Page({
     let form = {}
     form.shareMemberId = shareMemberId;
     let qrCodeUrl;
-    return new Promise((resolve, reject) => {
-      api.post('member/memberShow', form).then(ret => {
+    //return new Promise((resolve, reject) => {
+     return api.post('member/memberShow', form).then(ret => {
         qrCodeUrl = ret.msg.qrCode;
         //获取图片的宽高
         return this.getImgWH(qrCodeUrl);
@@ -196,25 +196,27 @@ Page({
           qrCodeWidth: resImgInfo.width, //原二维码宽度
           qrCodeHeight: resImgInfo.height, //原二维码高度
         }, () => {
-          resolve();
+          return;
+          //resolve();
         })
       })
-    })
+   // })
   },
   //获取订单信息
   getOrderInfo() {
     let form = {}
     form.orderNum = orderNum
-    return new Promise((resolve, reject) => {
+   // return new Promise((resolve, reject) => {
       api.post('payOrder/orderInfo', form).then(ret => {
         this.setData({
           storeName: ret.msg.store.storeName
         }, () => {
-          resolve();
+          //resolve();
+          return;
         })
 
       })
-    })
+   // })
   },
 
   //获取图片的宽高
