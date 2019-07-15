@@ -63,12 +63,14 @@ Page({
 
     //检测登录
     app.checkSessionFun().then(() => {
+      console.log(1)
       /* //获取课程图片
       this.getCourseFiles();
       //获取会员信息
       this.getMemberData();
       //获取订单信息
-      this.getOrderInfo(); */
+      this.getOrderInfo();
+      this.getPxToRpxScale() */
       Promise.all([this.getCourseFiles(), this.getMemberData(), this.getOrderInfo(), this.getPxToRpxScale()]).then(() => {
         let pxToRpxScale = this.data.pxToRpxScale;
         //rpx和px的比例
@@ -138,17 +140,22 @@ Page({
    */
   //获取课程图片
   getCourseFiles() {
+    console.log(2)
     let form = {
       courseId: courseId
     }
-    let photoUrl;
-    return new Promise((resolve, reject) => {
-      api.post('v2/course/getCourseFiles', form).then(res => {
+    let photoUrl, imgInfo;
+   // return new Promise((resolve, reject) => {
+    return  api.post('v2/course/getCourseFiles', form).then(res => {
         let photoUrls = res.msg;
         photoUrl = photoUrls ? photoUrls[photoUrls.length - 1] : '';
         //获取图片的宽高
-        return this.getImgWH(photoUrl);
-      }).then(resImgInfo => {
+      return Promise.all([this.getImgWH(photoUrl), this.networkUrlToLocal(photoUrl)]);
+      }).then(resArr=>{
+        console.log('resArr')
+        console.log(resArr)
+        let resImgInfo = resArr[0];
+        photoUrl = resArr[1];
         //设置图片
         let imgInfo = this.setPhotoWH(resImgInfo, this.data.boxWidthScale);
         this.setData({
@@ -159,13 +166,62 @@ Page({
           imgHeightScale: imgInfo.heightScale, //屏幕图片的高度
           boxHeightScale: Number(imgInfo.heightScale) + Number(this.data.rowHeightScale)
         }, () => {
-          resolve();
+          console.log(3)
+          return;
+          // resolve();
         })
+
+      })
+      
+      /* .then(resImgInfo => {
+        //设置图片
+        let imgInfo = this.setPhotoWH(resImgInfo, this.data.boxWidthScale);
+        this.setData({
+          photoUrl,
+          scale: imgInfo.scale,
+          imgHeight: imgInfo.height, //原图片的高度
+          imgWidth: imgInfo.width, //原图片的宽度
+          imgHeightScale: imgInfo.heightScale, //屏幕图片的高度
+          boxHeightScale: Number(imgInfo.heightScale) + Number(this.data.rowHeightScale)
+        }, () => {
+          console.log(3)
+          return;
+         // resolve();
+        })
+      }) */
+   // })
+  },
+  // 把网络图片改成临时路径
+  networkUrlToLocal(netWorkUrl){    
+
+    console.log('netWorkUrl0')
+    console.log(netWorkUrl)
+
+    return new Promise((resolve,reject)=>{
+      if (!netWorkUrl) {
+        resolve('');
+      };
+      console.log('netWorkUrl')
+      console.log(netWorkUrl)
+
+      wx.downloadFile({
+        url: netWorkUrl,//网络路径
+        success: (res3) => {
+          console.log('res3.tempFilePath')
+          console.log(res3.tempFilePath)
+          resolve(res3.tempFilePath)
+        },
+        fail:()=>{
+          console.log('fail')
+          reject()
+        }
       })
     })
+   
   },
   //获取分享二维码
   getMemberData() {
+    console.log(4)
     let form = {}
     form.shareMemberId = shareMemberId;
     let qrCodeUrl;
@@ -173,21 +229,27 @@ Page({
       api.post('member/memberShow', form).then(ret => {
         qrCodeUrl = ret.msg.qrCode;
         //获取图片的宽高
+        console.log(500)
         return this.getImgWH(qrCodeUrl);
       }).then(resImgInfo => {
+        console.log(50)
         //设置图片
         this.setData({
           qrCodeUrl,
           qrCodeWidth: resImgInfo.width, //原二维码宽度
           qrCodeHeight: resImgInfo.height, //原二维码高度
         }, () => {
+         // return;
+          console.log(5)
           resolve();
         })
+        console.log(55)
       })
     })
   },
   //获取订单信息
   getOrderInfo() {
+    console.log(6)
     let form = {}
     form.orderNum = orderNum
     return new Promise((resolve, reject) => {
@@ -195,6 +257,7 @@ Page({
         this.setData({
           storeName: ret.msg.store.storeName
         }, () => {
+          console.log(7)
           resolve();
         })
 
@@ -204,12 +267,17 @@ Page({
 
   //获取图片的宽高
   getImgWH(imgsrc) {
+    console.log(8)
     return new Promise((resolve, reject) => {
       //获取图片信息
       wx.getImageInfo({
         src: imgsrc,
         success: (res) => {
+          console.log(9)
           resolve(res)
+        },
+        fail:(err)=>{
+          reject()
         }
       })
     })
