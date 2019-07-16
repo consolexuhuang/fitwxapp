@@ -69,54 +69,55 @@ Page({
       let pxToRpxScale, photoBoxX, photoBoxY;
       Promise.all([this.getCourseFiles(), this.getMemberData(), this.getOrderInfo(), this.getPxToRpxScale()])
         .then(() => {
-          pxToRpxScale = this.data.pxToRpxScale;
+          pxToRpxScale = this.data.pxToRpxScale;          
           //获取photoBox位置信息
           return this.queryElementInfo('photoBox');
         })
         .then(rect => {
           photoBoxX = rect.left;
           photoBoxY = rect.top;
-          //获取shopeName位置信息
-          this.queryElementInfo('shopeName').then(rectShopeName => {
+          //获取图片上元素信息
+          return Promise.all([this.queryElementInfo('shopeName'), this.queryElementInfo('adv'), this.queryElementInfo('qrcode'), this.queryElementInfo('arrow')]).then((resArr)=>{
+            let rectShopeName = resArr[0];
+            let rectAdv = resArr[1];
+            let rectQrcode = resArr[2];
+            let rectIconArrow = resArr[3];
+            //获取shopeName位置信息
             let shopNameScaleX = (rectShopeName.left - photoBoxX) * pxToRpxScale;
             let shopNameScaleY = (rectShopeName.top - photoBoxY) * pxToRpxScale;
             this.setData({
               shopNameScaleX,
               shopNameScaleY,
             })
-            console.log('rectShopeName rect')
-            console.log(rectShopeName)
-            console.log('shoppname')
-            console.log(this.data)
-          });
-          //获取adv位置信息
-          this.queryElementInfo('adv').then(rectAdv => {
+            //获取adv位置信息
             let advScaleX = (rectAdv.left - photoBoxX) * pxToRpxScale;
             let advScaleY = (rectAdv.top - photoBoxY) * pxToRpxScale;
             this.setData({
               advScaleX,
               advScaleY,
             })
-          });
-          //获取二维码位置信息
-          this.queryElementInfo('qrcode').then(rectQrcode => {
+            //获取二维码位置信息
             let qrCodeScaleX = (rectQrcode.left - photoBoxX) * pxToRpxScale;
             let qrCodeScaleY = (rectQrcode.top - photoBoxY) * pxToRpxScale;
             this.setData({
               qrCodeScaleX,
               qrCodeScaleY,
             })
-          });
-          //获取小箭头位置信息
-          this.queryElementInfo('arrow').then(rectIconArrow => {
+            //获取小箭头位置信息
             let iconArrowScaleX = (rectIconArrow.left - photoBoxX) * pxToRpxScale;
             let iconArrowScaleY = (rectIconArrow.top - photoBoxY) * pxToRpxScale;
             this.setData({
               iconArrowScaleX,
               iconArrowScaleY,
             })
+
+
+            //绘制canvas
+            this.canva();
             ui.hideLoading()
-          });
+
+          })
+         
         })
     })
 
@@ -293,9 +294,6 @@ Page({
     //画图片
     canva.drawImage(this.data.photoUrl, 0, 0, this.data.imgWidth, this.data.imgHeight, 0, 0, this.data.imgWidth, this.data.imgHeight);
 
-    console.log('widht:' + this.data.imgWidth)
-    console.log('height:' + this.data.imgHeight)
-
     //店铺名称
     let shopeNameX = this.data.shopNameScaleX * this.data.scale;
     let shopeNameY = this.data.shopNameScaleY * this.data.scale + 30;
@@ -303,10 +301,6 @@ Page({
     canva.setFontSize(shopNameFontSize);
     canva.setFillStyle('#464646');
     canva.fillText(this.data.storeName, shopeNameX, shopeNameY); //this.data.storeName
-
-    console.log('shopeNameY')
-    console.log(this.data)
-    console.log(shopeNameY)
 
     //广告语
     let advX = this.data.advScaleX * this.data.scale;
@@ -334,10 +328,13 @@ Page({
     let qrcodeY = this.data.qrCodeScaleY * this.data.scale - 20;
     canva.drawImage(this.data.qrCodeUrl, 0, 0, this.data.qrCodeWidth, this.data.qrCodeHeight, qrcodeX, qrcodeY, qrCodeWidth, qrCodeHeight);
 
-    canva.draw(true, () => {
-      this.canvasToTempFilePath().then(res => {
-        //resolve(res)
-      })
+    canva.draw(true,() => {
+      ui.hideLoading();
+      /* this.canvasToTempFilePath().then(res => {
+        ui.hideLoading();
+      }).catch(err=>{
+        ui.hideLoading();
+      }) */
     });
 
   },
@@ -354,12 +351,14 @@ Page({
         destWidth: this.data.boxWidth,
         destHeight: this.data.boxHeight,
         canvasId: 'photoCanva',
-        fileType: 'jpg',
+        fileType:'jpg',
         quality: 1,
         success: (res) => {
-          resolve(res);
+          
           //保存图片到本地
-          this.savePhoto(res.tempFilePath)
+          this.savePhoto(res.tempFilePath).then(()=>{
+            resolve(res);
+          })
 
           //测试
           /* wx.navigateTo({
@@ -381,24 +380,31 @@ Page({
 
   //保存图片到系统相册
   savePhoto(tempFilePath) {
-    wx.saveImageToPhotosAlbum({
-      filePath: tempFilePath,
-      success(res) {
-        ui.showToast('图片保存成功')
-        ui.hideLoading();
-      },
-      fail(err){
-        ui.showToast('保存失败：'+err)
-        ui.hideLoading();
-      }
-    })
+    return new Promise((resolve,reject)=>{
+      wx.saveImageToPhotosAlbum({
+        filePath: tempFilePath,
+        success(res) {
+          ui.showToast('图片保存成功')
+          
+          resolve();
+        },
+        fail(err) {
+          ui.showToast('保存失败：' + err)
+          reject();
+        }
+      })
+    })    
   },
 
   //下载图片
   downloadPhoto() {
     ui.showLoadingMask('下载中...');
-    //画图片
-    this.canva()
+    //下载图片
+    this.canvasToTempFilePath().then(res => {
+        ui.hideLoading();
+      }).catch(err=>{
+        ui.hideLoading();
+      })
   },
 
 })
