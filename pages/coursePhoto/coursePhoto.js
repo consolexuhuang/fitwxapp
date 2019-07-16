@@ -330,11 +330,6 @@ Page({
 
     canva.draw(true,() => {
       ui.hideLoading();
-      /* this.canvasToTempFilePath().then(res => {
-        ui.hideLoading();
-      }).catch(err=>{
-        ui.hideLoading();
-      }) */
     });
 
   },
