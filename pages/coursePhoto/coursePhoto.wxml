@@ -1,6 +1,6 @@
 <!--pages/coursePhoto/coursePhoto.wxml-->
 <tabBar_top navbarData='{{navbarData}}'></tabBar_top>
-<view class='wrapper'  style='margin-top:{{marginTopBar}}px;'>
+<view class='wrapper {{imgHeightScale<400?bottom0:""}}'  style='margin-top:{{marginTopBar}}px;'>
 <view class='photo-box'  style='width:{{boxWidthScale}}rpx;' id='photoBox'>
   <image src='{{photoUrl}}' style='width:{{boxWidthScale}}rpx;height:{{imgHeightScale}}rpx;'></image>
   <view class='row' style='height:{{rowHeightScale}}rpx;padding:{{rowPaddingScale}}rpx 0;' id='row'>

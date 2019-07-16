@@ -84,6 +84,10 @@ Page({
               shopNameScaleX,
               shopNameScaleY,
             })
+            console.log('rectShopeName rect')
+            console.log(rectShopeName)
+            console.log('shoppname')
+            console.log(this.data)
           });
           //获取adv位置信息
           this.queryElementInfo('adv').then(rectAdv => {
@@ -188,8 +192,10 @@ Page({
      return api.post('member/memberShow', form).then(ret => {
         qrCodeUrl = ret.msg.qrCode;
         //获取图片的宽高
-        return this.getImgWH(qrCodeUrl);
-      }).then(resImgInfo => {
+       return Promise.all([this.getImgWH(qrCodeUrl), this.networkUrlToLocal(qrCodeUrl)]);
+     }).then(resArr => {
+        let resImgInfo = resArr[0];
+       qrCodeUrl = resArr[1];
         //设置图片
         this.setData({
           qrCodeUrl,
@@ -287,6 +293,9 @@ Page({
     //画图片
     canva.drawImage(this.data.photoUrl, 0, 0, this.data.imgWidth, this.data.imgHeight, 0, 0, this.data.imgWidth, this.data.imgHeight);
 
+    console.log('widht:' + this.data.imgWidth)
+    console.log('height:' + this.data.imgHeight)
+
     //店铺名称
     let shopeNameX = this.data.shopNameScaleX * this.data.scale;
     let shopeNameY = this.data.shopNameScaleY * this.data.scale + 30;
@@ -294,6 +303,10 @@ Page({
     canva.setFontSize(shopNameFontSize);
     canva.setFillStyle('#464646');
     canva.fillText(this.data.storeName, shopeNameX, shopeNameY); //this.data.storeName
+
+    console.log('shopeNameY')
+    console.log(this.data)
+    console.log(shopeNameY)
 
     //广告语
     let advX = this.data.advScaleX * this.data.scale;
