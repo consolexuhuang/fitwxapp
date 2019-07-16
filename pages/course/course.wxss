@@ -491,8 +491,10 @@
 
 .course-price-icon {
   margin-left: 20rpx;
-  width: 71rpx;
-  height: 29rpx;
+  /* width: 71rpx;
+  height: 29rpx; */
+  font-size: 29rpx;
+  color: #BDAFFF;
 }
 
 .course-appoint-btn {
@@ -544,13 +546,17 @@
 
 .course-status {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 72rpx;
-  height: 72rpx;
+  top: -5rpx;
+  right: -1rpx;
+  /* width: 72rpx;
+  height: 72rpx; */
   z-index: 2;
+  font-size: 74rpx;
+  color: #CCCCCC
 }
-
+.course-status2{
+  color: #896EFF;
+}
 .none-course {
   margin-top: 135rpx;
   text-align: center;

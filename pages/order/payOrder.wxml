@@ -109,7 +109,7 @@
     <block wx:if="{{orderData.pay_type===7}}">
       <view class="pay-mode-list">
         <view class="pay-mode-item pay-mode-item-first" bindtap="handleTimeCardTap">
-          <image class="pay-mode-item-icon" src="{{imgUrl}}order/icon_card_pay.png" />
+          <text class='pay-mode-item-icon pay-mode-item-icon2 iconfont iconhuiyuanqiagoumai-'></text>
           <view class="pay-mode-item-content">
             <text class="pay-mode-item-title">{{orderData.time_card_title}}</text>
             <!-- <text class="pay-mode-item-tips">{{orderData.time_card_available_count}}张可用</text> -->
@@ -119,22 +119,22 @@
         <!--PLUS余额不足，默认微信支付-->
         <block wx:if="{{orderData.second_pay_type===1}}"> 
           <view class="pay-mode-item" data-time-card-id="{{''}}" bindtap="handlePayModeTap">
-            <image class="pay-mode-item-icon" src="{{imgUrl}}order/icon_wechat_pay.png" />
+            <text class='pay-mode-item-icon pay-mode-item-icon3 iconfont iconicon-test28'></text>
             <view class="pay-mode-item-content">
               <text class="pay-mode-item-title">微信支付</text>
             </view>
-            <image class="selected-icon" src="{{imgUrl}}order/icon_unselected.png" />
+            <image class="selected-icon" src="{{imgUrl}}icon/noneChooseState.png" />
           </view>
         </block>
         <!--PLUS余额充足,PLUS支付-->
         <block wx:elif="{{orderData.second_pay_type===2}}"> 
           <view class="pay-mode-item" data-time-card-id="{{''}}" bindtap="handlePayModeTap">
-            <image class="pay-mode-item-icon" src="{{imgUrl}}order/icon_plus_pay.png" />
+            <text class='pay-mode-item-icon pay-mode-item-icon4 iconfont iconhuiyuanqiagoumai-3'></text>
             <view class="pay-mode-item-content">
               <text class="pay-mode-item-title">卡支付</text>
               <text class="pay-mode-item-tips">已省{{orderData.if_card_discount}}元</text>
             </view>
-            <image class="selected-icon" src="{{imgUrl}}order/icon_unselected.png" />
+            <image class="selected-icon" src="{{imgUrl}}icon/noneChooseState.png" />
           </view>
         </block>
       </view>
@@ -143,17 +143,17 @@
     <block wx:else>
       <view class="pay-mode-list">
         <view class="pay-mode-item pay-mode-item-first" wx:if="{{orderData.time_card_available_count}}" data-time-card-id="{{orderData.if_time_card_id}}" bindtap="handlePayModeTap">
-          <image class="pay-mode-item-icon" src="{{imgUrl}}order/icon_card_pay.png" />
+          <text class='pay-mode-item-icon pay-mode-item-icon2 iconfont iconhuiyuanqiagoumai-'></text>
           <view class="pay-mode-item-content">
             <text class="pay-mode-item-title">{{orderData.if_time_card_title}}</text>
             <text class="pay-mode-item-tips">(暂不使用)</text>
           </view>
-          <image class="selected-icon" src="{{imgUrl}}order/icon_unselected.png" />
+          <image class="selected-icon" src="{{imgUrl}}icon/noneChooseState.png" />
         </view>
         <!--PLUS余额不足，默认微信支付-->
         <block wx:if="{{orderData.pay_type===1}}">
           <view class="pay-mode-item">
-            <image class="pay-mode-item-icon" src="{{imgUrl}}order/icon_plus_pay.png" />
+            <text class='pay-mode-item-icon pay-mode-item-icon4 iconfont iconhuiyuanqiagoumai-3'></text>
             <view class="pay-mode-item-content">
               <text class="pay-mode-item-title">卡支付</text>
               <text class="pay-mode-item-tips" bindtap="handleRechargeTap" wx:if="{{orderData.has_card}}">余额 ¥{{orderData.card_amount}}</text>
@@ -162,28 +162,28 @@
             <text class="arrow-icon iconfont iconicon-test41" />
           </view>
           <view class="pay-mode-item">
-            <image class="pay-mode-item-icon" src="{{imgUrl}}order/icon_wechat_pay.png" />
+            <text class='pay-mode-item-icon pay-mode-item-icon3 iconfont iconicon-test28'></text>
             <view class="pay-mode-item-content">
               <text class="pay-mode-item-title">微信支付</text>
             </view>
-            <image class="selected-icon" src="{{imgUrl}}order/icon_selected.png" />
+            <image class="selected-icon" src="{{imgUrl}}icon/chooseState.png" />
           </view>
         </block>
         <!--PLUS余额充足,PLUS支付-->
         <block wx:if="{{orderData.pay_type===2}}">
           <view class="pay-mode-item">
-            <image class="pay-mode-item-icon" src="{{imgUrl}}order/icon_plus_pay.png" />
+            <text class='pay-mode-item-icon pay-mode-item-icon4 iconfont iconhuiyuanqiagoumai-3'></text>
             <view class="pay-mode-item-content">
               <text class="pay-mode-item-title">卡支付</text>
               <text class="pay-mode-item-tips" bindtap="handleRechargeTap">已省{{orderData.if_card_discount}}元</text>
             </view>
-            <image class="selected-icon" src="{{imgUrl}}order/icon_selected.png" />
+            <image class="selected-icon" src="{{imgUrl}}icon/chooseState.png" />
           </view>
         </block>
         <!--只能PLUS支付，例如排队等候的状态-->
         <block wx:if="{{orderData.pay_type===3}}">
           <view class="pay-mode-item" data-time-card-id="{{''}}" bindtap="handlePayModeTap">
-            <image class="pay-mode-item-icon" src="{{imgUrl}}order/icon_plus_pay.png" />
+            <text class='pay-mode-item-icon pay-mode-item-icon4 iconfont iconhuiyuanqiagoumai-3'></text>
             <view class="pay-mode-item-content">
               <text class="pay-mode-item-title">卡支付</text>
               <text class="pay-mode-item-tips" bindtap="handleRechargeTap" wx:if="{{orderData.has_card}}">余额 ¥{{orderData.card_amount}}</text>
@@ -195,11 +195,11 @@
         <!--免支付-->
         <block wx:if="{{orderData.pay_type===4}}">
           <view class="pay-mode-item" data-time-card-id="{{''}}" bindtap="handlePayModeTap">
-            <image class="pay-mode-item-icon" src="{{imgUrl}}order/icon_wechat_pay.png" />
+            <text class='pay-mode-item-icon pay-mode-item-icon3 iconfont iconicon-test28'></text>
             <view class="pay-mode-item-content">
               <text class="pay-mode-item-title">免支付</text>
             </view>
-            <image class="selected-icon" src="{{imgUrl}}order/icon_selected.png" />
+            <image class="selected-icon" src="{{imgUrl}}icon/chooseState.png" />
           </view>
         </block>
       </view>

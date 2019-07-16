@@ -151,8 +151,10 @@
   position: absolute;
   right: 0;
   top: 0;
-  width: 72rpx;
-  height: 73rpx;
+  /* width: 72rpx;
+  height: 73rpx; */
+  font-size: 73rpx;
+  color: #896eff;
 }
 .myOrder_listItem:last-child{
   margin-bottom: 40rpx

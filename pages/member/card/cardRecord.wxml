@@ -22,7 +22,9 @@
           <view class="item">
             <view class="item-title">
               <view class="left">
-                <image class="icon" src="{{imgUrl}}card/icon-bike-green.png"></image>
+                <!-- <image class="icon" src="{{imgUrl}}card/icon-bike-green.png"></image> -->
+                <text wx:if='{{cardBuyRecord.card_title == "单车卡"}}' class='icon iconfont iconhuiyuanqiagoumai-1'></text>
+                <text wx:else class='icon icon2 iconfont iconhuiyuanqiagoumai-'></text>
                 <text class="name">{{cardBuyRecord.card_title}}</text>
               </view>
               <view class="right">剩余{{cardBuyRecord.card_left_count}}次</view>
@@ -76,7 +78,8 @@
           <block wx:for="{{cardRecordList}}" wx:key="_PK_">
             <view class="list">
               <view class="item" wx:if="{{item.record_type===1}}">
-                <image class="icon" src="{{imgUrl}}card/icon-refund.png"></image>
+                <!-- <image class="icon" src="{{imgUrl}}card/icon-refund.png"></image> -->
+                <text class='icon iconfenzu-2 iconfont'></text>
                 <view class="info">
                   <view class="left">
                     <text class="status">消费</text>
@@ -89,7 +92,8 @@
                 </view>
               </view>
               <view class="item" wx:elif="{{item.record_type===2}}">
-                <image class="icon" src="{{imgUrl}}card/icon-consumption.png"></image>
+                <!-- <image class="icon" src="{{imgUrl}}card/icon-consumption.png"></image> -->
+                <text class='icon icon3 iconfenzu-3 iconfont'></text>
                 <view class="info">
                   <view class="left">
                     <text class="status">退款</text>

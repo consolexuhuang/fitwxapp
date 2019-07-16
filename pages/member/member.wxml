@@ -9,9 +9,10 @@
         <text class="name">点击授权</text>
         <button open-type='getUserInfo' bindgetuserinfo = 'bindgetuserinfo' class='getUserInfoBtn'></button>
       </view>
-      <view class='user' wx:elif='{{userData.head_img || wx_userInfo}}'>
-        <image class="header" src="{{userData.head_img ? userData.head_img : (wx_userInfo ? wx_userInfo.avatarUrl : '')}}"></image>
-        <text class="name">{{userData && userData.nick_name ? userData.nick_name : wx_userInfo.nickName}}</text>
+      <view class='user' wx:elif='{{wx_userInfo || userData.head_img}}'>
+        <image class="header" src="{{wx_userInfo.avatarUrl || userData.head_img}}"></image>
+        <text class="name">{{wx_userInfo.nickName || (userData &&userData.nick_name ? userData.nick_name : '')}}</text>
+         <button open-type='getUserInfo' bindgetuserinfo = 'bindgetuserinfo' class='getUserInfoBtn'></button>
       </view>
       <view class="concat">
         <text class="pic iconfont iconicon-test24"></text>
@@ -65,21 +66,21 @@
     <view class="content">
       <view class="status">
         <view class="col" bindtap='jumpToOrderStatus' data-status='0'>
-          <image class="icon" src="{{imgUrl}}member/icon-person-ing.png"></image>
+          <text class='icon iconfont icontiaosheng-'></text>
           <view class="text">
             <text class="name">待进行</text>
             <text class="number">({{userInfoData.order.going_count || 0}})</text>
           </view>
         </view>
         <view class="col" bindtap='jumpToOrderStatus' data-status='1'>
-          <image class="icon" src="{{imgUrl}}member/icon-person-wait.png"></image>
+          <text class='icon iconfont iconyuqie-'></text>
           <view class="text">
             <text class="name">待付款</text>
             <text class="number">({{userInfoData.order.unpay_count || 0}})</text>
           </view>
         </view>
         <view class="col" bindtap='jumpToOrderStatus' data-status='2'>
-          <image class="icon" src="{{imgUrl}}member/icon-person-end.png"></image>
+          <text class='icon iconfont iconboji-'></text>
           <view class="text">
             <text class="name">已完成</text>
             <text class="number">({{userInfoData.order.complete_count || 0}})</text>
@@ -90,7 +91,8 @@
       <view class="list" wx:if="{{goingList.length && userData}}">
         <block wx:for="{{goingList}}" wx:key="index">
           <view class="item fadeIn animated" data-order-num="{{item.order.orderNum}}" bindtap="handleOrderItemTap">
-            <image class='isWaitImg' src='{{imgUrl}}member/isWait.png' wx:if='{{item.order.wait}}'></image>
+            <!-- <image class='isWaitImg' src='{{imgUrl}}member/isWait.png' wx:if='{{item.order.wait}}'></image> -->
+            <text class='isWaitImg iconfont iconfenzu-8' wx:if='{{item.order.wait}}'></text>
             <text class="item-status">即将开课</text>
             <view class="item-c">
               <view class="left">

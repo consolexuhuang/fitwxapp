@@ -225,8 +225,12 @@ page{
 }
 
 .myorder .content .status .col .icon {
-  width: 39rpx;
-  height: 52rpx;
+  /* width: 39rpx;
+  height: 52rpx; */
+  font-size: 52rpx;
+  background: -webkit-linear-gradient(top, #A391E5 , #5E4BB1);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
   margin-bottom: 10rpx;
 }
 
@@ -252,10 +256,13 @@ page{
 }
 .isWaitImg{
   position: absolute;
-  right: 0;
-  top: 0;
-  width: 72rpx;
-  height: 73rpx;
+  right: -1rpx;
+  top: -5rpx;
+  /* width: 72rpx;
+  height: 73rpx; */
+  font-size: 74rpx;
+  color: #896eff;
+  /* height:74rpx */
 }
 
 .myorder .content .list  .item-status {

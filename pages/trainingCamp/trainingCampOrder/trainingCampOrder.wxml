@@ -36,13 +36,8 @@
               wx:key="{{index}}"
               wx:if="{{item.payType}}">
           <view class="left">
-            <image class="icon" 
-                  wx:if="{{item.type == 1 ? true : false}}" 
-                  src="{{imgUrl}}icon/cardPayIcon.png">
-            </image>
-            <image class="icon" 
-                  wx:if="{{item.type == 2 ? true : false}}"
-                  src="{{imgUrl}}card/icon-wx-pay.png"></image>
+            <text wx:if="{{item.type == 1 ? true : false}}" class='icon iconfont iconhuiyuanqiagoumai-3'></text>
+            <text wx:if="{{item.type == 2 ? true : false}}" class='icon icon2 iconfont iconicon-test28'></text>
             <text class="name">{{item.type == 1 ? "卡支付" : (item.type == 2 ? "微信支付" : "支付")}}</text>
           </view>
           <text class='creditNone' 

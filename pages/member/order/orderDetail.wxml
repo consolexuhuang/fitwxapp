@@ -62,12 +62,12 @@
       <view class="orderDetail_payData">¥{{orderData.course.discountPrice}}</view>
     </view>
     <view class="admissionCode2" wx:if="{{orderData.order.paymentWay == 7 && orderData.order.cardTitle == '单车卡'}}">
-      <image class="orderDetail_icon iconcardPay2" src="{{imgUrl}}icon/orderIcon_car.png"></image>
+      <text class='orderDetail_icon iconfont iconhuiyuanqiagoumai-6'></text>
       <text class="orderDetail_text">单车卡</text>
       <view class="orderDetail_payData">-1次</view>
     </view>
     <view class="admissionCode2" wx:if="{{orderData.order.paymentWay == 7 && orderData.order.cardTitle == '早课卡'}}">
-      <image class="orderDetail_icon iconcardPay2" src="{{imgUrl}}icon/orderIcon_morn.png"></image>
+      <text class='orderDetail_icon iconfont iconhuiyuanqiagoumai-5'></text>
       <text class="orderDetail_text">早课卡</text>
       <view class="orderDetail_payData">-1次</view>
     </view>
@@ -77,7 +77,7 @@
       <view class="orderDetail_payData">¥{{orderData.order.paymentWay == 1 ? orderData.order.actPrice : '0'}}</view>
     </view>
     <view class="admissionCode2" wx:if="{{orderData.order.paymentWay == 2}}">
-      <image class="orderDetail_icon iconcardPay2" src="{{imgUrl}}icon/orderIcon_cardPay.png"></image>
+      <text class='orderDetail_icon iconfont iconhuiyuanqiagoumai-4'></text>
       <text class="orderDetail_text">卡支付</text>
       <view class="orderDetail_payData">¥{{orderData.order.actPrice}}</view>
     </view>

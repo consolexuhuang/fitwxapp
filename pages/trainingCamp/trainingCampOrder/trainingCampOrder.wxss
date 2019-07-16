@@ -221,12 +221,16 @@
 }
 
 .pay-type .item .item-play-type .icon {
-  width: 31rpx;
-  height: 24rpx;
+  /* width: 31rpx;
+  height: 24rpx; */
+  font-size: 24rpx;
+  color: #896EFF;
   margin-right: 20rpx;
   vertical-align: middle;
 }
-
+.pay-type .item .item-play-type .icon2 {
+  color: #5BCB2A;
+}
 .pay-type .item .item-play-type .name {
   font-size: 28rpx;
   color: #141414;

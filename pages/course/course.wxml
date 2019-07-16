@@ -139,11 +139,13 @@
                             </block>
                             <block wx:elif="{{courseItem.discount_price}}">
                               <view class="course-card-price">¥{{courseItem.card_price}}</view>
-                              <image class="course-price-icon" src="{{imgUrl}}course/icon_plus_price.png" />
+                              <!-- <image class="course-price-icon" src="{{imgUrl}}course/icon_plus_price.png" /> -->
+                              <text class='course-price-icon iconfont iconfenzu-4'></text>
                             </block>
                             <block wx:else>
                               <view class="course-card-price">¥{{courseItem.price}}</view>
-                              <image class="course-price-icon" src="{{imgUrl}}course/icon_original_price.png" />
+                              <!-- <image class="course-price-icon" src="{{imgUrl}}course/icon_original_price.png" /> -->
+                              <text class='course-price-icon iconfont iconfenzu-5'></text>
                             </block>
                           </view>
                         </view>
@@ -163,11 +165,8 @@
                       </view>
 
 
-
-                      
-
-                      <image wx:if="{{courseItem.status !== 3 && courseItem.num_status === 1}}" class="course-status" src="{{imgUrl}}course/icon_nervous.png" />
-                      <image wx:elif="{{courseItem.status !== 3 && courseItem.num_status === 2}}" class="course-status" src="{{imgUrl}}course/icon_full.png" />
+                      <text wx:if="{{courseItem.status !== 3 && courseItem.num_status === 1}}" class='course-status course-status2 iconfont iconfenzu'></text>
+                      <text wx:elif="{{courseItem.status !== 3 && courseItem.num_status === 2}}" class='course-status iconfont iconxingzhuangjiehe'></text>
 
                     </view>
 

@@ -36,10 +36,7 @@
             wx:key="{{index}}"
             wx:if="{{item.payType}}">
         <view class="left">
-          <image class="icon" 
-                 wx:if="{{item.type == 1 ? true : false}}" 
-                 src="{{imgUrl}}icon/cardPayIcon.png">
-          </image>
+          <text class='icon_plus iconfont iconhuiyuanqiagoumai-3' wx:if="{{item.type == 1 ? true : false}}" ></text>
           <text class="icon iconicon-test28 iconfont" 
                  wx:if="{{item.type == 2 ? true : false}}"
                  ></text>

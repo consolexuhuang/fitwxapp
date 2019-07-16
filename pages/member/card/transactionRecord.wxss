@@ -114,8 +114,10 @@
   flex-basis: 88rpx;
   flex-grow: 0;
   flex-shrink: 0;
-  width: 88rpx;
-  height: 88rpx;
+  /* width: 88rpx;
+  height: 88rpx; */
+  font-size: 88rpx;
+  color: #896fff;
   margin: 0 27rpx 0 33rpx;
 }
 

@@ -16,24 +16,25 @@
     <block wx:for="{{chargeInfo.list}}" wx:key="index">
       <view class="item fadeIn animated" data-amount="{{item.amount}}" bindtap="handleRechargeTap">
         <view class="gift">
-           <image class="gift-bg" src="{{imgUrl}}card/icon-money-bg.png"></image>
-          <text class="txt">赠{{item.gift}}元</text>
+          <!-- <image class="gift-bg" src="{{imgUrl}}card/icon-money-bg.png"></image> -->
+          <text class='gift-bg iconfont iconCombinedShapeCopy'></text>
+          <text class="txt">赠{{item.gift || 0}}元</text>
         </view>
         <view class="info">
-          <text class="number">¥{{item.amount}}</text>
+          <text class="number">¥{{item.amount || 0}}</text>
           <text class="txt">到账:{{item.amount + item.gift}}元</text>
         </view>
         <view class="sheets" wx:if="{{item.tip}}">{{item.tip}}</view>
       </view>
     </block>
   </view>
-  <view class="warning fadeIn animated">
+  <view class="warning fadeIn animated" wx:if='{{chargeInfo}}'>
     <text class="icon iconicon-test16 iconfont"></text>
     <text class="txt">充值后，随时可申请退款 </text>
   </view>
 </view>
 
-<view class="tip fadeIn animated">
+<view class="tip fadeIn animated" wx:if='{{chargeInfo}}'>
   <text class="icon iconicon-test10 iconfont"></text>
   <rich-text class="txt" nodes="{{chargeInfo.rule}}"></rich-text>
 </view>

@@ -77,12 +77,18 @@ page {
 }
 
 .pay-type .item .item-play-type .icon {
-  width: 36rpx;
-  height: 27rpx;
+  /* width: 36rpx;
+  height: 27rpx; */
   margin-right: 20rpx;
   vertical-align: middle;
   font-size: 27rpx;
   color: #5BCB2A;
+}
+.icon_plus{
+  margin-right: 20rpx;
+  vertical-align: middle;
+  font-size: 27rpx;
+  color: #896eff;
 }
 
 .pay-type .item .item-play-type .name {

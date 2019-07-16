@@ -30,7 +30,8 @@
               <view class='sameitem'>
                 <!-- 1 -->
                 <view class="item">
-                  <image class="icon" src="{{imgUrl}}card/card-icon-plus.png"></image>
+                  <!-- <image class="icon" src="{{imgUrl}}card/card-icon-plus.png"></image> -->
+                  <text class='icon iconfont iconfenzu-1'></text>
                   <view class="info">
                     <view class="left">
                       <text class="status">充值成功</text>
@@ -88,7 +89,8 @@
               <block wx:for="{{consumeList}}" wx:key="_PK_">
               <view class='sameitem'>
                 <view class="item">
-                  <image class="icon" src="{{imgUrl}}card/card-icon-plus.png"></image>
+                  <!-- <image class="icon" src="{{imgUrl}}card/card-icon-plus.png"></image> -->
+                  <text class='icon iconfont iconfenzu-1'></text>
                   <view class="info">
                     <view class="left">
                       <text class="status">已支付</text>

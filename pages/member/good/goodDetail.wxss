@@ -40,14 +40,18 @@ color:#787878;
   color:#141414;
 }
 .total .row .icon_card{
-  width: 36rpx;
-  height: 27rpx;
+  /* width: 36rpx;
+  height: 27rpx; */
+  font-size: 27rpx;
+  color: #896eff;
   margin-top:8rpx;
   margin-right: 15rpx;
 }
 .total .row .icon_wx{
-  width: 36rpx;
-  height: 27rpx;
+  /* width: 36rpx;
+  height: 27rpx; */
+  font-size: 27rpx;
+  color: #5BCB2A;
   margin-top:8rpx;
   margin-right: 15rpx;
 }

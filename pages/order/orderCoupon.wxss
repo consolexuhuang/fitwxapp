@@ -147,8 +147,10 @@ page{
 }
 .coupon-selected{
   margin-right: 20rpx;
-  width: 34rpx;
-  height: 34rpx;
+  /* width: 34rpx;
+  height: 34rpx; */
+  font-size: 34rpx;
+  color: #896EFF;
 }
 .coupon-term{
   line-height: 37rpx;
