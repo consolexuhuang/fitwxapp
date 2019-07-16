@@ -111,15 +111,15 @@ App({
     redirectToState: true,
     scene:'',    
     JumpAppId: {                    //测试
-      appid: 'wx322a8a72b755aa57',
-      //envVersion: 'trial' //体验版
-       envVersion: 'release' //正式版
+      // appid: 'wx322a8a72b755aa57',
+      // //envVersion: 'trial' //体验版
+      //  envVersion: 'release' //正式版
     },
-    // JumpAppId: {                   //正式
-    //   appid: 'wxec1fe04fad9d4e02',
-    //   //envVersion: 'trial' //体验版
-    //   envVersion: 'release' //正式版
-    // }, 
+    JumpAppId: {                   //正式
+      appid: 'wxec1fe04fad9d4e02',
+      //envVersion: 'trial' //体验版
+      envVersion: 'release' //正式版
+    }, 
   },
 
   /**
