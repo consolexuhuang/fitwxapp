@@ -235,6 +235,7 @@ App({
               lang: 'zh_CN',
               success(res_userInfo){
                 console.log('用户信息', res_userInfo)
+                Store.setItem('wx_userInfo', res_userInfo.userInfo)
                 let data = {
                   code: res_code.code,
                   sourceData: _this.globalData.scene,

@@ -9,9 +9,10 @@
         <text class="name">点击授权</text>
         <button open-type='getUserInfo' bindgetuserinfo = 'bindgetuserinfo' class='getUserInfoBtn'></button>
       </view>
-      <view class='user' wx:elif='{{userData.head_img || wx_userInfo}}'>
-        <image class="header" src="{{userData.head_img ? userData.head_img : (wx_userInfo ? wx_userInfo.avatarUrl : '')}}"></image>
-        <text class="name">{{userData && userData.nick_name ? userData.nick_name : wx_userInfo.nickName}}</text>
+      <view class='user' wx:elif='{{wx_userInfo || userData.head_img}}'>
+        <image class="header" src="{{wx_userInfo.avatarUrl || userData.head_img}}"></image>
+        <text class="name">{{wx_userInfo.nickName || (userData &&userData.nick_name ? userData.nick_name : '')}}</text>
+         <button open-type='getUserInfo' bindgetuserinfo = 'bindgetuserinfo' class='getUserInfoBtn'></button>
       </view>
       <view class="concat">
         <text class="pic iconfont iconicon-test24"></text>

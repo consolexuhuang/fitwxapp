@@ -12,7 +12,7 @@
   <view class='user'>
     <image class="avatar" src="{{orderData.coach.headUrl}}" />
     <view class='name'>{{ orderData.course.courseName }}</view>
-     <view class='date'>
+     <view class='date fadeIn animated' wx:if='{{orderData}}'>
       <text class='date-w'>{{util.timeStampFormat(orderData.course.beginDate, 'MM月DD日')}} 星期{{orderData.course.beginDay}}</text>
       <text class='date-t'> {{util.timeStampFormat(orderData.course.beginTime,'hh:mm')}}</text>
     </view>

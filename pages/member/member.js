@@ -1,4 +1,4 @@
-// pages/member/member.js
+ // pages/member/member.js
 const app = getApp();
 const api = app.api
 import Store from '../../utils/store.js'
@@ -174,17 +174,37 @@ Page({
     getApp().wx_loginIn().then(() => {
       this.getGoingList()
       this.getUserInfo()
+      wx.getUserInfo({
+        lang: 'zh_CN',
+        success: res => {
+          if ((res.userInfo.nickName != Store.getItem('userData').nick_name) || (res.userInfo.avatarUrl != Store.getItem('userData').head_img)) {
+            Store.setItem('wx_userInfo', res.userInfo)
+            this.setData({ wx_userInfo: res.userInfo || '' })
+            getApp().wx_modifyUserInfo();
+          } else {
+            console.log('无需更新用户信息')
+          }
+        },
+        fail: res => {
+          console.log(res)
+        }
+      })
       wx.stopPullDownRefresh()
     })
   },
   //登录
   bindgetuserinfo(e){
     wx.getUserInfo({
+      lang: 'zh_CN',
       success: res => {
         console.log('用户授权信息', res.userInfo)
-        Store.setItem('wx_userInfo', res.userInfo)
-        this.setData({ wx_userInfo: res.userInfo || '' })
-        getApp().wx_modifyUserInfo();
+        if ((res.userInfo.nickName != Store.getItem('userData').nick_name) || (res.userInfo.avatarUrl != Store.getItem('userData').head_img)) {
+          Store.setItem('wx_userInfo', res.userInfo)
+          this.setData({ wx_userInfo: res.userInfo || '' })
+          getApp().wx_modifyUserInfo();
+        } else {
+          console.log('无需更新用户信息')
+        }
       }
     })
   },
