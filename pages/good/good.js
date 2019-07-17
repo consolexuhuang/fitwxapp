@@ -63,6 +63,7 @@ Page({
       })
     }
      else if (item.type === 'CARD') {
+       console.log('9999')
       wx.navigateTo({
         url: `/pages/card/payCard?goodId=${goodId}`
       })
