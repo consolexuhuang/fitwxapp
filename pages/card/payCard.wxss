@@ -49,6 +49,7 @@ page {
 .card-info .row .label {
   padding-right: 24rpx;
   color: #828282;
+  white-space: nowrap
 }
 
 .pay-title {

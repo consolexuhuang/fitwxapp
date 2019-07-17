@@ -20,7 +20,7 @@
     </view>
     <view class="row">
       <label class="label">支持课程</label>
-      <text class="value" decode="true">{{goodData.good_intro}}</text>
+      <rich-text class='value' nodes='{{goodData.good_intro}}'></rich-text>
     </view>
     <view class="row">
       <label class="label">使用期限</label>
