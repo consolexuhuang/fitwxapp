@@ -15,7 +15,21 @@ page {
   background: #8969FF;
   overflow: hidden;
 }
-
+.startUpBox{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 299rpx;
+}
+.icon1{
+  color: #fff;
+  font-size: 168rpx;
+}
+.icon2{
+  color: #fff;
+  font-size: 86rpx;
+  margin-top: 60rpx;
+}
 .startUp_logo {
   font-size: 340rpx;
   color: #fff;

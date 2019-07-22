@@ -2,7 +2,10 @@
 <!--pages/index/index.wxml-->
 <van-popup show="{{ state }}" custom-class='Jurisdictionstyle' z-index = '1001'>
   <view class='startUp'>
-    <text class='startUp_logo iconfont iconfenzu-'></text>
+    <view class='startUpBox'>
+       <text class='iconfont iconxingzhuangjiehe-1 icon1'></text>
+       <text class='iconfont iconfenzu-9 icon2'></text>
+    </view>
     <view class='startUpCont2_noneLogin'>需登录后方可使用</view>
     <view class='startUpCont2 fadeIn animated' wx:if='{{!userData && !userData.nick_name}}'>
       <button open-type='getUserInfo' bindgetuserinfo = 'bindgetuserinfo' class='getUserInfoBtn'></button>
