@@ -62,6 +62,7 @@ Page({
    */
 
   onLoad: function(options) {
+    console.log('onload')
     //进入onLoad
     onLoaded = true;
     // this.getShareCouponInfo()
@@ -74,6 +75,7 @@ Page({
     })
   },
   onShow() {
+    console.log('onShow')
     //判断用户是否关注公众号
     app.checkSessionFun().then(() => {
       this.getMemberFollowState()

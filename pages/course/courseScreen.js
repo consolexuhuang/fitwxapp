@@ -112,11 +112,11 @@ Page({
     getApp().globalData.courseConfig = courseConfig
     wx.switchTab({
       url: '/pages/course/course',
-      success: function(event) {
+      /* success: function(event) {
         var page = getCurrentPages().pop() //当前页面
         if (page == undefined || page == null) return
         //page.onLoad() //或者其它操作
-      }
+      } */
     })
   }
 })
