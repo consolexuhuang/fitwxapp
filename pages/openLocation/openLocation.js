@@ -14,7 +14,7 @@ Page({
     navbarData: {
       title: '查看位置',
       showCapsule: 1,
-      isShowBackHome: false,
+      isShowBackHome: true,
       titleColor: "#000",
       tab_topBackground: '#fff'
     },
@@ -42,13 +42,9 @@ Page({
   onLoad: function (options) {
     wx.stopPullDownRefresh()
     console.log('options_code2', options)
-    if (options.q) {
-      let q = decodeURIComponent(options.q)
-      console.log('options_code2', options, utils.getQueryString(q, 'storeId'))
-      this.setData({ storeId: utils.getQueryString(q, 'storeId')},()=>{
-        this.getStore()
-      })
-    }
+    this.setData({ storeId: options.storeId }, () => {
+      this.getStore()
+    })
   },
 
 

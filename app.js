@@ -74,7 +74,7 @@ App({
     console.log('scene', options.scene)
     this.globalData.scene = options.scene
     // 校验场景值
-    if (options.scene == 1007 || options.scene == 1008 || options.scene == 1035 || options.scene == 1043) {
+    if (options.scene == 1007 || options.scene == 1008 || options.scene == 1035 || options.scene == 1043 || options.scene == 1082) {
       console.log(options.path)
       if (options.path.indexOf('index') != -1 ||
         options.path === 'pages/store/store' ||
