@@ -1,0 +1,22 @@
+<!--pages/openLocation/openLocation.wxml-->
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+
+<image src='https://img.cdn.powerpower.net/5d37d357e4b08a7f65c04526.png' class='openLocationLogo'  style='margin-top:{{marginTopBar+22}}px'></image>
+<view class='openLocationCont'>
+   <view class='openLocationTitle' >{{storeData.storeName}}</view>
+   <view class='openLocation_item'>
+      <text class="openLocation1 iconfont iconicon-test39"></text>
+      <text class='openLocation_text'>{{storeData.address}}</text>
+   </view>
+   <view class='openLocation_item admissionCodeNext' wx:if='{{storeData.mapPic}}' bindtap='handleRouteGuidanceTap'>
+      <text class="openLocation1 iconfont iconluxian-luxianfenlei"></text>
+      <text class='openLocation_text'>路线指引</text>
+   </view>
+</view>
+
+<view class='openLocationBtn'
+      data-name="{{storeData.storeName}}" 
+      data-address="{{storeData.address}}" 
+      data-latitude="{{storeData.latitude}}" 
+      data-longitude="{{storeData.longitude}}" 
+      bindtap="handleLocationTap">在地图中显示门店位置</view>
