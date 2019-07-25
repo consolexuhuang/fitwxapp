@@ -179,7 +179,9 @@
 .store-name {
   flex: 1;
   display: flex;
-  align-items: center;
+  align-items: baseline;
+  padding-right: 20rpx;
+  box-sizing: border-box
 }
 .store-name-icon{
   width: 7rpx;
