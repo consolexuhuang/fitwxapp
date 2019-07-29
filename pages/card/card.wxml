@@ -62,8 +62,15 @@
 <view class="mask-swiper" hidden="{{!isShowPrivilege}}" style='padding-top:{{marginTopBar}}px'>
   <text class="close iconicon-test18 iconfont" bindtap="closePrivilege" style='top:{{marginTopBar+20}}px'></text>
   <view class="mask-main">
-    <text class="arrow iconfont iconShape" bindtap="swiperPre"></text>
-    <swiper indicator-dots="true" indicator-color="rgba(170,170,170,1)" indicator-active-color="#8B6FF1" autoplay="true" circular="true" current="{{swiperCurrentIndex}}" bindchange="swiperchange">
+    <!-- <text class="arrow iconfont iconShape" bindtap="swiperPre"></text> -->
+    <!-- current="{{swiperCurrentIndex}}" bindchange="swiperchange" -->
+    <swiper indicator-dots="true" 
+            indicator-color="rgba(170,170,170,1)" 
+            indicator-active-color="#8B6FF1" 
+            autoplay="{{autoplayState}}"
+            interval="3000"
+            circular="true" 
+            >
       <swiper-item>
         <text class="title">PLUS卡特权</text>
         <text class="slide-image iconGroup iconfont" />
@@ -83,7 +90,7 @@
         <text class="text" decode="true">Plus卡特权日,精品课程秒杀价</text>
       </swiper-item>
     </swiper>
-    <text class="arrow iconfont iconShape-" bindtap="swiperNext"></text>
+    <!-- <text class="arrow iconfont iconShape-" bindtap="swiperNext"></text> -->
   </view>
   <button class="btn" bindtap="handleRechargeTap">立即开通</button>
 </view>
