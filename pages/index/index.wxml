@@ -1,10 +1,11 @@
 <!--pages/index/index.wxml-->
 <tabBar_top navbarData="{{navbarData}}"></tabBar_top>
 <view class='startUp'>
-  <text class='startUp_logo iconfont iconfenzu-'></text>
+  <view class='startUpBox'>
+    <text class='iconfont iconxingzhuangjiehe-1 icon1'></text>
+    <text class='iconfont iconfenzu-9 icon2'></text>
+  </view>
   <view class='startUpCont' wx:if='{{userData.nick_name}}'>
-    <!-- <image src='{{imgUrl}}icon/startUp_title.png' class='startUpCont_Img'></image>
-    <view class='startUpCont_title'>你身边的团课教室</view> -->
     <view class='loading'>
       <view class='loadingBox'>
         <view style='display:flex; align-items:center'>

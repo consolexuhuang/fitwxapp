@@ -39,7 +39,8 @@
     "pages/coach/evaluate/evaluate",
     "pages/coach/signInCode/signInCode",
     "pages/coursePhoto/coursePhoto",
-    "pages/test/test"
+    "pages/test/test",
+    "pages/openLocation/openLocation"
   ],
   "workers": "workers",
   "window": {
@@ -93,6 +94,6 @@
     }
   },
   "navigateToMiniProgramAppIdList": [
-    "wx322a8a72b755aa57"
+    "wxec1fe04fad9d4e02"
   ]
 }

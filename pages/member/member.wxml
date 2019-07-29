@@ -146,6 +146,13 @@
         <text class="icon iconfont iconicon-test42"></text>
       </view>
     </view>
+    <view class="item" bindtap="handleGroupTap">
+      <text class="name">J&J排名</text>
+      <view class="right">
+        <text class="value blue"></text>
+        <text class="icon iconfont iconicon-test42"></text>
+      </view>
+    </view>
     <view class="item" wx:if="{{orderCount}}" bindtap="handleGoodTap">
       <text class="name">课程礼包</text>
       <view class="right">

@@ -21,7 +21,21 @@ page {
   display: block;
   text-align: center
 }
-
+.startUpBox{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 299rpx;
+}
+.icon1{
+  color: #fff;
+  font-size: 168rpx;
+}
+.icon2{
+  color: #fff;
+  font-size: 86rpx;
+  margin-top: 60rpx;
+}
 .startUp_bottom {
   width: 100%;
   position: absolute;

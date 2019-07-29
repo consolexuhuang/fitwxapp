@@ -13,6 +13,7 @@ Page({
     swiperCurrentIndex: 0,
     //滑块数量
     swiperItemsTotal: 3,
+    autoplayState:true,
     //是否显示特权弹层
     isShowPrivilege: false,
     imgUrl: getApp().globalData.imgUrl,
@@ -28,7 +29,6 @@ Page({
     officialDataState:false,
     memberInfo:''
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -96,35 +96,36 @@ Page({
       url: '/pages/card/payCard?cardId=' + cardId,
     })
   },
-  //自动滑动改变函数
-  swiperchange: function(event) {
-    let currentIndex = event.detail.current
-    this.setCurrentIndex(currentIndex)
-  },
+  // //自动滑动改变函数
+  // swiperchange: function(event) {
+  //   let currentIndex = event.detail.current
+  //   this.setCurrentIndex(currentIndex)
+  // },
   //点击上一个
-  swiperPre: function() {
-    let currentIndex = this.data.swiperCurrentIndex;
-    if (currentIndex <= 0) {
-      this.setCurrentIndex(this.data.swiperItemsTotal - 1)
-    } else {
-      this.setCurrentIndex(currentIndex - 1)
-    }
-  },
+  // swiperPre: function() {
+  //   let currentIndex = this.data.swiperCurrentIndex;
+  //   if (currentIndex <= 0) {
+  //     this.setCurrentIndex(this.data.swiperItemsTotal - 1)
+  //   } else {
+  //     this.setCurrentIndex(currentIndex - 1)
+  //   }
+  // },
+  
   //点击下一个
-  swiperNext: function() {
-    let currentIndex = this.data.swiperCurrentIndex;
-    if (currentIndex >= this.data.swiperItemsTotal - 1) {
-      this.setCurrentIndex(0)
-    } else {
-      this.setCurrentIndex(currentIndex + 1)
-    }
-  },
+  // swiperNext: function() {
+  //   let currentIndex = this.data.swiperCurrentIndex;
+  //   if (currentIndex >= this.data.swiperItemsTotal - 1) {
+  //     this.setCurrentIndex(0)
+  //   } else {
+  //     this.setCurrentIndex(currentIndex + 1)
+  //   }
+  // },
   //设置当前滚动index
-  setCurrentIndex: function(index) {
-    this.setData({
-      swiperCurrentIndex: index
-    })
-  },
+  // setCurrentIndex: function(index) {
+  //   this.setData({
+  //     swiperCurrentIndex: index
+  //   })
+  // },
   //显示特权弹层
   privilegeView: function() {
     this.setData({

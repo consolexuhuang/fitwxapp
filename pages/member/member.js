@@ -143,6 +143,21 @@ Page({
       url: '/pages/member/good/good'
     })
   },
+  //跳转排名
+  handleGroupTap(){
+    wx.navigateToMiniProgram({
+      appId: getApp().globalData.JumpAppId.appid,
+      path: 'pages/shareRanking/shareRanking',
+      extraData: {
+        foo: '我是拉新数据'
+      },
+      envVersion: getApp().globalData.JumpAppId.envVersion,
+      success(res) {
+        // 打开成功
+        console.log(res)
+      }
+    })
+  },
   // 跳转邀请页面
   handleInviteTap: function(event) {
     wx.navigateToMiniProgram({

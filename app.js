@@ -74,7 +74,7 @@ App({
     console.log('scene', options.scene)
     this.globalData.scene = options.scene
     // 校验场景值
-    if (options.scene == 1007 || options.scene == 1008 || options.scene == 1035 || options.scene == 1043) {
+    if (options.scene == 1007 || options.scene == 1008 || options.scene == 1035 || options.scene == 1043 || options.scene == 1082) {
       console.log(options.path)
       if (options.path.indexOf('index') != -1 ||
         options.path === 'pages/store/store' ||
@@ -110,16 +110,16 @@ App({
     isIpX: false, //是否是ipHonex
     redirectToState: true,
     scene:'',    
-    JumpAppId: {                    //测试
-      appid: 'wx322a8a72b755aa57',
+    // JumpAppId: {                    //测试
+    //   appid: 'wx322a8a72b755aa57',
+    //   envVersion: 'trial' //体验版
+    //   //  envVersion: 'release' //正式版
+    // },
+    JumpAppId: {                   //正式
+      appid: 'wxec1fe04fad9d4e02',
       //envVersion: 'trial' //体验版
-       envVersion: 'release' //正式版
-    },
-    // JumpAppId: {                   //正式
-    //   appid: 'wxec1fe04fad9d4e02',
-    //   //envVersion: 'trial' //体验版
-    //   envVersion: 'release' //正式版
-    // }, 
+      envVersion: 'release' //正式版
+    }, 
   },
 
   /**

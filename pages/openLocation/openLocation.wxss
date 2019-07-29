@@ -1,0 +1,78 @@
+/* pages/openLocation/openLocation.wxss */
+.openLocationLogo{
+  width: 290rpx;
+  height: 60rpx;
+  margin: 0 auto;
+  display: block
+}
+.openLocationCont{
+  width: 686rpx;
+  margin: 100rpx auto 0;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+  background: #fff;
+  box-shadow:0rpx 0rpx 14rpx 0rpx rgba(234,234,234,0.5);
+  border-radius:6rpx;
+}
+.openLocationTitle{
+  border-bottom: 1rpx solid #E6E6E6;
+  font-size:34rpx;
+  font-family:PingFangSC-Semibold;
+  font-weight:600;
+  color:rgba(70,70,70,1);
+  /* line-height:128rpx; */
+  padding: 40rpx 30rpx 40rpx 0;
+  box-sizing: border-box;
+}
+.openLocation_item{
+  border-bottom: 1rpx solid #E6E6E6;
+  display: flex;
+  align-items: center;
+  padding: 40rpx 0 40rpx 23rpx;
+  box-sizing: border-box;
+  position: relative;
+}
+.openLocation_item:last-child{
+  border-bottom: none;
+}
+.openLocation1{
+  font-size: 30rpx;
+  color: #787878;
+  margin-right: 30rpx;
+  align-self: flex-start;
+  line-height: 40rpx
+  /* margin-top: 8rpx */
+}
+.openLocation_text{
+  font-size:30rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(70,70,70,1);
+  line-height:40rpx;
+  margin-right: 60rpx;
+}
+.admissionCodeNext::after{
+  content: '';
+  position: absolute;
+  border-bottom: 2rpx solid #896DFF;
+  border-right: 2rpx solid #896DFF;
+  width: 14rpx;
+  height: 14rpx;
+  transform: rotate(-45deg);
+  right: 34rpx;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.openLocationBtn{
+  width:686rpx;
+  background:rgba(137,109,255,1);
+  border-radius:8rpx;
+  font-size:32rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:90rpx;
+  text-align: center;
+  margin: 340rpx auto 0
+}
