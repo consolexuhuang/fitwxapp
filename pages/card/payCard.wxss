@@ -1,7 +1,7 @@
 /* pages/card/payCard.wxss */
 
 page {
-  background-color: #fafafa;
+  background-color: #fff;
 }
 
 .card {
@@ -12,8 +12,8 @@ page {
 }
 
 .card .card-bg {
-  width: 671rpx;
-  height: 371rpx;
+  width: 650rpx;
+  height: 350rpx;
   position: absolute;
   top: 0;
   left: 0;
@@ -33,7 +33,7 @@ page {
 .card-info {
   display: flex;
   flex-direction: column;
-  padding-left: 32rpx;
+  padding-left: 45rpx;
   background: #fff;
 }
 
@@ -41,9 +41,12 @@ page {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  padding: 25rpx;
+  padding: 25rpx 17rpx;
   border-bottom: 1rpx solid #e9e9e9;
   font-size: 28rpx;
+}
+.card-info .row:last-child{
+  border-bottom: none;
 }
 
 .card-info .row .label {
@@ -51,11 +54,67 @@ page {
   color: #828282;
   white-space: nowrap
 }
+.cardBanner{
+  /* width:650rpx; */
+  width: 100%;
+  height:360rpx;
+  margin: 0 auto 20rpx;
+  background: #fff;
+}
+.bannerItem{
+  /* width:650rpx !important; */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-bottom: 10rpx;
+  box-sizing: border-box;
+  /* padding: 0 7rpx;
+  box-sizing: border-box; */
+}
+.cardImg{
+  width:650rpx;
+  height: 100%;
+  box-shadow: 10rpx 10rpx 10rpx #dcdcdc;
+  border-radius: 8rpx
+}
+/* .sacleStyle{
+  transform: scale(.92)
+} */
+@keyframes scaleOut {
+  0% {
+   transform: scale(1)
+  }
+
+  100% {
+    transform: scale(.92)
+  }
+}
+@keyframes scaleIn {
+  0% {
+   transform: scale(.92)
+  }
+
+  100% {
+    transform: scale(1)
+  }
+}
+.sacleOutStyle {
+  animation-name: scaleOut;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+.sacleInStyle {
+  animation-name: scaleIn;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
 
 .pay-title {
-  padding: 20rpx 52rpx;
+  padding: 20rpx 62rpx;
   font-size: 24rpx;
   color: #828282;
+  background: #fafafa;
 }
 
 .pay-type {
@@ -73,7 +132,7 @@ page {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 20rpx 52rpx;
+  padding: 20rpx 62rpx;
   border-bottom: 1px solid #e9e9e9;
 }
 
@@ -137,7 +196,7 @@ page {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 20rpx 52rpx;
+  padding: 20rpx 62rpx;
 }
 
 .pay-type .item .tip .icon-tip {

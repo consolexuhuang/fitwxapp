@@ -15,6 +15,7 @@ Page({
       tab_topBackground: '#fff'
     },
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    current_banner: 1,
     cardId: '',
     goodId: '',
     goodData: '',
@@ -256,4 +257,16 @@ Page({
       url: './recharge',
     })
   },
+  //banner
+  bindchangeBanner(e){
+    console.log(e.detail.current)
+    this.setData({
+      current_banner: e.detail.current
+    })
+  },
+  jumpToGiftCard(){
+    wx.navigateTo({
+      url: '/pages/subPackages_needLoad/editorCard/editorCard',
+    })
+  }
 })

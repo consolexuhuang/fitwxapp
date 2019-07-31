@@ -55,6 +55,13 @@ Page({
     officialDataState: false,
     memberInfo:'',
     searchIn:false,//是否是搜素进来的
+    activityPopupState:{
+      state: true,
+      bottomText:'立即赠送',
+      width:647, //rpx
+      height:438,
+      imgSrc:'https://img.cdn.powerpower.net/5d416646e4b0e3fd6800a785.png'
+    },//活动弹窗
   },
 
   /**
@@ -695,6 +702,12 @@ Page({
         })
       };
     });
+  },
+  //活地图跳转
+  giveGiftCard(){
+    wx.navigateTo({
+      url: '/pages/card/payCard?cardId=' + 1112656629339394048,
+    })
   },
 
 })

@@ -1,0 +1,13 @@
+<!--pages/subPackages_needLoad/editorCard/editorCard.wxml-->
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<image class='cardBanner' style='margin-top:{{marginTopBar+25}}px' src='{{imgUrl}}order/coupon_purple.png'></image>
+<view class='cardTitle'>七夕卡</view>
+
+<textarea placeholder='用心写下对她想说的话吧！(50字以内)'
+          placeholder-style='color:#A0A0A0'
+          maxlength='100'
+          class='textarea'
+          bindinput='bindinput'></textarea>
+
+<view class='btn'>送给朋友</view>
+<view class='btnSelf'>送给自己，直接放入卡包</view>

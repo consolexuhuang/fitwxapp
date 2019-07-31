@@ -42,6 +42,15 @@
     "pages/test/test",
     "pages/openLocation/openLocation"
   ],
+  "subPackages": [
+    {
+      "root": "pages/subPackages_needLoad/",
+      "pages": [
+        "giftCard/giftCard",
+        "editorCard/editorCard"
+      ]
+    }
+  ],
   "workers": "workers",
   "window": {
     "navigationBarBackgroundColor": "#fff",
