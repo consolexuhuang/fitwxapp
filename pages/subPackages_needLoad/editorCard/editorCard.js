@@ -38,6 +38,16 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: `亲爱的，七夕节快乐！送你一张健身卡，快来试试吧！`,
+      path: 'pages/subPackages_gift/giftCard/giftCard',
+      // imageUrl: this.data.picList[0],
+      success: function (res) {
+        console.log('分享成功', res)
+      },
+      fail: function (res) {
+        console.log(res)
+      }
+    }
   }
 })

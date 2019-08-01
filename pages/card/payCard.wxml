@@ -11,8 +11,8 @@
           wx:if='{{true}}'
           indicator-active-color='#896eff'
           indicator-dots="{{true}}"
-          previous-margin='55rpx'
-          next-margin='55rpx'
+          previous-margin='60rpx'
+          next-margin='60rpx'
           current='1'
           bindchange='bindchangeBanner'
           circular="{{true}}"

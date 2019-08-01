@@ -31,3 +31,6 @@
 <view class='btn'>立即查看</view>
 
 <view class='giveSelf'>不送了，直接放入我的卡包</view>
+
+<jurisdictionPopup state = '{{jurisdictionState}}'
+                   bindmyevent='bindgetuserinfo'></jurisdictionPopup>

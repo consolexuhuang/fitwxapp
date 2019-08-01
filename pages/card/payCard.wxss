@@ -75,8 +75,8 @@ page {
 .cardImg{
   width:650rpx;
   height: 100%;
-  box-shadow: 10rpx 10rpx 10rpx #dcdcdc;
-  border-radius: 8rpx
+  /* box-shadow: 10rpx 10rpx 10rpx #dcdcdc;
+  border-radius: 8rpx */
 }
 /* .sacleStyle{
   transform: scale(.92)
