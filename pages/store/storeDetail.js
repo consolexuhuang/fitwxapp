@@ -78,7 +78,7 @@ Page({
     this.getStorePicList()
     this.getStore()
     this.getStoreFacilitiesList()
-    this.getOfficialDataState()
+    // this.getOfficialDataState()
     },()=>{
       this.setData({ jurisdictionState : true})
     })
@@ -90,7 +90,7 @@ Page({
       this.getStorePicList()
       this.getStore()
       this.getStoreFacilitiesList()
-      this.getOfficialDataState()
+      // this.getOfficialDataState()
     }, () => {
       this.setData({ jurisdictionState: true })
     })
@@ -107,18 +107,19 @@ Page({
       console.log('getMemberFollowState', res)
       this.setData({ 
         memberFollowState: res.msg.sub_flag ,
+        officialDataState: res.msg.sub_flag == 1 ? false : true,
         memberInfo: res.msg
       })
     })
   },
-  getOfficialDataState() {
-    // sub_flag 1:关注 0:未关注
-    if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
-      this.setData({ officialDataState: true })
-    } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
-      this.setData({ officialDataState: false })
-    }
-  },
+  // getOfficialDataState() {
+  //   // sub_flag 1:关注 0:未关注
+  //   if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
+  //     this.setData({ officialDataState: true })
+  //   } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
+  //     this.setData({ officialDataState: false })
+  //   }
+  // },
   // bindload(e) {
   //   console.log('official-account_success', e.detail)
   //   this.setData({ officialData: e.detail })
@@ -192,11 +193,11 @@ Page({
     //wx.setStorageSync('courseConfig', courseConfig);
     wx.switchTab({
       url: '/pages/course/course',
-      success: function(event) {
+      /* success: function(event) {
         var page = getCurrentPages().pop() //当前页面
         if (page == undefined || page == null) return
         //page.onLoad() //或者其它操作
-      }
+      } */
     })
   },
   //跳转线webUrl

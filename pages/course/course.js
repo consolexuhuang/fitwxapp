@@ -69,6 +69,7 @@ Page({
    */
 
   onLoad: function(options) {
+    console.log('onload')
     //进入onLoad
     onLoaded = true;
     // this.getShareCouponInfo()
@@ -81,11 +82,12 @@ Page({
     })
   },
   onShow() {
+    console.log('onShow')
     //判断用户是否关注公众号
     app.checkSessionFun().then(() => {
       this.getMemberFollowState()
     })
-    this.getOfficialDataState()
+    // this.getOfficialDataState()
     //搜索进来的
     if (getApp().globalData.courseConfig) {
       //初始化    
@@ -133,6 +135,7 @@ Page({
     api.post('v2/member/memberInfo').then(res => {
       this.setData({
         memberFollowState: res.msg.sub_flag,
+        officialDataState: res.msg.sub_flag == 1 ? false : true,
         memberInfo: res.msg
       })
     })
