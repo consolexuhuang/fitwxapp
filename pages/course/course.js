@@ -137,14 +137,14 @@ Page({
       })
     })
   },
-  getOfficialDataState() {
-    // sub_flag 1:关注 0:未关注
-    if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
-      this.setData({ officialDataState: true })
-    } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
-      this.setData({ officialDataState: false })
-    }
-  },
+  // getOfficialDataState() {
+  //   // sub_flag 1:关注 0:未关注
+  //   if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
+  //     this.setData({ officialDataState: true })
+  //   } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
+  //     this.setData({ officialDataState: false })
+  //   }
+  // },
   /**
    * write@xuhuang  end
    */

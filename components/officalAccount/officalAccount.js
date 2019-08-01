@@ -7,7 +7,7 @@ Component({
   properties: {
     officialDataState:{
       type:Boolean,
-      value:false
+      value:true
     },
     memberFollowState:{
       type: null,

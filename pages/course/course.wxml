@@ -239,10 +239,8 @@
   </official-account>
 </view> -->
 <officalAccount memberFollowState='{{memberFollowState}}' 
-                officialDataState='{{officialDataState}}'
                 pageShowNoticeState='{{memberInfo.sub_flag == 0 && memberInfo.order_count >= 1 ? true : false}}'>
 </officalAccount>
 
 <activityPopup activityPopupState='{{activityPopupState}}'
-               bindgiveGiftCardEvent='giveGiftCard'
-               ></activityPopup>
+               bindgiveGiftCardEvent='giveGiftCard'></activityPopup>
