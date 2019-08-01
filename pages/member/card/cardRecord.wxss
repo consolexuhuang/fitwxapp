@@ -147,6 +147,7 @@
   font-size: 26rpx;
   color: #969696;
   text-align: right;
+  white-space: nowrap
 }
 .content.purchase .list .item .info .row .value{
   display: flex;

@@ -39,7 +39,7 @@
               <view class="row">
                 <label class="label">支持课程：</label>
                 <view class="value">
-                  <text>{{cardBuyRecord.good_intro}}</text>
+                  <rich-text nodes='{{cardBuyRecord.good_intro}}'></rich-text>
                 </view>
               </view>
               <view class="row">
