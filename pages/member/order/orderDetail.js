@@ -56,7 +56,7 @@ Page({
     app.checkSessionFun().then(() => {
       this.getOrderDetail()
       this.getMemberFollowState()
-      this.getOfficialDataState()
+      // this.getOfficialDataState()
     },()=>{
       this.setData({ jurisdictionState: true })
     })
@@ -66,7 +66,7 @@ Page({
       this.setData({ jurisdictionState: false })
       this.getOrderDetail()
       this.getMemberFollowState()
-      this.getOfficialDataState()
+      // this.getOfficialDataState()
     }, () => {
       this.setData({ jurisdictionState: true })
     })
@@ -80,18 +80,19 @@ Page({
       console.log('getMemberFollowState', res)
       this.setData({
         memberFollowState: res.msg.sub_flag,
+        officialDataState: res.msg.sub_flag == 1 ? false : true,
         memberInfo: res.msg
       })
     })
   },
-  getOfficialDataState(){
-    // sub_flag 1:关注 0:未关注
-    if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
-      this.setData({ officialDataState: true })
-    } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
-      this.setData({ officialDataState: false })
-    }
-  },
+  // getOfficialDataState(){
+  //   // sub_flag 1:关注 0:未关注
+  //   if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
+  //     this.setData({ officialDataState: true })
+  //   } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
+  //     this.setData({ officialDataState: false })
+  //   }
+  // },
   getCourseInfo(courseId){
     const data = {
       id: courseId,

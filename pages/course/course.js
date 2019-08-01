@@ -80,7 +80,7 @@ Page({
     app.checkSessionFun().then(() => {
       this.getMemberFollowState()
     })
-    this.getOfficialDataState()
+    // this.getOfficialDataState()
     //搜索进来的
     if (getApp().globalData.courseConfig) {
       //初始化    
@@ -128,18 +128,19 @@ Page({
     api.post('v2/member/memberInfo').then(res => {
       this.setData({
         memberFollowState: res.msg.sub_flag,
+        officialDataState: res.msg.sub_flag == 1 ? false : true,
         memberInfo: res.msg
       })
     })
   },
-  getOfficialDataState() {
-    // sub_flag 1:关注 0:未关注
-    if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
-      this.setData({ officialDataState: true })
-    } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
-      this.setData({ officialDataState: false })
-    }
-  },
+  // getOfficialDataState() {
+  //   // sub_flag 1:关注 0:未关注
+  //   if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
+  //     this.setData({ officialDataState: true })
+  //   } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
+  //     this.setData({ officialDataState: false })
+  //   }
+  // },
   /**
    * write@xuhuang  end
    */

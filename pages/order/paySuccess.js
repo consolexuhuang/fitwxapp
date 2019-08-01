@@ -124,7 +124,7 @@ Page({
         this.getMemberFollowState()
         this.getOrderDetail()
         this.getMemberInfo(options.orderId)
-        this.getOfficialDataState()
+        // this.getOfficialDataState()
         this.getMemberFollowData()
         })
 
@@ -144,18 +144,20 @@ Page({
   getMemberFollowState() {
     api.post('v2/member/memberInfo').then(res => {
       console.log('getMemberFollowState', res)
-      this.setData({ memberFollowState: res.msg.sub_flag })
+      this.setData({ 
+        memberFollowState: res.msg.sub_flag ,
+        officialDataState: res.msg.sub_flag == 1 ? false : true,})
     })
   },
   //获取用户实时数据
-  getOfficialDataState() {
-    // sub_flag 1:关注 0:未关注
-    if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
-      this.setData({ officialDataState: true })
-    } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
-      this.setData({ officialDataState: false })
-    }
-  },
+  // getOfficialDataState() {
+  //   // sub_flag 1:关注 0:未关注
+  //   if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
+  //     this.setData({ officialDataState: true })
+  //   } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
+  //     this.setData({ officialDataState: false })
+  //   }
+  // },
   /**
    * write@xuhuang  end
    */
