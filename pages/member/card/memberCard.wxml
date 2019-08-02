@@ -32,6 +32,10 @@
             </view>
           </view>
           <view class="buyCardRecord_time">{{util.timeFormat(item.create_time, 'MM月DD日')}}-{{util.timeFormat(item.validity_date, 'MM月DD日')}}<text wx:if="{{item.status===2}}">(已过期)</text></view>
+          <view class='giftCardBtn' 
+                wx:if='{{item.gift_flag == 1}}'
+                data-cardid='{{item.id}}'
+                bindtap='giveToCard'>增送好友</view>
         </view>
       </view>
     </block>

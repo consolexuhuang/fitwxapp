@@ -3,7 +3,7 @@
            custom-class='activityPopupStyle'
            z-index = '1001'>
     <image class='activityImg' style='width:{{activityPopupState.width}}rpx;height:{{activityPopupState.height}}rpx' src='{{activityPopupState.imgSrc}}'></image>
-    <text class='colseBtn iconicon-test18 iconfont' bindtap='onclose'></text>
+    <text class='colseBtn iconicon-test18 iconfont' bindtap='_onclose'></text>
     <view class='btn' 
           wx:if='{{activityPopupState.bottomText}}'
           bindtap='giveGiftCard'>{{activityPopupState.bottomText}}</view>

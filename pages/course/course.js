@@ -60,8 +60,9 @@ Page({
       bottomText:'立即赠送',
       width:647, //rpx
       height:438,
-      imgSrc:'https://img.cdn.powerpower.net/5d416646e4b0e3fd6800a785.png'
+      imgSrc:'https://img.cdn.powerpower.net/5d416646e4b0e3fd6800a785.png',
     },//活动弹窗
+    nowGetTime:''
   },
 
   /**
@@ -82,7 +83,8 @@ Page({
     })
   },
   onShow() {
-    console.log('onShow')
+    // console.log('onShow')
+    this.setData({ nowGetTime: new Date().getTime()})
     //判断用户是否关注公众号
     app.checkSessionFun().then(() => {
       this.getMemberFollowState()
@@ -709,7 +711,7 @@ Page({
   //活地图跳转
   giveGiftCard(){
     wx.navigateTo({
-      url: '/pages/card/payCard?cardId=' + 1112656629339394048,
+      url: '/pages/card/payCard?cardId=1112656629339394048',
     })
   },
 

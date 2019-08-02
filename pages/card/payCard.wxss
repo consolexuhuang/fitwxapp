@@ -54,61 +54,6 @@ page {
   color: #828282;
   white-space: nowrap
 }
-.cardBanner{
-  /* width:650rpx; */
-  width: 100%;
-  height:360rpx;
-  margin: 0 auto 20rpx;
-  background: #fff;
-}
-.bannerItem{
-  /* width:650rpx !important; */
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding-bottom: 10rpx;
-  box-sizing: border-box;
-  /* padding: 0 7rpx;
-  box-sizing: border-box; */
-}
-.cardImg{
-  width:650rpx;
-  height: 100%;
-  /* box-shadow: 10rpx 10rpx 10rpx #dcdcdc;
-  border-radius: 8rpx */
-}
-/* .sacleStyle{
-  transform: scale(.92)
-} */
-@keyframes scaleOut {
-  0% {
-   transform: scale(1)
-  }
-
-  100% {
-    transform: scale(.92)
-  }
-}
-@keyframes scaleIn {
-  0% {
-   transform: scale(.92)
-  }
-
-  100% {
-    transform: scale(1)
-  }
-}
-.sacleOutStyle {
-  animation-name: scaleOut;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
-}
-.sacleInStyle {
-  animation-name: scaleIn;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
-}
 
 .pay-title {
   padding: 20rpx 62rpx;

@@ -118,6 +118,9 @@
   margin-right: 18rpx;
   vertical-align: middle;
 }
+.icon_qx{
+  color: #A5579C !important;
+}
 
 .content.purchase .list .item .item-title .name {
   font-size: 28rpx;

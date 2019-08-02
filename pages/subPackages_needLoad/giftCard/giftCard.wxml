@@ -2,17 +2,18 @@
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
 <view class='givePeople' style='margin-top:{{marginTopBar}}px'>
    <view class='givePeopleBox'>
-      <image class='givePeopleImg' src='{{imgUrl}}icon/default_header.png'></image>
-      <view class='givePeopleName'>小A与阿J</view>
+      <image class='givePeopleImg' wx:if='{{!giftCardInfo.gift_head_img}}' src='{{imgUrl}}icon/default_header.png'></image>
+      <image class='givePeopleImg' wx:else src='{{giftCardInfo.gift_head_img}}'></image>
+      <view class='givePeopleName'>{{giftCardInfo.gift_nick_name}}</view>
    </view>
 </view>
 <view class='giveTitle'>赠送了一张七夕卡</view>
 
-<view class='giveMomey'>¥520</view>
+<!-- <view class='giveMomey'>¥520</view> -->
 
-<image class='giveBanner' src='{{imgUrl}}order/coupon_purple.png'></image>
+<image class='giveBanner' src='{{giftCardInfo.card_img}}'></image>
 <view class='giveTitleBox'>
-  <view class='giveMessage'>亲爱的，七夕节快乐！送你一张健身卡，快来试试吧！</view>
+  <view class='giveMessage'>{{giftCardInfo.gift_memo}}</view>
 </view>
 
 <view class='equity'>
@@ -20,17 +21,34 @@
    <view class='equityText'>七夕卡含10次全场通用课程约课机会七夕卡在有效期内可以转赠他人，也可以自己使用。</view>
 </view>
 
-<view class='receive'>
+<view class='receive' wx:if='{{giftCardInfo.gift_flag === 2}}'>
   <view class='receiveInfo'>
-     <image src='{{imgUrl}}icon/default_header.png' class='receiveImg'></image>
-     <view class='receiveName'>consdsds</view>
+      <image class='receiveImg' wx:if='{{!giftCardInfo.head_img}}' src='{{imgUrl}}icon/default_header.png'></image>
+      <image class='receiveImg' wx:else src='{{giftCardInfo.head_img}}'></image>
+     <view class='receiveName'>{{giftCardInfo.nick_name}}</view>
   </view>
   <view class='receiveState'>已领取</view>
 </view>
 
-<view class='btn'>立即查看</view>
+<view class='btn' 
+      bindtap='clickGiftCard' 
+      wx:if='{{giftCardInfo.gift_flag === 1}}'>收下TA的七夕礼物</view>
 
-<view class='giveSelf'>不送了，直接放入我的卡包</view>
+<view class='btn' 
+      wx:elif='{{giftCardInfo.gift_flag === 1 && enterUserAdmin == 1}}'>
+      再次提醒TA收下   
+      <button open-type='share' class='btnShare'></button>
+</view>
+
+<view class='btn' 
+      wx:elif='{{giftCardInfo.gift_flag === 2 && enterUserAdmin == 1}}'
+      bindtap='jumpToCourse'>和TA一起约课</view>
+
+<view class='btn' 
+      wx:elif='{{giftCardInfo.gift_flag === 2 && enterUserAdmin == 2}}'
+      bindtap='jumpToCourse'>立即查看</view>
+
+<view class='giveSelf' bindtap='sendMyslfe'>不送了，直接放入我的卡包</view>
 
 <jurisdictionPopup state = '{{jurisdictionState}}'
                    bindmyevent='bindgetuserinfo'></jurisdictionPopup>

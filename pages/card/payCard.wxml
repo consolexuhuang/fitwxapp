@@ -3,30 +3,10 @@
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
 <view class="wrapper" wx:if="{{goodData}}" style='padding-bottom:140rpx;margin-top:{{marginTopBar+10}}px'>
   <!-- card -->
-  <view class="card fadeIn animated" wx:if='{{false}}'>
-    <image class="card-bg" src="{{goodData.banner_img}}"></image>
+  <view class="card fadeIn animated">
+    <image class="card-bg" src="{{goodData.banner_img}}" bindtap='jumpToGiftCard'></image>
     <text class="number">¥{{goodData.card_def.discount_price}}/{{goodData.card_def.card_total_count}}次</text>
   </view>
-  <swiper class='cardBanner' 
-          wx:if='{{true}}'
-          indicator-active-color='#896eff'
-          indicator-dots="{{true}}"
-          previous-margin='60rpx'
-          next-margin='60rpx'
-          current='1'
-          bindchange='bindchangeBanner'
-          circular="{{true}}"
-          >
-     <swiper-item class='bannerItem' bindtap='jumpToGiftCard'>
-        <image class='cardImg {{current_banner == 0 ? "sacleInStyle" : "sacleOutStyle"}}' src='{{goodData.banner_img}}'></image>
-     </swiper-item>
-     <swiper-item class='bannerItem' bindtap='jumpToGiftCard'>
-        <image class='cardImg {{current_banner == 1 ? "sacleInStyle" : "sacleOutStyle"}}' src='{{goodData.banner_img}}'></image>
-     </swiper-item>
-     <swiper-item class='bannerItem' bindtap='jumpToGiftCard'>
-        <image class='cardImg {{current_banner == 2 ? "sacleInStyle" : "sacleOutStyle"}}' src='{{goodData.banner_img}}'></image>
-     </swiper-item>
-  </swiper>
   <!-- card info -->
   <view class="card-info fadeIn animated">
     <view class="row">

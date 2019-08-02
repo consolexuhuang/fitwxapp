@@ -125,6 +125,7 @@ page{
   line-height:84rpx;
   text-align: center;
   margin: 80rpx auto 0;
+  position: relative;
 }
 .giveSelf{
   font-size:26rpx;
@@ -134,4 +135,12 @@ page{
   line-height:37rpx;
   text-align: center;
   margin-top: 40rpx;
+}
+.btnShare{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0
 }

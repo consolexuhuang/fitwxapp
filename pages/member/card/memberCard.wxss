@@ -111,6 +111,21 @@ page{
   margin: 0 auto;
   overflow:hidden;
 }
+.giftCardBtn{
+  background:rgba(116,90,251,1);
+  border-radius:4rpx;
+  font-size:30rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:50rpx;
+  padding: 0 35rpx;
+  box-sizing: border-box;
+  text-align: center;
+  position: absolute;
+  bottom: 47rpx;
+  right: 35rpx;
+}
 .buyCardRecord_numBox{
   position: absolute;
   top: 0;

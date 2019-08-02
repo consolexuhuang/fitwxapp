@@ -17,7 +17,13 @@
         <text class='iconfont iconclose-circle' wx:if="{{searchText}}" catchtap='clearSearch'></text>
       </view>
 
-      <swiper class="banner-swiper fadeIn animated" indicator-dots indicator-color="#8B6FF1" indicator-active-color="#FFFFFF" autoplay circular interval="3000">
+      <swiper class="banner-swiper fadeIn animated" 
+              indicator-dots 
+              indicator-color="#8B6FF1"
+              indicator-active-color="#FFFFFF" 
+              autoplay 
+              circular 
+              interval="3000">
         <block wx:for="{{config.bannerList}}" wx:key="index">
           <swiper-item class="banner-item">
             <image src="{{util.imageParam(item.image)}}" lazy-load data-path="{{item.path}}" bindtap="handleBannerTap" />
@@ -243,4 +249,5 @@
 </officalAccount>
 
 <activityPopup activityPopupState='{{activityPopupState}}'
+               nowGetTime='{{nowGetTime}}'
                bindgiveGiftCardEvent='giveGiftCard'></activityPopup>

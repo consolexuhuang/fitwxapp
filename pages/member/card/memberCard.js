@@ -72,6 +72,13 @@ Page({
       url: '/pages/card/recharge',
     })
   },
+  // 赠送
+  giveToCard(e){
+    let cardId = e.currentTarget.dataset.cardid
+    wx.navigateTo({
+      url: '/pages/subPackages_needLoad/editorCard/editorCard?cardId=' + cardId,
+    })
+  },
   onPullDownRefresh(){
     this.getCardList()
   },

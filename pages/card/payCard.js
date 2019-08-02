@@ -15,7 +15,6 @@ Page({
       tab_topBackground: '#fff'
     },
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
-    current_banner: 1,
     cardId: '',
     goodId: '',
     goodData: '',
@@ -27,6 +26,18 @@ Page({
 
     //myCardCredit: 10, //卡余额  this.data.orderData.card_amount 可以替换                                //checkCardCredict方法下的值
     //myCardIsOpening: true, //卡是否开通 this.data.order.has_card
+  },
+  // 获取订单详情
+  getOrderInfo(orderId){
+    return new Promise(resolve => {
+      let data = {
+        orderId: orderId
+      }
+      api.post('v2/good/getOrderInfo', data).then(res => {
+        console.log('订单数据', res)
+        resolve(res.msg)
+      })
+    })
   },
   //校验当前余额状态
   checkCardCredict(){
@@ -224,8 +235,17 @@ Page({
             }
             // 微信支付
             if (orderData.payType == 'wx') {
-              _this.wxPayAction().then(res => {
-                wx.navigateBack()
+              _this.wxPayAction().then(() => {
+                this.getOrderInfo(orderData.orderId).then(res_orderInfo => {
+                  if (res_orderInfo.card_info.gift_flag === 1){
+                    // 1:可赠送的礼品卡
+                    wx.navigateTo({
+                      url: '/pages/subPackages_needLoad/editorCard/editorCard?cardId=' + res_orderInfo.card_info.id,
+                    })
+                  } else {
+                    wx.navigateBack()
+                  }
+                })
               })
             }
           }, () => {

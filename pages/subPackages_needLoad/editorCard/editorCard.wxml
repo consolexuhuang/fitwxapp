@@ -1,13 +1,49 @@
 <!--pages/subPackages_needLoad/editorCard/editorCard.wxml-->
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<image class='cardBanner' style='margin-top:{{marginTopBar+25}}px' src='{{imgUrl}}order/coupon_purple.png'></image>
-<view class='cardTitle'>七夕卡</view>
+<image class='cardBanner fadeIn animated' style='margin-top:{{marginTopBar+25}}px' src='{{optional_imgList[currentIndex]}}'></image>
 
-<textarea placeholder='用心写下对她想说的话吧！(50字以内)'
+<view class='chooseBannerImg'>
+   <view class='imgBox {{currentIndex == index ? "chooseImgBox" : ""}}' 
+         wx:for='{{optional_imgList}}' 
+         wx:key='{{index}}'
+         data-index='{{index}}'
+         bindtap='chooseCard'>
+      <image src='{{item}}' class='bannerImgItem fadeIn animated'></image>
+      <image wx:if='{{currentIndex == index}}' class='sureIcon fadeIn animated' src='{{imgUrl}}icon/giftCardChoose.png'></image>
+   </view>
+</view>
+<!-- <swiper class='cardBanner' 
+        wx:if='{{true}}'
+        indicator-color="#FFFFFF"
+        indicator-active-color="#8B6FF1" 
+        indicator-dots="{{true}}"
+        previous-margin='60rpx'
+        next-margin='60rpx'
+        current='1'
+        bindchange='bindchangeBanner'
+        circular="{{true}}"
+        style='margin-top:{{marginTopBar+25}}px'
+        >
+    <swiper-item class='bannerItem' bindtap='jumpToGiftCard'>
+      <image class='cardImg {{current_banner == 0 ? "sacleInStyle" : "sacleOutStyle"}}' src='https://img.cdn.powerpower.net/5ca1e3b7e4b0207125873d5b.png'></image>
+    </swiper-item>
+    <swiper-item class='bannerItem' bindtap='jumpToGiftCard'>
+      <image class='cardImg {{current_banner == 1 ? "sacleInStyle" : "sacleOutStyle"}}' src='https://img.cdn.powerpower.net/5ca1e3b7e4b0207125873d5b.png'></image>
+    </swiper-item>
+    <swiper-item class='bannerItem' bindtap='jumpToGiftCard'>
+      <image class='cardImg {{current_banner == 2 ? "sacleInStyle" : "sacleOutStyle"}}' src='https://img.cdn.powerpower.net/5ca1e3b7e4b0207125873d5b.png'></image>
+    </swiper-item>
+</swiper> -->
+<!-- <view class='cardTitle'>七夕卡</view> -->
+
+<textarea placeholder='{{placeholderText}}'
           placeholder-style='color:#A0A0A0'
           maxlength='100'
           class='textarea'
           bindinput='bindinput'></textarea>
 
-<view class='btn'>送给朋友</view>
-<view class='btnSelf'>送给自己，直接放入卡包</view>
+<view class='btn fadeIn animated' wx:if='{{optional_imgList}}'>
+   送给朋友
+   <button open-type='share' class='shareBtn'></button>
+</view>
+<view class='btnSelf' bindtap='sendMyslfe'>送给自己，暂时放入卡包</view>
