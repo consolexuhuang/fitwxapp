@@ -109,6 +109,7 @@
     <block wx:if="{{orderData.pay_type===7}}">
       <view class="pay-mode-list">
         <view class="pay-mode-item pay-mode-item-first" bindtap="handleTimeCardTap">
+          <!-- <text wx:if='{{orderData.pay_type == 7 && orderData.time_card_title == "七夕卡(含8次全场课程·可赠送)"}}' class='pay-mode-item-icon icon_qx iconfont iconhuiyuanqiagoumai-7'></text> -->
           <text class='pay-mode-item-icon pay-mode-item-icon2 iconfont iconhuiyuanqiagoumai-'></text>
           <view class="pay-mode-item-content">
             <text class="pay-mode-item-title">{{orderData.time_card_title}}</text>
@@ -143,7 +144,8 @@
     <block wx:else>
       <view class="pay-mode-list">
         <view class="pay-mode-item pay-mode-item-first" wx:if="{{orderData.time_card_available_count}}" data-time-card-id="{{orderData.if_time_card_id}}" bindtap="handlePayModeTap">
-          <text class='pay-mode-item-icon pay-mode-item-icon2 iconfont iconhuiyuanqiagoumai-'></text>
+         <text wx:if='{{orderData.pay_type == 7 && orderData.time_card_title == "七夕卡(含8次全场课程·可赠送)"}}' class='pay-mode-item-icon icon_qx iconfont iconhuiyuanqiagoumai-7'></text>
+          <text wx:else class='pay-mode-item-icon pay-mode-item-icon2 iconfont iconhuiyuanqiagoumai-'></text>
           <view class="pay-mode-item-content">
             <text class="pay-mode-item-title">{{orderData.if_time_card_title}}</text>
             <text class="pay-mode-item-tips">(暂不使用)</text>

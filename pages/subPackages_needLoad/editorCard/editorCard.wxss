@@ -136,3 +136,73 @@
   left: 0;
   opacity: 0
 }
+/* ————————————————————————————————————popup */
+.tipsStyle{
+  border-radius: 14rpx;
+}
+/* .tipsBox{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,.5);
+  z-index: 1001
+} */
+.tips{
+  background: #fff;
+  border-radius: 14rpx;
+  width: 630rpx;
+}
+.tips_title{
+  font-size:40rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(3,3,3,1);
+  line-height:120rpx !important;
+  text-align: center;
+  white-space: normal
+}
+.tips_text{
+  padding: 0 35rpx 60rpx;
+  box-sizing: border-box;
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(160,160,160,1);
+  line-height:40rpx !important;
+  white-space: normal
+}
+.btn_popup{
+  display: flex;
+}
+.noneBtn{
+  flex: 1;
+  font-size:32rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(3,3,3,1);
+  line-height:87rpx !important;
+  text-align: center;
+  border-top: 1rpx solid #E6E6E6;
+  border-right: 1rpx solid #E6E6E6;
+  white-space: normal
+}
+.cofirmBtn{
+  flex: 1;
+  font-size:32rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(3,3,3,1);
+  line-height:87rpx !important;
+  text-align: center;
+  border-top: 1rpx solid #E6E6E6;
+  position: relative;
+  white-space: normal
+}
+.btnBox{
+  position: fixed;
+  bottom: 90rpx;
+  width: 100%;
+  z-index: 20
+}

@@ -19,7 +19,7 @@ Page({
     jurisdictionState: false,
     giftCardInfo:'',
     cardId:'',
-    enterUserAdmin: 3, //当前进入用户身份 1-自己，2-收卡人，3-其他人
+    enterUserAdmin: 3, //当前进入用户身份 1-自己/赠送，2-收卡人，3-其他人
   },
   // 获取会员卡详情
   getCardInfo(cardId) {
@@ -27,14 +27,25 @@ Page({
       cardId: cardId
     }
     api.post('card/getCardInfo', data).then(res => {
-      console.log('卡信息', res)
-      if (store.getItem('userData').id != res.msg.gift_member_id && store.getItem('userData').id != res.msg.member_id){
-        this.setData({ enterUserAdmin : 3})
-      } else if (store.getItem('userData').id == res.msg.gift_member_id){
-        this.setData({ enterUserAdmin: 1 })
-      } else if (store.getItem('userData').id == res.msg.member_id){
-        this.setData({ enterUserAdmin: 2 })
+      console.log('卡信息2', res)
+      wx.hideLoading()
+      if (res.msg.gift_flag == 1){
+        if (store.getItem('userData').id == res.msg.member_id){
+          this.setData({ enterUserAdmin: 1 })
+        } else if (!res.msg.gift_member_id && store.getItem('userData').id != res.msg.member_id){
+          this.setData({ enterUserAdmin: 2 })
+        }
+      } else if (res.msg.gift_flag == 2){
+        if (store.getItem('userData').id != res.msg.gift_member_id && store.getItem('userData').id != res.msg.member_id) {
+          this.setData({ enterUserAdmin: 3 })
+        } else if (store.getItem('userData').id == res.msg.gift_member_id) {
+          this.setData({ enterUserAdmin: 1 })
+        } else if (store.getItem('userData').id == res.msg.member_id) {
+          this.setData({ enterUserAdmin: 2 })
+        }
       }
+      console.log('身份', this.data.enterUserAdmin)
+
       this.setData({
         giftCardInfo: res.msg,
       })
@@ -48,16 +59,18 @@ Page({
       title: '领取中...',
     })
     api.post('card/receiveCardGift', data).then(res => {
-      wx.hideLoading()
       console.log('收卡', res)
       if(res.code == 0 && res.msg === true){
-        wx.showToast({
-          title: '领取成功！',
-        })
+        // wx.showToast({
+        //   title: '领取成功！',
+        // })
+        this.getCardInfo(this.data.cardId)
       } else {
         wx.showToast({
           title: res.msg || '领取失败！',
+          icon:'none'
         })
+        this.getCardInfo(this.data.cardId)
       }
     })
   },
@@ -112,7 +125,7 @@ Page({
   onShareAppMessage: function () {
     return {
       title: `亲爱的，七夕节快乐！送你一张健身卡，快来试试吧！`,
-      path: 'pages/subPackages_gift/giftCard/giftCard',
+      path: 'pages/subPackages_needLoad/giftCard/giftCard',
       // imageUrl: this.data.picList[0],
       success: function (res) {
         console.log('分享成功', res)

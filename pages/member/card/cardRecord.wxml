@@ -24,7 +24,7 @@
               <view class="left">
                 <!-- <image class="icon" src="{{imgUrl}}card/icon-bike-green.png"></image> -->
                 <text wx:if='{{cardBuyRecord.card_title == "单车卡"}}' class='icon iconfont iconhuiyuanqiagoumai-1'></text>
-                <text wx:elif='{{cardBuyRecord.gift_flag}}' class='icon icon_qx iconfont iconhuiyuanqiagoumai-7'></text>
+                <!-- <text wx:elif='{{cardBuyRecord.gift_flag}}' class='icon icon_qx iconfont iconhuiyuanqiagoumai-7'></text> -->
                 <text wx:else class='icon icon2 iconfont iconhuiyuanqiagoumai-'></text>
                 <text class="name">{{cardBuyRecord.card_title}}</text>
               </view>

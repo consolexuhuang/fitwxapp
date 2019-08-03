@@ -61,6 +61,4 @@ Page({
       url: `/pages/trainingCamp/trainingCampOrder/trainingCampOrder?goodId=${this.data.goodId}`,
     })
   },
-  
-
 })

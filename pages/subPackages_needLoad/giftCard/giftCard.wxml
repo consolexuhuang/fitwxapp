@@ -1,6 +1,6 @@
 <!--pages/subPackages_gift/giftCard/giftCard.wxml-->
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class='givePeople' style='margin-top:{{marginTopBar}}px'>
+<view class='givePeople' style='padding-top:{{marginTopBar}}px'>
    <view class='givePeopleBox'>
       <image class='givePeopleImg' wx:if='{{!giftCardInfo.gift_head_img}}' src='{{imgUrl}}icon/default_header.png'></image>
       <image class='givePeopleImg' wx:else src='{{giftCardInfo.gift_head_img}}'></image>
@@ -32,7 +32,7 @@
 
 <view class='btn' 
       bindtap='clickGiftCard' 
-      wx:if='{{giftCardInfo.gift_flag === 1}}'>收下TA的七夕礼物</view>
+      wx:if='{{giftCardInfo.gift_flag === 1 && enterUserAdmin == 2}}'>收下TA的七夕礼物</view>
 
 <view class='btn' 
       wx:elif='{{giftCardInfo.gift_flag === 1 && enterUserAdmin == 1}}'>
@@ -46,9 +46,9 @@
 
 <view class='btn' 
       wx:elif='{{giftCardInfo.gift_flag === 2 && enterUserAdmin == 2}}'
-      bindtap='jumpToCourse'>立即查看</view>
+      bindtap='sendMyslfe'>立即查看</view>
 
-<view class='giveSelf' bindtap='sendMyslfe'>不送了，直接放入我的卡包</view>
+<view class='giveSelf' bindtap='sendMyslfe' wx:if='{{giftCardInfo.gift_flag === 1 && enterUserAdmin == 1}}'>查看我的卡包</view>
 
 <jurisdictionPopup state = '{{jurisdictionState}}'
                    bindmyevent='bindgetuserinfo'></jurisdictionPopup>

@@ -374,6 +374,9 @@
 .pay-mode-item-icon4{
   color: #896dff;
 }
+.icon_qx{
+  color: #A5579C
+}
 .pay-mode-item-content {
   flex: 1;
   margin-left: 28rpx;

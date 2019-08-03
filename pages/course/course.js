@@ -56,13 +56,15 @@ Page({
     memberInfo:'',
     searchIn:false,//是否是搜素进来的
     activityPopupState:{
-      state: true,
-      bottomText:'立即赠送',
-      width:647, //rpx
-      height:438,
-      imgSrc:'https://img.cdn.powerpower.net/5d416646e4b0e3fd6800a785.png',
+      state: false,
+      bottomText:'立即查看',
+      width:580, //rpx
+      height:769,
+      imgSrc:'',
+      url:''
     },//活动弹窗
-    nowGetTime:''
+    nowGetTime:'',
+    // checkPromotion_course:{}, //首页的活动促销
   },
 
   /**
@@ -88,6 +90,7 @@ Page({
     //判断用户是否关注公众号
     app.checkSessionFun().then(() => {
       this.getMemberFollowState()
+      this.checkPromotion()
     })
     // this.getOfficialDataState()
     //搜索进来的
@@ -140,6 +143,26 @@ Page({
         officialDataState: res.msg.sub_flag == 1 ? false : true,
         memberInfo: res.msg
       })
+    })
+  },
+  checkPromotion() {
+    let data = {
+      location: 'course'
+    }
+    api.post('v2/member/checkPromotion', data).then(res => {
+      console.log('checkPromotion', res)
+      console.log(this.data.nowGetTime - store.getItem('closeTime') || new Date().getTime())
+      if(Object.keys(res.msg).length > 0){
+        this.setData({
+          ['activityPopupState.imgSrc']: res.msg.image,
+          ['activityPopupState.url']: res.msg.url,
+          ['activityPopupState.state']: (this.data.nowGetTime - store.getItem('closeTime') || new Date().getTime()) > 86400000 ? true : false
+        })
+      } else {
+        this.setData({
+          ['activityPopupState.state']: false
+        })
+      }
     })
   },
   // getOfficialDataState() {
@@ -710,8 +733,12 @@ Page({
   },
   //活地图跳转
   giveGiftCard(){
+    store.setItem('closeTime', new Date().getTime())
+    this.setData({
+      ['activityPopupState.state']: false,
+    })
     wx.navigateTo({
-      url: '/pages/card/payCard?cardId=1112656629339394048',
+      url: this.data.activityPopupState.url,
     })
   },
 

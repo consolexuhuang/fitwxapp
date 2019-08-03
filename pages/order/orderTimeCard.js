@@ -43,6 +43,7 @@ Page({
     try {
       const orderTimeCard = wx.getStorageSync('orderTimeCard')
       if (orderTimeCard) {
+        console.log(JSON.parse(orderTimeCard))
         const timeCardList = JSON.parse(orderTimeCard).timeCardList
         const count = JSON.parse(orderTimeCard).count
         const couponId = JSON.parse(orderTimeCard).couponId

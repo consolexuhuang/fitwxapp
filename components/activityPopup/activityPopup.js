@@ -9,33 +9,16 @@ Component({
       type:Object,
       value:{}
     },
-    nowGetTime: {
-      type: null,
-      value: 0
-    }
+    // nowGetTime: {
+    //   type: null,
+    //   value: 0
+    // }
   },
   
   /**
    * 组件的初始数据
    */
   data: {
-  },
-  observers: {
-    'nowGetTime': function () {
-      console.log(this.data.nowGetTime - store.getItem('closeTime') || new Date().getTime())
-      if ((this.data.nowGetTime - store.getItem('closeTime') || new Date().getTime()) > 10000) {
-        console.log('activityPopupState', this.data)
-        this.setData({
-          ['activityPopupState.state']: true,
-        })
-      } else {
-        // console.log('asas')
-        console.log('activityPopupState', this.data)
-        this.setData({
-          ['activityPopupState.state']: false,
-        })
-      }
-    }
   },
   lifetimes: {
     attached() {

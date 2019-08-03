@@ -99,6 +99,7 @@ page{
   width: 70rpx;
   height: 70rpx;
   margin-right: 20rpx;
+  border-radius: 50%
 }
 .receiveName{
   font-size:30rpx;

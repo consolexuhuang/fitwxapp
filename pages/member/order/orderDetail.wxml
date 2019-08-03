@@ -66,12 +66,12 @@
       <text class="orderDetail_text">单车卡</text>
       <view class="orderDetail_payData">-1次</view>
     </view>
-    <view class="admissionCode2" wx:if="{{orderData.order.paymentWay == 7 && orderData.order.cardTitle == '早课卡'}}">
+    <view class="admissionCode2" wx:elif="{{orderData.order.paymentWay == 7 && orderData.order.cardTitle == '早课卡'}}">
       <text class='orderDetail_icon iconfont iconhuiyuanqiagoumai-5'></text>
       <text class="orderDetail_text">早课卡</text>
       <view class="orderDetail_payData">-1次</view>
     </view>
-    <view class="admissionCode2" wx:if="{{orderData.order.paymentWay == 7 && orderData.order.cardTitle == '七夕卡(含8次全场课程·可赠送)'}}">
+    <view class="admissionCode2" wx:elif="{{orderData.order.paymentWay == 7}}">
       <text class='orderDetail_icon iconfont iconhuiyuanqiagoumai-5'></text>
       <text class="orderDetail_text">{{orderData.order.cardTitle}}</text>
       <view class="orderDetail_payData">-1次</view>

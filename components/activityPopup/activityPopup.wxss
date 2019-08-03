@@ -12,8 +12,8 @@
   position: absolute;
   font-size: 50rpx;
   color: #8175A1;
-  right: 0;
-  top: -98rpx;
+  right: 34rpx;
+  top: 34rpx;
 }
 .btn{
   width:244rpx;
@@ -27,7 +27,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -100rpx;
+  bottom: 38rpx;
   margin: auto;
   text-align: center
 }

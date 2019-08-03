@@ -20,7 +20,7 @@ Page({
     giftCardInfo:'', //卡信息
     optional_imgList:'',
     currentIndex:0, //当前封面类型
-    placeholderText:''
+    tipsState: false, //提示
   },
   // 获取会员卡详情
   getCardInfo(cardId){
@@ -53,7 +53,6 @@ Page({
     if (options.cardId) {
       this.setData({ 
         cardId: options.cardId,
-        placeholderText: '用心写下对她想说的话吧！(50字以内)'
       })
       this.getCardInfo(options.cardId)
     }
@@ -70,9 +69,6 @@ Page({
     // console.log(e)
     this.setData({ 
       currentIndex: e.currentTarget.dataset.index ,
-      placeholderText: e.currentTarget.dataset.index == 0
-                          ? "用心写下对她想说的话吧！(50字以内)"
-        : (e.currentTarget.dataset.index == 1 ? "一声姐妹大过天，闺蜜也有真感情！(50字以内)" : (e.currentTarget.dataset.index == 2 ? "想对单身的TA说些什么呢？(50字以内)" : "七夕祝福语，(50字以内)"))
     })
   },
   bindinput(e){
@@ -85,6 +81,9 @@ Page({
       url: '/pages/member/card/memberCard',
     })
   },
+  sendFriend(){
+    this.setData({ tipsState: true })
+  },
   //banner
   // bindchangeBanner(e) {
   //   console.log(e.detail.current)
@@ -92,14 +91,18 @@ Page({
   //     current_banner: e.detail.current
   //   })
   // },
+  closeNone(){
+    this.setData({ tipsState: false, textValue: this.data.sendMessage})
+  },
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage () {
     this.upDataGiveInfo()
+    this.setData({ tipsState: false, textValue: this.data.sendMessage })
     return {
-      title: this.data.sendMessage || `七夕节快乐！送你一张健身卡，快来试试吧！`,
-      path: 'pages/subPackages_gift/giftCard/giftCard?cardId=' + this.data.cardId,
+      title: this.data.sendMessage || '七夕节快乐！送你一张健身卡，快来试试吧!',
+      path: 'pages/subPackages_needLoad/giftCard/giftCard?cardId=' + this.data.cardId,
       imageUrl: this.data.optional_imgList[this.data.currentIndex],
     }
     // wx.showModal({

@@ -35,7 +35,7 @@
           <view class='giftCardBtn' 
                 wx:if='{{item.gift_flag == 1}}'
                 data-cardid='{{item.id}}'
-                bindtap='giveToCard'>增送好友</view>
+                catchtap='giveToCard'>赠送好友</view>
         </view>
       </view>
     </block>
