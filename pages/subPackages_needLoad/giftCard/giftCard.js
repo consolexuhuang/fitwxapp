@@ -20,6 +20,10 @@ Page({
     giftCardInfo:'',
     cardId:'',
     enterUserAdmin: 3, //当前进入用户身份 1-自己/赠送，2-收卡人，3-其他人
+    // loveStarLocation: '',//爱心起始坐标
+    // loveStarList:[
+    //   {id: 1, state:false},
+    // ],
   },
   // 获取会员卡详情
   getCardInfo(cardId) {
@@ -45,7 +49,7 @@ Page({
         }
       }
       console.log('身份', this.data.enterUserAdmin)
-
+      res.msg.card_title = res.msg.card_title.slice(0,res.msg.card_title.indexOf('('))
       this.setData({
         giftCardInfo: res.msg,
       })
@@ -113,20 +117,40 @@ Page({
       url: '/pages/member/card/memberCard',
     })
   },
+  jumpToMycard(){
+    wx.switchTab({
+      url: '/pages/member/member',
+    })
+  },
   // 约课
   jumpToCourse(){
     wx.switchTab({
       url: '/pages/course/course',
     })
   },
+  // showLoveStar(e){
+  //   console.log(e)
+  //   console.log(this.data.loveStarList)
+  //   if (count <= 10) {
+  //     let starObj = {
+  //       id: count, state: true,
+  //     }
+  //     this.setData({
+  //       loveStarLocation: e.detail,
+  //       ['loveStarList[' + count + 1 + ']']: starObj,
+  //     })
+  //   } else {
+  //     count = 0
+  //   }
+  // },
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage () {
     return {
-      title: `亲爱的，七夕节快乐！送你一张健身卡，快来试试吧！`,
-      path: 'pages/subPackages_needLoad/giftCard/giftCard',
-      // imageUrl: this.data.picList[0],
+      title: this.data.giftCardInfo.gift_memo || '亲爱的，七夕节快乐！送你一份小心意，希望你喜欢。',
+      path: 'pages/subPackages_needLoad/giftCard/giftCard?cardId=' + this.data.cardId,
+      imageUrl: 'https://img.cdn.powerpower.net/5d469297e4b0c7c776bbbba5.png',
       success: function (res) {
         console.log('分享成功', res)
       },

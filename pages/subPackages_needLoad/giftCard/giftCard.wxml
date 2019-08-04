@@ -1,27 +1,35 @@
 <!--pages/subPackages_gift/giftCard/giftCard.wxml-->
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
 <view class='givePeople' style='padding-top:{{marginTopBar}}px'>
-   <view class='givePeopleBox'>
+   <view class='givePeopleBox fadeIn animated'>
       <image class='givePeopleImg' wx:if='{{!giftCardInfo.gift_head_img}}' src='{{imgUrl}}icon/default_header.png'></image>
       <image class='givePeopleImg' wx:else src='{{giftCardInfo.gift_head_img}}'></image>
       <view class='givePeopleName'>{{giftCardInfo.gift_nick_name}}</view>
    </view>
 </view>
-<view class='giveTitle'>赠送了一张七夕卡</view>
+<view class='giveTitle'>赠送给你一张{{giftCardInfo.card_title}}</view>
 
 <!-- <view class='giveMomey'>¥520</view> -->
 
-<image class='giveBanner' src='{{giftCardInfo.card_img}}'></image>
+<image class='giveBanner fadeIn animated' src='{{giftCardInfo.card_img}}'>
+  <text class='cardNo'>{{giftCardInfo.card_no}}</text>
+</image>
+<!-- <text  class='iconfont iconxinaixin LoveStar fadeOutUpBig'
+       wx:for='{{loveStarList}}'
+       wx:key='{{index}}'
+       wx:if='{{item.state}}'
+       style='left:{{loveStarLocation.x}}rpx;top:{{loveStarLocation.y}}rpx'></text> -->
+
 <view class='giveTitleBox'>
   <view class='giveMessage'>{{giftCardInfo.gift_memo}}</view>
 </view>
 
-<view class='equity'>
+<view class='equity fadeIn animated'>
    <text class='iconfont iconxingzhuangjiehe-2 icon'></text>
-   <view class='equityText'>七夕卡含10次全场通用课程约课机会七夕卡在有效期内可以转赠他人，也可以自己使用。</view>
+   <view class='equityText'>{{giftCardInfo.card_memo}}</view>
 </view>
 
-<view class='receive' wx:if='{{giftCardInfo.gift_flag === 2}}'>
+<view class='receive fadeIn animated' wx:if='{{giftCardInfo.gift_flag === 2}}'>
   <view class='receiveInfo'>
       <image class='receiveImg' wx:if='{{!giftCardInfo.head_img}}' src='{{imgUrl}}icon/default_header.png'></image>
       <image class='receiveImg' wx:else src='{{giftCardInfo.head_img}}'></image>
@@ -30,23 +38,23 @@
   <view class='receiveState'>已领取</view>
 </view>
 
-<view class='btn' 
+<view class='btn fadeIn animated' 
       bindtap='clickGiftCard' 
       wx:if='{{giftCardInfo.gift_flag === 1 && enterUserAdmin == 2}}'>收下TA的七夕礼物</view>
 
-<view class='btn' 
+<view class='btn fadeIn animated' 
       wx:elif='{{giftCardInfo.gift_flag === 1 && enterUserAdmin == 1}}'>
       再次提醒TA收下   
       <button open-type='share' class='btnShare'></button>
 </view>
 
-<view class='btn' 
+<view class='btn fadeIn animated' 
       wx:elif='{{giftCardInfo.gift_flag === 2 && enterUserAdmin == 1}}'
       bindtap='jumpToCourse'>和TA一起约课</view>
 
-<view class='btn' 
+<view class='btn fadeIn animated' 
       wx:elif='{{giftCardInfo.gift_flag === 2 && enterUserAdmin == 2}}'
-      bindtap='sendMyslfe'>立即查看</view>
+      bindtap='jumpToMycard'>立即查看</view>
 
 <view class='giveSelf' bindtap='sendMyslfe' wx:if='{{giftCardInfo.gift_flag === 1 && enterUserAdmin == 1}}'>查看我的卡包</view>
 

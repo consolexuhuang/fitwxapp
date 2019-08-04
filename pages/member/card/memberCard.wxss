@@ -132,11 +132,12 @@ page{
   bottom: 0;
   right: 54rpx;
   margin: auto;
-  font-size:40rpx;
-  font-family:SourceHanSansCN-Medium;
-  font-weight:500;
+  font-size:36rpx;
+  font-family:PingFangSC-Semibold;
+  font-weight:600;
   color:rgba(255,255,255,1);
-  line-height:46rpx;
+  line-height:37rpx;
+  text-shadow:0px 0px 24rpx rgba(14,1,20,1);
   display: flex;
   align-items: center;
   /* flex-direction: column */
@@ -156,11 +157,12 @@ page{
   position: absolute;
   bottom: 75rpx;
   left: 54rpx;
-  font-size:30rpx;
-  font-family:SourceHanSansCN-Regular;
-  font-weight:400;
+  font-size:24rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
   color:rgba(255,255,255,1);
-  line-height:45rpx;
+  line-height:33rpx;
+  text-shadow:0px 0px 14rpx rgba(0,0,0,1);
 }
 /* -----------缺省图 */
 .noCardBox{

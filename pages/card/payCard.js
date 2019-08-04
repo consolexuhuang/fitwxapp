@@ -26,6 +26,8 @@ Page({
 
     //myCardCredit: 10, //卡余额  this.data.orderData.card_amount 可以替换                                //checkCardCredict方法下的值
     //myCardIsOpening: true, //卡是否开通 this.data.order.has_card
+    current_banner:1,
+    optional_imgList:'',
   },
   // 获取订单详情
   getOrderInfo(orderId){
@@ -193,7 +195,8 @@ Page({
     api.post('v2/good/getGoodInfo', data).then(res => {
       const goodData = res.msg
       this.setData({
-        goodData
+        goodData,
+        optional_imgList: res.msg.card_def.optional_img ?res.msg.card_def.optional_img.split(',') : ''
       })
       this.checkOrder()
     })

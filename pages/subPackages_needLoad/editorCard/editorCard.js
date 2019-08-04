@@ -40,7 +40,7 @@ Page({
     let data = {
       cardId: this.data.cardId,
       giftImg: this.data.optional_imgList[this.data.currentIndex],
-      giftMemo: this.data.sendMessage || '',
+      giftMemo: this.data.sendMessage || this.data.giftCardInfo.gift_memo
     }
     api.post('card/updateCardGiftInfo', data).then(res => {
       console.log('更新赠送信息', res)
@@ -84,13 +84,7 @@ Page({
   sendFriend(){
     this.setData({ tipsState: true })
   },
-  //banner
-  // bindchangeBanner(e) {
-  //   console.log(e.detail.current)
-  //   this.setData({
-  //     current_banner: e.detail.current
-  //   })
-  // },
+  
   closeNone(){
     this.setData({ tipsState: false, textValue: this.data.sendMessage})
   },
@@ -101,9 +95,9 @@ Page({
     this.upDataGiveInfo()
     this.setData({ tipsState: false, textValue: this.data.sendMessage })
     return {
-      title: this.data.sendMessage || '七夕节快乐！送你一张健身卡，快来试试吧!',
+      title: this.data.sendMessage || '亲爱的，七夕节快乐！送你一份小心意，希望你喜欢。',
       path: 'pages/subPackages_needLoad/giftCard/giftCard?cardId=' + this.data.cardId,
-      imageUrl: this.data.optional_imgList[this.data.currentIndex],
+      imageUrl: 'https://img.cdn.powerpower.net/5d469297e4b0c7c776bbbba5.png',
     }
     // wx.showModal({
     //   title: '温馨提示',

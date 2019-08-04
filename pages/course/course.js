@@ -57,7 +57,7 @@ Page({
     searchIn:false,//是否是搜素进来的
     activityPopupState:{
       state: false,
-      bottomText:'立即查看',
+      bottomText:'送出祝福',
       width:580, //rpx
       height:769,
       imgSrc:'',

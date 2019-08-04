@@ -12,31 +12,10 @@
       <image wx:if='{{currentIndex == index}}' class='sureIcon fadeIn animated' src='{{imgUrl}}icon/giftCardChoose.png'></image>
    </view>
 </view>
-<!-- <swiper class='cardBanner' 
-        wx:if='{{true}}'
-        indicator-color="#FFFFFF"
-        indicator-active-color="#8B6FF1" 
-        indicator-dots="{{true}}"
-        previous-margin='60rpx'
-        next-margin='60rpx'
-        current='1'
-        bindchange='bindchangeBanner'
-        circular="{{true}}"
-        style='margin-top:{{marginTopBar+25}}px'
-        >
-    <swiper-item class='bannerItem' bindtap='jumpToGiftCard'>
-      <image class='cardImg {{current_banner == 0 ? "sacleInStyle" : "sacleOutStyle"}}' src='https://img.cdn.powerpower.net/5ca1e3b7e4b0207125873d5b.png'></image>
-    </swiper-item>
-    <swiper-item class='bannerItem' bindtap='jumpToGiftCard'>
-      <image class='cardImg {{current_banner == 1 ? "sacleInStyle" : "sacleOutStyle"}}' src='https://img.cdn.powerpower.net/5ca1e3b7e4b0207125873d5b.png'></image>
-    </swiper-item>
-    <swiper-item class='bannerItem' bindtap='jumpToGiftCard'>
-      <image class='cardImg {{current_banner == 2 ? "sacleInStyle" : "sacleOutStyle"}}' src='https://img.cdn.powerpower.net/5ca1e3b7e4b0207125873d5b.png'></image>
-    </swiper-item>
-</swiper> -->
+
 <!-- <view class='cardTitle'>七夕卡</view> -->
 
-<textarea placeholder='七夕节快乐！送你一张健身卡，快来试试吧！(50字以内)'
+<textarea placeholder='在这里，写下想对TA说的话吧！（50字以内）'
           placeholder-style='color:#A0A0A0'
           maxlength='100'
           class='textarea'
@@ -56,7 +35,7 @@
            z-index = '1001'>
     <view class='tips'>
       <view class='tips_title'>温馨提示</view>
-      <view class='tips_text'>请确认赠送朋友身份，七夕卡赠出并被领取后不可退回。</view>
+      <view class='tips_text'>请确认赠送朋友的身份，七夕卡赠出并被领取后不可退回。</view>
       <view class='btn_popup'>
          <view class='noneBtn' bindtap='closeNone'>取消</view>
          <view class='cofirmBtn'>
