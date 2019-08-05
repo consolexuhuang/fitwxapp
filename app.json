@@ -79,7 +79,7 @@
       },
       {
         "pagePath": "pages/card/card",
-        "text": "卡包",
+        "text": "购卡",
         "iconPath": "/images/tabBar/icon_card.png",
         "selectedIconPath": "/images/tabBar/icon_card_selected.png"
       },

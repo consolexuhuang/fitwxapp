@@ -17,7 +17,7 @@
 
 <textarea placeholder='在这里，写下想对TA说的话吧！（50字以内）'
           placeholder-style='color:#A0A0A0'
-          maxlength='100'
+          maxlength='50'
           class='textarea'
           bindinput='bindinput'
           wx:if='{{!tipsState}}'
@@ -27,7 +27,7 @@
     <view class='btn fadeIn animated' wx:if='{{optional_imgList}}' bindtap='sendFriend'>
       送给朋友
     </view>
-    <view class='btnSelf' bindtap='sendMyslfe'>送给自己，暂时放入卡包</view>
+    <view class='btnSelf' bindtap='sendMyslfe'>暂时放入自己卡包</view>
 </view>
 
 <van-popup show='{{tipsState}}' 

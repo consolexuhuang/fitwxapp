@@ -31,6 +31,7 @@ Page({
       console.log('卡信息', res, res.msg.optional_img.split(','))
       this.setData({
         giftCardInfo: res.msg,
+        textValue:res.msg.gift_memo || '',
         optional_imgList: res.msg.optional_img.split(',')
       })
     })
@@ -95,7 +96,7 @@ Page({
     this.upDataGiveInfo()
     this.setData({ tipsState: false, textValue: this.data.sendMessage })
     return {
-      title: this.data.sendMessage || '亲爱的，七夕节快乐！送你一份小心意，希望你喜欢。',
+      title: this.data.sendMessage || this.data.giftCardInfo.gift_memo,
       path: 'pages/subPackages_needLoad/giftCard/giftCard?cardId=' + this.data.cardId,
       imageUrl: 'https://img.cdn.powerpower.net/5d469297e4b0c7c776bbbba5.png',
     }

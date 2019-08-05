@@ -11,9 +11,9 @@
           <!-- <image src="{{imgUrl}}card/cardNameLogo.png" class="cardNameImg"></image> -->
           <view class="memberCardNumber">{{util.cardNumber(item.card_no)}}</view>
           <view class="currentState">
-              <view class="currentState_title">当前余额</view>
-              <view class="currentState_momey">¥{{item.balance}}</view>
-              <view class="currentState_rechargeBox">
+              <view class="currentState_title" wx:if='{{item.balance}}'>当前余额</view>
+              <view class="currentState_momey" wx:if='{{item.balance}}'>¥{{item.balance || '0.00'}}</view>
+              <view class="currentState_rechargeBox" style='margin-top:{{item.balance ? 0 : "90rpx"}}'>
                 <view class="currentState_recharge">立即充值</view>
               </view>
           </view>
@@ -31,11 +31,17 @@
                 <text class="buyCardRest_num">(剩余{{item.card_left_count}}次)</text>
             </view>
           </view>
-          <view class="buyCardRecord_time">{{util.timeFormat(item.create_time, 'MM月DD日')}}-{{util.timeFormat(item.validity_date, 'MM月DD日')}}<text wx:if="{{item.status===2}}">(已过期)</text></view>
-          <view class='giftCardBtn' 
-                wx:if='{{item.gift_flag == 1}}'
-                data-cardid='{{item.id}}'
-                catchtap='giveToCard'>赠送好友</view>
+          <view class='cardbottonBg'>
+             <view class="buyCardRecord_time">{{util.timeFormat(item.create_time, 'MM月DD日')}}-{{util.timeFormat(item.validity_date, 'MM月DD日')}}<text wx:if="{{item.status===2}}">(已过期)</text></view>
+             <view class='CardBtnBox'>
+                <view class='giftCardBtn giftCardBtn2 {{item.gift_flag != 1 ? "giftCardBtnCourse" : ""}}' catchtap='jumpToCourse'>立即约课</view>
+                <view class='giftCardBtn {{item.gift_flag == 1 ? "giftCardBtnCourse" : ""}}' 
+                    wx:if='{{item.gift_flag == 1}}'
+                    data-cardid='{{item.id}}'
+                    catchtap='giveToCard'>赠送好友</view>
+             </view>
+          </view>
+  
         </view>
       </view>
     </block>

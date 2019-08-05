@@ -20,9 +20,9 @@
           <view class="card-info" wx:if="{{cardItem.card_no}}">
             <text class="card-number">{{util.cardNumber(cardItem.card_no)}}</text>
             <view class="card-right">
-              <text class="balance-title">当前余额</text>
-              <text class="balance-number">¥{{cardItem.balance || '0.00'}}</text>
-              <view class="btn">立即充值</view>
+              <text class="balance-title" wx:if='{{cardItem.balance}}'>当前余额</text>
+              <text class="balance-number" wx:if='{{cardItem.balance}}'>¥{{cardItem.balance || '0.00'}}</text>
+              <view class="btn" style='margin-top:{{cardItem.balance ? 0 : "90rpx"}}'>立即充值</view>
             </view>
           </view>
           <!-- 未开通信息 -->
@@ -51,6 +51,7 @@
             <view class="card-type-item" data-card-id="{{cardItem._PK_}}" bindtap="handleCardTap">
               <image src="{{cardItem.background_img}}" class='fadeIn animated'/>
               <text>¥{{cardItem.discount_price}}/{{cardItem.card_total_count}}次</text>
+              <view class='payCardBtn'>购买</view>
             </view>
           </block>
         </scroll-view>

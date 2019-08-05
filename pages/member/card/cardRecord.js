@@ -104,5 +104,10 @@ Page({
       })
       this.getCardRecordList()
     }
-  }
+  },
+  jumpToCourse() {
+    wx.switchTab({
+      url: '/pages/course/course',
+    })
+  },
 })

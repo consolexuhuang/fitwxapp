@@ -16,18 +16,21 @@
   top: 34rpx;
 }
 .btn{
-  width:244rpx;
   border-radius:34rpx;
-  border:2rpx solid rgba(254,254,255,.5);
-  font-size:32rpx;
+  width: 230rpx;
+  /* border:2rpx solid rgba(254,254,255,.5); */
+  font-size:28rpx;
   font-family:PingFangSC-Regular;
   font-weight:400;
   color:rgba(255,255,255,1);
-  line-height:67rpx;
+  line-height:65rpx;
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 38rpx;
+  bottom: 60rpx;
   margin: auto;
-  text-align: center
+  text-align: center;
+  background: #896eff;
+  box-sizing: border-box;
+  box-shadow:0px 5rpx 4rpx 0px rgba(92,70,154,1);
 }

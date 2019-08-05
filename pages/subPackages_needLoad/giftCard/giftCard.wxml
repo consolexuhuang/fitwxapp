@@ -14,11 +14,12 @@
 <image class='giveBanner fadeIn animated' src='{{giftCardInfo.card_img}}'>
   <text class='cardNo'>{{giftCardInfo.card_no}}</text>
 </image>
+
 <!-- <text  class='iconfont iconxinaixin LoveStar fadeOutUpBig'
        wx:for='{{loveStarList}}'
        wx:key='{{index}}'
        wx:if='{{item.state}}'
-       style='left:{{loveStarLocation.x}}rpx;top:{{loveStarLocation.y}}rpx'></text> -->
+       style='left:{{loveStarLocation.x}}rpx;top:{{loveStarLocation.y+ marginTopBar*2}}rpx'></text> -->
 
 <view class='giveTitleBox'>
   <view class='giveMessage'>{{giftCardInfo.gift_memo}}</view>
@@ -54,7 +55,7 @@
 
 <view class='btn fadeIn animated' 
       wx:elif='{{giftCardInfo.gift_flag === 2 && enterUserAdmin == 2}}'
-      bindtap='jumpToMycard'>立即查看</view>
+      bindtap='sendMyslfe'>立即查看</view>
 
 <view class='giveSelf' bindtap='sendMyslfe' wx:if='{{giftCardInfo.gift_flag === 1 && enterUserAdmin == 1}}'>查看我的卡包</view>
 

@@ -287,9 +287,9 @@ Page({
       current_banner: e.detail.current
     })
   },
-  jumpToGiftCard(){
-    wx.navigateTo({
-      url: '/pages/subPackages_needLoad/editorCard/editorCard',
-    })
-  }
+  // jumpToGiftCard(){
+  //   wx.navigateTo({
+  //     url: '/pages/subPackages_needLoad/editorCard/editorCard',
+  //   })
+  // }
 })

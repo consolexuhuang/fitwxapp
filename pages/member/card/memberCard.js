@@ -72,6 +72,11 @@ Page({
       url: '/pages/card/recharge',
     })
   },
+  jumpToCourse(){
+    wx.switchTab({
+      url: '/pages/course/course',
+    })
+  },
   // 赠送
   giveToCard(e){
     let cardId = e.currentTarget.dataset.cardid

@@ -1,6 +1,7 @@
 // pages/subPackages_gift/giftCard/giftCard.js
 const api = getApp().api
 const store = getApp().store;
+// let count = 0
 Page({
 
   /**
@@ -117,11 +118,11 @@ Page({
       url: '/pages/member/card/memberCard',
     })
   },
-  jumpToMycard(){
-    wx.switchTab({
-      url: '/pages/member/member',
-    })
-  },
+  // jumpToMycard(){
+  //   wx.switchTab({
+  //     url: '/pages/member/member',
+  //   })
+  // },
   // 约课
   jumpToCourse(){
     wx.switchTab({
@@ -139,6 +140,11 @@ Page({
   //       loveStarLocation: e.detail,
   //       ['loveStarList[' + count + 1 + ']']: starObj,
   //     })
+  //     setTimeout(()=>{
+  //       this.setData({
+  //         ['loveStarList[' + count + 1 + '].state']: false,
+  //       })
+  //     },2000)
   //   } else {
   //     count = 0
   //   }
@@ -148,7 +154,7 @@ Page({
    */
   onShareAppMessage () {
     return {
-      title: this.data.giftCardInfo.gift_memo || '亲爱的，七夕节快乐！送你一份小心意，希望你喜欢。',
+      title: this.data.giftCardInfo.gift_memo,
       path: 'pages/subPackages_needLoad/giftCard/giftCard?cardId=' + this.data.cardId,
       imageUrl: 'https://img.cdn.powerpower.net/5d469297e4b0c7c776bbbba5.png',
       success: function (res) {
