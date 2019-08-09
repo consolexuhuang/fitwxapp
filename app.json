@@ -47,7 +47,8 @@
       "root": "pages/subPackages_needLoad/",
       "pages": [
         "giftCard/giftCard",
-        "editorCard/editorCard"
+        "editorCard/editorCard",
+        "memberTransfer/memberTransfer"
       ]
     }
   ],
@@ -103,6 +104,6 @@
     }
   },
   "navigateToMiniProgramAppIdList": [
-    "wx322a8a72b755aa57"
+    "wxec1fe04fad9d4e02"
   ]
 }
