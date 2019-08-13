@@ -1,0 +1,67 @@
+<!--pages/subPackages_needLoad/refundCardServer/refundCardServer.wxml-->
+<wxs src="../../../utils/util.wxs" module="util" />
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view class='banner' style='margin-top:{{marginTopBar}}px'>
+   <image src='https://img.cdn.powerpower.net/5d525dd9e4b0b1ac63d88aa0.png?imageView/1/w/750/h/340' class='bannerImg fadeIn animated'></image>
+    <view class='refundCardBoxContent' wx:if='{{getRefundConfig}}'>
+        <view class='refundCardBox fadeIn animated'>
+          <view class='refundMoney'>
+            可退金额 <text class='dollor'>¥ {{getRefundConfig.can_refund_amount}}</text>
+          </view>
+          <view class='title'>1.您的J&J PLUS卡的卡号是？(务必确保正确，否则   
+  无法退钱提现)，如不清楚，可 <text class='textClick' bindtap='jumpMemberCard'>点击查看</text></view>
+          <input class='CardNo {{currentCardNum ? "" : "CardNoNone"}}' placeholder='请输入正确卡号/请输入卡号' placeholder-class='placeholderStyle' value='{{getRefundConfig.card_no}}' bindinput='bindinputCard'></input>
+        </view>
+
+        <!-- 加入原因 -->
+        <view class='refundCardBox fadeIn animated'>
+          <view class='title titleLine'>2.您是来J&J健身主要选择：</view>
+          <view class='chooseBox' wx:for='{{getRefundConfig.join_reason}}' wx:key='{{index}}' bindtap='joinReason' data-index='{{item._PK_}}'>
+              <image class='chooseIcon' wx:if='{{joinReasonData == index+1}}' src='{{imgUrl}}icon/chooseState.png'></image>
+              <image class='chooseIcon' wx:else src='{{imgUrl}}icon/noneChooseState.png'></image>
+              <view class='refundCard_cont'>{{item.N}}</view>
+          </view>
+        </view>
+
+        <!-- 退卡理由 -->
+        <view class='refundCardBox fadeIn animated'>
+          <view class='title titleLine'>3.退卡原因主要是？ <text class='titleSay'>(多选)</text></view>
+          <view class='chooseBox' bindtap='cardRefundReason' data-index='{{item._PK_}}'  wx:for='{{getRefundConfig.left_reason}}' wx:key='{{index}}'>
+              <image class='chooseIcon' wx:if='{{util.includeIndex(cardRefundReasonData,item._PK_)}}' src='{{imgUrl}}icon/chooseState.png'></image>
+              <image class='chooseIcon' wx:else src='{{imgUrl}}icon/noneChooseState.png'></image>
+              <view class='refundCard_cont'>{{item.N}}</view>
+          </view>
+        </view>
+
+        <!-- 课程评价 -->
+        <view class='refundCardBox fadeIn animated'>
+          <view class='title titleLine'>4.您对J&J评价是？ <text class='titleSay'>(5分满分，依次递减)</text></view>
+            <view class='chooseBox'>
+              <view class='refundCard_cont courseStar'>课程质量</view>
+              <van-rate value="{{ value_1 }}" bind:change="onChange_1" color='#896eff'/>
+            </view>
+            <view class='chooseBox'>
+              <view class='refundCard_cont courseStar'>教练素质</view>
+              <van-rate value="{{ value_2 }}" bind:change="onChange_2" color='#896eff'/>
+            </view>
+            <view class='chooseBox'>
+              <view class='refundCard_cont courseStar'>场地环境</view>
+              <van-rate value="{{ value_3 }}" bind:change="onChange_3" color='#896eff'/>
+            </view>
+            <view class='chooseBox'>
+              <view class='refundCard_cont courseStar'>服务水平</view>
+              <van-rate value="{{ value_4 }}" bind:change="onChange_4" color='#896eff'/>
+            </view>
+        </view>
+
+        <!-- 评价内容 -->
+        <view class='refundCardBox fadeIn animated'>
+          <view class='title'>5.您还有什么想对J&J说的吗？</view>
+          <textarea class='remark' placeholder='请输入内容' placeholder-class='placeholderStyle' auto-height bindinput='bindinputRemark'></textarea>
+        </view>
+
+        <view class='submit_btn' wx:if='{{getRefundConfig}}' bindtap='refundApply'>提交</view>
+    </view>
+</view>
+<jurisdictionPopup state = '{{jurisdictionState}}'
+                   bindmyevent='bindgetuserinfo'></jurisdictionPopup>
