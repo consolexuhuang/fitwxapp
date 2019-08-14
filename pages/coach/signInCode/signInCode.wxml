@@ -7,8 +7,15 @@
     <image src='{{signData.coach_qr_code_url}}' class='signInCode'></image>
     <text class='signInCodeText'>长按加教练聊聊吧!</text>
   </view>
+  
+  <view class='signInCode_imgBox fadeIn animated' wx:elif='{{!siginUpData.success && signData.coach_qr_code_url}}'> 
+    <image class='signInCode_img' src='https://img.cdn.powerpower.net/5d1ef0c8e4b0655afef541ae.png'></image>
+    <image src='{{signData.coach_qr_code_url}}' class='signInCode'></image>
+    <text class='signInCodeText'>长按加教练聊聊吧!</text>
+  </view>
+
   <!-- 失败 bindtap='showCoachWxCode' 要删掉 -->
-  <view class='signInCode_imgBox fadeIn animated' wx:if='{{!siginUpData.success}}'>
+  <view class='signInCode_imgBox fadeIn animated' wx:else> 
     <image class='signInCode_img signInCode_Failimg' src='https://img.cdn.powerpower.net/5d1ef0c7e4b0655afef541ac.png' ></image>
   </view>
 
