@@ -132,16 +132,22 @@
                               <image src="{{util.imageParam(courseItem.head_url,'?imageView/1/w/120/h/120')}}" lazy-load data-coach-id="{{courseItem.coach_id}}" catchtap="handleCoachTap" data-good-id="{{courseItem.good_id}}"/>
                             </view>
                           </block>
-                          <view class="course-price-label" wx:if="{{courseItem.price_label}}">{{courseItem.price_label}}</view>
+                          <view class="course-price-label" wx:if="{{courseItem.price_label && courseItem.promotion!='member'}}">{{courseItem.price_label}}</view>
                         </view>
                         <view class="course-center">
                           <view class="course-name">{{courseItem.course_name || ''}}</view>
                           <view class="course-label">{{courseItem.LABELS || ''}}</view>
                           <view class="course-price-wrapper">
-                            <view class="course-discount-price">¥{{courseItem.discount_price}}</view>
+                            <view class="course-discount-price" wx:if="{{courseItem.promotion=='member'}}">¥{{courseItem.price}}</view>
+                            <view class="course-discount-price" wx:else>¥{{courseItem.discount_price}}</view>
                             <view class="course-price-line"></view>
                             <block wx:if="{{courseItem.course_type===3}}">
+                            <!--course_type 1：普通课程 2：特色课程 3：预告课程-->
                               <view class="course-card-price">¥{{courseItem.price}}</view>
+                            </block>
+                            <block wx:elif="{{courseItem.promotion=='member'}}"><!-- 新会员 -->
+                              <view class="course-card-price">¥{{courseItem.discount_price}}</view>
+                              <view class="course-member-tip">{{courseItem.price_label}}</view>
                             </block>
                             <block wx:elif="{{courseItem.discount_price}}">
                               <view class="course-card-price">¥{{courseItem.card_price}}</view>

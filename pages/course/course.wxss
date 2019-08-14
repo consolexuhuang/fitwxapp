@@ -490,7 +490,17 @@
   color: #896eff;
   font-weight: bold;
 }
-
+.course-member-tip{
+  margin-left: 20rpx;
+  width: 98rpx;
+  height: 29rpx;
+  background-color: rgba(139, 111, 241, 0.8);
+  line-height: 29rpx;
+  text-align: center;
+  font-size: 18rpx;
+  color: #fff;
+  border-radius: 4rpx;
+}
 .course-price-icon {
   margin-left: 20rpx;
   /* width: 71rpx;
