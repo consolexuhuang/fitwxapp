@@ -71,21 +71,28 @@ App({
     //     }
     //   })
     // }
-    console.log('scene', options.scene)
+    console.log('scene', options.scene, options)
     this.globalData.scene = options.scene
     // 校验场景值
     if (options.scene == 1007 || options.scene == 1008 || options.scene == 1035 || options.scene == 1043 || options.scene == 1082) {
+      // 个人，群，关注菜单，模版消息，短链接
       console.log(options.path)
       if (options.path.indexOf('index') != -1 ||
         options.path === 'pages/store/store' ||
         options.path === 'pages/card/card' ||
         options.path === 'pages/member/member') {
+        //特殊的落地页区分
         this.globalData.share = false
       } else {
         this.globalData.share = true
       }
     } else {
-      this.globalData.share = false
+      // 特殊扫码进入的页面区分
+      if (options.scene == 1011 && options.path === 'pages/coach/signInCode/signInCode'){
+        this.globalData.share = true
+      } else {
+        this.globalData.share = false
+      }
     }
     //后台切到前台刷新
     let interval=2*60*1000;//间隔设为2分钟
@@ -110,16 +117,16 @@ App({
     isIpX: false, //是否是ipHonex
     redirectToState: true,
     scene:'',    
-    // JumpAppId: {                    //测试
-    //   appid: 'wx322a8a72b755aa57',
-    //   envVersion: 'trial' //体验版
-    //   //  envVersion: 'release' //正式版
-    // },
-    JumpAppId: {                   //正式
-      appid: 'wxec1fe04fad9d4e02',
-      //envVersion: 'trial' //体验版
-      envVersion: 'release' //正式版
-    }, 
+    JumpAppId: {                    //测试
+      appid: 'wx322a8a72b755aa57',
+      envVersion: 'trial' //体验版
+      //  envVersion: 'release' //正式版
+    },
+    // JumpAppId: {                   //正式
+    //   appid: 'wxec1fe04fad9d4e02',
+    //   //envVersion: 'trial' //体验版
+    //   envVersion: 'release' //正式版
+    // }, 
   },
 
   /**
