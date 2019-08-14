@@ -92,7 +92,7 @@ Page({
       this.getMemberFollowState()
       this.checkPromotion()
     })
-    this.getOfficialDataState()
+    // this.getOfficialDataState()
     console.log('getApp().globalData.courseConfig')
     console.log(getApp().globalData.courseConfig)
     //搜索进来的
