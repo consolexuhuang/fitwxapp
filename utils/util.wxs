@@ -129,8 +129,16 @@ var imageParam = function(url,param){
   }
 }
 
+var includeIndex = function(arr,item){
+  // console.log(arr.indexOf(item))
+  if (arr.indexOf(item) === -1){
+    return false
+  } else return true
+}
+
 module.exports = {
   include: include,
+  includeIndex: includeIndex,
   timeFormat: timeFormat,
   timeStampFormat: timeStampFormat,
   numberFormat: numberFormat,

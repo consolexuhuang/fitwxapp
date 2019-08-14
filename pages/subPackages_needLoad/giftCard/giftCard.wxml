@@ -19,7 +19,7 @@
        wx:for='{{loveStarList}}'
        wx:key='{{index}}'
        wx:if='{{item.state}}'
-       style='left:{{loveStarLocation.x}}rpx;top:{{loveStarLocation.y+ marginTopBar*2}}rpx'></text> -->
+       style='left:{{item.x*2}}rpx;top:{{item.y+ marginTopBar*2}}rpx'></text> -->
 
 <view class='giveTitleBox'>
   <view class='giveMessage'>{{giftCardInfo.gift_memo}}</view>

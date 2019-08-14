@@ -47,7 +47,9 @@
       "root": "pages/subPackages_needLoad/",
       "pages": [
         "giftCard/giftCard",
-        "editorCard/editorCard"
+        "editorCard/editorCard",
+        "memberTransfer/memberTransfer",
+        "refundCardServer/refundCardServer"
       ]
     }
   ],

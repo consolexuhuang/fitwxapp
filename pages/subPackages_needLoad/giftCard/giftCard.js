@@ -21,10 +21,9 @@ Page({
     giftCardInfo:'',
     cardId:'',
     enterUserAdmin: 3, //当前进入用户身份 1-自己/赠送，2-收卡人，3-其他人
+
     // loveStarLocation: '',//爱心起始坐标
-    // loveStarList:[
-    //   {id: 1, state:false},
-    // ],
+    // loveStarList:[],
   },
   // 获取会员卡详情
   getCardInfo(cardId) {
@@ -130,23 +129,32 @@ Page({
     })
   },
   // showLoveStar(e){
+  //   clearTimeout()
   //   console.log(e)
-  //   console.log(this.data.loveStarList)
   //   if (count <= 10) {
   //     let starObj = {
-  //       id: count, state: true,
+  //       id: count++,
+  //       state: true,
+  //       x: e.touches[0].clientX,
+  //       y: e.touches[0].clientY
   //     }
   //     this.setData({
-  //       loveStarLocation: e.detail,
-  //       ['loveStarList[' + count + 1 + ']']: starObj,
+  //       loveStarList: [...this.data.loveStarList, starObj],
   //     })
-  //     setTimeout(()=>{
-  //       this.setData({
-  //         ['loveStarList[' + count + 1 + '].state']: false,
-  //       })
-  //     },2000)
+  //     console.log(this.data.loveStarList)
   //   } else {
-  //     count = 0
+  //       setTimeout(() => {
+  //         count = 0
+  //         this.setData({
+  //           loveStarList: [],
+  //         })
+  //       },1000)
+  //     // let timer = setTimeout(() => {
+  //     //   this.setData({
+  //     //     ['loveStarList[' + count + '].state']: false
+  //     //   })
+  //     // }, 2000)
+      
   //   }
   // },
   /**

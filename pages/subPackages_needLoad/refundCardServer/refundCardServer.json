@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+     "tabBar_top": "/components/tabBar_top/tabBar",
+     "van-rate": "/libs/vant-weapp/dist/rate/index",
+     "jurisdictionPopup": "/components/jurisdictionPopup/jurisdictionPopup"
+  }
+}
