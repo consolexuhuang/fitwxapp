@@ -29,28 +29,49 @@ Page({
 
     memberFollowState: 1, //当前关注状态
     officialDataState: false,
-    memberInfo:''
+    memberInfo: '',
+    jurisdictionState: false, //授权显示
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     //获取本地存储数据
     this.setData({
-      topStoreIds: wx.getStorageSync('topStoreIds') ? wx.getStorageSync('topStoreIds'):[]
+      topStoreIds: wx.getStorageSync('topStoreIds') ? wx.getStorageSync('topStoreIds') : []
     })
-    
 
     //检测登录
     app.checkSessionFun().then(() => {
-    this.getCityList()
+      this.getCityList();
+    }, () => {
+      this.setData({ jurisdictionState: true })
     })
   },
-  onShow(){
+  onShow() {
     // this.getOfficialDataState()
     app.checkSessionFun().then(() => {
-      this.getMemberFollowState()
+      this.setData({ jurisdictionState: false });
+      this.getMemberFollowState();
+    }, () => {
+      this.setData({ jurisdictionState: true })
+    }) 
+  },
+  //转发
+  onShareAppMessage() {
+    return {
+      title: "Justin&Julie Fitness 门店",
+      path: `/pages/store/store`
+    }
+  },
+  bindgetuserinfo() {
+    app.checkSessionFun().then(() => {
+      this.setData({ jurisdictionState: false })
+      this.getCityList();
+      this.getMemberFollowState();
+    }, () => {
+      this.setData({ jurisdictionState: true })
     })
   },
   /**
@@ -60,8 +81,8 @@ Page({
   getMemberFollowState() {
     api.post('v2/member/memberInfo').then(res => {
       console.log('getMemberFollowState', res)
-      this.setData({ 
-        memberFollowState: res.msg.sub_flag ,
+      this.setData({
+        memberFollowState: res.msg.sub_flag,
         officialDataState: res.msg.sub_flag == 1 ? false : true,
         memberInfo: res.msg
       })
@@ -78,8 +99,8 @@ Page({
   /**
    * write@xuhuang  end
    */
-  watch:{
-    city: function(){
+  watch: {
+    city: function () {
       const area = ''
       const storeType = ''
       const topStoreIds = []
@@ -89,7 +110,7 @@ Page({
       })
     }
   },
-  getCityList: function() {
+  getCityList: function () {
     api.post('store/getCityList').then(res => {
       if (res.code === 0) {
         const cityList = res.msg
@@ -103,7 +124,7 @@ Page({
       }
     })
   },
-  getTypeList: function(){
+  getTypeList: function () {
     const city = this.data.city
     const data = {
       city
@@ -144,7 +165,7 @@ Page({
       }
     })
   },
-  handleTopTap: function(event) {
+  handleTopTap: function (event) {
     console.log(event)
     const isTop = event.currentTarget.dataset.isTop
     const storeId = event.currentTarget.dataset.storeId
@@ -163,31 +184,31 @@ Page({
 
     this.getStoreList()
   },
-  handleSelectTap: function(event){
+  handleSelectTap: function (event) {
     const isScreanShow = event.currentTarget.dataset.isScreanShow
     this.setData({
       isScreanShow
     })
   },
-  handleCityTap: function(event){
+  handleCityTap: function (event) {
     const city = event.currentTarget.dataset.city
     this.setData({
       city
     })
   },
-  handleAreaTap: function(event){
+  handleAreaTap: function (event) {
     const area = event.currentTarget.dataset.area
     this.setData({
       area
     })
   },
-  handleStoreTypeTap: function(event){
+  handleStoreTypeTap: function (event) {
     const storeType = event.currentTarget.dataset.storeType
     this.setData({
       storeType
     })
   },
-  handleClearTap: function(event){
+  handleClearTap: function (event) {
     const city = Object.keys(this.data.cityList)[0]
     const area = ''
     const storeType = ''
@@ -197,7 +218,7 @@ Page({
       storeType
     })
   },
-  handleConfirmTap: function(event){
+  handleConfirmTap: function (event) {
     const isScreanShow = 0
     const topStoreIds = []
     this.setData({
@@ -206,28 +227,28 @@ Page({
     })
     this.getStoreList()
   },
-  handleStoreTap: function(event) {
+  handleStoreTap: function (event) {
     const storeId = event.currentTarget.dataset.storeId
     wx.navigateTo({
       url: '/pages/store/storeDetail?storeId=' + storeId
     })
   },
-  handleShadeTap: function(event) {
+  handleShadeTap: function (event) {
     const isScreanShow = 0
     this.setData({
       isScreanShow
     })
   },
-  handleContentTap: function(event){
+  handleContentTap: function (event) {
     return
   },
-  bindscrolltoupper(){
+  bindscrolltoupper() {
     this.getCityList()
   },
   // bindscrolltoupper(){
   //   this.getCityList()
   // },
-  onPullDownRefresh(){
+  onPullDownRefresh() {
     this.getCityList()
   },
 })

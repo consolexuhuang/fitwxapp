@@ -132,6 +132,12 @@ Page({
     this.getMemberFollowState()
 
   },
+  onShareAppMessage(){
+    return{
+      title:"Justin&Julie Fitness 课表",
+      path:'/pages/index/index'
+    }
+  },
   onHide() {
     getApp().globalData.courseConfig = '';
   },
