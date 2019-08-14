@@ -92,9 +92,12 @@ Page({
       this.getMemberFollowState()
       this.checkPromotion()
     })
-    // this.getOfficialDataState()
+    this.getOfficialDataState()
+    console.log('getApp().globalData.courseConfig')
+    console.log(getApp().globalData.courseConfig)
     //搜索进来的
     if (getApp().globalData.courseConfig) {
+      console.log('searchIn')
       //初始化    
       this.initFun();
       //设置是否是搜索页进入
