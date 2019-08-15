@@ -7,14 +7,14 @@
       <!-- title -->
       <view class="card-title">
         <text class="name">{{typeItem.name}}</text>
-        <view class="btn" bindtap="privilegeView">
+        <view class="btn analysis_card_privilege" bindtap="privilegeView">
           <text class="icon iconxingzhuang1 iconfont"/>
           <text>查看特权</text>
         </view>
       </view>
       <!-- card -->
       <block wx:for="{{typeItem.list}}" wx:for-item="cardItem" wx:key="index">
-        <view class="card-block" bindtap="handleRechargeTap">
+        <view class="card-block analysis_card_recharge" bindtap="handleRechargeTap">
           <image class="card-bg fadeIn animated" src="{{cardItem.background_img}}"></image>
           <!-- 已开通信息 -->
           <view class="card-info" wx:if="{{cardItem.card_no}}">
@@ -40,7 +40,7 @@
       <view class="card-type">
         <view class="title">
           <view class="title-name">{{typeItem.name}}类型 ({{typeItem.list.length}})</view>
-          <view class="more" data-card-type="{{typeItem.type}}" bindtap="handleCardMoreTap">
+          <view class="more analysis_card_more" data-card-type="{{typeItem.type}}" bindtap="handleCardMoreTap">
             <text>更多</text>
             <text class='iconfont iconicon-test41' style='font-size:26rpx;margin-top:5rpx'/>
           </view>
@@ -48,7 +48,7 @@
         <!-- card type list -->
         <scroll-view scroll-x class="card-type-scroll">
           <block wx:for="{{typeItem.list}}" wx:for-item="cardItem" wx:key="_PK_">
-            <view class="card-type-item" data-card-id="{{cardItem._PK_}}" bindtap="handleCardTap">
+            <view class="card-type-item analysis_card_buy" data-card-id="{{cardItem._PK_}}" bindtap="handleCardTap">
               <image src="{{cardItem.background_img}}" class='fadeIn animated'/>
               <text>¥{{cardItem.discount_price}}/{{cardItem.card_total_count}}次</text>
               <view class='payCardBtn'>购买</view>

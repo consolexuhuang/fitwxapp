@@ -30,7 +30,7 @@
         <text id='line_wx'></text>
         <view class='icon_wx_shareBox'>
           <text class='iconicon-test31 iconfont' id='icon_wx'> </text>
-          <button open-type='share' class='icon_wx_share'></button>
+          <button open-type='share' class='icon_wx_share analysis_courseDetail_wx'></button>
         </view>
       </view>
     </view>
@@ -190,8 +190,8 @@
 <view class="price-wrapper fadeIn animated">
   <text class="discount-price">¥{{courseData.discountPrice || '0.00'}}</text>
   <text class="origin-price" wx:if='{{courseData.discountPrice != courseData.price && courseData.price != 0}}'>¥{{courseData.price || '0.00'}}</text>
-  <view class="appoint-btn" wx:if='{{courseData.status === 1}}' bindtap="handleAppointBtnTap">立即预约</view>
-  <view class="appoint-btn" wx:if='{{courseData.status === 2}}' bindtap="handleAppointBtnTap">等位</view>
+  <view class="appoint-btn analysis_courseDetail_btnbuy" wx:if='{{courseData.status === 1}}' bindtap="handleAppointBtnTap">立即预约</view>
+  <view class="appoint-btn analysis_courseDetail_btnwait" wx:if='{{courseData.status === 2}}' bindtap="handleAppointBtnTap">等位</view>
   <view class="appoint-btn appoint-btnOver" wx:if='{{courseData.status === 3}}'>课程结束</view>
 </view>
 <!-- 免责声明 -->

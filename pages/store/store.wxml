@@ -3,11 +3,11 @@
 <tabBar_top navbarData = "{{navbarData}}"></tabBar_top>
 <view class="wrapper">
   <view class="select-list" catchtouchmove="true" style="top:{{marginTopBar}}px">
-    <view class="{{isScreanShow===1?'select-item select-item-active':'select-item'}}" data-is-screan-show="{{1}}" bindtap="handleSelectTap">
+    <view class="{{isScreanShow===1?'select-item select-item-active':'select-item'}} analysis_store_city" data-is-screan-show="{{1}}" bindtap="handleSelectTap">
       <text>{{isScreanShow===1?'城市选择':city+'全城'}}</text>
       <text class='iconicon-test36 iconfont icon2'/>
     </view>
-    <view class="{{isScreanShow===2?'select-item select-item-active':'select-item'}}" data-is-screan-show="{{2}}" bindtap="handleSelectTap">
+    <view class="{{isScreanShow===2?'select-item select-item-active':'select-item'}} analysis_store_all" data-is-screan-show="{{2}}" bindtap="handleSelectTap">
       <text>全部门店</text>
       <text class='iconicon-test36 iconfont icon2' />
     </view>

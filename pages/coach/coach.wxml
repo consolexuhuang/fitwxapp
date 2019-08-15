@@ -11,7 +11,7 @@
          <view class='shareLine'></view>
          <view class='shareImgBox'>
            <image src='{{imgUrl}}icon/shareImg.png' class='shareImg'></image>
-           <button open-type='share' class='shareImgBtn'></button>
+           <button open-type='share' class='shareImgBtn analysis_coach_share'></button>
          </view>
       </view>
     </view>

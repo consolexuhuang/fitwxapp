@@ -54,7 +54,7 @@
             <view class="{{count===3?'count-item count-item-active':'count-item'}}" wx:if="{{courseData.orderLimit === 0 || courseData.orderLimit >= 3}}" data-count="{{3}}" bindtap="handleCountTap">3</view>
           </view>
         </view>
-        <view class="column-item" bindtap="handleCouponTap">
+        <view class="column-item analysis_payorder_coupon" bindtap="handleCouponTap">
           <view class="column-item-label">代金券</view>
           <view class="available-coupon">
             <block wx:if="{{!courseData.couponUsable}}">
@@ -80,7 +80,7 @@
               <text class="plus-arrow iconicon-test44 iconfont" data-is-detail-show="{{false}}" bindtap="handleDetailTap" />
             </block>
             <block wx:else>
-              <view class="plus-detail" data-is-detail-show="{{true}}" bindtap="handleDetailTap">明细</view>
+              <view class="plus-detail analysis_payorder_pricedetail" data-is-detail-show="{{true}}" bindtap="handleDetailTap">明细</view>
               <text class="plus-arrow iconfont iconicon-test36" data-is-detail-show="{{true}}" bindtap="handleDetailTap" />
             </block>
           </view>
@@ -159,7 +159,7 @@
             <view class="pay-mode-item-content">
               <text class="pay-mode-item-title">卡支付</text>
               <text class="pay-mode-item-tips" bindtap="handleRechargeTap" wx:if="{{orderData.has_card}}">余额 ¥{{orderData.card_amount}}</text>
-              <text class="pay-mode-item-tips" wx:else bindtap="handleRechargeTap">立享95折，点击开通</text>
+              <text class="pay-mode-item-tips analysis_payorder_openplus95" wx:else bindtap="handleRechargeTap">立享95折，点击开通</text>
             </view>
             <text class="arrow-icon iconfont iconicon-test41" />
           </view>
@@ -213,18 +213,18 @@
     <view class="pay-btn" bindtap="lineUp">排队中...</view>
   </block>
   <block wx:if="{{orderData.pay_type===7}}">
-    <button wx:if='{{isShowJurisdiction}}' class="pay-btn" open-type="getPhoneNumber" bindgetphonenumber='getPhoneNumber'>立即支付</button>
-    <button wx:if='{{!isShowJurisdiction}}' class="pay-btn" bindtap='getPhoneNumber'>立即支付</button>
+    <button wx:if='{{isShowJurisdiction}}' class="pay-btn analysis_payorder_btnpay_phone" open-type="getPhoneNumber" bindgetphonenumber='getPhoneNumber'>立即支付</button>
+    <button wx:if='{{!isShowJurisdiction}}' class="pay-btn analysis_payorder_btnpay" bindtap='getPhoneNumber'>立即支付</button>
   </block>
   <block wx:elif="{{orderData.pay_type===1 || orderData.pay_type===2 || orderData.pay_type===4}}">
-    <button wx:if='{{isShowJurisdiction}}' class="pay-btn" open-type="getPhoneNumber" bindgetphonenumber='getPhoneNumber'>立即支付 ¥{{orderData.pay_amount}}</button>
-    <button wx:if='{{!isShowJurisdiction}}' class="pay-btn" bindtap='getPhoneNumber'>立即支付 ¥{{orderData.pay_amount}}</button>
+    <button wx:if='{{isShowJurisdiction}}' class="pay-btn analysis_payorder_btnpay_phone_amount" open-type="getPhoneNumber" bindgetphonenumber='getPhoneNumber'>立即支付 ¥{{orderData.pay_amount}}</button>
+    <button wx:if='{{!isShowJurisdiction}}' class="pay-btn analysis_payorder_btnpay_amount" bindtap='getPhoneNumber'>立即支付 ¥{{orderData.pay_amount}}</button>
   </block>
   <block wx:elif="{{orderData.pay_type===3 && orderData.has_card}}">
-    <view class="pay-btn" bindtap="handleRechargeTap">余额不足，请充值</view>
+    <view class="pay-btn analysis_payorder_btn_recharge" bindtap="handleRechargeTap">余额不足，请充值</view>
   </block>
   <block wx:elif="{{orderData.pay_type===3}}">
-    <view class="pay-btn" bindtap="handleRechargeTap">PLUS卡用户可等侯，点击开通（随时可退）</view>
+    <view class="pay-btn analysis_payorder_btn_openplus" bindtap="handleRechargeTap">PLUS卡用户可等侯，点击开通（随时可退）</view>
   </block>
 </view>
 <!-- 免责声明 -->

@@ -22,7 +22,7 @@
       <view class='shareLineBox'>
          <view class='shareLine'></view>
          <view class='shareBtnBox'>
-          <button open-type='share' hover-class='none' class='shareBtn'>
+          <button open-type='share' hover-class='none' class='shareBtn analysis_storedetail_share'>
           </button>
           <image class="store-share" src='{{imgUrl}}icon/shareImg.png'/>
          </view>    
@@ -38,14 +38,14 @@
       <rich-text nodes="{{storeData.placeIntro}}"></rich-text>
     </view>
     <view class='route-guide-wrapperBox'>
-      <view class="route-guide-wrapper" data-name="{{storeData.storeName}}" data-address="{{storeData.address}}" data-latitude="{{storeData.latitude}}" data-longitude="{{storeData.longitude}}" bindtap="handleLocationTap">
+      <view class="route-guide-wrapper analysis_storedetail_address" data-name="{{storeData.storeName}}" data-address="{{storeData.address}}" data-latitude="{{storeData.latitude}}" data-longitude="{{storeData.longitude}}" bindtap="handleLocationTap">
         <text class="store-position-icon iconfont iconicon-test1"/>
         <view class="store-address">{{storeData.address}}</view>
         <text class="store-arrow iconfont iconicon-test42"/>
       </view>
       <view class="route-guide-wrapper route-guide-wrapper2" wx:if='{{storeData.mapPic}}'>
         <text class="route-guide-icon iconxingzhuang-2 iconfont" />
-        <view class="route-guide-text" bindtap='handleRouteGuidanceTap'>路线指引</view>
+        <view class="route-guide-text analysis_storedetail_guide" bindtap='handleRouteGuidanceTap'>路线指引</view>
         <text class="store-arrow iconfont iconicon-test42" />
       </view>
     </view>
@@ -103,7 +103,7 @@
   </view>
 </view>
 <view class="reserve-btn-wrapper">
-  <view class="reserve-btn" bindtap="handleAppointBtnTap">查看课表</view>
+  <view class="reserve-btn analysis_storedetail_viewcourse" bindtap="handleAppointBtnTap">查看课表</view>
 </view>
 <!-- 免责声明 -->
 <statement show="{{isShowStatement}}" content="{{statementContent}}" btnText="关闭" bind:statementEvent="statementClose"></statement>
