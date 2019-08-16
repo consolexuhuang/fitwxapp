@@ -671,6 +671,9 @@ color:#BEBEBE;
   background: #fff;
   z-index: 9;
 }
+.line-through{
+  text-decoration: line-through;
+}
 /* -------------指引关注 */
 .officialAccount{
   position: fixed;
