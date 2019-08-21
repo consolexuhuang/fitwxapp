@@ -9,11 +9,12 @@ Page({
   data: {
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
     couponData:'',
+    jurisdictionState: false,
   },
   // 领取优惠券
   getCoupon(){
     let data = {
-      redeem:'11qq'
+      redeem:'jishubuchang'
     }
     api.post('coupon/exchangeCoupon', data).then(res => {
       console.log('getCoupon',res)
@@ -28,7 +29,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getCoupon()
+    wx.stopPullDownRefresh()
+    getApp().checkSessionFun().then(() => {
+      this.getCoupon()
+    }, () => {
+      this.setData({ jurisdictionState: true })
+    })
+    
   },
 
   /**
@@ -36,6 +43,14 @@ Page({
    */
   onShow: function () {
 
+  },
+  bindgetuserinfo() {
+    getApp().checkSessionFun().then(() => {
+      this.getCoupon()
+      this.setData({ jurisdictionState: false })
+    }, () => {
+      this.setData({ jurisdictionState: true })
+    })
   },
   jumpToMemberCard(){
     wx.navigateTo({

@@ -8,7 +8,7 @@ page{
   background:rgba(255,255,255,1);
   border-radius:8rpx;
   margin: 0 auto;
-  padding: 50rpx 0 70rpx;
+  padding: 40rpx 0 40rpx;
   box-sizing: border-box;
 }
 .compensateCoupon_title{
@@ -24,7 +24,7 @@ page{
   width:520rpx;
   height:230rpx;
   position: relative;
-  margin: 78rpx auto 0;
+  margin: 60rpx auto 0;
 }
 .compensateCoupon_img{
   width:520rpx;
@@ -98,6 +98,9 @@ page{
 .compensateCoupon_state2{
   color:rgba(144,121,252,1);
 }
+.compensateCoupon_state3{
+  margin-bottom: -30rpx;
+}
 .compensateCoupon_btn{
   width:350rpx;
   background:linear-gradient(360deg,rgba(155,133,252,1) 0%,rgba(114,87,251,1) 100%);
@@ -109,14 +112,14 @@ page{
   color:rgba(255,255,255,1);
   line-height:80rpx;
   text-align: center;
-  margin: 80rpx auto 0;
+  margin: 60rpx auto 0;
 }
 .fail_btn{
   background: #ccc;
   box-shadow: none;
 }
 .compensateCoupon_info{
-  padding: 20rpx 30rpx 120rpx;
+  padding: 20rpx 30rpx;
   box-sizing: border-box;
 }
 .compensateCoupon_infoTitle{
@@ -136,13 +139,16 @@ page{
   color:rgba(255,255,255,1);
   line-height:42rpx;
 }
-.icon{
-  color: #fff;
-  font-size: 54rpx;
-  text-align: center;
-  position: absolute;
+.iconBox{
+  /* position: fixed;
   bottom: 50rpx;
   left: 0;
   right: 0;
-  margin: 0 auto;
+  margin: 0 auto; */
+  margin-bottom:  50rpx;
+  text-align: center;
+}
+.icon{
+  color: #fff;
+  font-size: 54rpx;
 }
