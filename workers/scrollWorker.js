@@ -6,7 +6,7 @@ worker.onMessage(function (res) {
   let nodeRefArr = res.res[0];  
   let top = nodeRefArr[0].top || 0;
   //判断第一个店铺距离顶部的距离（用于是否显示固定标题）
-  if (top < topInit) {
+  if (top < topInit-60) {
     showStoreName = true
   };
   //判断第一个店铺距离顶部的距离（用于是否显示固定标题）
@@ -15,11 +15,13 @@ worker.onMessage(function (res) {
   };
   //当前显示的店铺
   nodeRefArr.map((item) => {
+
     //设置高度
     item.height = 56 + 125 * item.dataset.storeNum;
     //店铺名称显示的对应店铺区域
     if (((topInit - item.height) < item.top) && (item.top < topInit)) {
       currentStoreInfo = {
+        storeId: item.dataset.storeId,
         storeName: item.dataset.storeName,
           storeDist: item.dataset.storeDist,
         }

@@ -73,7 +73,7 @@
 
   <view class='store-block'>
     <!-- 店铺名称固定  -->
-    <view class='store-name-postion' hidden='{{!showStoreName}}' style="top:{{marginTopBar + calendarHeight -3}}px">
+    <view class='store-name-postion analysis_course_storename' hidden='{{!showStoreName}}' style="top:{{marginTopBar + calendarHeight -3}}px" data-store-id="{{currentStoreInfo.storeId}}" bindtap="handleStoreTap">
       <view class="store-name">
         <view class="store-name-icon"></view>
         <text>{{currentStoreInfo.storeName}}</text>
@@ -124,17 +124,17 @@
                               <image src="{{util.imageParam(courseItem.head_url,'?imageView/1/w/120/h/120')}}" data-coach-id="{{courseItem.coach_id}}" catchtap="handleCoachTap" data-good-id="{{courseItem.good_id}}" lazy-load class="analysis_course_coachavatar"/>
                             </view>
                             <view class="coach-avatar-second">
-                              <image src="{{util.imageParam(courseItem.coach_head_url2,'?imageView/1/w/120/h/120')}}" data-coach-id="{{courseItem.coach_id}}" catchtap="handleCoachTap" data-good-id="{{courseItem.good_id}}" lazy-load />
+                              <image src="{{util.imageParam(courseItem.coach_head_url2,'?imageView/1/w/120/h/120')}}" data-coach-id="{{courseItem.coach_id}}" catchtap="handleCoachTap" data-good-id="{{courseItem.good_id}}" lazy-load class="analysis_course_coachavatar"/>
                             </view>
                           </block>
                           <block wx:else>
                             <view class="coach-avatar">
-                              <image src="{{util.imageParam(courseItem.head_url,'?imageView/1/w/120/h/120')}}" lazy-load data-coach-id="{{courseItem.coach_id}}" catchtap="handleCoachTap" data-good-id="{{courseItem.good_id}}"/>
+                              <image src="{{util.imageParam(courseItem.head_url,'?imageView/1/w/120/h/120')}}" lazy-load data-coach-id="{{courseItem.coach_id}}" catchtap="handleCoachTap" data-good-id="{{courseItem.good_id}}" class="analysis_course_coachavatar"/>
                             </view>
                           </block>
                           <view class="course-price-label" wx:if="{{courseItem.price_label && courseItem.promotion!='member'}}">{{courseItem.price_label}}</view>
                         </view>
-                        <view class="course-center">
+                        <view class="course-center analysis_course_itemcenter">
                           <view class="course-name">{{courseItem.course_name || ''}}</view>
                           <view class="course-label">{{courseItem.LABELS || ''}}</view>
                           <view class="course-price-wrapper">

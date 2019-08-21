@@ -1,0 +1,31 @@
+<!--pages/subPackages_needLoad/compensateCoupon/compensateCoupon.wxml-->
+<view class='compensateCoupon' style='margin-top:{{marginTopBar+20}}px'>
+   <view class='compensateCoupon_title'>来自技术小哥的歉意</view>
+   <view class='couponBox fadeInUp animated'>
+      <image class='compensateCoupon_img' src='https://img.cdn.powerpower.net/5d5ca557e4b080af90b8a605.png'></image>
+      <text class='couponLeft'>仅\n本\n人\n兑\n换</text>
+      <view class='couponRight'>
+         <view class='couponMomey'><text class='momey'>{{couponData.list[0].coupon_amount || 10}}</text><text class='dollor'>元</text></view>
+         <view class='couponType'>{{couponData.list[0].coupon_sub_title || "补偿券"}}</view>
+         <view class='couponTime'>有效期为领取日起30天</view>
+      </view>
+   </view>
+   
+   <view class='compensateCoupon_state compensateCoupon_state3 fadeIn animated' wx:if='{{!couponData}}'> —— <text class='compensateCoupon_state2'> 领取失败 </text> —— </view>
+   <view class='compensateCoupon_state fadeIn animated'> —— <text class='compensateCoupon_state2'> {{couponData? "补偿券已发放至您账户" : "请查看卡包或确认领取时间"}} </text> —— </view>
+   <view class='compensateCoupon_btn' bindtap='jumpToMemberCard'>去查看</view>
+</view>
+
+<view class='compensateCoupon_info fadeIn animated'>
+    <text class='compensateCoupon_infoTitle'>【补偿细则】</text>
+    <text class='compensateCoupon_infoCont'>
+        1.领取时间：2019.8.22 ~ 2019.8.24\n2.补偿券所有用户都可领取，每人限领1张\n3.补偿券面额为10元，全课程通用\n4.补偿券不可与其他优惠叠加使用，不可转赠，仅限本人使用\n 5.补偿券有效期自领取日起30天有效，过期不补\n6.Justin&Julie保留法律范围内允许的对活动的解释权\n
+    </text>
+</view>
+
+<view class='iconBox'>
+   <text class='iconfont iconfenzu-9 icon'></text>
+</view>
+
+<jurisdictionPopup state = '{{jurisdictionState}}'
+                   bindmyevent='bindgetuserinfo'></jurisdictionPopup>

@@ -232,7 +232,7 @@ Page({
     const storeId = this.data.storeId
     let coachHeadUrl = ''
     // console.log('aa', this.data.coachData.headUrl.indexOf('?'))
-    if (this.data.coachData.headUrl.indexOf('?') !== -1){
+    if (this.data.coachData && this.data.coachData.headUrl && this.data.coachData.headUrl.indexOf('?') !== -1){
       const idx = this.data.coachData.headUrl.indexOf('?')
       coachHeadUrl = this.data.coachData.headUrl.substring(0, idx)
     } else {

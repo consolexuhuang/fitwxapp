@@ -670,6 +670,12 @@ color:#BEBEBE;
   align-items: center;
   background: #fff;
   z-index: 9;
+  animation: storenameInOout 1s ease;
+}
+@keyframes storenameInOout{
+  from{opacity: 0}
+  to{opacity: 1}
+
 }
 .line-through{
   text-decoration: line-through;
