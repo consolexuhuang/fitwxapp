@@ -27,11 +27,11 @@
         <text wx:if='{{courseData}}'>{{util.timeStampFormat(courseData.beginDate, 'YYYY-MM-DD')}} {{util.timeStampFormat(courseData.beginTime, 'hh:mm')}}</text>
       </view>
       <view class='icon_wx_shareBigBox'>
-        <text id='line_wx'></text>
+        <!-- <text id='line_wx'></text>
         <view class='icon_wx_shareBox'>
           <text class='iconicon-test31 iconfont' id='icon_wx'> </text>
           <button open-type='share' class='icon_wx_share analysis_courseDetail_wx'></button>
-        </view>
+        </view> -->
       </view>
     </view>
     <view class="course-address" data-name="{{courseData.store.storeName}}" data-address="{{courseData.store.address}}" data-latitude="{{courseData.store.latitude}}" data-longitude="{{courseData.store.longitude}}" bindtap="handleLocationTap">
