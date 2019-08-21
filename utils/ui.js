@@ -14,6 +14,7 @@ function showLoading(txt){
 }
 
 function showLoadingMask(txt) {
+  
   wx.showLoading({
     title: txt || '加载中...',
     mask:true
