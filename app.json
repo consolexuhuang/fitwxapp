@@ -49,7 +49,8 @@
         "giftCard/giftCard",
         "editorCard/editorCard",
         "memberTransfer/memberTransfer",
-        "refundCardServer/refundCardServer"
+        "refundCardServer/refundCardServer",
+        "compensateCoupon/compensateCoupon"
       ]
     }
   ],

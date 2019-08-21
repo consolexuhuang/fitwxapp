@@ -1,0 +1,24 @@
+<!--pages/subPackages_needLoad/compensateCoupon/compensateCoupon.wxml-->
+<view class='compensateCoupon' style='margin-top:{{marginTopBar+20}}px'>
+   <view class='compensateCoupon_title'>来自技术小哥的歉意</view>
+   <view class='couponBox'>
+      <image class='compensateCoupon_img' src='https://img.cdn.powerpower.net/5d5ca557e4b080af90b8a605.png'></image>
+      <text class='couponLeft'>仅\n本\n人\n兑\n换</text>
+      <view class='couponRight'>
+         <view class='couponMomey'><text class='momey'>{{couponData.list[0].coupon_amount || 10}}</text><text class='dollor'>元</text></view>
+         <view class='couponType'>{{couponData.list[0].coupon_sub_title || "补偿券"}}</view>
+         <view class='couponTime'>有效期为领取日起30天</view>
+      </view>
+   </view>
+   
+   <view class='compensateCoupon_state' wx:if='{{!couponData}}'> —— <text class='compensateCoupon_state2'> 领取失败 </text> —— </view>
+   <view class='compensateCoupon_state'> —— <text class='compensateCoupon_state2'> {{couponData? "已自动发放至您账户" : "请查看卡包或确认领取时间"}} </text> —— </view>
+   <view class='compensateCoupon_btn' bindtap='jumpToMemberCard'>去查看</view>
+</view>
+
+<view class='compensateCoupon_info'>
+    <view class='compensateCoupon_infoTitle'>【领取须知】</view>
+    <view class='compensateCoupon_infoCont'>新用户(未关注Justin&Julie公众号，未授Justin&Julie小程序)可从您转发或扫描二维码打开的页面中，授权进入小程序并关注公众号。新用户将获得2张新人礼券（20元代金券和30元代金券）</view>
+</view>
+
+<text class='iconfont iconfenzu-9 icon'></text>
