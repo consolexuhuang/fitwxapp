@@ -257,7 +257,7 @@ Page({
 
     const dateList = this.data.dateList
     const active = this.data.active
-    const date = dateList[active].date
+    const date = dateList && active ? dateList[active].date:'';
     if (this.data.endLine[date]) {
       return;
     }
@@ -266,7 +266,7 @@ Page({
     page = page + 1
     pageList[date] = page
     const displayedStore = this.data.displayedStore
-    const courses = this.data.courseList.courses
+    const courses = this.data.courseList && this.data.courseList.courses ? this.data.courseList.courses : ''
     const dateCourse = courses[date]
 
     let displayedStoreLength = 0,
@@ -387,8 +387,8 @@ Page({
     active: function(newValue, oldValue) {
       if (newValue !== oldValue) { // 把每次滚动的距离记录进切换之前的日期里，然后在切换之后的日期下滚动到当前日期下记录的位置
         const dateList = this.data.dateList
-        const oldDate = dateList[oldValue].date
-        const newDate = dateList[newValue].date
+        const oldDate = dateList[oldValue] ? dateList[oldValue].date : '';
+        const newDate = dateList[newValue] ? dateList[newValue].date : '';
         const currentScrollTop = this.data.currentScrollTop
         const scrollTop = this.data.scrollTop
         scrollTop[oldDate] = currentScrollTop
@@ -432,7 +432,7 @@ Page({
   },
   // 获取展示的店铺
   getDisplayedStore: function(event) {
-    const courses = this.data.courseList.courses
+    const courses = this.data.courseList && this.data.courseList.courses ? this.data.courseList.courses : ''
     const displayedStore = {}
     const pageList = {}
     for (let date in courses) {
@@ -467,7 +467,7 @@ Page({
 
   //设置当前数据的高度
   setCourseSwiperHeight() {
-    let courseList = this.data.courseList.courses;
+    let courseList = this.data.courseList && this.data.courseList.courses ? this.data.courseList.courses : '';
     let displayedStore = this.data.displayedStore;
     let displayedStoreArr = Object.keys(displayedStore);
     let displayedCourseList = {};
