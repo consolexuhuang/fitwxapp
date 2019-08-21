@@ -73,7 +73,7 @@
 
   <view class='store-block'>
     <!-- 店铺名称固定  -->
-    <view class='store-name-postion' hidden='{{!showStoreName}}' style="top:{{marginTopBar + calendarHeight -3}}px">
+    <view class='store-name-postion analysis_course_storename' hidden='{{!showStoreName}}' style="top:{{marginTopBar + calendarHeight -3}}px" data-store-id="{{currentStoreInfo.storeId}}" bindtap="handleStoreTap">
       <view class="store-name">
         <view class="store-name-icon"></view>
         <text>{{currentStoreInfo.storeName}}</text>

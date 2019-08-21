@@ -1,6 +1,7 @@
 // pages/order/order.js
 const app = getApp();
-const api = app.api
+const api = app.api;
+const ui = require('../../utils/ui.js');
 import Store from '../../utils/store.js'
 Page({
 
@@ -43,6 +44,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
     const courseId = options.courseId
     this.setData({
       courseId
@@ -54,6 +56,7 @@ Page({
     })
   },
   onShow() {
+    ui.showLoadingMask();
     try {
       const orderConfig = wx.getStorageSync('orderConfig')
       if (orderConfig) {
@@ -81,10 +84,9 @@ Page({
     // else {
     //   this.setData({ isShowJurisdiction: true })
     // }
-    this.getMemberInfo()
-    this.getCourse()
-    this.getWaitCount()
-    this.checkOrder()
+    Promise.all([this.getMemberInfo(), this.getCourse(), this.getWaitCount(), this.checkOrder()]).then(()=>{
+      ui.hideLoading()
+    })
   },
   getCourse: function (event) {
     const courseId = this.data.courseId
@@ -92,28 +94,41 @@ Page({
       id: courseId,
       picType: 1
     }
-    api.post('course/getCourse', data).then(res => {
-      if (res.code === 0) {
-        const courseData = res.msg
-        this.setData({
-          courseData
+      return new Promise((resolve,reject)=>{
+        api.post('course/getCourse', data).then(res => {
+          if (res.code === 0) {
+            const courseData = res.msg
+            this.setData({
+              courseData
+            })
+          }
+          resolve();
+        }).catch((err)=>{
+          console.log(err)
+          reject()
         })
-      }
-    })
+      }) 
+    
   },
   getWaitCount: function (event) {
     const courseId = this.data.courseId
     const data = {
       courseId
     }
-    api.post('payOrder/waitCount', data).then(res => {
-      if (res.code === 0) {
-        const waitCount = res.msg
-        this.setData({
-          waitCount
-        })
-      }
-    })
+    return new Promise((resolve,reject)=>{
+      api.post('payOrder/waitCount', data).then(res => {
+        if (res.code === 0) {
+          const waitCount = res.msg
+          this.setData({
+            waitCount
+          })
+        }
+        resolve();
+      }).catch((err) => {
+        console.log(err)
+        reject()
+      })
+    }) 
   },
   checkOrder: function (event) { // 第一次check的时候，不用提交timeCardId，用来判断是否有次卡，如果有自动选中
     const courseId = this.data.courseId
@@ -134,22 +149,27 @@ Page({
       data.count = count
       data.couponId = couponId
     }
-    api.post('v2/payOrder/checkOrder', data).then(res => {
-      this.setData({ lineUpState: true })
-      wx.hideLoading()
-      if (res.code === 0) {
-        const orderData = res.msg
-        const firstCheck = false
-        const timeCardId = res.msg.time_card_id
-        const disclaimer = res.msg.disclaimer
-        this.setData({
-          orderData,
-          firstCheck,
-          timeCardId,
-          disclaimer
-        })
-      }
-    })
+    return new Promise((resolve, reject)=>{
+      api.post('v2/payOrder/checkOrder', data).then(res => {
+        this.setData({ lineUpState: true })
+        if (res.code === 0) {
+          const orderData = res.msg
+          const firstCheck = false
+          const timeCardId = res.msg.time_card_id
+          const disclaimer = res.msg.disclaimer
+          this.setData({
+            orderData,
+            firstCheck,
+            timeCardId,
+            disclaimer
+          })
+        }
+        resolve();
+      }).catch((err) => {
+        console.log(err)
+        reject()
+      })
+    }) 
   },
   // 显示详细
   handleDetailTap: function (event) {
@@ -182,19 +202,25 @@ Page({
     })
   },
   handlePayModeTap: function (event) { // 支付模式切换
+    ui.showLoadingMask();
     const timeCardId = event.currentTarget.dataset.timeCardId
     this.setData({
       timeCardId
     })
-    this.checkOrder()
+    this.checkOrder().then(()=>{
+      ui.hideLoading()
+    })
   },
   handleCountTap: function (event) {
+    ui.showLoadingMask();
     const count = event.currentTarget.dataset.count
     if (count !== this.data.count) {
       this.setData({
         count
       })
-      this.checkOrder()
+      this.checkOrder().then(() => {
+        ui.hideLoading()
+      })
     }
   },
   // 选择优惠券
@@ -224,15 +250,23 @@ Page({
     let data = {
       memberId: Store.getItem('userData').id
     }
-    api.post('member/getMemberByMemberId', data).then(res => {
-      this.setData({ memberInfo: res.msg });
-      if (this.data.memberInfo.cellphone) {
-        this.setData({ isShowJurisdiction: false })
-      } 
-      else { 
-        this.setData({ isShowJurisdiction: true }) 
-        }
-    })
+
+     return new Promise((resolve, reject) => {
+       api.post('member/getMemberByMemberId', data).then(res => {
+         this.setData({ memberInfo: res.msg });
+         if (this.data.memberInfo.cellphone) {
+           this.setData({ isShowJurisdiction: false })
+         }
+         else {
+           this.setData({ isShowJurisdiction: true })
+         }
+         resolve()
+       }).catch((err) => {
+         console.log(err)
+         reject()
+       })
+     }) 
+
   }, 
   // 充值
   handleRechargeTap: function (event) {
@@ -368,8 +402,11 @@ Page({
   },
   //关闭免责声明
   agreeDisclaimer() {
+    ui.showLoadingMask();
     api.post('v2/member/agreeDisclaimer').then(ret => {
-      this.checkOrder()
+      this.checkOrder().then(() => {
+        ui.hideLoading();
+      })
     })
   },
   //排队
@@ -377,7 +414,11 @@ Page({
     wx.showLoading({
       title: '排队中...',
     })
-    !this.data.lineUpState ? this.checkOrder() : ''
+    if (!this.data.lineUpState){
+      this.checkOrder().then(() => {
+        ui.hideLoading();
+      })
+    }
   },
   //返回首页
   goBackHome(){
