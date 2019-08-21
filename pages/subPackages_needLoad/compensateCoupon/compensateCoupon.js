@@ -8,23 +8,19 @@ Page({
    */
   data: {
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
-    stateText:'去查收'
+    couponData:'',
   },
   // 领取优惠券
   getCoupon(){
     let data = {
-      redeem:'abc123'
+      redeem:'11qq'
     }
     api.post('coupon/exchangeCoupon', data).then(res => {
       console.log('getCoupon',res)
       if (Object.keys(res.msg).length > 0 && res.msg.amount > 0){
          this.setData({
-           stateText: '去查收'
+           couponData:res.msg
          })
-      } else {
-        this.setData({
-          stateText: '领取失败'
-        })
       }
     })
   },
@@ -36,51 +32,14 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  jumpToMemberCard(){
+    wx.navigateTo({
+      url: '/pages/member/coupon/memberCoupon',
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

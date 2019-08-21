@@ -20,14 +20,72 @@ page{
   text-align: center;
 
 }
+.couponBox{
+  width:520rpx;
+  height:230rpx;
+  position: relative;
+  margin: 78rpx auto 0;
+}
 .compensateCoupon_img{
   width:520rpx;
   height:230rpx;
   /* background:rgba(137,109,255,1); */
   box-shadow:0px 31rpx 50rpx 0px rgba(213,203,255,1);
-  margin: 78rpx auto 0;
-  display: block;
 }
+.couponLeft{
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  width: 107rpx;
+  height: 100%;
+  font-size:22rpx;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.couponRight{
+  position: absolute;
+  left: 107rpx;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  display: flex;
+  flex: 1;
+  padding: 22rpx 40rpx 22rpx 80rpx;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+.couponMomey{
+  font-size:80rpx;
+  font-family:PingFangSC;
+  font-weight:normal;
+  color:rgba(255,255,255,1);
+  line-height:91rpx;
+}
+.dollor{
+  font-size: 58rpx;
+}
+.couponType{
+  font-size:28rpx;
+  font-family:PingFangSC;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  line-height:50rpx;
+}
+.couponTime{
+  font-size:24rpx;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(213,203,255,1);
+  line-height:33rpx;
+}
+
 .compensateCoupon_state{
   font-size:26rpx;
   font-family:PingFangSC;
@@ -52,6 +110,10 @@ page{
   line-height:80rpx;
   text-align: center;
   margin: 80rpx auto 0;
+}
+.fail_btn{
+  background: #ccc;
+  box-shadow: none;
 }
 .compensateCoupon_info{
   padding: 20rpx 30rpx 120rpx;

@@ -1,9 +1,19 @@
 <!--pages/subPackages_needLoad/compensateCoupon/compensateCoupon.wxml-->
 <view class='compensateCoupon' style='margin-top:{{marginTopBar+20}}px'>
    <view class='compensateCoupon_title'>来自技术小哥的歉意</view>
-   <image class='compensateCoupon_img' src='https://img.cdn.powerpower.net/5d5bc25ae4b080af90b8a5e4.png'></image>
-   <view class='compensateCoupon_state' wx:if='{{stateText == "去查收"}}'> —— <text class='compensateCoupon_state2'> 已自动发放至您账户 </text> —— </view>
-   <view class='compensateCoupon_btn'>{{stateText}}</view>
+   <view class='couponBox'>
+      <image class='compensateCoupon_img' src='https://img.cdn.powerpower.net/5d5ca557e4b080af90b8a605.png'></image>
+      <text class='couponLeft'>仅\n本\n人\n兑\n换</text>
+      <view class='couponRight'>
+         <view class='couponMomey'><text class='momey'>{{couponData.list[0].coupon_amount || 10}}</text><text class='dollor'>元</text></view>
+         <view class='couponType'>{{couponData.list[0].coupon_sub_title || "补偿券"}}</view>
+         <view class='couponTime'>有效期为领取日起30天</view>
+      </view>
+   </view>
+   
+   <view class='compensateCoupon_state' wx:if='{{!couponData}}'> —— <text class='compensateCoupon_state2'> 领取失败 </text> —— </view>
+   <view class='compensateCoupon_state'> —— <text class='compensateCoupon_state2'> {{couponData? "已自动发放至您账户" : "请查看卡包或确认领取时间"}} </text> —— </view>
+   <view class='compensateCoupon_btn' bindtap='jumpToMemberCard'>去查看</view>
 </view>
 
 <view class='compensateCoupon_info'>
