@@ -1,7 +1,7 @@
 <!--pages/course/courseDetail.wxml-->
 <wxs src="../../utils/util.wxs" module="util" />
-<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<share_tag imgUrl='{{imgUrl}}' shareConfig='{{shareConfig}}'></share_tag>
+<tabBar_top navbarData='{{navbarData}}'></tabBar_top>
+
 <view class="wrapper" wx:if='{{courseData}}' style='margin-top:{{marginTopBar}}px'>
   <view class="header">
     <swiper class="banner-swiper">
@@ -21,22 +21,30 @@
       </block>
     </swiper>
     <view class="course-name fadeIn animated">{{courseData.courseName}}</view>
-    <view class="course-time fadeIn animated">
-      <view class='beginTimeBox'>
-        <text class='iconicon-test35 iconfont icon1'/>
-        <text wx:if='{{courseData}}'>{{util.timeStampFormat(courseData.beginDate, 'YYYY-MM-DD')}} {{util.timeStampFormat(courseData.beginTime, 'hh:mm')}}</text>
-      </view>
-      <view class='icon_wx_shareBigBox'>
-        <!-- <text id='line_wx'></text>
+    <view class="course-info">
+      <view class="course-info-left">
+        <view class="course-time fadeIn animated">
+          <view class='beginTimeBox'>
+            <text class='iconicon-test35 iconfont icon1' />
+            <text wx:if='{{courseData}}'>{{util.timeStampFormat(courseData.beginDate, 'YYYY-MM-DD')}} {{util.timeStampFormat(courseData.beginTime, 'hh:mm')}}</text>
+          </view>
+          <view class='icon_wx_shareBigBox'>
+            <!-- <text id='line_wx'></text>
         <view class='icon_wx_shareBox'>
           <text class='iconicon-test31 iconfont' id='icon_wx'> </text>
           <button open-type='share' class='icon_wx_share analysis_courseDetail_wx'></button>
         </view> -->
+          </view>
+        </view>
+        <view class="course-address" data-name="{{courseData.store.storeName}}" data-address="{{courseData.store.address}}" data-latitude="{{courseData.store.latitude}}" data-longitude="{{courseData.store.longitude}}" bindtap="handleLocationTap">
+          <text class='iconfont iconicon-test40 icon1' />
+          <text>{{courseData.store.address}}</text>
+        </view>
       </view>
-    </view>
-    <view class="course-address" data-name="{{courseData.store.storeName}}" data-address="{{courseData.store.address}}" data-latitude="{{courseData.store.latitude}}" data-longitude="{{courseData.store.longitude}}" bindtap="handleLocationTap">
-      <text class='iconfont iconicon-test40 icon1'/>
-      <text>{{courseData.store.address}}</text>
+      <view class="course-info-middle"></view>
+      <view class="course-info-right">
+        <share_tag imgUrl='{{imgUrl}}' shareConfig='{{shareConfig}}'></share_tag>
+      </view>
     </view>
   </view>
   <view class="module-wrapper">
@@ -44,9 +52,9 @@
       <!-- <view class="module-dot"></view> -->
       <view class="module-title">教练简介</view>
     </view>
-    <view class="coach-avatar-wrapper" wx:if='{{courseData.assistantCoachList.length == 0 || !courseData.assistantCoachList}}'>    
+    <view class="coach-avatar-wrapper" wx:if='{{courseData.assistantCoachList.length == 0 || !courseData.assistantCoachList}}'>
       <view class='coach-avatarOneBox'>
-        <image class="coach-avatar fadeIn animated" src="{{courseData.coach.headUrl}}" bindtap='jumpToCoachDetail' data-coachId='{{courseData.coach.id}}'/>
+        <image class="coach-avatar fadeIn animated" src="{{courseData.coach.headUrl}}" bindtap='jumpToCoachDetail' data-coachId='{{courseData.coach.id}}' />
         <view class="coach-name">{{courseData.coach.coachName}}</view>
       </view>
       <view class="coach-name-wrapper fadeIn animated">
@@ -57,23 +65,17 @@
     </view>
     <view class='coach-avatar-wrapper_more' wx:if='{{courseData.assistantCoachList.length > 0 || courseData.assistantCoachList}}'>
 
-       <view class='coachBox'>
-          <view class='coach-avatarBox'
-                bindtap='jumpToCoachDetail'
-                data-coachId='{{courseData.coach.id}}'>
-            <image class="coach-avatar_more" src="{{courseData.coach.headUrl}}" />
-            <view class="coach-name">{{courseData.coach.coachName}}</view>
-          </view>
-          <view class='coach-avatarBox' 
-                wx:for='{{courseData.assistantCoachList}}' 
-                wx:key='{{index}}'
-                bindtap='jumpToCoachDetail'
-                data-coachId='{{item.id}}'>
-            <image class="coach-avatar_more" src="{{item.head_url}}" />
-            <view class="coach-name">{{item.coach_name}}</view>
-          </view>
-       </view> 
-       <view class="coach-name-wrapper coach-name-wrapper_more">
+      <view class='coachBox'>
+        <view class='coach-avatarBox' bindtap='jumpToCoachDetail' data-coachId='{{courseData.coach.id}}'>
+          <image class="coach-avatar_more" src="{{courseData.coach.headUrl}}" />
+          <view class="coach-name">{{courseData.coach.coachName}}</view>
+        </view>
+        <view class='coach-avatarBox' wx:for='{{courseData.assistantCoachList}}' wx:key='{{index}}' bindtap='jumpToCoachDetail' data-coachId='{{item.id}}'>
+          <image class="coach-avatar_more" src="{{item.head_url}}" />
+          <view class="coach-name">{{item.coach_name}}</view>
+        </view>
+      </view>
+      <view class="coach-name-wrapper coach-name-wrapper_more">
         <view class="coach-name">{{courseData.coach.coach_name}}</view>
         <view class="coach-description">
           <rich-text nodes="{{courseData.coach.intro}}"></rich-text>
@@ -183,7 +185,9 @@
       <!-- <view class="tips-arrow">
         <image src="{{imgUrl}}course/icon_arrow_down_gray.png" />
       </view> -->
-      <view class="tips-text">成功预约即表示已阅读并同意<text bindtap='showStatement'>《J&J注意事项及免责声明》</text></view>
+      <view class="tips-text">成功预约即表示已阅读并同意
+        <text bindtap='showStatement'>《J&J注意事项及免责声明》</text>
+      </view>
     </view>
   </view>
 </view>
@@ -205,11 +209,7 @@
                     class='officialAccount'>
   </official-account>
 </view> -->
-<officalAccount memberFollowState='{{memberFollowState}}' 
-                bottomStyle='{{bottomStyle}}'
-                officialDataState="{{officialDataState}}"
-                pageShowNoticeState='{{memberInfo.sub_flag == 0 && memberInfo.order_count >= 1 ? true : false}}'>
+<officalAccount memberFollowState='{{memberFollowState}}' bottomStyle='{{bottomStyle}}' officialDataState="{{officialDataState}}" pageShowNoticeState='{{memberInfo.sub_flag == 0 && memberInfo.order_count >= 1 ? true : false}}'>
 </officalAccount>
 
-<jurisdictionPopup state = '{{jurisdictionState}}'
-                   bindmyevent='bindgetuserinfo'></jurisdictionPopup>
+<jurisdictionPopup state='{{jurisdictionState}}' bindmyevent='bindgetuserinfo'></jurisdictionPopup>
