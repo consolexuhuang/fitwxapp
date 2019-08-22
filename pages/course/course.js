@@ -257,7 +257,7 @@ Page({
 
     const dateList = this.data.dateList
     const active = this.data.active
-    const date = dateList && active ? dateList[active].date:'';
+    const date = dateList ? dateList[active].date:'';
     if (this.data.endLine[date]) {
       return;
     }
