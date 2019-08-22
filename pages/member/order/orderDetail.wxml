@@ -15,15 +15,15 @@
     
     <view class="orderDetail_wait" wx:if="{{orderData.order.wait}}">当前等候{{orderData.waiCount}}人，您是第{{orderData.beforeWaiCount}}位哟</view>
     <view class="orderDetail_titleBox">
-      <view class="orderDetail_title">{{orderData.course.courseName}}</view>
+      <view class="orderDetail_title" style="width:{{orderData.cancelFlag != 1 && courseShareData ? '360' :''}}rpx">{{orderData.course.courseName}}</view>
       <view class="orderDetail_time fadeIn animated" wx:if='{{orderData.course.beginDate}}'>{{util.timeStampFormat(orderData.course.beginDate, 'MM月DD日')}} 星期{{orderData.course.beginDay}}
         <text class="timedur">{{util.timeStampFormat(orderData.course.beginTime, 'hh:mm')}}-{{util.timeStampFormat(orderData.course.endTime, 'hh:mm')}}</text>
       </view>
     </view>
   </view>
   
-  <view class="share-tag-line"></view>
-  <view class="share-tag">
+  <view class="share-tag-line" wx:if='{{orderData.cancelFlag != 1 && courseShareData}}'></view>
+  <view class="share-tag" wx:if='{{orderData.cancelFlag != 1 && courseShareData}}'>
   <share_tag imgUrl='{{imgUrl}}' shareConfig='{{shareConfig}}' wx:if='{{orderData.cancelFlag != 1 && courseShareData}}'></share_tag>
   </view>
   

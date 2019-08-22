@@ -67,7 +67,6 @@ page{
   white-space: nowrap;
   text-overflow:ellipsis;
   overflow: hidden;
-  width: 360rpx;
 }
 .orderDetail_time{
   font-size:24rpx;
