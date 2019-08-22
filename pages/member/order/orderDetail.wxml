@@ -24,7 +24,7 @@
   
   <view class="share-tag-line" wx:if='{{orderData.cancelFlag != 1 && courseShareData}}'></view>
   <view class="share-tag" wx:if='{{orderData.cancelFlag != 1 && courseShareData}}'>
-  <share_tag imgUrl='{{imgUrl}}' shareConfig='{{shareConfig}}' wx:if='{{orderData.cancelFlag != 1 && courseShareData}}'></share_tag>
+  <share_tag imgUrl='{{imgUrl}}' shareConfig='{{shareConfig}}'></share_tag>
   </view>
   
 </view>
