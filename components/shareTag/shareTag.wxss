@@ -1,6 +1,7 @@
 /* components/shareTag/shareTag.wxss */
 .shareBox{
   /* top: 546rpx; */
+  position: relative;
   width: 89rpx;
   height: 69rpx;
 }
