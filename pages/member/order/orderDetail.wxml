@@ -1,23 +1,32 @@
 <!--pages/member/order/orderDetail.wxml-->
 <wxs src="../../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<share_tag imgUrl='{{imgUrl}}' shareConfig='{{shareConfig}}' wx:if='{{orderData.cancelFlag != 1 && courseShareData}}'></share_tag>
+
 <view class="orderDetail_statusData fadeIn animated" style='margin-top:{{marginTopBar}}px'>
   <view class="orderDetail_headImgBox">
     <image bindtap='handleCoachTap' data-coachId='{{orderData.coach.id}}' class="orderDetail_headImg" src="{{orderData.coach.headUrl}}"></image>
     <image class="orderDetail_headWxTag" src="{{imgUrl}}icon/wx_logo.png" bindtap='showCoachWxCode'></image>
   </view>
   <view class="orderDetail_statusInfo">
-    <view class="orderDetail_status">{{orderData.statusName}}</view>
+  <view class="status-box">
+  <view class="orderDetail_status">{{orderData.statusName}} </view>
+    <view class="signIn">{{orderData.hasSin ? "已签到" : "未签到"}}</view>
+  </view>
+    
     <view class="orderDetail_wait" wx:if="{{orderData.order.wait}}">当前等候{{orderData.waiCount}}人，您是第{{orderData.beforeWaiCount}}位哟</view>
     <view class="orderDetail_titleBox">
-      <view class="orderDetail_title">{{orderData.course.courseName}}</view>
+      <view class="orderDetail_title" style="width:{{orderData.cancelFlag != 1 && courseShareData ? '360' :''}}rpx">{{orderData.course.courseName}}</view>
       <view class="orderDetail_time fadeIn animated" wx:if='{{orderData.course.beginDate}}'>{{util.timeStampFormat(orderData.course.beginDate, 'MM月DD日')}} 星期{{orderData.course.beginDay}}
         <text class="timedur">{{util.timeStampFormat(orderData.course.beginTime, 'hh:mm')}}-{{util.timeStampFormat(orderData.course.endTime, 'hh:mm')}}</text>
       </view>
     </view>
   </view>
-  <view class="signIn">{{orderData.hasSin ? "已签到" : "未签到"}}</view>
+  
+  <view class="share-tag-line" wx:if='{{orderData.cancelFlag != 1 && courseShareData}}'></view>
+  <view class="share-tag" wx:if='{{orderData.cancelFlag != 1 && courseShareData}}'>
+  <share_tag imgUrl='{{imgUrl}}' shareConfig='{{shareConfig}}'></share_tag>
+  </view>
+  
 </view>
 
 <view class="orderDetail_content fadeIn animated">

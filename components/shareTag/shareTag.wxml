@@ -1,5 +1,5 @@
 <!--components/shareTag/shareTag.wxml-->
-<view class='shareBox' style='top:{{shareConfig.toTop + shareConfig.marginTopBar}}px'>
+<view class='shareBox'>
    <image class='shareImg' src='{{imgUrl}}icon/shareImg.png'></image>
    <button open-type='share' class='shareBtn analysis_sharetag' ></button>
 </view>

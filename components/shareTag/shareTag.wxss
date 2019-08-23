@@ -1,11 +1,9 @@
 /* components/shareTag/shareTag.wxss */
 .shareBox{
-  position: fixed;
-  right: 4rpx;
   /* top: 546rpx; */
+  position: relative;
   width: 89rpx;
   height: 69rpx;
-  z-index: 99
 }
 .shareImg{
   width: 100%;
