@@ -6,7 +6,8 @@
   background: #fff;
   color: #000;
   z-index: 1000;
-  background: rgba(0, 0, 0, 0)
+  background: rgba(0, 0, 0, 0);
+  overflow: hidden
 }
 /* 标题要居中 */
 .nav-title {

@@ -1,9 +1,23 @@
 <!--pages/index/index.wxml-->
-<tabBar_top navbarData="{{navbarData}}"></tabBar_top>
+<!-- <tabBar_top navbarData="{{navbarData}}"></tabBar_top> -->
 <view class='startUp'>
-  <view class='startUpBox'>
+  <view class='startUpBox' >
     <text class='iconfont iconxingzhuangjiehe-1 icon1'></text>
     <text class='iconfont iconfenzu-9 icon2'></text>
+    <view class="introductionBox">
+        <view class="lineBox">
+           <view class="line" wx:for='{{3}}' wx:key='{{index}}'></view>
+        </view>
+        <view class="introduction">
+          <view class="introductionItem">查看门店</view>
+          <view class="introductionItem">预约课程</view>
+          <view class="introductionItem">路线指引</view>
+          <view class="introductionItem">优惠活动</view>
+        </view>
+        <view class="lineBox lineBox2">
+           <view class="line" wx:for='{{3}}' wx:key='{{index}}'></view>
+        </view>
+    </view>
   </view>
   <view class='startUpCont' wx:if='{{userData.nick_name}}'>
     <view class='loading'>

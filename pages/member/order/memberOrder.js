@@ -116,7 +116,7 @@ Page({
     this.dataInit()
   },
   bindscrolltolower() {
-    console.log('触底')
+    console.log('触底', this.data.userInfoData.order)
     if (this.data.active == 0 && this.data.goingList.length != this.data.userInfoData.order.going_count) loadMoreOrder(this, ++orderPageIng)
     if (this.data.active == 1 && this.data.payingList.length != this.data.userInfoData.order.unpay_count) loadMoreOrder(this, ++orderPageWait)
     if (this.data.active == 2 && this.data.completedList.length != this.data.userInfoData.order.complete_count) loadMoreOrder(this, ++orderPageComplate)

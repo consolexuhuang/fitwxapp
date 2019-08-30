@@ -220,6 +220,7 @@ Page({
           getApp().wx_modifyUserInfo();
         } else {
           console.log('无需更新用户信息')
+          this.setData({ wx_userInfo: res.userInfo || '' })
         }
       }
     })
