@@ -5,7 +5,7 @@
     <view class='startUpBox'>
        <text class='iconfont iconxingzhuangjiehe-1 icon1'></text>
        <text class='iconfont iconfenzu-9 icon2'></text>
-       <view class="introductionBox">
+       <!-- <view class="introductionBox">
           <view class="lineBox">
             <view class="line" wx:for='{{3}}' wx:key='{{index}}'></view>
           </view>
@@ -18,7 +18,7 @@
           <view class="lineBox lineBox2">
             <view class="line" wx:for='{{3}}' wx:key='{{index}}'></view>
           </view>
-        </view>
+        </view> -->
     </view>
     <!-- <view class='startUpCont2_noneLogin'>需登录后方可使用</view> -->
     <view class='startUpCont2 fadeIn animated' wx:if='{{!userData && !userData.nick_name}}'>

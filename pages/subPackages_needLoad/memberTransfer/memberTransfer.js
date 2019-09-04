@@ -76,13 +76,17 @@ Page({
         channel: options.channel
       })
     }
-    //检测登录
-    getApp().checkSessionFun().then(() => {
-      this.getMemberFollowState()
-      this.getMemberConfig()
-    }, () => {
+    if (!getApp().passIsLogin()) {
       this.setData({ jurisdictionState: true })
-    })
+    } else {
+      //检测登录
+      getApp().checkSessionFun().then(() => {
+        this.getMemberFollowState()
+        this.getMemberConfig()
+      }, () => {
+        this.setData({ jurisdictionState: true })
+      })
+    }
   },
 
 
@@ -93,7 +97,7 @@ Page({
   },
 
   bindgetuserinfo() {
-    getApp().checkSessionFun().then(() => {
+    getApp().wx_AuthUserLogin().then(() => {
       this.getMemberFollowState()
       this.getMemberConfig()
       this.setData({ jurisdictionState: false })

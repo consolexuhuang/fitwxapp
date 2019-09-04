@@ -35,7 +35,7 @@ Page({
       console.log('退款配置', res)
       this.setData({ 
         getRefundConfig : res.msg,
-        currentCardNum: res.msg.card_no
+        currentCardNum: res.msg.card_no || ''
       })
     })
   },
@@ -43,11 +43,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    getApp().checkSessionFun().then(() => {
-      this.getRefundData()
-    }, () => {
+    if (!getApp().passIsLogin()) {
       this.setData({ jurisdictionState: true })
-    })
+    } else {
+      getApp().checkSessionFun().then(() => {
+        this.getRefundData()
+      }, () => {
+        this.setData({ jurisdictionState: true })
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面显示
@@ -56,7 +60,7 @@ Page({
     wx.stopPullDownRefresh()
   },
   bindgetuserinfo() {
-    getApp().checkSessionFun().then(() => {
+    getApp().wx_AuthUserLogin().then(() => {
       this.getRefundData()
       this.setData({ jurisdictionState: false })
     }, () => {

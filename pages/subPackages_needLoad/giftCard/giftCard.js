@@ -85,22 +85,26 @@ Page({
     if (options.cardId) {
       this.setData({ cardId: options.cardId})
     }
-    //检测登录
-    getApp().checkSessionFun().then(() => {
-      this.getCardInfo(options.cardId)
-    }, () => {
+    if (!getApp().passIsLogin()) {
       this.setData({ jurisdictionState: true })
-    })
+    }else{
+      //检测登录
+      getApp().checkSessionFun().then(() => {
+        this.getCardInfo(options.cardId)
+      }, () => {
+        this.setData({ jurisdictionState: true })
+      })
+    }
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
   bindgetuserinfo() {
-    getApp().checkSessionFun().then(() => {
+    getApp().wx_AuthUserLogin().then(() => {
       this.getCardInfo(this.data.cardId)
       this.setData({ jurisdictionState: false })
     }, () => {

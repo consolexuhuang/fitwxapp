@@ -8,6 +8,7 @@
      "tabBar_top": "/components/tabBar_top/tabBar",
      "van-popup": "../../../libs/vant-weapp/dist/popup/index",
      "officalAccount": "/components/officalAccount/officalAccount",
-     "activityPopup": "/components/activityPopup/activityPopup"
+     "activityPopup": "/components/activityPopup/activityPopup",
+     "jurisdictionSmallPopup": "/components/jurisdictionSmallPopup/jurisdictionSmallPopup"
   }
 }

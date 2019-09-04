@@ -27,35 +27,59 @@ Page({
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
     memberFollowState: 1, //当前关注状态
     officialDataState:false,
-    memberInfo:''
+    memberInfo:'',
+    jurisdictionSmallState:false,
+    showAuthModel:false,
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    //检测登录
-    app.checkSessionFun().then(() => {
-    this.getCardDefList()
-    })
+    // //检测登录
+    // app.checkSessionFun().then(() => {
+    //   this.getCardDefList()
+    // })
   },
   onShow(){
+    this.setData({ showAuthModel: !app.passIsLogin() })
     app.checkSessionFun().then(() => {
       this.getMemberFollowState()
+      this.getCardDefList()
     })
     // this.getOfficialDataState()
+  },
+  // 点击授权
+  bindgetuserinfo() {
+    app.wx_AuthUserLogin().then(() => {
+      this.setData({ 
+        jurisdictionSmallState: false,
+        showAuthModel: !app.passIsLogin()
+      })
+      this.getMemberFollowState()
+      this.getCardDefList()
+    })
+  },
+  //提示授权
+  showJurisdictionSmallPopup(){
+     this.setData({
+       jurisdictionSmallState: true
+     })
   },
   /**
    * write@xuhuang  start
    */
   // 获取当前用户关注状态
   getMemberFollowState() {
-    api.post('v2/member/memberInfo').then(res => {
-      this.setData({ 
-        memberFollowState: res.msg.sub_flag ,
-        officialDataState: res.msg.sub_flag == 1 ? false : true,
-        memberInfo: res.msg
+    if (app.passIsLogin()) {
+      api.post('v2/member/memberInfo').then(res => {
+        console.log('getMemberFollowState', res)
+        this.setData({
+          memberFollowState: res.msg.sub_flag,
+          officialDataState: res.msg.sub_flag == 1 ? false : true,
+          memberInfo: res.msg
+        })
       })
-    })
+    }
   },
   // getOfficialDataState() {
   //   // sub_flag 1:关注 0:未关注
@@ -69,15 +93,17 @@ Page({
    * write@xuhuang  end
    */
   getCardDefList: function(event) {
-    wx.showLoading({ title: '加载中...'})
-    api.post('card/getCardDefList').then(res => {
-      wx.hideLoading()
-      wx.stopPullDownRefresh()
-      const cardDefList = res.msg
-      this.setData({
-        cardDefList
+    if (app.passIsLogin()){
+      wx.showLoading({ title: '加载中...'})
+      api.post('card/getCardDefList').then(res => {
+        wx.hideLoading()
+        wx.stopPullDownRefresh()
+        const cardDefList = res.msg
+        this.setData({
+          cardDefList
+        })
       })
-    })
+    }
   },
   handleRechargeTap: function(event) {
     wx.navigateTo({

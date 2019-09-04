@@ -183,18 +183,21 @@ App({
     return new Promise((resolve,reject)=>{
       wx.checkSession({
         success: () => {
+          console.log('没过期')
           //session_key 未过期，并且在本生命周期一直有效
-          if (Store.getItem('userData') && Store.getItem('userData').token){
-            resolve();
-          }else{
-            this.wx_loginIn().then(() => {
-              resolve();
-            }, () => {
-              reject()
-            })
-          }
+          resolve();
+          // if (Store.getItem('userData') && Store.getItem('userData').token){
+          //   resolve();
+          // }else{
+          //   this.wx_loginIn().then(() => {
+          //     resolve();
+          //   }, () => {
+          //     reject()
+          //   })
+          // }
         },
         fail: () => {
+          console.log('过期')
           // session_key 已经失效，需要重新执行登录流程
           this.wx_loginIn().then(()=>{
             resolve();
@@ -214,77 +217,35 @@ App({
           _this.globalData.code = res_code.code
           Store.setItem('code', res_code.code)
           let shareMemberId = wx.getStorageSync('shareMemberId') ? wx.getStorageSync('shareMemberId') : '';
-          if (this.globalData.scene == 1043 || this.globalData.scene == 1035){
-            let data = {
-              code: res_code.code,
-              sourceData: _this.globalData.scene,
-            }
-            api.get('authorizationLite', data).then(res => {
-              wx.hideLoading()
-              if (res.msg) {
-                if (res.code === -1) { //如果出现登录未知错误
-                  setTimeout(() => {
-                    wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
-                  }, 0)
-                } else {
-                  // 已关联公众号
-                  wx.setStorageSync('shareMemberId', res.msg.id)
-                  wx.setStorageSync('userData', res.msg)
-                  //Store.setItem('userData', res.msg)
-                  resolve()
-                }
-              } else {
+          let data = {
+            code: res_code.code,
+            sourceData: _this.globalData.scene,
+            shareChannel: shareMemberId,
+          }
+          // let authData = {}
+          // wx.showLoading({ title: '登录中...', })
+          api.get('authorizationLite', data).then(res => {
+            // wx.hideLoading()
+            if (res.msg) {
+              if (res.code === -1) { //如果出现登录未知错误
                 setTimeout(() => {
                   wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
                 }, 0)
+              } else {
+                // 已关联公众号
+                wx.setStorageSync('shareMemberId', res.msg.id || '')
+                wx.setStorageSync('userData', res.msg)
+                //Store.setItem('userData', res.msg)
+                resolve()
               }
-            })
-          } else {
-            wx.getUserInfo({
-              lang: 'zh_CN',
-              success(res_userInfo){
-                console.log('用户信息', res_userInfo)
-                Store.setItem('wx_userInfo', res_userInfo.userInfo)
-                let data = {
-                  code: res_code.code,
-                  sourceData: _this.globalData.scene,
-                  shareChannel: shareMemberId,
-                  nickName: res_userInfo.userInfo.nickName || '',
-                  headImg: res_userInfo.userInfo.avatarUrl || '',
-                  city: res_userInfo.userInfo.city || '',
-                  gender: res_userInfo.userInfo.gender || '',
-                  encryptedData: res_userInfo.encryptedData || '',
-                  iv: res_userInfo.iv || '',
-                  rawData: res_userInfo.rawData || '',
-                  signature: res_userInfo.signature || ''
-                }
-                wx.showLoading({ title: '登录中...',})
-                api.get('authorizationLite', data).then(res => {
-                  wx.hideLoading()
-                  if (res.msg) {
-                    if (res.code === -1) { //如果出现登录未知错误
-                      setTimeout(() => {
-                        wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
-                      }, 0)
-                    } else {
-                      // 已关联公众号
-                      wx.setStorageSync('shareMemberId', res.msg.id)
-                      wx.setStorageSync('userData', res.msg)
-                      //Store.setItem('userData', res.msg)
-                      resolve()
-                    }
-                  } else {
-                    setTimeout(() => {
-                      wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
-                    }, 0)
-                  }
-                })
-              },
-              fail(){
-                reject('拒绝授权')
-              }
-            })
-          }
+            } else if(res.code === 0 && !res.msg){
+              // code: 0;
+              // msg: null
+              resolve()
+            } else {
+              reject()
+            }
+          })
         },
         fail:()=>{
           console.error('登录失败！')
@@ -292,24 +253,95 @@ App({
       })
     })
   },
-  //修改用户信息接口
-  wx_modifyUserInfo(){
-    return new Promise(resolve => {
-      let data = {
-        nickName: Store.getItem('wx_userInfo').nickName || '',
-        headImg: Store.getItem('wx_userInfo').avatarUrl || '',
-        city: Store.getItem('wx_userInfo').city || '',
-        gender: Store.getItem('wx_userInfo').gender || ''
-      }
-      wx.showLoading({ title: '加载中...',})
-      api.post('modifyUserInfo', data).then(res => {
-        wx.hideLoading()
-        if(res.msg) {
-          Store.setItem('userData', res.msg)
-          resolve()
+  //同意授权接口
+  wx_AuthUserLogin(){
+    let _this = this
+    return new Promise((resolve, reject) => {
+      wx.login({
+        success: res_code => {
+          _this.globalData.code = res_code.code
+          Store.setItem('code', res_code.code)
+          let shareMemberId = wx.getStorageSync('shareMemberId') ? wx.getStorageSync('shareMemberId') : '';
+          // let authData = {}
+          wx.getUserInfo({
+            lang: 'zh_CN',
+            success(res_userInfo) {
+              console.log('用户信息', res_userInfo)
+              Store.setItem('wx_userInfo', res_userInfo.userInfo)
+              let data = {
+                code: res_code.code,
+                sourceData: _this.globalData.scene,
+                shareChannel: shareMemberId,
+                nickName: res_userInfo.userInfo.nickName || '',
+                headImg: res_userInfo.userInfo.avatarUrl || '',
+                city: res_userInfo.userInfo.city || '',
+                gender: res_userInfo.userInfo.gender || '',
+                encryptedData: res_userInfo.encryptedData || '',
+                iv: res_userInfo.iv || '',
+                rawData: res_userInfo.rawData || '',
+                signature: res_userInfo.signature || ''
+              }
+              wx.showLoading({ title: '登录中...' })
+              api.get('authorizationLite', data).then(res => {
+                wx.hideLoading()
+                if (res.msg) {
+                  if (res.code === -1) { //如果出现登录未知错误
+                    setTimeout(() => {
+                      wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
+                    }, 0)
+                  } else {
+                    // 已关联公众号
+                    wx.setStorageSync('shareMemberId', res.msg.id)
+                    wx.setStorageSync('userData', res.msg)
+                    //Store.setItem('userData', res.msg)
+                    resolve()
+                  }
+                } else {
+                  setTimeout(() => {
+                    wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
+                  }, 0)
+                }
+              })
+            },
+            fail() {
+              reject('拒绝授权')
+            },
+          })
+        },
+        fail: () => {
+          console.error('登录失败！')
         }
       })
     })
+    
+  },
+  //校验是否通过登陆
+  passIsLogin(){
+    if (
+      this.store.getItem('userData')
+    ) return true
+    else return false
+  },
+  //修改用户信息接口
+  wx_modifyUserInfo(){
+    if (this.passIsLogin()){
+      return new Promise(resolve => {
+        let data = {
+          nickName: Store.getItem('wx_userInfo').nickName || '',
+          headImg: Store.getItem('wx_userInfo').avatarUrl || '',
+          city: Store.getItem('wx_userInfo').city || '',
+          gender: Store.getItem('wx_userInfo').gender || ''
+        }
+        wx.showLoading({ title: '加载中...',})
+        api.post('modifyUserInfo', data).then(res => {
+          wx.hideLoading()
+          if(res.msg) {
+            Store.setItem('userData', res.msg)
+            resolve()
+          }
+        })
+      })
+    }
   },
   watchLocation: function (callback) {
     const object = this.globalData

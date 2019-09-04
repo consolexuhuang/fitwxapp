@@ -257,3 +257,5 @@
 <activityPopup activityPopupState='{{activityPopupState}}'
                nowGetTime='{{nowGetTime}}'
                bindgiveGiftCardEvent='giveGiftCard'></activityPopup>
+
+<jurisdictionSmallPopup state='{{jurisdictionSmallState}}' bindmyevent='bindgetuserinfo'></jurisdictionSmallPopup>

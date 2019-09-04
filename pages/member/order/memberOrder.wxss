@@ -209,7 +209,7 @@
 }
 .item_info_see{
   border-radius:24rpx;
-  border:1rpx solid rgba(137,109,255,1);
+  border:2rpx solid rgba(137,109,255,.5);
   padding: 0 23rpx;
   font-size:22rpx;
   font-family:PingFangSC-Regular;

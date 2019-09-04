@@ -96,14 +96,13 @@
   <button class="btn" bindtap="handleRechargeTap">立即开通</button>
 </view>
 
-<!-- <view class='officialAccount fadeIn animated' 
-      wx:if='{{memberFollowState == 0}}'>
-  <official-account bindload='bindload' 
-                    binderror='binderror'
-                    class='officialAccount'>
-  </official-account>
-</view> -->
+<view class="Usenone analysis_my_appointment" wx:if='{{showAuthModel}}' bindtap='showJurisdictionSmallPopup'>
+  <text class="Usepic iconfont iconicon-test48"></text>
+  <text class="Usetext">授权登录</text>
+</view>
 <officalAccount memberFollowState='{{memberFollowState}}' 
                 officialDataState='{{officialDataState}}'
                 pageShowNoticeState='{{memberInfo.sub_flag == 0 && memberInfo.order_count >= 1 ? true : false}}'>
 </officalAccount>
+
+<jurisdictionSmallPopup state='{{jurisdictionSmallState}}' bindmyevent='bindgetuserinfo'></jurisdictionSmallPopup>

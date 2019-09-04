@@ -71,16 +71,21 @@ Page({
     })
 
     //检测登录
-    app.checkSessionFun().then(() => {
-      this.getCourse()
-      this.getMemberFollowState()
-      // this.getOfficialDataState()
-    }, () => {
+    if (!app.passIsLogin()) {
       this.setData({ jurisdictionState: true })
-    })
+    } else {
+      app.checkSessionFun().then(() => {
+        this.getCourse()
+        this.getMemberFollowState()
+        // this.getOfficialDataState()
+      }, () => {
+        this.setData({ jurisdictionState: true })
+      })
+    }
   },
+  // 点击授权
   bindgetuserinfo(){
-    app.checkSessionFun().then(() => {
+    app.wx_AuthUserLogin().then(() => {
       this.setData({ jurisdictionState: false })
       this.getCourse()
       this.getMemberFollowState()
@@ -96,29 +101,13 @@ Page({
   getMemberFollowState() {
     api.post('v2/member/memberInfo').then(res => {
       console.log('getMemberFollowState', res)
-      this.setData({ 
-        memberFollowState: res.msg.sub_flag ,
+      this.setData({
+        memberFollowState: res.msg.sub_flag,
         officialDataState: res.msg.sub_flag == 1 ? false : true,
         memberInfo: res.msg
       })
     })
   },
-  // getOfficialDataState() {
-  //   // sub_flag 1:关注 0:未关注
-  //   if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
-  //     this.setData({ officialDataState: true })
-  //   } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
-  //     this.setData({ officialDataState: false })
-  //   }
-  // },
-  // bindload(e) {
-  //   console.log('official-account_success', e.detail)
-  //   this.setData({ officialData: e.detail })
-  // },
-  // binderror(e) {
-  //   console.log('official-account_fail', e.detail)
-  //   this.setData({ officialData: e.detail })
-  // },
   /**
    * write@xuhuang  end
    */
@@ -153,10 +142,14 @@ Page({
     })
   },
   handleAppointBtnTap: function(event) {
-    const courseId = this.data.courseId
-    wx.navigateTo({
-      url: '/pages/order/payOrder?courseId=' + courseId
-    })
+    if (app.passIsLogin()){
+      const courseId = this.data.courseId
+      wx.navigateTo({
+        url: '/pages/order/payOrder?courseId=' + courseId
+      })
+    } else {
+      this.setData({ jurisdictionSmallState : true})
+    }
   },
   //免责声明
   showStatement(){

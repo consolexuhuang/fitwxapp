@@ -33,7 +33,7 @@ Page({
     pageShowNoticeState: false,
     memberInfo:'',
 
-    jurisdictionState: false, //授权显示
+    jurisdictionSmallState: false, //授权显示
   },
 
   /**
@@ -70,13 +70,8 @@ Page({
   bindgetuserinfo(){
     //检测登录
     app.checkSessionFun().then(() => {
-      this.setData({ jurisdictionState: false })
+      this.setData({ jurisdictionSmallState: false })
       this.getMemberFollowState()
-      this.getCoach()
-      this.getDateList()
-      // this.getOfficialDataState()
-    }, () => {
-      this.setData({ jurisdictionState: true })
     })
   },
   /**
@@ -84,14 +79,16 @@ Page({
    */
   // 获取当前用户关注状态
   getMemberFollowState() {
-    api.post('v2/member/memberInfo').then(res => {
-      console.log('getMemberFollowState', res)
-      this.setData({ 
-        memberFollowState: res.msg.sub_flag ,
-        officialDataState: res.msg.sub_flag == 1 ? false : true,
-        memberInfo: res.msg
+    if (app.passIsLogin()) {
+      api.post('v2/member/memberInfo').then(res => {
+        console.log('getMemberFollowState', res)
+        this.setData({
+          memberFollowState: res.msg.sub_flag,
+          officialDataState: res.msg.sub_flag == 1 ? false : true,
+          memberInfo: res.msg
+        })
       })
-    })
+    }
   },
   // getOfficialDataState() {
   //   // sub_flag 1:关注 0:未关注
@@ -205,17 +202,25 @@ Page({
   },
   // 跳转课程详情
   handleCourseTap: function(event) {
-    const courseId = event.currentTarget.dataset.courseId
-    wx.navigateTo({
-      url: '/pages/course/courseDetail?courseId=' + courseId
-    })
+    if (app.passIsLogin()) {
+      const courseId = event.currentTarget.dataset.courseId
+      wx.navigateTo({
+        url: '/pages/course/courseDetail?courseId=' + courseId
+      })
+    } else {
+      this.setData({ jurisdictionSmallState: true })
+    }
   },
   // 课程预约
   handleAppointBtnTap: function(event) {
-    const courseId = event.currentTarget.dataset.courseId
-    wx.navigateTo({
-      url: '/pages/order/payOrder?courseId=' + courseId
-    })
+    if (app.passIsLogin()) {
+      const courseId = event.currentTarget.dataset.courseId
+      wx.navigateTo({
+        url: '/pages/order/payOrder?courseId=' + courseId
+      })
+    } else {
+      this.setData({ jurisdictionSmallState: true })
+    }
   },
   handleScroll: function(event){
     const scrollTop = event.detail.scrollTop

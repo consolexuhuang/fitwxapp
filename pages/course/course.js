@@ -64,6 +64,7 @@ Page({
       url:''
     },//活动弹窗
     nowGetTime:'',
+    jurisdictionSmallState:false,
     // checkPromotion_course:{}, //首页的活动促销
   },
 
@@ -144,15 +145,27 @@ Page({
   /**
    * write@xuhuang  start
    */
+  // 点击授权
+  bindgetuserinfo() {
+    app.wx_AuthUserLogin().then(() => {
+      this.setData({
+        jurisdictionSmallState: false,
+      })
+      this.getMemberFollowState()
+    })
+  },
   // 获取当前用户关注状态
   getMemberFollowState() {
-    api.post('v2/member/memberInfo').then(res => {
-      this.setData({
-        memberFollowState: res.msg.sub_flag,
-        officialDataState: res.msg.sub_flag == 1 ? false : true,
-        memberInfo: res.msg
+    if (app.passIsLogin()) {
+      api.post('v2/member/memberInfo').then(res => {
+        console.log('getMemberFollowState', res)
+        this.setData({
+          memberFollowState: res.msg.sub_flag,
+          officialDataState: res.msg.sub_flag == 1 ? false : true,
+          memberInfo: res.msg
+        })
       })
-    })
+    }
   },
   checkPromotion() {
     let data = {
@@ -694,24 +707,36 @@ Page({
   },
   // 跳转课程详情
   handleCourseTap: function(event) {
-    const goodId = event.currentTarget.dataset.goodId;
-    const courseId = event.currentTarget.dataset.courseId
-    if (goodId) {
-      wx.navigateTo({
-        url: '/pages/trainingCamp/trainingCamp/trainingCamp?goodId=' + goodId
-      })
+    if (app.passIsLogin()) {
+      const goodId = event.currentTarget.dataset.goodId;
+      const courseId = event.currentTarget.dataset.courseId
+      if (goodId) {
+        wx.navigateTo({
+          url: '/pages/trainingCamp/trainingCamp/trainingCamp?goodId=' + goodId
+        })
+      } else {
+        wx.navigateTo({
+          url: '/pages/course/courseDetail?courseId=' + courseId
+        })
+      }
     } else {
-      wx.navigateTo({
-        url: '/pages/course/courseDetail?courseId=' + courseId
+      this.setData({
+        jurisdictionSmallState: true
       })
     }
   },
   // 课程预约
   handleAppointBtnTap: function(event) {
-    const courseId = event.currentTarget.dataset.courseId
-    wx.navigateTo({
-      url: '/pages/order/payOrder?courseId=' + courseId
-    })
+    if (app.passIsLogin()) {
+      const courseId = event.currentTarget.dataset.courseId
+      wx.navigateTo({
+        url: '/pages/order/payOrder?courseId=' + courseId
+      })
+    } else {
+      this.setData({
+        jurisdictionSmallState: true
+      })
+    }
   },
 
   // 跳转教练课程列表

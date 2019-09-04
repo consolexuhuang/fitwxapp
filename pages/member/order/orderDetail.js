@@ -53,16 +53,20 @@ Page({
   },
   onShow(){
     //检测登录
-    app.checkSessionFun().then(() => {
-      this.getOrderDetail()
-      this.getMemberFollowState()
-      // this.getOfficialDataState()
-    },()=>{
+    if (!getApp.passIsLogin()) {
       this.setData({ jurisdictionState: true })
-    })
+    } else {
+      app.checkSessionFun().then(() => {
+        this.getOrderDetail()
+        this.getMemberFollowState()
+        // this.getOfficialDataState()
+      },()=>{
+        this.setData({ jurisdictionState: true })
+      })
+    }
   },
   bindgetuserinfo(){
-    app.checkSessionFun().then(() => {
+    app.wx_AuthUserLogin().then(() => {
       this.setData({ jurisdictionState: false })
       this.getOrderDetail()
       this.getMemberFollowState()

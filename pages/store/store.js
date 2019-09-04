@@ -53,7 +53,7 @@ Page({
     // this.getOfficialDataState()
     app.checkSessionFun().then(() => {
       this.setData({ jurisdictionState: false });
-      this.getMemberFollowState();
+      this.getMemberFollowState()
     }, () => {
       this.setData({ jurisdictionState: true })
     }) 
@@ -79,14 +79,16 @@ Page({
    */
   // 获取当前用户关注状态
   getMemberFollowState() {
-    api.post('v2/member/memberInfo').then(res => {
-      console.log('getMemberFollowState', res)
-      this.setData({
-        memberFollowState: res.msg.sub_flag,
-        officialDataState: res.msg.sub_flag == 1 ? false : true,
-        memberInfo: res.msg
+    if (app.passIsLogin()) {
+      api.post('v2/member/memberInfo').then(res => {
+        console.log('getMemberFollowState', res)
+        this.setData({
+          memberFollowState: res.msg.sub_flag,
+          officialDataState: res.msg.sub_flag == 1 ? false : true,
+          memberInfo: res.msg
+        })
       })
-    })
+    }
   },
   // getOfficialDataState() {
   //   // sub_flag 1:关注 0:未关注

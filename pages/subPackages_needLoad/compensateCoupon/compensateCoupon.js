@@ -30,12 +30,15 @@ Page({
    */
   onLoad: function (options) {
     wx.stopPullDownRefresh()
-    getApp().checkSessionFun().then(() => {
-      this.getCoupon()
-    }, () => {
+    if (!getApp().passIsLogin()) {
       this.setData({ jurisdictionState: true })
-    })
-    
+    } else {
+      getApp().checkSessionFun().then(() => {
+        this.getCoupon()
+      }, () => {
+        this.setData({ jurisdictionState: true })
+      })
+    }
   },
 
   /**
@@ -45,7 +48,7 @@ Page({
 
   },
   bindgetuserinfo() {
-    getApp().checkSessionFun().then(() => {
+    getApp().wx_AuthUserLogin().then(() => {
       this.getCoupon()
       this.setData({ jurisdictionState: false })
     }, () => {

@@ -25,26 +25,28 @@ Page({
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
     memberFollowState: 1, //当前关注状态
     officialDataState:false,
-    memberInfo:''
+    memberInfo:'',
+
+    jurisdictionSmallState: false,
+    showAuthModel: false,
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.setData({ 
-      userData: Store.getItem('userData') || '' ,
-      wx_userInfo: Store.getItem('wx_userInfo') || ''
-    })
-    // this.getGoingList()
-    // this.getOrderCount()
   },
   onShow(){
     //检测登录
+    this.setData({
+      userData: Store.getItem('userData') || '',
+      wx_userInfo: Store.getItem('wx_userInfo') || '',
+      showAuthModel: !app.passIsLogin()
+    })
     app.checkSessionFun().then(() => {
-    this.getMemberFollowState()
-    this.getUserInfo()
-    this.getOrderCount()
-    this.getGoingList()
+      this.getMemberFollowState()
+      this.getUserInfo()
+      this.getOrderCount()
+      this.getGoingList()
     // this.getOfficialDataState()
     })
 
@@ -52,61 +54,82 @@ Page({
   /**
    * write@xuhuang  start
    */
-  // 获取当前用户关注状态
-  getMemberFollowState() {
-    api.post('v2/member/memberInfo').then(res => {
-      console.log('getMemberFollowState', res)
-      this.setData({ 
-        memberFollowState: res.msg.sub_flag,
-        officialDataState: res.msg.sub_flag == 1 ? false : true,
-        memberInfo: res.msg
-      })
+  //提示授权
+  showJurisdictionSmallPopup() {
+    this.setData({
+      jurisdictionSmallState: true
     })
   },
-  // getOfficialDataState() {
-  //   // sub_flag 1:关注 0:未关注
-  //   if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
-  //     this.setData({ officialDataState: true })
-  //   } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
-  //     this.setData({ officialDataState: false })
-  //   }
-  // },
+  // 点击授权
+  bindgetuserinfo() {
+    app.wx_AuthUserLogin().then(() => {
+      this.setData({
+        jurisdictionSmallState: false,
+        userData: Store.getItem('userData') || '',
+        wx_userInfo: Store.getItem('wx_userInfo') || '',
+        showAuthModel: !app.passIsLogin()
+      })
+      this.getMemberFollowState()
+      this.getUserInfo()
+      this.getOrderCount()
+      this.getGoingList()
+    })
+  },
+  // 获取当前用户关注状态
+  getMemberFollowState() {
+    if (app.passIsLogin()) {
+      api.post('v2/member/memberInfo').then(res => {
+        console.log('getMemberFollowState', res)
+        this.setData({
+          memberFollowState: res.msg.sub_flag,
+          officialDataState: res.msg.sub_flag == 1 ? false : true,
+          memberInfo: res.msg
+        })
+      })
+    }
+  },
   /**
    * write@xuhuang  end
    */
   getUserInfo(){
-    wx.showLoading({ title: '加载中...'})
-    api.post('v2/member/liteMyInfo').then(res => {
-      wx.hideLoading()
-      console.log('userInfoData',res.msg)
-      this.setData({ userInfoData: res.msg })
-    })
+    if (app.passIsLogin()) {
+      wx.showLoading({ title: '加载中...'})
+      api.post('v2/member/liteMyInfo').then(res => {
+        wx.hideLoading()
+        console.log('userInfoData',res.msg)
+        this.setData({ userInfoData: res.msg })
+      })
+    }
   },
   //课程包
   getOrderCount: function (event) {
-    // wx.showLoading({ title: '加载中...', })
-    api.post('v2/good/getOrderCount').then(res => {
-      // console.log('orderCount', res)
-      // wx.hideLoading()
-      wx.stopPullDownRefresh()
-      const orderCount = Number(res.msg)
-      this.setData({
-        orderCount
+    if (app.passIsLogin()) {
+      api.post('v2/good/getOrderCount').then(res => {
+        // console.log('orderCount', res)
+        wx.stopPullDownRefresh()
+        const orderCount = Number(res.msg)
+        this.setData({
+          orderCount
+        })
       })
-    })
+    } else {
+      wx.stopPullDownRefresh()
+    }
   },
   //进行中
   getGoingList: function(event){
-    api.post('payOrder/goingList').then(res => {
-      console.log('goingList', res)
-      const goingLength = res.msg.length
-      let goingList = []
-      if (goingLength > 0) goingList = res.msg.slice(0,1)
-      this.setData({
-        goingLength,
-        goingList
+    if (app.passIsLogin()) {
+      api.post('payOrder/goingList').then(res => {
+        console.log('goingList', res)
+        const goingLength = res.msg.length
+        let goingList = []
+        if (goingLength > 0) goingList = res.msg.slice(0,1)
+        this.setData({
+          goingLength,
+          goingList
+        })
       })
-    })
+    }
   },
   handleRechargeTap: function(event) {
     wx.navigateTo({
@@ -187,29 +210,12 @@ Page({
     })
   },
   onPullDownRefresh(){
-    getApp().wx_loginIn().then(() => {
       this.getGoingList()
       this.getUserInfo()
-      wx.getUserInfo({
-        lang: 'zh_CN',
-        success: res => {
-          if ((res.userInfo.nickName != Store.getItem('userData').nick_name) || (res.userInfo.avatarUrl != Store.getItem('userData').head_img)) {
-            Store.setItem('wx_userInfo', res.userInfo)
-            this.setData({ wx_userInfo: res.userInfo || '' })
-            getApp().wx_modifyUserInfo();
-          } else {
-            console.log('无需更新用户信息')
-          }
-        },
-        fail: res => {
-          console.log(res)
-        }
-      })
       wx.stopPullDownRefresh()
-    })
   },
-  //登录
-  bindgetuserinfo(e){
+  //更新用户信息
+  upDateUserinfo(e){
     wx.getUserInfo({
       lang: 'zh_CN',
       success: res => {
@@ -225,35 +231,4 @@ Page({
       }
     })
   },
-  //切换账号
-  // switchAdmin(){
-  //   wx.reLaunch({
-  //     url: '../login/sureAdminLogin/sureAdminLogin',
-  //   })
-  // },
-  //退出
-  // loginOut(){
-  //   wx.showModal({
-  //     title: '提示！',
-  //     content: '是否退出登录？',
-  //     success : res => {
-  //       if(res.confirm){
-  //         if (Store.getItem('userData')){
-  //           let data = {
-  //             link_name: Store.getItem('userData').nick_name,
-  //             link_head_img: Store.getItem('userData').head_img,
-  //           }
-  //           Store.setItem('userIsLinkPublic', data)
-  //           Store.clear('userData')
-  //         }
-  //         this.setData({
-  //           userCard: '',
-  //           sport: '',
-  //           goingList: [],
-  //           userData:''
-  //         })
-  //       }
-  //     }
-  //   })
-  // }
 })

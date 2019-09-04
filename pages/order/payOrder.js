@@ -213,6 +213,9 @@ Page({
   },
   handleCountTap: function (event) {
     ui.showLoadingMask();
+    this.setData({
+      couponId: '',
+    })
     const count = event.currentTarget.dataset.count
     if (count !== this.data.count) {
       this.setData({

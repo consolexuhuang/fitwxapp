@@ -42,13 +42,15 @@ Page({
 
     app.checkSessionFun().then(()=>{
       this.setData({
-        userData: Store.getItem('userData')
+        userData: Store.getItem('userData') || ''
       })
-      if (Store.getItem('userData') && Store.getItem('userData').nick_name) {
-        this.getDataInit();
-      };
+      this.getDataInit();
+      // if (Store.getItem('userData') && Store.getItem('userData').nick_name) {
+      //   this.getDataInit();
+      // };
     },()=>{
-      console.log('拒绝授权')
+      // console.log('拒绝授权')
+      this.getDataInit();
     })
 
     //this.checkSessionFun();
@@ -132,29 +134,32 @@ Page({
           key: 'courseData',
           data: courseData,
         })
-        if (Store.getItem('userData')) {
-          //跳转到课程页面     
-          wx.switchTab({
-            url: '/pages/course/course'
-          });
-        } else {
-          // getApp().wx_loginIn()
-        }
+        wx.switchTab({
+          url: '/pages/course/course'
+        });
+        // if (Store.getItem('userData')) {
+        //   //跳转到课程页面     
+        //   wx.switchTab({
+        //     url: '/pages/course/course'
+        //   });
+        // } else {
+        //   // getApp().wx_loginIn()
+        // }
       })
   },
   //更新用户
-  bindgetuserinfo(e) {
-    app.checkSessionFun().then(() => {
-      this.setData({
-        userData: Store.getItem('userData')
-      })
-      if (Store.getItem('userData') && Store.getItem('userData').nick_name) {
-        this.getDataInit();
-      };
-    }, () => {
-      console.log('拒绝授权')
-    })    
-  },
+  // bindgetuserinfo(e) {
+  //   app.checkSessionFun().then(() => {
+  //     this.setData({
+  //       userData: Store.getItem('userData')
+  //     })
+  //     if (Store.getItem('userData') && Store.getItem('userData').nick_name) {
+  //       this.getDataInit();
+  //     };
+  //   }, () => {
+  //     console.log('拒绝授权')
+  //   })    
+  // },
   
   //加载数据
   getDataInit() {
