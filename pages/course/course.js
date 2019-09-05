@@ -66,6 +66,7 @@ Page({
     nowGetTime:'',
     jurisdictionSmallState:false,
     // checkPromotion_course:{}, //首页的活动促销
+    isHasData:false,//隐藏结束是否有数据
   },
 
   /**
@@ -386,7 +387,7 @@ Page({
       CourseCom.getConfig(this)
 
     }
-
+    
     //清除缓存
     wx.removeStorage({
       key: 'courseData',

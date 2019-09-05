@@ -60,9 +60,17 @@ var getCourseList = function (param,_this) {
         }
       }
       //赋值
-      courseList.courses = coursesNew;
-
+      courseList.courses = coursesNew; 
     }
+    //解决隐藏结束后没有数据也给出对象
+    if (_this.data.isOver){
+      for (let date in courseList.courses) {
+        if (JSON.stringify(courseList.courses[date])=='{}'){
+          delete courseList.courses[date];
+        }
+      }
+    }
+    
    //设置数据
     _this.setData({
       courseList
