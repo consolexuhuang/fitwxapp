@@ -138,7 +138,7 @@ var includeIndex = function(arr,item){
 
 //截取课程标签前4个
 var preLabel = function (labels) {
-  var labelArr = labels.split(',').slice(0, 4);
+  var labelArr = labels ? labels.split(',').slice(0, 4) : [];
   return labelArr.join(',')
 }
 
