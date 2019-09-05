@@ -113,7 +113,9 @@ Page({
     if (options.status) this.setData({ active: parseInt(options.status) })
   },
   onShow(){
-    this.dataInit()
+    getApp().checkSessionFun().then(() => {
+      this.dataInit()
+    })
   },
   bindscrolltolower() {
     console.log('触底', this.data.userInfoData.order)

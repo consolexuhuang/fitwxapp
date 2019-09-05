@@ -72,7 +72,8 @@ App({
     //   })
     // }
     console.log('scene', options.scene, options)
-    this.globalData.scene = options.scene
+    this.globalData.scene = options.scene,
+    this.globalData.sceneOptions = options
     // 校验场景值
     if (options.scene == 1007 || options.scene == 1008 || options.scene == 1035 || options.scene == 1043 || options.scene == 1082) {
       // 个人，群，关注菜单，模版消息，短链接
@@ -117,7 +118,7 @@ App({
     isIpX: false, //是否是ipHonex
     redirectToState: true,
     scene:'',  
-
+    sceneOptions:'',
     JumpAppId: {                    //测试
       appid: 'wx322a8a72b755aa57',
       envVersion: 'trial' //体验版
@@ -185,16 +186,27 @@ App({
         success: () => {
           console.log('没过期')
           //session_key 未过期，并且在本生命周期一直有效
-          resolve();
-          // if (Store.getItem('userData') && Store.getItem('userData').token){
-          //   resolve();
-          // }else{
-          //   this.wx_loginIn().then(() => {
-          //     resolve();
-          //   }, () => {
-          //     reject()
-          //   })
-          // }
+          if (this.globalData.scene == 1035 || this.globalData.scene == 1043 || this.globalData.scene == 1082){
+            //如果是 公众号菜单，模版消息，短链接 进入
+            this.passIsLogin() 
+              ? resolve()
+              : this.wx_loginIn().then(() => {
+                  resolve();
+                }, () => {
+                  reject()
+                })
+          } else if (this.globalData.scene == 1011 && this.globalData.sceneOptions.path === 'pages/coach/signInCode/signInCode'){
+            //特殊扫码进入
+            this.passIsLogin()
+              ? resolve()
+              : this.wx_loginIn().then(() => {
+                resolve();
+              }, () => {
+                reject()
+              })
+          } else {
+            resolve();
+          }
         },
         fail: () => {
           console.log('过期')
