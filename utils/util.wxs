@@ -136,6 +136,12 @@ var includeIndex = function(arr,item){
   } else return true
 }
 
+//截取课程标签前4个
+var preLabel = function (labels) {
+  var labelArr = labels.split(',').slice(0, 4);
+  return labelArr.join(',')
+}
+
 module.exports = {
   include: include,
   includeIndex: includeIndex,
@@ -146,5 +152,6 @@ module.exports = {
   cardNumber: cardNumber,
   endCourseLength: endCourseLength,
   getUrlParams: getUrlParams,
-  imageParam: imageParam
+  imageParam: imageParam,
+  preLabel: preLabel
 }

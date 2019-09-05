@@ -136,7 +136,7 @@
                         </view>
                         <view class="course-center analysis_course_itemcenter">
                           <view class="course-name">{{courseItem.course_name || ''}}</view>
-                          <view class="course-label">{{courseItem.LABELS || ''}}</view>
+                          <view class="course-label">{{util.preLabel(courseItem.LABELS) || ''}}</view>
                           <view class="course-price-wrapper">
                             <view class="course-discount-price line-through" wx:if="{{courseItem.promotion=='member'}}">¥{{courseItem.price}}</view>
                             <view class="course-discount-price" wx:else>¥{{courseItem.discount_price}}</view>
