@@ -75,8 +75,8 @@ App({
     this.globalData.scene = options.scene,
     this.globalData.sceneOptions = options
     // 校验场景值
-    if (options.scene == 1007 || options.scene == 1008 || options.scene == 1035 || options.scene == 1043 || options.scene == 1082) {
-      // 个人，群，关注菜单，模版消息，短链接
+    if (options.scene == 1007 || options.scene == 1008 || options.scene == 1035 || options.scene == 1043 || options.scene == 1082 || options.scene == 1058 || options.scene == 1102) {
+      // 个人，群，关注菜单，模版消息，短链接，公众号文章，服务号预览列表
       console.log(options.path)
       if (options.path.indexOf('index') != -1 ||
         options.path === 'pages/store/store' ||
@@ -186,8 +186,8 @@ App({
         success: () => {
           console.log('没过期')
           //session_key 未过期，并且在本生命周期一直有效
-          if (this.globalData.scene == 1035 || this.globalData.scene == 1043 || this.globalData.scene == 1082){
-            //如果是 公众号菜单，模版消息，短链接 进入
+          if (this.globalData.scene == 1035 || this.globalData.scene == 1043 || this.globalData.scene == 1082 || this.globalData.scene == 1058 || this.globalData.scene == 1102){
+            //如果是 公众号菜单，模版消息，短链接 公众号文章，服务号预览列表 进入
             this.passIsLogin() 
               ? resolve()
               : this.wx_loginIn().then(() => {
@@ -330,8 +330,10 @@ App({
   //校验是否通过登陆
   passIsLogin(){
     if (
-      this.store.getItem('userData')
-    ) return true
+      this.store.getItem('userData') &&
+      this.store.getItem('userData').token
+    ) 
+    return true
     else return false
   },
   //修改用户信息接口
