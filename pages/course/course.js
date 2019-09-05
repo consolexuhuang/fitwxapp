@@ -73,7 +73,6 @@ Page({
    */
 
   onLoad: function(options) {
-    console.log('onload')
     //进入onLoad
     onLoaded = true;
     // this.getShareCouponInfo()
@@ -86,7 +85,6 @@ Page({
     })
   },
   onShow() {
-    // console.log('onShow')
     this.setData({ nowGetTime: new Date().getTime()})
     //判断用户是否关注公众号
     app.checkSessionFun().then(() => {
@@ -94,11 +92,8 @@ Page({
       this.checkPromotion()
     })
     // this.getOfficialDataState()
-    console.log('getApp().globalData.courseConfig')
-    console.log(getApp().globalData.courseConfig)
     //搜索进来的
     if (getApp().globalData.courseConfig) {
-      console.log('searchIn')
       //初始化    
       this.initFun();
       //设置是否是搜索页进入
@@ -219,8 +214,9 @@ Page({
       searchIn
     })
     //获取数据
-    CourseCom.getDateList(this)
-    this.getCourseList()
+    CourseCom.getDateList(this).then(()=>{
+      this.getCourseList();
+    })
     CourseCom.getConfig(this)
     wx.stopPullDownRefresh()
   },
@@ -384,8 +380,9 @@ Page({
       })
     } else {
       //获取数据
-      CourseCom.getDateList(this)
-      this.getCourseList()
+      CourseCom.getDateList(this).then(() => {
+        this.getCourseList()
+      })
       CourseCom.getConfig(this)
 
     }
@@ -637,20 +634,24 @@ Page({
     this.setData({
       searchText: ''
     })
-    CourseCom.getDateList(this)
-    this.getCourseList()
+    CourseCom.getDateList(this).then(() => {
+      this.getCourseList()
+    })
     CourseCom.getConfig(this)
   },
   //隐藏已结束
   handleSwitchChange: function({
     detail
   }) {
+    //loading
+    ui.showLoading();
     const isOver = detail
     this.setData({
       isOver
     })
-    CourseCom.getDateList(this)
-    this.getCourseList()
+    CourseCom.getDateList(this).then(() => {
+      this.getCourseList();
+    })
     CourseCom.getConfig(this)
   },
 
