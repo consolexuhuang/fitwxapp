@@ -53,7 +53,7 @@ Page({
   },
   onShow(){
     //检测登录
-    if (!getApp.passIsLogin()) {
+    if (!getApp().passIsLogin()) {
       this.setData({ jurisdictionState: true })
     } else {
       app.checkSessionFun().then(() => {
