@@ -154,7 +154,6 @@ Page({
   getMemberFollowState() {
     if (app.passIsLogin()) {
       api.post('v2/member/memberInfo').then(res => {
-        console.log('getMemberFollowState', res)
         this.setData({
           memberFollowState: res.msg.sub_flag,
           officialDataState: res.msg.sub_flag == 1 ? false : true,
@@ -168,8 +167,6 @@ Page({
       location: 'course'
     }
     api.post('v2/member/checkPromotion', data).then(res => {
-      console.log('checkPromotion', res)
-      console.log(this.data.nowGetTime - store.getItem('closeTime') || new Date().getTime())
       if(Object.keys(res.msg).length > 0){
         this.setData({
           ['activityPopupState.imgSrc']: res.msg.image,
