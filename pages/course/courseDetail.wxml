@@ -107,6 +107,11 @@
     <view class="course-description">
       <rich-text nodes="{{courseData.courseIntro}}"></rich-text>
     </view>
+    <!-- labels -->
+    <view class="labels">
+      <text class="item" wx:for="{{util.labelStringToArr(courseData.label_names)}}">{{item}}</text>
+    </view>
+
     <view class="course-column-list">
       <view class="course-column-item">
         <view class='ballBox'>
