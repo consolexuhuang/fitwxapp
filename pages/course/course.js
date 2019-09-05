@@ -631,6 +631,8 @@ Page({
   },
   //清除搜索
   clearSearch: function() {
+    //loading
+    ui.showLoading();
     this.setData({
       searchText: ''
     })
