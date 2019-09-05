@@ -84,7 +84,7 @@
       </view>
     </view>
 
-    <swiper current="{{active}}" bindchange="handleCurrentChange" style="height: {{swiperHeight[dateList[active].date]}}rpx" duration="150">
+    <swiper current="{{active}}" bindchange="handleCurrentChange" style="height: {{swiperHeight[dateList[active].date] || 800}}rpx" duration="150">
       <swiper-item wx:for="{{dateList}}" wx:for-index="dateKey" wx:for-item="dateItem" wx:key="dateKey" id='swiperItem{{dateKey}}'>
 
         <view class="store-list" id="{{'id' + dateItem.date}}">
