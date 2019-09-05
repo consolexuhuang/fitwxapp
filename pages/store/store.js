@@ -30,7 +30,7 @@ Page({
     memberFollowState: 1, //当前关注状态
     officialDataState: false,
     memberInfo: '',
-    jurisdictionState: false, //授权显示
+    // jurisdictionState: false, //授权显示
   },
 
   /**
@@ -45,18 +45,16 @@ Page({
     //检测登录
     app.checkSessionFun().then(() => {
       this.getCityList();
-    }, () => {
-      this.setData({ jurisdictionState: true })
     })
   },
   onShow() {
-    // this.getOfficialDataState()
-    app.checkSessionFun().then(() => {
-      this.setData({ jurisdictionState: false });
-      this.getMemberFollowState()
-    }, () => {
-      this.setData({ jurisdictionState: true })
-    }) 
+    this.getMemberFollowState()
+    // app.checkSessionFun().then(() => {
+    //   this.setData({ jurisdictionState: false });
+    //   this.getMemberFollowState()
+    // }, () => {
+    //   this.setData({ jurisdictionState: true })
+    // }) 
   },
   //转发
   onShareAppMessage() {
