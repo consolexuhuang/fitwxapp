@@ -3,7 +3,7 @@
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
 <view class="wrapper" wx:if="{{sport}}" style='margin-top:{{marginTopBar}}px;padding-top:20rpx;'>
   <view class="trainRescord fadeIn animated">
-    <view class="trainRescord_head" bindtap="handleMoreTap">
+    <view class="trainRescord_head analysis_memberorder_month" bindtap="handleMoreTap">
       <view class="trainRescord_headCont">本月训练记录</view>
       <view class="trainRescord_headMore">更多</view>
     </view>
