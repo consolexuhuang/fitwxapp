@@ -37,11 +37,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (options.shareMemberId) {
+      wx.setStorageSync('shareMemberId', options.shareMemberId)
+    }
     //获取本地存储数据
     this.setData({
       topStoreIds: wx.getStorageSync('topStoreIds') ? wx.getStorageSync('topStoreIds') : []
     })
-
     //检测登录
     app.checkSessionFun().then(() => {
       this.getCityList();
@@ -60,7 +62,7 @@ Page({
   onShareAppMessage() {
     return {
       title: "Justin&Julie Fitness 门店",
-      path: `/pages/store/store`
+      path: `/pages/store/store?&shareMemberId=${wx.getStorageSync('shareMemberId')}`
     }
   },
   bindgetuserinfo() {

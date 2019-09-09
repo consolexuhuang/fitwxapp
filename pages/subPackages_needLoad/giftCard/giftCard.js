@@ -82,9 +82,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (options.shareMemberId) {
+      wx.setStorageSync('shareMemberId', options.shareMemberId)
+    }
+
     if (options.cardId) {
       this.setData({ cardId: options.cardId})
     }
+
     if (!getApp().passIsLogin()) {
       this.setData({ jurisdictionState: true })
     }else{
@@ -167,7 +172,7 @@ Page({
   onShareAppMessage () {
     return {
       title: this.data.giftCardInfo.gift_memo,
-      path: 'pages/subPackages_needLoad/giftCard/giftCard?cardId=' + this.data.cardId,
+      path: 'pages/subPackages_needLoad/giftCard/giftCard?cardId=' + this.data.cardId + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
       imageUrl: 'https://img.cdn.powerpower.net/5d469297e4b0c7c776bbbba5.png',
       success: function (res) {
         console.log('分享成功', res)

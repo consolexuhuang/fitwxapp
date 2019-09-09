@@ -74,6 +74,9 @@ Page({
    */
 
   onLoad: function(options) {
+    if (options.shareMemberId) {
+      wx.setStorageSync('shareMemberId', options.shareMemberId)
+    }
     //进入onLoad
     onLoaded = true;
     // this.getShareCouponInfo()
@@ -132,7 +135,7 @@ Page({
   onShareAppMessage(){
     return{
       title:"Justin&Julie Fitness 课表",
-      path:'/pages/index/index'
+      path: `/pages/index/index?shareMemberId=${wx.getStorageSync('shareMemberId')}`,
     }
   },
   onHide() {

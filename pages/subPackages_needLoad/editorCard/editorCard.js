@@ -97,7 +97,7 @@ Page({
     this.setData({ tipsState: false, textValue: this.data.sendMessage })
     return {
       title: this.data.sendMessage || this.data.giftCardInfo.gift_memo,
-      path: 'pages/subPackages_needLoad/giftCard/giftCard?cardId=' + this.data.cardId,
+      path: 'pages/subPackages_needLoad/giftCard/giftCard?cardId=' + this.data.cardId + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
       imageUrl: 'https://img.cdn.powerpower.net/5d469297e4b0c7c776bbbba5.png',
     }
     // wx.showModal({
