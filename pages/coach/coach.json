@@ -3,6 +3,7 @@
   "usingComponents": {
     "tabBar_top": "/components/tabBar_top/tabBar",
     "officalAccount": "/components/officalAccount/officalAccount",
-    "jurisdictionSmallPopup": "/components/jurisdictionSmallPopup/jurisdictionSmallPopup"
+    "jurisdictionSmallPopup": "/components/jurisdictionSmallPopup/jurisdictionSmallPopup",
+    "shareMain": "/components/shareMain/shareMain"
   }
 }
