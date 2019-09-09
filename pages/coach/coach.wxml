@@ -134,5 +134,3 @@
 
 <jurisdictionSmallPopup state = '{{jurisdictionSmallState}}'
                    bindmyevent='bindgetuserinfo'></jurisdictionSmallPopup>
-<!-- 分享内容 -->
- <shareMain></shareMain>

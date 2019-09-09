@@ -34,6 +34,16 @@ Page({
     memberInfo:'',
 
     jurisdictionState: false, //授权显示
+    cardData:{
+      pic:'',
+      courseName:'',
+      beginDate:'',
+      address:'',
+      coachName:'',
+      memberHeadImg:'',
+      memberNickName:'',
+      qrCode:''
+    },//保存卡片需要的信息
 
     statementContent:`<p>1、参与Justin&Julie健身服务的用户，具有完全的民事行为能力，同意遵守Justin&Julie的相关管理规章制度，已接受Justin&Julie的相关服务协议，并已知晓有关的健身规则与警示，承诺遵守Justin&Julie的相关健身规则与警示规定。</p>
       <p>2、Justin&Julie员工及教练不提供任何形式的体检服务，Justin&Julie员工及教练对用户身体情况的任何询问、了解和建议都不构成本公司对用户身体状况是否符合任意健身课程和产品要求的承诺及保证。在确认本声明前，用户应自行到医疗机构进行体检，了解自身身体情况，以确保用户具备参与Justin&Julie健身产品的身体条件，且没有任何不宜运动的疾病、损伤和其他缺陷。因用户自身的任何疾病、损伤或其他缺陷导致用户在接受服务时发生任何损害的，Justin&Julie不承担任何法律责任。</p>
@@ -59,12 +69,12 @@ Page({
     // })
   },
   onLoad: function (options) {
-    console.log(options)
+    //loading
+    wx.showLoading({ title: '加载中...' })
     //分享过来的参数
     if (options.shareMemberId) {
       wx.setStorageSync('shareMemberId', options.shareMemberId)
-    }
-    
+    }    
     const courseId = options.courseId
     this.setData({
       courseId
@@ -75,8 +85,11 @@ Page({
       this.setData({ jurisdictionState: true })
     } else {
       app.checkSessionFun().then(() => {
-        this.getCourse()
-        this.getMemberFollowState()
+        Promise.all([this.getCourse(), this.getMemberFollowState()]).then(()=>{
+          wx.hideLoading();
+          console.log('this.data.cardData')
+          console.log(this.data.cardData)
+        })
         // this.getOfficialDataState()
       }, () => {
         this.setData({ jurisdictionState: true })
@@ -85,10 +98,13 @@ Page({
   },
   // 点击授权
   bindgetuserinfo(){
+    //loading
+    wx.showLoading({ title: '加载中...' })
     app.wx_AuthUserLogin().then(() => {
       this.setData({ jurisdictionState: false })
-      this.getCourse()
-      this.getMemberFollowState()
+      Promise.all([this.getCourse(),this.getMemberFollowState()]).then(()=>{
+        wx.hideLoading()
+      })      
       // this.getOfficialDataState()
     }, () => {
       this.setData({ jurisdictionState: true })
@@ -100,11 +116,13 @@ Page({
   // 获取当前用户关注状态
   getMemberFollowState() {
     api.post('v2/member/memberInfo').then(res => {
-      console.log('getMemberFollowState', res)
+      let memberInfo = res.msg;
       this.setData({
-        memberFollowState: res.msg.sub_flag,
-        officialDataState: res.msg.sub_flag == 1 ? false : true,
-        memberInfo: res.msg
+        memberInfo,
+        memberFollowState: memberInfo.sub_flag,
+        officialDataState: memberInfo.sub_flag == 1 ? false : true,
+        'cardData.memberHeadImg': memberInfo.head_img,
+        'cardData.memberNickName': memberInfo.nick_name
       })
     })
   },
@@ -117,13 +135,16 @@ Page({
       id: courseId,
       picType: 1
     }
-    wx.showLoading({title: '加载中...'})
     api.post('course/getCourse', data).then(res => {
-      wx.hideLoading()
       if (res.code === 0) {
         const courseData = res.msg
         this.setData({
-          courseData
+          courseData,
+          'cardData.pic': courseData.bannerList[0],
+          'cardData.courseName': courseData.courseName,
+          'cardData.beginDate': courseData.beginDate,
+          'cardData.address': courseData.store.address,
+          'cardData.coachName': courseData.coach.coachName
         })
       }
     })

@@ -72,6 +72,7 @@
   font-size:26rpx;
 }
 .card .info-row .text{  
+  width: 100%;
   font-size:28rpx;
 }
 .card .member{
@@ -158,4 +159,8 @@ height:88rpx;
 
 .sharemain .foot .btn.download .icon {
   color: #7257fb;
+}
+.canvas-box {
+  position: fixed;
+  top: 999999999999999999999rpx;
 }

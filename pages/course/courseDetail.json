@@ -6,6 +6,7 @@
     "tabBar_top": "/components/tabBar_top/tabBar",
     "share_tag":"/components/shareTag/shareTag",
     "officalAccount": "/components/officalAccount/officalAccount",
-    "jurisdictionPopup": "/components/jurisdictionPopup/jurisdictionPopup"
+    "jurisdictionPopup": "/components/jurisdictionPopup/jurisdictionPopup",
+    "shareMain": "/components/shareMain/shareMain"
   }
 }

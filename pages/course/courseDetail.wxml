@@ -109,7 +109,7 @@
     </view>
     <!-- labels -->
     <view class="labels">
-      <text class="item" wx:for="{{util.labelStringToArr(courseData.label_names)}}">{{item}}</text>
+      <text class="item" wx:for="{{util.labelStringToArr(courseData.label_names)}}" wx:key="{{index}}">{{item}}</text>
     </view>
 
     <view class="course-column-list">
@@ -218,3 +218,5 @@
 </officalAccount>
 
 <jurisdictionPopup state='{{jurisdictionState}}' bindmyevent='bindgetuserinfo'></jurisdictionPopup>
+<!-- 分享内容 -->
+ <shareMain cardData='{{cardData}}'></shareMain>
