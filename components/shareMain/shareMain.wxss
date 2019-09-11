@@ -1,7 +1,15 @@
 /* components/shareMain/shareMain.wxss */
 @import '/style/iconfont.wxss';
-
-.sharemain.mask {
+.mask {  
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 101;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+/* .sharemain {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -11,15 +19,20 @@
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 101;
-  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 102;
 }
-
-.sharemain .card {
+ */
+.card {
+  position: fixed;  
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
   width: 550rpx;
-  height: 828rpx;
+  /* height: 828rpx; */
+  margin: auto;
   background: #fff;
   border-radius: 32rpx;
+  z-index: 102;
 }
 
 .toppic {
@@ -105,7 +118,8 @@ color:#333333;
 .card .member .left .name{
 font-size:32rpx;
 }
-.card .member .left .tip{
+.card .member .left .tip{  
+  margin-top:10rpx;
 font-size:22rpx;
 }
 .card .member .qrcode{
@@ -114,7 +128,7 @@ font-size:22rpx;
   width:88rpx;
 height:88rpx;
 }
-.sharemain .foot {
+.foot {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -126,14 +140,15 @@ height:88rpx;
   height: 130rpx;
   border-radius: 40rpx 40rpx 0rpx 0rpx;
   background-color: #fff;
+  z-index: 102;
 }
 
-.sharemain .foot:before, .sharemain .foot:after {
+.foot:before, .foot:after {
   content: '';
   display: block;
 }
 
-.sharemain .foot .btn {
+.foot .btn {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -146,18 +161,26 @@ height:88rpx;
   border: 1px solid rgba(153, 153, 153, 1);
   font-size: 28rpx;
 }
-
-.sharemain .foot .btn .icon {
+.foot .btn .icon {
   margin-right: 21rpx;
   margin-top: 6rpx;
   font-size: 30rpx;
 }
-
-.sharemain .foot .btn.share .icon {
+.foot .btn.share{
+  position: relative;
+}
+.foot .btn.share .shareBtn{
+  position: absolute;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  opacity: 0;
+}
+.foot .btn.share .icon {
   color: #72d225;
 }
-
-.sharemain .foot .btn.download .icon {
+.foot .btn.download .icon {
   color: #7257fb;
 }
 .canvas-box {

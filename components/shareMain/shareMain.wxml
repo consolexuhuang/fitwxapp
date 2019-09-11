@@ -1,9 +1,11 @@
 <!--components/shareMain/shareMain.wxml-->
+<wxs src="../../utils/util.wxs" module="util" />
 <!-- mask -->
-<view class="sharemain mask">
+<view class="mask" wx:if='{{isShow}}' bindtap="clickClose"></view>
 
+<!-- <view class="sharemain" wx:if='{{isShow}}'> -->
   <!-- card -->
-  <view class="card">
+  <view class="card" wx:if='{{isShow}}'>
     <!-- toppic -->
     <view class="toppic">
       <image class="img" src="{{cardData.pic}}"></image>
@@ -16,11 +18,11 @@
     <view class="info">
       <view class="info-row">
         <text class="icon iconfont iconicon-test35"></text>
-        <text class="text">{{cardData.beginDate}}</text>
+        <text class="text">{{util.timeStampFormat(cardData.beginDate, 'YYYY-MM-DD')}} {{util.timeStampFormat(cardData.beginTime, 'hh:mm')}}</text>
       </view>
       <view class="info-row">
         <text class="icon iconfont iconicon-test40"></text>
-        <text class="text" id="address-text">{{cardData.address}}</text>
+        <text class="text">{{cardData.address}}</text>
       </view>
       <view class="info-row">
         <text class="icon iconfont iconfenzu2"></text>
@@ -33,7 +35,7 @@
         <image class="header" src="{{cardData.memberHeadImg}}"></image>
         <view class="name-tip">
           <text class="name">{{cardData.memberNickName}}</text>
-          <text class="tip">分享课程，长按查看</text>
+          <text class="tip">{{tipText}}</text>
         </view>
       </view>
       <image class="qrcode" src="/images/delete01.jpg"></image>
@@ -41,19 +43,22 @@
   </view>
 
   <!-- footer -->
-  <view class="foot">
+  <view class="foot"  wx:if='{{isShow}}'>
     <view class="btn share">
       <text class="icon iconfont iconfenzucopy"></text>
       <text>发送好友</text>
+      <button open-type='share' class='shareBtn' ></button>
     </view>
     <view class="btn download" bindtap="saveCard">
       <text class="icon iconfont iconfenzu1"></text>
       <text>保存卡片</text>
     </view>
   </view>
-</view>
+<!-- </view> -->
 
 <!-- canvas -->
 <view class="canvas-box">
   <canvas style="width:{{width}}px; height:{{height}}px;" canvas-id="cardCanvas"></canvas>
+  <!-- 用来装地址，以便用来计算地址的宽度 -->
+  <canvas style="width:600px; height:100px;" canvas-id="addressCanvas"></canvas>
 </view>

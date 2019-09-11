@@ -3,26 +3,17 @@
   padding-bottom: 115rpx;
   width: 100%;
 }
-/* .shareBox{
-  position: fixed;
-  right: 4rpx;
-  top: 546rpx;
+
+.shareBox{
+  /* top: 546rpx; */
+  position: relative;
   width: 89rpx;
   height: 69rpx;
-  z-index: 10000
 }
 .shareImg{
   width: 100%;
   height: 100%
 }
-.shareBtn{
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-} */
 
 .header{
   width: 100%;

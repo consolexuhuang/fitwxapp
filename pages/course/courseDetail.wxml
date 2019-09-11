@@ -29,21 +29,20 @@
             <text wx:if='{{courseData}}'>{{util.timeStampFormat(courseData.beginDate, 'YYYY-MM-DD')}} {{util.timeStampFormat(courseData.beginTime, 'hh:mm')}}</text>
           </view>
           <view class='icon_wx_shareBigBox'>
-            <!-- <text id='line_wx'></text>
-        <view class='icon_wx_shareBox'>
-          <text class='iconicon-test31 iconfont' id='icon_wx'> </text>
-          <button open-type='share' class='icon_wx_share analysis_courseDetail_wx'></button>
-        </view> -->
           </view>
         </view>
         <view class="course-address" data-name="{{courseData.store.storeName}}" data-address="{{courseData.store.address}}" data-latitude="{{courseData.store.latitude}}" data-longitude="{{courseData.store.longitude}}" bindtap="handleLocationTap">
           <text class='iconfont iconicon-test40 icon1' />
           <text>{{courseData.store.address}}</text>
+          <!-- 获取元素高度用的，页面上不做显示 -->
+          <!-- <text id="store-address" style="display:none;font-size:28rpx;">{{courseData.store.address}}</text> -->
         </view>
       </view>
       <view class="course-info-middle"></view>
       <view class="course-info-right">
-        <share_tag imgUrl='{{imgUrl}}' shareConfig='{{shareConfig}}'></share_tag>
+        <view class='shareBox' bindtap='handleShare'>
+          <image class='shareImg' src='{{imgUrl}}icon/shareImg.png'></image>
+        </view>
       </view>
     </view>
   </view>
@@ -83,25 +82,9 @@
       </view>
     </view>
   </view>
-  <!-- <view class="course-data-list fadeIn animated">
-    <view class="course-data-item">
-      <view class="course-data-item-title">燃脂</view>
-      <view class="course-data-item-text">300kcal</view>
-    </view>
-    <view class="course-data-line"></view>
-    <view class="course-data-item">
-      <view class="course-data-item-title">难度</view>
-      <view class="course-data-item-text">中强度</view>
-    </view>
-    <view class="course-data-line"></view>
-    <view class="course-data-item">
-      <view class="course-data-item-title">时长</view>
-      <view class="course-data-item-text">60分钟</view>
-    </view>
-  </view> -->
+
   <view class="module-wrapper fadeIn animated">
     <view class="module-title-wrapper">
-      <!-- <view class="module-dot"></view> -->
       <view class="module-title">课程简介</view>
     </view>
     <view class="course-description">
@@ -146,14 +129,10 @@
           </rich-text>
         </view>
       </view>
-      <!-- <view class="course-column-arrow">
-        <image src="{{imgUrl}}course/icon_arrow_down_gray.png" />
-      </view> -->
     </view>
   </view>
   <view class="module-wrapper">
     <view class="module-title-wrapper">
-      <!-- <view class="module-dot"></view> -->
       <view class="module-title">健身步骤</view>
     </view>
     <view class="fitness-step-content">
@@ -180,16 +159,12 @@
   </view>
   <view class="module-wrapper">
     <view class="module-title-wrapper">
-      <!-- <view class="module-dot"></view> -->
       <view class="module-title">注意事项</view>
     </view>
     <view class="tips-wrapper">
       <view class="tips-content">
         <rich-text nodes="{{courseData.needingAttention}}"></rich-text>
       </view>
-      <!-- <view class="tips-arrow">
-        <image src="{{imgUrl}}course/icon_arrow_down_gray.png" />
-      </view> -->
       <view class="tips-text">成功预约即表示已阅读并同意
         <text bindtap='showStatement'>《J&J注意事项及免责声明》</text>
       </view>
@@ -206,17 +181,9 @@
 <!-- 免责声明 -->
 <statement show="{{isShowStatement}}" content="{{statementContent}}" btnText="关闭" bind:statementEvent="statementClose"></statement>
 
-
-<!-- <view class='officialAccount fadeIn animated' 
-      wx:if='{{memberFollowState == 0}}'>
-  <official-account bindload='bindload' 
-                    binderror='binderror'
-                    class='officialAccount'>
-  </official-account>
-</view> -->
 <officalAccount memberFollowState='{{memberFollowState}}' bottomStyle='{{bottomStyle}}' officialDataState="{{officialDataState}}" pageShowNoticeState='{{memberInfo.sub_flag == 0 && memberInfo.order_count >= 1 ? true : false}}'>
 </officalAccount>
 
 <jurisdictionPopup state='{{jurisdictionState}}' bindmyevent='bindgetuserinfo'></jurisdictionPopup>
 <!-- 分享内容 -->
- <shareMain cardData='{{cardData}}'></shareMain>
+<shareMain cardData='{{cardData}}' isShow='{{isShowCard}}' bindclosecard='closecard'></shareMain>
