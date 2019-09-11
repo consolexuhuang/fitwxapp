@@ -36,17 +36,17 @@ Page({
   onLoad: function(options) {
   },
   onShow(){
-    //检测登录
-    this.setData({
-      userData: Store.getItem('userData') || '',
-      wx_userInfo: Store.getItem('wx_userInfo') || '',
-      showAuthModel: !app.passIsLogin()
-    })
     app.checkSessionFun().then(() => {
       this.getMemberFollowState()
       this.getUserInfo()
       this.getOrderCount()
       this.getGoingList()
+      //检测登录
+      this.setData({
+        userData: Store.getItem('userData') || '',
+        wx_userInfo: Store.getItem('wx_userInfo') || '',
+        showAuthModel: !app.passIsLogin()
+      })
     // this.getOfficialDataState()
     })
 
@@ -201,6 +201,12 @@ Page({
   jumpTocourseList(){
     wx.switchTab({
       url: '/pages/course/course',
+    })
+  },
+  //限时优惠
+  handleGoodList(){
+    wx.navigateTo({
+      url: '/pages/good/good',
     })
   },
   jumpToOrderStatus(e){

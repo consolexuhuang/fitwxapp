@@ -99,6 +99,9 @@ Page({
         wx.hideLoading()
         wx.stopPullDownRefresh()
         const cardDefList = res.msg
+        // for (let item in res.msg){
+        //   item.
+        // }
         this.setData({
           cardDefList
         })

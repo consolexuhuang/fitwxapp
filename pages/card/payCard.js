@@ -196,9 +196,11 @@ Page({
       const goodData = res.msg
       this.setData({
         goodData,
-        optional_imgList: res.msg.card_def.optional_img ?res.msg.card_def.optional_img.split(',') : ''
+        optional_imgList: res.msg.card_def.optional_img ?res.msg.card_def.optional_img.split(',') : '',
+        current_banner: res.msg.card_def.optional_img && res.msg.card_def.optional_img.split(',').length == 1 ?  0 : 1
       })
       this.checkOrder()
+      // console.log(this.data.optional_imgList)
     })
   },
   checkOrder: function(event) {

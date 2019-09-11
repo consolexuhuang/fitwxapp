@@ -4,8 +4,13 @@
     <view wx:for="{{timeCardList}}" wx:key="_PK_" >
       <view class="orderCard_item" wx:if="{{item.card_reduce_count > 0}}" data-time-card-id="{{item.id}}" bindtap="handleTimeCardTap">
         <image src="{{item.background_img}}" class="orderCard_itemImg"></image>
-        <view class="orderCard_itemTime">到期时间：{{item.validity_date}}</view>
-        <view class="orderCard_itemCount">还剩：{{item.card_left_count}}次</view>
+        <view class="orderCardBox">
+          <view class="orderInfoBox">
+            <view class="orderCard_Title">{{item.card_title}}</view>
+            <view class="orderCard_itemTime">剩余次数：{{item.card_left_count}}/{{item.card_total_count}}次</view>
+          </view>
+          <view class="orderCard_itemRestTime">截止日期:{{item.validity_date}}</view>
+        </view>
         <text class="chooseCard" wx:if="{{item.id === timeCardId}}"></text>
       </view>
     </view>

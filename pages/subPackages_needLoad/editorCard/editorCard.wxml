@@ -35,7 +35,7 @@
            z-index = '1001'>
     <view class='tips'>
       <view class='tips_title'>温馨提示</view>
-      <view class='tips_text'>请确认赠送朋友的身份，七夕卡赠出并被领取后不可退回。</view>
+      <view class='tips_text'>请确认赠送朋友的身份，赠出并被领取后不可退回。</view>
       <view class='btn_popup'>
          <view class='noneBtn' bindtap='closeNone'>取消</view>
          <view class='cofirmBtn'>

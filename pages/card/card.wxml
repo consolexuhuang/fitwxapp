@@ -27,7 +27,7 @@
           </view>
           <!-- 未开通信息 -->
           <view class="card-info" wx:else>
-            <text class="card-info-title">开通PLUS卡专享特</text>
+            <text class="card-info-title">开通PLUS卡专享特权</text>
             <view class="card-right">
               <view class="btn mt47">立即开通</view>
             </view>
@@ -49,7 +49,7 @@
         <scroll-view scroll-x class="card-type-scroll">
           <block wx:for="{{typeItem.list}}" wx:for-item="cardItem" wx:key="_PK_">
             <view class="card-type-item analysis_card_buy" data-card-id="{{cardItem._PK_}}" bindtap="handleCardTap">
-              <image src="{{cardItem.background_img}}" class='fadeIn animated'/>
+              <image src="{{util.dealOptionImg(cardItem.optional_img)}}" class='fadeIn animated'/>
               <text>¥{{cardItem.discount_price}}/{{cardItem.card_total_count}}次</text>
               <view class='payCardBtn'>购买</view>
             </view>

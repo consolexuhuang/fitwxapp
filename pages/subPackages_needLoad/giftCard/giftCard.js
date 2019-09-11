@@ -49,7 +49,7 @@ Page({
         }
       }
       console.log('身份', this.data.enterUserAdmin)
-      res.msg.card_title = res.msg.card_title.slice(0,res.msg.card_title.indexOf('('))
+      // res.msg.card_title = res.msg.card_title.slice(0,res.msg.card_title.indexOf('('))
       this.setData({
         giftCardInfo: res.msg,
       })

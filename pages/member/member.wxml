@@ -125,6 +125,13 @@
   </view>
 
   <view class="menu fadeIn animated" wx:if='{{!showAuthModel}}'>
+    <view class="item analysis_my_cards" bindtap="handleGoodList">
+      <text class="name">限时优惠</text>
+      <view class="right">
+        <text class="value">查看</text>
+        <text class="icon iconfont iconicon-test42"></text>
+      </view>
+    </view>
     <view class="item analysis_my_cards" bindtap="handleMemberCardTap">
       <text class="name">我的卡包</text>
       <view class="right">

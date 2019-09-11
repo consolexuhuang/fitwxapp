@@ -41,7 +41,7 @@
 
 <view class='btn fadeIn animated' 
       bindtap='clickGiftCard' 
-      wx:if='{{giftCardInfo.gift_flag === 1 && enterUserAdmin == 2}}'>收下TA的七夕礼物</view>
+      wx:if='{{giftCardInfo.gift_flag === 1 && enterUserAdmin == 2}}'>收下TA的礼物</view>
 
 <view class='btn fadeIn animated' 
       wx:elif='{{giftCardInfo.gift_flag === 1 && enterUserAdmin == 1}}'>

@@ -45,8 +45,9 @@ Page({
         })
       } else {
         const cardList = res.msg
+        // res.msg.card_title = res.msg.card_title.slice(0, res.msg.card_title.indexOf('('))
         this.setData({
-          cardList
+          cardList,
         })
       }
     })
