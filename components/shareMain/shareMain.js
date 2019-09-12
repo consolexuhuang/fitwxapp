@@ -88,19 +88,25 @@ Component({
       //loading
       ui.showLoadingMask();
       let generateFilePath = this.data.generateFilePath;
+      
       if (generateFilePath){
+        console.log('generateFilePath001')
+        console.log(generateFilePath)
         this.saveImageToPhotosAlbum(generateFilePath)
-        .then(()=>{
+        /* .then(()=>{
           ui.hideLoading()
-        });
+        }); */
       }else{
         this.generateCardPic()
-        .then(()=>{
+          .then((resTempFilePath)=>{
+            generateFilePath = resTempFilePath;
+          console.log('generateFilePath002')
+          console.log(generateFilePath)
           return this.saveImageToPhotosAlbum(generateFilePath);
         })
-        .then(() => {
+        /* .then(() => {
           ui.hideLoading()
-        });
+        }); */
       }
     },
 
@@ -122,7 +128,7 @@ Component({
           return this.drawCanvas(pic, memberHeadImg, qrCode)
         }).then(() => {
           //生成图片
-          this.canvasToPic()
+         return this.canvasToPic()
         })
         .catch((err) => {
           ui.showToast(err);
@@ -381,36 +387,43 @@ Component({
 
     //生成图片
     canvasToPic() {
-      wx.canvasToTempFilePath({
-        x: 0,
-        y: 0,
-        width: this.data.width,
-        height: this.data.height,
-        destWidth: this.data.width,
-        destHeight: this.data.height,
-        canvasId: 'cardCanvas',
-        fileType: 'png',
-        quality: 1,
-        success: (res) => {
-          console.log('canvasToTempFilePath')
-          console.log(res)
-          let tempFilePath = res.tempFilePath;
-          this.setData({
-            generateFilePath: tempFilePath
-          })
-          /* //测试
-          wx.redirectTo({
-            url: `/pages/test/test?imgUrl=${tempFilePath}&width=${this.data.width}&height=${this.data.height}`,
-          }) */
-        },
-        fail: (err) => {
-          console.log('图片保存失败！')
-          console.log(err)
-        }
-      }, this)
+      return new Promise((resolve,reject)=>{
+        wx.canvasToTempFilePath({
+          x: 0,
+          y: 0,
+          width: this.data.width,
+          height: this.data.height,
+          destWidth: this.data.width,
+          destHeight: this.data.height,
+          canvasId: 'cardCanvas',
+          fileType: 'png',
+          quality: 1,
+          success: (res) => {
+            console.log('canvasToTempFilePath')
+            console.log(res)
+            let tempFilePath = res.tempFilePath;
+            this.setData({
+              generateFilePath: tempFilePath
+            })
+            resolve(tempFilePath);
+            /* //测试
+            wx.redirectTo({
+              url: `/pages/test/test?imgUrl=${tempFilePath}&width=${this.data.width}&height=${this.data.height}`,
+            }) */
+          },
+          fail: (err) => {
+            resolve('图片保存失败！')
+            console.log('图片保存失败！')
+            console.log(err)
+          }
+        }, this)
+      })
+      
     },
     //远程图片转本地图片
     remoteToLocal(url) {
+      console.log('远程图片转本地图片')
+      console.log(url)
       return new Promise((resolve, reject) => {
         wx.getImageInfo({
           src: url,
