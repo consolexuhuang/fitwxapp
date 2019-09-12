@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText":"限时优惠",
   "usingComponents": {
-    "tabBar_top": "/components/tabBar_top/tabBar"
+    "tabBar_top": "/components/tabBar_top/tabBar",
+    "jurisdictionSmallPopup": "/components/jurisdictionSmallPopup/jurisdictionSmallPopup"
   }
 }

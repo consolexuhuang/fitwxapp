@@ -73,4 +73,5 @@
      <text class='openCard' bindtap='jumpToRechange'>立即开通 ></text>
   </view>
 </view>
+<jurisdictionPopup state='{{jurisdictionState}}' bindmyevent='bindgetuserinfo'></jurisdictionPopup>
   <!-- <official-account class='officialAccount'></official-account> -->

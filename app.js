@@ -81,7 +81,8 @@ App({
       if (options.path.indexOf('index') != -1 ||
         options.path === 'pages/store/store' ||
         options.path === 'pages/card/card' ||
-        options.path === 'pages/member/member') {
+        options.path === 'pages/member/member'||
+        options.path === 'pages/good/good') {
         //特殊的落地页区分
         this.globalData.share = false
       } else {

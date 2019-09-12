@@ -4,6 +4,7 @@
   "usingComponents": {
     "dialogComp":"/components/dialog/dialog",
     "van-popup": "../../../libs/vant-weapp/dist/popup/index",
-    "tabBar_top": "/components/tabBar_top/tabBar"
+    "tabBar_top": "/components/tabBar_top/tabBar",
+    "jurisdictionPopup": "/components/jurisdictionPopup/jurisdictionPopup"
   }
 }

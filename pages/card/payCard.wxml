@@ -88,7 +88,7 @@
     <text class="number">¥{{orderData.pay_amount || '0.00'}}</text>
   </view> -->
   <button class="btn cardOver" wx:if='{{orderData.pay_type == "0"}}'>{{orderData.error_tip}}</button>
-  <button class="btn" bindtap="handlePayBtnTap" wx:elif='{{ orderData.pay_type == "1" || orderData.pay_type == "2" || orderData.pay_type == "5"}}'>
+  <button class="btn handlePayBtnTap" bindtap="handlePayBtnTap" wx:elif='{{ orderData.pay_type == "1" || orderData.pay_type == "2" || orderData.pay_type == "5"}}'>
      立即支付 ¥{{orderData.pay_amount}}
   </button>
   <button class="btn" bindtap='jumpTocashMoney' wx:elif='{{orderData.pay_type == "3"}}'>

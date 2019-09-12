@@ -30,3 +30,4 @@
    </view>
   
 </view>
+<jurisdictionSmallPopup state='{{jurisdictionSmallState}}' bindmyevent='bindgetuserinfo'></jurisdictionSmallPopup>

@@ -173,6 +173,7 @@ Page({
   onShow(){
     this.data.cardId ? this.getCardGoodId() : ''
     this.data.goodId ? this.getGoodInfo() : ''
+
   },
   getCardGoodId: function(event) {
     const cardId = this.data.cardId
@@ -188,6 +189,7 @@ Page({
     })
   },
   getGoodInfo: function() {
+    wx.reportAnalytics('enterpage_paycard', { goodId: this.data.goodId })
     const goodId = this.data.goodId
     const data = {
       goodId
@@ -220,6 +222,7 @@ Page({
   },
   //支付
   handlePayBtnTap: function(event) {
+    wx.reportAnalytics('click_paycard', { goodId: this.data.goodId})
     wx.showModal({
       title: '提示！',
       content: '是否确认购卡？',

@@ -1,7 +1,7 @@
 <!--pages/card/card.wxml-->
 <wxs src="../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class="wrapper" style='margin-top:{{marginTopBar}}px; padding-top:20rpx; background:#fff' wx:if='{{cardDefList}}'>
+<view class="wrapper" style='margin-top:{{marginTopBar}}px; padding-top:20rpx; background:#fff' wx:if='{{cardDefList && !showAuthModel}}'>
   <view wx:for="{{cardDefList}}" wx:for-item="typeItem" wx:for-index="typeKey" wx:key="typeKey">
     <view wx:if="{{typeItem.type === 3}}">
       <!-- title -->
@@ -40,10 +40,10 @@
       <view class="card-type">
         <view class="title">
           <view class="title-name">{{typeItem.name}}类型 ({{typeItem.list.length}})</view>
-          <view class="more analysis_card_more" data-card-type="{{typeItem.type}}" bindtap="handleCardMoreTap">
+          <!-- <view class="more analysis_card_more" data-card-type="{{typeItem.type}}" bindtap="handleCardMoreTap">
             <text>更多</text>
             <text class='iconfont iconicon-test41' style='font-size:26rpx;margin-top:5rpx'/>
-          </view>
+          </view> -->
         </view>
         <!-- card type list -->
         <scroll-view scroll-x class="card-type-scroll">
