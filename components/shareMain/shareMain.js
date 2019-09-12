@@ -42,17 +42,17 @@ Component({
   },
   /* 监听 */
   observers:{
-    'cardData.address':function(val){
-      
+    'cardData.address':function(val){     
 
       //获取地址宽度，用来判断地址是一行还是2行，给canvas赋值对应的高度
-      /* let address = val; */
-      //测试
-      let address = '后面的参数是实际的url，需要先encode一下你试一下这个接口，可以做跳转';
-      if (address){
+      let address = val;
+      /* //测试
+      let address = '后面的参数是实际的url，需要先encode一下你试一下这个接口，可以做跳转'; */
+      console.log('observers000')
+      /* if (address){
         console.log('observers')
         this.calAddressWidth(address);
-      }
+      } */
     }
   },
   lifetimes: {
@@ -79,36 +79,18 @@ Component({
       this.triggerEvent('closecard')
     },
 
-    //计算地址的宽度
-    calAddressWidth(address){
-      let ctxAddress = wx.createCanvasContext('addressCanvas', this);
-      //绘制文本
-      ctxAddress.setFontSize(28);
-      ctxAddress.fillText(address, 0, 0);
-      //获取宽度
-      let addressWidth = ctxAddress.measureText(address).width;
-      console.log('calAddressWidth')
-      console.log(addressWidth)
-      console.log(this.data.addressRowMaxWidth)
-      console.log(addressWidth > this.data.addressRowMaxWidth)
-      if (addressWidth > this.data.addressRowMaxWidth){
-        this.setData({
-          addressWidth,
-          height:828,
-          addressIsTwoRow:true
-        })
-      }else{
-        this.setData({
-          addressWidth
-        })
-      }
-      
-    },
+   
 
     //保存卡片
     saveCard() {
+      /* //测试
+      this.setData({
+        'cardData.address':'远程图片转本地图片后面只需要把第三个参数改为二维码就行了',
+         'cardData.courseName':'barbie我们只能设置文本的最大宽度，这就产生一定的了问题'
+      }) */
+
       //远程图片转本地图片（banner、头像、二维码）     后面只需要把第三个参数改为二维码就行了
-      Promise.all([this.remoteToLocal(this.data.cardData.pic), this.remoteToLocal(`${api.API_URI}redirect?url=${encodeURI(this.data.cardData.memberHeadImg)}`), this.remoteToLocal(`${api.API_URI}redirect?url=${encodeURI(this.data.cardData.memberHeadImg)}`)])
+      Promise.all([this.remoteToLocal(this.data.cardData.pic), this.remoteToLocal(`${api.API_URI}redirect?url=${encodeURI(this.data.cardData.memberHeadImg)}`), this.remoteToLocal(`${api.API_URI}redirect?url=${encodeURI(this.data.cardData.memberHeadImg)}`), this.calAddressWidth(this.data.cardData.address)])
         .then((resArrImg) => {
           //banner
           let pic = resArrImg[0];
@@ -148,6 +130,8 @@ Component({
       let qrCodeWidth = this.data.qrCodeWidth;
       let addressWidth = this.data.addressWidth;//真实地址宽度
       let addressRowMaxWidth = this.data.addressRowMaxWidth;//可装地址的行宽
+      let addressIsTwoRow = this.data.addressIsTwoRow;
+      let addRowHeight = addressIsTwoRow? infoSpaceTop : 0;
 
       /* canvas draw */
       let ctx = wx.createCanvasContext('cardCanvas', this);  
@@ -184,8 +168,7 @@ Component({
       //关闭
       ctx.closePath()      
       ctx.setFillStyle('#fff');
-      ctx.fill();  
-
+      ctx.fill(); 
 
       /* 绘制顶部渐变圆角图片 */
       ctx.save();
@@ -237,8 +220,6 @@ Component({
       ctx.setFontSize(canvasWidth / courseNameFontSizeScale);
       ctx.setFillStyle('#fff');
       let courseName = this.data.cardData.courseName;
-      /* //测试
-      let courseName = 'barbie我们只能设置文本的最大宽度，这就产生一定的了问题'; */
       let row = this.textRow(ctx,courseName, courseNameWidth); 
       //1行
       if (row.length==1){
@@ -269,9 +250,7 @@ Component({
       //绘制文本
       ctx.setFontSize(28);
       ctx.setFillStyle('#999999');  
-      /* let address = this.data.cardData.address; */
-      //测试
-      let address = '后面的参数是实际的url，需要先encode一下你试一下这个接口，可以做跳转';
+      let address = this.data.cardData.address;
       let row_address = this.textRow(ctx, address, addressRowMaxWidth);
       //1行
       if (row_address.length==1){
@@ -280,24 +259,27 @@ Component({
       //2行
       else{
         ctx.fillText(row_address[0], infoSpaceLeft + canvasWidth / iconScale + infoSpaceTop, picHeight + infoSpaceTop + infoRowHeight + 25);
-        ctx.fillText(row_address[1], infoSpaceLeft + canvasWidth / iconScale + infoSpaceTop, picHeight + infoSpaceTop + infoRowHeight + 55);
+        ctx.fillText(row_address[1], infoSpaceLeft + canvasWidth / iconScale + infoSpaceTop, picHeight + infoSpaceTop + infoRowHeight + 60);
       }
       
 
+      console.log('addRowHeight')
+      console.log(addRowHeight)
+      
       //教练
       //绘制图标
-      ctx.drawImage('/images/icon/people.png', 0, 0, 56, 56, infoSpaceLeft, picHeight + infoSpaceTop + infoRowHeight*2, canvasWidth / iconScale, canvasWidth / iconScale);
+      ctx.drawImage('/images/icon/people.png', 0, 0, 56, 56, infoSpaceLeft, picHeight + infoSpaceTop + infoRowHeight * 2 + addRowHeight, canvasWidth / iconScale, canvasWidth / iconScale);
       //绘制文本
       ctx.setFontSize(28);
       ctx.setFillStyle('#999999');
-      ctx.fillText(this.data.cardData.coachName +'·教练', infoSpaceLeft + canvasWidth / iconScale + infoSpaceTop, picHeight + infoSpaceTop + infoRowHeight*2 + 25);
+      ctx.fillText(this.data.cardData.coachName + '·教练', infoSpaceLeft + canvasWidth / iconScale + infoSpaceTop, picHeight + infoSpaceTop + infoRowHeight * 2 + 25 + addRowHeight);
 
       /* 底部分享信息 */
       //会员头像
       ctx.save()
       ctx.beginPath()
       let headImgX = infoSpaceLeft+20;
-      let headImgY = picHeight + infoSpaceTop * 3 + infoRowHeight * 3;
+      let headImgY = picHeight + infoSpaceTop * 3 + infoRowHeight * 3 + addRowHeight;
       let headImgWidth = canvasWidth / headImgScale;
       let headImgR = headImgWidth / 2;
       ctx.arc(headImgX, headImgY, headImgR, 0, 2*Math.PI);
@@ -311,10 +293,10 @@ Component({
       //提示语
       ctx.setFontSize(22);
       ctx.setFillStyle('#333333');
-      ctx.fillText(this.data.tipText, infoSpaceLeft + headImgWidth, headImgY+30);
+      ctx.fillText(this.data.tipText, infoSpaceLeft + headImgWidth, headImgY + 30);
 
       //二维码
-      ctx.drawImage(qrCode, 0, 0, 132, 132, canvasWidth - qrCodeWidth-30, headImgY - headImgR, qrCodeWidth, qrCodeWidth)
+      ctx.drawImage(qrCode, 0, 0, 132, 132, canvasWidth - qrCodeWidth - 30, headImgY - headImgR, qrCodeWidth, qrCodeWidth)
 
       /* 返回 */
       return new Promise((resolve, reject) => {
@@ -326,7 +308,8 @@ Component({
         reject(err)
       })
     },
-   //计算文字宽度
+
+   //给文字分组
     textRow(ctx,textString,stringWidth){
      /* //测试
      let textString = 'barbie我们只能设置文本的最大宽度，这就产生一定的了问题'; */
@@ -345,6 +328,32 @@ Component({
      row.push(temp);
      return row;
    },
+    //计算地址的宽度
+    calAddressWidth(address) {
+      return new Promise((resolve, reject) => {
+        let ctxAddress = wx.createCanvasContext('addressCanvas', this);
+        //绘制文本
+        ctxAddress.setFontSize(28);
+        ctxAddress.fillText(address, 0, 0);
+        //获取宽度
+        let addressWidth = ctxAddress.measureText(address).width;
+        if (addressWidth > this.data.addressRowMaxWidth) {
+          this.setData({
+            addressWidth,
+            height: 828,
+            addressIsTwoRow: true
+          })
+        } else {
+          this.setData({
+            addressWidth
+          })
+        }
+        console.log('calAddressWidth')
+        console.log(this.data)
+        resolve();
+      })
+
+    },
 
     //生成图片
     canvasToPic() {
@@ -389,14 +398,5 @@ Component({
         })
       })
     },
-    //头像微信http路径转为自己的路径
-    transformUrl() {
-      let url = encodeURI(this.data.cardData.memberHeadImg)
-      api.get(`redirect?url=${url}`).then((res)=>{
-        console.log('res url')
-        console.log(res)
-        this.remoteToLocal(res)
-      })
-    }
   }
 })
