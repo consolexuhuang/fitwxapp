@@ -63,6 +63,7 @@ function post(path, data) {
   return request(path, data, 'POST')
 }
 module.exports = {
+  API_URI,
   get,
   post
 }

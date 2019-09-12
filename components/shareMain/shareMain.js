@@ -1,5 +1,7 @@
 // components/shareMain/shareMain.js
-const util = require('../../utils/util.js')
+const app = getApp();
+const api = app.api;
+const util = require('../../utils/util.js');
 Component({
   /**
    * 组件的属性列表
@@ -41,6 +43,8 @@ Component({
   /* 监听 */
   observers:{
     'cardData.address':function(val){
+      
+
       //获取地址宽度，用来判断地址是一行还是2行，给canvas赋值对应的高度
       /* let address = val; */
       //测试
@@ -104,7 +108,7 @@ Component({
     //保存卡片
     saveCard() {
       //远程图片转本地图片（banner、头像、二维码）     后面只需要把第三个参数改为二维码就行了
-      Promise.all([this.remoteToLocal(this.data.cardData.pic), this.remoteToLocal(this.data.cardData.memberHeadImg), this.remoteToLocal(this.data.cardData.memberHeadImg)])
+      Promise.all([this.remoteToLocal(this.data.cardData.pic), this.remoteToLocal(`${api.API_URI}redirect?url=${encodeURI(this.data.cardData.memberHeadImg)}`), this.remoteToLocal(`${api.API_URI}redirect?url=${encodeURI(this.data.cardData.memberHeadImg)}`)])
         .then((resArrImg) => {
           //banner
           let pic = resArrImg[0];
@@ -383,6 +387,15 @@ Component({
             reject(err)
           }
         })
+      })
+    },
+    //头像微信http路径转为自己的路径
+    transformUrl() {
+      let url = encodeURI(this.data.cardData.memberHeadImg)
+      api.get(`redirect?url=${url}`).then((res)=>{
+        console.log('res url')
+        console.log(res)
+        this.remoteToLocal(res)
       })
     }
   }
