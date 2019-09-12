@@ -205,6 +205,8 @@ Component({
       ctx.lineTo(borderRadius, 0)
       //关闭
       ctx.closePath();
+      ctx.setFillStyle('#fff');
+      ctx.fill(); 
       //绘制图片
       ctx.clip();
       ctx.drawImage(pic, 0, 0, sPicWidth, sPicHeight, 0, 0, canvasWidth,picHeight);
