@@ -81,8 +81,8 @@
         "selectedIconPath": "/images/tabBar/icon_course_selected.png"
       },
       {
-        "pagePath": "pages/card/card",
-        "text": "购卡",
+        "pagePath": "pages/member/order/memberOrder",
+        "text": "训练",
         "iconPath": "/images/tabBar/icon_card.png",
         "selectedIconPath": "/images/tabBar/icon_card_selected.png"
       },
