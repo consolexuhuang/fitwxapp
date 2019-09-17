@@ -2,6 +2,21 @@
 <wxs src="../../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
 <view class="wrapper" style='margin-top:{{marginTopBar}}px;'> 
+  <view class="trainRescord fadeIn animated">
+    <view class="trainRescord_head" bindtap="handleMoreTap">
+      <view class="trainRescord_headCont">本月训练记录</view>
+      <view class="trainRescord_headMore">更多</view>
+    </view>
+    <view class="trainRescord_time">
+      <view class="trainRescord_timeCount">{{sport.month.count}}</view>次
+      <view class="trainRescord_timeCount">{{sport.month.days}}</view>天
+      <view class="trainRescord_timeCount">{{sport.month.mins}}</view>分钟
+    </view>
+  </view>
+<view class="myOrder" >
+    <view class="myOrder_head trainRescord_headCont">我的订单</view>
+  </view>
+  
   <view class='myOrderNavBox' style='top:{{marginTopBar}}px'>
     <view class="myOrderNav" id="DomNav" >
       <view class="myOrderNav_item {{active === 0 ? 'click_this' : ''}}" data-index="{{0}}" bindtap="handleTabTap">
@@ -27,7 +42,7 @@
         <block wx:if="{{goingList.length}}">
           <block wx:for="{{goingList}}" wx:key="index">
             <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
-              <view class="item-status">即将开课</view>
+              <view class="item-status">{{item.status_desc}}</view>
               <view class="item-content">
               <text class='isWait iconfont iconfenzu-7' wx:if='{{item.is_wait}}'></text>
               <image catchtap='handleCoachTap' data-coachId='{{item.coach_id}}' class="item_headerImg" src="{{item.head_url}}"></image>
@@ -67,6 +82,7 @@
         <block wx:if="{{payingList.length}}">
           <block wx:for="{{payingList}}" wx:key="index">
             <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
+              <view class="item-content">
               <image catchtap='handleCoachTap' data-coachId='{{item.coach_id}}' class="item_headerImg" src="{{item.head_url}}"></image>
               <view class="item_info">
                 <view class="item_info_title">{{item.course_name}}</view>
@@ -83,6 +99,7 @@
                 <view class="item_info_see {{active == 2 ? 'item_info_seeComplete' : ''}}" catchtap='goPay' data-ordernum='{{item.order_num}}'>
                   {{active == 0 ? '详情' : (active == 1 ? '去付款' : (active == 2 ? '已完成' : '已取消'))}}
                 </view>
+              </view>
               </view>
             </view>
           </block>
@@ -102,6 +119,7 @@
         <block wx:if="{{completedList.length}}">
           <block wx:for="{{completedList}}" wx:key="index">
             <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
+              <view class="item-content">
               <image catchtap='handleCoachTap' data-coachId='{{item.coach_id}}' class="item_headerImg" src="{{item.head_url}}"></image>
               <view class="item_info">
                 <view class="item_info_title">{{item.course_name}}</view>
@@ -119,6 +137,7 @@
                   {{active == 0 ? '详情' : (active == 1 ? '去付款' : (active == 2 ? '已完成' : '已取消'))}}
                 </view>
               </view>
+</view>
             </view>
           </block>
           <view class='goBottom fadeIn animated' wx:if='{{completedList.length > 10}}'>{{completedList.length == userInfoData.order.complete_count && completedList.length > 10 ? '-拉伸完成-' : '加载中...'}}</view>
