@@ -52,6 +52,7 @@ Page({
    */
   data: {
     active: 0, //当前索引
+    sport: '',
     goingList: '',
     payingList: '',
     completedList: '',
@@ -73,6 +74,7 @@ Page({
     orderPageIng = orderPageWait = orderPageComplate = 1
     this.setData({ goingList: '', payingList: '', completedList: '' })
     this.getUserInfo()
+    this.getSport()
     loadMoreOrder(this, this.data.active == 0 ? orderPageIng : (this.data.active == 1 ? orderPageWait : (this.data.active == 2 ? orderPageComplate : orderPageIng)))
   },
   // 获取用户所有订单
@@ -80,6 +82,19 @@ Page({
     api.post('v2/member/liteMyInfo').then(res => {
       console.log('userInfoData', res.msg)
       this.setData({ userInfoData: res.msg })
+    })
+  },
+  // 运动数据
+  getSport(event) {
+    return new Promise(resolve => {
+      api.post('payOrder/sportTotalAndMonth').then(res => {
+        const sport = res.msg
+        this.setData({
+          sport
+        }, () => {
+          resolve()
+        })
+      })
     })
   },
   //计算轮播图高度
