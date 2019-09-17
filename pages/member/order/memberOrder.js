@@ -52,14 +52,13 @@ Page({
    */
   data: {
     active: 0, //当前索引
-    sport: '',
     goingList: '',
     payingList: '',
     completedList: '',
     userInfoData: "",
     imgUrl: getApp().globalData.imgUrl,
     navbarData: {
-      title: '我的预约',
+      title: '训练',
       showCapsule: 1,
       isShowBackHome: true,
       titleColor: "#000",
@@ -74,7 +73,6 @@ Page({
     orderPageIng = orderPageWait = orderPageComplate = 1
     this.setData({ goingList: '', payingList: '', completedList: '' })
     this.getUserInfo()
-    this.getSport()
     loadMoreOrder(this, this.data.active == 0 ? orderPageIng : (this.data.active == 1 ? orderPageWait : (this.data.active == 2 ? orderPageComplate : orderPageIng)))
   },
   // 获取用户所有订单
@@ -82,19 +80,6 @@ Page({
     api.post('v2/member/liteMyInfo').then(res => {
       console.log('userInfoData', res.msg)
       this.setData({ userInfoData: res.msg })
-    })
-  },
-  // 运动数据
-  getSport(event) {
-    return new Promise(resolve => {
-      api.post('payOrder/sportTotalAndMonth').then(res => {
-        const sport = res.msg
-        this.setData({
-          sport
-        }, () => {
-          resolve()
-        })
-      })
     })
   },
   //计算轮播图高度
@@ -110,7 +95,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (options.status) this.setData({ active: parseInt(options.status) })
+   
   },
   onShow(){
     getApp().checkSessionFun().then(() => {
@@ -215,6 +200,12 @@ Page({
     const coachId = event.currentTarget.dataset.coachid
     wx.navigateTo({
       url: '/pages/coach/coach?coachId=' + coachId
+    })
+  },
+  //跳转到课程页
+  gotoCourse(){
+    wx.navigateTo({
+      url: '/pages/course/course'
     })
   },
   onPullDownRefresh() {
