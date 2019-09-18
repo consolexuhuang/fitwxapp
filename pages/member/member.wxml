@@ -178,9 +178,9 @@
     <text class="item" bindtap="loginOut">退出当前帐号</text>
   </view> -->
 </view>
-<officalAccount memberFollowState='{{memberFollowState}}' 
+<!-- <officalAccount memberFollowState='{{memberFollowState}}' 
                 officialDataState='{{officialDataState}}'
                 pageShowNoticeState='{{memberInfo.sub_flag == 0 && memberInfo.order_count >= 1 ? true : false}}'>
-</officalAccount>
+</officalAccount> -->
 
 <jurisdictionSmallPopup state='{{jurisdictionSmallState}}' bindmyevent='bindgetuserinfo'></jurisdictionSmallPopup>

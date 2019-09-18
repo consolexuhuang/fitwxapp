@@ -250,9 +250,10 @@
                     class='officialAccount'>
   </official-account>
 </view> -->
-<officalAccount memberFollowState='{{memberFollowState}}' 
+
+<!-- <officalAccount memberFollowState='{{memberFollowState}}' 
                 pageShowNoticeState='{{memberInfo.sub_flag == 0 && memberInfo.order_count >= 1 ? true : false}}'>
-</officalAccount>
+</officalAccount> -->
 
 <activityPopup activityPopupState='{{activityPopupState}}'
                nowGetTime='{{nowGetTime}}'
