@@ -212,12 +212,12 @@ Page({
     })
   },
   handleCountTap: function (event) {
-    ui.showLoadingMask();
     this.setData({
       couponId: '',
     })
     const count = event.currentTarget.dataset.count
     if (count !== this.data.count) {
+      ui.showLoadingMask();
       this.setData({
         count
       })
@@ -303,7 +303,11 @@ Page({
       }
     })
   },
+  // submitFormId(e){
+  //   console.log('formID-------', e.detail)
+  // },
   getPhoneNumber(e) {//这个事件同样需要拿到
+    console.log('formID-------', e.detail)
     let that = this
     const courseId = this.data.courseId
     const timeCardId = this.data.timeCardId
