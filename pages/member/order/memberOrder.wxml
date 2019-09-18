@@ -13,10 +13,10 @@
       <view class="trainRescord_timeCount">{{sport.month.mins}}</view>分钟
     </view>
   </view>
-<view class="myOrder" >
+<!-- <view class="myOrder" >
     <view class="myOrder_head trainRescord_headCont">我的订单</view>
-  </view>
-  
+  </view> -->
+
   <view class='myOrderNavBox' style='top:{{marginTopBar}}px'>
     <view class="myOrderNav" id="DomNav" >
       <view class="myOrderNav_item {{active === 0 ? 'click_this' : ''}}" data-index="{{0}}" bindtap="handleTabTap">
