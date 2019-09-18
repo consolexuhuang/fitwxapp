@@ -9,7 +9,7 @@
         <swiper-item>
           <block wx:if="{{util.include(item, 'v.qq.com') && util.getUrlParams(item).vid}}">
             <view class="banner-item">
-              <txv-video vid="{{util.getUrlParams(item).vid}}" playerid="{{util.getUrlParams(item).vid}}" width="{{'100%'}}" height="{{'100%'}}" autoplay="{{false}}" objectFit='fill'></txv-video>
+              <txv-video vid="{{util.getUrlParams(item).vid}}" playerid="{{util.getUrlParams(item).vid}}" width="{{'100%'}}" height="{{'100%'}}" autoplay="{{false}}" objectFit='fill' defn='超清'></txv-video>
             </view>
           </block>
           <block wx:else>
@@ -196,13 +196,23 @@
     </view>
   </view>
 </view>
-<view class="price-wrapper fadeIn animated">
-  <text class="discount-price">¥{{courseData.discountPrice || '0.00'}}</text>
-  <text class="origin-price" wx:if='{{courseData.discountPrice != courseData.price && courseData.price != 0}}'>¥{{courseData.price || '0.00'}}</text>
-  <view class="appoint-btn analysis_courseDetail_btnbuy" wx:if='{{courseData.status === 1}}' bindtap="handleAppointBtnTap">立即预约</view>
-  <view class="appoint-btn analysis_courseDetail_btnwait" wx:if='{{courseData.status === 2}}' bindtap="handleAppointBtnTap">等位</view>
-  <view class="appoint-btn appoint-btnOver" wx:if='{{courseData.status === 3}}'>课程结束</view>
-</view>
+
+<form report-submit='true' bindsubmit="handleAppointBtnTap" class="formIdBtnBox">
+    <view class="price-wrapper fadeIn animated">
+        <text class="discount-price">¥{{courseData.discountPrice || '0.00'}}</text>
+        <text class="origin-price" wx:if='{{courseData.discountPrice != courseData.price && courseData.price != 0}}'>¥{{courseData.price || '0.00'}}</text>
+        <view class="appoint-btn analysis_courseDetail_btnbuy" wx:if='{{courseData.status === 1}}'>立即预约
+          <button form-type='submit' class='formIdBtn'/>
+        </view>
+        <view class="appoint-btn analysis_courseDetail_btnwait" wx:if='{{courseData.status === 2}}'>等位
+           <button form-type='submit' class='formIdBtn'/>
+        </view>
+        <view class="appoint-btn appoint-btnOver" wx:if='{{courseData.status === 3}}'>课程结束
+        </view>
+    </view>
+</form>
+
+
 <!-- 免责声明 -->
 <statement show="{{isShowStatement}}" content="{{statementContent}}" btnText="关闭" bind:statementEvent="statementClose"></statement>
 
@@ -214,7 +224,7 @@
                     class='officialAccount'>
   </official-account>
 </view> -->
-<officalAccount memberFollowState='{{memberFollowState}}' bottomStyle='{{bottomStyle}}' officialDataState="{{officialDataState}}" pageShowNoticeState='{{memberInfo.sub_flag == 0 && memberInfo.order_count >= 1 ? true : false}}'>
-</officalAccount>
+<!-- <officalAccount memberFollowState='{{memberFollowState}}' bottomStyle='{{bottomStyle}}' officialDataState="{{officialDataState}}" pageShowNoticeState='{{memberInfo.sub_flag == 0 && memberInfo.order_count >= 1 ? true : false}}'>
+</officalAccount> -->
 
 <jurisdictionPopup state='{{jurisdictionState}}' bindmyevent='bindgetuserinfo'></jurisdictionPopup>

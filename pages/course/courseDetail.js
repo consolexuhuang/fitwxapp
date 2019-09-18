@@ -97,6 +97,9 @@ Page({
   /**
    * write@xuhuang  start
    */
+  // submitFormId: function(e) {
+  //   console.log('formID-------', e.detail)
+  // },
   // 获取当前用户关注状态
   getMemberFollowState() {
     api.post('v2/member/memberInfo').then(res => {
@@ -142,6 +145,8 @@ Page({
     })
   },
   handleAppointBtnTap: function(event) {
+    // console.log(event)
+    console.log('formID-------', event.detail)
     if (app.passIsLogin()){
       const courseId = this.data.courseId
       wx.navigateTo({
