@@ -106,7 +106,7 @@ Page({
       isOver: 0
     }
     CourseCom.getConfig(this).then(() => {
-        return Promise.all([CourseCom.getDateList(this), CourseCom.getCourseList(courseParam, this)])
+        return CourseCom.getCourseList(courseParam, this)
       })
       .then(() => {
         const dateList = this.data.dateList
@@ -119,6 +119,8 @@ Page({
         const city = this.data.city
         const active = this.data.active
         const swiperHeight = this.data.swiperHeight
+        console.log('index dateList')
+        console.log(dateList)
         const courseData = {
           dateList,
           courseList,

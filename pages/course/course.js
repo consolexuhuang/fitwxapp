@@ -219,10 +219,12 @@ Page({
       searchIn
     })
     //获取数据
-    CourseCom.getDateList(this).then(()=>{
+    /* CourseCom.getDateList(this).then(()=>{
+      this.getCourseList();
+    }) */
+    CourseCom.getConfig(this).then(() => {
       this.getCourseList();
     })
-    CourseCom.getConfig(this)
     wx.stopPullDownRefresh()
   },
   // 滚动过程中的监听
@@ -385,10 +387,12 @@ Page({
       })
     } else {
       //获取数据
-      CourseCom.getDateList(this).then(() => {
+      /* CourseCom.getDateList(this).then(() => {
+        this.getCourseList()
+      }) */
+      CourseCom.getConfig(this).then(() => {
         this.getCourseList()
       })
-      CourseCom.getConfig(this)
 
     }
     
@@ -641,10 +645,12 @@ Page({
     this.setData({
       searchText: ''
     })
-    CourseCom.getDateList(this).then(() => {
+    /* CourseCom.getDateList(this).then(() => {
+      this.getCourseList()
+    }) */
+    CourseCom.getConfig(this).then(() => {
       this.getCourseList()
     })
-    CourseCom.getConfig(this)
   },
   //隐藏已结束
   handleSwitchChange: function({
@@ -656,10 +662,12 @@ Page({
     this.setData({
       isOver
     })
-    CourseCom.getDateList(this).then(() => {
+    /* CourseCom.getDateList(this).then(() => {
+      this.getCourseList();
+    }) */
+    CourseCom.getConfig(this).then(() => {
       this.getCourseList();
     })
-    CourseCom.getConfig(this)
   },
 
 
