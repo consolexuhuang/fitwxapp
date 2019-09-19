@@ -147,6 +147,9 @@ Page({
   handleAppointBtnTap: function(event) {
     // console.log(event)
     console.log('formID-------', event.detail)
+    if (event.detail.formId !== 'the formId is a mock one') {
+      store.setItem('formId', [...(store.getItem('formId') || ''), event.detail.formId])
+    }
     if (app.passIsLogin()){
       const courseId = this.data.courseId
       wx.navigateTo({

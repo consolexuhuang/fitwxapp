@@ -9,7 +9,7 @@
         <swiper-item>
           <block wx:if="{{util.include(item, 'v.qq.com') && util.getUrlParams(item).vid}}">
             <view class="banner-item">
-              <txv-video vid="{{util.getUrlParams(item).vid}}" playerid="{{util.getUrlParams(item).vid}}" width="{{'100%'}}" height="{{'100%'}}" autoplay="{{false}}" objectFit='fill' defn='超清'></txv-video>
+              <txv-video vid="{{util.getUrlParams(item).vid}}" playerid="{{util.getUrlParams(item).vid}}" width="{{'100%'}}" height="{{'100%'}}" autoplay="{{false}}" objectFit='cover' defn='高清'></txv-video>
             </view>
           </block>
           <block wx:else>

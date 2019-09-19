@@ -327,6 +327,7 @@
   text-align: center;
   font-size: 26rpx;
   color: #fff;
+  position: relative;
 }
 
 .course-wait-btn {
