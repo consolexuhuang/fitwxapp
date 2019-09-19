@@ -93,7 +93,7 @@ Page({
     //判断用户是否关注公众号
     app.checkSessionFun().then(() => {
       //this.getMemberFollowState()
-      this.checkPromotion()
+      //this.checkPromotion()
     })
     // this.getOfficialDataState()
     //搜索进来的
@@ -169,7 +169,7 @@ Page({
       })
     }
   },
-  checkPromotion() {
+/*   checkPromotion() {
     let data = {
       location: 'course'
     }
@@ -186,7 +186,7 @@ Page({
         })
       }
     })
-  },
+  }, */
   // getOfficialDataState() {
   //   // sub_flag 1:关注 0:未关注
   //   if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
@@ -365,6 +365,10 @@ Page({
     let courseData = wx.getStorageSync('courseData');
     //有缓存
     if (courseData && courseData.dateList && courseData.courseList && courseData.config && courseData.city) { //缓存的courseData里缺少数据
+
+      console.log('courseData')
+
+      console.log(courseData)
       //赋值缓存里数据
       this.setData({
         dateList: courseData.dateList || '',
@@ -376,7 +380,10 @@ Page({
         cityList: courseData.cityList || [],
         city: courseData.city || '',
         active: courseData.active || 0,
-        swiperHeight: courseData.swiperHeight || {}
+        swiperHeight: courseData.swiperHeight || {},
+        'activityPopupState.imgSrc': courseData.activityPopupState.imgSrc,
+        'activityPopupState.url': courseData.activityPopupState.url,
+        'activityPopupState.state': courseData.activityPopupState.state
       }, function() {
         //设置当前数据的高度
         this.setCourseSwiperHeight();

@@ -11,7 +11,8 @@ var getConfig = function(_this) {
     const config = res.msg
     const cityList = config.storeList ? Object.keys(config.storeList) : ''
     const city = _this.data.city || cityList[0] || ''
-    //dateList
+
+    /* dateList */
     const dateList = config.dataList.list
     const active = _this.data.active || config.dataList.active
     //设置swiper
@@ -19,13 +20,27 @@ var getConfig = function(_this) {
     for (let item of dateList) {
       swiperHeight[item.date] = 0
     }
+
+    /* promotion */
+    const promotion = config.promotion;
+    let activityPopupStateImgSrc = '', activityPopupStateUrl = '', activityPopupStateState = false;
+
+    if (Object.keys(promotion).length > 0) {
+      activityPopupStateImgSrc = promotion.image ;
+      activityPopupStateUrl = promotion.url;
+      activityPopupStateState = (_this.data.nowGetTime - store.getItem('closeTime') || new Date().getTime()) > 86400000 ? true : false;
+    }
+
     _this.setData({
       config,
       cityList,
       city,
       dateList,
       active,
-      swiperHeight
+      swiperHeight,
+      'activityPopupState.imgSrc': activityPopupStateImgSrc,
+      'activityPopupState.url': activityPopupStateUrl,
+      'activityPopupState.state': activityPopupStateState
     }, function() {
       //获取日历列表高度
       if (_this.dateBoxHeight) {
