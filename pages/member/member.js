@@ -37,7 +37,7 @@ Page({
   },
   onShow(){
     app.checkSessionFun().then(() => {
-      this.getMemberFollowState()
+      //this.getMemberFollowState()
       this.getUserInfo()
       this.getOrderCount()
       this.getGoingList()
@@ -85,6 +85,8 @@ Page({
           officialDataState: res.msg.sub_flag == 1 ? false : true,
           memberInfo: res.msg
         })
+        //存储用户信息
+        wx.setStorageSync('userData', res.msg);
       })
     }
   },

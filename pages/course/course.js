@@ -53,7 +53,7 @@ Page({
 
     memberFollowState: 1, //当前关注状态
     officialDataState: false,
-    //memberInfo:'',
+    memberInfo:'',
     searchIn:false,//是否是搜素进来的
     activityPopupState:{
       state: false,
@@ -85,7 +85,7 @@ Page({
       //初始化
       this.initFun();
       //判断用户是否关注公众号
-      // this.getMemberFollowState()
+       //this.getMemberFollowState()
     })
   },
   onShow() {
@@ -157,11 +157,15 @@ Page({
   getMemberFollowState() {
     if (app.passIsLogin()) {
       api.post('v2/member/memberInfo').then(res => {
+        console.log('memberInfo')
+        console.log(res)
         this.setData({
           memberFollowState: res.msg.sub_flag,
           officialDataState: res.msg.sub_flag == 1 ? false : true,
           memberInfo: res.msg
         })
+        //存储用户信息
+        wx.setStorageSync('userData', res.msg);
       })
     }
   },

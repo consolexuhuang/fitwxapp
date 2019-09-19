@@ -58,6 +58,8 @@ Page({
       this.setData({
         memberInfo: res.msg,
       })
+      //存储用户信息
+      wx.setStorageSync('userData', res.msg);
     })
   },
   checkPromotion(){
@@ -146,7 +148,11 @@ Page({
       console.log('getMemberFollowState', res)
       this.setData({ 
         memberFollowState: res.msg.sub_flag ,
-        officialDataState: res.msg.sub_flag == 1 ? false : true,})
+        officialDataState: res.msg.sub_flag == 1 ? false : true,
+        })
+
+      //存储用户信息
+      wx.setStorageSync('userData', res.msg);
     })
   },
   //获取用户实时数据

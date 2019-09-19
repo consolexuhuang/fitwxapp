@@ -248,6 +248,8 @@ App({
                 // 已关联公众号
                 wx.setStorageSync('shareMemberId', res.msg.id || '')
                 wx.setStorageSync('userData', res.msg)
+                console.log('app userData')
+                console.log(res.msg)
                 //Store.setItem('userData', res.msg)
                 resolve()
               }
