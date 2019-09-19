@@ -53,7 +53,7 @@ Page({
       this.getCourseInfo(res.msg.course.id)
     })
   },
-  getMemberFollowData() {
+  /* getMemberFollowData() {
     api.post('v2/member/memberInfo').then(res => {
       this.setData({
         memberInfo: res.msg,
@@ -61,7 +61,7 @@ Page({
       //存储用户信息
       wx.setStorageSync('userData', res.msg);
     })
-  },
+  }, */
   checkPromotion(){
     let data = {
       location: 'paySuccess'
@@ -127,7 +127,7 @@ Page({
         this.getOrderDetail()
         this.getMemberInfo(options.orderId)
         // this.getOfficialDataState()
-        this.getMemberFollowData()
+        //this.getMemberFollowData()
         })
 
       })
@@ -149,6 +149,7 @@ Page({
       this.setData({ 
         memberFollowState: res.msg.sub_flag ,
         officialDataState: res.msg.sub_flag == 1 ? false : true,
+        memberInfo: res.msg
         })
 
       //存储用户信息
