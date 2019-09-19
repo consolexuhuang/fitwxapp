@@ -53,7 +53,7 @@ Page({
 
     memberFollowState: 1, //当前关注状态
     officialDataState: false,
-    memberInfo:'',
+    //memberInfo:'',
     searchIn:false,//是否是搜素进来的
     activityPopupState:{
       state: false,
@@ -92,7 +92,7 @@ Page({
     this.setData({ nowGetTime: new Date().getTime()})
     //判断用户是否关注公众号
     app.checkSessionFun().then(() => {
-      this.getMemberFollowState()
+      //this.getMemberFollowState()
       this.checkPromotion()
     })
     // this.getOfficialDataState()
@@ -129,7 +129,7 @@ Page({
     //初始化    
     this.initFun();
     //判断用户是否关注公众号
-    this.getMemberFollowState()
+    //this.getMemberFollowState()
 
   },
   onShareAppMessage(){
