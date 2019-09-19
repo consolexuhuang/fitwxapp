@@ -1,21 +1,9 @@
 <!--pages/course/courseScreen.wxml-->
 <wxs src="../../utils/util.wxs" module="util" />
-<tabBar_top navbarData = "{{navbarData}}"></tabBar_top>
+<tabBar_top navbarData="{{navbarData}}"></tabBar_top>
 <view class="course-screen-wrapper" style="margin-top:{{marginTopBar}}px" wx:if="{{typeLabelList}}">
-  <view class="course-screen-title" >课程筛选</view>
   <scroll-view scroll-y class="course-screen-scroll">
     <view class="course-screen-list">
-      <view class="course-screen-item">
-        <view class="course-screen-item-title">时间</view>
-        <view class="course-screen-label-list">
-          <view class="{{!selectedTimeInterval.length?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-time-interval="{{''}}" bindtap="handleTimeIntervalTap">全天</view>
-          <view class="{{util.include(selectedTimeInterval, '06:00-09:00')?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-time-interval="{{'06:00-09:00'}}" bindtap="handleTimeIntervalTap">06:00-09:00</view>
-          <view class="{{util.include(selectedTimeInterval, '09:00-12:00')?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-time-interval="{{'09:00-12:00'}}" bindtap="handleTimeIntervalTap">09:00-12:00</view>
-          <view class="{{util.include(selectedTimeInterval, '12:00-14:00')?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-time-interval="{{'12:00-14:00'}}" bindtap="handleTimeIntervalTap">12:00-14:00</view>
-          <view class="{{util.include(selectedTimeInterval, '14:00-18:00')?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-time-interval="{{'14:00-18:00'}}" bindtap="handleTimeIntervalTap">14:00-18:00</view>
-          <view class="{{util.include(selectedTimeInterval, '18:00-22:30')?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-time-interval="{{'18:00-22:30'}}" bindtap="handleTimeIntervalTap">18:00-22:30</view>
-        </view>
-      </view>
       <block wx:for="{{typeLabelList}}" wx:for-index="typeKey" wx:for-item="typeItem" wx:key="typeKey">
         <view class="course-screen-item">
           <view class="course-screen-item-title">{{typeKey}}</view>
@@ -26,6 +14,20 @@
           </view>
         </view>
       </block>
+      <view class="course-screen-item">
+        <view class="course-screen-item-title">时间</view>
+        <!--  <view class="course-screen-label-list">
+          <view class="{{!selectedTimeInterval.length?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-time-interval="{{''}}" bindtap="handleTimeIntervalTap">全天</view>
+          <view class="{{util.include(selectedTimeInterval, '06:00-09:00')?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-time-interval="{{'06:00-09:00'}}" bindtap="handleTimeIntervalTap">06:00-09:00</view>
+          <view class="{{util.include(selectedTimeInterval, '09:00-12:00')?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-time-interval="{{'09:00-12:00'}}" bindtap="handleTimeIntervalTap">09:00-12:00</view>
+          <view class="{{util.include(selectedTimeInterval, '12:00-14:00')?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-time-interval="{{'12:00-14:00'}}" bindtap="handleTimeIntervalTap">12:00-14:00</view>
+          <view class="{{util.include(selectedTimeInterval, '14:00-18:00')?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-time-interval="{{'14:00-18:00'}}" bindtap="handleTimeIntervalTap">14:00-18:00</view>
+          <view class="{{util.include(selectedTimeInterval, '18:00-22:30')?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-time-interval="{{'18:00-22:30'}}" bindtap="handleTimeIntervalTap">18:00-22:30</view>
+        </view> -->
+        <view class="zy-slider">
+          <zy-slider minValue="0" maxValue="100" min="0" max="100"  bind:lowValueChange="lowValueChangeAction" bind:heighValueChange="heighValueChangeAction" />
+        </view>
+      </view>
     </view>
   </scroll-view>
   <view class="screen-btn-wrapper">
