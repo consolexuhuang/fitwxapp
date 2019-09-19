@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-     "tabBar_top": "/components/tabBar_top/tabBar"
+     "tabBar_top": "/components/tabBar_top/tabBar",
+     "zy-slider": "/components/zyslider/zyslider"
   }
 }
