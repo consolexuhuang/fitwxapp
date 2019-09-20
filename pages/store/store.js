@@ -50,7 +50,7 @@ Page({
     })
   },
   onShow() {
-    this.getMemberFollowState()
+    //this.getMemberFollowState()
     // app.checkSessionFun().then(() => {
     //   this.setData({ jurisdictionState: false });
     //   this.getMemberFollowState()
@@ -87,6 +87,8 @@ Page({
           officialDataState: res.msg.sub_flag == 1 ? false : true,
           memberInfo: res.msg
         })
+        //存储用户信息
+        wx.setStorageSync('userData', res.msg);
       })
     }
   },

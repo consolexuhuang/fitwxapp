@@ -59,7 +59,7 @@ Page({
 
     //检测登录
     app.checkSessionFun().then(() => {
-    this.getMemberFollowState()
+    //this.getMemberFollowState()
     this.getCoach()
     this.getDateList()
     // this.getOfficialDataState()
@@ -87,6 +87,8 @@ Page({
           officialDataState: res.msg.sub_flag == 1 ? false : true,
           memberInfo: res.msg
         })
+        //存储用户信息
+        wx.setStorageSync('userData', res.msg);
       })
     }
   },

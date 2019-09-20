@@ -55,7 +55,7 @@
 </view>
 <tabBar_top navbarData='{{nvabarData}}'>
 </tabBar_top>
-<van-popup show='{{memberInfo.sub_flag == 1 && paySuccessShow}}' 
+<van-popup show='{{paySuccessShow}}' 
            custom-class='paySuccessShowStyle'>
         
     <image wx:if='{{checkPromotion.type == "good"}}' 

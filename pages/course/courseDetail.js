@@ -76,7 +76,7 @@ Page({
     } else {
       app.checkSessionFun().then(() => {
         this.getCourse()
-        this.getMemberFollowState()
+        //this.getMemberFollowState()
         // this.getOfficialDataState()
       }, () => {
         this.setData({ jurisdictionState: true })
@@ -109,6 +109,8 @@ Page({
         officialDataState: res.msg.sub_flag == 1 ? false : true,
         memberInfo: res.msg
       })
+      //存储用户信息
+      wx.setStorageSync('userData', res.msg);
     })
   },
   /**
