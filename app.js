@@ -239,6 +239,12 @@ App({
           // wx.showLoading({ title: '登录中...', })
           api.get('authorizationLite', data).then(res => {
             // wx.hideLoading()
+            console.log('app res code')
+            console.log(res)
+            /* //测试
+            res ={
+              code:123
+            } */
             if (res.msg) {
               if (res.code === -1) { //如果出现登录未知错误
                 setTimeout(() => {

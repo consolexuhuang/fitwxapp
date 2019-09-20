@@ -13,7 +13,7 @@ Page({
     swiperCurrentIndex: 0,
     //滑块数量
     swiperItemsTotal: 3,
-    autoplayState:true,
+    autoplayState: true,
     //是否显示特权弹层
     isShowPrivilege: false,
     imgUrl: getApp().globalData.imgUrl,
@@ -22,28 +22,28 @@ Page({
       showCapsule: 0,
       isShowBackHome: false,
       titleColor: "#000",
-      tab_topBackground:'#fff'
+      tab_topBackground: '#fff'
     },
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
     memberFollowState: 1, //当前关注状态
-    officialDataState:false,
-    memberInfo:'',
-    jurisdictionSmallState:false,
-    showAuthModel:false,
+    officialDataState: false,
+    //memberInfo:'',
+    jurisdictionSmallState: false,
+    showAuthModel: false,
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     // //检测登录
     // app.checkSessionFun().then(() => {
     //   this.getCardDefList()
     // })
   },
-  onShow(){
+  onShow() {
     this.setData({ showAuthModel: !app.passIsLogin() })
     app.checkSessionFun().then(() => {
-      this.getMemberFollowState()
+      //this.getMemberFollowState()
       this.getCardDefList()
     })
     // this.getOfficialDataState()
@@ -51,7 +51,7 @@ Page({
   // 点击授权
   bindgetuserinfo() {
     app.wx_AuthUserLogin().then(() => {
-      this.setData({ 
+      this.setData({
         jurisdictionSmallState: false,
         showAuthModel: !app.passIsLogin()
       })
@@ -60,10 +60,10 @@ Page({
     })
   },
   //提示授权
-  showJurisdictionSmallPopup(){
-     this.setData({
-       jurisdictionSmallState: true
-     })
+  showJurisdictionSmallPopup() {
+    this.setData({
+      jurisdictionSmallState: true
+    })
   },
   /**
    * write@xuhuang  start
@@ -78,6 +78,8 @@ Page({
           officialDataState: res.msg.sub_flag == 1 ? false : true,
           memberInfo: res.msg
         })
+        //存储用户信息
+        wx.setStorageSync('userData', res.msg);
       })
     }
   },
@@ -92,9 +94,9 @@ Page({
   /**
    * write@xuhuang  end
    */
-  getCardDefList: function(event) {
-    if (app.passIsLogin()){
-      wx.showLoading({ title: '加载中...'})
+  getCardDefList: function (event) {
+    if (app.passIsLogin()) {
+      wx.showLoading({ title: '加载中...' })
       api.post('card/getCardDefList').then(res => {
         wx.hideLoading()
         wx.stopPullDownRefresh()
@@ -108,19 +110,19 @@ Page({
       })
     }
   },
-  handleRechargeTap: function(event) {
+  handleRechargeTap: function (event) {
     wx.navigateTo({
       url: '/pages/card/recharge',
     })
   },
   //次卡类型列表页
-  handleCardMoreTap: function(event) {
+  handleCardMoreTap: function (event) {
     const cardType = event.currentTarget.dataset.cardType
     wx.navigateTo({
       url: '/pages/card/cardList?cardType=' + cardType,
     })
   },
-  handleCardTap: function(event) {
+  handleCardTap: function (event) {
     const cardId = event.currentTarget.dataset.cardId
     wx.navigateTo({
       url: '/pages/card/payCard?cardId=' + cardId,
@@ -140,7 +142,7 @@ Page({
   //     this.setCurrentIndex(currentIndex - 1)
   //   }
   // },
-  
+
   //点击下一个
   // swiperNext: function() {
   //   let currentIndex = this.data.swiperCurrentIndex;
@@ -157,19 +159,19 @@ Page({
   //   })
   // },
   //显示特权弹层
-  privilegeView: function() {
+  privilegeView: function () {
     this.setData({
       isShowPrivilege: true
     })
   },
   //关闭特权弹层
-  closePrivilege: function() {
+  closePrivilege: function () {
     this.setData({
       isShowPrivilege: false
     })
   },
   // 下拉刷新
-  onPullDownRefresh(){
+  onPullDownRefresh() {
     this.getCardDefList()
   }
 })
