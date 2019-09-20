@@ -29,21 +29,22 @@
 
 .slider-item {
     border-radius: 50%;
-    width: 40rpx;
-    height: 40rpx;
-    background-color: #19896f;
+    width: 38rpx;
+    height: 38rpx;
+    background-color: #fff;
+    box-shadow:0px 1rpx 4rpx 0rpx rgba(137,109,255,1);
     z-index: 2;
 }
 
 .min {
     position: relative;
-    top: 14rpx;
+    top: 16rpx;
     /*left: 100rpx;*/
 }
 
 .max {
     position: relative;
-    bottom: 28rpx;
+    bottom: 26rpx;
     /*left: 600rpx;*/
 }
 

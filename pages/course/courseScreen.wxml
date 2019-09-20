@@ -25,7 +25,7 @@
           <view class="{{util.include(selectedTimeInterval, '18:00-22:30')?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-time-interval="{{'18:00-22:30'}}" bindtap="handleTimeIntervalTap">18:00-22:30</view>
         </view> -->
         <view class="zy-slider">
-          <zy-slider minValue="0" maxValue="100" min="0" max="100"  bind:lowValueChange="lowValueChangeAction" bind:heighValueChange="heighValueChangeAction" />
+          <zy-slider minValue="6" maxValue="22" min="6" max="22"  bind:lowValueChange="lowValueChangeAction" bind:heighValueChange="heighValueChangeAction" />
         </view>
       </view>
     </view>
