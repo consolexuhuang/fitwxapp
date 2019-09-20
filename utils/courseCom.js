@@ -1,5 +1,6 @@
 const app = getApp();
 const api = app.api;
+const store = app.store;
 
 // 获取配置信息
 var getConfig = function(_this) {

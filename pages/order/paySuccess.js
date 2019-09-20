@@ -34,21 +34,60 @@ Page({
     // forcedEjection:false, //是否强制弹出
     // pageShowNoticeState:false
   },
-  
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    //分享过来的参数
+    if (options.shareMemberId) {
+      wx.setStorageSync('shareMemberId', options.shareMemberId)
+    }
+
+    if (options.orderId)
+      this.setData({
+        orderId: options.orderId
+      }, () => {
+
+        //检测登录
+        app.checkSessionFun().then(() => {
+          //this.checkPromotion()
+          this.getMemberFollowState()
+          this.getOrderDetail()
+          this.getMemberInfo(options.orderId)
+          // this.getOfficialDataState()
+          //this.getMemberFollowData()
+        })
+
+      })
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
   // 订单详情
   getOrderDetail(){
     wx.showLoading({ title: '加载中...'})
     let data = {
-      orderNum: this.data.orderId.toString()
+      orderNum: this.data.orderId.toString(),
+      checkPromotion:true
     }
     api.post('payOrder/orderInfo', data).then(res => {
       wx.hideLoading()
-      console.log('订单详情', res)
-      // res.msg.course.beginDate = utils.formatTime2(res.msg.course.beginDate)
-      // res.msg.course.beginTime = utils.formatTime3(res.msg.course.beginTime * 1000)
-      // res.msg.course.endTime = utils.formatTime3(res.msg.course.endTime * 1000)
+      let promotion = res.msg.promotion;
+      let checkPromotion = '', paySuccessShow = false;
+      if (Object.keys(promotion).length > 0) {
+        checkPromotion = promotion;
+        paySuccessShow = true
+      }
+
       this.setData({
-        orderDetailData: res.msg
+        orderDetailData: res.msg,
+        checkPromotion: promotion,
+        paySuccessShow: paySuccessShow
       })
       this.getCourseInfo(res.msg.course.id)
     })
@@ -62,7 +101,7 @@ Page({
       wx.setStorageSync('userData', res.msg);
     })
   }, */
-  checkPromotion(){
+/*   checkPromotion(){
     let data = {
       location: 'paySuccess'
     }
@@ -76,7 +115,7 @@ Page({
       }
       else this.setData({ paySuccessShow : false})
     })
-  },
+  }, */
   getMemberInfo(orderId){
     let data = {
       memberId: Store.getItem('userData').id
@@ -105,39 +144,6 @@ Page({
         })
       }
     })
-  },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    //分享过来的参数
-    if (options.shareMemberId) {
-      wx.setStorageSync('shareMemberId', options.shareMemberId)
-    }
-    
-    if (options.orderId) 
-      this.setData({ 
-        orderId: options.orderId
-         },()=>{
-      
-        //检测登录
-        app.checkSessionFun().then(() => {
-        this.checkPromotion()
-        this.getMemberFollowState()
-        this.getOrderDetail()
-        this.getMemberInfo(options.orderId)
-        // this.getOfficialDataState()
-        //this.getMemberFollowData()
-        })
-
-      })
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
   },
   /**
    * write@xuhuang  start
