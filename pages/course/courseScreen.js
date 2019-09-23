@@ -15,7 +15,7 @@ Page({
     isOver: false,
     imgUrl: getApp().globalData.imgUrl,
     navbarData: {
-      title: '',
+      title: '课程筛选',
       showCapsule: 1,
       isShowBackHome: false,
       titleColor: "#000",

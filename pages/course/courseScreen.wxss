@@ -18,7 +18,7 @@
 
 .course-screen-scroll {
   position: absolute;
-  top: 90rpx;
+  top: 0rpx;
   width: 100%;
   background:#fff;
 }
@@ -39,21 +39,20 @@
 }
 
 .course-screen-label-list {
-  padding-top: 5rpx;
-  margin-left: 19rpx;
+  margin:0 30rpx;
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 
 .course-screen-label-item {
-  margin-top: 25rpx;
-  margin-right: 13rpx;
-  width: 211rpx;
-  height: 50rpx;
+  margin-top: 20rpx;
+  width: 210rpx;
+  height: 60rpx;
   border-radius: 28rpx;
   background-color: #f5f5f5;
   border: 2rpx solid transparent;
-  line-height: 50rpx;
+  line-height: 60rpx;
   text-align: center;
   font-size: 26rpx;
   color: #505050;

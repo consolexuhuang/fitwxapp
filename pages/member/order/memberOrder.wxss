@@ -189,7 +189,7 @@ display: flex;
   margin-right: 20rpx;
 }
 .item_info{
-  width: 380rpx;
+  width: 400rpx;
   margin-right: 20rpx;
 }
 .item_info_title{
@@ -250,7 +250,7 @@ display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 120rpx;
+  padding-top: 160rpx;
   /* background-color: #fafafa; */
 }
 

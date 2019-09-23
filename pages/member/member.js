@@ -138,13 +138,13 @@ Page({
       url: '/pages/card/recharge'
     })
   },
-  // 跳转订单页面
+  /* // 跳转订单页面
   handleMemberOrderTap: function(event){
     wx.setStorageSync('orderListActive', 0)
     wx.switchTab({
       url: '/pages/member/order/memberOrder'
     })
-  },
+  }, */
   // 跳转订单详情
   handleOrderItemTap: function(event){
     const orderNum = event.currentTarget.dataset.orderNum
@@ -212,13 +212,13 @@ Page({
       url: '/pages/good/good',
     })
   },
-  jumpToOrderStatus(e){
+/*   jumpToOrderStatus(e){
     let active = e.currentTarget.dataset.status;
     wx.setStorageSync('orderListActive', active)
     wx.switchTab({
       url: `/pages/member/order/memberOrder`
     })
-  },
+  }, */
   onPullDownRefresh(){
       this.getGoingList()
       this.getUserInfo()

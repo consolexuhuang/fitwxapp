@@ -76,9 +76,7 @@ Page({
     
   },
   onShow() {
-    //获取当前应该显示tab
-    let active = wx.getStorageSync('orderListActive') || 0;
-    this.setData({ active: parseInt(active) })
+    //获取当前应该显示tab    
     getApp().checkSessionFun().then(() => {
       this.dataInit()
     })
