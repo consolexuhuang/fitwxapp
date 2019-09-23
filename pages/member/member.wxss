@@ -368,7 +368,7 @@ page{
 }
 
 .menu {
-  margin: 18rpx 30rpx;
+  margin: 80rpx 30rpx 18rpx 30rpx;
   padding-left: 18rpx;
   background: #fff;
   /* padding-bottom: 40rpx; */

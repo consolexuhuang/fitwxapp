@@ -55,7 +55,7 @@
     </view>
   </view>
 
-  <view class="myorder fadeIn animated" wx:if='{{!showAuthModel}}'>
+  <!-- <view class="myorder fadeIn animated" wx:if='{{!showAuthModel}}'>
     <view class="title" bindtap="handleMemberOrderTap">
       <text class="name">我的订单</text>
       <view class="more">
@@ -88,11 +88,11 @@
         </view>
       </view>
       <!-- 有数据 -->
-      <view class="list" wx:if="{{goingList.length && userData}}">
+      <!--<view class="list" wx:if="{{goingList.length && userData}}">
         <block wx:for="{{goingList}}" wx:key="index">
           <view class="item fadeIn animated" data-order-num="{{item.order.orderNum}}" bindtap="handleOrderItemTap">
             <!-- <image class='isWaitImg' src='{{imgUrl}}member/isWait.png' wx:if='{{item.order.wait}}'></image> -->
-            <text class='isWaitImg iconfont iconfenzu-8' wx:if='{{item.order.wait}}'></text>
+            <!--<text class='isWaitImg iconfont iconfenzu-8' wx:if='{{item.order.wait}}'></text>
             <text class="item-status">即将开课</text>
             <view class="item-c">
               <view class="left">
@@ -117,12 +117,12 @@
         </block>
       </view>
       <!-- 无数据 -->
-      <view class="none analysis_my_appointment" bindtap='jumpTocourseList' wx:else>
+     <!-- <view class="none analysis_my_appointment" bindtap='jumpTocourseList' wx:else>
         <text class="pic iconfont iconicon-test48"></text>
         <text class="text">立即预约</text>
       </view>
     </view>
-  </view>
+  </view> -->
 
   <view class="menu fadeIn animated" wx:if='{{!showAuthModel}}'>
     <view class="item analysis_my_cards" bindtap="handleGoodList">
