@@ -140,7 +140,7 @@ Page({
   },
   // 跳转订单页面
   handleMemberOrderTap: function(event){
-    wx.navigateTo({
+    wx.switchTab({
       url: '/pages/member/order/memberOrder'
     })
   },
@@ -213,8 +213,11 @@ Page({
   },
   jumpToOrderStatus(e){
     let active = e.currentTarget.dataset.status;
-    wx.navigateTo({
-      url: `/pages/member/order/memberOrder?status=${active}`,
+    wx.switchTab({
+      url: `/pages/member/order/memberOrder`,
+      success:()=>{
+        wx.setStorageSync('orderListActive', active)
+      }
     })
   },
   onPullDownRefresh(){

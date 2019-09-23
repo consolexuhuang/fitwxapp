@@ -69,6 +69,20 @@ Page({
     // swiperHeight: [getApp().globalData.systemInfo.screenHeight - getApp().globalData.tab_height - 100, getApp().globalData.systemInfo.screenHeight - getApp().globalData.tab_height - 100, getApp().globalData.systemInfo.screenHeight - getApp().globalData.tab_height - 100],
     swiperHeight: getApp().globalData.systemInfo.screenHeight - getApp().globalData.tab_height - 100
   },
+  /**
+  * 生命周期函数--监听页面加载
+  */
+  onLoad: function (options) {
+    
+  },
+  onShow() {
+    //获取当前应该显示tab
+    let active = wx.getStorageSync('orderListActive')
+    this.setData({ active: parseInt(active) })
+    getApp().checkSessionFun().then(() => {
+      this.dataInit()
+    })
+  },
   // 初始化数据
   dataInit(){
     orderPageIng = orderPageWait = orderPageComplate = 1
@@ -106,17 +120,7 @@ Page({
       })
     console.log(this.data.swiperHeight)
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-   
-  },
-  onShow(){
-    getApp().checkSessionFun().then(() => {
-      this.dataInit()
-    })
-  },
+ 
   bindscrolltolower() {
     console.log('触底', this.data.userInfoData.order)
     if (this.data.active == 0 && this.data.goingList.length != this.data.userInfoData.order.going_count) loadMoreOrder(this, ++orderPageIng)
