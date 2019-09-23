@@ -187,8 +187,7 @@
 
 
                       <text wx:if="{{courseItem.status !== 3 && courseItem.num_status === 1}}" class='course-status course-status2 iconfont iconfenzu'></text>
-                      <text wx:elif="{{courseItem.status !== 3 && courseItem.num_status === 2}}" class='course-status iconfont iconxingzhuangjiehe'></text>
-
+                      <text wx:elif="{{courseItem.status !== 3 && courseItem.num_status === 2}}" class='course-status iconfont iconxingzhuangjiehe'></text>    
                     </view>
 
                   </block>
