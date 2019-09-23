@@ -221,7 +221,7 @@ Page({
   },
   //跳转到课程页
   gotoCourse(){
-    wx.navigateTo({
+    wx.switchTab({
       url: '/pages/course/course'
     })
   },

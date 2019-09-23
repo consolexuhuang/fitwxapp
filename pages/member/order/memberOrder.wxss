@@ -189,8 +189,8 @@ display: flex;
   margin-right: 20rpx;
 }
 .item_info{
-  width: 400rpx;
-  margin-right: 20rpx;
+  width: 390rpx;
+  margin-right: 34rpx;
 }
 .item_info_title{
   font-size:28rpx;
@@ -250,7 +250,7 @@ display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 160rpx;
+  padding-top: 265rpx;
   /* background-color: #fafafa; */
 }
 
