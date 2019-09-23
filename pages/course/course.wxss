@@ -150,8 +150,8 @@
 }
 
 .course-select-wrapper {
-  margin-left: 45rpx;
-  width: 165rpx;
+  margin-left: 30rpx;
+  width: 180rpx;
   display: flex;
   align-items: center;
 }

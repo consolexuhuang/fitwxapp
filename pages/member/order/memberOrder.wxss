@@ -189,8 +189,8 @@ display: flex;
   margin-right: 20rpx;
 }
 .item_info{
-  width: 390rpx;
-  margin-right: 34rpx;
+  width: 380rpx;
+  margin-right: 20rpx;
 }
 .item_info_title{
   font-size:28rpx;
