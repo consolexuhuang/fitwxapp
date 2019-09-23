@@ -140,6 +140,7 @@ Page({
   },
   // 跳转订单页面
   handleMemberOrderTap: function(event){
+    wx.setStorageSync('orderListActive', 0)
     wx.switchTab({
       url: '/pages/member/order/memberOrder'
     })
@@ -213,11 +214,9 @@ Page({
   },
   jumpToOrderStatus(e){
     let active = e.currentTarget.dataset.status;
+    wx.setStorageSync('orderListActive', active)
     wx.switchTab({
-      url: `/pages/member/order/memberOrder`,
-      success:()=>{
-        wx.setStorageSync('orderListActive', active)
-      }
+      url: `/pages/member/order/memberOrder`
     })
   },
   onPullDownRefresh(){
