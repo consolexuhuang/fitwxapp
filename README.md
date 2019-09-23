@@ -28,7 +28,8 @@ API接口： 'https://dev.jlife.vip/wx/api/'
       envVersion: 'trial' //develop:开发版   trial：体验版  release：正式版
     }
 
-
+##使用第三方组件
+1、sliderBar : https://github.com/ZhngCai/double-sided-slider
 
 
 

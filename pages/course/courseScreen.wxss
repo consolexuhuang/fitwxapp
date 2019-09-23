@@ -99,6 +99,6 @@
   color: #fff;
 }
 
-.zy-slider{
-  margin: 0 30rpx;
+.slider-bar{
+  margin: 0 60rpx;
 }

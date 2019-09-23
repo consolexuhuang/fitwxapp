@@ -1,0 +1,22 @@
+<view class="weui-slider-box">
+    <view class="weui-slider">
+        <view>
+          <view>最小值：{{slider.sliderMinValue + sliderDisparity}}</view>
+          <view>最大值：{{slider.sliderMaxValue + sliderDisparity}}</view>
+        </view>
+        <view id="sliderInner" class="weui-slider-inner">
+            <view id="sliderTrackMax" style="width: {{slider.sliderMaxLeft}}px;" class="weui-slider-track-max"></view>
+            <view id="sliderTrackMin" style="width: {{slider.sliderMinLeft}}px;" class="weui-slider-track-min"></view>
+        </view>
+        <view style='position:relative;height:28px;'>
+          <view class='weui-slider-handler'>
+            <view id="sliderHandlerMax" style='left:{{slider.sliderMaxLeft}}px' data-id='sliderHandlerMax'  bindtouchstart="touchSlider" bindtouchmove='moveSlider' bindtouchend='endSlider' class="weui-slider-handler-max">
+              <image class='view-image' src='/images/icon/giftCardChoose.png'></image>
+            </view>
+            <view id="sliderHandlerMin" style='left:{{slider.sliderMinLeft}}px' data-id='sliderHandlerMin' bindtouchstart="touchSlider" bindtouchmove='moveSlider' bindtouchend='endSlider' class="weui-slider-handler-min">
+              <image class='view-image' src='/images/icon/giftCardChoose.png'></image>
+            </view>
+          </view>
+        </view>
+    </view>
+</view>
