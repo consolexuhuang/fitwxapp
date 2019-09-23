@@ -68,9 +68,9 @@
   </block>
   <!-- 无数据 -->
   <block wx:else>
-    <view class="none" bindtap="gotoCourse">
+    <view class="none">
       <text class="none-img iconicon-test9 iconfont"></text>
-      <text class="txt">立即预约</text>
+      <text class="txt">暂无消费记录</text>
     </view>
   </block>
   </view>
@@ -102,9 +102,9 @@
   </block>
   <!-- 无数据 -->
   <block wx:else>
-    <view class="none" bindtap="gotoCourse">
+    <view class="none">
       <text class="none-img iconicon-test9 iconfont"></text>
-      <text class="txt">立即预约</text>
+      <text class="txt">暂无消费记录</text>
     </view>
   </block>
   </view>
@@ -136,9 +136,9 @@
   </block>
   <!-- 无数据 -->
   <block wx:else>
-    <view class="none" bindtap="gotoCourse">
+    <view class="none">
       <text class="none-img iconicon-test9 iconfont"></text>
-      <text class="txt">立即预约</text>
+      <text class="txt">暂无消费记录</text>
     </view>
   </block>
 </view>

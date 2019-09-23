@@ -219,12 +219,6 @@ Page({
       url: '/pages/coach/coach?coachId=' + coachId
     })
   },
-  //跳转到课程页
-  gotoCourse(){
-    wx.switchTab({
-      url: '/pages/course/course'
-    })
-  },
   onPullDownRefresh() {
     this.dataInit()
     wx.stopPullDownRefresh()

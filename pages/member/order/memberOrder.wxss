@@ -4,7 +4,6 @@ page{
 }
 .wrapper {
   width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -192,7 +191,7 @@ display: flex;
   margin-right: 20rpx;
 }
 .item_info{
-  width: 390rpx;
+  width: 380rpx;
   margin-right: 34rpx;
 }
 .item_info_title{
@@ -253,7 +252,7 @@ display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 265rpx;
+  padding-top: 200rpx;
   /* background-color: #fafafa; */
 }
 
@@ -267,7 +266,7 @@ display: flex;
 .tab_content .none .txt {
   margin-top: 20rpx;
   font-size: 24rpx;
-  color: #896FFF;
+  color: #bebebe;
 }
 .goBottom{
   text-align: center;
