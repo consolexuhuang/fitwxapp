@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-     "tabBar_top": "/components/tabBar_top/tabBar",
-     "slider_bar": "/components/sliderBar/sliderBar"
+     "tabBar_top": "/components/tabBar_top/tabBar"
   }
 }
