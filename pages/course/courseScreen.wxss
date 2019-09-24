@@ -32,6 +32,9 @@
 .course-screen-item {
   padding-top: 40rpx;
 }
+.course-screen-item:first-child{
+  padding-top:20rpx;
+}
 
 .course-screen-item-title {
   margin-left: 35rpx;

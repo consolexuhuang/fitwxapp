@@ -11,6 +11,7 @@ App({
     this.store = Store;
     this.worker = worker;
     this.globalData.scene = options.scene;
+
     //版本更新
     if (wx.canIUse('getUpdateManager')) {
       const updateManager = wx.getUpdateManager()
@@ -57,21 +58,10 @@ App({
       },
     })
     this.getLocation();
+
   },
-  onShow(options) {
-    let _this = this
-    // 获取加密群信息
-    // if (options.scene == 1044) {
-    //   console.log('options.shareTicket', options.shareTicket)
-    //   wx.getShareInfo({
-    //     shareTicket: options.shareTicket,
-    //     success(shareTicket_res){
-    //       _this.globalData.shareTicket_res = shareTicket_res
-    //       console.log('shareTicket_res', shareTicket_res)
-    //     }
-    //   })
-    // }
-    console.log('scene', options.scene, options)
+  onShow(options) { 
+    let _this = this    
     this.globalData.scene = options.scene,
       this.globalData.sceneOptions = options
     // 校验场景值
@@ -120,17 +110,17 @@ App({
     redirectToState: true,
     scene: '',
     sceneOptions: '',
-    JumpAppId: { //测试
+    /* JumpAppId: { //测试
       appid: 'wx322a8a72b755aa57',
       envVersion: 'trial' //体验版
       //  envVersion: 'release' //正式版
-    },
+    }, */
 
-    /* JumpAppId: {                   //正式
+    JumpAppId: {                   //正式
       appid: 'wxec1fe04fad9d4e02',
       //envVersion: 'trial' //体验版
       envVersion: 'release' //正式版
-    }, */
+    },
   },
 
   /**

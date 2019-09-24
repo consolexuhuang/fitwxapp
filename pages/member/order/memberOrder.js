@@ -3,7 +3,8 @@ import Store from '../../../utils/store.js'
 const app = getApp();
 const ui = require('../../../utils/ui.js');
 const api = getApp().api
-let orderPageIng = 1, orderPageWait = 1, orderPageComplate = 1
+let orderPageIng = 1, orderPageWait = 1, orderPageComplate = 1;
+
 
 Page({
   /**
@@ -39,6 +40,15 @@ Page({
   },
 
   onShow() {
+    /* 训练小红点引导 后面需要删除*/
+    wx.hideTabBarRedDot({
+      index: 2,
+      success:()=>{
+        if (!wx.getStorageInfoSync('hideTabBarRedDot')) {
+          wx.setStorageSync('hideTabBarRedDot', true)
+        }
+      },
+    })
     //检测登录
     this.setData({ showAuthModel: !app.passIsLogin() });
       //loading
