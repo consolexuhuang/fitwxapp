@@ -13,9 +13,9 @@ Page({
     isLoaded:false,//是否加载完成
     active: 0, //当前索引
     sport: '',
-    goingList: [],
-    payingList: [],
-    completedList: [],
+    goingList: '',
+    payingList: '',
+    completedList: '',
     userInfoData: "",
     imgUrl: getApp().globalData.imgUrl,
     navbarData: {
@@ -39,16 +39,19 @@ Page({
   },
 
   onShow() {
-    //loading
-    ui.showLoading();
+    //检测登录
+    this.setData({ showAuthModel: !app.passIsLogin() });
+      //loading
+      ui.showLoading();
     //获取当前应该显示tab    
-    getApp().checkSessionFun().then(() => {
-      //检测登录
-      this.setData({
-        showAuthModel: !app.passIsLogin()
-      })
-      //初始化数据
-      this.dataInit();
+    getApp().checkSessionFun().then(() => {    
+      if (app.passIsLogin()) {
+        //初始化数据
+        this.dataInit();
+      }else{
+        //hideLoading
+        ui.hideLoading();
+      }  
     })
   },
 
@@ -64,9 +67,11 @@ Page({
     this.setData({
       isLoaded:false
     })
+    if (app.passIsLogin()) {
     this.dataInit().then(()=>{
       wx.stopPullDownRefresh();
     })
+    }
   },
 
   //提示授权
