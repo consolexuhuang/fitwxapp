@@ -1,58 +1,20 @@
 // pages/member/order/memberOrder.js
 import Store from '../../../utils/store.js' 
+const ui = require('../../../utils/ui.js');
 const api = getApp().api
 let orderPageIng = 1, orderPageWait = 1, orderPageComplate = 1
-//分页
-function loadMoreOrder(_this, pageNum) {
-  let data = {
-    status: _this.data.active == 0 ? '2' : (_this.data.active == 1 ? '1' : _this.data.active == 2 ? '3' : '2'),
-    date1: '', //开始时间
-    date2: '', //结束时间
-    page: pageNum,
-    size: 10,
-    needTotalCount: true
-  }
-  // wx.showLoading({ title: '加载中...' })
-  api.post('v2/payOrder/getOrderListByPage', data).then(res => {
-    // wx.hideLoading()
-    console.log('订单分页数据', res, pageNum)
-    if (_this.data.active == 0) {
-      if (pageNum == 1) {
-         _this.setData({ goingList: res.msg.result })
-      } else {
-        _this.setData({ goingList: [..._this.data.goingList, ...res.msg.result] },() => {
-        })
-      }
-    }
-    if (_this.data.active == 1) {
-      if (pageNum == 1) {
-        _this.setData({ payingList: res.msg.result })
-      } else {
-        _this.setData({ payingList: [..._this.data.payingList, ...res.msg.result] }, () => {
-        })
-      }
-    }
-    if (_this.data.active == 2) {
-      if (pageNum == 1) {
-        _this.setData({ completedList: res.msg.result })
-      } else {
-        _this.setData({ completedList: [..._this.data.completedList, ...res.msg.result] }, () => {
-        })
-      }
-    }
-  })
-}
-Page({
 
+Page({
   /**
    * 页面的初始数据
    */
   data: {
+    isLoaded:false,//是否加载完成
     active: 0, //当前索引
     sport: '',
-    goingList: '',
-    payingList: '',
-    completedList: '',
+    goingList: [],
+    payingList: [],
+    completedList: [],
     userInfoData: "",
     imgUrl: getApp().globalData.imgUrl,
     navbarData: {
@@ -63,34 +25,64 @@ Page({
       tab_topBackground: '#fff'
     },
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
-    // swiperHeight: [getApp().globalData.systemInfo.screenHeight - getApp().globalData.tab_height - 100, getApp().globalData.systemInfo.screenHeight - getApp().globalData.tab_height - 100, getApp().globalData.systemInfo.screenHeight - getApp().globalData.tab_height - 100],
     swiperHeight: getApp().globalData.systemInfo.screenHeight - getApp().globalData.tab_height - 100
   },
   /**
   * 生命周期函数--监听页面加载
   */
-  onLoad: function (options) {
+  onLoad: function () {
+    //loading
+    ui.showLoading();
   },
+
   onShow() {
+    //loading
+    ui.showLoading();
     //获取当前应该显示tab    
     getApp().checkSessionFun().then(() => {
       this.dataInit()
     })
   },
+
+  onReachBottom() {
+    if (this.data.active == 0 && this.data.goingList.length != this.data.userInfoData.order.going_count) this.loadMoreOrder(++orderPageIng)
+    if (this.data.active == 1 && this.data.payingList.length != this.data.userInfoData.order.unpay_count) this.loadMoreOrder(++orderPageWait)
+    if (this.data.active == 2 && this.data.completedList.length != this.data.userInfoData.order.complete_count) this.loadMoreOrder(++orderPageComplate)
+  },
+
+  onPullDownRefresh() {
+    //loading
+    ui.showLoading();
+    this.setData({
+      isLoaded:false
+    })
+    this.dataInit().then(()=>{
+      wx.stopPullDownRefresh();
+    })
+  },
+
   // 初始化数据
   dataInit(){
-    orderPageIng = orderPageWait = orderPageComplate = 1
+    orderPageIng = orderPageWait = orderPageComplate = 1;
     this.setData({ goingList: '', payingList: '', completedList: '' })
-    this.getUserInfo()
-    this.getSport()
-    loadMoreOrder(this, this.data.active == 0 ? orderPageIng : (this.data.active == 1 ? orderPageWait : (this.data.active == 2 ? orderPageComplate : orderPageIng)))
+    return Promise.all([this.getUserInfo(), this.getSport(), this.loadMoreOrder(1)]).then(()=>{  
+      //hideLoading
+      this.setData({
+        isLoaded:true
+      })
+      ui.hideLoading();
+    }).catch(err=>{
+      console.err('err:'+err)
+    });
   },
-  // 获取用户所有订单
+  // 获取用户训练记录
   getUserInfo() {
-    api.post('v2/member/liteMyInfo').then(res => {
-      console.log('userInfoData', res.msg)
-      this.setData({ userInfoData: res.msg })
-    })
+    return new Promise((resolve,reject)=>{
+      api.post('v2/member/liteMyInfo').then(res => {
+        this.setData({ userInfoData: res.msg });
+        resolve();
+      })
+    }) 
   },
   // 运动数据
   getSport(event) {
@@ -99,17 +91,10 @@ Page({
         const sport = res.msg
         this.setData({
           sport
-        }, () => {
-          resolve()
-        })
+        });
+        resolve();
       })
     })
-  },
-  bindscrolltolower() {
-    console.log('触底', this.data.userInfoData.order)
-    if (this.data.active == 0 && this.data.goingList.length != this.data.userInfoData.order.going_count) loadMoreOrder(this, ++orderPageIng)
-    if (this.data.active == 1 && this.data.payingList.length != this.data.userInfoData.order.unpay_count) loadMoreOrder(this, ++orderPageWait)
-    if (this.data.active == 2 && this.data.completedList.length != this.data.userInfoData.order.complete_count) loadMoreOrder(this, ++orderPageComplate)
   },
   //付款
   goPay(e){
@@ -144,37 +129,25 @@ Page({
     })
   },
   handleTabTap(event) {
-    // const active = event.currentTarget.dataset.index
-    console.log('点击下标', event.currentTarget.dataset.index)
+    //loading
+    ui.showLoading();
     this.setData({
-      active: event.currentTarget.dataset.index
-    },()=>{
-      if (event.currentTarget.dataset.index == 0) {
-        orderPageIng = 1;
-        loadMoreOrder(this, orderPageIng)
-      }
+      isLoaded:false
     })
-    if (event.currentTarget.dataset.index == 1) {
-      orderPageWait = 1;
-      loadMoreOrder(this, orderPageWait)
-    }
-    if (event.currentTarget.dataset.index == 2) {
-      orderPageComplate = 1;
-      loadMoreOrder(this, orderPageComplate)
-    }
-  },
-  handleCurrentChange: function (event) {
-    console.log(event)
-    if (event.detail.source == 'touch') {
+    let index = event.currentTarget.dataset.index;
+    this.setData({
+      active: index
+    })
+    let page = 1;
+    this.loadMoreOrder(page).then(()=>{
+      //hideLoading
+      ui.hideLoading()
       this.setData({
-        active: event.detail.currentItemId
-      }, () => {
-        if (this.data.active == 0 && !this.data.goingList) loadMoreOrder(this, orderPageIng);
-        if (this.data.active == 1 && !this.data.payingList) loadMoreOrder(this, orderPageWait);
-        if (this.data.active == 2 && !this.data.completedList) loadMoreOrder(this, orderPageComplate);
+        isLoaded: true
       })
-    }
+    });
   },
+
   // 跳转本月更多
   handleMoreTap() {
     console.log('jump')
@@ -197,8 +170,45 @@ Page({
       url: '/pages/coach/coach?coachId=' + coachId
     })
   },
-  onPullDownRefresh() {
-    this.dataInit()
-    wx.stopPullDownRefresh()
+
+  //分页
+  loadMoreOrder(pageNum) {
+    let data = {
+      status: this.data.active == 0 ? '2' : (this.data.active == 1 ? '1' : this.data.active == 2 ? '3' : '2'),
+      date1: '', //开始时间
+      date2: '', //结束时间
+      page: pageNum,
+      size: 10,
+      needTotalCount: true
+    }
+  return new Promise((resolve,reject)=>{
+    api.post('v2/payOrder/getOrderListByPage', data).then(res => {
+      // wx.hideLoading()
+      if (this.data.active == 0) {
+        if (pageNum == 1) {
+          this.setData({ goingList: res.msg.result })
+        } else {
+          this.setData({ goingList: [...this.data.goingList, ...res.msg.result] })
+        }
+      }
+      if (this.data.active == 1) {
+        if (pageNum == 1) {
+          this.setData({ payingList: res.msg.result })
+        } else {
+          this.setData({ payingList: [...this.data.payingList, ...res.msg.result] })
+        }
+      }
+      if (this.data.active == 2) {
+        if (pageNum == 1) {
+          this.setData({ completedList: res.msg.result })
+        } else {
+          this.setData({ completedList: [...this.data.completedList, ...res.msg.result] })
+        }
+      }
+      resolve();
+    })
+  })
+  
   }
+
 })

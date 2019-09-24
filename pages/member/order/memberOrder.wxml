@@ -38,7 +38,7 @@
   </view>
 
   <!-- 待进行 -->
-  <view class="tab_content" hidden="{{active!=0}}">
+  <view class="tab_content" wx:if="{{active==0}}">
   <block wx:if="{{goingList.length}}">
     <block wx:for="{{goingList}}" wx:key="index">
       <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
@@ -67,7 +67,7 @@
     <view class='goBottom fadeIn animated' wx:if='{{goingList.length > 10}}'>{{goingList.length == userInfoData.order.going_count && goingList.length > 10 ? '-拉伸完成-' : '加载中...'}}</view>
   </block>
   <!-- 无数据 -->
-  <block wx:else>
+  <block  wx:if="{{goingList.length==0 && isLoaded}}" >
     <view class="none">
       <text class="none-img iconicon-test9 iconfont"></text>
       <text class="txt">暂无消费记录</text>
@@ -75,7 +75,7 @@
   </block>
   </view>
   <!-- 待付款 -->
-  <view class="tab_content"  hidden="{{active!=1}}">
+  <view class="tab_content"  wx:if="{{active==1}}">
   <block wx:if="{{payingList.length}}">
     <block wx:for="{{payingList}}" wx:key="index">
       <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
@@ -91,7 +91,7 @@
             </view>
           </view>
           <view class="item_info_seeBox">
-            <view class="item_info_see {{active == 2 ? 'item_info_seeComplete' : ''}}" catchtap='goPay' data-ordernum='{{item.order_num}}' data-orderid='{{item.id}}'> 
+            <view class="item_info_see {{active == 2 ? 'item_info_seeComplete' : ''}}" catchtap='goPay' data-orderid='{{item.id}}'> 
               {{active == 0 ? '详情' : (active == 1 ? '去付款' : (active == 2 ? '已完成' : '已取消'))}}
             </view>
           </view>
@@ -101,7 +101,7 @@
     <view class='goBottom fadeIn animated' wx:if='{{payingList.length > 10}}'>{{payingList.length == userInfoData.order.unpay_count && payingList.length > 10 ? '-拉伸完成-' : '加载中...'}}</view>
   </block>
   <!-- 无数据 -->
-  <block wx:else>
+  <block wx:if="{{payingList.length==0 && isLoaded}}">
     <view class="none">
       <text class="none-img iconicon-test9 iconfont"></text>
       <text class="txt">暂无消费记录</text>
@@ -109,7 +109,7 @@
   </block>
   </view>
   <!-- 已完成 -->
-  <view class="tab_content"  hidden="{{active!=2}}">
+  <view class="tab_content"  wx:if="{{active==2}}">
   <block wx:if="{{completedList.length}}">
     <block wx:for="{{completedList}}" wx:key="index">
       <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
@@ -135,7 +135,7 @@
     <view class='goBottom fadeIn animated' wx:if='{{completedList.length > 10}}'>{{completedList.length == userInfoData.order.complete_count && completedList.length > 10 ? '-拉伸完成-' : '加载中...'}}</view>
   </block>
   <!-- 无数据 -->
-  <block wx:else>
+  <block  wx:if="{{completedList.length==0 && isLoaded}}">
     <view class="none">
       <text class="none-img iconicon-test9 iconfont"></text>
       <text class="txt">暂无消费记录</text>
