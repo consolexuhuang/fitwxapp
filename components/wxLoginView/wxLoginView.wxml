@@ -1,0 +1,6 @@
+<!--components/wxLoginView/wxLoginView.wxml-->
+<view class="Usenone analysis_my_appointment" wx:if='{{isShow}}' bindtap='clickLogin'>
+  <text class="Usepic iconfont iconicon-test48"></text>
+  <text class="Usetext">授权登录</text>
+</view>
+<!-- showAuthModel -->

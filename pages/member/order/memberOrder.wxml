@@ -1,7 +1,7 @@
 <!--pages/member/order/memberOrder.wxml-->
 <wxs src="../../../utils/util.wxs" module="util" />
 <tabBar_top navbarData='{{navbarData}}'></tabBar_top>
-<view class="wrapper" style='margin-top:{{marginTopBar}}px;'>
+<view class="wrapper" style='margin-top:{{marginTopBar}}px;'  wx:if='{{!showAuthModel}}'>
   <view class="trainRescord fadeIn animated">
     <view class="trainRescord_head" bindtap="handleMoreTap">
       <view class="trainRescord_headCont">本月训练记录</view>
@@ -13,10 +13,6 @@
       <view class="trainRescord_timeCount">{{sport.month.mins}}</view>分钟
     </view>
   </view>
-  <!-- <view class="myOrder" >
-    <view class="myOrder_head trainRescord_headCont">我的订单</view>
-  </view>
-   -->
   <view class='myOrderNavBox' style='top:{{marginTopBar}}px'>
     <view class="myOrderNav" id="DomNav">
       <view class="myOrderNav_item {{active === 0 ? 'click_this' : ''}}" data-index="{{0}}" bindtap="handleTabTap">
@@ -143,3 +139,11 @@
   </block>
 </view>
 </view>
+
+<!-- 提示微信登录 -->
+  <wxLoginView isShow='{{showAuthModel}}' bind:loginEvent="showJurisdictionSmallPopup"></wxLoginView>
+<!-- 授权登录 -->
+  <jurisdictionSmallPopup state='{{jurisdictionSmallState}}' bindmyevent='bindgetuserinfo'></jurisdictionSmallPopup>
+
+
+

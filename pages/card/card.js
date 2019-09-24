@@ -29,7 +29,6 @@ Page({
     officialDataState: false,
     //memberInfo:'',
     jurisdictionSmallState: false,
-    showAuthModel: false,
   },
   /**
    * 生命周期函数--监听页面加载
@@ -41,7 +40,6 @@ Page({
     // })
   },
   onShow() {
-    this.setData({ showAuthModel: !app.passIsLogin() })
     app.checkSessionFun().then(() => {
       //this.getMemberFollowState()
       this.getCardDefList()
@@ -53,16 +51,9 @@ Page({
     app.wx_AuthUserLogin().then(() => {
       this.setData({
         jurisdictionSmallState: false,
-        showAuthModel: !app.passIsLogin()
       })
       this.getMemberFollowState()
       this.getCardDefList()
-    })
-  },
-  //提示授权
-  showJurisdictionSmallPopup() {
-    this.setData({
-      jurisdictionSmallState: true
     })
   },
   /**

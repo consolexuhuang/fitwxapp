@@ -1,5 +1,6 @@
 // pages/member/order/memberOrder.js
 import Store from '../../../utils/store.js' 
+const app = getApp();
 const ui = require('../../../utils/ui.js');
 const api = getApp().api
 let orderPageIng = 1, orderPageWait = 1, orderPageComplate = 1
@@ -25,7 +26,9 @@ Page({
       tab_topBackground: '#fff'
     },
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
-    swiperHeight: getApp().globalData.systemInfo.screenHeight - getApp().globalData.tab_height - 100
+    swiperHeight: getApp().globalData.systemInfo.screenHeight - getApp().globalData.tab_height - 100,
+    showAuthModel: false,
+    jurisdictionSmallState: false,
   },
   /**
   * 生命周期函数--监听页面加载
@@ -40,7 +43,12 @@ Page({
     ui.showLoading();
     //获取当前应该显示tab    
     getApp().checkSessionFun().then(() => {
-      this.dataInit()
+      //检测登录
+      this.setData({
+        showAuthModel: !app.passIsLogin()
+      })
+      //初始化数据
+      this.dataInit();
     })
   },
 
@@ -58,6 +66,24 @@ Page({
     })
     this.dataInit().then(()=>{
       wx.stopPullDownRefresh();
+    })
+  },
+
+  //提示授权
+  showJurisdictionSmallPopup() {
+    this.setData({
+      jurisdictionSmallState: true
+    })
+  },
+  // 点击授权
+  bindgetuserinfo() {
+    app.wx_AuthUserLogin().then(() => {
+      this.setData({
+        jurisdictionSmallState: false,
+        showAuthModel: !app.passIsLogin()
+      })
+      //初始化数据
+      this.dataInit();
     })
   },
 
