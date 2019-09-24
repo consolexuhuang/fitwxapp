@@ -245,10 +245,10 @@ App({
           api.get('authorizationLite', data).then(res => {
             // wx.hideLoading()
 
-            //测试
+            /* //测试
             res = {
               code: 123
-            }
+            } */
 
             if (res.msg) {
               if (res.code === -1) { //如果出现登录未知错误

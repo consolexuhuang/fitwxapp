@@ -168,34 +168,33 @@ Page({
     let index = event.currentTarget.dataset.index;
     this.setData({
       active: index
+    },()=>{
+      let page = 1;
+      this.loadMoreOrder(page).then(() => {
+        //hideLoading
+        ui.hideLoading()
+        this.setData({
+          isLoaded: true
+        })
+      });
     })
-    let page = 1;
-    this.loadMoreOrder(page).then(()=>{
-      //hideLoading
-      ui.hideLoading()
-      this.setData({
-        isLoaded: true
-      })
-    });
+    
   },
 
   // 跳转本月更多
   handleMoreTap() {
-    console.log('jump')
     wx.navigateTo({
       url: '/pages/member/order/monthRecord'
     })
   },
   handleOrderItemTap: function (event) {
     const orderNum = event.currentTarget.dataset.orderNum
-    console.log(event)
     wx.navigateTo({
       url: '/pages/member/order/orderDetail?orderNum=' + orderNum
     })
   },
   // 跳转教练课程列表
   handleCoachTap: function (event) {
-    // console.log(event)
     const coachId = event.currentTarget.dataset.coachid
     wx.navigateTo({
       url: '/pages/coach/coach?coachId=' + coachId

@@ -4,6 +4,17 @@
 <view class="course-screen-wrapper" style="margin-top:{{marginTopBar}}px" wx:if="{{typeLabelList}}">
   <scroll-view scroll-y class="course-screen-scroll">
     <view class="course-screen-list">
+      
+      <block wx:for="{{typeLabelList}}" wx:for-index="typeKey" wx:for-item="typeItem" wx:key="typeKey">
+        <view class="course-screen-item">
+          <view class="course-screen-item-title">{{typeKey}}</view>
+          <view class="course-screen-label-list">
+            <block wx:for="{{typeItem}}" wx:for-item="labelItem" wx:key="_PK_">
+              <view class="{{util.include(selectedLabel, labelItem._PK_)?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-label-id="{{labelItem._PK_}}" bindtap="handleLabelTap">{{labelItem.N}}</view>
+            </block>
+          </view>
+        </view>
+      </block>
       <view class="course-screen-item">
         <view class="course-screen-item-title">时间</view>
         <view class="course-screen-label-list">
@@ -15,16 +26,6 @@
           <view class="{{util.include(selectedTimeInterval, '18:00-22:30')?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-time-interval="{{'18:00-22:30'}}" bindtap="handleTimeIntervalTap">18:00-22:30</view>
         </view>
       </view>
-      <block wx:for="{{typeLabelList}}" wx:for-index="typeKey" wx:for-item="typeItem" wx:key="typeKey">
-        <view class="course-screen-item">
-          <view class="course-screen-item-title">{{typeKey}}</view>
-          <view class="course-screen-label-list">
-            <block wx:for="{{typeItem}}" wx:for-item="labelItem" wx:key="_PK_">
-              <view class="{{util.include(selectedLabel, labelItem._PK_)?'course-screen-label-item course-screen-label-item-active':'course-screen-label-item'}}" data-label-id="{{labelItem._PK_}}" bindtap="handleLabelTap">{{labelItem.N}}</view>
-            </block>
-          </view>
-        </view>
-      </block>
     </view>
   </scroll-view>
   <view class="screen-btn-wrapper">
