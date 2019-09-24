@@ -23,7 +23,6 @@ function loadMoreOrder(_this, pageNum) {
         _this.setData({ goingList: [..._this.data.goingList, ...res.msg.result] },() => {
         })
       }
-      // _this.getSwiperHeight(_this.data.goingList, 0)
     }
     if (_this.data.active == 1) {
       if (pageNum == 1) {
@@ -32,7 +31,6 @@ function loadMoreOrder(_this, pageNum) {
         _this.setData({ payingList: [..._this.data.payingList, ...res.msg.result] }, () => {
         })
       }
-      // _this.getSwiperHeight(_this.data.payingList, 1)
     }
     if (_this.data.active == 2) {
       if (pageNum == 1) {
@@ -41,7 +39,6 @@ function loadMoreOrder(_this, pageNum) {
         _this.setData({ completedList: [..._this.data.completedList, ...res.msg.result] }, () => {
         })
       }
-      // _this.getSwiperHeight(_this.data.completedList, 2)
     }
   })
 }
@@ -73,7 +70,6 @@ Page({
   * 生命周期函数--监听页面加载
   */
   onLoad: function (options) {
-    
   },
   onShow() {
     //获取当前应该显示tab    
@@ -109,16 +105,6 @@ Page({
       })
     })
   },
-  //计算轮播图高度
-  getSwiperHeight(list, type){ //40底部拉升完成高度
-    let loadHeight = 50
-    let height = (list.length == 0 ? list.length + 1 : list.length) * 98 + loadHeight
-      this.setData({
-        ['swiperHeight[' + type +']']: height
-      })
-    console.log(this.data.swiperHeight)
-  },
- 
   bindscrolltolower() {
     console.log('触底', this.data.userInfoData.order)
     if (this.data.active == 0 && this.data.goingList.length != this.data.userInfoData.order.going_count) loadMoreOrder(this, ++orderPageIng)
@@ -127,21 +113,13 @@ Page({
   },
   //付款
   goPay(e){
-    let data = {
-        openid: Store.getItem('userData').wx_lite_openid,
-        outTradeNo: e.currentTarget.dataset.ordernum,
-        transactionId: '',
-        outRefundNo: '',
-        totalFee: 0, //后台分进制
-        type: 'PAY',
-        clientIp: '',
-        payMode: 'wxlite',
-      }
-      api.post('payment/wxPay', data).then(res => {
-        console.log('微信支付回调', res)
-        this.wxPay(res.msg)
-
-      })
+    let orderId = e.currentTarget.dataset.orderid;
+    let param = {
+      orderId
+    }
+    api.post('payOrder/payForOrder', param).then(res => {
+      this.wxPay(res.msg);
+    });
   },
   wxPay: function (obj) {
     wx.requestPayment({

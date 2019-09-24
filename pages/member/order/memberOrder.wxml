@@ -91,7 +91,7 @@
             </view>
           </view>
           <view class="item_info_seeBox">
-            <view class="item_info_see {{active == 2 ? 'item_info_seeComplete' : ''}}" catchtap='goPay' data-ordernum='{{item.order_num}}'>
+            <view class="item_info_see {{active == 2 ? 'item_info_seeComplete' : ''}}" catchtap='goPay' data-ordernum='{{item.order_num}}' data-orderid='{{item.id}}'> 
               {{active == 0 ? '详情' : (active == 1 ? '去付款' : (active == 2 ? '已完成' : '已取消'))}}
             </view>
           </view>
