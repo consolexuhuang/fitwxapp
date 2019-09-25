@@ -44,7 +44,7 @@ Page({
     wx.hideTabBarRedDot({
       index: 2,
       success:()=>{
-        if (!wx.getStorageInfoSync('hideTabBarRedDot')) {
+        if (!wx.getStorageSync('hideTabBarRedDot')) {
           wx.setStorageSync('hideTabBarRedDot', true)
         }
       },
