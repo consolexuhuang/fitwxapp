@@ -59,7 +59,7 @@
     <view class="item analysis_my_cards" bindtap="handleGoodList">
       <text class="name">限时优惠</text>
       <view class="right">
-        <text class="value blue">中秋祝福卡</text>
+        <text class="value">更多</text>
         <text class="icon iconfont iconicon-test42"></text>
       </view>
     </view>
