@@ -47,13 +47,31 @@ Page({
       },
       // isDialogShow: true
     })
-
-    //检测登录
-    app.checkSessionFun().then(() => {
-    this.getUserCoupons()
-    this.agreeNotifyShow()
-    this.getShareCouponInfo()
-    this.getInvitedInfo()
+      //检测登录
+      app.checkSessionFun().then(() => {
+        if (!app.passIsLogin()) {
+          this.setData({ jurisdictionState: true })
+        }else{
+          this.getUserCoupons()
+          this.agreeNotifyShow()
+          this.getShareCouponInfo()
+          this.getInvitedInfo()
+        }
+      },()=>{
+        this.setData({ jurisdictionState: true })
+      })
+  },
+  // 点击授权
+  bindgetuserinfo() {
+    app.wx_AuthUserLogin().then(() => {
+      this.setData({ jurisdictionState: false })
+      this.getUserCoupons()
+      this.agreeNotifyShow()
+      this.getShareCouponInfo()
+      this.getInvitedInfo()
+      // this.getOfficialDataState()
+    }, () => {
+      this.setData({ jurisdictionState: true })
     })
   },
   getUserCoupons: function(event) {

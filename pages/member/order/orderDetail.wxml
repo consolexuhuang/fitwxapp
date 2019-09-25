@@ -103,18 +103,12 @@
     <view class="orderDetail_Tips" wx:if="{{orderData.cancelFlag == 4 ||orderData.cancelFlag == 5}}">{{orderData.canelTime}}后取消，不支持退款</view>
   </view>
 </view>
-<!-- <view class='officialAccount fadeIn animated' 
-      wx:if='{{memberFollowState == 0}}'>
-  <official-account bindload='bindload' 
-                    binderror='binderror'
-                    class='officialAccount'>
-  </official-account>
-</view> -->
-<officalAccount memberFollowState='{{memberFollowState}}'
+
+<!-- <officalAccount memberFollowState='{{memberFollowState}}'
                 officialDataState='{{officialDataState}}'
                 bottomStyle='{{orderData.cancelFlag == 1 ? 100 : bottomStyle}}'
                 pageShowNoticeState='{{memberInfo.sub_flag == 0 && memberInfo.order_count >= 1 ? true : false}}'>
-</officalAccount>
+</officalAccount> -->
 
 <van-popup show='{{coachWxCodeState}}' 
            bind:close='onclose'

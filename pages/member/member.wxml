@@ -55,76 +55,14 @@
     </view>
   </view>
 
-  <view class="myorder fadeIn animated" wx:if='{{!showAuthModel}}'>
-    <view class="title" bindtap="handleMemberOrderTap">
-      <text class="name">我的订单</text>
-      <view class="more">
-        <text class="text">更多</text>
-        <text class="icon-arrow iconfont iconicon-test42"></text>
-      </view>
-    </view>
-    <view class="content">
-      <view class="status">
-        <view class="col analysis_my_orderconduct" bindtap='jumpToOrderStatus' data-status='0'>
-          <text class='icon iconfont icontiaosheng-'></text>
-          <view class="text">
-            <text class="name">待进行</text>
-            <text class="number">({{userInfoData.order.going_count || 0}})</text>
-          </view>
-        </view>
-        <view class="col analysis_my_orderwaitpayment" bindtap='jumpToOrderStatus' data-status='1'>
-          <text class='icon iconfont iconyuqie-'></text>
-          <view class="text">
-            <text class="name">待付款</text>
-            <text class="number">({{userInfoData.order.unpay_count || 0}})</text>
-          </view>
-        </view>
-        <view class="col analysis_my_ordercompleted" bindtap='jumpToOrderStatus' data-status='2'>
-          <text class='icon iconfont iconboji-'></text>
-          <view class="text">
-            <text class="name">已完成</text>
-            <text class="number">({{userInfoData.order.complete_count || 0}})</text>
-          </view>
-        </view>
-      </view>
-      <!-- 有数据 -->
-      <view class="list" wx:if="{{goingList.length && userData}}">
-        <block wx:for="{{goingList}}" wx:key="index">
-          <view class="item fadeIn animated" data-order-num="{{item.order.orderNum}}" bindtap="handleOrderItemTap">
-            <!-- <image class='isWaitImg' src='{{imgUrl}}member/isWait.png' wx:if='{{item.order.wait}}'></image> -->
-            <text class='isWaitImg iconfont iconfenzu-8' wx:if='{{item.order.wait}}'></text>
-            <text class="item-status">即将开课</text>
-            <view class="item-c">
-              <view class="left">
-                <image class="pic" src="{{item.coach.headUrl}}"></image>
-                <view class="info">
-                  <view class="name">{{item.course.courseName}}</view>
-                  <view class="shop">
-                    <text class="icon iconfont iconicon-test23"></text>
-                    <text class="text storeName">{{item.store.storeName}}</text>
-                  </view>
-                  <view class="date">
-                    <text class="icon iconfont iconicon-test17"></text>
-                    <text class="text">{{util.timeStampFormat(item.course.beginDate, 'MM月DD日')}} 星期{{item.course.beginDay}} {{util.timeStampFormat(item.course.beginTime, 'hh:mm')}}-{{util.timeStampFormat(item.course.endTime, 'hh:mm')}}</text>
-                  </view>
-                </view>
-              </view>
-              <view class="right">
-                <view class="btn">详情</view>
-              </view>
-            </view>
-          </view>
-        </block>
-      </view>
-      <!-- 无数据 -->
-      <view class="none analysis_my_appointment" bindtap='jumpTocourseList' wx:else>
-        <text class="pic iconfont iconicon-test48"></text>
-        <text class="text">立即预约</text>
-      </view>
-    </view>
-  </view>
-
   <view class="menu fadeIn animated" wx:if='{{!showAuthModel}}'>
+    <view class="item analysis_my_cards" bindtap="handleGoodList">
+      <text class="name">限时优惠</text>
+      <view class="right">
+        <text class="value blue">中秋祝福卡</text>
+        <text class="icon iconfont iconicon-test42"></text>
+      </view>
+    </view>
     <view class="item analysis_my_cards" bindtap="handleMemberCardTap">
       <text class="name">我的卡包</text>
       <view class="right">
@@ -160,20 +98,9 @@
       </view>
     </view>
   </view>
-  
-  <view class="Usenone analysis_my_appointment" wx:if='{{showAuthModel}}' bindtap='showJurisdictionSmallPopup'>
-    <text class="Usepic iconfont iconicon-test48"></text>
-    <text class="Usetext">授权登录</text>
-  </view>
-  
-  <!-- <view class="account">
-    <text class="item" bindtap="switchAdmin">切换帐号</text>
-    <text class="item" bindtap="loginOut">退出当前帐号</text>
-  </view> -->
+<!-- 提示微信登录 -->
+  <wxLoginView isShow='{{showAuthModel}}' bind:loginEvent="showJurisdictionSmallPopup"></wxLoginView>
+
 </view>
-<officalAccount memberFollowState='{{memberFollowState}}' 
-                officialDataState='{{officialDataState}}'
-                pageShowNoticeState='{{memberInfo.sub_flag == 0 && memberInfo.order_count >= 1 ? true : false}}'>
-</officalAccount>
 
 <jurisdictionSmallPopup state='{{jurisdictionSmallState}}' bindmyevent='bindgetuserinfo'></jurisdictionSmallPopup>

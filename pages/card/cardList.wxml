@@ -1,9 +1,10 @@
 <!--pages/card/cardList.wxml-->
+<wxs src="../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
 <view class="list fadeIn animated" style='margin-top:{{marginTopBar}}px'>
   <block wx:for="{{cardList}}" wx:key="_PK_">
     <view class="item" data-card-id="{{item._PK_}}" bindtap="handleCardTap">
-      <image class="card-bg" src="{{item.background_img}}"></image>
+      <image class="card-bg" src="{{util.dealOptionImg(item.optional_img)}}"></image>
       <text class="term">使用期限:{{item.card_period}}天</text>
       <view class="right">
         <text>¥{{item.discount_price}}/{{item.card_total_count}}次</text>

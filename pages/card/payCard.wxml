@@ -3,26 +3,26 @@
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
 <view class="wrapper" wx:if="{{goodData}}" style='padding-bottom:140rpx;margin-top:{{marginTopBar+10}}px'>
   <!-- card -->
-  <view class="card fadeIn animated" wx:if='{{!optional_imgList}}'>
-    <image class="card-bg" src="{{goodData.banner_img}}"></image>
+  <swiper class='cardBanner' 
+          wx:if='{{optional_imgList && optional_imgList.length>1}}'
+          indicator-color="#FFFFFF"
+          indicator-active-color="#8B6FF1" 
+          indicator-dots="{{true}}"
+          previous-margin='60rpx'
+          next-margin='60rpx'
+          current='{{current_banner}}'
+          bindchange='bindchangeBanner'
+          circular="{{true}}"
+          style='margin-top:{{marginTopBar+25}}px'
+          >
+      <swiper-item wx:for='{{optional_imgList}}' wx:key='{{index}}' class='bannerItem'>
+        <image class='cardImg {{current_banner == index ? "sacleInStyle" : "sacleOutStyle"}}' src='{{item}}'></image>
+      </swiper-item>
+  </swiper>
+  <view class="card fadeIn animated" wx:else>
+    <image class="card-bg" src="{{optional_imgList[0]}}"></image>
     <text class="number">¥{{goodData.card_def.discount_price}}/{{goodData.card_def.card_total_count}}次</text>
   </view>
-  <swiper class='cardBanner' 
-        wx:if='{{optional_imgList}}'
-        indicator-color="#FFFFFF"
-        indicator-active-color="#8B6FF1" 
-        indicator-dots="{{true}}"
-        previous-margin='60rpx'
-        next-margin='60rpx'
-        current='1'
-        bindchange='bindchangeBanner'
-        circular="{{true}}"
-        style='margin-top:{{marginTopBar+25}}px'
-        >
-    <swiper-item wx:for='{{optional_imgList}}' wx:key='{{index}}' class='bannerItem'>
-      <image class='cardImg {{current_banner == index ? "sacleInStyle" : "sacleOutStyle"}}' src='{{item}}'></image>
-    </swiper-item>
-</swiper>
   <!-- card info -->
   <view class="card-info fadeIn animated">
     <view class="row">
@@ -88,7 +88,7 @@
     <text class="number">¥{{orderData.pay_amount || '0.00'}}</text>
   </view> -->
   <button class="btn cardOver" wx:if='{{orderData.pay_type == "0"}}'>{{orderData.error_tip}}</button>
-  <button class="btn" bindtap="handlePayBtnTap" wx:elif='{{ orderData.pay_type == "1" || orderData.pay_type == "2" || orderData.pay_type == "5"}}'>
+  <button class="btn handlePayBtnTap" bindtap="handlePayBtnTap" wx:elif='{{ orderData.pay_type == "1" || orderData.pay_type == "2" || orderData.pay_type == "5"}}'>
      立即支付 ¥{{orderData.pay_amount}}
   </button>
   <button class="btn" bindtap='jumpTocashMoney' wx:elif='{{orderData.pay_type == "3"}}'>

@@ -43,7 +43,7 @@ page{
   text-align: center;
 }
 .giveBanner{
-  width:650rpx;
+  width:690rpx;
   height:350rpx;
   margin: 40rpx auto 30rpx;
   display: block;
@@ -53,8 +53,8 @@ page{
 }
 .cardNo{
   position: absolute;
-  top: 28rpx;
-  left: 40rpx;
+  bottom: 28rpx;
+  right: 40rpx;
   font-size:24rpx;
   font-family:PingFangSC-Medium;
   font-weight:500;

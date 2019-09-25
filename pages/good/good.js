@@ -15,7 +15,8 @@ Page({
       titleColor: "#000",
       tab_topBackground: '#fff'
     },
-    marginTopBar: getApp().globalData.tab_height * 2 + 20
+    marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    jurisdictionSmallState: false,
   },
 
   /**
@@ -48,25 +49,41 @@ Page({
 
     })
   },
+  // 点击授权
+  bindgetuserinfo() {
+    getApp().wx_AuthUserLogin().then(() => {
+      this.setData({
+        jurisdictionSmallState: false,
+      })
+      this.getGoodList()
+    })
+  },
   goodView(event) {
-    let item = event.currentTarget.dataset.item;
-    let goodId = item.id
-    // let cardId = item._PK_
-    if (item.type === 'COUPON') {
-      wx.navigateTo({
-        url: `/pages/good/goodDetail?goodId=${goodId}`
+    if (getApp().passIsLogin()) {
+      let item = event.currentTarget.dataset.item;
+      let goodId = item.id
+      // let cardId = item._PK_
+      if (item.type === 'COUPON') {
+        wx.navigateTo({
+          url: `/pages/good/goodDetail?goodId=${goodId}`
+        })
+      }
+      else if (item.type === 'COURSE') {
+        wx.navigateTo({
+          url: `/pages/trainingCamp/trainingCamp/trainingCamp?goodId=${goodId}`
+        })
+      }
+      else if (item.type === 'CARD') {
+        console.log('9999')
+        wx.navigateTo({
+          url: `/pages/card/payCard?goodId=${goodId}`
+        })
+      }
+    } else {
+      this.setData({
+        jurisdictionSmallState: true
       })
     }
-    else if (item.type === 'COURSE'){
-      wx.navigateTo({
-        url: `/pages/trainingCamp/trainingCamp/trainingCamp?goodId=${goodId}`
-      })
-    }
-     else if (item.type === 'CARD') {
-       console.log('9999')
-      wx.navigateTo({
-        url: `/pages/card/payCard?goodId=${goodId}`
-      })
-    }
+    
   },
 })

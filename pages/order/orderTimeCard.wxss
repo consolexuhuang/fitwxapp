@@ -1,7 +1,7 @@
 /* pages/order/orderTimeCard.wxss */
 .orderCard_item{
-  width: 686rpx;
-  height: 340rpx;
+  width: 690rpx;
+  height: 220rpx;
   position: relative;
   margin: 10rpx auto;
   display: flex;
@@ -13,26 +13,43 @@
   width: 100%;
   height: 100%;
 }
-.orderCard_itemTime{
-  font-size:22rpx;
-  font-family:PingFangSC-Medium;
-  font-weight:500;
-  color:rgba(255,255,255,1);
-  line-height:30rpx;
+.orderCardBox{
   position: absolute;
-  left: 62rpx;
-  top: 240rpx;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  padding: 30rpx 40rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.orderCard_itemCount{
-  font-size:36rpx;
-  font-family:PingFangSC-Medium;
+.orderInfoBox{
+  display: flex;
+  flex-direction: column;
+}
+.orderCard_Title{
+  font-size:48rpx;
+  font-family:PingFangSC;
   font-weight:500;
   color:rgba(255,255,255,1);
-  line-height:50rpx;
-  text-shadow:0rpx 0rpx 8rpx rgba(57,177,211,1);
-  position: absolute;
-  align-self: center;
-  right: 86rpx;
+  line-height:48rpx;
+}
+.orderCard_itemTime{
+  font-size:26rpx;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:48rpx;
+}
+.orderCard_itemRestTime{
+  font-size:24rpx;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(255,255,255,.5);
+  line-height:33rpx;
+  /* align-self: flex-end; */
 }
 .chooseCard{
   /* color: #896EFF; */
@@ -43,8 +60,10 @@
   background: #fff;
   position: absolute;
   /* position: relative; */
-  top: 27rpx;
+  top: 0;
+  bottom: 0;
   right: 27rpx;
+  margin: auto 0;
   width: 38rpx;
   height: 38rpx;
 }

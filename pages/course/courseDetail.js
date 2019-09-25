@@ -124,6 +124,8 @@ Page({
         'cardData.memberHeadImg': memberInfo.head_img,
         'cardData.memberNickName': memberInfo.nick_name
       })
+      //存储用户信息
+      wx.setStorageSync('userData', res.msg);
     })
   },
   /**

@@ -16,7 +16,8 @@ Page({
       titleColor: "#000",
       tab_topBackground: '#fff'
     },
-    marginTopBar: getApp().globalData.tab_height * 2 + 20
+    marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    jurisdictionState:false
   },
 
   /**
@@ -29,7 +30,13 @@ Page({
 
     //检测登录
     app.checkSessionFun().then(() => {
-    this.getCardList()
+      if (!app.passIsLogin()) {
+        this.setData({ jurisdictionState: true })
+      } else {
+        this.getCardList()
+      }
+    }, () => {
+      this.setData({ jurisdictionState: true })
     })
 
   },
@@ -45,8 +52,9 @@ Page({
         })
       } else {
         const cardList = res.msg
+        // res.msg.card_title = res.msg.card_title.slice(0, res.msg.card_title.indexOf('('))
         this.setData({
-          cardList
+          cardList,
         })
       }
     })

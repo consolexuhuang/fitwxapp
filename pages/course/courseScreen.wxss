@@ -1,4 +1,5 @@
 /* pages/course/courseScreen.wxss */
+
 .course-screen-wrapper {
   position: relative;
   width: 100%;
@@ -18,18 +19,21 @@
 
 .course-screen-scroll {
   position: absolute;
-  top: 90rpx;
+  top: 0rpx;
   width: 100%;
-  background:#fff;
+  background: #fff;
 }
 
 .course-screen-list {
   padding-bottom: 40rpx;
-  margin-bottom:110rpx;
+  margin-bottom: 110rpx;
 }
 
 .course-screen-item {
   padding-top: 40rpx;
+}
+.course-screen-item:first-child{
+  padding-top:20rpx;
 }
 
 .course-screen-item-title {
@@ -39,21 +43,28 @@
 }
 
 .course-screen-label-list {
-  padding-top: 5rpx;
-  margin-left: 19rpx;
+  margin: 0 30rpx;
   display: flex;
+  justify-content: space-between;
+  /* justify-content: space-around; */
   flex-wrap: wrap;
 }
 
+.course-screen-label-list:after {
+  content: "";
+  width: 210rpx;
+  display: block;
+  height: 0;
+}
+
 .course-screen-label-item {
-  margin-top: 25rpx;
-  margin-right: 13rpx;
-  width: 211rpx;
-  height: 50rpx;
-  border-radius: 28rpx;
+  margin-top: 20rpx;
+  width: 210rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
   background-color: #f5f5f5;
   border: 2rpx solid transparent;
-  line-height: 50rpx;
+  line-height: 60rpx;
   text-align: center;
   font-size: 26rpx;
   color: #505050;
@@ -67,7 +78,7 @@
 .screen-btn-wrapper {
   width: 100%;
   position: fixed;
-  bottom:0;
+  bottom: 0;
   height: 115rpx;
   background-color: #fff;
   box-shadow: 0 -2rpx 4rpx 0 rgba(240, 237, 255, 1);

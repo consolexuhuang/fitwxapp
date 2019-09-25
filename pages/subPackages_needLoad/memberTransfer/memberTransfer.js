@@ -26,6 +26,8 @@ Page({
       this.setData({
         memberInfo: res.msg
       })
+      //存储用户信息
+      wx.setStorageSync('userData', res.msg);
     })
   },
   //获取用户配置

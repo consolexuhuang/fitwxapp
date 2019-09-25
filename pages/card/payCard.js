@@ -173,6 +173,7 @@ Page({
   onShow(){
     this.data.cardId ? this.getCardGoodId() : ''
     this.data.goodId ? this.getGoodInfo() : ''
+
   },
   getCardGoodId: function(event) {
     const cardId = this.data.cardId
@@ -188,6 +189,7 @@ Page({
     })
   },
   getGoodInfo: function() {
+    wx.reportAnalytics('enterpage_paycard', { goodId: this.data.goodId })
     const goodId = this.data.goodId
     const data = {
       goodId
@@ -196,9 +198,11 @@ Page({
       const goodData = res.msg
       this.setData({
         goodData,
-        optional_imgList: res.msg.card_def.optional_img ?res.msg.card_def.optional_img.split(',') : ''
+        optional_imgList: res.msg.card_def.optional_img ?res.msg.card_def.optional_img.split(',') : '',
+        current_banner: res.msg.card_def.optional_img && res.msg.card_def.optional_img.split(',').length == 1 ?  0 : 1
       })
       this.checkOrder()
+      // console.log(this.data.optional_imgList)
     })
   },
   checkOrder: function(event) {
@@ -218,6 +222,7 @@ Page({
   },
   //支付
   handlePayBtnTap: function(event) {
+    wx.reportAnalytics('click_paycard', { goodId: this.data.goodId})
     wx.showModal({
       title: '提示！',
       content: '是否确认购卡？',

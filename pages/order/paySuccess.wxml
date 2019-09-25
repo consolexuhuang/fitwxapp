@@ -55,7 +55,7 @@
 </view>
 <tabBar_top navbarData='{{nvabarData}}'>
 </tabBar_top>
-<van-popup show='{{memberInfo.sub_flag == 1 && paySuccessShow}}' 
+<van-popup show='{{paySuccessShow}}' 
            custom-class='paySuccessShowStyle'>
         
     <image wx:if='{{checkPromotion.type == "good"}}' 
@@ -82,16 +82,9 @@
     <view class='coachWxCont'>长按保存教练微信二维码</view>
 </van-popup>
 
-<!-- <view class='officialAccount fadeIn animated' 
-      wx:if='{{memberFollowState == 0}}'>
-  <official-account bindload='bindload' 
-                    binderror='binderror'
-                    class='officialAccount'>
-  </official-account>
-</view> -->
-<officalAccount memberFollowState='{{memberFollowState}}' 
+<!-- <officalAccount memberFollowState='{{memberFollowState}}' 
                 bottomStyle='{{bottomStyle}}'
                 officialDataState='{{officialDataState}}'
                 pageShowNoticeState='{{memberInfo.sub_flag == 0 ? true : false}}'
                 forcedEjection='{{memberInfo.sub_flag == 0 ? true : false}}'>
-</officalAccount>
+</officalAccount> -->

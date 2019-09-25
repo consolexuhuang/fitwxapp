@@ -9,7 +9,7 @@
         <swiper-item>
           <block wx:if="{{util.include(item, 'v.qq.com') && util.getUrlParams(item).vid}}">
             <view class="banner-item">
-              <txv-video vid="{{util.getUrlParams(item).vid}}" playerid="{{util.getUrlParams(item).vid}}" width="{{'100%'}}" height="{{'100%'}}" autoplay="{{false}}" objectFit='fill'></txv-video>
+              <txv-video vid="{{util.getUrlParams(item).vid}}" playerid="{{util.getUrlParams(item).vid}}" width="{{'100%'}}" height="{{'100%'}}" autoplay="{{false}}" objectFit='fill' defn='超清'></txv-video>
             </view>
           </block>
           <block wx:else>
@@ -181,8 +181,6 @@
 <!-- 免责声明 -->
 <statement show="{{isShowStatement}}" content="{{statementContent}}" btnText="关闭" bind:statementEvent="statementClose"></statement>
 
-<officalAccount memberFollowState='{{memberFollowState}}' bottomStyle='{{bottomStyle}}' officialDataState="{{officialDataState}}" pageShowNoticeState='{{memberInfo.sub_flag == 0 && memberInfo.order_count >= 1 ? true : false}}'>
-</officalAccount>
 
 <jurisdictionPopup state='{{jurisdictionState}}' bindmyevent='bindgetuserinfo'></jurisdictionPopup>
 <!-- 分享内容 -->

@@ -40,7 +40,7 @@
             <text class="store-select-arrow iconicon-test36 iconfont" />
           </view>
           <view class="course-select-wrapper analysis_course_courses" bindtap="handleCourseScreenTap">
-            <text class="course-select-title">课程</text>
+            <text class="course-select-title">课程筛选</text>
             <text class="course-select-count" wx:if="{{selectedLabel.length + selectedTimeInterval.length}}">({{selectedLabel.length + selectedTimeInterval.length}})</text>
             <text class="course-select-arrow iconicon-test36 iconfont" />
           </view>
@@ -240,19 +240,7 @@
       </swiper-item>
     </swiper>
   </view>
-
 </view>
-
-<!-- <view class='officialAccount fadeIn animated' 
-      wx:if='{{memberFollowState == 0}}'>
-  <official-account bindload='bindload' 
-                    binderror='binderror'
-                    class='officialAccount'>
-  </official-account>
-</view> -->
-<officalAccount memberFollowState='{{memberFollowState}}' 
-                pageShowNoticeState='{{memberInfo.sub_flag == 0 && memberInfo.order_count >= 1 ? true : false}}'>
-</officalAccount>
 
 <activityPopup activityPopupState='{{activityPopupState}}'
                nowGetTime='{{nowGetTime}}'

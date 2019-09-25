@@ -56,7 +56,13 @@ Component({
           }
         })
       }else{
-        wx.navigateBack()
+        wx.navigateBack({
+          fail:()=>{
+            wx.switchTab({
+              url: '/pages/course/course',
+            })
+          }
+        })
       }
     },
     //返回到首页

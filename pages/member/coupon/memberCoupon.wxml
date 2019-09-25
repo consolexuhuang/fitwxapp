@@ -98,3 +98,5 @@
   </view>
   <view class='makeSureBtn' bindtap='onclose'>我知道了</view>
 </van-popup>
+
+<jurisdictionPopup state='{{jurisdictionState}}' bindmyevent='bindgetuserinfo'></jurisdictionPopup>

@@ -3,6 +3,7 @@
     "enablePullDownRefresh": true,
     "backgroundTextStyle": "dark",
     "usingComponents": {
-      "tabBar_top": "/components/tabBar_top/tabBar"
+      "tabBar_top": "/components/tabBar_top/tabBar",
+      "jurisdictionPopup": "/components/jurisdictionPopup/jurisdictionPopup"
     }
 }

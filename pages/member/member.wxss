@@ -101,7 +101,7 @@ page{
   height: 130rpx;
   background: #fff;
   border-radius: 4rpx;
-  margin: 0 32rpx;
+  margin: 0 30rpx;
 }
 
 .top .white-bar .left {
@@ -368,7 +368,7 @@ page{
 }
 
 .menu {
-  margin: 18rpx 30rpx;
+  margin: 100rpx 30rpx 18rpx 30rpx;
   padding-left: 18rpx;
   background: #fff;
   /* padding-bottom: 40rpx; */

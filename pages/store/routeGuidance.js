@@ -15,6 +15,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (options.shareMemberId) {
+      wx.setStorageSync('shareMemberId', options.shareMemberId)
+    }
     this.setData({
       webUrl: options.webUrl
     })
@@ -39,7 +42,7 @@ Page({
   onShareAppMessage: function () {
     return {
       title: '线路指引',
-      path: `/pages/store/routeGuidance?webUrl=${this.data.webUrl}`,
+      path: `/pages/store/routeGuidance?webUrl=${this.data.webUrl}&shareMemberId=${wx.getStorageSync('shareMemberId')}`,
       // imageUrl: this.data.picList[0],
       success: function (res) {
         console.log(res)

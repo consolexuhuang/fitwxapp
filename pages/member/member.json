@@ -6,6 +6,7 @@
     "tabBar_top": "/components/tabBar_top/tabBar",
     "van-popup": "../../../libs/vant-weapp/dist/popup/index",
     "officalAccount": "/components/officalAccount/officalAccount",
-    "jurisdictionSmallPopup": "/components/jurisdictionSmallPopup/jurisdictionSmallPopup"
+    "jurisdictionSmallPopup": "/components/jurisdictionSmallPopup/jurisdictionSmallPopup",
+    "wxLoginView":"/components/wxLoginView/wxLoginView"
   }
 }

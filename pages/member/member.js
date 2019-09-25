@@ -36,17 +36,17 @@ Page({
   onLoad: function(options) {
   },
   onShow(){
-    //检测登录
-    this.setData({
-      userData: Store.getItem('userData') || '',
-      wx_userInfo: Store.getItem('wx_userInfo') || '',
-      showAuthModel: !app.passIsLogin()
-    })
     app.checkSessionFun().then(() => {
-      this.getMemberFollowState()
+      //this.getMemberFollowState()
       this.getUserInfo()
       this.getOrderCount()
       this.getGoingList()
+      //检测登录
+      this.setData({
+        userData: Store.getItem('userData') || '',
+        wx_userInfo: Store.getItem('wx_userInfo') || '',
+        showAuthModel: !app.passIsLogin()
+      })
     // this.getOfficialDataState()
     })
 
@@ -85,6 +85,8 @@ Page({
           officialDataState: res.msg.sub_flag == 1 ? false : true,
           memberInfo: res.msg
         })
+        //存储用户信息
+        wx.setStorageSync('userData', res.msg);
       })
     }
   },
@@ -136,12 +138,13 @@ Page({
       url: '/pages/card/recharge'
     })
   },
-  // 跳转订单页面
+  /* // 跳转订单页面
   handleMemberOrderTap: function(event){
-    wx.navigateTo({
+    wx.setStorageSync('orderListActive', 0)
+    wx.switchTab({
       url: '/pages/member/order/memberOrder'
     })
-  },
+  }, */
   // 跳转订单详情
   handleOrderItemTap: function(event){
     const orderNum = event.currentTarget.dataset.orderNum
@@ -203,12 +206,19 @@ Page({
       url: '/pages/course/course',
     })
   },
-  jumpToOrderStatus(e){
-    let active = e.currentTarget.dataset.status;
+  //限时优惠
+  handleGoodList(){
     wx.navigateTo({
-      url: `/pages/member/order/memberOrder?status=${active}`,
+      url: '/pages/good/good',
     })
   },
+/*   jumpToOrderStatus(e){
+    let active = e.currentTarget.dataset.status;
+    wx.setStorageSync('orderListActive', active)
+    wx.switchTab({
+      url: `/pages/member/order/memberOrder`
+    })
+  }, */
   onPullDownRefresh(){
       this.getGoingList()
       this.getUserInfo()

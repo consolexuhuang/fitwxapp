@@ -74,7 +74,7 @@ Page({
 
     //检测登录
     app.checkSessionFun().then(() => {
-    this.getMemberFollowState()
+    //this.getMemberFollowState()
     this.getStorePicList()
     this.getStore()
     this.getStoreFacilitiesList()
@@ -99,7 +99,7 @@ Page({
   /**
    * write@xuhuang  start
    */
-  // 获取当前用户关注状态
+  /* // 获取当前用户关注状态
   getMemberFollowState() {
     if (app.passIsLogin()) {
       api.post('v2/member/memberInfo').then(res => {
@@ -111,7 +111,7 @@ Page({
         })
       })
     }
-  },
+  }, */
   // getOfficialDataState() {
   //   // sub_flag 1:关注 0:未关注
   //   if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {

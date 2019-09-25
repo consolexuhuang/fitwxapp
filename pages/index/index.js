@@ -30,13 +30,26 @@ Page({
       titleColor: "#8969FF",
       tab_topBackground: '#8969FF'
     },
-    memberFollowState: ''
+    memberFollowState: '',  
+    activityPopupState: {
+      state: false,
+      bottomText: '送出祝福',
+      width: 580, //rpx
+      height: 769,
+      imgSrc: '',
+      url: ''
+    },//活动弹窗  
+    nowGetTime: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.setData({ nowGetTime: new Date().getTime() });
+    if (options.shareMemberId) {
+      wx.setStorageSync('shareMemberId', options.shareMemberId)
+    }
     //删除进入状态
     wx.removeStorageSync('noFind');
 
@@ -103,7 +116,7 @@ Page({
       isOver: 0
     }
     CourseCom.getConfig(this).then(() => {
-        return Promise.all([CourseCom.getDateList(this), CourseCom.getCourseList(courseParam, this)])
+        return CourseCom.getCourseList(courseParam, this)
       })
       .then(() => {
         const dateList = this.data.dateList
@@ -116,6 +129,9 @@ Page({
         const city = this.data.city
         const active = this.data.active
         const swiperHeight = this.data.swiperHeight
+        const activityPopupStateImgSrc = this.data.activityPopupState.imgSrc
+        const activityPopupStateUrl = this.data.activityPopupState.url
+        const activityPopupStateState = this.data.activityPopupState.state
         const courseData = {
           dateList,
           courseList,
@@ -126,7 +142,15 @@ Page({
           cityList,
           city,
           active,
-          swiperHeight
+          swiperHeight,
+          activityPopupState: {
+            state: activityPopupStateState,
+            bottomText: this.data.activityPopupState.bottomText,
+            width: this.data.activityPopupState.width, //rpx
+            height: this.data.activityPopupState.height,
+            imgSrc: activityPopupStateImgSrc,
+            url: activityPopupStateUrl
+          }
         }
         //app.globalData.courseData = courseData
         //存储数据
