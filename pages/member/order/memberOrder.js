@@ -43,8 +43,8 @@ Page({
     /* 训练小红点引导 后面需要删除*/
     wx.hideTabBarRedDot({
       index: 2,
-      success: () => {
-        if (!wx.getStorageInfoSync('hideTabBarRedDot')) {
+      success:()=>{
+        if (!wx.getStorageSync('hideTabBarRedDot')) {
           wx.setStorageSync('hideTabBarRedDot', true)
         }
       },

@@ -75,6 +75,8 @@ Page({
 
   onLoad: function(options) {
     /* 训练小红点引导 后面需要删除*/
+    console.log('hideTabBarRedDot')
+    console.log(wx.getStorageSync('hideTabBarRedDot'))
     if (!wx.getStorageSync('hideTabBarRedDot')){
       wx.showTabBarRedDot({
         index: 2,
