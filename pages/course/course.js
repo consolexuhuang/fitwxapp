@@ -74,6 +74,13 @@ Page({
    */
 
   onLoad: function(options) {
+    /* 训练小红点引导 后面需要删除*/
+    if (!wx.getStorageSync('hideTabBarRedDot')){
+      wx.showTabBarRedDot({
+        index: 2,
+      })
+    }
+
     if (options.shareMemberId) {
       wx.setStorageSync('shareMemberId', options.shareMemberId)
     }

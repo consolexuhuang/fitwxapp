@@ -11,6 +11,7 @@ App({
     this.store = Store;
     this.worker = worker;
     this.globalData.scene = options.scene;
+
     //版本更新
     if (wx.canIUse('getUpdateManager')) {
       const updateManager = wx.getUpdateManager()
@@ -57,23 +58,12 @@ App({
       },
     })
     this.getLocation();
+
   },
   onShow(options) {
     let _this = this
-    // 获取加密群信息
-    // if (options.scene == 1044) {
-    //   console.log('options.shareTicket', options.shareTicket)
-    //   wx.getShareInfo({
-    //     shareTicket: options.shareTicket,
-    //     success(shareTicket_res){
-    //       _this.globalData.shareTicket_res = shareTicket_res
-    //       console.log('shareTicket_res', shareTicket_res)
-    //     }
-    //   })
-    // }
-    console.log('scene', options.scene, options)
     this.globalData.scene = options.scene,
-    this.globalData.sceneOptions = options
+      this.globalData.sceneOptions = options
     // 校验场景值
     if (options.scene == 1007 || options.scene == 1008 || options.scene == 1035 || options.scene == 1043 || options.scene == 1082 || options.scene == 1058 || options.scene == 1102) {
       // 个人，群，关注菜单，模版消息，短链接，公众号文章，服务号预览列表
@@ -81,7 +71,7 @@ App({
       if (options.path.indexOf('index') != -1 ||
         options.path === 'pages/store/store' ||
         options.path === 'pages/card/card' ||
-        options.path === 'pages/member/member'||
+        options.path === 'pages/member/member' ||
         options.path === 'pages/good/good') {
         //特殊的落地页区分
         this.globalData.share = false
@@ -90,21 +80,21 @@ App({
       }
     } else {
       // 特殊扫码进入的页面区分
-      if (options.scene == 1011 && options.path === 'pages/coach/signInCode/signInCode'){
+      if (options.scene == 1011 && options.path === 'pages/coach/signInCode/signInCode') {
         this.globalData.share = true
       } else {
         this.globalData.share = false
       }
     }
     //后台切到前台刷新
-    let interval=2*60*1000;//间隔设为2分钟
+    let interval = 2 * 60 * 1000; //间隔设为2分钟
     let showMilliseconds = new Date().getTime();
     let hideMilliseconds = wx.getStorageSync('hideTime');
-    if (hideMilliseconds && (showMilliseconds - hideMilliseconds >= interval)){
+    if (hideMilliseconds && (showMilliseconds - hideMilliseconds >= interval)) {
       wx.startPullDownRefresh({})
     }
   },
-  onHide(){
+  onHide() {
     let hideMilliseconds = new Date().getTime();
     wx.setStorageSync('hideTime', hideMilliseconds)
   },
@@ -118,19 +108,19 @@ App({
     location: '',
     isIpX: false, //是否是ipHonex
     redirectToState: true,
-    scene:'',  
-    sceneOptions:'',
-    JumpAppId: {                    //测试
+    scene: '',
+    sceneOptions: '',
+    /* JumpAppId: { //测试
       appid: 'wx322a8a72b755aa57',
       envVersion: 'trial' //体验版
       //  envVersion: 'release' //正式版
-    },
+    }, */
 
-    /* JumpAppId: {                   //正式
+    JumpAppId: {                   //正式
       appid: 'wxec1fe04fad9d4e02',
       //envVersion: 'trial' //体验版
       envVersion: 'release' //正式版
-    },  */
+    },
   },
 
   /**
@@ -182,45 +172,50 @@ App({
   },
   //检查登录态是否过期
   checkSessionFun() {
-    return new Promise((resolve,reject)=>{
+    return new Promise((resolve, reject) => {
       wx.checkSession({
-        success: () => {
+        success: (res) => {
           console.log('没过期')
           //session_key 未过期，并且在本生命周期一直有效
-          if (this.globalData.scene == 1035 || this.globalData.scene == 1043 || this.globalData.scene == 1082 || this.globalData.scene == 1058 || this.globalData.scene == 1102){
+          if (this.globalData.scene == 1035 || this.globalData.scene == 1043 || this.globalData.scene == 1082 || this.globalData.scene == 1058 || this.globalData.scene == 1102) {
             //如果是 公众号菜单，模版消息，短链接 公众号文章，服务号预览列表 进入
-            this.passIsLogin() 
-              ? resolve()
-              : this.wx_loginIn().then(() => {
-                  resolve();
-                }, () => {
-                  reject()
-                })
-          } else if (this.globalData.scene == 1011 && this.globalData.sceneOptions.path === 'pages/coach/signInCode/signInCode'){
+
+            console.log('this.passIsLogin()')
+            console.log(this.passIsLogin())
+            this.passIsLogin() ?
+              resolve() :
+              this.wx_loginIn().then(() => {
+                resolve();
+              }, () => {
+                reject()
+              })
+          } else if (this.globalData.scene == 1011 && this.globalData.sceneOptions.path === 'pages/coach/signInCode/signInCode') {
             //特殊扫码进入
-            this.passIsLogin()
-              ? resolve()
-              : this.wx_loginIn().then(() => {
+            this.passIsLogin() ?
+              resolve() :
+              this.wx_loginIn().then(() => {
                 resolve();
               }, () => {
                 reject()
               })
           } else {
+            console.log('this.passIsLogin()000')
+            console.log(this.passIsLogin())
             resolve();
           }
         },
         fail: () => {
           console.log('过期')
           // session_key 已经失效，需要重新执行登录流程
-          this.wx_loginIn().then(()=>{
+          this.wx_loginIn().then(() => {
             resolve();
-          },()=>{
+          }, () => {
             reject()
           })
         }
       })
     })
-    
+
   },
   wx_loginIn: function () {
     let _this = this
@@ -239,16 +234,18 @@ App({
           // wx.showLoading({ title: '登录中...', })
           api.get('authorizationLite', data).then(res => {
             // wx.hideLoading()
-            console.log('app res code')
-            console.log(res)
+
             /* //测试
-            res ={
-              code:123
+            res = {
+              code: 123
             } */
+
             if (res.msg) {
               if (res.code === -1) { //如果出现登录未知错误
                 setTimeout(() => {
-                  wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
+                  wx.navigateTo({
+                    url: `/pages/noFind/noFind?type=1`
+                  })
                 }, 0)
               } else {
                 // 已关联公众号
@@ -257,7 +254,7 @@ App({
                 //Store.setItem('userData', res.msg)
                 resolve()
               }
-            } else if(res.code === 0 && !res.msg){
+            } else if (res.code === 0 && !res.msg) {
               // code: 0;
               // msg: null
               resolve()
@@ -266,14 +263,14 @@ App({
             }
           })
         },
-        fail:()=>{
+        fail: () => {
           console.error('登录失败！')
         }
       })
     })
   },
   //同意授权接口
-  wx_AuthUserLogin(){
+  wx_AuthUserLogin() {
     let _this = this
     return new Promise((resolve, reject) => {
       wx.login({
@@ -300,13 +297,17 @@ App({
                 rawData: res_userInfo.rawData || '',
                 signature: res_userInfo.signature || ''
               }
-              wx.showLoading({ title: '登录中...' })
+              wx.showLoading({
+                title: '登录中...'
+              })
               api.get('authorizationLite', data).then(res => {
                 wx.hideLoading()
                 if (res.msg) {
                   if (res.code === -1) { //如果出现登录未知错误
                     setTimeout(() => {
-                      wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
+                      wx.navigateTo({
+                        url: `/pages/noFind/noFind?type=1`
+                      })
                     }, 0)
                   } else {
                     // 已关联公众号
@@ -317,7 +318,9 @@ App({
                   }
                 } else {
                   setTimeout(() => {
-                    wx.navigateTo({ url: `/pages/noFind/noFind?type=1` })
+                    wx.navigateTo({
+                      url: `/pages/noFind/noFind?type=1`
+                    })
                   }, 0)
                 }
               })
@@ -332,20 +335,20 @@ App({
         }
       })
     })
-    
+
   },
   //校验是否通过登陆
-  passIsLogin(){
+  passIsLogin() {
     if (
       this.store.getItem('userData') &&
       this.store.getItem('userData').token
-    ) 
-    return true
+    )
+      return true
     else return false
   },
   //修改用户信息接口
-  wx_modifyUserInfo(){
-    if (this.passIsLogin()){
+  wx_modifyUserInfo() {
+    if (this.passIsLogin()) {
       return new Promise(resolve => {
         let data = {
           nickName: Store.getItem('wx_userInfo').nickName || '',
@@ -353,10 +356,12 @@ App({
           city: Store.getItem('wx_userInfo').city || '',
           gender: Store.getItem('wx_userInfo').gender || ''
         }
-        wx.showLoading({ title: '加载中...',})
+        wx.showLoading({
+          title: '加载中...',
+        })
         api.post('modifyUserInfo', data).then(res => {
           wx.hideLoading()
-          if(res.msg) {
+          if (res.msg) {
             Store.setItem('userData', res.msg)
             resolve()
           }
@@ -380,7 +385,7 @@ App({
     })
   },
 
-  compareVersion: function (v2) {//v2:需要的微信版本
+  compareVersion: function (v2) { //v2:需要的微信版本
     let v1 = wx.getSystemInfoSync().SDKVersion;
     console.log('wx.getSystemInfoSync().SDKVersion')
     console.log(wx.getSystemInfoSync())
@@ -407,24 +412,24 @@ App({
     }
     return 0;
   },
-  compareVersionPromise: function (v) {//v:需要的微信版本
-  return new Promise((resolve,reject)=>{
-    if (this.compareVersion(v) < 0) {
-      // 如果希望用户在最新版本的客户端上体验您的小程序，可以这样子提示
-      wx.showToast({
-        title: '当前微信版本过低',
-        icon: 'none'
-      });
-      resolve(-1);//现在的版本比需要的版本小
-    } else {
-      resolve(0);//现在的版本比需要的版本大或者相等
-    };
-  })
-    
+  compareVersionPromise: function (v) { //v:需要的微信版本
+    return new Promise((resolve, reject) => {
+      if (this.compareVersion(v) < 0) {
+        // 如果希望用户在最新版本的客户端上体验您的小程序，可以这样子提示
+        wx.showToast({
+          title: '当前微信版本过低',
+          icon: 'none'
+        });
+        resolve(-1); //现在的版本比需要的版本小
+      } else {
+        resolve(0); //现在的版本比需要的版本大或者相等
+      };
+    })
+
   },
 
-  getLocation: function () {  
-     return new Promise((resolve, reject) => {
+  getLocation: function () {
+    return new Promise((resolve, reject) => {
       const location = this.globalData.location;
       if (!location) {
         const _this = this
@@ -434,11 +439,11 @@ App({
             _this.globalData.location = res;
             resolve();
           },
-          fail(err){
+          fail(err) {
             //默认值
             let location = {
-              latitude : '31.24916171',
-              longitude : '121.487899486'
+              latitude: '31.24916171',
+              longitude: '121.487899486'
             }
             _this.globalData.location = location;
             resolve();

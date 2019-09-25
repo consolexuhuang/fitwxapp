@@ -1,7 +1,7 @@
 <!--pages/card/card.wxml-->
 <wxs src="../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class="wrapper" style='margin-top:{{marginTopBar}}px; padding-top:20rpx; background:#fff' wx:if='{{cardDefList && !showAuthModel}}'>
+<view class="wrapper" style='margin-top:{{marginTopBar}}px; padding-top:20rpx; background:#fff' wx:if='{{cardDefList}}'>
   <view wx:for="{{cardDefList}}" wx:for-item="typeItem" wx:for-index="typeKey" wx:key="typeKey">
     <view wx:if="{{typeItem.type === 3}}">
       <!-- title -->
@@ -96,10 +96,7 @@
   <button class="btn" bindtap="handleRechargeTap">立即开通</button>
 </view>
 
-<view class="Usenone analysis_my_appointment" wx:if='{{showAuthModel}}' bindtap='showJurisdictionSmallPopup'>
-  <text class="Usepic iconfont iconicon-test48"></text>
-  <text class="Usetext">授权登录</text>
-</view>
+
 <!-- <officalAccount memberFollowState='{{memberFollowState}}' 
                 officialDataState='{{officialDataState}}'
                 pageShowNoticeState='{{memberInfo.sub_flag == 0 && memberInfo.order_count >= 1 ? true : false}}'>

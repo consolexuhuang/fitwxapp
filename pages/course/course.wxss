@@ -150,8 +150,8 @@
 }
 
 .course-select-wrapper {
-  margin-left: 45rpx;
-  width: 165rpx;
+  margin-left: 5rpx;
+  width: 220rpx;
   display: flex;
   align-items: center;
 }
@@ -520,7 +520,6 @@
   text-align: center;
   font-size: 24rpx;
   color: #fff;
-  position: relative;
 }
 
 .course-appoint-btn.btn-detail {
@@ -541,7 +540,6 @@
   text-align: center;
   font-size: 24rpx;
   color: #896eff;
-  position: relative;
 }
 
 .course-end-btn {
@@ -688,3 +686,5 @@ color:#BEBEBE;
   bottom: 0;
   width: 100%;
 }
+
+

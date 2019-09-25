@@ -2,6 +2,8 @@
     "navigationBarTitleText": "训练",
     "enablePullDownRefresh": true,
     "usingComponents": {
-      "tabBar_top": "/components/tabBar_top/tabBar"
+      "tabBar_top": "/components/tabBar_top/tabBar",
+      "jurisdictionSmallPopup": "/components/jurisdictionSmallPopup/jurisdictionSmallPopup",
+      "wxLoginView": "/components/wxLoginView/wxLoginView"
     }
 }

@@ -1,56 +1,17 @@
 // pages/member/order/memberOrder.js
-import Store from '../../../utils/store.js' 
+import Store from '../../../utils/store.js'
+const app = getApp();
+const ui = require('../../../utils/ui.js');
 const api = getApp().api
-let orderPageIng = 1, orderPageWait = 1, orderPageComplate = 1
-//分页
-function loadMoreOrder(_this, pageNum) {
-  let data = {
-    status: _this.data.active == 0 ? '2' : (_this.data.active == 1 ? '1' : _this.data.active == 2 ? '3' : '2'),
-    date1: '', //开始时间
-    date2: '', //结束时间
-    page: pageNum,
-    size: 10,
-    needTotalCount: true
-  }
-  // wx.showLoading({ title: '加载中...' })
-  api.post('v2/payOrder/getOrderListByPage', data).then(res => {
-    // wx.hideLoading()
-    console.log('订单分页数据', res, pageNum)
-    if (_this.data.active == 0) {
-      if (pageNum == 1) {
-         _this.setData({ goingList: res.msg.result })
-      } else {
-        _this.setData({ goingList: [..._this.data.goingList, ...res.msg.result] },() => {
-        })
-      }
-      // _this.getSwiperHeight(_this.data.goingList, 0)
-    }
-    if (_this.data.active == 1) {
-      if (pageNum == 1) {
-        _this.setData({ payingList: res.msg.result })
-      } else {
-        _this.setData({ payingList: [..._this.data.payingList, ...res.msg.result] }, () => {
-        })
-      }
-      // _this.getSwiperHeight(_this.data.payingList, 1)
-    }
-    if (_this.data.active == 2) {
-      if (pageNum == 1) {
-        _this.setData({ completedList: res.msg.result })
-      } else {
-        _this.setData({ completedList: [..._this.data.completedList, ...res.msg.result] }, () => {
-        })
-      }
-      // _this.getSwiperHeight(_this.data.completedList, 2)
-    }
-  })
-}
-Page({
+let orderPageIng = 1, orderPageWait = 1, orderPageComplate = 1;
 
+
+Page({
   /**
    * 页面的初始数据
    */
   data: {
+    isLoaded: false,//是否加载完成
     active: 0, //当前索引
     sport: '',
     goingList: '',
@@ -66,22 +27,102 @@ Page({
       tab_topBackground: '#fff'
     },
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
-    // swiperHeight: [getApp().globalData.systemInfo.screenHeight - getApp().globalData.tab_height - 100, getApp().globalData.systemInfo.screenHeight - getApp().globalData.tab_height - 100, getApp().globalData.systemInfo.screenHeight - getApp().globalData.tab_height - 100],
-    swiperHeight: getApp().globalData.systemInfo.screenHeight - getApp().globalData.tab_height - 100
+    swiperHeight: getApp().globalData.systemInfo.screenHeight - getApp().globalData.tab_height - 100,
+    showAuthModel: false,
+    jurisdictionSmallState: false,
   },
+  /**
+  * 生命周期函数--监听页面加载
+  */
+  onLoad: function () {
+    //loading
+    ui.showLoading();
+  },
+
+  onShow() {
+    /* 训练小红点引导 后面需要删除*/
+    wx.hideTabBarRedDot({
+      index: 2,
+      success: () => {
+        if (!wx.getStorageInfoSync('hideTabBarRedDot')) {
+          wx.setStorageSync('hideTabBarRedDot', true)
+        }
+      },
+    })
+    //检测登录
+    this.setData({ showAuthModel: !app.passIsLogin() });
+    //loading
+    ui.showLoading();
+    //获取当前应该显示tab    
+    getApp().checkSessionFun().then(() => {
+      if (app.passIsLogin()) {
+        //初始化数据
+        this.dataInit();
+      } else {
+        //hideLoading
+        ui.hideLoading();
+      }
+    })
+  },
+
+  onReachBottom() {
+    if (this.data.active == 0 && this.data.goingList.length != this.data.userInfoData.order.going_count) this.loadMoreOrder(++orderPageIng)
+    if (this.data.active == 1 && this.data.payingList.length != this.data.userInfoData.order.unpay_count) this.loadMoreOrder(++orderPageWait)
+    if (this.data.active == 2 && this.data.completedList.length != this.data.userInfoData.order.complete_count) this.loadMoreOrder(++orderPageComplate)
+  },
+
+  onPullDownRefresh() {
+    //loading
+    ui.showLoading();
+    this.setData({
+      isLoaded: false
+    })
+    if (app.passIsLogin()) {
+      this.dataInit().then(() => {
+        wx.stopPullDownRefresh();
+      })
+    }
+  },
+
+  //提示授权
+  showJurisdictionSmallPopup() {
+    this.setData({
+      jurisdictionSmallState: true
+    })
+  },
+  // 点击授权
+  bindgetuserinfo() {
+    app.wx_AuthUserLogin().then(() => {
+      this.setData({
+        jurisdictionSmallState: false,
+        showAuthModel: !app.passIsLogin()
+      })
+      //初始化数据
+      this.dataInit();
+    })
+  },
+
   // 初始化数据
-  dataInit(){
-    orderPageIng = orderPageWait = orderPageComplate = 1
+  dataInit() {
+    orderPageIng = orderPageWait = orderPageComplate = 1;
     this.setData({ goingList: '', payingList: '', completedList: '' })
-    this.getUserInfo()
-    this.getSport()
-    loadMoreOrder(this, this.data.active == 0 ? orderPageIng : (this.data.active == 1 ? orderPageWait : (this.data.active == 2 ? orderPageComplate : orderPageIng)))
+    return Promise.all([this.getUserInfo(), this.getSport(), this.loadMoreOrder(1)]).then(() => {
+      //hideLoading
+      this.setData({
+        isLoaded: true
+      })
+      ui.hideLoading();
+    }).catch(err => {
+      console.err('err:' + err)
+    });
   },
-  // 获取用户所有订单
+  // 获取用户训练记录
   getUserInfo() {
-    api.post('v2/member/liteMyInfo').then(res => {
-      console.log('userInfoData', res.msg)
-      this.setData({ userInfoData: res.msg })
+    return new Promise((resolve, reject) => {
+      api.post('v2/member/liteMyInfo').then(res => {
+        this.setData({ userInfoData: res.msg });
+        resolve();
+      })
     })
   },
   // 运动数据
@@ -91,55 +132,20 @@ Page({
         const sport = res.msg
         this.setData({
           sport
-        }, () => {
-          resolve()
-        })
+        });
+        resolve();
       })
     })
-  },
-  //计算轮播图高度
-  getSwiperHeight(list, type){ //40底部拉升完成高度
-    let loadHeight = 50
-    let height = (list.length == 0 ? list.length + 1 : list.length) * 98 + loadHeight
-      this.setData({
-        ['swiperHeight[' + type +']']: height
-      })
-    console.log(this.data.swiperHeight)
-  },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-   
-  },
-  onShow(){
-    getApp().checkSessionFun().then(() => {
-      this.dataInit()
-    })
-  },
-  bindscrolltolower() {
-    console.log('触底', this.data.userInfoData.order)
-    if (this.data.active == 0 && this.data.goingList.length != this.data.userInfoData.order.going_count) loadMoreOrder(this, ++orderPageIng)
-    if (this.data.active == 1 && this.data.payingList.length != this.data.userInfoData.order.unpay_count) loadMoreOrder(this, ++orderPageWait)
-    if (this.data.active == 2 && this.data.completedList.length != this.data.userInfoData.order.complete_count) loadMoreOrder(this, ++orderPageComplate)
   },
   //付款
-  goPay(e){
-    let data = {
-        openid: Store.getItem('userData').wx_lite_openid,
-        outTradeNo: e.currentTarget.dataset.ordernum,
-        transactionId: '',
-        outRefundNo: '',
-        totalFee: 0, //后台分进制
-        type: 'PAY',
-        clientIp: '',
-        payMode: 'wxlite',
-      }
-      api.post('payment/wxPay', data).then(res => {
-        console.log('微信支付回调', res)
-        this.wxPay(res.msg)
-
-      })
+  goPay(e) {
+    let orderId = e.currentTarget.dataset.orderid;
+    let param = {
+      orderId
+    }
+    api.post('payOrder/payForOrder', param).then(res => {
+      this.wxPay(res.msg);
+    });
   },
   wxPay: function (obj) {
     wx.requestPayment({
@@ -164,67 +170,85 @@ Page({
     })
   },
   handleTabTap(event) {
-    // const active = event.currentTarget.dataset.index
-    console.log('点击下标', event.currentTarget.dataset.index)
+    //loading
+    ui.showLoading();
     this.setData({
-      active: event.currentTarget.dataset.index
-    },()=>{
-      if (event.currentTarget.dataset.index == 0) {
-        orderPageIng = 1;
-        loadMoreOrder(this, orderPageIng)
-      }
+      isLoaded: false
     })
-    if (event.currentTarget.dataset.index == 1) {
-      orderPageWait = 1;
-      loadMoreOrder(this, orderPageWait)
-    }
-    if (event.currentTarget.dataset.index == 2) {
-      orderPageComplate = 1;
-      loadMoreOrder(this, orderPageComplate)
-    }
+    let index = event.currentTarget.dataset.index;
+    this.setData({
+      active: index
+    }, () => {
+      let page = 1;
+      this.loadMoreOrder(page).then(() => {
+        //hideLoading
+        ui.hideLoading()
+        this.setData({
+          isLoaded: true
+        })
+      });
+    })
+
   },
-  handleCurrentChange: function (event) {
-    console.log(event)
-    if (event.detail.source == 'touch') {
-      this.setData({
-        active: event.detail.currentItemId
-      }, () => {
-        if (this.data.active == 0 && !this.data.goingList) loadMoreOrder(this, orderPageIng);
-        if (this.data.active == 1 && !this.data.payingList) loadMoreOrder(this, orderPageWait);
-        if (this.data.active == 2 && !this.data.completedList) loadMoreOrder(this, orderPageComplate);
-      })
-    }
-  },
+
   // 跳转本月更多
   handleMoreTap() {
-    console.log('jump')
     wx.navigateTo({
       url: '/pages/member/order/monthRecord'
     })
   },
   handleOrderItemTap: function (event) {
     const orderNum = event.currentTarget.dataset.orderNum
-    console.log(event)
     wx.navigateTo({
       url: '/pages/member/order/orderDetail?orderNum=' + orderNum
     })
   },
   // 跳转教练课程列表
   handleCoachTap: function (event) {
-    // console.log(event)
     const coachId = event.currentTarget.dataset.coachid
     wx.navigateTo({
       url: '/pages/coach/coach?coachId=' + coachId
     })
   },
-  //跳转到课程页
-  gotoCourse(){
-    wx.navigateTo({
-      url: '/pages/course/course'
+
+  //分页
+  loadMoreOrder(pageNum) {
+    let data = {
+      status: this.data.active == 0 ? '2' : (this.data.active == 1 ? '1' : this.data.active == 2 ? '3' : '2'),
+      date1: '', //开始时间
+      date2: '', //结束时间
+      page: pageNum,
+      size: 10,
+      needTotalCount: true
+    }
+    return new Promise((resolve, reject) => {
+      api.post('v2/payOrder/getOrderListByPage', data).then(res => {
+        // wx.hideLoading()
+        if (this.data.active == 0) {
+          if (pageNum == 1) {
+            this.setData({ goingList: res.msg.result })
+          } else {
+            this.setData({ goingList: [...this.data.goingList, ...res.msg.result] })
+          }
+        }
+        if (this.data.active == 1) {
+          if (pageNum == 1) {
+            this.setData({ payingList: res.msg.result })
+          } else {
+            this.setData({ payingList: [...this.data.payingList, ...res.msg.result] })
+          }
+        }
+        if (this.data.active == 2) {
+          if (pageNum == 1) {
+            this.setData({ completedList: res.msg.result })
+          } else {
+            this.setData({ completedList: [...this.data.completedList, ...res.msg.result] })
+          }
+        }
+        resolve();
+      })
     })
-  },
-  onPullDownRefresh() {
-    this.dataInit()
-    wx.stopPullDownRefresh()
+
   }
+
 })

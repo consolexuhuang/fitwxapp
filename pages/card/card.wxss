@@ -265,31 +265,3 @@ page {
   bottom: 0;
   width: 100%;
 }
-
-.Usenone {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  top: 0;
-  right: 0;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 198rpx;
-  border-radius: 4rpx;
-  border: 2rpx solid rgba(233, 233, 233, 1);
-}
-
-.Usepic {
-  width: 120rpx;
-  height: 123rpx;
-  font-size: 109rpx;
-  color: #d5d5d5
-}
-
-.Usenone .Usetext {
-  font-size: 28rpx;
-  color: #896fff;
-}
