@@ -538,6 +538,7 @@
   text-align: center;
   font-size: 24rpx;
   color: #896eff;
+  position: relative;
 }
 
 .course-end-btn {
