@@ -21,7 +21,7 @@ Page({
     imgUrl: getApp().globalData.imgUrl,
     navbarData: {
       title: '训练',
-      showCapsule: 1,
+      showCapsule: 0,
       isShowBackHome: true,
       titleColor: "#000",
       tab_topBackground: '#fff'

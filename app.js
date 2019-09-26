@@ -71,6 +71,7 @@ App({
       if (options.path.indexOf('index') != -1 ||
         options.path === 'pages/store/store' ||
         options.path === 'pages/card/card' ||
+        options.path === 'pages/member/order/memberOrder' ||
         options.path === 'pages/member/member' ||
         options.path === 'pages/good/good') {
         //特殊的落地页区分
@@ -110,17 +111,17 @@ App({
     redirectToState: true,
     scene: '',
     sceneOptions: '',
-     JumpAppId: { //测试
-      appid: 'wx322a8a72b755aa57',
-      envVersion: 'trial' //体验版
-      //  envVersion: 'release' //正式版
-    },
-
-    // JumpAppId: {                   //正式
-    //   appid: 'wxec1fe04fad9d4e02',
-    //   //envVersion: 'trial' //体验版
-    //   envVersion: 'release' //正式版
+    //  JumpAppId: { //测试
+    //   appid: 'wx322a8a72b755aa57',
+    //   envVersion: 'trial' //体验版
+    //   //  envVersion: 'release' //正式版
     // },
+
+    JumpAppId: {                   //正式
+      appid: 'wxec1fe04fad9d4e02',
+      //envVersion: 'trial' //体验版
+      envVersion: 'release' //正式版
+    },
   },
 
   /**
@@ -199,13 +200,13 @@ App({
                 reject()
               })
           } else {
-            console.log('this.passIsLogin()000')
+            console.log('this.passIsLogin()000，登录态未过期，缓存为空')
             console.log(this.passIsLogin())
             resolve();
           }
         },
         fail: () => {
-          console.log('过期')
+          console.log('登录态过期')
           // session_key 已经失效，需要重新执行登录流程
           this.wx_loginIn().then(() => {
             resolve();
