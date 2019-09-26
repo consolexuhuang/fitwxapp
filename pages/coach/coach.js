@@ -57,7 +57,7 @@ Page({
       coachId
     })
 
-    //检测登录
+    //检测登录 
     app.checkSessionFun().then(() => {
     //this.getMemberFollowState()
     this.getCoach()

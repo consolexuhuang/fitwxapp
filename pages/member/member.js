@@ -37,10 +37,12 @@ Page({
   },
   onShow(){
     app.checkSessionFun().then(() => {
-      //this.getMemberFollowState()
-      this.getUserInfo()
-      this.getOrderCount()
-      this.getGoingList()
+      if (app.passIsLogin()) {
+        this.getMemberFollowState()
+        this.getUserInfo()
+        this.getOrderCount()
+      // this.getGoingList()
+      }
       //检测登录
       this.setData({
         userData: Store.getItem('userData') || '',
@@ -72,12 +74,11 @@ Page({
       this.getMemberFollowState()
       this.getUserInfo()
       this.getOrderCount()
-      this.getGoingList()
+      // this.getGoingList()
     })
   },
   // 获取当前用户关注状态
   getMemberFollowState() {
-    if (app.passIsLogin()) {
       api.post('v2/member/memberInfo').then(res => {
         console.log('getMemberFollowState', res)
         this.setData({
@@ -88,24 +89,20 @@ Page({
         //存储用户信息
         wx.setStorageSync('userData', res.msg);
       })
-    }
   },
   /**
    * write@xuhuang  end
    */
   getUserInfo(){
-    if (app.passIsLogin()) {
       wx.showLoading({ title: '加载中...'})
       api.post('v2/member/liteMyInfo').then(res => {
         wx.hideLoading()
         console.log('userInfoData',res.msg)
         this.setData({ userInfoData: res.msg })
       })
-    }
   },
   //课程包
   getOrderCount: function (event) {
-    if (app.passIsLogin()) {
       api.post('v2/good/getOrderCount').then(res => {
         // console.log('orderCount', res)
         wx.stopPullDownRefresh()
@@ -114,25 +111,22 @@ Page({
           orderCount
         })
       })
-    } else {
-      wx.stopPullDownRefresh()
-    }
   },
-  //进行中
-  getGoingList: function(event){
-    if (app.passIsLogin()) {
-      api.post('payOrder/goingList').then(res => {
-        console.log('goingList', res)
-        const goingLength = res.msg.length
-        let goingList = []
-        if (goingLength > 0) goingList = res.msg.slice(0,1)
-        this.setData({
-          goingLength,
-          goingList
-        })
-      })
-    }
-  },
+  // //进行中
+  // getGoingList: function(event){
+  //   if (app.passIsLogin()) {
+  //     api.post('payOrder/goingList').then(res => {
+  //       console.log('goingList', res)
+  //       const goingLength = res.msg.length
+  //       let goingList = []
+  //       if (goingLength > 0) goingList = res.msg.slice(0,1)
+  //       this.setData({
+  //         goingLength,
+  //         goingList
+  //       })
+  //     })
+  //   }
+  // },
   handleRechargeTap: function(event) {
     wx.navigateTo({
       url: '/pages/card/recharge'
@@ -145,13 +139,13 @@ Page({
       url: '/pages/member/order/memberOrder'
     })
   }, */
-  // 跳转订单详情
-  handleOrderItemTap: function(event){
-    const orderNum = event.currentTarget.dataset.orderNum
-    wx.navigateTo({
-      url: '/pages/member/order/orderDetail?orderNum=' + orderNum
-    })
-  },
+  // // 跳转订单详情
+  // handleOrderItemTap: function(event){
+  //   const orderNum = event.currentTarget.dataset.orderNum
+  //   wx.navigateTo({
+  //     url: '/pages/member/order/orderDetail?orderNum=' + orderNum
+  //   })
+  // },
   // 跳转卡包页面
   handleMemberCardTap: function(event) {
     wx.navigateTo({
@@ -220,7 +214,7 @@ Page({
     })
   }, */
   onPullDownRefresh(){
-      this.getGoingList()
+      // this.getGoingList()
       this.getUserInfo()
       wx.stopPullDownRefresh()
   },
