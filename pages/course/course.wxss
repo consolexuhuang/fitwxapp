@@ -517,6 +517,7 @@
   text-align: center;
   font-size: 24rpx;
   color: #fff;
+  position: relative;
 }
 
 .course-appoint-btn.btn-detail {

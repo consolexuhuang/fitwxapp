@@ -1,6 +1,6 @@
 
-const API_URI = 'https://fit.jlife.vip/wx/api/'
-//const API_URI = 'https://dev.jlife.vip/wx/api/'
+// const API_URI = 'https://fit.jlife.vip/wx/api/'
+const API_URI = 'https://dev.jlife.vip/wx/api/'
 
 import Store from './store.js'
 function request(path, data, method) {
@@ -40,8 +40,6 @@ function request(path, data, method) {
               });
           }
         }
-        
-
       },
       fail: function(res) {
         //没报错

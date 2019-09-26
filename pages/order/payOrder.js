@@ -84,9 +84,14 @@ Page({
     // else {
     //   this.setData({ isShowJurisdiction: true })
     // }
-    Promise.all([this.getMemberInfo(), this.getCourse(), this.getWaitCount(), this.checkOrder()]).then(()=>{
-      ui.hideLoading()
+    this.getCourse().then(() => {
+      Promise.all([this.getMemberInfo(), this.getWaitCount(), this.checkOrder()]).then(() => {
+        ui.hideLoading()
+      })
     })
+    // Promise.all([this.getMemberInfo(), this.getCourse(), this.getWaitCount(), this.checkOrder()]).then(()=>{
+    //   ui.hideLoading()
+    // })
   },
   getCourse: function (event) {
     const courseId = this.data.courseId
