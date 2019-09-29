@@ -184,7 +184,7 @@ Page({
     const storeId = this.data.storeId
     console.log(format.formatTime3(this.data.courseData.beginTime))
     return {
-      title: `【 ${this.data.courseData.courseName} 】 周${this.data.courseData.beginDay}${format.formatTime3(this.data.courseData.beginTime)}，我们一起？`,
+      // title: '',
       path: '/pages/course/courseDetail?courseId=' + this.data.courseId + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
       // imageUrl: this.data.picList[0],
       success: function (res) {

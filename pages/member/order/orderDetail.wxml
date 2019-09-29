@@ -30,19 +30,27 @@
 </view>
 
 <view class="orderDetail_content fadeIn animated">
-  <view class="admissionCodeShow" wx:if="{{orderData.qrPath}}">
-    <image src="{{orderData.qrPath}}" class="admissionCodeShowImg"></image>
-    <view class="admissionCodeShowText">入场二维码</view>
-  </view>
-  <view class="admissionCode" wx:else>
+  <!-- 扫码进门 -->
+  <view class="admissionCode" wx:if='{{orderData.store.banPwd && !orderData.qrPath}}'>
     <text class="orderDetail_icon iconicon-test13 iconfont"></text>
     <text class="orderDetail_text">入场二维码：</text>
-    <view class="orderDetail_data orderDetail_startShow">开课前1小时显示</view>
+    <view class="orderDetail_data orderDetail_startShow">开课前1小时显示</view> 
+  </view>
+  <!-- 前台扫码 -->
+  <view class="admissionCode" wx:if='{{orderData.store &&!orderData.store.banPwd}}'>
+    <text class="orderDetail_icon iconicon-test13 iconfont"></text>
+    <text class="orderDetail_text">入场方式：</text>
+    <view class="orderDetail_data orderDetail_startShow">请至前台扫码入场</view> 
+  </view>
+  <!-- 二维码生效 -->
+  <view class="admissionCodeShow" wx:if="{{orderData.qrPath && orderData.store.banPwd}}">
+    <image src="{{orderData.qrPath}}" class="admissionCodeShowImg"></image>
+    <view class="admissionCodeShowText">入场二维码</view>
   </view>
   <view class="admissionCode">
     <text class="orderDetail_icon iconicon-test15 iconfont"></text>
     <text class="orderDetail_text">预约人数：</text>
-    <view class="orderDetail_data">{{orderData.order.pCount}}人</view>
+    <view class="orderDetail_data">{{orderData.order.pCount || 0}}人</view>
   </view>
   <view class="admissionCode admissionCodeNext" data-name="{{orderData.store.storeName}}" data-address="{{orderData.store.address}}" data-latitude="{{orderData.store.latitude}}" data-longitude="{{orderData.store.longitude}}" bindtap="handleLocationTap">
     <text class="orderDetail_icon2 iconfont iconicon-test39"></text>

@@ -35,6 +35,7 @@ Page({
     memberInfo:'',
     jurisdictionState: false, //授权显示
     hasPhoto:false,//是否有照片
+    // courseData: '',//课程详情
   },
   /**
    * 生命周期函数--监听页面加载
@@ -106,9 +107,10 @@ Page({
     }
     api.post('course/getCourse', data).then(res => {
       if (res.code === 0) {
-        const courseShareData = res.msg.config.info
+        const courseShareData = res.msg.config
         this.setData({
           courseShareData,
+          // courseData: res.msg
         })
       }
     })
@@ -245,9 +247,9 @@ Page({
   //分享
   onShareAppMessage() {
     const storeId = this.data.storeId
-    // console.log(utils.formatTime2(this.data.orderData.course.beginDate))
     return {
-      title: this.data.courseShareData,
+      title: this.data.courseShareData.title,
+      imageUrl: this.data.courseShareData.img,
       path: '/pages/course/courseDetail?courseId=' + this.data.orderData.course.id + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
       // imageUrl: this.data.picList[0],
       success: function (res) {
