@@ -61,7 +61,7 @@
                       <view class="course-left">
                         <view class="course-time">{{util.timeFormat(courseItem.begin_time, 'hh:mm')}}-{{util.timeFormat(courseItem.end_time, 'hh:mm')}}</view>
                         <view class="course-name">{{courseItem.course_name || ''}}</view>
-                        <view class="course-label">{{courseItem.LABELS || ''}}</view>
+                        <view class="course-label">{{util.preLabel(courseItem.LABELS || '')}}</view>
                         <view class="course-price-wrapper">
                           <view class="course-discount-price">¥{{courseItem.discount_price}}</view>
                           <view class="course-price-line"></view>
