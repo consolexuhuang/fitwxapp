@@ -40,7 +40,8 @@ Page({
   },
 
   onShow() {
-    /* 训练小红点引导 后面需要删除*/
+     /* 
+     //训练小红点引导 后面需要删除
     wx.hideTabBarRedDot({
       index: 2,
       success:()=>{
@@ -48,7 +49,8 @@ Page({
           wx.setStorageSync('hideTabBarRedDot', true)
         }
       },
-    })
+    }) */
+
     //检测登录
     this.setData({ showAuthModel: !app.passIsLogin() });
     //loading
