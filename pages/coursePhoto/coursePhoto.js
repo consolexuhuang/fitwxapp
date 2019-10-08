@@ -18,9 +18,10 @@ Page({
     },
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
     photoUrl: '', //单张图片地址
-    imgWidthScale: '686', //屏幕盒子宽度rpx
+    imgWidthScale: '750', //屏幕盒子宽度rpx
     scale: '', //屏幕和canvas缩放比例
     imgHeightScale: '', //屏幕图片的高度
+    windowWidth:''//屏幕宽度
   },
 
   /**
@@ -29,6 +30,11 @@ Page({
   onLoad: function(options) {
     //加载中
     ui.showLoadingMask();
+    //获取屏幕的宽度
+    let windowWidth = wx.getSystemInfoSync().windowWidth;
+    this.setData({
+      windowWidth
+    })
     //获取参数
     courseId = options.courseId;
     //检测登录
@@ -63,7 +69,8 @@ Page({
       let photoUrls = res.msg;
       photoUrl = photoUrls ? photoUrls[photoUrls.length - 1] : '';
       return this.getImgWH(photoUrl);          
-    }).then(resImgInfo => {
+    })
+    .then(resImgInfo => {
       //设置图片
       let imgInfo = this.setPhotoWH(resImgInfo, this.data.imgWidthScale);
       this.setData({
