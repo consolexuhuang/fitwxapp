@@ -68,7 +68,7 @@ right:0;
 }
 
 .download {
-  margin:50px 0 50px 0;
+  margin:100rpx 0 100rpx 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
