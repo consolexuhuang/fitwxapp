@@ -68,13 +68,17 @@ Page({
     api.post('v2/course/getCourseFiles', form).then(res => {
       let photoUrls = res.msg;
       photoUrl = photoUrls ? photoUrls[photoUrls.length - 1] : '';
+      //设置图片url
+      this.setData({
+        photoUrl,
+      })
       return this.getImgWH(photoUrl);          
     })
     .then(resImgInfo => {
       //设置图片
       let imgInfo = this.setPhotoWH(resImgInfo, this.data.imgWidthScale);
       this.setData({
-        photoUrl,
+       // photoUrl,
         imgHeight: imgInfo.height, //原图片的高度
         imgWidth: imgInfo.width, //原图片的宽度
         imgHeightScale: imgInfo.heightScale, //屏幕图片的高度
