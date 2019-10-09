@@ -1,11 +1,13 @@
 /* pages/member/member.wxss */
-page{
-    padding-bottom: 30rpx;
-    background-color:#fff;
+
+page {
+  padding-bottom: 30rpx;
+  background-color: #fff;
 }
+
 .top-none-plus {
   width: 750rpx;
-  color:#333333;
+  color: #333;
 }
 
 .top-none-plus .info {
@@ -28,7 +30,7 @@ page{
 .top-none-plus .info .user .header {
   width: 94rpx;
   height: 94rpx;
-  border: 3rpx solid #8B74FF;
+  border: 3rpx solid #8b74ff;
   border-radius: 50%;
   margin-right: 30rpx;
 }
@@ -37,13 +39,14 @@ page{
   font-size: 30rpx;
 }
 
-.top-none-plus .info .getUserInfoBtn{
+.top-none-plus .info .getUserInfoBtn {
   position: absolute;
   width: 100%;
   height: 100%;
   opacity: 0;
 }
-.top-none-plus .cardinfo{
+
+.top-none-plus .cardinfo {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -51,56 +54,165 @@ page{
   width: 690rpx;
   height: 101rpx;
   line-height: 91rpx;
-  margin:20rpx 30rpx -30rpx 30rpx;  
+  margin: 20rpx 30rpx -30rpx 30rpx;
   font-size: 24rpx;
-  color:#fff;
+  color: #fff;
 }
-.top-none-plus .backgroundimg{
+
+.top-none-plus .backgroundimg {
   position: absolute;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
   right: 0;
   width: 690rpx;
   height: 101rpx;
   z-index: -1;
 }
-.top-none-plus .cardinfo .explain{
-  padding-left:30rpx;
+
+.top-none-plus .cardinfo .explain {
+  padding-left: 30rpx;
 }
-.top-none-plus .cardinfo .btn{
-  padding-right:30rpx;
+
+.top-none-plus .cardinfo .btn {
+  padding-right: 30rpx;
   text-decoration: underline;
 }
+
+.top-plus {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 690rpx;
+  height: 320rpx;
+  margin: auto;
+  color: #fff;
+}
+
+.top-plus .backgroundimg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 690rpx;
+  height: 320rpx;
+  z-index: -1;
+}
+
+.top-plus .info {
+  padding: 30rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-plus .info .user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.top-plus .info .user .header {
+  width: 94rpx;
+  height: 94rpx;
+  border: 3rpx solid #8b74ff;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.top-plus .info .user .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.top-plus .info .user .name {
+  font-size: 32rpx;
+}
+
+.top-plus .info .user .cardnum {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+}
+
+.top-plus .info .getUserInfoBtn {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.top-plus .cardinfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 60rpx;
+  padding: 30rpx;
+}
+
+.top-plus .cardinfo .left .unit {
+  font-size: 36rpx;
+}
+
+.top-plus .cardinfo .left .mony {
+  font-size: 60rpx;
+}
+
+.top-plus .cardinfo .left .explain {
+  margin-left: 20rpx;
+  font-size: 20rpx;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.top-plus .cardinfo .btn {
+  width: 170rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 30rpx;
+  border: 1rpx solid rgba(255, 255, 255, 1);
+  font-size: 28rpx;
+  color: #895ef4;
+  text-align: center;
+}
+
 .menu {
   width: 690rpx;
-  margin:20rpx 30rpx;
+  margin: 20rpx 30rpx;
   background: #fff;
-  border-radius:10rpx 10rpx 10rpx 10rpx;
-  box-shadow: 0 0 8rpx 0rpx rgba(179,179,179,0.3);
+  border-radius: 10rpx 10rpx 10rpx 10rpx;
+  box-shadow: 0 0 8rpx 0rpx rgba(179, 179, 179, 0.3);
 }
 
 .menu .item {
   display: flex;
   flex-direction: column;
   height: 112rpx;
-  margin:0 30rpx;
+  margin: 0 30rpx;
 }
-.menu .item-content{
+
+.menu .item-content {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   height: 111rpx;
 }
-.menu .item-line{
+
+.menu .item-line {
   height: 1rpx;
   width: 555rpx;
   background-color: #e9e9e9;
   align-self: flex-end;
 }
-.menu .item:last-child .item-line{
+
+.menu .item:last-child .item-line {
   display: none;
 }
+
 .menu .item .name {
   font-size: 30rpx;
   color: #141414;
@@ -126,11 +238,13 @@ page{
   height: 25rpx;
   margin: 0 0 0 16rpx;
   font-size: 25rpx;
-  color: #BEBEBE
+  color: #bebebe;
 }
-.menu .item.contact{
+
+.menu .item.contact {
   position: relative;
 }
+
 .menu .item.contact .contBtn {
   opacity: 0;
   position: absolute;

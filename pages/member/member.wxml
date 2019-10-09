@@ -4,7 +4,7 @@
 <view wx:if="userCard && sport" style='margin-top:{{marginTopBar}}px'>
 
   <!-- 未充值 头部 -->
-  <view class="top-none-plus">
+  <view class="top-none-plus" style="display:none;">
     <!-- 用户信息 -->
     <view class="info">
       <view class="user" wx:if='{{!userData.head_img && !wx_userInfo}}'>
@@ -27,6 +27,41 @@
   </view>
 
   <!-- 已充值 头部 -->
+  <view class="top-plus" style="display:;">
+    <image class="backgroundimg" src="/images/member/top-plus.png"></image>
+    <!-- 用户信息 -->
+    <view class="info">
+
+      <view class="user" wx:if='{{!userData.head_img && !wx_userInfo}}'>
+        <image class="header" src="{{imgUrl}}icon/default_header.png"></image>
+        <view class="right">
+        <text class="name">未登录</text>
+        <text class="cardnum">6200 5872 7197 67</text>
+        </view>
+        <button wx:if='{{userData}}' open-type='getUserInfo' bindgetuserinfo='upDateUserinfo' class='getUserInfoBtn'></button>
+      </view>
+
+      <view class='user' wx:elif='{{wx_userInfo || userData.head_img}}'>
+        <image class="header" src="{{wx_userInfo.avatarUrl || userData.head_img}}"></image>
+        <view class="right">
+        <text class="name">{{wx_userInfo.nickName || (userData &&userData.nick_name ? userData.nick_name : '')}}</text>
+        <text class="cardnum">6200 5872 7197 67</text>
+        </view>
+        
+        <button open-type='getUserInfo' bindgetuserinfo='upDateUserinfo' class='getUserInfoBtn'></button>
+      </view>
+    </view>
+    <!-- 卡信息 -->
+    <view class="cardinfo">
+      <view class="left">
+      <text class="unit">￥</text>
+       <text class="mony">100</text>
+       <text class="explain">(余额)</text>
+      </view>
+      <view class="btn">立即充值</view>
+    </view>
+  </view>
+
 
   <!-- memu 01 -->
   <view class="menu fadeIn animated" wx:if='{{!showAuthModel}}'>
@@ -43,62 +78,62 @@
     </view>
 
     <view class="item analysis_my_coupon" bindtap="handleMemberCouponTap">
-    <view class="item-content">
-      <text class="name">我的礼券</text>
-      <view class="right">
-        <text class="value blue">{{userInfoData.coupon_count || 0}}张</text>
-        <text class="icon iconfont iconicon-test42"></text>
-      </view>
+      <view class="item-content">
+        <text class="name">我的礼券</text>
+        <view class="right">
+          <text class="value blue">{{userInfoData.coupon_count || 0}}张</text>
+          <text class="icon iconfont iconicon-test42"></text>
+        </view>
       </view>
       <view class="item-line">
       </view>
     </view>
   </view>
 
-<!-- memu 02 -->
-  <view class="menu fadeIn animated" wx:if='{{!showAuthModel}}'>  
+  <!-- memu 02 -->
+  <view class="menu fadeIn animated" wx:if='{{!showAuthModel}}'>
     <view class="item analysis_my_cards" bindtap="handleGoodList">
-    <view class="item-content">
-      <text class="name">限时优惠</text>
-      <view class="right">
-        <text class="value">更多</text>
-        <text class="icon iconfont iconicon-test42"></text>
-      </view>
+      <view class="item-content">
+        <text class="name">限时优惠</text>
+        <view class="right">
+          <text class="value">更多</text>
+          <text class="icon iconfont iconicon-test42"></text>
+        </view>
       </view>
       <view class="item-line">
       </view>
     </view>
-    
+
     <view class="item analysis_my_invite" bindtap="handleInviteTap">
-    <view class="item-content">
-      <text class="name">邀请好友</text>
-      <view class="right">
-        <text class="value blue">邀请有礼</text>
-        <text class="icon iconfont iconicon-test42"></text>
-      </view>
+      <view class="item-content">
+        <text class="name">邀请好友</text>
+        <view class="right">
+          <text class="value blue">邀请有礼</text>
+          <text class="icon iconfont iconicon-test42"></text>
+        </view>
       </view>
       <view class="item-line">
       </view>
     </view>
 
     <view class="item analysis_my_ranking" bindtap="handleGroupTap">
-    <view class="item-content">
-      <text class="name">J&J排名</text>
-      <view class="right">
-        <text class="value blue"></text>
-        <text class="icon iconfont iconicon-test42"></text>
-      </view>
+      <view class="item-content">
+        <text class="name">J&J排名</text>
+        <view class="right">
+          <text class="value blue"></text>
+          <text class="icon iconfont iconicon-test42"></text>
+        </view>
       </view>
       <view class="item-line">
       </view>
     </view>
 
     <view class="item analysis_my_coursepackage" wx:if="{{orderCount}}" bindtap="handleGoodTap">
-    <view class="item-content">
-      <text class="name">课程礼包</text>
-      <view class="right">
-        <text class="icon iconfont iconicon-test42"></text>
-      </view>
+      <view class="item-content">
+        <text class="name">课程礼包</text>
+        <view class="right">
+          <text class="icon iconfont iconicon-test42"></text>
+        </view>
       </view>
       <view class="item-line">
       </view>
@@ -108,7 +143,7 @@
   <!-- memu 03 -->
   <view class="menu fadeIn animated">
     <view class="item contact">
-    <contact-button session-from="weapp" class="contBtn">aaa</contact-button>
+      <contact-button session-from="weapp" class="contBtn">aaa</contact-button>
       <view class="item-content">
         <text class="name">联系客服</text>
         <view class="right">
