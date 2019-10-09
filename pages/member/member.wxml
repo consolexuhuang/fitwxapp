@@ -1,104 +1,127 @@
 <!--pages/member/member.wxml-->
 <wxs src="../../utils/util.wxs" module="util" />
-<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<tabBar_top navbarData='{{navbarData}}'></tabBar_top>
 <view wx:if="userCard && sport" style='margin-top:{{marginTopBar}}px'>
-  <view class="top">
+
+  <!-- 未充值 头部 -->
+  <view class="top-none-plus">
+    <!-- 用户信息 -->
     <view class="info">
       <view class="user" wx:if='{{!userData.head_img && !wx_userInfo}}'>
         <image class="header" src="{{imgUrl}}icon/default_header.png"></image>
         <text class="name">未登录</text>
-        <button wx:if='{{userData}}' open-type='getUserInfo' bindgetuserinfo = 'upDateUserinfo' class='getUserInfoBtn'></button>
+        <button wx:if='{{userData}}' open-type='getUserInfo' bindgetuserinfo='upDateUserinfo' class='getUserInfoBtn'></button>
       </view>
       <view class='user' wx:elif='{{wx_userInfo || userData.head_img}}'>
         <image class="header" src="{{wx_userInfo.avatarUrl || userData.head_img}}"></image>
         <text class="name">{{wx_userInfo.nickName || (userData &&userData.nick_name ? userData.nick_name : '')}}</text>
-         <button open-type='getUserInfo' bindgetuserinfo = 'upDateUserinfo' class='getUserInfoBtn'></button>
-      </view>
-      <view class="concat">
-        <text class="pic iconfont iconicon-test24"></text>
-        <text class="txt">客服</text>
-        <contact-button session-from="weapp" class="contBtn"></contact-button>
+        <button open-type='getUserInfo' bindgetuserinfo='upDateUserinfo' class='getUserInfoBtn'></button>
       </view>
     </view>
-    <view class="statistics fadeIn animated">
-      <view class="col">
-        <text class="number">{{userInfoData.total.days || 0}}</text>
-        <text class="text">累计天数</text>
-      </view>
-      <view class="line"></view>
-      <view class="col">
-        <text class="number">{{userInfoData.total.count || 0}}</text>
-        <text class="text">累计次数</text>
-      </view>
-      <view class="line"></view>
-      <view class="col">
-        <text class="number">{{userInfoData.total.courses || 0}}</text>
-        <text class="text">解锁课程</text>
-      </view>
-    </view>
-    <view class="white-bar" wx:if='{{!showAuthModel}}'>
-      <view class="left">
-        <view class="content">
-          <text class="icon iconfont iconicon-test25"></text>
-          <text class="txt">PLUS卡支付</text>
-        </view>
-        <view class="line"></view>
-      </view>
-      <view class="middle">
-        <text class="label">余额：</text>
-        <text class="value">¥{{userInfoData.card_balance || "0.00"}}</text>
-      </view>
-      <view class="right">
-        <image class="bg" src="{{imgUrl}}member/icon-btn-pay-bg.png"></image>
-        <text class="txt analysis_my_recharge" bindtap="handleRechargeTap">立即充值</text>
-      </view>
+    <!-- 卡信息 -->
+    <view class="cardinfo">
+      <image class="backgroundimg" src="/images/member/top-none-plus.png"></image>
+      <text class="explain">PLUS卡尊享会员 | 课程95折 | 等位特权等</text>
+      <text class="btn">立即查看</text>
     </view>
   </view>
 
+  <!-- 已充值 头部 -->
+
+  <!-- memu 01 -->
   <view class="menu fadeIn animated" wx:if='{{!showAuthModel}}'>
-    <view class="item analysis_my_cards" bindtap="handleGoodList">
-      <text class="name">限时优惠</text>
-      <view class="right">
-        <text class="value">更多</text>
-        <text class="icon iconfont iconicon-test42"></text>
-      </view>
-    </view>
     <view class="item analysis_my_cards" bindtap="handleMemberCardTap">
-      <text class="name">我的卡包</text>
-      <view class="right">
-        <text class="value">更多</text>
-        <text class="icon iconfont iconicon-test42"></text>
+      <view class="item-content">
+        <text class="name">我的卡包</text>
+        <view class="right">
+          <text class="value">更多</text>
+          <text class="icon iconfont iconicon-test42"></text>
+        </view>
+      </view>
+      <view class="item-line">
       </view>
     </view>
+
     <view class="item analysis_my_coupon" bindtap="handleMemberCouponTap">
+    <view class="item-content">
       <text class="name">我的礼券</text>
       <view class="right">
         <text class="value blue">{{userInfoData.coupon_count || 0}}张</text>
         <text class="icon iconfont iconicon-test42"></text>
       </view>
+      </view>
+      <view class="item-line">
+      </view>
     </view>
+  </view>
+
+<!-- memu 02 -->
+  <view class="menu fadeIn animated" wx:if='{{!showAuthModel}}'>  
+    <view class="item analysis_my_cards" bindtap="handleGoodList">
+    <view class="item-content">
+      <text class="name">限时优惠</text>
+      <view class="right">
+        <text class="value">更多</text>
+        <text class="icon iconfont iconicon-test42"></text>
+      </view>
+      </view>
+      <view class="item-line">
+      </view>
+    </view>
+    
     <view class="item analysis_my_invite" bindtap="handleInviteTap">
+    <view class="item-content">
       <text class="name">邀请好友</text>
       <view class="right">
         <text class="value blue">邀请有礼</text>
         <text class="icon iconfont iconicon-test42"></text>
       </view>
+      </view>
+      <view class="item-line">
+      </view>
     </view>
+
     <view class="item analysis_my_ranking" bindtap="handleGroupTap">
+    <view class="item-content">
       <text class="name">J&J排名</text>
       <view class="right">
         <text class="value blue"></text>
         <text class="icon iconfont iconicon-test42"></text>
       </view>
+      </view>
+      <view class="item-line">
+      </view>
     </view>
+
     <view class="item analysis_my_coursepackage" wx:if="{{orderCount}}" bindtap="handleGoodTap">
+    <view class="item-content">
       <text class="name">课程礼包</text>
       <view class="right">
         <text class="icon iconfont iconicon-test42"></text>
       </view>
+      </view>
+      <view class="item-line">
+      </view>
     </view>
   </view>
-<!-- 提示微信登录 -->
+
+  <!-- memu 03 -->
+  <view class="menu fadeIn animated">
+    <view class="item contact">
+    <contact-button session-from="weapp" class="contBtn">aaa</contact-button>
+      <view class="item-content">
+        <text class="name">联系客服</text>
+        <view class="right">
+          <text class="icon iconfont iconicon-test42"></text>
+        </view>
+      </view>
+      <view class="item-line">
+      </view>
+    </view>
+
+  </view>
+
+  <!-- 提示微信登录 -->
   <wxLoginView isShow='{{showAuthModel}}' bind:loginEvent="showJurisdictionSmallPopup"></wxLoginView>
 
 </view>

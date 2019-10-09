@@ -19,8 +19,8 @@ Page({
       title: '我的',
       showCapsule: 0,
       isShowBackHome: false,
-      titleColor: "#fff",
-      tab_topBackground: '#8a73ff'
+      titleColor: "#333",
+      tab_topBackground: '#fff'
     },
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
     memberFollowState: 1, //当前关注状态
