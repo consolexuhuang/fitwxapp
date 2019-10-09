@@ -27,6 +27,7 @@
   </view>
 
   <!-- 已充值 头部 -->
+  <view class="space"  style="display:;"></view>
   <view class="top-plus" style="display:;">
     <image class="backgroundimg" src="/images/member/top-plus.png"></image>
     <!-- 用户信息 -->

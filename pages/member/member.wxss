@@ -78,6 +78,9 @@ page {
   text-decoration: underline;
 }
 
+.space{
+  height: 30rpx;
+}
 .top-plus {
   position: relative;
   display: flex;
