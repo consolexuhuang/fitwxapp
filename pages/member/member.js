@@ -134,8 +134,9 @@ Page({
     }
   },
   handleRechargeTap: function(event) {
+    let isPlus = event.currentTarget.dataset.isPlus;
     wx.navigateTo({
-      url: '/pages/card/recharge'
+      url: `/pages/card/recharge?isPlus=${isPlus}`
     })
   },
   /* // 跳转订单页面

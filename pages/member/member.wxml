@@ -22,7 +22,7 @@
     <view class="cardinfo">
       <image class="backgroundimg" src="/images/member/top-none-plus.png"></image>
       <text class="explain">PLUS卡尊享会员 | 课程95折 | 等位特权等</text>
-      <text class="btn">立即查看</text>
+      <text class="btn" data-is-plus="0" bindtap="handleRechargeTap">立即查看</text>
     </view>
   </view>
 
@@ -59,7 +59,7 @@
        <text class="mony">100</text>
        <text class="explain">(余额)</text>
       </view>
-      <view class="btn">立即充值</view>
+      <view class="btn" data-is-plus="1" bindtap="handleRechargeTap">立即充值</view>
     </view>
   </view>
 

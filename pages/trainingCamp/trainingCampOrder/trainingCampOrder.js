@@ -23,7 +23,7 @@ Page({
     },
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
     lineUpState:false, 
-
+    isPlus:0,
   },
   //校验当前余额状态
   checkCardCredict() {
@@ -112,7 +112,12 @@ Page({
       console.log('checkOrder', res)
       wx.hideLoading()
       if (res.code == 0) {
-        this.setData({ orderData: res.msg }, () => {
+        let card_amount = res.msg.card_amount || 0
+        let isPlus = card_amount?1:0
+        this.setData({
+          isPlus,
+           orderData: res.msg 
+           }, () => {
           this.checkCardCredict()
         })
       }
@@ -239,7 +244,7 @@ Page({
   //充值
   jumpTocashMoney() {
     wx.navigateTo({
-      url: '/pages/card/recharge',
+      url: `/pages/card/recharge?isPlus=${this.data.isPlus}`,
     })
   },
 

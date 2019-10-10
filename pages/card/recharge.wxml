@@ -112,6 +112,8 @@
   <view class="warning fadeIn animated" wx:if='{{chargeInfo}}'>充值后，随时可申请退款</view>
   <rich-text class="tip fadeIn animated" wx:if='{{chargeInfo}}' nodes="{{chargeInfo.rule}}"></rich-text>
 </view>
+<!-- 补margin-bottom无效 -->
+<view style="height: 1px;"></view>
 
 <view class="footer">
   <view class="btn" bindtap="buyHandle">￥{{amount}} {{isPlus?'立即充值':'立即开通'}}</view>
