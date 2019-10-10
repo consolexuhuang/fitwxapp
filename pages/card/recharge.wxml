@@ -1,40 +1,118 @@
 <!--pages/card/recharge.wxml-->
-<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<tabBar_top navbarData='{{navbarData}}'></tabBar_top>
 <view class="main" style='margin-top:{{marginTopBar}}px'>
-  <view class="top">
+
+  <!-- first -->
+  <view class="first" wx:if="{{isPlus==0}}">
+    <view class="top">
+      <image class="img" src="/images/card/plus-first.png"></image>
+      <!-- 优惠特权 -->
+      <view class="privilege">
+        <view class="item">
+          <view class="circle">
+            <text class="icon iconfont iconkecheng"></text>
+          </view>
+          <text class="txt">课程95折</text>
+        </view>
+        <view class="item">
+          <view class="circle">
+            <text class="icon iconfont iconmiandan"></text>
+          </view>
+          <text class="txt">首充免单券</text>
+        </view>
+        <view class="item">
+          <view class="circle">
+            <text class="icon iconfont icondengwei"></text>
+          </view>
+          <text class="txt">等位特权</text>
+        </view>
+      </view>
+    </view>
+    <view class="space-gray"></view>
+    <view class="list">
+      <block wx:for="{{chargeInfo.list}}" wx:key="index">
+        <view class="item fadeIn animated {{active===index?'active':''}}" data-amount="{{item.amount}}" data-index="{{index}}" bindtap="handleRechargeTap">
+          <view class="gift">
+            <!-- <image class="gift-bg" src="{{imgUrl}}card/icon-money-bg.png"></image> -->
+            <text class='gift-bg iconfont iconCombinedShapeCopy'></text>
+            <text class="txt">赠{{item.gift || 0}}元</text>
+          </view>
+          <view class="info">
+            <text class="number">¥{{item.amount || 0}}</text>
+            <text class="txt">到账:{{item.amount + item.gift}}元</text>
+          </view>
+          <view class="sheets" wx:if="{{item.tip}}">{{item.tip}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- next -->
+  <view class="next"  wx:if="{{isPlus==1}}">
+    <!-- 账户余额: -->
+    <view class="balance">
+      <text class="label">账户余额:</text>
+      <text class="unit">¥</text>
+      <text class="number">{{stepMomey || '0.0'}}</text>
+    </view>
+    <!-- 充值金额 -->
+    <view class="list">
+      <block wx:for="{{chargeInfo.list}}" wx:key="index">
+        <view class="item fadeIn animated {{active===index?'active':''}}" data-amount="{{item.amount}}" data-index="{{index}}" bindtap="handleRechargeTap">
+          <view class="gift">
+            <!-- <image class="gift-bg" src="{{imgUrl}}card/icon-money-bg.png"></image> -->
+            <text class='gift-bg iconfont iconCombinedShapeCopy'></text>
+            <text class="txt">赠{{item.gift || 0}}元</text>
+          </view>
+          <view class="info">
+            <text class="number">¥{{item.amount || 0}}</text>
+            <text class="txt">到账:{{item.amount + item.gift}}元</text>
+          </view>
+          <view class="sheets" wx:if="{{item.tip}}">{{item.tip}}</view>
+        </view>
+      </block>
+    </view>
+    <!-- 优惠特权 -->
+    <view class="privilege-title">会员专属特权</view>
+    <view class="privilege">
+      <view class="item">
+        <view class="circle">
+          <text class="icon iconfont iconkecheng"></text>
+        </view>
+        <text class="txt">课程95折</text>
+      </view>
+      <view class="item">
+        <view class="circle">
+          <text class="icon iconfont iconmiandan"></text>
+        </view>
+        <text class="txt">首充免单券</text>
+      </view>
+      <view class="item">
+        <view class="circle">
+          <text class="icon iconfont icondengwei"></text>
+        </view>
+        <text class="txt">等位特权</text>
+      </view>
+    </view>
+  </view>
+
+  <!--   <view class="top">
     <view class="user-name">{{userCard.nickName}}</view>
     <view class="balance">
       <text class="label">余额：</text>
       <text class="number">¥{{stepMomey || '0.0'}}</text>
     </view>
     <view class="user-new" wx:if='{{chargeInfo.promotion}}'>
-      <!-- <image class="gift-bg" src="{{imgUrl}}card/icon-first-bg.png"></image> -->
       <text class="txt">首充赠送免单券</text>
     </view>
-  </view>
-  <view class="list">
-    <block wx:for="{{chargeInfo.list}}" wx:key="index">
-      <view class="item fadeIn animated" data-amount="{{item.amount}}" bindtap="handleRechargeTap">
-        <view class="gift">
-          <!-- <image class="gift-bg" src="{{imgUrl}}card/icon-money-bg.png"></image> -->
-          <text class='gift-bg iconfont iconCombinedShapeCopy'></text>
-          <text class="txt">赠{{item.gift || 0}}元</text>
-        </view>
-        <view class="info">
-          <text class="number">¥{{item.amount || 0}}</text>
-          <text class="txt">到账:{{item.amount + item.gift}}元</text>
-        </view>
-        <view class="sheets" wx:if="{{item.tip}}">{{item.tip}}</view>
-      </view>
-    </block>
-  </view>
-  <view class="warning fadeIn animated" wx:if='{{chargeInfo}}'>
-    <text class="icon iconicon-test16 iconfont"></text>
-    <text class="txt">充值后，随时可申请退款 </text>
-  </view>
+  </view> -->
 </view>
 
-<view class="tip fadeIn animated" wx:if='{{chargeInfo}}'>
-  <text class="icon iconicon-test10 iconfont"></text>
-  <rich-text class="txt" nodes="{{chargeInfo.rule}}"></rich-text>
+<view class="explain">
+  <view class="warning fadeIn animated" wx:if='{{chargeInfo}}'>充值后，随时可申请退款</view>
+  <rich-text class="tip fadeIn animated" wx:if='{{chargeInfo}}' nodes="{{chargeInfo.rule}}"></rich-text>
+</view>
+
+<view class="footer">
+  <view class="btn" bindtap="buyHandle">￥{{amount}} {{isPlus?'立即充值':'立即开通'}}</view>
 </view>

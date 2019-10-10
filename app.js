@@ -70,7 +70,6 @@ App({
       console.log(options.path)
       if (options.path.indexOf('index') != -1 ||
         options.path === 'pages/store/store' ||
-        options.path === 'pages/card/card' ||
         options.path === 'pages/member/order/memberOrder' ||
         options.path === 'pages/member/member' ||
         options.path === 'pages/good/good') {

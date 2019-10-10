@@ -1,79 +1,89 @@
 /* pages/card/recharge.wxss */
 
 page {
-  background-color: #fafafa;
-}
-
-.main {
   background-color: #fff;
 }
+.first{
 
-.main .top {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
-
-.main .top .user-name {
-  font-size: 28rpx;
-  color: #828282;
+.first .top{
+  padding-bottom: 50rpx;
+  box-shadow:0rpx 5rpx 5rpx rgba(0,0,0,0.03);
+  background:#fff;
 }
-
-.main .top .balance {
+.first .img{
+  width: 750rpx;
+  height: 250rpx;
+}
+.next{}
+.next .balance{
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: baseline;
-  margin: 20rpx 0 10rpx 0;
-  color: #141414;
+  padding:40rpx 40rpx 0 40rpx;
 }
-
-.main .top .balance .label {
-  font-size: 28rpx;
+.next .balance .label{
+  font-size:36rpx;
+  margin-right: 20rpx;
 }
-
-.main .top .balance .number {
-  font-size: 60rpx;
+.next .balance .unit{
+  font-size:32rpx;
 }
-
-.main .top .user-new {
+.next .balance .number{
+  font-size:42rpx;
+}
+.next .privilege-title{
+  margin: 60rpx 40rpx 40rpx 40rpx;
+  font-size:36rpx;
+  color:#141414;
+}
+.privilege{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25rpx 80rpx 0 80rpx;
+}
+.privilege .item{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  position: relative;
+}
+.privilege .item .circle{
+  width:88rpx;
+height:88rpx;
+background:rgba(142,116,254,0.2);
+border-radius: 44rpx;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+.privilege .item .circle .icon{
+  font-size: 45rpx;
+  color:#896FFF;
+}
+.privilege .item .circle  .iconkecheng,
+.privilege .item .circle  .iconmiandan{
+  font-weight: bold;
+}
+.privilege .item .txt{
+  margin-top:30rpx;
+  font-size: 26rpx;
+  color:#333;
 }
 
-.main .top .user-new .gift-bg {
-  /* width: 186rpx;
-  height: 40rpx; */
-  
+.space-gray{
+  height: 20rpx;
+  background-color: #fafafa;
 }
-
-.main .top .user-new .txt {
-  font-size: 24rpx;
-  color: #896fff;
-  /* margin-top: -36rpx; */
-  /* position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto; */
-  /* padding-left: 16rpx; */
-  text-align: center;
-  padding: 0 24rpx;
-  line-height:39rpx;
-  background:rgba(241,238,255,1);
-  border-radius:20rpx;
-}
-
 .main .list {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 33rpx;
-  margin: 30rpx 0;
+  margin: 40rpx;
 }
 
 .main .list .item {
@@ -81,9 +91,14 @@ page {
   flex-direction: column;
   justify-content: space-between;
   width: 215rpx;
-  background: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 1);  
+  box-sizing: border-box;
   box-shadow: 0px 0px 12px 0px rgba(235, 235, 235, 1);
   border-radius: 4px;
+  border:6rpx solid rgba(255,255,255,1);
+}
+.main .list .item.active {
+  border:6rpx solid rgba(137,111,255,1);
 }
 
 .main .list .item .gift {
@@ -92,6 +107,7 @@ page {
   justify-content: flex-end;
   align-items: center;
   position: relative;
+  top:-1rpx;
 }
 
 .main .list .item .gift-bg {
@@ -131,44 +147,50 @@ font-size:24rpx;
 color:#fff;
 text-align: center;
 }
-.main .warning,
-.tip{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  margin: 0 0 0 33rpx ;
-  border-top:1px solid #E9E9E9;
-  height: 93rpx;
+
+.explain{
+  margin: 40rpx;
+  padding:40rpx;
+  margin-bottom: 208rpx;
+  border-radius:24rpx;
+  background: #FAFAFA;
 }
-.main .warning .icon,
-.tip .icon{
-  /* width: 26rpx;
-  height: 23rpx; */
-  margin-right:20rpx;
-  color: #896fff;
-  font-size: 23rpx;
-}
-.main .warning .txt,
-.tip .txt{
-  font-size:24rpx;
+.explain .warning{  
+  margin-bottom:30rpx;
+  font-size:26rpx;
   color:#141414;
 }
-.tip {
-  align-items: flex-start;
-  margin-top:30rpx;
-  border-top: 0;
-}
-.tip .icon{
-  /* width: 24rpx;
-  height: 24rpx; */
-  flex-grow: 0;
-  flex-shrink: 0;
-  margin-top:6rpx;
-  font-size: 24rpx
-}
-.tip .txt{
-  margin-right: 33rpx;
-  font-size:24rpx;
+
+.explain .tip{
+  font-size: 22rpx;
   color:#B4B4B4;
+  letter-spacing: 2rpx;
+  line-height: 36rpx;
+}
+
+.footer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left:0;
+  right: 0;
+  height: 168rpx;
+  background:linear-gradient(rgba(255,255,255,0),rgba(255,255,255,1));
+
+}
+
+.footer .btn {
+  margin: 0;
+  width: 613rpx;
+  height: 84rpx;
+  line-height: 84rpx;
+  font-size: 34rpx;
+  color: #fff;
+  background: linear-gradient(360deg, rgba(155, 133, 252, 1) 0%, rgba(114, 87, 251, 1) 100%);
+  box-shadow: 0px 0px 16rpx 0px rgba(184, 168, 255, 1);
+  border-radius: 41rpx;
+  text-align: center;
 }

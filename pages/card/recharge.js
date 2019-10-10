@@ -19,9 +19,28 @@ Page({
       titleColor: "#000",
       tab_topBackground: '#fff'
     },
-    marginTopBar: getApp().globalData.tab_height * 2 + 20
+    marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    isPlus:0,//是否已经是plus,0:否 1：是
+    active:0,//选择的充值项
+    amount:0
   },
-  dealNumberStep(){
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    //获取参数
+    let isPlus = options.isPlus || 0;
+    this.setData({
+      isPlus
+    });
+
+    getApp().checkSessionFun().then(() => {
+      this.getUserCard()
+      this.getChargeInfo()
+    })
+  },
+  dealNumberStep() {
     let _this = this
     let stepMomey = this.data.userCard.balance
     wx.getSystemInfo({
@@ -38,22 +57,13 @@ Page({
               });
             },
           });
-          
-        }else{
+
+        } else {
           _this.setData({
             stepMomey: this.data.userCard.balance
           });
         }
       }
-    })
-  },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    getApp().checkSessionFun().then(() => {
-      this.getUserCard()
-      this.getChargeInfo()
     })
   },
   getUserCard: function(event){
@@ -71,17 +81,27 @@ Page({
     api.post('chargeOrder/getChargeInfo').then(res => {
       const chargeInfo = res.msg
       this.setData({
+        amount: chargeInfo.list[0].amount,
         chargeInfo
       })
     })    
   },
   handleRechargeTap: function(event){
-    const amount = event.currentTarget.dataset.amount
-    const payMode = 'wxlite'
+    //当前点击状态
+    const active = event.currentTarget.dataset.index;
+    const amount = event.currentTarget.dataset.amount;
+    this.setData({
+      active,
+      amount
+    }); 
+  },
+  buyHandle:function(){
     const data = {
-      amount,
-      payMode
+      amount:this.data.amount,
+      payMode:'wxlite'
     }
+    console.log('data')
+    console.log(data)
     api.post('chargeOrder/recharge', data).then(res => {
       this.wxPay(res.msg)
     })
@@ -96,10 +116,6 @@ Page({
       paySign: obj.paySign,
       success(res) {
         _this.getUserCard()
-        // const rechargeSuccessRoute = _this.data.rechargeSuccessRoute
-        // wx.redirectTo({
-        //   url: rechargeSuccessRoute
-        // })
         wx.navigateBack()
       },
       fail(res) {

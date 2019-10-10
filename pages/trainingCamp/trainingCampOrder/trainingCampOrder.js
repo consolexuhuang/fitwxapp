@@ -242,12 +242,7 @@ Page({
       url: '/pages/card/recharge',
     })
   },
-  //开通
-  jumpToCardOpening() {
-    wx.switchTab({
-      url: '/pages/card/card',
-    })
-  },
+
   //排队
   lineUp(){
     wx.showLoading({
