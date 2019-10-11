@@ -2,10 +2,40 @@
 page{
   background: #fff !important;
 }
+.acount{
+  display: flex;
+  flex-direction: column;  
+}
+.acount .title{
+  margin:30rpx;
+  font-size:28rpx;
+  color:#141414;
+}
+.acount  .list{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 20rpx;
+
+}
+.acount  .list .item{
+  display: flex;
+  flex-direction: column;
+}
+.acount  .list .item .number{
+  text-align: center;
+  font-family:DINAlternate-Bold;
+  font-weight:bold;
+  line-height:50rpx;
+  font-size:50rpx;
+  color:#333333;
+}
+.acount,
 .mounthMoreOrder_list{
   background: #fff;
   border-radius:8rpx;
-  border:1rpx solid rgba(215,215,215,1);
+  box-shadow:0 0 12rpx 0 rgba(235,235,235,1);
   width: 682rpx;
   margin: 30rpx auto
 }
@@ -38,9 +68,7 @@ page{
   justify-content: space-around;
   padding-bottom: 20rpx;
 }
-.train_cont{
-  min-width: 180rpx;
-}
+.acount  .list .item .label,
 .train_contTitle{
   text-align: center;
   font-size:26rpx;

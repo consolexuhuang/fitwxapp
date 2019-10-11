@@ -14,13 +14,18 @@ Page({
       titleColor: "#000",
       tab_topBackground: '#fff'
     },
-    marginTopBar: getApp().globalData.tab_height * 2 + 20
+    marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    userInfoData:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let userInfoData = JSON.parse(options.userInfoData) || {};    
+    this.setData({
+      userInfoData
+    })
     this.getSportMonthList()
   },
   getSportMonthList: function(event){

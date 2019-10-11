@@ -1,21 +1,40 @@
 <!--pages/member/order/monthRecord.wxml-->
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
 <view style='margin-top:{{marginTopBar+10}}px'>
+<!-- 累计 -->
+<view class="acount">
+   <view class="title">累计训练记录</view>
+   <view class="list">
+    <view class="item">
+     <text class="number">{{userInfoData.count || 0}}</text>
+     <text class="label">训练次数</text>
+    </view>
+    <view class="item">
+     <text class="number">{{userInfoData.days || 0}}</text>
+     <text class="label">训练天数</text>
+    </view>
+    <view class="item">
+     <text class="number">{{userInfoData.mins || 0}}</text>
+     <text class="label">训练时长/分钟</text>
+    </view>
+   </view>
+</view>
+
     <block wx:for="{{sportMonthList}}" wx:key="index">
       <view class="mounthMoreOrder_list" data-year="{{item.year}}" data-month="{{item.month}}" bindtap="handleMonthTap">
         <view class="mounth">{{item.month}}月</view>
         <view class="train fadeIn animated">
           <view class="train_cont">
-            <view class="train_contTitle">训练次数</view>
             <view class="train_contNum">{{item.count}}</view>
+            <view class="train_contTitle">训练次数</view>
           </view>
           <view class="train_cont">
-            <view class="train_contTitle">训练天数</view>
             <view class="train_contNum">{{item.days}}</view>
+            <view class="train_contTitle">训练天数</view>
           </view>
           <view class="train_cont">
-            <view class="train_contTitle">训练时长/分钟</view>
             <view class="train_contNum">{{item.mins}}</view>
+            <view class="train_contTitle">训练时长/分钟</view>
           </view>
         </view>
       </view>

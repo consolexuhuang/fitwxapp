@@ -7,6 +7,66 @@ page{
   display: flex;
   flex-direction: column;
 }
+.acount{
+  display: flex;
+  flex-direction: column;  
+  background: #fff;
+  border-radius:8rpx;
+  box-shadow:0 0 12rpx 0 rgba(235,235,235,1);
+  width: 682rpx;
+  margin: 30rpx auto
+}
+.acount .title{
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-between;
+  align-items: center; 
+  margin:30rpx;
+  font-size:28rpx;
+  color:#141414;
+}
+.acount .title .right{
+  display: flex;
+  flex-direction: row; 
+  justify-content: flex-end;
+  align-items: center;
+  color:#999999;
+}
+.acount .title .explain{
+  margin-right: 20rpx;
+}
+.acount .title .icon{
+  font-size:20rpx;
+}
+.acount  .list{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 20rpx;
+
+}
+.acount  .list .item{
+  display: flex;
+  flex-direction: column;
+}
+.acount  .list .item .label{
+  text-align: center;
+  font-size:26rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(100,100,100,1);
+  line-height:68rpx;
+}
+.acount  .list .item .number{
+  text-align: center;
+  font-family:DINAlternate-Bold;
+  font-weight:bold;
+  line-height:50rpx;
+  font-size:50rpx;
+  color:#333333;
+}
+
 .trainRescord{
   background: #fff;
   padding: 0 35rpx 10rpx;
@@ -24,29 +84,7 @@ page{
   color:rgba(20,20,20,1);
   line-height:100rpx;
 }
-.trainRescord_headMore{
-  font-size:30rpx;
-  font-family:PingFangSC-Regular;
-  font-weight:400;
-  color:rgba(150,150,150,1);
-  line-height:100rpx;
-  position: relative;
-  padding-right: 20rpx;
-  box-sizing: border-box;
-}
-.trainRescord_headMore::after{
-  position: absolute;
-  content: '';
-  width: 12rpx;
-  height: 12rpx;
-  border-bottom: 1rpx solid rgba(150,150,150,1);
-  border-right: 1rpx solid rgba(150,150,150,1);
-  top: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto;
-  transform: rotate(-45deg)
-}
+
 .trainRescord_time{
   margin: 40rpx auto;
   display: flex;
@@ -89,7 +127,7 @@ page{
   z-index: 1000
 } */
 .myOrderNav{
-  padding: 20rpx 30rpx 0 30rpx;
+  padding: 0rpx 30rpx 0 30rpx;
   box-sizing: border-box;
   display: flex;
   justify-content: space-around;
