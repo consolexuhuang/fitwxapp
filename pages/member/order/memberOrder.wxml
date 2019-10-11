@@ -51,7 +51,7 @@
   <view class="tab_content" wx:if="{{active==0}}">
   <block wx:if="{{goingList.length}}">
     <block wx:for="{{goingList}}" wx:key="index">
-      <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
+      <view class="myOrder_listItem" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
         <view class="item-status">{{item.status_desc}}</view>
         <view class="item-content">
           <text class='isWait iconfont iconfenzu-7' wx:if='{{item.is_wait}}'></text>
@@ -74,7 +74,7 @@
 
       </view>
     </block>
-    <view class='goBottom fadeIn animated' wx:if='{{goingList.length > 10}}'>{{goingList.length == userInfoData.order.going_count && goingList.length > 10 ? '-拉伸完成-' : '加载中...'}}</view>
+    <view class='goBottom ' wx:if='{{goingList.length > 10}}'>{{goingList.length == userInfoData.order.going_count && goingList.length > 10 ? '-拉伸完成-' : '加载中...'}}</view>
   </block>
   <!-- 无数据 -->
   <block  wx:if="{{goingList.length==0 && isLoaded}}" >
@@ -88,7 +88,7 @@
   <view class="tab_content"  wx:if="{{active==1}}">
   <block wx:if="{{payingList.length}}">
     <block wx:for="{{payingList}}" wx:key="index">
-      <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
+      <view class="myOrder_listItem " data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
         <view class="item-content">
           <image catchtap='handleCoachTap' data-coachId='{{item.coach_id}}' class="item_headerImg" src="{{item.head_url}}"></image>
           <view class="item_info">
@@ -108,7 +108,7 @@
         </view>
       </view>
     </block>
-    <view class='goBottom fadeIn animated' wx:if='{{payingList.length > 10}}'>{{payingList.length == userInfoData.order.unpay_count && payingList.length > 10 ? '-拉伸完成-' : '加载中...'}}</view>
+    <view class='goBottom ' wx:if='{{payingList.length > 10}}'>{{payingList.length == userInfoData.order.unpay_count && payingList.length > 10 ? '-拉伸完成-' : '加载中...'}}</view>
   </block>
   <!-- 无数据 -->
   <block wx:if="{{payingList.length==0 && isLoaded}}">
@@ -122,7 +122,7 @@
   <view class="tab_content"  wx:if="{{active==2}}">
   <block wx:if="{{completedList.length}}">
     <block wx:for="{{completedList}}" wx:key="index">
-      <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
+      <view class="myOrder_listItem " data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
         <view class="item-content">
           <image catchtap='handleCoachTap' data-coachId='{{item.coach_id}}' class="item_headerImg" src="{{item.head_url}}"></image>
           <view class="item_info">
@@ -142,7 +142,7 @@
         </view>
       </view>
     </block>
-    <view class='goBottom fadeIn animated' wx:if='{{completedList.length > 10}}'>{{completedList.length == userInfoData.order.complete_count && completedList.length > 10 ? '-拉伸完成-' : '加载中...'}}</view>
+    <view class='goBottom ' wx:if='{{completedList.length > 10}}'>{{completedList.length == userInfoData.order.complete_count && completedList.length > 10 ? '-拉伸完成-' : '加载中...'}}</view>
   </block>
   <!-- 无数据 -->
   <block  wx:if="{{completedList.length==0 && isLoaded}}">
