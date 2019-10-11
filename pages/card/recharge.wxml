@@ -83,9 +83,9 @@
       </view>
       <view class="item">
         <view class="circle">
-          <text class="icon iconfont iconmiandan"></text>
+          <text class="icon iconfont iconyuanke"></text>
         </view>
-        <text class="txt">首充免单券</text>
+        <text class="txt">9.9元特色课</text>
       </view>
       <view class="item">
         <view class="circle">

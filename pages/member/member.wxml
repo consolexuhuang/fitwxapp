@@ -4,7 +4,7 @@
 <view wx:if="userCard && sport" style='margin-top:{{marginTopBar}}px'>
 
   <!-- 未充值 头部 -->
-  <view class="top-none-plus" style="display:none;">
+  <view class="top-none-plus" wx:if="{{!liteMyInfo.isPlus}}">
     <!-- 用户信息 -->
     <view class="info">
       <view class="user" wx:if='{{!userData.head_img && !wx_userInfo}}'>
@@ -27,8 +27,9 @@
   </view>
 
   <!-- 已充值 头部 -->
-  <view class="space"  style="display:;"></view>
-  <view class="top-plus" style="display:;">
+  <block wx:else>
+  <view class="space" ></view>
+  <view class="top-plus">
     <image class="backgroundimg" src="/images/member/top-plus.png"></image>
     <!-- 用户信息 -->
     <view class="info">
@@ -37,7 +38,7 @@
         <image class="header" src="{{imgUrl}}icon/default_header.png"></image>
         <view class="right">
         <text class="name">未登录</text>
-        <text class="cardnum">6200 5872 7197 67</text>
+        <text class="cardnum">{{util.cardNumber(liteMyInfo.card_no)}}</text>
         </view>
         <button wx:if='{{userData}}' open-type='getUserInfo' bindgetuserinfo='upDateUserinfo' class='getUserInfoBtn'></button>
       </view>
@@ -46,7 +47,7 @@
         <image class="header" src="{{wx_userInfo.avatarUrl || userData.head_img}}"></image>
         <view class="right">
         <text class="name">{{wx_userInfo.nickName || (userData &&userData.nick_name ? userData.nick_name : '')}}</text>
-        <text class="cardnum">6200 5872 7197 67</text>
+        <text class="cardnum">{{util.cardNumber(liteMyInfo.card_no)}}</text>
         </view>
         
         <button open-type='getUserInfo' bindgetuserinfo='upDateUserinfo' class='getUserInfoBtn'></button>
@@ -56,13 +57,13 @@
     <view class="cardinfo">
       <view class="left">
       <text class="unit">￥</text>
-       <text class="mony">100</text>
+       <text class="mony">{{liteMyInfo.card_balance}}</text>
        <text class="explain">(余额)</text>
       </view>
       <view class="btn" data-is-plus="1" bindtap="handleRechargeTap">立即充值</view>
     </view>
   </view>
-
+</block>
 
   <!-- memu 01 -->
   <view class="menu fadeIn animated" wx:if='{{!showAuthModel}}'>
@@ -82,7 +83,7 @@
       <view class="item-content">
         <text class="name">我的礼券</text>
         <view class="right">
-          <text class="value blue">{{userInfoData.coupon_count || 0}}张</text>
+          <text class="value blue">{{liteMyInfo.coupon_count || 0}}张</text>
           <text class="icon iconfont iconicon-test42"></text>
         </view>
       </view>

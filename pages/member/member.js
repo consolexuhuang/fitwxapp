@@ -12,7 +12,7 @@ Page({
     userCard: '',
     imgUrl: getApp().globalData.imgUrl,
     userData:'', //用户信息
-    userInfoData:'',// 用户首页数据
+    liteMyInfo:{},// 用户首页数据
     wx_userInfo:'',// 微信账户信息
     orderCount: 0,
     navbarData: {
@@ -26,9 +26,9 @@ Page({
     memberFollowState: 1, //当前关注状态
     officialDataState:false,
     memberInfo:'',
-
     jurisdictionSmallState: false,
     showAuthModel: false,
+    isPlus:0,//是否是Plus会员，0：否，1：是
   },
   /**
    * 生命周期函数--监听页面加载
@@ -37,7 +37,14 @@ Page({
   },
   onShow(){
     app.checkSessionFun().then(() => {
-      //this.getMemberFollowState()
+      let liteMyInfo = wx.getStorageSync('liteMyInfo');
+      console.log('liteMyInfo')
+      console.log(liteMyInfo)
+      if (liteMyInfo!==''){
+       this.setData({
+         liteMyInfo
+       })
+      }
       this.getUserInfo()
       this.getOrderCount()
       this.getGoingList()
@@ -97,9 +104,21 @@ Page({
     if (app.passIsLogin()) {
       wx.showLoading({ title: '加载中...'})
       api.post('v2/member/liteMyInfo').then(res => {
-        wx.hideLoading()
-        console.log('userInfoData',res.msg)
-        this.setData({ userInfoData: res.msg })
+        wx.hideLoading();
+        let resData = res.msg;
+        let card_balance = res.msg.card_balance || 0;
+        let isPlus = card_balance ? 1 : 0;
+        let liteMyInfo = {
+          isPlus,
+          card_balance: resData.card_balance,
+          card_no: resData.card_no,
+          coupon_count: resData.coupon_count,
+        }
+        this.setData({ 
+          liteMyInfo
+           });
+        //缓存数据
+        wx.setStorageSync('liteMyInfo', liteMyInfo)
       })
     }
   },
