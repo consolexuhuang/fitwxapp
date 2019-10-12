@@ -144,10 +144,7 @@ page{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-grow: 1;
-  flex-shrink: 1;
   height:130rpx;
-  width: 33.33%;
   font-size:26rpx;
   font-family:PingFangSC-Regular;
   font-weight:400;
