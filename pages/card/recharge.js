@@ -1,6 +1,7 @@
 // pages/card/recharge.js
 const api = getApp().api
 import NumberAnimate from "../../utils/NumberAnimate";
+const ui = require('../../utils/ui.js');
 Page({
 
   /**
@@ -29,6 +30,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    //loading
+    ui.showLoading();
     //获取参数
     let isPlus = options.isPlus || 0;
     this.setData({
@@ -36,9 +39,24 @@ Page({
     });
 
     getApp().checkSessionFun().then(() => {
-      this.getUserCard()
-      this.getChargeInfo()
+      Promise.all([this.getUserCard(), this.getChargeInfo()])
+      .then(()=>{
+        //关闭loading
+        ui.hideLoading();
+      })
+      
+      
     })
+  },
+  onPullDownRefresh() {
+    //loading
+    ui.showLoading();
+    Promise.all([this.getUserCard(), this.getChargeInfo()])
+      .then(() => {
+        //关闭loading
+        ui.hideLoading();
+        wx.stopPullDownRefresh()
+      })
   },
   dealNumberStep() {
     let _this = this
@@ -67,9 +85,7 @@ Page({
     })
   },
   getUserCard: function(event){
-    wx.showLoading({ title: '加载中...',})
-    api.post('card/getUserCard').then(res => {
-      wx.hideLoading()
+    return api.post('card/getUserCard').then(res => {
       const userCard = res.msg
       this.setData({
         userCard
@@ -78,7 +94,7 @@ Page({
     })
   },
   getChargeInfo: function(event){
-    api.post('chargeOrder/getChargeInfo').then(res => {
+    return api.post('chargeOrder/getChargeInfo').then(res => {
       const chargeInfo = res.msg
       this.setData({
         amount: chargeInfo.list[0].amount,

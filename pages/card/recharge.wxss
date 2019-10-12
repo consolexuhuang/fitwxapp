@@ -22,6 +22,7 @@ page {
   justify-content: flex-start;
   align-items: baseline;
   padding:40rpx 40rpx 0 40rpx;
+  font-weight: bold;
 }
 .next .balance .label{
   font-size:36rpx;
@@ -37,6 +38,7 @@ page {
   margin: 60rpx 40rpx 40rpx 40rpx;
   font-size:36rpx;
   color:#141414;
+  font-weight: bold;
 }
 .privilege{
   display: flex;
@@ -73,6 +75,7 @@ align-items: center;
   margin-top:30rpx;
   font-size: 26rpx;
   color:#333;
+  font-weight: bold;
 }
 
 .space-gray{
@@ -94,12 +97,10 @@ align-items: center;
   background: rgba(255, 255, 255, 1);  
   box-sizing: border-box;
   box-shadow: 0px 0px 12px 0px rgba(235, 235, 235, 1);
-  border-radius: 4px;
-  border:6rpx solid rgba(255,255,255,1);
+  border-radius: 24rpx;
+  
 }
-.main .list .item.active {
-  border:6rpx solid rgba(137,111,255,1);
-}
+
 
 .main .list .item .gift {
   display: flex;
@@ -107,12 +108,12 @@ align-items: center;
   justify-content: flex-end;
   align-items: center;
   position: relative;
-  top:-1rpx;
 }
 
 .main .list .item .gift-bg {
-  font-size: 43rpx;
-  color: #896fff
+  width: 123rpx;
+  height: 40rpx;
+  border-top-right-radius: 24rpx;
 }
 
 .main .list .item .gift .txt {
@@ -125,29 +126,38 @@ align-items: center;
 .main .list .item .info {
   display: flex;
   flex-direction: column;
-  padding:30rpx 20rpx;
+  justify-content: center;
+  align-items: center;
+  padding: 10rpx 0 30rpx 0;
   color: #141414;
 }
 
 .main .list .item  .info .number {
-  font-size: 36rpx;
+  font-size: 40rpx;
 }
 
 .main .list .item  .info .txt {
-  font-size: 30rpx;
+  font-size: 24rpx;
 }
 .main .list .item  .sheets{
   width:100%;
 height:50rpx;
 line-height: 50rpx;
-background:rgba(137,111,255,1);
+background:rgba(137,111,255,0.2);
 border-bottom-left-radius: 4rpx;
 border-bottom-right-radius: 4rpx;
 font-size:24rpx;
-color:#fff;
+color:#896FFF;
 text-align: center;
 }
-
+.main .list .item.active {
+  border:6rpx solid rgba(137,111,255,1);
+}
+.main .list .item.active .gift-bg {
+  width: 123rpx;
+  height: 40rpx;
+  border-top-right-radius: 16rpx;
+}
 .explain{
   margin: 40rpx;
   padding:40rpx;
@@ -159,6 +169,7 @@ text-align: center;
   margin-bottom:30rpx;
   font-size:26rpx;
   color:#141414;
+  font-weight: bold;
 }
 
 .explain .tip{

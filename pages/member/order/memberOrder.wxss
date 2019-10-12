@@ -31,6 +31,7 @@ page{
   justify-content: flex-end;
   align-items: center;
   color:#999999;
+  font-size:26rpx;
 }
 .acount .title .explain{
   margin-right: 20rpx;
@@ -271,12 +272,14 @@ display: flex;
 .item_info_see{
   border-radius:24rpx;
   border:2rpx solid rgba(137,109,255,.5);
-  padding: 0 23rpx;
   font-size:22rpx;
   font-family:PingFangSC-Regular;
   font-weight:400;
   color:rgba(137,109,255,1);
+  width: 100rpx;
+  height: 42rpx;
   line-height:42rpx;
+ padding-right: 6rpx;
   text-align: center;
   align-self: center;
 }

@@ -133,11 +133,12 @@ page {
 
 .top-plus .info .user .name {
   font-size: 32rpx;
+  font-weight: bold;
 }
 
 .top-plus .info .user .cardnum {
   margin-top: 10rpx;
-  font-size: 24rpx;
+  font-size: 26rpx;
 }
 
 .top-plus .info .getUserInfoBtn {
@@ -158,10 +159,12 @@ page {
 
 .top-plus .cardinfo .left .unit {
   font-size: 36rpx;
+  font-weight: bold;
 }
 
 .top-plus .cardinfo .left .mony {
   font-size: 60rpx;
+  font-weight: bold;
 }
 
 .top-plus .cardinfo .left .explain {

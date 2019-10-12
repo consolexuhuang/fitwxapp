@@ -145,7 +145,7 @@
   <!-- memu 03 -->
   <view class="menu fadeIn animated">
     <view class="item contact">
-      <contact-button session-from="weapp" class="contBtn">aaa</contact-button>
+      <button open-type="contact" session-from="weapp" class="contBtn"></button>
       <view class="item-content">
         <text class="name">联系客服</text>
         <view class="right">

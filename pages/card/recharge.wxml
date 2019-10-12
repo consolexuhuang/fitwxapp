@@ -33,8 +33,7 @@
       <block wx:for="{{chargeInfo.list}}" wx:key="index">
         <view class="item fadeIn animated {{active===index?'active':''}}" data-amount="{{item.amount}}" data-index="{{index}}" bindtap="handleRechargeTap">
           <view class="gift">
-            <!-- <image class="gift-bg" src="{{imgUrl}}card/icon-money-bg.png"></image> -->
-            <text class='gift-bg iconfont iconCombinedShapeCopy'></text>
+            <image class="gift-bg" src="{{imgUrl}}card/recharge-bg.png"></image>
             <text class="txt">赠{{item.gift || 0}}元</text>
           </view>
           <view class="info">
@@ -60,8 +59,7 @@
       <block wx:for="{{chargeInfo.list}}" wx:key="index">
         <view class="item fadeIn animated {{active===index?'active':''}}" data-amount="{{item.amount}}" data-index="{{index}}" bindtap="handleRechargeTap">
           <view class="gift">
-            <!-- <image class="gift-bg" src="{{imgUrl}}card/icon-money-bg.png"></image> -->
-            <text class='gift-bg iconfont iconCombinedShapeCopy'></text>
+            <image class="gift-bg" src="{{imgUrl}}card/recharge-bg.png"></image>
             <text class="txt">赠{{item.gift || 0}}元</text>
           </view>
           <view class="info">

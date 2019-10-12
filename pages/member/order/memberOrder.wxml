@@ -3,8 +3,8 @@
 <tabBar_top navbarData='{{navbarData}}'></tabBar_top>
 <view class="wrapper" style='margin-top:{{marginTopBar}}px;'  wx:if='{{!showAuthModel}}'>
 <!-- 累计 -->
-<view class="acount">
-   <view class="title" bindtap="handleMoreTap">
+<view class="acount" bindtap="handleMoreTap">
+   <view class="title" >
    <text class="txt">累计训练记录</text>
    <view class="right">
    <text class="explain">详细</text>
