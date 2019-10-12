@@ -8,7 +8,7 @@ Page({
   data: {
     sportMonthList: [],
     navbarData: {
-      title: '约课记录',
+      title: '训练记录',
       showCapsule: 1,
       isShowBackHome: true,
       titleColor: "#000",

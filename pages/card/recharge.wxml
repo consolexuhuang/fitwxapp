@@ -107,7 +107,7 @@
 </view>
 
 <view class="explain">
-  <view class="warning fadeIn animated" wx:if='{{chargeInfo}}'>充值后，随时可申请退款</view>
+  <view class="warning fadeIn animated" wx:if='{{chargeInfo}}'>充值后，随时可退款</view>
   <rich-text class="tip fadeIn animated" wx:if='{{chargeInfo}}' nodes="{{chargeInfo.rule}}"></rich-text>
 </view>
 <!-- 补margin-bottom无效 -->
