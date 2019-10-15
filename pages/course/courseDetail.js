@@ -70,7 +70,8 @@ Page({
       courseId
     })
 
-    //检测登录
+    //检测登录 
+    // 以防checkSessionFun方法的resolve回调回来一个错误用户，所以在内部页面用passIsLogin提前先拦住
     if (!app.passIsLogin()) {
       this.setData({ jurisdictionState: true })
     } else {

@@ -175,37 +175,18 @@ App({
     return new Promise((resolve, reject) => {
       wx.checkSession({
         success: (res) => {
-          console.log('没过期')
           //session_key 未过期，并且在本生命周期一直有效
-          if (this.globalData.scene == 1035 || this.globalData.scene == 1043 || this.globalData.scene == 1082 || this.globalData.scene == 1058 || this.globalData.scene == 1102) {
-            //如果是 公众号菜单，模版消息，短链接 公众号文章，服务号预览列表 进入
-
-            console.log('this.passIsLogin()')
-            console.log(this.passIsLogin())
-            this.passIsLogin() ?
-              resolve() :
-              this.wx_loginIn().then(() => {
-                resolve();
-              }, () => {
-                reject()
-              })
-          } else if (this.globalData.scene == 1011 && this.globalData.sceneOptions.path === 'pages/coach/signInCode/signInCode') {
-            //特殊扫码进入
-            this.passIsLogin() ?
-              resolve() :
-              this.wx_loginIn().then(() => {
-                resolve();
-              }, () => {
-                reject()
-              })
-          } else {
-            console.log('this.passIsLogin()000，登录态未过期，缓存为空')
-            console.log(this.passIsLogin())
-            resolve();
-          }
+          console.log(`${new Date().getTime()}-登录态没过期，本地用户缓存-${this.passIsLogin()? "有" : "没有-重新获取"}`)
+          this.passIsLogin()
+            ? resolve()
+            : this.wx_loginIn().then(() => {
+              resolve();
+            }, () => {
+              reject()
+            })
         },
         fail: () => {
-          console.log('登录态过期')
+          console.log('登录态过期,重新登录')
           // session_key 已经失效，需要重新执行登录流程
           this.wx_loginIn().then(() => {
             resolve();
@@ -217,6 +198,7 @@ App({
     })
 
   },
+  //正常登录用户方法
   wx_loginIn: function () {
     let _this = this
     return new Promise((resolve, reject) => {
@@ -269,7 +251,7 @@ App({
       })
     })
   },
-  //同意授权接口
+  //错误用户手动同意授权登录方法
   wx_AuthUserLogin() {
     let _this = this
     return new Promise((resolve, reject) => {
