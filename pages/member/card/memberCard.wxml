@@ -29,7 +29,7 @@
       <view class="line" wx:if='{{index == 1 && cardList[0].card_type === 3}}'></view>
       <view class="buyCardRecord myCard_moneyRecord fadeIn animated" data-card-id="{{item._PK_}}" bindtap="handleCardRecordTap">
         <view class="buyCardRecord_cont">
-          <image src="{{item.background_img}}" class="myCard_moneyRecordImg"></image>
+          <image src="{{item.background_img}}" class="myCard_moneyRecordImg {{item.card_left_count===0 ? 'greyStyle' : ''}}"></image>
 
           <view class="buyCardWidBox">
             <view class="buyCardBox">
@@ -38,7 +38,7 @@
             </view>
             <view class="buyCardBottomBox">
               <view class="buyCardRestTime">截止日期:{{item.validity_date}}</view>
-              <view class="buyCardBtn">
+              <view class="buyCardBtn" wx:if='{{item.card_left_count!==0}}'>
                 <view class="gift" wx:if='{{item.gift_flag == 1}}' catchtap='giveToCard' data-cardid='{{item.id}}'>赠送</view>
                 <view class="use" catchtap='jumpToCourse'>使用</view>
               </view>

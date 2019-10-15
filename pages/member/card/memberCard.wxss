@@ -50,6 +50,9 @@ page{
   border-radius: 10rpx;
   position: absolute;
 }
+.greyStyle{
+  filter: grayscale(100%) opacity(40%)
+}
 .cardNameImg{
   z-index: 100;
   width: 247rpx;
