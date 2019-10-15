@@ -4,10 +4,12 @@
   <view class="header">
     <view class="search-bar-wrapper">
       <view class="search-bar">
-        <input placeholder="搜索您喜欢的课程及教练" value="{{searchText}}" bindinput="handleSearchTextChange" focus bindconfirm="handleSearchBtnTap" placeholder-class='placeholderStyle'></input>
-        <text class='iconicon-test43 iconfont icon1' bindtap="handleSearchBtnTap" />
+      <text class='iconicon-test43 iconfont icon1' />
+        <input placeholder="搜索您喜欢的课程及教练" value="{{searchText}}" bindinput="handleSearchTextChange" focus="{{isFocus}}" bindconfirm="handleSearchBtnTap" placeholder-class='placeholderStyle'></input>
+        <text class='iconfont iconclose-circle' wx:if="{{searchText}}" catchtap='clearSearch'></text>
+        <!-- <text class='iconicon-test43 iconfont icon1' bindtap="handleSearchBtnTap" /> -->
       </view>
-      <view class="cancel" bindtap="handleCancelTap">取消</view>
+      <!-- <view class="cancel" bindtap="handleCancelTap">取消</view> -->
     </view>
 
     <view class="hot-search-wrapper" wx:if="{{searchKeyWords.length}}">

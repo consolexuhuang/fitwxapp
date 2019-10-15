@@ -22,13 +22,16 @@ Page({
       titleColor: "#000",
       tab_topBackground: '#fff'
     },
-    marginTopBar: getApp().globalData.tab_height * 2 + 20
+    marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    isFocus:true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('history')
+    console.log(getApp().globalData)
     let courseSearch = getApp().globalData.courseSearch
     if (getApp().globalData.courseSearch) {
       const searchKeyWords = getApp().globalData.courseSearch.searchKeyWords
@@ -59,6 +62,13 @@ Page({
       }
       getApp().globalData.courseSearch = ''
     }
+  },
+  //清除搜索
+  clearSearch: function () {
+    this.setData({
+      searchText: '',
+      isFocus:true
+    })
   },
   // 获取搜索框的内容
   handleSearchTextChange: function(event){
@@ -141,9 +151,10 @@ Page({
   handleCourseSearch: function(courseConfig){
     console.log('search02')
     getApp().globalData.courseConfig = courseConfig
-    let historySearch = this.data.historySearch
+    let historySearch = this.data.historySearch;
+    //去重复
     if (courseConfig.searchText) {
-      historySearch = [courseConfig.searchText].concat(historySearch)
+      historySearch = Array.from(new Set( [courseConfig.searchText].concat(historySearch))) ; 
       if (historySearch.length > 10) {
         historySearch = historySearch.slice(0, 10)
       }
