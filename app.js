@@ -177,7 +177,7 @@ App({
       wx.checkSession({
         success: (res) => {
           //session_key 未过期，并且在本生命周期一直有效
-          console.log(`登录态没过期，本地用户缓存-${this.passIsLogin()? "有" : "没有-重新获取"}`)
+          console.log(`${new Date().getTime()}-登录态没过期，本地用户缓存-${this.passIsLogin()? "有" : "没有-重新获取"}`)
           this.passIsLogin()
             ? resolve()
             : this.wx_loginIn().then(() => {
