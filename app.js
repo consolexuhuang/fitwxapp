@@ -79,12 +79,7 @@ App({
         this.globalData.share = true
       }
     } else {
-      // 特殊扫码进入的页面区分
-      if (options.scene == 1011 && options.path === 'pages/coach/signInCode/signInCode') {
-        this.globalData.share = true
-      } else {
-        this.globalData.share = false
-      }
+      this.globalData.share = false
     }
     //后台切到前台刷新
     let interval = 2 * 60 * 1000; //间隔设为2分钟
@@ -110,11 +105,11 @@ App({
     redirectToState: true,
     scene: '',
     sceneOptions: '',
-     /* JumpAppId: { //测试
-      appid: 'wx322a8a72b755aa57',
-      envVersion: 'trial' //体验版
-      //  envVersion: 'release' //正式版
-    }, */
+    // JumpAppId: { //测试
+    //   appid: 'wx322a8a72b755aa57',
+    //   envVersion: 'trial' //体验版
+    //   //  envVersion: 'release' //正式版
+    // },
 
     JumpAppId: {                   //正式
       appid: 'wxec1fe04fad9d4e02',
