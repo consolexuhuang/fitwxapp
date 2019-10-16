@@ -22,7 +22,7 @@
 
     <block wx:for="{{sportMonthList}}" wx:key="index">
       <view class="mounthMoreOrder_list" data-year="{{item.year}}" data-month="{{item.month}}" bindtap="handleMonthTap">
-        <view class="mounth">{{item.month}}月</view>
+        <view class="mounth analysis_train_month">{{item.month}}月</view>
         <view class="train fadeIn animated">
           <view class="train_cont">
             <view class="train_contNum">{{item.count}}</view>
