@@ -62,7 +62,9 @@ Page({
     getApp().checkSessionFun().then(() => {
       if (app.passIsLogin()) {
         //初始化数据
-        this.dataInit();
+        this.dataInit().then(()=>{
+          ui.hideLoading();
+        });
       } else {
         //hideLoading
         ui.hideLoading();

@@ -105,17 +105,17 @@ App({
     redirectToState: true,
     scene: '',
     sceneOptions: '',
-    // JumpAppId: { //测试
-    //   appid: 'wx322a8a72b755aa57',
-    //   envVersion: 'trial' //体验版
-    //   //  envVersion: 'release' //正式版
-    // },
+    JumpAppId: { //测试
+      appid: 'wx322a8a72b755aa57',
+      envVersion: 'trial' //体验版
+      //  envVersion: 'release' //正式版
+    },
 
-    JumpAppId: {                   //正式
+    /* JumpAppId: {                   //正式
       appid: 'wxec1fe04fad9d4e02',
       //envVersion: 'trial' //体验版
       envVersion: 'release' //正式版
-    },
+    }, */
   },
 
   /**
@@ -203,6 +203,8 @@ App({
           Store.setItem('code', res_code.code)
           let shareMemberId = wx.getStorageSync('shareMemberId') ? wx.getStorageSync('shareMemberId') : '';
           let data = {
+            //测试
+            //code:'12003',
             code: res_code.code,
             sourceData: _this.globalData.scene,
             shareChannel: shareMemberId,
@@ -211,12 +213,6 @@ App({
           // wx.showLoading({ title: '登录中...', })
           api.get('authorizationLite', data).then(res => {
             // wx.hideLoading()
-
-            /* //测试
-            res = {
-              code: 123
-            } */
-
             if (res.msg) {
               if (res.code === -1) { //如果出现登录未知错误
                 setTimeout(() => {

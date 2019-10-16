@@ -10,7 +10,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userCard: '',
     imgUrl: getApp().globalData.imgUrl,
     userData: '', //用户信息
     liteMyInfo: {}, // 用户首页数据
@@ -40,6 +39,9 @@ Page({
 
   },
   onShow() {
+    this.setData({
+      showAuthModel: !app.passIsLogin()
+    })
     app.checkSessionFun().then(() => {
       let liteMyInfo = wx.getStorageSync('liteMyInfo');
       if (liteMyInfo !== '') {
@@ -56,7 +58,6 @@ Page({
       this.setData({
         userData: Store.getItem('userData') || '',
         wx_userInfo: Store.getItem('wx_userInfo') || '',
-        showAuthModel: !app.passIsLogin()
       })
     })
 

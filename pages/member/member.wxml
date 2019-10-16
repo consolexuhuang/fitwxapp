@@ -1,7 +1,7 @@
 <!--pages/member/member.wxml-->
 <wxs src="../../utils/util.wxs" module="util" />
 <tabBar_top navbarData='{{navbarData}}'></tabBar_top>
-<view wx:if="userCard && sport" style='margin-top:{{marginTopBar}}px'>
+<view  wx:if='{{!showAuthModel}}' style='margin-top:{{marginTopBar}}px'>
 
   <!-- 未充值 头部 -->
   <view class="top-none-plus" wx:if="{{!liteMyInfo.isPlus}}">
@@ -27,7 +27,7 @@
   </view>
 
   <!-- 已充值 头部 -->
-  <block wx:else>
+  <view wx:else>
   <view class="space" ></view>
   <view class="top-plus">
     <image class="backgroundimg" src="/images/member/top-plus.png"></image>
@@ -63,7 +63,7 @@
       <view class="btn analysis_my_recharge03" data-is-plus="1" bindtap="handleRechargeTap">立即充值</view>
     </view>
   </view>
-</block>
+  </view>
 
   <!-- memu 01 -->
   <view class="menu fadeIn animated" wx:if='{{!showAuthModel}}'>
@@ -156,11 +156,11 @@
       </view>
     </view>
 
-  </view>
-
-  <!-- 提示微信登录 -->
-  <wxLoginView isShow='{{showAuthModel}}' bind:loginEvent="showJurisdictionSmallPopup"></wxLoginView>
+  </view>  
 
 </view>
+
+<!-- 提示微信登录 -->
+  <wxLoginView isShow='{{showAuthModel}}' bind:loginEvent="showJurisdictionSmallPopup"></wxLoginView>
 
 <jurisdictionSmallPopup state='{{jurisdictionSmallState}}' bindmyevent='bindgetuserinfo'></jurisdictionSmallPopup>
