@@ -114,5 +114,5 @@
 <view style="height: 1px;"></view>
 
 <view class="footer">
-  <view class="btn" bindtap="buyHandle">￥{{amount}} {{isPlus==1?'立即充值':'立即开通'}}</view>
+  <view class="btn analysis_recharge" bindtap="buyHandle">￥{{amount}} {{isPlus==1?'立即充值':'立即开通'}}</view>
 </view>
