@@ -24,7 +24,7 @@
     </swiper>
     <!-- 按钮 -->
     <view class="btn-group" wx:if="{{courseData.bannerList.length>0 && courseData.mediaUrl && util.include(courseData.mediaUrl, 'v.qq.com') && util.getUrlParams(courseData.mediaUrl).vid}}">
-      <view class="btn {{swiperBtnCurrent==0?'current':''}}"  data-type='pic' bindtap="handleSwitch">照片{{courseData.bannerList.length}}</view>
+      <view class="btn {{swiperBtnCurrent==0?'current':''}}"  data-type='pic' bindtap="handleSwitch">照片</view>
       <view  class="btn {{swiperBtnCurrent==1?'current':''}}" data-type='video' bindtap="handleSwitch">视频</view>
     </view>
   </view>
