@@ -29,21 +29,21 @@
 
   <view class='myOrderNavBox' style='top:{{marginTopBar}}px'>
     <view class="myOrderNav" id="DomNav">
-      <view class="myOrderNav_item {{active === 0 ? 'click_this' : ''}}" data-index="{{0}}" bindtap="handleTabTap">
+      <view class="myOrderNav_item analysis_train_wait {{active === 0 ? 'click_this' : ''}}" data-index="{{0}}" bindtap="handleTabTap">
         <view class="line">
           <text class='icon iconfont iconboji-'></text>
           <text class="text">待进行({{userInfoData.order.going_count}})</text>
           <view class="{{active == 0 ? 'myOrderNav_itemBottom' : ''}}"></view>
         </view>
       </view>
-      <view class="myOrderNav_item {{active === 1 ? 'click_this' : ''}}" data-index="{{1}}" bindtap="handleTabTap">
+      <view class="myOrderNav_item analysis_train_pay {{active === 1 ? 'click_this' : ''}}" data-index="{{1}}" bindtap="handleTabTap">
         <view class="line">
           <text class='icon iconfont iconyuqie-'></text>
           <text class="text">待付款({{userInfoData.order.unpay_count}})</text>
           <view class="{{active == 1 ? 'myOrderNav_itemBottom' : ''}}"></view>
         </view>
       </view>
-      <view class="myOrderNav_item {{active === 2 ? 'click_this' : ''}}" data-index="{{2}}" bindtap="handleTabTap">
+      <view class="myOrderNav_item analysis_train_end {{active === 2 ? 'click_this' : ''}}" data-index="{{2}}" bindtap="handleTabTap">
         <view class="line">
           <text class='icon iconfont icontiaosheng-'></text>
           <text class="text">已完成({{userInfoData.order.complete_count}})</text>
