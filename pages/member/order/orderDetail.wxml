@@ -5,7 +5,7 @@
 <view class="orderDetail_statusData fadeIn animated" style='margin-top:{{marginTopBar}}px'>
   <view class="orderDetail_headImgBox">
     <image bindtap='handleCoachTap' data-coachId='{{orderData.coach.id}}' class="orderDetail_headImg analysis_orderdetail_coachheader" src="{{orderData.coach.headUrl}}"></image>
-    <image class="orderDetail_headWxTag" src="{{imgUrl}}icon/wx_logo.png" bindtap='showCoachWxCode'></image>
+    <image class="orderDetail_headWxTag analysis_orderdetail_qrcode" src="{{imgUrl}}icon/wx_logo.png" bindtap='showCoachWxCode'></image>
   </view>
   <view class="orderDetail_statusInfo">
   <view class="status-box">
@@ -52,16 +52,16 @@
     <text class="orderDetail_text">预约人数：</text>
     <view class="orderDetail_data">{{orderData.order.pCount || 0}}人</view>
   </view>
-  <view class="admissionCode admissionCodeNext" data-name="{{orderData.store.storeName}}" data-address="{{orderData.store.address}}" data-latitude="{{orderData.store.latitude}}" data-longitude="{{orderData.store.longitude}}" bindtap="handleLocationTap">
+  <view class="admissionCode admissionCodeNext analysis_orderdetail_address" data-name="{{orderData.store.storeName}}" data-address="{{orderData.store.address}}" data-latitude="{{orderData.store.latitude}}" data-longitude="{{orderData.store.longitude}}" bindtap="handleLocationTap">
     <text class="orderDetail_icon2 iconfont iconicon-test39"></text>
     <text class="orderDetail_text">地点：</text>
     <view class="orderDetail_data">{{orderData.store.address}}</view>
   </view>
-   <view class="admissionCode admissionCodeNext" bindtap='handleRouteGuidanceTap' wx:if='{{orderData.store.mapPic}}'>
+   <view class="admissionCode admissionCodeNext analysis_orderdetail_route" bindtap='handleRouteGuidanceTap' wx:if='{{orderData.store.mapPic}}'>
     <text class="orderDetail_icon2 iconfont iconluxian-luxianfenlei"></text>
     <text class="orderDetail_text">线路指引</text>
   </view>
-  <view class="admissionCode admissionCodeNext" wx:if="{{hasPhoto}}" bindtap='gotoCoursePhoto'>
+  <view class="admissionCode admissionCodeNext analysis_orderdetail_photo" wx:if="{{hasPhoto}}" bindtap='gotoCoursePhoto'>
     <text class="orderDetail_icon2 iconfont iconxingzhuangjiehe1"></text>
     <text class="orderDetail_text">查看照片</text>
   </view>
@@ -104,7 +104,7 @@
       <view class="orderDetail_payData">¥{{orderData.order.actPrice}}</view>
     </view>
   </view>
-  <button class="invitationFriend fadeIn aminated" open-type='share' wx:if='{{orderData.cancelFlag == 1 && courseShareData}}'>邀请好友一起来</button>
+  <button class="invitationFriend fadeIn aminated analysis_orderdetail_friend" open-type='share' wx:if='{{orderData.cancelFlag == 1 && courseShareData}}'>邀请好友一起来</button>
   <view class='btnBox'>
     <view class="cancleStatus" bindtap='cancelOrder' wx:if="{{orderData.cancelFlag === 3 || orderData.cancelFlag === 4 || orderData.cancelFlag === 5}}">取消订单</view>
     <view class="cancleStatus" wx:if="{{orderData.cancelFlag == 2}}" bindtap='cancelWait'>取消等候</view>
