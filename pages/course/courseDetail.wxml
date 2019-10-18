@@ -5,14 +5,7 @@
 <view class="wrapper" wx:if='{{courseData}}' style='margin-top:{{marginTopBar}}px'>
   <view class="header">
     <swiper class="banner-swiper" current='{{swiperCurrent}}' bindchange="swiperChange">
-      <!-- 图片 -->
-      <block wx:if="{{courseData.bannerList.length>0}}" wx:for="{{courseData.bannerList}}" wx:key="index">
-        <swiper-item>
-          <view class="banner-item fadeIn animated">
-            <image src="{{item}}" />
-          </view>
-        </swiper-item>
-      </block>
+      
       <!-- 视频 -->
       <block wx:if="{{courseData.mediaUrl && util.include(courseData.mediaUrl, 'v.qq.com') && util.getUrlParams(courseData.mediaUrl).vid}}">
       <swiper-item>
@@ -21,11 +14,20 @@
         </view>
       </swiper-item>
       </block>
+      <!-- 图片 -->
+      <block wx:if="{{courseData.bannerList.length>0}}" wx:for="{{courseData.bannerList}}" wx:key="index">
+        <swiper-item>
+          <view class="banner-item fadeIn animated">
+            <image src="{{item}}" />
+          </view>
+        </swiper-item>
+      </block>
+
     </swiper>
     <!-- 按钮 -->
-    <view class="btn-group" wx:if="{{courseData.bannerList.length>0 && courseData.mediaUrl && util.include(courseData.mediaUrl, 'v.qq.com') && util.getUrlParams(courseData.mediaUrl).vid}}">
-      <view class="btn {{swiperBtnCurrent==0?'current':''}}"  data-type='pic' bindtap="handleSwitch">照片</view>
-      <view  class="btn {{swiperBtnCurrent==1?'current':''}}" data-type='video' bindtap="handleSwitch">视频</view>
+    <view class="btn-group" wx:if="{{courseData.bannerList.length>0 && courseData.mediaUrl && util.include(courseData.mediaUrl, 'v.qq.com') && util.getUrlParams(courseData.mediaUrl).vid}}">    
+      <view  class="btn {{swiperBtnCurrent==0?'current':''}}" data-type='video' bindtap="handleSwitch">视频</view>
+      <view class="btn {{swiperBtnCurrent==1?'current':''}}"  data-type='pic' bindtap="handleSwitch">照片</view>
     </view>
   </view>
   <view>
