@@ -12,6 +12,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    height: getApp().globalData.tab_height,
     navbarData: {
       title: '课程详情',
       showCapsule: 1,
@@ -65,9 +66,8 @@ Page({
     
     const courseId = options.courseId
     this.setData({
-      courseId
+      courseId,
     })
-
     //检测登录 
     // 以防checkSessionFun方法的resolve回调回来一个错误用户，所以在内部页面用passIsLogin提前先拦住
     if (!app.passIsLogin()) {

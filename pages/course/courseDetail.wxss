@@ -546,7 +546,6 @@ text-align: center;
 }
 .modal-video .icon-close{
   position: absolute;
-  top:140rpx;
   left:80rpx;
   color:rgba(255,255,255,.5);
 }
