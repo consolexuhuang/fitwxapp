@@ -5,14 +5,20 @@
 <view class="wrapper" wx:if='{{courseData}}' style='margin-top:{{marginTopBar}}px'>
   <view class="header">
     <swiper class="banner-swiper" current='{{swiperCurrent}}' bindchange="swiperChange">
-      
+
       <!-- 视频 -->
       <block wx:if="{{courseData.mediaUrl && util.include(courseData.mediaUrl, 'v.qq.com') && util.getUrlParams(courseData.mediaUrl).vid}}">
-      <swiper-item>
-        <view class="banner-item">
-          <txv-video vid="{{util.getUrlParams(courseData.mediaUrl).vid}}" playerid="{{util.getUrlParams(courseData.mediaUrl).vid}}" width="{{'100%'}}" height="{{'100%'}}" autoplay="{{false}}" objectFit='cover' defn='高清'></txv-video>
-        </view>
-      </swiper-item>
+        <swiper-item>
+          <view class="banner-item videoblock">
+            <image src="{{courseData.bannerList[0]}}" />
+            <view class="circle" bindtap="handleShowVideo">
+              <text class="icon iconfont iconbofang"></text>
+            </view>
+          </view>
+          <!-- <view class="banner-item">
+          
+        </view> -->
+        </swiper-item>
       </block>
       <!-- 图片 -->
       <block wx:if="{{courseData.bannerList.length>0}}" wx:for="{{courseData.bannerList}}" wx:key="index">
@@ -25,13 +31,13 @@
 
     </swiper>
     <!-- 按钮 -->
-    <view class="btn-group" wx:if="{{courseData.bannerList.length>0 && courseData.mediaUrl && util.include(courseData.mediaUrl, 'v.qq.com') && util.getUrlParams(courseData.mediaUrl).vid}}">    
-      <view  class="btn {{swiperBtnCurrent==0?'current':''}}" data-type='video' bindtap="handleSwitch">视频</view>
-      <view class="btn {{swiperBtnCurrent==1?'current':''}}"  data-type='pic' bindtap="handleSwitch">照片</view>
+    <view class="btn-group" wx:if="{{courseData.bannerList.length>0 && courseData.mediaUrl && util.include(courseData.mediaUrl, 'v.qq.com') && util.getUrlParams(courseData.mediaUrl).vid}}">
+      <view class="btn {{swiperBtnCurrent==0?'current':''}}" data-type='video' bindtap="handleSwitch">视频</view>
+      <view class="btn {{swiperBtnCurrent==1?'current':''}}" data-type='pic' bindtap="handleSwitch">照片</view>
     </view>
   </view>
   <view>
-  <view class="course-name fadeIn animated">{{courseData.courseName}}</view>
+    <view class="course-name fadeIn animated">{{courseData.courseName}}</view>
     <view class="course-info">
       <view class="course-info-left">
         <view class="course-time fadeIn animated">
@@ -222,20 +228,15 @@
   </view>
 </form>
 
-
+<!-- 视频播放 -->
+<view class="modal-video" wx:if="{{isShowVideo}}">
+<view class="icon-close iconfont iconguanbi" bindtap="handleCloseVideo"></view>
+<view class="video">
+  <txv-video vid="{{util.getUrlParams(courseData.mediaUrl).vid}}" playerid="{{util.getUrlParams(courseData.mediaUrl).vid}}" width="{{'100%'}}" height="{{'100%'}}" autoplay="{{true}}" objectFit='cover' defn='高清' controls='{{true}}' bindplay="bindplay"></txv-video>
+  </view>
+</view>
 
 <!-- 免责声明 -->
 <statement show="{{isShowStatement}}" content="{{statementContent}}" btnText="关闭" bind:statementEvent="statementClose"></statement>
-
-
-<!-- <view class='officialAccount fadeIn animated' 
-      wx:if='{{memberFollowState == 0}}'>
-  <official-account bindload='bindload' 
-                    binderror='binderror'
-                    class='officialAccount'>
-  </official-account>
-</view> -->
-<!-- <officalAccount memberFollowState='{{memberFollowState}}' bottomStyle='{{bottomStyle}}' officialDataState="{{officialDataState}}" pageShowNoticeState='{{memberInfo.sub_flag == 0 && memberInfo.order_count >= 1 ? true : false}}'>
-</officalAccount> -->
 
 <jurisdictionPopup state='{{jurisdictionState}}' bindmyevent='bindgetuserinfo'></jurisdictionPopup>

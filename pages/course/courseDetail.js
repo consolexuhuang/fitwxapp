@@ -1,8 +1,10 @@
 // pages/course/courseDetail.js
 const app = getApp();
-const api = app.api
+const api = app.api;
+const ui = require('../../utils/ui.js');
 const format = require('../../utils/util.js')
 const store = app.store;
+const txvContext = requirePlugin("tencentvideo");
 
 Page({
 
@@ -36,6 +38,7 @@ Page({
     jurisdictionState: false, //授权显示
     swiperCurrent:0,//banner但前显示index
     swiperBtnCurrent: 0,//0:当前显示视频，1：当前显示图片
+    isShowVideo:false,//是否显示播放视频
 
     statementContent:`<p>1、参与Justin&Julie健身服务的用户，具有完全的民事行为能力，同意遵守Justin&Julie的相关管理规章制度，已接受Justin&Julie的相关服务协议，并已知晓有关的健身规则与警示，承诺遵守Justin&Julie的相关健身规则与警示规定。</p>
       <p>2、Justin&Julie员工及教练不提供任何形式的体检服务，Justin&Julie员工及教练对用户身体情况的任何询问、了解和建议都不构成本公司对用户身体状况是否符合任意健身课程和产品要求的承诺及保证。在确认本声明前，用户应自行到医疗机构进行体检，了解自身身体情况，以确保用户具备参与Justin&Julie健身产品的身体条件，且没有任何不宜运动的疾病、损伤和其他缺陷。因用户自身的任何疾病、损伤或其他缺陷导致用户在接受服务时发生任何损害的，Justin&Julie不承担任何法律责任。</p>
@@ -52,16 +55,9 @@ Page({
       <p>本协议履行过程中，因用户使用Justin&Julie服务产生的争议应由Justin&Julie与用户沟通并协商处理。协商不成时，双方均同意以Justin&Julie平台管理者住所地上海市浦东新区人民法院为管辖法院。</p>`
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onShow(){
-    // wx.showShareMenu({
-    //   withShareTicket: true,
-    // })
-  },
+
   onLoad: function (options) {
-    console.log(options)
+    
     //分享过来的参数
     if (options.shareMemberId) {
       wx.setStorageSync('shareMemberId', options.shareMemberId)
@@ -85,6 +81,20 @@ Page({
         this.setData({ jurisdictionState: true })
       })
     }
+  },
+  /**
+ * 生命周期函数--监听页面加载
+ */
+  onShow() {
+    /* setTimeout(()=>{
+      //腾讯视频
+      this.txvContext = txvContext.getTxvContext('s0927v99xxj');
+      //txvContext.requestFullScreen();
+      txvContext.play();
+      console.log('txvContext')
+      console.log(this.txvContext)
+    },8000) */
+    
   },
   //头部banner类型切换
   swiperChange(event){
@@ -161,6 +171,23 @@ Page({
         })
       }
     })
+  },
+  //点击播放视频
+  handleShowVideo(){
+    ui.showLoading();
+    this.setData({
+      isShowVideo:true
+    })
+  },
+  //关闭播放弹层
+  handleCloseVideo(){
+    this.setData({
+      isShowVideo: false
+    })
+  },
+  //开始播放
+  bindplay(){
+    ui.hideLoading()
   },
   handleLocationTap: function(event) {
     const name = event.currentTarget.dataset.name
