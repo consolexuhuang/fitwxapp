@@ -174,7 +174,6 @@ Page({
   },
   //点击播放视频
   handleShowVideo(){
-    ui.showLoading();
     this.setData({
       isShowVideo:true
     })
@@ -184,10 +183,6 @@ Page({
     this.setData({
       isShowVideo: false
     })
-  },
-  //开始播放
-  bindplay(){
-    ui.hideLoading()
   },
   handleLocationTap: function(event) {
     const name = event.currentTarget.dataset.name
