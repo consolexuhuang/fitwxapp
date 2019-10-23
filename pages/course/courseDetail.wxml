@@ -213,11 +213,7 @@
 <!-- 免责声明 -->
 <statement show="{{isShowStatement}}" content="{{statementContent}}" btnText="关闭" bind:statementEvent="statementClose"></statement>
 
-<<<<<<< HEAD
 
 <jurisdictionPopup state='{{jurisdictionState}}' bindmyevent='bindgetuserinfo'></jurisdictionPopup>
 <!-- 分享内容 -->
 <shareMain cardData='{{cardData}}' isShow='{{isShowCard}}' bindclosecard='closecard'></shareMain>
-=======
-<jurisdictionPopup state='{{jurisdictionState}}' bindmyevent='bindgetuserinfo'></jurisdictionPopup>
->>>>>>> master

@@ -1,13 +1,7 @@
 <!--pages/member/order/memberOrder.wxml-->
 <wxs src="../../../utils/util.wxs" module="util" />
 <tabBar_top navbarData='{{navbarData}}'></tabBar_top>
-<<<<<<< HEAD
-<view class="wrapper" style='margin-top:{{marginTopBar}}px;'  wx:if='{{!showAuthModel}}'>
-  <view class="trainRescord fadeIn animated">
-    <view class="trainRescord_head analysis_memberorder_month" bindtap="handleMoreTap">
-      <view class="trainRescord_headCont">本月训练记录</view>
-      <view class="trainRescord_headMore">更多</view>
-=======
+
 <view class="wrapper" style='margin-top:{{marginTopBar}}px;' wx:if='{{!showAuthModel}}'>
   <!-- 累计 -->
   <view class="acount analysis_train_detail" bindtap="handleMoreTap">
@@ -17,7 +11,6 @@
         <text class="explain">详细</text>
         <text class="icon iconfont iconShape-"></text>
       </view>
->>>>>>> master
     </view>
     <view class="list">
       <view class="item">

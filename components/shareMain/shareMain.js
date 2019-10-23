@@ -41,8 +41,8 @@ Component({
     width: 550, //canvas宽
     height: 786, //canvas高  2行地址高度828
     addlessByteLen: 0, //地址字节数
-    sPicWidth: 560, //源图片宽度      后面确定好图片的尺寸后需要改sPicWidth、sPicHeight的值
-    sPicHeight: 302, //源图片高度
+    sPicWidth: 690, //源图片宽度      后面确定好图片的尺寸后需要改sPicWidth、sPicHeight的值
+    sPicHeight: 330, //源图片高度
     picHeight: 450, //绘制图片高度450
     borderRadius: 32, //矩形背景圆角
     picBorderRadius: 60, //矩形背景圆角
@@ -237,7 +237,10 @@ Component({
       ctx.fill();
       //绘制图片
       ctx.clip();
-      ctx.drawImage(pic, 0, 0, sPicWidth, sPicHeight, 0, 0, canvasWidth, picHeight);
+      //从banner里拿过来的图片690*330截取的x,y
+      let imgSX = 143;
+      let imgSY = 0;
+      ctx.drawImage(pic, imgSX, imgSY, sPicWidth, sPicHeight, 0, 0, canvasWidth, picHeight);
       //渐变色
       let grd = ctx.createLinearGradient(canvasWidth / 2, 0, canvasWidth / 2, picHeight);
       grd.addColorStop(0, 'rgba(0,0,0,0)')

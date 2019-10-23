@@ -4,11 +4,8 @@
 
 <view class="orderDetail_statusData fadeIn animated" style='margin-top:{{marginTopBar}}px'>
   <view class="orderDetail_headImgBox">
-<<<<<<< HEAD
-    <image bindtap='handleCoachTap' data-coachId='{{orderData.coach.id}}' class="orderDetail_headImg" src="{{orderData.coach.headUrl}}"></image>
-=======
+
     <image bindtap='handleCoachTap' data-coachId='{{orderData.coach.id}}' class="orderDetail_headImg analysis_orderdetail_coachheader" src="{{orderData.coach.headUrl}}"></image>
->>>>>>> master
     <image class="orderDetail_headWxTag analysis_orderdetail_qrcode" src="{{imgUrl}}icon/wx_logo.png" bindtap='showCoachWxCode'></image>
   </view>
   <view class="orderDetail_statusInfo">
