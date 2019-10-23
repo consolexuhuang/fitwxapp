@@ -62,11 +62,13 @@ page {
   flex-grow: 0;
   /* width: 22rpx;
   height: 20rpx; */
-  margin:8rpx 10rpx 0 0;
+  margin:0rpx 10rpx 0 0;
   font-size: 23rpx;
+  line-height: 34rpx
 }
 .list .item .info .row text{
   font-size:24rpx;
+  line-height: 34rpx;
 }
 .list .item .arrow{  
   flex-shrink: 0;

@@ -1,9 +1,16 @@
 // pages/course/courseDetail.js
 const app = getApp();
+<<<<<<< HEAD
 const api = app.api
 const format = require('../../utils/util.js');
 const ui = require('../../utils/ui.js');
+=======
+const api = app.api;
+const ui = require('../../utils/ui.js');
+const format = require('../../utils/util.js')
+>>>>>>> master
 const store = app.store;
+const txvContext = requirePlugin("tencentvideo");
 
 Page({
 
@@ -11,6 +18,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    height: getApp().globalData.tab_height,
     navbarData: {
       title: '课程详情',
       showCapsule: 1,
@@ -35,6 +43,7 @@ Page({
     memberInfo:'',
 
     jurisdictionState: false, //授权显示
+<<<<<<< HEAD
     cardData:{
       pic:'',
       courseName:'',
@@ -46,6 +55,11 @@ Page({
       qrCode:''
     },//保存卡片需要的信息
     isShowCard:false,//是否显示卡片内容
+=======
+    swiperCurrent:0,//banner但前显示index
+    swiperBtnCurrent: 0,//0:当前显示视频，1：当前显示图片
+    isShowVideo:false,//是否显示播放视频
+>>>>>>> master
 
     statementContent:`<p>1、参与Justin&Julie健身服务的用户，具有完全的民事行为能力，同意遵守Justin&Julie的相关管理规章制度，已接受Justin&Julie的相关服务协议，并已知晓有关的健身规则与警示，承诺遵守Justin&Julie的相关健身规则与警示规定。</p>
       <p>2、Justin&Julie员工及教练不提供任何形式的体检服务，Justin&Julie员工及教练对用户身体情况的任何询问、了解和建议都不构成本公司对用户身体状况是否符合任意健身课程和产品要求的承诺及保证。在确认本声明前，用户应自行到医疗机构进行体检，了解自身身体情况，以确保用户具备参与Justin&Julie健身产品的身体条件，且没有任何不宜运动的疾病、损伤和其他缺陷。因用户自身的任何疾病、损伤或其他缺陷导致用户在接受服务时发生任何损害的，Justin&Julie不承担任何法律责任。</p>
@@ -62,27 +76,24 @@ Page({
       <p>本协议履行过程中，因用户使用Justin&Julie服务产生的争议应由Justin&Julie与用户沟通并协商处理。协商不成时，双方均同意以Justin&Julie平台管理者住所地上海市浦东新区人民法院为管辖法院。</p>`
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onShow(){
-    // wx.showShareMenu({
-    //   withShareTicket: true,
-    // })
-  },
+
   onLoad: function (options) {
+<<<<<<< HEAD
     //loading
     wx.showLoading({ title: '加载中...' })
+=======
+    
+>>>>>>> master
     //分享过来的参数
     if (options.shareMemberId) {
       wx.setStorageSync('shareMemberId', options.shareMemberId)
     }    
     const courseId = options.courseId
     this.setData({
-      courseId
+      courseId,
     })
-
-    //检测登录
+    //检测登录 
+    // 以防checkSessionFun方法的resolve回调回来一个错误用户，所以在内部页面用passIsLogin提前先拦住
     if (!app.passIsLogin()) {
       this.setData({ jurisdictionState: true })
     } else {
@@ -96,6 +107,46 @@ Page({
       })
     }
   },
+  /**
+ * 生命周期函数--监听页面加载
+ */
+  onShow() {
+    /* setTimeout(()=>{
+      //腾讯视频
+      this.txvContext = txvContext.getTxvContext('s0927v99xxj');
+      //txvContext.requestFullScreen();
+      txvContext.play();
+      console.log('txvContext')
+      console.log(this.txvContext)
+    },8000) */
+    
+  },
+  //头部banner类型切换
+  swiperChange(event){
+    let swiperCurrent = event.detail.current;
+    let swiperBtnCurrent = 0;
+    if (swiperCurrent > 0){
+      swiperBtnCurrent=1
+    }
+    this.setData({
+      swiperBtnCurrent
+    });
+  },
+  //头部banner类型切换
+  handleSwitch(event){
+    let type = event.currentTarget.dataset.type;
+    let swiperCurrent = 0;
+    let swiperBtnCurrent = 0;
+    if (type =='pic'){
+      swiperCurrent = 1;
+      swiperBtnCurrent = 1;
+    }
+    this.setData({
+      swiperCurrent: swiperCurrent,
+      swiperBtnCurrent: swiperBtnCurrent
+    });
+  },
+
   // 点击授权
   bindgetuserinfo(){
     //loading
@@ -113,6 +164,9 @@ Page({
   /**
    * write@xuhuang  start
    */
+  // submitFormId: function(e) {
+  //   console.log('formID-------', e.detail)
+  // },
   // 获取当前用户关注状态
   getMemberFollowState() {
     api.post('v2/member/memberInfo').then(res => {
@@ -152,6 +206,18 @@ Page({
       }
     })
   },
+  //点击播放视频
+  handleShowVideo(){
+    this.setData({
+      isShowVideo:true
+    })
+  },
+  //关闭播放弹层
+  handleCloseVideo(){
+    this.setData({
+      isShowVideo: false
+    })
+  },
   handleLocationTap: function(event) {
     const name = event.currentTarget.dataset.name
     const address = event.currentTarget.dataset.address
@@ -166,6 +232,11 @@ Page({
     })
   },
   handleAppointBtnTap: function(event) {
+    // console.log(event)
+    console.log('formID-------', event.detail)
+    if (event.detail.formId !== 'the formId is a mock one') {
+      store.setItem('formId', [...(store.getItem('formId') || ''), event.detail.formId])
+    }
     if (app.passIsLogin()){
       const courseId = this.data.courseId
       wx.navigateTo({
@@ -217,7 +288,7 @@ Page({
     const storeId = this.data.storeId
     console.log(format.formatTime3(this.data.courseData.beginTime))
     return {
-      title: `【 ${this.data.courseData.courseName} 】 周${this.data.courseData.beginDay}${format.formatTime3(this.data.courseData.beginTime)}，我们一起？`,
+      // title: '',
       path: '/pages/course/courseDetail?courseId=' + this.data.courseId + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
       // imageUrl: this.data.picList[0],
       success: function (res) {

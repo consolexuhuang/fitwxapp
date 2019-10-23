@@ -81,6 +81,8 @@ Page({
     this.setData({
       selectedTimeInterval
     })
+    console.log('selectedTimeInterval')
+    console.log(this.data.selectedTimeInterval)
   },
   handleResetTap: function(event) {
     const selectedTimeInterval = []
@@ -118,5 +120,17 @@ Page({
         //page.onLoad() //或者其它操作
       } */
     })
+  },
+  //时间左滑块
+  lowValueChangeAction(beginTime){
+    let step=2;
+    
+    console.log('beginTime')
+    console.log(beginTime.detail.lowValue)
+  },
+  //时间右滑块
+  heighValueChangeAction(endTime){
+    console.log('endTime')
+    console.log(endTime.detail.lowValue)
   }
 })

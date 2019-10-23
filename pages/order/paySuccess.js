@@ -31,6 +31,7 @@ Page({
     memberFollowState: 1, //当前关注状态
     bottomStyle: 100,
     officialDataState: false,
+
     // forcedEjection:false, //是否强制弹出
     // pageShowNoticeState:false
   },
@@ -66,7 +67,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
   // 订单详情
   getOrderDetail(){
@@ -138,7 +138,7 @@ Page({
     }
     api.post('course/getCourse', data).then(res => {
       if (res.code === 0) {
-        const courseShareData = res.msg.config.info
+        const courseShareData = res.msg.config
         this.setData({
           courseShareData,
         })
@@ -216,21 +216,21 @@ Page({
   }, 
   jumpToRechange(){
     wx.navigateTo({
-      url: '/pages/card/recharge',
+      url: '/pages/card/recharge?isPlus=0',
     })
   },
   //分享
   onShareAppMessage() {
     return {
-      title: this.data.courseShareData,
+      title: this.data.courseShareData.title,
       path: '/pages/course/courseDetail?courseId=' + this.data.orderDetailData.course.id + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
-      // imageUrl: this.data.picList[0],
+      imageUrl: this.data.courseShareData.img,
       success: function (res) {
         console.log(res)
       },
       fail: function (res) {
-        console.log(res)
-      }
+        
+      },
     }
   },
 })

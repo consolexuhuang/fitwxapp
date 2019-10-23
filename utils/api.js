@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 //const API_URI = 'https://fit.jlife.vip/wx/api/'
 const API_URI = 'https://dev.jlife.vip/wx/api/'
 
+=======
+
+const API_URI = 'https://fit.jlife.vip/wx/api/'
+// const API_URI = 'https://dev.jlife.vip/wx/api/'
+>>>>>>> master
 
 import Store from './store.js'
 function request(path, data, method) {
@@ -14,13 +20,13 @@ function request(path, data, method) {
       header: {
         'content-type': 'application/x-www-form-urlencoded',
         '_token': Store.getItem('userData').token,
+        'formId': Store.getItem('formId') ? Store.getItem('formId').join(',') : ''
         // 'content-type': 'application/json',
       },
       data: data,
       method: method,
       success: function(res) {
         
-
         //没报错
         if (!noFind){
           if (res.data.code !== -1 && res.data.code !== 401) {
@@ -40,8 +46,6 @@ function request(path, data, method) {
               });
           }
         }
-        
-
       },
       fail: function(res) {
         //没报错
@@ -49,6 +53,10 @@ function request(path, data, method) {
           wx.redirectTo({ url: `/pages/noFind/noFind?type=4`})//无网络
           reject(res.data)
         }
+      },
+      complete: function(){
+        // console.log('缓存formId-----', Store.getItem('formId') ? Store.getItem('formId').join(',') : '')
+        Store.clear('formId')
       }
     })
   })

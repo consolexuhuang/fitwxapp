@@ -61,7 +61,7 @@
                       <view class="course-left">
                         <view class="course-time">{{util.timeFormat(courseItem.begin_time, 'hh:mm')}}-{{util.timeFormat(courseItem.end_time, 'hh:mm')}}</view>
                         <view class="course-name">{{courseItem.course_name || ''}}</view>
-                        <view class="course-label">{{courseItem.LABELS || ''}}</view>
+                        <view class="course-label">{{util.preLabel(courseItem.LABELS || '')}}</view>
                         <view class="course-price-wrapper">
                           <view class="course-discount-price">¥{{courseItem.discount_price}}</view>
                           <view class="course-price-line"></view>
@@ -84,10 +84,18 @@
                         <view class="course-appoint-btn">详情</view>
                       </block>
                       <block wx:elif="{{courseItem.status === 1}}">
-                        <view class="course-appoint-btn" data-course-id="{{courseItem.id}}" catchtap="handleAppointBtnTap">立即预约</view>
+                        <view class="course-appoint-btn">立即预约
+                            <form report-submit='true' data-course-id="{{courseItem.id}}" catchsubmit="handleAppointBtnTap" catchtap="noop"  class="formIdBtnBox">
+                                <button form-type='submit' class='formIdBtn'/>
+                            </form>
+                        </view>
                       </block>
                       <block wx:elif="{{courseItem.status === 2}}">
-                        <view class="course-wait-btn" data-course-id="{{courseItem.id}}" catchtap="handleAppointBtnTap">等位</view>
+                        <view class="course-wait-btn">等位
+                            <form report-submit='true' data-course-id="{{courseItem.id}}" catchsubmit="handleAppointBtnTap" catchtap="noop"  class="formIdBtnBox">
+                                <button form-type='submit' class='formIdBtn'/>
+                            </form>
+                        </view>
                       </block>
                       <block wx:elif="{{courseItem.status === 3}}">
                         <view class="course-end-btn">结束</view>

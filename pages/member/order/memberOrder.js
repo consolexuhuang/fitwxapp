@@ -1,9 +1,11 @@
 // pages/member/order/memberOrder.js
-import Store from '../../../utils/store.js' 
+import Store from '../../../utils/store.js'
 const app = getApp();
 const ui = require('../../../utils/ui.js');
 const api = getApp().api
-let orderPageIng = 1, orderPageWait = 1, orderPageComplate = 1;
+let orderPageIng = 1,
+  orderPageWait = 1,
+  orderPageComplate = 1;
 
 
 Page({
@@ -11,9 +13,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isLoaded:false,//是否加载完成
+    isLoaded: false, //是否加载完成
     active: 0, //当前索引
-    sport: '',
     goingList: '',
     payingList: '',
     completedList: '',
@@ -21,7 +22,7 @@ Page({
     imgUrl: getApp().globalData.imgUrl,
     navbarData: {
       title: '训练',
-      showCapsule: 1,
+      showCapsule: 0,
       isShowBackHome: true,
       titleColor: "#000",
       tab_topBackground: '#fff'
@@ -32,36 +33,42 @@ Page({
     jurisdictionSmallState: false,
   },
   /**
-  * 生命周期函数--监听页面加载
-  */
-  onLoad: function () {
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function() {
     //loading
     ui.showLoading();
   },
 
   onShow() {
-    /* 训练小红点引导 后面需要删除*/
+    /* 
+     //训练小红点引导 后面需要删除
     wx.hideTabBarRedDot({
       index: 2,
       success:()=>{
-        if (!wx.getStorageInfoSync('hideTabBarRedDot')) {
+        if (!wx.getStorageSync('hideTabBarRedDot')) {
           wx.setStorageSync('hideTabBarRedDot', true)
         }
       },
-    })
+    }) */
+
     //检测登录
-    this.setData({ showAuthModel: !app.passIsLogin() });
-      //loading
-      ui.showLoading();
+    this.setData({
+      showAuthModel: !app.passIsLogin()
+    });
+    //loading
+    ui.showLoading();
     //获取当前应该显示tab    
-    getApp().checkSessionFun().then(() => {    
+    getApp().checkSessionFun().then(() => {
       if (app.passIsLogin()) {
         //初始化数据
-        this.dataInit();
-      }else{
+        this.dataInit().then(()=>{
+          ui.hideLoading();
+        });
+      } else {
         //hideLoading
         ui.hideLoading();
-      }  
+      }
     })
   },
 
@@ -75,13 +82,23 @@ Page({
     //loading
     ui.showLoading();
     this.setData({
-      isLoaded:false
+      isLoaded: false
     })
     if (app.passIsLogin()) {
-    this.dataInit().then(()=>{
-      wx.stopPullDownRefresh();
-    })
+      this.dataInit().then(() => {
+        wx.stopPullDownRefresh();
+      })
     }
+  },
+  onHide() {
+    this.setData({
+      isLoaded: false
+    })
+  },
+  onUnload() {
+    this.setData({
+      isLoaded: false
+    })
   },
 
   //提示授权
@@ -103,42 +120,37 @@ Page({
   },
 
   // 初始化数据
-  dataInit(){
+  dataInit() {
     orderPageIng = orderPageWait = orderPageComplate = 1;
-    this.setData({ goingList: '', payingList: '', completedList: '' })
-    return Promise.all([this.getUserInfo(), this.getSport(), this.loadMoreOrder(1)]).then(()=>{  
+    this.setData({
+      goingList: '',
+      payingList: '',
+      completedList: ''
+    })
+    return Promise.all([this.getUserInfo(), this.loadMoreOrder(1)]).then(() => {
       //hideLoading
       this.setData({
-        isLoaded:true
+        isLoaded: true
       })
       ui.hideLoading();
-    }).catch(err=>{
-      console.err('err:'+err)
+    }).catch(err => {
+      console.err('err:' + err)
     });
   },
   // 获取用户训练记录
   getUserInfo() {
-    return new Promise((resolve,reject)=>{
+    return new Promise((resolve, reject) => {
       api.post('v2/member/liteMyInfo').then(res => {
-        this.setData({ userInfoData: res.msg });
-        resolve();
-      })
-    }) 
-  },
-  // 运动数据
-  getSport(event) {
-    return new Promise(resolve => {
-      api.post('payOrder/sportTotalAndMonth').then(res => {
-        const sport = res.msg
         this.setData({
-          sport
+          userInfoData: res.msg
         });
         resolve();
       })
     })
   },
+
   //付款
-  goPay(e){
+  goPay(e) {
     let orderId = e.currentTarget.dataset.orderid;
     let param = {
       orderId
@@ -147,7 +159,7 @@ Page({
       this.wxPay(res.msg);
     });
   },
-  wxPay: function (obj) {
+  wxPay: function(obj) {
     wx.requestPayment({
       timeStamp: obj.timeStamp,
       nonceStr: obj.nonceStr,
@@ -173,12 +185,12 @@ Page({
     //loading
     ui.showLoading();
     this.setData({
-      isLoaded:false
+      isLoaded: false
     })
     let index = event.currentTarget.dataset.index;
     this.setData({
       active: index
-    },()=>{
+    }, () => {
       let page = 1;
       this.loadMoreOrder(page).then(() => {
         //hideLoading
@@ -188,23 +200,24 @@ Page({
         })
       });
     })
-    
+
   },
 
   // 跳转本月更多
   handleMoreTap() {
+    let userInfoData = this.data.userInfoData ? this.data.userInfoData.total ? this.data.userInfoData.total : '' : '';
     wx.navigateTo({
-      url: '/pages/member/order/monthRecord'
+      url: `/pages/member/order/monthRecord?userInfoData=${JSON.stringify(userInfoData)}`
     })
   },
-  handleOrderItemTap: function (event) {
+  handleOrderItemTap: function(event) {
     const orderNum = event.currentTarget.dataset.orderNum
     wx.navigateTo({
       url: '/pages/member/order/orderDetail?orderNum=' + orderNum
     })
   },
   // 跳转教练课程列表
-  handleCoachTap: function (event) {
+  handleCoachTap: function(event) {
     const coachId = event.currentTarget.dataset.coachid
     wx.navigateTo({
       url: '/pages/coach/coach?coachId=' + coachId
@@ -221,34 +234,46 @@ Page({
       size: 10,
       needTotalCount: true
     }
-  return new Promise((resolve,reject)=>{
-    api.post('v2/payOrder/getOrderListByPage', data).then(res => {
-      // wx.hideLoading()
-      if (this.data.active == 0) {
-        if (pageNum == 1) {
-          this.setData({ goingList: res.msg.result })
-        } else {
-          this.setData({ goingList: [...this.data.goingList, ...res.msg.result] })
+    return new Promise((resolve, reject) => {
+      api.post('v2/payOrder/getOrderListByPage', data).then(res => {
+        // wx.hideLoading()
+        if (this.data.active == 0) {
+          if (pageNum == 1) {
+            this.setData({
+              goingList: res.msg.result
+            })
+          } else {
+            this.setData({
+              goingList: [...this.data.goingList, ...res.msg.result]
+            })
+          }
         }
-      }
-      if (this.data.active == 1) {
-        if (pageNum == 1) {
-          this.setData({ payingList: res.msg.result })
-        } else {
-          this.setData({ payingList: [...this.data.payingList, ...res.msg.result] })
+        if (this.data.active == 1) {
+          if (pageNum == 1) {
+            this.setData({
+              payingList: res.msg.result
+            })
+          } else {
+            this.setData({
+              payingList: [...this.data.payingList, ...res.msg.result]
+            })
+          }
         }
-      }
-      if (this.data.active == 2) {
-        if (pageNum == 1) {
-          this.setData({ completedList: res.msg.result })
-        } else {
-          this.setData({ completedList: [...this.data.completedList, ...res.msg.result] })
+        if (this.data.active == 2) {
+          if (pageNum == 1) {
+            this.setData({
+              completedList: res.msg.result
+            })
+          } else {
+            this.setData({
+              completedList: [...this.data.completedList, ...res.msg.result]
+            })
+          }
         }
-      }
-      resolve();
+        resolve();
+      })
     })
-  })
-  
+
   }
 
 })

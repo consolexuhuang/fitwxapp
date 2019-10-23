@@ -1,8 +1,9 @@
 <!--pages/coursePhoto/coursePhoto.wxml-->
+<wxs src="../../utils/util.wxs" module="util" />
 <tabBar_top navbarData='{{navbarData}}'></tabBar_top>
 <view class='wrapper {{imgHeightScale < 800 ? "bottom0" : ""}}' style='margin-top:{{marginTopBar}}px;'>
 
-  <image src='{{photoUrl}}' style='width:{{imgWidthScale}}rpx;height:{{imgHeightScale}}rpx;'></image>
+  <image wx:if="{{photoUrl}}" src='{{util.imageParam(photoUrl,"?imageView/2/w/"+windowWidth-20)}}' mode='widthFix' style="width:{{windowWidth-20}}px"></image>
 
   <view class='download' bindtap='downloadPhoto'>
     <text class='text'>下载至相册</text>

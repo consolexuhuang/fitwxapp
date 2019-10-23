@@ -60,6 +60,7 @@ const getUrlParam = (url, paraName) => {
   }
 }
 
+
 module.exports = {
   formatTime: formatTime,
   formatTime2,

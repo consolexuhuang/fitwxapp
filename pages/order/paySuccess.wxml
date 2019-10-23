@@ -11,7 +11,11 @@
     <view class="order-tips">预约成功</view>
     <view class="pay-mode">{{orderDetailData.order.paymentWay == 7 ? orderDetailData.order.cardTitle :                                 (orderDetailData.order.paymentWay == 1 ? "微信支付:" :                                                       (orderDetailData.order.paymentWay == 4 ? "" :                                                         (orderDetailData.order.paymentWay == 2 ? "PLUS卡支付:" : '')))}}<text wx:if='{{orderDetailData.order.paymentWay == 7}}'>:1次</text> <text wx:if='{{orderDetailData.order.paymentWay != 7 && orderDetailData.order.paymentWay != 4}}'> ¥{{orderDetailData.order.actPrice}}</text> 
     </view>
+<<<<<<< HEAD
     <view class="coach-wrapper analysis_paysuccess_qrcode" bindtap='showCoachWxCode'>
+=======
+    <view class="coach-wrapper" bindtap='showCoachWxCode analysis_paysuccess_qrcode'>
+>>>>>>> master
       <image class="coach-avatar" src="{{orderDetailData.coach.headUrl}}" />
       <image class="coach-wechat" src="{{imgUrl}}icon/wx_logo.png" />
     </view>

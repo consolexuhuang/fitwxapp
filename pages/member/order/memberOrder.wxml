@@ -1,149 +1,174 @@
 <!--pages/member/order/memberOrder.wxml-->
 <wxs src="../../../utils/util.wxs" module="util" />
 <tabBar_top navbarData='{{navbarData}}'></tabBar_top>
+<<<<<<< HEAD
 <view class="wrapper" style='margin-top:{{marginTopBar}}px;'  wx:if='{{!showAuthModel}}'>
   <view class="trainRescord fadeIn animated">
     <view class="trainRescord_head analysis_memberorder_month" bindtap="handleMoreTap">
       <view class="trainRescord_headCont">本月训练记录</view>
       <view class="trainRescord_headMore">更多</view>
+=======
+<view class="wrapper" style='margin-top:{{marginTopBar}}px;' wx:if='{{!showAuthModel}}'>
+  <!-- 累计 -->
+  <view class="acount analysis_train_detail" bindtap="handleMoreTap">
+    <view class="title">
+      <text class="txt">累计训练记录</text>
+      <view class="right">
+        <text class="explain">详细</text>
+        <text class="icon iconfont iconShape-"></text>
+      </view>
+>>>>>>> master
     </view>
-    <view class="trainRescord_time">
-      <view class="trainRescord_timeCount">{{sport.month.count}}</view>次
-      <view class="trainRescord_timeCount">{{sport.month.days}}</view>天
-      <view class="trainRescord_timeCount">{{sport.month.mins}}</view>分钟
+    <view class="list">
+      <view class="item">
+        <text class="number">{{userInfoData.total.count || 0}}</text>
+        <text class="label">训练次数</text>
+      </view>
+      <view class="item">
+        <text class="number">{{userInfoData.total.days || 0}}</text>
+        <text class="label">训练天数</text>
+      </view>
+      <view class="item">
+        <text class="number">{{userInfoData.total.mins || 0}}</text>
+        <text class="label">训练时长/分钟</text>
+      </view>
     </view>
   </view>
+
   <view class='myOrderNavBox' style='top:{{marginTopBar}}px'>
     <view class="myOrderNav" id="DomNav">
-      <view class="myOrderNav_item {{active === 0 ? 'click_this' : ''}}" data-index="{{0}}" bindtap="handleTabTap">
-        <text class='icon iconfont iconboji-'></text>
-        <text class="text">待进行({{userInfoData.order.going_count}})</text>
-        <view class="{{active == 0 ? 'myOrderNav_itemBottom' : ''}}"></view>
+      <view class="myOrderNav_item analysis_train_wait {{active === 0 ? 'click_this' : ''}}" data-index="{{0}}" bindtap="handleTabTap">
+        <view class="line">
+          <text class='icon iconfont iconboji-'></text>
+          <text class="text">待进行({{userInfoData.order.going_count}})</text>
+          <view class="{{active == 0 ? 'myOrderNav_itemBottom' : ''}}"></view>
+        </view>
       </view>
-      <view class="myOrderNav_item {{active === 1 ? 'click_this' : ''}}" data-index="{{1}}" bindtap="handleTabTap">
-        <text class='icon iconfont iconyuqie-'></text>
-        <text class="text">待付款({{userInfoData.order.unpay_count}})</text>
-        <view class="{{active == 1 ? 'myOrderNav_itemBottom' : ''}}"></view>
+      <view class="myOrderNav_item analysis_train_pay {{active === 1 ? 'click_this' : ''}}" data-index="{{1}}" bindtap="handleTabTap">
+        <view class="line">
+          <text class='icon iconfont iconyuqie-'></text>
+          <text class="text">待付款({{userInfoData.order.unpay_count}})</text>
+          <view class="{{active == 1 ? 'myOrderNav_itemBottom' : ''}}"></view>
+        </view>
       </view>
-      <view class="myOrderNav_item {{active === 2 ? 'click_this' : ''}}" data-index="{{2}}" bindtap="handleTabTap">
-        <text class='icon iconfont icontiaosheng-'></text>
-        <text class="text">已完成({{userInfoData.order.complete_count}})</text>
-        <view class="{{active == 2 ? 'myOrderNav_itemBottom' : ''}}"></view>
+      <view class="myOrderNav_item analysis_train_end {{active === 2 ? 'click_this' : ''}}" data-index="{{2}}" bindtap="handleTabTap">
+        <view class="line">
+          <text class='icon iconfont icontiaosheng-'></text>
+          <text class="text">已完成({{userInfoData.order.complete_count}})</text>
+          <view class="{{active == 2 ? 'myOrderNav_itemBottom' : ''}}"></view>
+          </view>
       </view>
     </view>
   </view>
 
   <!-- 待进行 -->
   <view class="tab_content" wx:if="{{active==0}}">
-  <block wx:if="{{goingList.length}}">
-    <block wx:for="{{goingList}}" wx:key="index">
-      <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
-        <view class="item-status">{{item.status_desc}}</view>
-        <view class="item-content">
-          <text class='isWait iconfont iconfenzu-7' wx:if='{{item.is_wait}}'></text>
-          <image catchtap='handleCoachTap' data-coachId='{{item.coach_id}}' class="item_headerImg" src="{{item.head_url}}"></image>
-          <view class="item_info">
-            <view class="item_info_title">{{item.course_name}}</view>
-            <view class="item_info_title_detail">
-              <text class="item_info_shopImg iconicon-test23 iconfont"></text> {{item.store_id__NAME}}
+    <block wx:if="{{goingList.length}}">
+      <block wx:for="{{goingList}}" wx:key="index">
+        <view class="myOrder_listItem" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
+          <view class="item-status">{{item.status_desc}}</view>
+          <view class="item-content">
+            <text class='isWait iconfont iconfenzu-7' wx:if='{{item.is_wait}}'></text>
+            <image catchtap='handleCoachTap' data-coachId='{{item.coach_id}}' class="item_headerImg" src="{{item.head_url}}"></image>
+            <view class="item_info">
+              <view class="item_info_title">{{item.course_name}}</view>
+              <view class="item_info_title_detail">
+                <text class="item_info_shopImg iconicon-test23 iconfont"></text> {{item.store_id__NAME}}
+              </view>
+              <view class="item_info_title_detail">
+                <text class="item_info_shopImg iconfont iconicon-test17"></text> {{util.timeFormat(item.begin_date, 'MM月DD日')}} 星期{{item.begin_day}} {{util.timeFormat(item.begin_time,'hh:mm')}}-{{util.timeFormat(item.end_time,'hh:mm')}}
+              </view>
             </view>
-            <view class="item_info_title_detail">
-              <text class="item_info_shopImg iconfont iconicon-test17"></text> {{util.timeFormat(item.begin_date, 'MM月DD日')}} 星期{{item.begin_day}} {{util.timeFormat(item.begin_time,'hh:mm')}}-{{util.timeFormat(item.end_time,'hh:mm')}}
+            <view class="item_info_seeBox">
+              <view class="item_info_see {{active == 2 ? 'item_info_seeComplete' : ''}}">
+                {{active == 0 ? '详情' : (active == 1 ? '去付款' : (active == 2 ? '已完成' : ''))}}
+              </view>
             </view>
           </view>
-          <view class="item_info_seeBox">
-            <view class="item_info_see {{active == 2 ? 'item_info_seeComplete' : ''}}">
-              {{active == 0 ? '详情' : (active == 1 ? '去付款' : (active == 2 ? '已完成' : ''))}}
-            </view>
-          </view>
-        </view>
 
+        </view>
+      </block>
+      <view class='goBottom ' wx:if='{{goingList.length > 10}}'>{{goingList.length == userInfoData.order.going_count && goingList.length > 10 ? '-拉伸完成-' : '加载中...'}}</view>
+    </block>
+    <!-- 无数据 -->
+    <block wx:if="{{goingList.length==0 && isLoaded}}">
+      <view class="none">
+        <text class="none-img iconicon-test9 iconfont"></text>
+        <text class="txt">暂无消费记录</text>
       </view>
     </block>
-    <view class='goBottom fadeIn animated' wx:if='{{goingList.length > 10}}'>{{goingList.length == userInfoData.order.going_count && goingList.length > 10 ? '-拉伸完成-' : '加载中...'}}</view>
-  </block>
-  <!-- 无数据 -->
-  <block  wx:if="{{goingList.length==0 && isLoaded}}" >
-    <view class="none">
-      <text class="none-img iconicon-test9 iconfont"></text>
-      <text class="txt">暂无消费记录</text>
-    </view>
-  </block>
   </view>
   <!-- 待付款 -->
-  <view class="tab_content"  wx:if="{{active==1}}">
-  <block wx:if="{{payingList.length}}">
-    <block wx:for="{{payingList}}" wx:key="index">
-      <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
-        <view class="item-content">
-          <image catchtap='handleCoachTap' data-coachId='{{item.coach_id}}' class="item_headerImg" src="{{item.head_url}}"></image>
-          <view class="item_info">
-            <view class="item_info_title">{{item.course_name}}</view>
-            <view class="item_info_title_detail">
-              <text class="item_info_shopImg iconfont iconicon-test23"></text> {{item.store_id__NAME}}
+  <view class="tab_content" wx:if="{{active==1}}">
+    <block wx:if="{{payingList.length}}">
+      <block wx:for="{{payingList}}" wx:key="index">
+        <view class="myOrder_listItem " data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
+          <view class="item-content">
+            <image catchtap='handleCoachTap' data-coachId='{{item.coach_id}}' class="item_headerImg" src="{{item.head_url}}"></image>
+            <view class="item_info">
+              <view class="item_info_title">{{item.course_name}}</view>
+              <view class="item_info_title_detail">
+                <text class="item_info_shopImg iconfont iconicon-test23"></text> {{item.store_id__NAME}}
+              </view>
+              <view class="item_info_title_detail">
+                <text class="item_info_shopImg iconfont iconicon-test17"></text> {{util.timeFormat(item.begin_date, 'MM月DD日')}} 星期{{item.begin_day}} {{util.timeFormat(item.begin_time, 'hh:mm')}}-{{util.timeFormat(item.end_time, 'hh:mm')}}
+              </view>
             </view>
-            <view class="item_info_title_detail">
-              <text class="item_info_shopImg iconfont iconicon-test17"></text> {{util.timeFormat(item.begin_date, 'MM月DD日')}} 星期{{item.begin_day}} {{util.timeFormat(item.begin_time, 'hh:mm')}}-{{util.timeFormat(item.end_time, 'hh:mm')}}
-            </view>
-          </view>
-          <view class="item_info_seeBox">
-            <view class="item_info_see {{active == 2 ? 'item_info_seeComplete' : ''}}" catchtap='goPay' data-orderid='{{item.id}}'> 
-              {{active == 0 ? '详情' : (active == 1 ? '去付款' : (active == 2 ? '已完成' : '已取消'))}}
+            <view class="item_info_seeBox">
+              <view class="item_info_see {{active == 2 ? 'item_info_seeComplete' : ''}}" catchtap='goPay' data-orderid='{{item.id}}'>
+                {{active == 0 ? '详情' : (active == 1 ? '去付款' : (active == 2 ? '已完成' : '已取消'))}}
+              </view>
             </view>
           </view>
         </view>
+      </block>
+      <view class='goBottom ' wx:if='{{payingList.length > 10}}'>{{payingList.length == userInfoData.order.unpay_count && payingList.length > 10 ? '-拉伸完成-' : '加载中...'}}</view>
+    </block>
+    <!-- 无数据 -->
+    <block wx:if="{{payingList.length==0 && isLoaded}}">
+      <view class="none">
+        <text class="none-img iconicon-test9 iconfont"></text>
+        <text class="txt">暂无消费记录</text>
       </view>
     </block>
-    <view class='goBottom fadeIn animated' wx:if='{{payingList.length > 10}}'>{{payingList.length == userInfoData.order.unpay_count && payingList.length > 10 ? '-拉伸完成-' : '加载中...'}}</view>
-  </block>
-  <!-- 无数据 -->
-  <block wx:if="{{payingList.length==0 && isLoaded}}">
-    <view class="none">
-      <text class="none-img iconicon-test9 iconfont"></text>
-      <text class="txt">暂无消费记录</text>
-    </view>
-  </block>
   </view>
   <!-- 已完成 -->
-  <view class="tab_content"  wx:if="{{active==2}}">
-  <block wx:if="{{completedList.length}}">
-    <block wx:for="{{completedList}}" wx:key="index">
-      <view class="myOrder_listItem fadeIn animated" data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
-        <view class="item-content">
-          <image catchtap='handleCoachTap' data-coachId='{{item.coach_id}}' class="item_headerImg" src="{{item.head_url}}"></image>
-          <view class="item_info">
-            <view class="item_info_title">{{item.course_name}}</view>
-            <view class="item_info_title_detail">
-              <text class="item_info_shopImg iconfont iconicon-test23"></text> {{item.store_id__NAME}}
+  <view class="tab_content" wx:if="{{active==2}}">
+    <block wx:if="{{completedList.length}}">
+      <block wx:for="{{completedList}}" wx:key="index">
+        <view class="myOrder_listItem " data-order-num="{{item.order_num}}" bindtap="handleOrderItemTap">
+          <view class="item-content">
+            <image catchtap='handleCoachTap' data-coachId='{{item.coach_id}}' class="item_headerImg" src="{{item.head_url}}"></image>
+            <view class="item_info">
+              <view class="item_info_title">{{item.course_name}}</view>
+              <view class="item_info_title_detail">
+                <text class="item_info_shopImg iconfont iconicon-test23"></text> {{item.store_id__NAME}}
+              </view>
+              <view class="item_info_title_detail">
+                <text class="item_info_shopImg iconfont iconicon-test17"></text> {{util.timeFormat(item.begin_date, 'MM月DD日')}} 星期{{item.begin_day}} {{util.timeFormat(item.begin_time, 'hh:mm')}}-{{util.timeFormat(item.end_time,'hh:mm')}}
+              </view>
             </view>
-            <view class="item_info_title_detail">
-              <text class="item_info_shopImg iconfont iconicon-test17"></text> {{util.timeFormat(item.begin_date, 'MM月DD日')}} 星期{{item.begin_day}} {{util.timeFormat(item.begin_time, 'hh:mm')}}-{{util.timeFormat(item.end_time,'hh:mm')}}
-            </view>
-          </view>
-          <view class="item_info_seeBox">
-            <view class="item_info_see {{active == 2 ? 'item_info_seeComplete' : ''}}">
-              {{active == 0 ? '详情' : (active == 1 ? '去付款' : (active == 2 ? '已完成' : '已取消'))}}
+            <view class="item_info_seeBox">
+              <view class="item_info_see {{active == 2 ? 'item_info_seeComplete' : ''}}">
+                {{active == 0 ? '详情' : (active == 1 ? '去付款' : (active == 2 ? '已完成' : '已取消'))}}
+              </view>
             </view>
           </view>
         </view>
+      </block>
+      <view class='goBottom ' wx:if='{{completedList.length > 10}}'>{{completedList.length == userInfoData.order.complete_count && completedList.length > 10 ? '-拉伸完成-' : '加载中...'}}</view>
+    </block>
+    <!-- 无数据 -->
+    <block wx:if="{{completedList.length==0 && isLoaded}}">
+      <view class="none">
+        <text class="none-img iconicon-test9 iconfont"></text>
+        <text class="txt">暂无消费记录</text>
       </view>
     </block>
-    <view class='goBottom fadeIn animated' wx:if='{{completedList.length > 10}}'>{{completedList.length == userInfoData.order.complete_count && completedList.length > 10 ? '-拉伸完成-' : '加载中...'}}</view>
-  </block>
-  <!-- 无数据 -->
-  <block  wx:if="{{completedList.length==0 && isLoaded}}">
-    <view class="none">
-      <text class="none-img iconicon-test9 iconfont"></text>
-      <text class="txt">暂无消费记录</text>
-    </view>
-  </block>
-</view>
+  </view>
 </view>
 
 <!-- 提示微信登录 -->
-  <wxLoginView isShow='{{showAuthModel}}' bind:loginEvent="showJurisdictionSmallPopup"></wxLoginView>
+<wxLoginView isShow='{{showAuthModel}}' bind:loginEvent="showJurisdictionSmallPopup"></wxLoginView>
 <!-- 授权登录 -->
-  <jurisdictionSmallPopup state='{{jurisdictionSmallState}}' bindmyevent='bindgetuserinfo'></jurisdictionSmallPopup>
-
-
-
+<jurisdictionSmallPopup state='{{jurisdictionSmallState}}' bindmyevent='bindgetuserinfo'></jurisdictionSmallPopup>

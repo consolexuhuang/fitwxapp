@@ -39,6 +39,7 @@ Page({
       dialogCancleBtn: '',
       dialogImg: 'member/icon-top-blue.png'
     },
+    isPlus:0,//是否是充值用户
   },
   /**
    * 生命周期函数--监听页面加载
@@ -84,9 +85,16 @@ Page({
     // else {
     //   this.setData({ isShowJurisdiction: true })
     // }
-    Promise.all([this.getMemberInfo(), this.getCourse(), this.getWaitCount(), this.checkOrder()]).then(()=>{
-      ui.hideLoading()
+    this.getCourse().then(() => {
+      Promise.all([this.getMemberInfo(), this.getWaitCount(), this.checkOrder()]).then(() => {
+        console.log('isPlus000')
+        console.log(this.data.isPlus)
+        ui.hideLoading()
+      })
     })
+    // Promise.all([this.getMemberInfo(), this.getCourse(), this.getWaitCount(), this.checkOrder()]).then(()=>{
+    //   ui.hideLoading()
+    // })
   },
   getCourse: function (event) {
     const courseId = this.data.courseId
@@ -157,11 +165,14 @@ Page({
           const firstCheck = false
           const timeCardId = res.msg.time_card_id
           const disclaimer = res.msg.disclaimer
+          const card_amount = res.msg.card_amount || 0;
+          const isPlus = res.msg.card_amount? 1 : 0;
           this.setData({
             orderData,
             firstCheck,
             timeCardId,
-            disclaimer
+            disclaimer,
+            isPlus
           })
         }
         resolve();
@@ -212,12 +223,12 @@ Page({
     })
   },
   handleCountTap: function (event) {
-    ui.showLoadingMask();
     this.setData({
       couponId: '',
     })
     const count = event.currentTarget.dataset.count
     if (count !== this.data.count) {
+      ui.showLoadingMask();
       this.setData({
         count
       })
@@ -277,7 +288,7 @@ Page({
     // const rechargeSuccessRoute = '/pages/order/payOrder?courseId=' + courseId
     // getApp().globalData.rechargeSuccessRoute = rechargeSuccessRoute
     wx.navigateTo({
-      url: '/pages/card/recharge'
+      url: `/pages/card/recharge?isPlus=${this.data.isPlus}`
     })
   },
 
@@ -303,7 +314,11 @@ Page({
       }
     })
   },
+  // submitFormId(e){
+  //   console.log('formID-------', e.detail)
+  // },
   getPhoneNumber(e) {//这个事件同样需要拿到
+    console.log('formID-------', e.detail)
     let that = this
     const courseId = this.data.courseId
     const timeCardId = this.data.timeCardId

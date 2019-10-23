@@ -161,7 +161,7 @@ Page({
           })
           setTimeout(() => {
             wx.switchTab({
-              url: '/pages/card/card',
+              url: '/pages/member/member',
             })
           },1000)
         } else {

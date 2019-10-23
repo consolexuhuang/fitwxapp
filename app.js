@@ -6,7 +6,7 @@ import Store from './utils/store.js';
 const worker = wx.createWorker('workers/scrollWorker.js');
 
 App({
-  onLaunch: function(options) {
+  onLaunch: function (options) {
     this.api = api
     this.store = Store;
     this.worker = worker;
@@ -15,15 +15,15 @@ App({
     //版本更新
     if (wx.canIUse('getUpdateManager')) {
       const updateManager = wx.getUpdateManager()
-      updateManager.onCheckForUpdate(function(res) {
+      updateManager.onCheckForUpdate(function (res) {
         // 请求完新版本信息的回调
         if (res.hasUpdate) {
-          updateManager.onUpdateReady(function() {
+          updateManager.onUpdateReady(function () {
             wx.showModal({
               title: '更新提示',
               content: '新版本已经准备好，是否重启应用？',
               showCancel: false,
-              success: function(res) {
+              success: function (res) {
                 if (res.confirm) {
                   // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
                   updateManager.applyUpdate()
@@ -31,7 +31,7 @@ App({
               }
             })
           })
-          updateManager.onUpdateFailed(function() {
+          updateManager.onUpdateFailed(function () {
             // 新的版本下载失败
             wx.showModal({
               title: '已经有新版本了哟~',
@@ -60,8 +60,8 @@ App({
     this.getLocation();
 
   },
-  onShow(options) { 
-    let _this = this    
+  onShow(options) {
+    let _this = this
     this.globalData.scene = options.scene,
       this.globalData.sceneOptions = options
     // 校验场景值
@@ -70,7 +70,7 @@ App({
       console.log(options.path)
       if (options.path.indexOf('index') != -1 ||
         options.path === 'pages/store/store' ||
-        options.path === 'pages/card/card' ||
+        options.path === 'pages/member/order/memberOrder' ||
         options.path === 'pages/member/member' ||
         options.path === 'pages/good/good') {
         //特殊的落地页区分
@@ -79,12 +79,7 @@ App({
         this.globalData.share = true
       }
     } else {
-      // 特殊扫码进入的页面区分
-      if (options.scene == 1011 && options.path === 'pages/coach/signInCode/signInCode') {
-        this.globalData.share = true
-      } else {
-        this.globalData.share = false
-      }
+      this.globalData.share = false
     }
     //后台切到前台刷新
     let interval = 2 * 60 * 1000; //间隔设为2分钟
@@ -126,7 +121,7 @@ App({
   /**
    * 设置监听器
    */
-  setWatcher: function(page) {
+  setWatcher: function (page) {
     let data = page.data
     let watch = page.watch
     Object.keys(watch).forEach(v => {
@@ -145,7 +140,7 @@ App({
   /**
    * 监听属性 并执行监听函数
    */
-  observe: function(obj, key, watchFun, deep, page) {
+  observe: function (obj, key, watchFun, deep, page) {
     let val = obj[key]
     // 判断deep是true 且 val不能为空 且 typeof val==='object'（数组内数值变化也需要深度监听）
     if (deep && val != null && typeof val === 'object') {
@@ -157,7 +152,7 @@ App({
     Object.defineProperty(obj, key, {
       configurable: true,
       enumerable: true,
-      set: function(value) {
+      set: function (value) {
         // 用page对象调用,改变函数内this指向,以便this.data访问data内的属性值
         watchFun.call(page, value, val) // value是新值，val是旧值
         val = value
@@ -165,7 +160,7 @@ App({
           _this.observe(obj, key, watchFun, deep, page)
         }
       },
-      get: function() {
+      get: function () {
         return val
       }
     })
@@ -175,37 +170,18 @@ App({
     return new Promise((resolve, reject) => {
       wx.checkSession({
         success: (res) => {
-          console.log('没过期')
           //session_key 未过期，并且在本生命周期一直有效
-          if (this.globalData.scene == 1035 || this.globalData.scene == 1043 || this.globalData.scene == 1082 || this.globalData.scene == 1058 || this.globalData.scene == 1102) {
-            //如果是 公众号菜单，模版消息，短链接 公众号文章，服务号预览列表 进入
-
-            console.log('this.passIsLogin()')
-            console.log(this.passIsLogin())
-            this.passIsLogin() ?
-              resolve() :
-              this.wx_loginIn().then(() => {
-                resolve();
-              }, () => {
-                reject()
-              })
-          } else if (this.globalData.scene == 1011 && this.globalData.sceneOptions.path === 'pages/coach/signInCode/signInCode') {
-            //特殊扫码进入
-            this.passIsLogin() ?
-              resolve() :
-              this.wx_loginIn().then(() => {
-                resolve();
-              }, () => {
-                reject()
-              })
-          } else {
-            console.log('this.passIsLogin()000')
-            console.log(this.passIsLogin())
-            resolve();
-          }
+          console.log(`${new Date().getTime()}-登录态没过期，本地用户缓存-${this.passIsLogin()? "有" : "没有-重新获取"}`)
+          this.passIsLogin()
+            ? resolve()
+            : this.wx_loginIn().then(() => {
+              resolve();
+            }, () => {
+              reject()
+            })
         },
         fail: () => {
-          console.log('过期')
+          console.log('登录态过期,重新登录')
           // session_key 已经失效，需要重新执行登录流程
           this.wx_loginIn().then(() => {
             resolve();
@@ -217,7 +193,8 @@ App({
     })
 
   },
-  wx_loginIn: function() {
+  //正常登录用户方法
+  wx_loginIn: function () {
     let _this = this
     return new Promise((resolve, reject) => {
       wx.login({
@@ -226,6 +203,8 @@ App({
           Store.setItem('code', res_code.code)
           let shareMemberId = wx.getStorageSync('shareMemberId') ? wx.getStorageSync('shareMemberId') : '';
           let data = {
+            //测试
+            //code:'12003',
             code: res_code.code,
             sourceData: _this.globalData.scene,
             shareChannel: shareMemberId,
@@ -234,12 +213,6 @@ App({
           // wx.showLoading({ title: '登录中...', })
           api.get('authorizationLite', data).then(res => {
             // wx.hideLoading()
-
-            /* //测试
-            res = {
-              code: 123
-            } */
-
             if (res.msg) {
               if (res.code === -1) { //如果出现登录未知错误
                 setTimeout(() => {
@@ -269,7 +242,7 @@ App({
       })
     })
   },
-  //同意授权接口
+  //错误用户手动同意授权登录方法
   wx_AuthUserLogin() {
     let _this = this
     return new Promise((resolve, reject) => {
@@ -369,23 +342,23 @@ App({
       })
     }
   },
-  watchLocation: function(callback) {
+  watchLocation: function (callback) {
     const object = this.globalData
     let newValue = ''
     Object.defineProperty(object, 'location', {
       enumerable: true,
       configurable: true,
-      get: function() {
+      get: function () {
         return newValue
       },
-      set: function(value) {
+      set: function (value) {
         newValue = value
         callback(value)
       }
     })
   },
 
-  compareVersion: function(v2) { //v2:需要的微信版本
+  compareVersion: function (v2) { //v2:需要的微信版本
     let v1 = wx.getSystemInfoSync().SDKVersion;
     console.log('wx.getSystemInfoSync().SDKVersion')
     console.log(wx.getSystemInfoSync())
@@ -412,7 +385,7 @@ App({
     }
     return 0;
   },
-  compareVersionPromise: function(v) { //v:需要的微信版本
+  compareVersionPromise: function (v) { //v:需要的微信版本
     return new Promise((resolve, reject) => {
       if (this.compareVersion(v) < 0) {
         // 如果希望用户在最新版本的客户端上体验您的小程序，可以这样子提示
@@ -428,7 +401,7 @@ App({
 
   },
 
-  getLocation: function() {
+  getLocation: function () {
     return new Promise((resolve, reject) => {
       const location = this.globalData.location;
       if (!location) {

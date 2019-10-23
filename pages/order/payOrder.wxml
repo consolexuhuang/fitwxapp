@@ -209,23 +209,24 @@
   </view>
 </view>
 <view class="pay-btn-wrapper">
-  <block wx:if='{{!orderData}}'>
-    <view class="pay-btn" bindtap="lineUp">排队中...</view>
-  </block>
-  <block wx:if="{{orderData.pay_type===7}}">
-    <button wx:if='{{isShowJurisdiction}}' class="pay-btn analysis_payorder_btnpay_phone" open-type="getPhoneNumber" bindgetphonenumber='getPhoneNumber'>立即支付</button>
-    <button wx:if='{{!isShowJurisdiction}}' class="pay-btn analysis_payorder_btnpay" bindtap='getPhoneNumber'>立即支付</button>
-  </block>
-  <block wx:elif="{{orderData.pay_type===1 || orderData.pay_type===2 || orderData.pay_type===4}}">
-    <button wx:if='{{isShowJurisdiction}}' class="pay-btn analysis_payorder_btnpay_phone_amount" open-type="getPhoneNumber" bindgetphonenumber='getPhoneNumber'>立即支付 ¥{{orderData.pay_amount}}</button>
-    <button wx:if='{{!isShowJurisdiction}}' class="pay-btn analysis_payorder_btnpay_amount" bindtap='getPhoneNumber'>立即支付 ¥{{orderData.pay_amount}}</button>
-  </block>
-  <block wx:elif="{{orderData.pay_type===3 && orderData.has_card}}">
-    <view class="pay-btn analysis_payorder_btn_recharge" bindtap="handleRechargeTap">余额不足，请充值</view>
-  </block>
-  <block wx:elif="{{orderData.pay_type===3}}">
-    <view class="pay-btn analysis_payorder_btn_openplus" bindtap="handleRechargeTap">PLUS卡用户可等侯，点击开通（随时可退）</view>
-  </block>
+    <block wx:if='{{!orderData}}'>
+      <view class="pay-btn" bindtap="lineUp">排队中...</view>
+    </block>
+    <block wx:if="{{orderData.pay_type===7}}">
+      <button wx:if='{{isShowJurisdiction}}' class="pay-btn analysis_payorder_btnpay_phone" open-type="getPhoneNumber" bindgetphonenumber='getPhoneNumber'>立即支付</button>
+      <button wx:if='{{!isShowJurisdiction}}' class="pay-btn analysis_payorder_btnpay" bindtap="getPhoneNumber">立即支付</button>
+    </block>
+    <block wx:elif="{{orderData.pay_type===1 || orderData.pay_type===2 || orderData.pay_type===4}}">
+      <button wx:if='{{isShowJurisdiction}}' class="pay-btn analysis_payorder_btnpay_phone_amount" open-type="getPhoneNumber" bindgetphonenumber='getPhoneNumber'>立即支付 ¥{{orderData.pay_amount}}</button>
+      <button wx:if='{{!isShowJurisdiction}}' bindtap="getPhoneNumber" class="pay-btn analysis_payorder_btnpay_amount">立即支付 ¥{{orderData.pay_amount}}</button>
+    </block>
+    
+    <block wx:elif="{{orderData.pay_type===3 && orderData.has_card}}">
+      <view class="pay-btn analysis_payorder_btn_recharge" bindtap="handleRechargeTap">余额不足，请充值</view>
+    </block>
+    <block wx:elif="{{orderData.pay_type===3}}">
+      <view class="pay-btn analysis_payorder_btn_openplus" bindtap="handleRechargeTap">PLUS卡用户可等侯，点击开通（随时可退）</view>
+    </block>
 </view>
 <!-- 免责声明 -->
 <statement show="{{!!disclaimer}}" content="{{disclaimer}}" btnText="已阅读并同意" bind:statementEvent="agreeDisclaimer"></statement>

@@ -117,12 +117,12 @@
 .select-wrapper {
   flex: 1;
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  margin:0 30rpx;
 }
 
 .store-select-wrapper {
-  margin-left: 34rpx;
-  width: 220rpx;
   display: flex;
   align-items: center;
 }
@@ -150,8 +150,6 @@
 }
 
 .course-select-wrapper {
-  margin-left: 5rpx;
-  width: 220rpx;
   display: flex;
   align-items: center;
 }
@@ -179,7 +177,6 @@
 }
 
 .switch-wrapper {
-  margin-right: 32rpx;
   display: flex;
   align-items: center;
 }
@@ -520,6 +517,7 @@
   text-align: center;
   font-size: 24rpx;
   color: #fff;
+  position: relative;
 }
 
 .course-appoint-btn.btn-detail {
@@ -540,6 +538,7 @@
   text-align: center;
   font-size: 24rpx;
   color: #896eff;
+  position: relative;
 }
 
 .course-end-btn {

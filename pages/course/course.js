@@ -74,12 +74,13 @@ Page({
    */
 
   onLoad: function(options) {
-    /* 训练小红点引导 后面需要删除*/
-    if (!wx.getStorageSync('hideTabBarRedDot')){
+   /*
+   //训练小红点引导 后面需要删除
+     if (!wx.getStorageSync('hideTabBarRedDot')){
       wx.showTabBarRedDot({
         index: 2,
       })
-    }
+    } */
 
     if (options.shareMemberId) {
       wx.setStorageSync('shareMemberId', options.shareMemberId)
@@ -757,6 +758,10 @@ Page({
   },
   // 课程预约
   handleAppointBtnTap: function(event) {
+    console.log('formID-------', event.detail)
+    if (event.detail.formId !== 'the formId is a mock one'){
+       store.setItem('formId', [...(store.getItem('formId') || ''), event.detail.formId])    
+    }
     if (app.passIsLogin()) {
       const courseId = event.currentTarget.dataset.courseId
       wx.navigateTo({
@@ -767,6 +772,10 @@ Page({
         jurisdictionSmallState: true
       })
     }
+  },
+  // 表单阻止冒泡
+  noop(){
+    console.log('noop')
   },
 
   // 跳转教练课程列表

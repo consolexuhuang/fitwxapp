@@ -15,7 +15,6 @@
     "pages/order/orderTimeCard",
     "pages/order/orderCoupon",
     "pages/order/paySuccess",
-    "pages/card/card",
     "pages/card/cardList",
     "pages/card/payCard",
     "pages/card/recharge",

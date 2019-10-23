@@ -57,7 +57,7 @@ Page({
       coachId
     })
 
-    //检测登录
+    //检测登录 
     app.checkSessionFun().then(() => {
     //this.getMemberFollowState()
     this.getCoach()
@@ -111,6 +111,10 @@ Page({
   /**
    * write@xuhuang  end
    */
+  // 表单阻止冒泡
+  noop() {
+    console.log('noop')
+  },
   // 教练详情
   getCoach: function(event) {
     let coachId = this.data.coachId
@@ -215,6 +219,10 @@ Page({
   },
   // 课程预约
   handleAppointBtnTap: function(event) {
+    console.log('formID-------', event.detail)
+    if (event.detail.formId !== 'the formId is a mock one') {
+      store.setItem('formId', [...(store.getItem('formId') || ''), event.detail.formId])
+    }
     if (app.passIsLogin()) {
       const courseId = event.currentTarget.dataset.courseId
       wx.navigateTo({
