@@ -237,10 +237,9 @@ Component({
       ctx.fill();
       //绘制图片
       ctx.clip();
-      //从banner里拿过来的图片690*330截取的x,y
-      let imgSX = 143;
-      let imgSY = 0;
-      ctx.drawImage(pic, imgSX, imgSY, sPicWidth, sPicHeight, 0, 0, canvasWidth, picHeight);
+      //banner图片高度不够
+      let dh = picHeight / sPicHeight;
+      ctx.drawImage(pic, (sPicWidth - canvasWidth / dh) / 2, 0, canvasWidth / dh, sPicHeight, 0, 0, canvasWidth, picHeight);
       //渐变色
       let grd = ctx.createLinearGradient(canvasWidth / 2, 0, canvasWidth / 2, picHeight);
       grd.addColorStop(0, 'rgba(0,0,0,0)')

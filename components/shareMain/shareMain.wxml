@@ -8,7 +8,7 @@
   <view class="card" wx:if='{{isShow}}'>
     <!-- toppic -->
     <view class="toppic">
-      <image class="img" src="{{cardData.pic}}"></image>
+      <image class="img" src="{{cardData.pic}}" mode="aspectFill"></image>
       <view class="linear-gradient"></view>
       <view class="text-box">
         <text>{{cardData.courseName}}</text>
