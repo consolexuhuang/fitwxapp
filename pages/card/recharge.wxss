@@ -15,23 +15,22 @@ page {
   width: 750rpx;
   height: 250rpx;
 }
-.next{}
-.next .balance{
+ .balance{
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: baseline;
-  padding:40rpx 40rpx 0 40rpx;
+  padding:40rpx 40rpx 0 80rpx;
   font-weight: bold;
 }
-.next .balance .label{
+.balance .label{
   font-size:36rpx;
   margin-right: 20rpx;
 }
-.next .balance .unit{
+.balance .unit{
   font-size:32rpx;
 }
-.next .balance .number{
+.balance .number{
   font-size:42rpx;
 }
 .next .privilege-title{
@@ -84,16 +83,20 @@ align-items: center;
 }
 .main .list {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  margin: 40rpx;
+  margin: 40rpx 40rpx 30rpx 40rpx;
 }
 
 .main .list .item {
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 215rpx;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 165rpx;
+  margin-bottom:20rpx;
   background: rgba(255, 255, 255, 1);  
   box-sizing: border-box;
   box-shadow: 0px 0px 12px 0px rgba(235, 235, 235, 1);
@@ -105,42 +108,55 @@ align-items: center;
 .main .list .item .gift {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
-  position: relative;
+  position: absolute;
+  top:-2rpx;
+  right: -2rpx;
 }
 
 .main .list .item .gift-bg {
-  width: 123rpx;
-  height: 40rpx;
+  width: 150rpx;
+  height: 50rpx;
   border-top-right-radius: 24rpx;
 }
 
 .main .list .item .gift .txt {
   position: absolute;
-  right: 10rpx;
+  left: 20rpx;
+  width: 130rpx;
   font-size: 24rpx;
   color: #fff;
+  text-align: center;
 }
 
 .main .list .item .info {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
-  padding: 10rpx 0 30rpx 0;
+  padding: 10rpx 0 0rpx 40rpx;
   color: #141414;
 }
 
 .main .list .item  .info .number {
+  margin-right: 20rpx;
   font-size: 40rpx;
 }
 
 .main .list .item  .info .txt {
-  font-size: 24rpx;
+  font-size:30rpx;
+  color:#141414;
+}
+.main .list .item .sheets-list{  
+margin-left:40rpx;
+  display: flex;
+  flex-direction: row;
 }
 .main .list .item  .sheets{
-  width:100%;
+margin-top:18rpx;
+margin-right: 30rpx;
+padding:0 13rpx;
 height:50rpx;
 line-height: 50rpx;
 background:rgba(137,111,255,0.2);
@@ -154,14 +170,14 @@ text-align: center;
   border:6rpx solid rgba(137,111,255,1);
 }
 .main .list .item.active .gift-bg {
-  width: 123rpx;
-  height: 40rpx;
+  width: 150rpx;
+  height: 50rpx;
   border-top-right-radius: 16rpx;
 }
 .explain{
-  margin: 40rpx;
+  margin: 20rpx 40rpx 40rpx 40rpx;
   padding:40rpx;
-  margin-bottom: 208rpx;
+  margin-bottom: 168rpx;
   border-radius:24rpx;
   background: #FAFAFA;
 }
@@ -178,7 +194,12 @@ text-align: center;
   letter-spacing: 2rpx;
   line-height: 36rpx;
 }
-
+.explain.firstnext{
+  margin-bottom: 20rpx;
+}
+.explain.firstnext .tip{
+  color:#333333;
+}
 .footer{
   display: flex;
   flex-direction: column;
