@@ -27,7 +27,7 @@ Component({
     'cardData': function (val) {
       console.log('000')
       //生成图片        第二个memberHeadImg要改为二维码
-      if (val.pic && val.memberHeadImg && val.memberHeadImg && firstObservers) {
+      if (val.pic && val.memberHeadImg && val.qrCode && firstObservers) {
         console.log('66666666666666666')
         this.generateCardPic();
         firstObservers=false;
@@ -54,6 +54,7 @@ Component({
     infoRowHeight: 60, //每行信息高度
     headImgScale: 6.5, //头像大小比例，大小 width/headImgScal
     tipText: '分享课程，长按查看',
+    sQrCodeWidth: '', //源二维码宽度
     qrCodeWidth: 88, //二维码宽度
     addressWidth: 0, //真实地址宽度
     addressRowMaxWidth: 550 - 60 * 3, //可装地址的行宽
@@ -118,12 +119,16 @@ Component({
          'cardData.courseName':'barbie我们只能设置文本的最大宽度，这就产生一定的了问题'
       }) */
       //远程图片转本地图片（banner、头像、二维码）     后面只需要把第三个参数改为二维码就行了
-    return Promise.all([this.remoteToLocal(this.data.cardData.pic), this.remoteToLocal(`${api.API_URI}redirect?url=${encodeURI(this.data.cardData.memberHeadImg)}`), this.remoteToLocal(`${api.API_URI}redirect?url=${encodeURI(this.data.cardData.memberHeadImg)}`), this.calAddressWidth(this.data.cardData.address)])
+      return Promise.all([this.remoteToLocal(this.data.cardData.pic), this.remoteToLocal(`${api.API_URI}redirect?url=${encodeURI(this.data.cardData.memberHeadImg)}`), this.remoteToLocal(this.data.cardData.qrCode), this.calAddressWidth(this.data.cardData.address)])
         .then((resArrImg) => {
           //banner
-          let pic = resArrImg[0];
-          let memberHeadImg = resArrImg[1];
-          let qrCode = resArrImg[2];
+          let pic = resArrImg[0].path;
+          let memberHeadImg = resArrImg[1].path;
+          let qrCode = resArrImg[2].path;
+          //设置源二维码图片的宽度
+          this.setData({
+            sQrCodeWidth: resArrImg[2].width
+          })
           //绘制canvas
           return this.drawCanvas(pic, memberHeadImg, qrCode)
         }).then(() => {
@@ -160,6 +165,7 @@ Component({
       let addressRowMaxWidth = this.data.addressRowMaxWidth; //可装地址的行宽
       let addressIsTwoRow = this.data.addressIsTwoRow;
       let addRowHeight = addressIsTwoRow ? infoSpaceTop : 0;
+      let sQrCodeWidth = this.data.sQrCodeWidth;
 
       /* canvas draw */
       let ctx = wx.createCanvasContext('cardCanvas', this);
@@ -327,8 +333,9 @@ Component({
       ctx.setFillStyle('#333333');
       ctx.fillText(this.data.tipText, infoSpaceLeft + headImgWidth, headImgY + 30);
 
-      //二维码
-      ctx.drawImage(qrCode, 0, 0, 132, 132, canvasWidth - qrCodeWidth - 30, headImgY - headImgR, qrCodeWidth, qrCodeWidth)
+      //二维码   图片尺寸缩放
+      let dwQrcode = qrCodeWidth/sQrCodeWidth;
+      ctx.drawImage(qrCode, 0, 0, sQrCodeWidth, qrCodeWidth / dwQrcode, canvasWidth - qrCodeWidth - 30, headImgY - headImgR, qrCodeWidth, qrCodeWidth)
 
       /* 返回 */
       return new Promise((resolve, reject) => {
@@ -432,7 +439,7 @@ Component({
           success: (res) => {
             console.log('res getimageinfo')
             console.log(res)
-            resolve(res.path);
+            resolve(res);
           },
           fail: (err) => {
             console.error(err)

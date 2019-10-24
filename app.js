@@ -7,6 +7,7 @@ const worker = wx.createWorker('workers/scrollWorker.js');
 
 App({
   onLaunch: function (options) {
+    console.log('app.js')
     this.api = api
     this.store = Store;
     this.worker = worker;

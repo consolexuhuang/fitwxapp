@@ -76,9 +76,14 @@ Page({
       wx.setStorageSync('shareMemberId', options.shareMemberId)
     }    
     const courseId = options.courseId
+    let shareMemberId = wx.getStorageSync('shareMemberId');
+    let scene = { courseId, shareMemberId }
     this.setData({
       courseId,
+      'cardData.qrCode': `${api.API_URI}getLiteQrcode?page=/pages/course/courseDetail&&liteType=main&&scene=${encodeURI(JSON.stringify(scene))}`
     })
+
+
     //检测登录 
     // 以防checkSessionFun方法的resolve回调回来一个错误用户，所以在内部页面用passIsLogin提前先拦住
     if (!app.passIsLogin()) {
@@ -231,13 +236,34 @@ Page({
     //版本校验
     app.compareVersionPromise('2.6.1').then((res) => {
       if (res == 0) {
+        /* //调用二维码接口
+        this.getQrcode(); */
         this.setData({
           isShowCard: true
         })
       }
-    })
-    
+    })    
   },
+  /* //获取二维码
+  getQrcode(){
+    let courseId = this.data.courseId;
+    let shareMemberId = wx.getStorageSync('shareMemberId');
+    let scene= { courseId, shareMemberId }
+    let data = {
+      scene: JSON.stringify(scene),//改改这里了globalDatas
+      page: 'pages/course/courseDetail',
+      liteType:'main'
+    }
+    return api.post('getLiteQrcode', data).then(res => {
+      console.log('qrcode res')
+      console.log(res)
+      if (res.code === 0) {
+        this.setData({
+          'cardData.qrCode': 123
+        })
+      }
+    })
+  }, */
   //关闭分享
   closecard(){
     this.setData({
@@ -264,8 +290,7 @@ Page({
     })
   },
   onShareAppMessage() {
-    const storeId = this.data.storeId
-    console.log(format.formatTime3(this.data.courseData.beginTime))
+    const storeId = this.data.storeId;
     return {
       // title: '',
       path: '/pages/course/courseDetail?courseId=' + this.data.courseId + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),

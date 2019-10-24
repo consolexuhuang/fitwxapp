@@ -38,7 +38,7 @@
           <text class="tip">{{tipText}}</text>
         </view>
       </view>
-      <image class="qrcode" src="/images/delete01.jpg"></image>
+      <image class="qrcode" src="{{cardData.qrCode}}"></image>
     </view>
   </view>
 
