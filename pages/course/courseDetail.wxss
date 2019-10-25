@@ -546,8 +546,9 @@ text-align: center;
 }
 .modal-video .icon-close{
   position: absolute;
-  left:50rpx;
+  left:20rpx;
   color:rgba(255,255,255,.5);
+  padding:30rpx;
 }
 .officialAccount{
   position: fixed;
