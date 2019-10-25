@@ -85,15 +85,7 @@ Page({
     if (options.shareMemberId) {
       wx.setStorageSync('shareMemberId', options.shareMemberId)
     };
-    //识别二维码过来的
-    if (!courseId){
-      this.getSeneBycode(option).then((res)=>{
-        console.log('res0000 getsenebycode')
-        console.log(res)
-        //设置数据
-        courseId, shareMemberId
-      })
-    };
+    
     
     //设置二维码图片地址+参数
     let shareMemberId = wx.getStorageSync('shareMemberId');
@@ -108,9 +100,33 @@ Page({
       this.setData({ jurisdictionState: true })
     } else {
       app.checkSessionFun().then(() => {
-        Promise.all([this.getCourse(), this.getMemberFollowState()]).then(()=>{
-          wx.hideLoading();
-        })
+
+        //识别二维码过来的
+        if (options.scene) {
+
+          //把编译后的二维码参数转成需要的参数
+          this.getSeneBycode(options.scene).then((res) => {
+            let resData = JSON.parse(res.msg);
+            //设置数据
+            this.setData({
+              courseId: resData.courseId,
+            })
+            wx.setStorageSync('shareMemberId', resData.shareMemberId);
+
+            //获取二维码的参数后执行
+            Promise.all([this.getCourse(), this.getMemberFollowState()]).then(() => {
+              wx.hideLoading();
+            })
+
+          }).catch((err) => {
+            console.error('二维码参数转换错误：' + err);
+          })
+        }
+        else{
+          Promise.all([this.getCourse(), this.getMemberFollowState()]).then(() => {
+            wx.hideLoading();
+          })
+        }        
         // this.getOfficialDataState()
       }, () => {
         this.setData({ jurisdictionState: true })
@@ -213,10 +229,7 @@ Page({
     let params={
       code: code
     }
-    return api.post('getSeneBycode', params).then(res=>{
-      console.log('res getSeneBycode')
-      console.log(res)
-    })
+    return api.post('getSeneBycode', params);
   },
   //点击播放视频
   handleShowVideo(){
