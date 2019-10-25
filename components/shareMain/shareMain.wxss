@@ -39,6 +39,8 @@
   width: 550rpx;
   height: 450rpx;
   position: relative;
+  background:#000;
+  border-radius: 32rpx 32rpx 60rpx 60rpx;
 }
 
 .toppic .img {

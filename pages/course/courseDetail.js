@@ -69,20 +69,38 @@ Page({
 
 
   onLoad: function (options) {
+    console.log('option coursedetail')
+    console.log(options)
     //loading
-    wx.showLoading({ title: '加载中...' })
+    wx.showLoading({ title: '加载中...' });    
+ 
+    //从山页面过来的
+    const courseId = options.courseId
+    if (courseId) {
+      this.setData({
+        courseId
+      })
+    };
     //分享过来的参数
     if (options.shareMemberId) {
       wx.setStorageSync('shareMemberId', options.shareMemberId)
-    }    
-    const courseId = options.courseId
+    };
+    //识别二维码过来的
+    if (!courseId){
+      this.getSeneBycode(option).then((res)=>{
+        console.log('res0000 getsenebycode')
+        console.log(res)
+        //设置数据
+        courseId, shareMemberId
+      })
+    };
+    
+    //设置二维码图片地址+参数
     let shareMemberId = wx.getStorageSync('shareMemberId');
     let scene = { courseId, shareMemberId }
     this.setData({
-      courseId,
-      'cardData.qrCode': `${api.API_URI}getLiteQrcode?page=/pages/course/courseDetail&&liteType=main&&scene=${encodeURI(JSON.stringify(scene))}`
+      'cardData.qrCode': `${api.API_URI}getLiteQrcode?page=pages/course/courseDetail&&liteType=main&&scene=${encodeURI(JSON.stringify(scene))}`
     })
-
 
     //检测登录 
     // 以防checkSessionFun方法的resolve回调回来一个错误用户，所以在内部页面用passIsLogin提前先拦住
@@ -190,6 +208,16 @@ Page({
       }
     })
   },
+  //获取小程序场景码获取实际的参数信息
+  getSeneBycode(code){
+    let params={
+      code: code
+    }
+    return api.post('getSeneBycode', params).then(res=>{
+      console.log('res getSeneBycode')
+      console.log(res)
+    })
+  },
   //点击播放视频
   handleShowVideo(){
     this.setData({
@@ -236,34 +264,13 @@ Page({
     //版本校验
     app.compareVersionPromise('2.6.1').then((res) => {
       if (res == 0) {
-        /* //调用二维码接口
-        this.getQrcode(); */
         this.setData({
           isShowCard: true
         })
       }
     })    
   },
-  /* //获取二维码
-  getQrcode(){
-    let courseId = this.data.courseId;
-    let shareMemberId = wx.getStorageSync('shareMemberId');
-    let scene= { courseId, shareMemberId }
-    let data = {
-      scene: JSON.stringify(scene),//改改这里了globalDatas
-      page: 'pages/course/courseDetail',
-      liteType:'main'
-    }
-    return api.post('getLiteQrcode', data).then(res => {
-      console.log('qrcode res')
-      console.log(res)
-      if (res.code === 0) {
-        this.setData({
-          'cardData.qrCode': 123
-        })
-      }
-    })
-  }, */
+  
   //关闭分享
   closecard(){
     this.setData({

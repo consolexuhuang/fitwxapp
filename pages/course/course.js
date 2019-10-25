@@ -74,6 +74,8 @@ Page({
    */
 
   onLoad: function(options) {
+    console.log('course option')
+    console.log(options)
    /*
    //训练小红点引导 后面需要删除
      if (!wx.getStorageSync('hideTabBarRedDot')){
