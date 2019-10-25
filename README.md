@@ -31,5 +31,9 @@ API接口： 'https://dev.jlife.vip/wx/api/'
 ##使用第三方组件
 1、sliderBar : https://github.com/ZhngCai/double-sided-slider
 
+##接口使用说明
+1、生成二维码和扫描二维码参数识别：
+现在支持小程序二维码通用的生成机制，通过提供page路径（不能带参数）、scene（传递特定参数，例如会员主键、课程主键等，格式自定义，少于32位的参数扫描小程序二维码会自动得到，大于32位长度，扫描得到的是转化码，通过调用getSeneBycode接口来得到实际的参数数据）、liteType（小程序类型：main、share、gift、coach
+
 
 

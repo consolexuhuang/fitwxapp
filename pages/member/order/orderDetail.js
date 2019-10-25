@@ -250,7 +250,7 @@ Page({
     return {
       title: this.data.courseShareData.title,
       imageUrl: this.data.courseShareData.img,
-      path: '/pages/course/courseDetail?courseId=' + this.data.orderData.course.id + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
+      path: '/pages/course/courseDetail?courseId=' + this.data.orderData.course.id + '&shareMemberId=' + wx.getStorageSync('userData').id,
       // imageUrl: this.data.picList[0],
       success: function (res) {
         console.log(res)
@@ -281,7 +281,7 @@ Page({
   //courseId=5d12c35be4b06bfda7ba080c&orderNum=1907100590334900&shareMemberId=1121655406372982784
   gotoCoursePhoto(){
     wx.navigateTo({
-      url: `/pages/coursePhoto/coursePhoto?courseId=${this.data.orderData.course.id}&orderNum=${this.data.orderNum}&shareMemberId=${wx.getStorageSync('shareMemberId')}`,
+      url: `/pages/coursePhoto/coursePhoto?courseId=${this.data.orderData.course.id}&orderNum=${this.data.orderNum}&shareMemberId=${wx.getStorageSync('userData').id}`,
     })
   }
 

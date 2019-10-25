@@ -223,7 +223,7 @@ Page({
   onShareAppMessage() {
     return {
       title: this.data.courseShareData.title,
-      path: '/pages/course/courseDetail?courseId=' + this.data.orderDetailData.course.id + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
+      path: '/pages/course/courseDetail?courseId=' + this.data.orderDetailData.course.id + '&shareMemberId=' + wx.getStorageSync('userData').id,
       imageUrl: this.data.courseShareData.img,
       success: function (res) {
         console.log(res)

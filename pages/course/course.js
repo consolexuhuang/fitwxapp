@@ -145,7 +145,7 @@ Page({
   onShareAppMessage(){
     return{
       title:"Justin&Julie Fitness 课表",
-      path: `/pages/index/index?shareMemberId=${wx.getStorageSync('shareMemberId')}`,
+      path: `/pages/index/index?shareMemberId=${wx.getStorageSync('userData').id}`,
     }
   },
   onHide() {

@@ -223,7 +223,6 @@ App({
                 }, 0)
               } else {
                 // 已关联公众号
-                wx.setStorageSync('shareMemberId', res.msg.id || '')
                 wx.setStorageSync('userData', res.msg)
                 //Store.setItem('userData', res.msg)
                 resolve()
@@ -285,7 +284,6 @@ App({
                     }, 0)
                   } else {
                     // 已关联公众号
-                    wx.setStorageSync('shareMemberId', res.msg.id)
                     wx.setStorageSync('userData', res.msg)
                     //Store.setItem('userData', res.msg)
                     resolve()

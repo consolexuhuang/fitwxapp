@@ -5,6 +5,7 @@ const ui = require('../../utils/ui.js');
 const format = require('../../utils/util.js');
 const store = app.store;
 const txvContext = requirePlugin("tencentvideo");
+let courseId;
 
 Page({
 
@@ -25,7 +26,6 @@ Page({
       marginTopBar: getApp().globalData.tab_height * 2 + 20
     }, //悬浮分享组件配置
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
-    courseId: '',
     courseData: '',
     imgUrl: getApp().globalData.imgUrl,
     isShowStatement:false,
@@ -74,19 +74,40 @@ Page({
     //loading
     wx.showLoading({ title: '加载中...' });    
  
-    //从山页面过来的
-    const courseId = options.courseId
-    if (courseId) {
-      this.setData({
-        courseId
-      })
-    };
+    
     //分享过来的参数
     if (options.shareMemberId) {
       wx.setStorageSync('shareMemberId', options.shareMemberId)
     };
+    //从上页面过来的
+    courseId = options.courseId    
+
+    //识别二维码过来的
+    if (options.scene) {
+      //把编译后的二维码参数转成需要的参数
+      this.getSeneBycode(options.scene).then((res) => {
+        let resData = JSON.parse(res.msg);
+        courseId = resData.courseId;
+        //设置数据
+        wx.setStorageSync('shareMemberId', resData.shareMemberId);
+        //初始化数据
+        this.init();
+      }).catch((err) => {
+        console.error('二维码参数转换错误：' + err);
+      })
+    }
+    else{
+      this.init();
+    };    
+  },
+  /**
+ * 生命周期函数--监听页面加载
+ */
+  onShow() {
     
-    
+  },
+  //初始化数据
+  init(){
     //设置二维码图片地址+参数
     let shareMemberId = wx.getStorageSync('shareMemberId');
     let scene = { courseId, shareMemberId }
@@ -100,44 +121,14 @@ Page({
       this.setData({ jurisdictionState: true })
     } else {
       app.checkSessionFun().then(() => {
-
-        //识别二维码过来的
-        if (options.scene) {
-
-          //把编译后的二维码参数转成需要的参数
-          this.getSeneBycode(options.scene).then((res) => {
-            let resData = JSON.parse(res.msg);
-            //设置数据
-            this.setData({
-              courseId: resData.courseId,
-            })
-            wx.setStorageSync('shareMemberId', resData.shareMemberId);
-
-            //获取二维码的参数后执行
-            Promise.all([this.getCourse(), this.getMemberFollowState()]).then(() => {
-              wx.hideLoading();
-            })
-
-          }).catch((err) => {
-            console.error('二维码参数转换错误：' + err);
-          })
-        }
-        else{
-          Promise.all([this.getCourse(), this.getMemberFollowState()]).then(() => {
-            wx.hideLoading();
-          })
-        }        
+        Promise.all([this.getCourse(), this.getMemberFollowState()]).then(() => {
+          wx.hideLoading();
+        })
         // this.getOfficialDataState()
       }, () => {
         this.setData({ jurisdictionState: true })
       })
     }
-  },
-  /**
- * 生命周期函数--监听页面加载
- */
-  onShow() {
-    
   },
   //头部banner类型切换
   swiperChange(event){
@@ -204,7 +195,6 @@ Page({
    * write@xuhuang  end
    */
   getCourse: function (event) {
-    const courseId = this.data.courseId
     const data = {
       id: courseId,
       picType: 1
@@ -263,7 +253,6 @@ Page({
       store.setItem('formId', [...(store.getItem('formId') || ''), event.detail.formId])
     }
     if (app.passIsLogin()){
-      const courseId = this.data.courseId
       wx.navigateTo({
         url: '/pages/order/payOrder?courseId=' + courseId
       })
@@ -313,7 +302,7 @@ Page({
     const storeId = this.data.storeId;
     return {
       // title: '',
-      path: '/pages/course/courseDetail?courseId=' + this.data.courseId + '&shareMemberId=' + wx.getStorageSync('shareMemberId'),
+      path: '/pages/course/courseDetail?courseId=' + courseId + '&shareMemberId=' + wx.getStorageSync('userData').id,
       // imageUrl: this.data.picList[0],
       success: function (res) {
         console.log('分享成功',res)

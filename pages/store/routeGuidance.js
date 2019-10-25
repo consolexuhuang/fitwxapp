@@ -42,7 +42,7 @@ Page({
   onShareAppMessage: function () {
     return {
       title: '线路指引',
-      path: `/pages/store/routeGuidance?webUrl=${this.data.webUrl}&shareMemberId=${wx.getStorageSync('shareMemberId')}`,
+      path: `/pages/store/routeGuidance?webUrl=${this.data.webUrl}&shareMemberId=${wx.getStorageSync('userData').id}`,
       // imageUrl: this.data.picList[0],
       success: function (res) {
         console.log(res)

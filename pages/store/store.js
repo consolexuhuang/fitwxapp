@@ -62,7 +62,7 @@ Page({
   onShareAppMessage() {
     return {
       title: "Justin&Julie Fitness 门店",
-      path: `/pages/store/store?&shareMemberId=${wx.getStorageSync('shareMemberId')}`
+      path: `/pages/store/store?&shareMemberId=${wx.getStorageSync('userData').id}`
     }
   },
   bindgetuserinfo() {
