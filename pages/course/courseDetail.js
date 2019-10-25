@@ -90,6 +90,8 @@ Page({
         courseId = resData.courseId;
         //设置数据
         wx.setStorageSync('shareMemberId', resData.shareMemberId);
+        console.log('wx.getStorageSync shareMemberId0000000000000000')
+        console.log(wx.getStorageSync('shareMemberId'))
         //初始化数据
         this.init();
       }).catch((err) => {
@@ -109,7 +111,7 @@ Page({
   //初始化数据
   init(){
     //设置二维码图片地址+参数
-    let shareMemberId = wx.getStorageSync('shareMemberId');
+    let shareMemberId = wx.getStorageSync('userData').id;
     let scene = { courseId, shareMemberId }
     this.setData({
       'cardData.qrCode': `${api.API_URI}getLiteQrcode?page=pages/course/courseDetail&&liteType=main&&scene=${encodeURI(JSON.stringify(scene))}`
