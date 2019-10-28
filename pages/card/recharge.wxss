@@ -213,16 +213,21 @@ text-align: center;
   background:linear-gradient(rgba(255,255,255,0),rgba(255,255,255,1));
 
 }
-
-.footer .btn {
-  margin: 0;
+.footer button{
+ margin: 0;
   width: 613rpx;
   height: 84rpx;
   line-height: 84rpx;
   font-size: 34rpx;
   color: #fff;
-  background: linear-gradient(360deg, rgba(155, 133, 252, 1) 0%, rgba(114, 87, 251, 1) 100%);
-  box-shadow: 0px 0px 16rpx 0px rgba(184, 168, 255, 1);
   border-radius: 41rpx;
   text-align: center;
+}
+
+.footer .btn { 
+  background: linear-gradient(360deg, rgba(155, 133, 252, 1) 0%, rgba(114, 87, 251, 1) 100%);
+  box-shadow: 0px 0px 16rpx 0px rgba(184, 168, 255, 1);  
+}
+.footer .disabled {  
+  background: #C5C5C5;
 }

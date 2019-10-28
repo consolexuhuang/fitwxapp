@@ -23,7 +23,8 @@ Page({
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
     isPlus:0,//是否已经是plus,0:否 1：是
     active:0,//选择的充值项
-    amount:0
+    amount:0,
+    btnDisabled:true,
   },
 
   /**
@@ -31,7 +32,7 @@ Page({
    */
   onLoad: function (options) {
     //loading
-    ui.showLoading();
+    ui.showLoadingMask();
     //获取参数
     let isPlus = options.isPlus || 0;
     this.setData({
@@ -41,6 +42,10 @@ Page({
     getApp().checkSessionFun().then(() => {
       Promise.all([this.getUserCard(), this.getChargeInfo()])
       .then(()=>{
+        //按钮可点
+        this.setData({
+          btnDisabled:false
+        })
         //关闭loading
         ui.hideLoading();
       })
@@ -50,9 +55,17 @@ Page({
   },
   onPullDownRefresh() {
     //loading
-    ui.showLoading();
+    ui.showLoadingMask();
+    //按钮不可点
+    this.setData({
+      btnDisabled: true
+    });
     Promise.all([this.getUserCard(), this.getChargeInfo()])
       .then(() => {
+        //按钮可点
+        this.setData({
+          btnDisabled: false
+        });
         //关闭loading
         ui.hideLoading();
         wx.stopPullDownRefresh()
