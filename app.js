@@ -12,7 +12,7 @@ App({
     this.worker = worker;
     this.globalData.scene = options.scene;
 
-    //版本更新
+    /* //版本更新
     if (wx.canIUse('getUpdateManager')) {
       const updateManager = wx.getUpdateManager()
       updateManager.onCheckForUpdate(function (res) {
@@ -46,7 +46,9 @@ App({
         title: '提示',
         content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
       })
-    }
+    } */
+
+
     //获取不同设备高度
     wx.getSystemInfo({
       success: res => {

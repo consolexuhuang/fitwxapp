@@ -34,7 +34,7 @@ Page({
     //loading
     ui.showLoadingMask();
    
-    getApp().checkSessionFun().then(() => {
+    getApp().checkSessionFun().then(() => {      
       Promise.all([this.getUserCard(), this.getChargeInfo()])
       .then(()=>{
         //按钮可点
@@ -43,8 +43,7 @@ Page({
         })
         //关闭loading
         ui.hideLoading();
-      })
-      
+      })     
       
     })
   },
@@ -92,7 +91,7 @@ Page({
       }
     })
   },
-  getUserCard: function(event){
+  getUserCard: function(event){    
     return api.post('card/getUserCard').then(res => {
       const userCard = res.msg
       this.setData({
@@ -138,7 +137,7 @@ Page({
       this.setData({
         btnDisabled: false
       });
-      _this.getUserCard()
+      this.getUserCard()
       wx.navigateBack()
     },()=>{
       //设置按钮为不可点
@@ -153,7 +152,6 @@ Page({
     })
   },
   wxPay: function(obj){
-    const _this = this
     return new Promise((resolve,reject)=>{
       wx.requestPayment({
         timeStamp: obj.timeStamp,
