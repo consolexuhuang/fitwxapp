@@ -33,12 +33,7 @@ Page({
   onLoad: function (options) {
     //loading
     ui.showLoadingMask();
-    //获取参数
-    let isPlus = options.isPlus || 0;
-    this.setData({
-      isPlus
-    });
-
+   
     getApp().checkSessionFun().then(() => {
       Promise.all([this.getUserCard(), this.getChargeInfo()])
       .then(()=>{
@@ -101,6 +96,7 @@ Page({
     return api.post('card/getUserCard').then(res => {
       const userCard = res.msg
       this.setData({
+        isPlus: userCard.balance>0?true:false,
         userCard
       })
       this.dealNumberStep()

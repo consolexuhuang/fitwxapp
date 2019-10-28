@@ -61,7 +61,7 @@ Page({
   },
   handleRechargeTap: function(event) {
     wx.navigateTo({
-      url: '/pages/card/recharge?isPlus=1'
+      url: '/pages/card/recharge'
     })
   },
   handleTransactionRecordTap: function(event) {
@@ -77,7 +77,7 @@ Page({
   },
   jumpToRechange(){
     wx.navigateTo({
-      url: '/pages/card/recharge?isPlus=0',
+      url: '/pages/card/recharge',
     })
   },
   jumpToCourse(){

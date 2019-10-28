@@ -22,7 +22,7 @@
     <view class="cardinfo">
       <image class="backgroundimg" src="/images/member/top-none-plus.png"></image>
       <text class="explain">PLUS卡尊享会员 | 课程95折 | 等位特权等</text>
-      <text class="btn analysis_my_recharge02" data-is-plus="0" bindtap="handleRechargeTap">立即查看</text>
+      <text class="btn analysis_my_recharge02" bindtap="handleRechargeTap">立即查看</text>
     </view>
   </view>
 
@@ -60,7 +60,7 @@
        <text class="mony">{{liteMyInfo.card_balance}}</text>
        <text class="explain">(余额)</text>
       </view>
-      <view class="btn analysis_my_recharge03" data-is-plus="1" bindtap="handleRechargeTap">立即充值</view>
+      <view class="btn analysis_my_recharge03" bindtap="handleRechargeTap">立即充值</view>
     </view>
   </view>
   </view>

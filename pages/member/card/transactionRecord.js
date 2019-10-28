@@ -139,7 +139,7 @@ Page({
   },
   jumpToRecharge(){
     wx.redirectTo({
-      url: '/pages/card/recharge?isPlus=0',
+      url: '/pages/card/recharge',
     })
   }
 })
