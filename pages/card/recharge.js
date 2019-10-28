@@ -125,6 +125,10 @@ Page({
     }); 
   },
   buyHandle:function(){
+    //设置按钮为不可点
+    this.setData({
+      btnDisabled:true
+    });
     const data = {
       amount:this.data.amount,
       payMode:'wxlite'
@@ -132,28 +136,44 @@ Page({
     console.log('data')
     console.log(data)
     api.post('chargeOrder/recharge', data).then(res => {
-      this.wxPay(res.msg)
+      return this.wxPay(res.msg)
+    }).then(()=>{
+      //设置按钮为不可点
+      this.setData({
+        btnDisabled: false
+      });
+      _this.getUserCard()
+      wx.navigateBack()
+    },()=>{
+      //设置按钮为不可点
+      this.setData({
+        btnDisabled: false
+      });
+      wx.showToast({
+        title: '支付失败',
+        icon: 'none',
+        duration: 2000
+      })
     })
   },
   wxPay: function(obj){
     const _this = this
-    wx.requestPayment({
-      timeStamp: obj.timeStamp,
-      nonceStr: obj.nonceStr,
-      package: obj.package,
-      signType: obj.signType,
-      paySign: obj.paySign,
-      success(res) {
-        _this.getUserCard()
-        wx.navigateBack()
-      },
-      fail(res) {
-        wx.showToast({
-          title: '支付失败',
-          icon: 'none',
-          duration: 2000
-        })
-      }
-    })
+    return new Promise((resolve,reject)=>{
+      wx.requestPayment({
+        timeStamp: obj.timeStamp,
+        nonceStr: obj.nonceStr,
+        package: obj.package,
+        signType: obj.signType,
+        paySign: obj.paySign,
+        success(res) {
+          resolve()
+         
+        },
+        fail(res) {
+          reject()
+        }
+      })
+    });
+    
   }
 })
