@@ -32,86 +32,78 @@
     <view class="list">
       <block wx:for="{{chargeInfo.list}}" wx:key="index">
         <view class="item fadeIn animated {{active===index?'active':''}}" data-amount="{{item.amount}}" data-index="{{index}}" bindtap="handleRechargeTap">
-
-          <view class="info">
-            <text class="number">¥{{item.amount || 0}}</text>
-            <text class="txt">到账:{{item.amount + item.gift}}元</text>
-          </view>
           <view class="gift">
             <image class="gift-bg" src="{{imgUrl}}card/recharge-bg.png"></image>
             <text class="txt">赠{{item.gift || 0}}元</text>
           </view>
-          <view class="sheets-list">
-            <view class="sheets" wx:if="{{item.tip}}">{{item.tip}}</view>           
+          <view class="info">
+            <text class="number">¥{{item.amount || 0}}</text>
+            <text class="txt">到账:{{item.amount + item.gift}}元</text>
           </view>
+          <view class="sheets" wx:if="{{item.tip}}">{{item.tip}}</view>
         </view>
       </block>
-    </view>
-    <!-- 活动说明 -->
-    <view class="explain firstnext ">
-      <view class="warning fadeIn animated">活动时间：10月24日-10月30日(共7天)</view>
-      <rich-text class="tip fadeIn animated" nodes="1. 斯凯奇礼盒，含市售总价1000元以上的多款斯凯奇服饰，客服将在3个工作日内通过微信或电话联系您，提供礼品表格并收集您的尺码。(总计200份，赠完即止) <br/>2. 领取礼盒后如果发生退卡，将抵扣相应的赠送金额、代金券及礼品价值。"></rich-text>
     </view>
   </view>
 
   <!-- next -->
-  <view class="first" wx:if="{{isPlus==1}}">
-    <view class="top">
-      <image class="img" src="/images/card/plus-first.png"></image>
-      <!-- 优惠特权 -->
-      <view class="privilege">
-        <view class="item">
-          <view class="circle">
-            <text class="icon iconfont iconkecheng"></text>
-          </view>
-          <text class="txt">课程95折</text>
-        </view>
-        <view class="item">
-          <view class="circle">
-            <text class="icon iconfont iconyuanke"></text>
-          </view>
-          <text class="txt">9.9元特色课</text>
-        </view>
-        <view class="item">
-          <view class="circle">
-            <text class="icon iconfont icondengwei"></text>
-          </view>
-          <text class="txt">等位特权</text>
-        </view>
-      </view>
-    </view>
-    <view class="space-gray"></view>
+  <view class="next"  wx:if="{{isPlus==1}}">
     <!-- 账户余额: -->
     <view class="balance">
       <text class="label">账户余额:</text>
       <text class="unit">¥</text>
       <text class="number">{{stepMomey || '0.0'}}</text>
     </view>
+    <!-- 充值金额 -->
     <view class="list">
       <block wx:for="{{chargeInfo.list}}" wx:key="index">
         <view class="item fadeIn animated {{active===index?'active':''}}" data-amount="{{item.amount}}" data-index="{{index}}" bindtap="handleRechargeTap">
-
-          <view class="info">
-            <text class="number">¥{{item.amount || 0}}</text>
-            <text class="txt">到账:{{item.amount + item.gift}}元</text>
-          </view>
           <view class="gift">
             <image class="gift-bg" src="{{imgUrl}}card/recharge-bg.png"></image>
             <text class="txt">赠{{item.gift || 0}}元</text>
           </view>
-          <view class="sheets-list">
-            <view class="sheets" wx:if="{{item.tip}}">{{item.tip}}</view>            
+          <view class="info">
+            <text class="number">¥{{item.amount || 0}}</text>
+            <text class="txt">到账:{{item.amount + item.gift}}元</text>
           </view>
-          <!--  -->
+          <view class="sheets" wx:if="{{item.tip}}">{{item.tip}}</view>
         </view>
       </block>
     </view>
-    <!-- 活动说明 -->
-    <view class="explain firstnext ">
-      <view class="warning fadeIn animated">活动时间：10月24日-10月30日(共7天)</view>
-      <rich-text class="tip fadeIn animated" nodes="1. 斯凯奇礼盒，含市售总价1000元以上的多款斯凯奇服饰，客服将在3个工作日内通过微信或电话联系您，提供礼品表格并收集您的尺码。(总计200份，赠完即止)<br/> 2. 领取礼盒后如果发生退卡，将抵扣相应的赠送金额及礼品价值。"></rich-text>
+    <!-- 优惠特权 -->
+    <view class="privilege-title">会员专属特权</view>
+    <view class="privilege">
+      <view class="item">
+        <view class="circle">
+          <text class="icon iconfont iconkecheng"></text>
+        </view>
+        <text class="txt">课程95折</text>
+      </view>
+      <view class="item">
+        <view class="circle">
+          <text class="icon iconfont iconyuanke"></text>
+        </view>
+        <text class="txt">9.9元特色课</text>
+      </view>
+      <view class="item">
+        <view class="circle">
+          <text class="icon iconfont icondengwei"></text>
+        </view>
+        <text class="txt">等位特权</text>
+      </view>
     </view>
   </view>
+
+  <!--   <view class="top">
+    <view class="user-name">{{userCard.nickName}}</view>
+    <view class="balance">
+      <text class="label">余额：</text>
+      <text class="number">¥{{stepMomey || '0.0'}}</text>
+    </view>
+    <view class="user-new" wx:if='{{chargeInfo.promotion}}'>
+      <text class="txt">首充赠送免单券</text>
+    </view>
+  </view> -->
 </view>
 
 <view class="explain">
