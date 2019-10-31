@@ -23,7 +23,8 @@ Page({
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
     isPlus:0,//是否已经是plus,0:否 1：是
     active:0,//选择的充值项
-    amount:0
+    amount:0,
+    btnDisabled:true,
   },
 
   /**
@@ -31,28 +32,34 @@ Page({
    */
   onLoad: function (options) {
     //loading
-    ui.showLoading();
-    //获取参数
-    let isPlus = options.isPlus || 0;
-    this.setData({
-      isPlus
-    });
-
-    getApp().checkSessionFun().then(() => {
+    ui.showLoadingMask();
+   
+    getApp().checkSessionFun().then(() => {      
       Promise.all([this.getUserCard(), this.getChargeInfo()])
       .then(()=>{
+        //按钮可点
+        this.setData({
+          btnDisabled:false
+        })
         //关闭loading
         ui.hideLoading();
-      })
-      
+      })     
       
     })
   },
   onPullDownRefresh() {
     //loading
-    ui.showLoading();
+    ui.showLoadingMask();
+    //按钮不可点
+    this.setData({
+      btnDisabled: true
+    });
     Promise.all([this.getUserCard(), this.getChargeInfo()])
       .then(() => {
+        //按钮可点
+        this.setData({
+          btnDisabled: false
+        });
         //关闭loading
         ui.hideLoading();
         wx.stopPullDownRefresh()
@@ -84,10 +91,11 @@ Page({
       }
     })
   },
-  getUserCard: function(event){
+  getUserCard: function(event){    
     return api.post('card/getUserCard').then(res => {
       const userCard = res.msg
       this.setData({
+        isPlus: userCard.balance>0?true:false,
         userCard
       })
       this.dealNumberStep()
@@ -112,6 +120,10 @@ Page({
     }); 
   },
   buyHandle:function(){
+    //设置按钮为不可点
+    this.setData({
+      btnDisabled:true
+    });
     const data = {
       amount:this.data.amount,
       payMode:'wxlite'
@@ -119,28 +131,43 @@ Page({
     console.log('data')
     console.log(data)
     api.post('chargeOrder/recharge', data).then(res => {
-      this.wxPay(res.msg)
+      return this.wxPay(res.msg)
+    }).then(()=>{
+      //设置按钮为不可点
+      this.setData({
+        btnDisabled: false
+      });
+      this.getUserCard()
+      wx.navigateBack()
+    },()=>{
+      //设置按钮为不可点
+      this.setData({
+        btnDisabled: false
+      });
+      wx.showToast({
+        title: '支付失败',
+        icon: 'none',
+        duration: 2000
+      })
     })
   },
   wxPay: function(obj){
-    const _this = this
-    wx.requestPayment({
-      timeStamp: obj.timeStamp,
-      nonceStr: obj.nonceStr,
-      package: obj.package,
-      signType: obj.signType,
-      paySign: obj.paySign,
-      success(res) {
-        _this.getUserCard()
-        wx.navigateBack()
-      },
-      fail(res) {
-        wx.showToast({
-          title: '支付失败',
-          icon: 'none',
-          duration: 2000
-        })
-      }
-    })
+    return new Promise((resolve,reject)=>{
+      wx.requestPayment({
+        timeStamp: obj.timeStamp,
+        nonceStr: obj.nonceStr,
+        package: obj.package,
+        signType: obj.signType,
+        paySign: obj.paySign,
+        success(res) {
+          resolve()
+         
+        },
+        fail(res) {
+          reject()
+        }
+      })
+    });
+    
   }
 })

@@ -216,7 +216,7 @@ Page({
   }, 
   jumpToRechange(){
     wx.navigateTo({
-      url: '/pages/card/recharge?isPlus=0',
+      url: '/pages/card/recharge',
     })
   },
   //分享

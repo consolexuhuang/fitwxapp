@@ -39,7 +39,6 @@ Page({
       dialogCancleBtn: '',
       dialogImg: 'member/icon-top-blue.png'
     },
-    isPlus:0,//是否是充值用户
   },
   /**
    * 生命周期函数--监听页面加载
@@ -87,8 +86,6 @@ Page({
     // }
     this.getCourse().then(() => {
       Promise.all([this.getMemberInfo(), this.getWaitCount(), this.checkOrder()]).then(() => {
-        console.log('isPlus000')
-        console.log(this.data.isPlus)
         ui.hideLoading()
       })
     })
@@ -166,13 +163,11 @@ Page({
           const timeCardId = res.msg.time_card_id
           const disclaimer = res.msg.disclaimer
           const card_amount = res.msg.card_amount || 0;
-          const isPlus = res.msg.card_amount? 1 : 0;
           this.setData({
             orderData,
             firstCheck,
             timeCardId,
-            disclaimer,
-            isPlus
+            disclaimer
           })
         }
         resolve();
@@ -288,7 +283,7 @@ Page({
     // const rechargeSuccessRoute = '/pages/order/payOrder?courseId=' + courseId
     // getApp().globalData.rechargeSuccessRoute = rechargeSuccessRoute
     wx.navigateTo({
-      url: `/pages/card/recharge?isPlus=${this.data.isPlus}`
+      url: `/pages/card/recharge`
     })
   },
 

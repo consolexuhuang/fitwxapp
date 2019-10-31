@@ -154,7 +154,7 @@ Page({
   handleRechargeTap: function (event) {
     let isPlus = event.currentTarget.dataset.isPlus;
     wx.navigateTo({
-      url: `/pages/card/recharge?isPlus=${isPlus}`
+      url: `/pages/card/recharge`
     })
   },
 
