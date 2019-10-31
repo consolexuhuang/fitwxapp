@@ -18,7 +18,6 @@ API接口： 'https://dev.jlife.vip/wx/api/'
       appid: 'wxec1fe04fad9d4e02',
       envVersion: 'release' //正式版
     }
-5.是否提示版本更新 app.js (line15-49)
 
 #### 测试需要修改如下文件
 1.project.config.json文件里"appid": "wx6b00bfc932f22210"；
