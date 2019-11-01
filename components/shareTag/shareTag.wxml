@@ -1,5 +1,8 @@
 <!--components/shareTag/shareTag.wxml-->
 <view class='shareBox'>
-   <image class='shareImg' src='{{imgUrl}}icon/shareImg.png'></image>
-   <button open-type='share' class='shareBtn analysis_sharetag' ></button>
+   <view  class='shareImg' bindtap="shareHandle">
+     <text class="icon iconfont iconfenxiang"></text>
+     <text class="txt">分享</text>
+   </view>
+   <button wx:if="{{shareButton}}" open-type='share' class='shareBtn analysis_sharetag' ></button>
 </view>

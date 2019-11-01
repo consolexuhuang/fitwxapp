@@ -9,10 +9,7 @@
       <view class="coach-sign-count">
          <view class='coach-sign-countBox'>累计签到 <text>{{coachData.signCount || 0}}</text> 次</view>
          <view class='shareLine'></view>
-         <view class='shareImgBox'>
-           <image src='{{imgUrl}}icon/shareImg.png' class='shareImg'></image>
-           <button open-type='share' class='shareImgBtn analysis_coach_share'></button>
-         </view>
+         <share_tag></share_tag>
       </view>
     </view>
   </view>

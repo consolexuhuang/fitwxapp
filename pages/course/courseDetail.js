@@ -51,6 +51,7 @@ Page({
     swiperCurrent:0,//banner但前显示index
     swiperBtnCurrent: 0,//0:当前显示视频，1：当前显示图片
     isShowVideo:false,//是否显示播放视频
+    isShareButton:false,//分享是否通过点击自定义按钮
 
     statementContent:`<p>1、参与Justin&Julie健身服务的用户，具有完全的民事行为能力，同意遵守Justin&Julie的相关管理规章制度，已接受Justin&Julie的相关服务协议，并已知晓有关的健身规则与警示，承诺遵守Justin&Julie的相关健身规则与警示规定。</p>
       <p>2、Justin&Julie员工及教练不提供任何形式的体检服务，Justin&Julie员工及教练对用户身体情况的任何询问、了解和建议都不构成本公司对用户身体状况是否符合任意健身课程和产品要求的承诺及保证。在确认本声明前，用户应自行到医疗机构进行体检，了解自身身体情况，以确保用户具备参与Justin&Julie健身产品的身体条件，且没有任何不宜运动的疾病、损伤和其他缺陷。因用户自身的任何疾病、损伤或其他缺陷导致用户在接受服务时发生任何损害的，Justin&Julie不承担任何法律责任。</p>
@@ -106,7 +107,14 @@ Page({
  * 生命周期函数--监听页面加载
  */
   onShow() {
-    
+    console.log('courseDetail 00000')
+    if (this.data.isShareButton){
+      //隐藏弹层
+      this.setData({
+        isShowCard: true,
+        isShareButton: false
+      })
+    }
   },
   //初始化数据
   init(){
@@ -300,10 +308,17 @@ Page({
       url: `/pages/coach/coach?coachId=${coachId}`,
     })
   },
-  onShareAppMessage() {
+  onShareAppMessage(res) {
+    if (res.from === 'button') {
+      //隐藏弹层
+      this.setData({
+        isShowCard: false,
+        isShareButton: true
+      })
+    }
     const storeId = this.data.storeId;
     return {
-      // title: '',
+      title: `${this.data.courseData.courseName}（周${this.data.courseData.beginDay}）`,
       path: '/pages/course/courseDetail?courseId=' + courseId + '&shareMemberId=' + wx.getStorageSync('userData').id,
     }
   },

@@ -125,7 +125,7 @@ text-align: center;
   background-color: #896DFF;
 }
 .course-info-right{
-  margin-right:30rpx;
+  margin-right:60rpx;
 }
 #line_wx{
   width:2rpx;

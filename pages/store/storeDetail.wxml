@@ -21,11 +21,7 @@
       </view>
       <view class='shareLineBox'>
          <view class='shareLine'></view>
-         <view class='shareBtnBox'>
-          <button open-type='share' hover-class='none' class='shareBtn analysis_storedetail_share'>
-          </button>
-          <image class="store-share" src='{{imgUrl}}icon/shareImg.png'/>
-         </view>    
+         <share_tag></share_tag>   
       </view>
     </view>
   </view>

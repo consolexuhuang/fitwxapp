@@ -21,10 +21,6 @@ Page({
       titleColor: "#000",
       tab_topBackground: '#fff'
     },
-    shareConfig: {
-      toTop: 50, //px
-      marginTopBar: getApp().globalData.tab_height * 2 + 20
-    }, //悬浮分享组件配置
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
     coachWxCodeState: false,
     courseShareData:'', //分享课程文案

@@ -1,4 +1,5 @@
 /* components/shareTag/shareTag.wxss */
+@import '/style/iconfont.wxss';
 .shareBox{
   /* top: 546rpx; */
   position: relative;
@@ -7,7 +8,23 @@
 }
 .shareImg{
   width: 100%;
-  height: 100%
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.shareImg .icon,
+.shareImg .txt{
+  color:rgba(137,111,255,1);
+}
+.shareImg .icon{
+   margin-bottom:5rpx;
+  font-size:45rpx;
+}
+.shareImg .txt{
+  line-height:22rpx;
+  font-size:22rpx;
 }
 .shareBtn{
   opacity: 0;

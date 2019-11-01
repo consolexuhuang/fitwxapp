@@ -3,6 +3,7 @@
   "usingComponents": {
     "statement": "/components/statement/statement",
     "tabBar_top": "/components/tabBar_top/tabBar",
+    "share_tag": "/components/shareTag/shareTag",
     "officalAccount": "/components/officalAccount/officalAccount",
     "jurisdictionPopup":"/components/jurisdictionPopup/jurisdictionPopup"
   }

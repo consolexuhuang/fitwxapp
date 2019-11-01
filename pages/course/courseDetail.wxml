@@ -54,9 +54,10 @@
       </view>
       <view class="course-info-middle"></view>
       <view class="course-info-right">
-        <view class='shareBox' bindtap='handleShare'>
+        <!-- <view class='shareBox' bindtap='handleShare'>
           <image class='shareImg' src='{{imgUrl}}icon/shareImg.png'></image>
-        </view>
+        </view> -->
+        <share_tag shareButton='{{false}}' bindsharehandle="handleShare" ></share_tag>
       </view>
     </view>
   </view>
