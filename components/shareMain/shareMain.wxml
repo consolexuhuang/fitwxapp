@@ -4,56 +4,57 @@
 <view class="mask" wx:if='{{isShow}}' bindtap="clickClose"></view>
 
 <!-- <view class="sharemain" wx:if='{{isShow}}'> -->
-  <!-- card -->
-  <view class="card" wx:if='{{isShow}}'>
-    <!-- toppic -->
-    <view class="toppic">
-      <image class="img" src="{{cardData.pic}}" mode="aspectFill"></image>
-      <view class="linear-gradient"></view>
-      <view class="text-box">
-        <text>{{cardData.courseName}}</text>
+<!-- card -->
+<view class="card" wx:if='{{isShow}}'>
+  <!-- toppic -->
+  <view class="toppic">
+    <image class="img" src="{{cardData.pic}}" mode="aspectFill"></image>
+    <view class="linear-gradient"></view>
+    <view class="text-box">
+      <text>{{cardData.courseName}}</text>
+    </view>
+  </view>
+  <!-- info -->
+  <view class="info">
+    <view class="info-row">
+      <text class="icon iconfont iconicon-test35"></text>
+      <text class="text">{{util.timeStampFormat(cardData.beginDate, 'YYYY-MM-DD')}} {{util.timeStampFormat(cardData.beginTime, 'hh:mm')}}</text>
+    </view>
+    <view class="info-row">
+      <text class="icon iconfont iconicon-test40"></text>
+      <text class="text">{{cardData.address}}</text>
+    </view>
+    <view class="info-row">
+      <text class="icon iconfont iconfenzu2"></text>
+      <text class="text">{{cardData.coachName}}·教练</text>
+    </view>
+  </view>
+  <!-- member -->
+  <view class="member">
+    <view class="left">
+      <image class="header" src="{{cardData.memberHeadImg}}"></image>
+      <view class="name-tip">
+        <text class="name">{{cardData.memberNickName}}</text>
+        <text class="tip">{{tipText}}</text>
       </view>
     </view>
-    <!-- info -->
-    <view class="info">
-      <view class="info-row">
-        <text class="icon iconfont iconicon-test35"></text>
-        <text class="text">{{util.timeStampFormat(cardData.beginDate, 'YYYY-MM-DD')}} {{util.timeStampFormat(cardData.beginTime, 'hh:mm')}}</text>
-      </view>
-      <view class="info-row">
-        <text class="icon iconfont iconicon-test40"></text>
-        <text class="text">{{cardData.address}}</text>
-      </view>
-      <view class="info-row">
-        <text class="icon iconfont iconfenzu2"></text>
-        <text class="text">{{cardData.coachName}}·教练</text>
-      </view>
-    </view>
-    <!-- member -->
-    <view class="member">
-      <view class="left">
-        <image class="header" src="{{cardData.memberHeadImg}}"></image>
-        <view class="name-tip">
-          <text class="name">{{cardData.memberNickName}}</text>
-          <text class="tip">{{tipText}}</text>
-        </view>
-      </view>
-      <image class="qrcode" src="{{cardData.qrCode}}"></image>
-    </view>
+    <image class="qrcode" src="{{cardData.qrCode}}"></image>
+  </view>
+</view>
+
+<!-- footer -->
+<view class="foot" wx:if='{{isShow}}'>
+  <view class="btn download analysis_courseDetail_download" bindtap="saveCard">
+    <text class="icon iconfont iconfenzu1"></text>
+    <text>保存卡片</text>
+  </view>
+  <view class="btn share analysis_courseDetail_sharebtns">
+    <text class="icon iconfont iconfenzucopy"></text>
+    <text>发送好友</text>
+    <button open-type='share' class='shareBtn'></button>
   </view>
 
-  <!-- footer -->
-  <view class="foot"  wx:if='{{isShow}}'>
-    <view class="btn share">
-      <text class="icon iconfont iconfenzucopy"></text>
-      <text>发送好友</text>
-      <button open-type='share' class='shareBtn' ></button>
-    </view>
-    <view class="btn download" bindtap="saveCard">
-      <text class="icon iconfont iconfenzu1"></text>
-      <text>保存卡片</text>
-    </view>
-  </view>
+</view>
 <!-- </view> -->
 
 <!-- canvas -->

@@ -43,13 +43,6 @@ Page({
     return {
       title: '线路指引',
       path: `/pages/store/routeGuidance?webUrl=${this.data.webUrl}&shareMemberId=${wx.getStorageSync('userData').id}`,
-      // imageUrl: this.data.picList[0],
-      success: function (res) {
-        console.log(res)
-      },
-      fail: function (res) {
-        console.log(res)
-      }
     }
   }
 })

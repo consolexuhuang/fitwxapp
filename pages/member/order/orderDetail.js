@@ -251,13 +251,7 @@ Page({
       title: this.data.courseShareData.title,
       imageUrl: this.data.courseShareData.img,
       path: '/pages/course/courseDetail?courseId=' + this.data.orderData.course.id + '&shareMemberId=' + wx.getStorageSync('userData').id,
-      // imageUrl: this.data.picList[0],
-      success: function (res) {
-        console.log(res)
-      },
-      fail: function (res) {
-        console.log(res)
-      }
+      
     }
   },
 

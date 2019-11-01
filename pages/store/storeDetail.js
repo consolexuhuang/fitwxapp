@@ -212,13 +212,6 @@ Page({
       title: `${this.data.storeData.storeName},点击查看门店位置
 `,
       path: '/pages/store/storeDetail?storeId=' + storeId + '&shareMemberId=' + wx.getStorageSync('userData').id,
-      // imageUrl: this.data.picList[0],
-      success:function(res){
-        console.log(res)
-      },
-      fail:function(res){
-        console.log(res)
-      }
     }
   },
   //免责声明

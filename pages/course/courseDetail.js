@@ -305,13 +305,6 @@ Page({
     return {
       // title: '',
       path: '/pages/course/courseDetail?courseId=' + courseId + '&shareMemberId=' + wx.getStorageSync('userData').id,
-      // imageUrl: this.data.picList[0],
-      success: function (res) {
-        console.log('分享成功',res)
-      },
-      fail: function (res) {
-        console.log(res)
-      }
     }
   },
 })

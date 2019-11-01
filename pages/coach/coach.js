@@ -252,15 +252,10 @@ Page({
     } else {
       coachHeadUrl = this.data.coachData.headUrl
     }
-    console.log('coachHeadUrl', coachHeadUrl)
     return {
       title: `Justin&Julie教练- ${this.data.coachData.coachName}`,
       path: '/pages/coach/coach?coachId=' + this.data.coachId + '&shareMemberId=' + wx.getStorageSync('userData').id,
       imageUrl: coachHeadUrl,
-      success: function (res) {
-      },
-      fail: function (res) {
-      }
     }
   },
 })

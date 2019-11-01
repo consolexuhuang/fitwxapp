@@ -174,12 +174,6 @@ Page({
       title: this.data.giftCardInfo.gift_memo,
       path: 'pages/subPackages_needLoad/giftCard/giftCard?cardId=' + this.data.cardId + '&shareMemberId=' + wx.getStorageSync('userData').id,
       imageUrl: 'https://img.cdn.powerpower.net/5d77812ce4b08938d4b46c4e.jpg',
-      success: function (res) {
-        console.log('分享成功', res)
-      },
-      fail: function (res) {
-        console.log(res)
-      }
     }
   }
 })

@@ -100,14 +100,5 @@ Page({
       path: 'pages/subPackages_needLoad/giftCard/giftCard?cardId=' + this.data.cardId + '&shareMemberId=' + wx.getStorageSync('userData').id,
       imageUrl: 'https://img.cdn.powerpower.net/5d77812ce4b08938d4b46c4e.jpg',
     }
-    // wx.showModal({
-    //   title: '温馨提示',
-    //   content: '请确认赠送朋友身份，七夕卡赠出并被领取后不可退回。',
-    //   success: res => {
-    //     if (res.confirm) {
-          
-    //     }
-    //   }
-    // })
   }
 })
