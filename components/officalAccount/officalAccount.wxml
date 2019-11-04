@@ -1,15 +1,14 @@
 <!--components/officalAccount/officalAccount.wxml-->
 <view class='guide fadeIn animated' 
-      wx:if= '{{memberFollowState == 0 &&  officialDataState}}' 
+      wx:if= '{{officialDataState}}' 
       bindtap='_showNotice'
-      style='bottom:{{27 + bottomStyle}}rpx'>
+      style='bottom:{{bottomStyle}}rpx'>
   <view class='guideLogin'>
     <text class='guideBtnImg iconfont iconclose-circle' catchtap='_closeguideLogin'></text>
-    <image src='https://img.cdn.powerpower.net/5d11d55de4b080ee42fe2f30.png?imageView/1/w/686/h/120' class='guideLoginBg'></image>
     <view class='guideLoginBox'>
-      <view class='guideLoginText'>{{!pageShowNoticeState ? '点这里，送50元代金券': '点这里，活动福利全知道'}}</view>
-      <button class='guideLoginBtn'>{{!pageShowNoticeState ? '免费领取': '立即关注'}}</button>
+       <view class='guideLoginText'>更多教练课程信息，限时福利不再错过</view>
     </view>
+    <view class="openNotice">开启通知</view>
   </view>
 </view>
 
@@ -17,12 +16,13 @@
            bind:close='_onclose'
            custom-class='showNoticeStyle'
            z-index = '1001'>
-    <view class='showNoticeTitle'>{{forcedEjection ? '重要通知':'三步关注公众号'}}</view>
     <view class='showNoticeBox'>
        <image class='showNoticeImg'         
-              src='{{guideImgUrl || "https://img.cdn.powerpower.net/5d19732ce4b07bc63b17acc5.png?imageView/1/w/530/h/648"}}'></image>
+          src="https://img.cdn.powerpower.net/5dbfc3a8e4b0d8cb1b041566.png?imageView/1/w/330/h/210"></image>
+       <view class="showNoticeCont">点击“ <text class="importCont">去回复</text> ”，发送“ <text class="importCont">1</text> ”收到二维码后长按关注公众号</view>
+        <view class='showNoticeBtn'>去回复
+          <button class='showNoticeBtn2' open-type='contact' bindcontact="_handleContact"></button>
+        </view>     
     </view>
-    <view class='showNoticeBtn'>立即关注
-       <button class='showNoticeBtn2' open-type='contact' bindcontact="_handleContact"></button>
-    </view>     
+    <text class="iconicon-test18 iconfont closeIcon" bindtap="_onclose"></text>
 </van-popup>

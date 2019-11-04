@@ -51,9 +51,7 @@ Page({
     calendarHeight: '',
     swiperHeight: {},
 
-    memberFollowState: 1, //当前关注状态
     officialDataState: false,
-    memberInfo:'',
     searchIn:false,//是否是搜素进来的
     activityPopupState:{
       state: false,
@@ -92,15 +90,21 @@ Page({
     app.checkSessionFun().then(() => {
       //初始化
       this.initFun();
-      //判断用户是否关注公众号
-       //this.getMemberFollowState()
     })
   },
   onShow() {
     this.setData({ nowGetTime: new Date().getTime()})
     //判断用户是否关注公众号
     app.checkSessionFun().then(() => {
-      //this.getMemberFollowState()
+      //避免错误用户调用getMemberFollowState
+      if (app.passIsLogin()) {
+        //是否到显示时间
+        if (app.showIsTimeEnd(this.data.nowGetTime, 'closeNoticeTime', 86400000)){
+           this.getMemberFollowState()
+        } else {
+          this.setData({ officialDataState: false})
+        }
+      }
       //this.checkPromotion()
     })
     // this.getOfficialDataState()
@@ -136,9 +140,6 @@ Page({
     onLoaded = false;
     //初始化    
     this.initFun();
-    //判断用户是否关注公众号
-    //this.getMemberFollowState()
-
   },
   onShareAppMessage(){
     return{
@@ -163,19 +164,15 @@ Page({
   },
   // 获取当前用户关注状态
   getMemberFollowState() {
-    if (app.passIsLogin()) {
-      api.post('v2/member/memberInfo').then(res => {
-        console.log('memberInfo')
-        console.log(res)
-        this.setData({
-          memberFollowState: res.msg.sub_flag,
-          officialDataState: res.msg.sub_flag == 1 ? false : true,
-          memberInfo: res.msg
-        })
-        //存储用户信息
-        wx.setStorageSync('userData', res.msg);
+    api.post('v2/member/memberInfo').then(res => {
+      console.log('memberInfo')
+      console.log(res)
+      this.setData({
+        officialDataState: res.msg.sub_flag == 1 ? false : true,
       })
-    }
+      //存储用户信息
+      wx.setStorageSync('userData', res.msg);
+    })
   },
 /*   checkPromotion() {
     let data = {
@@ -195,14 +192,6 @@ Page({
       }
     })
   }, */
-  // getOfficialDataState() {
-  //   // sub_flag 1:关注 0:未关注
-  //   if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
-  //     this.setData({ officialDataState: true })
-  //   } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
-  //     this.setData({ officialDataState: false })
-  //   }
-  // },
   /**
    * write@xuhuang  end
    */

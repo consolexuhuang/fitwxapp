@@ -29,7 +29,6 @@ Page({
 
     memberFollowState: 1, //当前关注状态
     officialDataState: false,
-    memberInfo: '',
     // jurisdictionState: false, //授权显示
   },
 
@@ -50,13 +49,15 @@ Page({
     })
   },
   onShow() {
-    //this.getMemberFollowState()
-    // app.checkSessionFun().then(() => {
-    //   this.setData({ jurisdictionState: false });
-    //   this.getMemberFollowState()
-    // }, () => {
-    //   this.setData({ jurisdictionState: true })
-    // }) 
+    //避免错误用户调用getMemberFollowState
+    if (app.passIsLogin()) {
+      //是否到显示时间
+      if (app.showIsTimeEnd(new Date().getTime(), 'closeNoticeTime', 86400000)) {
+        this.getMemberFollowState()
+      } else {
+        this.setData({ officialDataState: false })
+      }
+    }
   },
   //转发
   onShareAppMessage() {
@@ -79,27 +80,15 @@ Page({
    */
   // 获取当前用户关注状态
   getMemberFollowState() {
-    if (app.passIsLogin()) {
-      api.post('v2/member/memberInfo').then(res => {
-        console.log('getMemberFollowState', res)
-        this.setData({
-          memberFollowState: res.msg.sub_flag,
-          officialDataState: res.msg.sub_flag == 1 ? false : true,
-          memberInfo: res.msg
-        })
-        //存储用户信息
-        wx.setStorageSync('userData', res.msg);
+    api.post('v2/member/memberInfo').then(res => {
+      console.log('getMemberFollowState', res)
+      this.setData({
+        officialDataState: res.msg.sub_flag == 1 ? false : true,
       })
-    }
+      //存储用户信息
+      wx.setStorageSync('userData', res.msg);
+    })
   },
-  // getOfficialDataState() {
-  //   // sub_flag 1:关注 0:未关注
-  //   if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
-  //     this.setData({ officialDataState: true })
-  //   } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
-  //     this.setData({ officialDataState: false })
-  //   }
-  // },
   /**
    * write@xuhuang  end
    */

@@ -100,17 +100,17 @@ App({
     redirectToState: true,
     scene: '',
     sceneOptions: '',
-    /* JumpAppId: { //测试
+    JumpAppId: { //测试
       appid: 'wx322a8a72b755aa57',
       envVersion: 'trial' //体验版
       //  envVersion: 'release' //正式版
-    }, */
+    }, 
 
-    JumpAppId: {                   //正式
-      appid: 'wxec1fe04fad9d4e02',
-      //envVersion: 'trial' //体验版
-      envVersion: 'release' //正式版
-    },
+    // JumpAppId: {                   //正式
+    //   appid: 'wxec1fe04fad9d4e02',
+    //   //envVersion: 'trial' //体验版
+    //   envVersion: 'release' //正式版
+    // },
   },
 
   /**
@@ -313,6 +313,19 @@ App({
     )
       return true
     else return false
+  },
+  //前台校验是否可以显示模块
+  /**
+   * nowGetTime 当前时间
+   * storeTimeItem 缓存上一次关闭时间名称 字符串
+   * durTime 所隔时间差 单位ms  86400000 一天
+   */
+  showIsTimeEnd(nowGetTime, storeTimeItem, durTime){
+    if (Store.getItem(storeTimeItem)){
+      return nowGetTime - Store.getItem(storeTimeItem) > durTime ? true : false
+    } else {
+      return true
+    }
   },
   //修改用户信息接口
   wx_modifyUserInfo() {

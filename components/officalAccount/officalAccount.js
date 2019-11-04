@@ -9,22 +9,15 @@ Component({
       type:Boolean,
       value:true
     },
-    memberFollowState:{
-      type: null,
-      value: 1
-    },
+    // memberFollowState:{
+    //   type: null,
+    //   value: 1
+    // },
+    //组件距离底部的距离
     bottomStyle:{
       type:null,
       value:0
     },
-    pageShowNoticeState:{
-      type:Boolean,
-      value:false
-    },
-    forcedEjection:{
-      type:Boolean,
-      value:false,
-    }
   },
 
   /**
@@ -35,23 +28,16 @@ Component({
     guideImgUrl:''  //指引图片
   },
   observers:{
-    'pageShowNoticeState': function(){
-      if (this.data.pageShowNoticeState){
-        getApp().api.post('v2/coupon/shareCouponInfo').then(res => {
-          console.log('shareCouponInfo', res)
-          this.setData({
-            guideImgUrl: res.msg.imgurl2,
-          })
-        })
-      }
-    },
-    'forcedEjection':function(){
-      if (this.data.forcedEjection) {
-        this.setData({
-          showNoticeState: true
-        })
-      }
-    }
+    // 'pageShowNoticeState': function(){
+    //   if (this.data.pageShowNoticeState){
+    //     getApp().api.post('v2/coupon/shareCouponInfo').then(res => {
+    //       console.log('shareCouponInfo', res)
+    //       this.setData({
+    //         guideImgUrl: res.msg.imgurl2,
+    //       })
+    //     })
+    //   }
+    // },
   },
   lifetimes: {
     attached() {
@@ -64,12 +50,12 @@ Component({
   methods: {
     //显示关注弹窗
     _showNotice() {
-      getApp().api.post('v2/coupon/shareCouponInfo').then(res => {
-        // console.log(res)
-        this.setData({
-          guideImgUrl: this.data.pageShowNoticeState ? res.msg.imgurl2 : res.msg.imgurl1
-        })
-      })
+      // getApp().api.post('v2/coupon/shareCouponInfo').then(res => {
+      //   // console.log(res)
+      //   this.setData({
+      //     guideImgUrl: this.data.pageShowNoticeState ? res.msg.imgurl2 : res.msg.imgurl1
+      //   })
+      // })
       this.setData({ showNoticeState: true })
     },
     //关闭关注弹窗
@@ -78,6 +64,7 @@ Component({
     },
     //关闭通知
     _closeguideLogin() {
+      store.setItem('closeNoticeTime', new Date().getTime())
       this.setData({ officialDataState: false })
     },
     //客服事件
