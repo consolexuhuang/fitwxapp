@@ -70,11 +70,8 @@ Page({
 
 
   onLoad: function (options) {
-    console.log('option coursedetail')
-    console.log(options)
     //loading
-    wx.showLoading({ title: '加载中...' });    
- 
+    wx.showLoading({ title: '加载中...' });     
     
     //分享过来的参数
     if (options.shareMemberId) {
@@ -91,8 +88,6 @@ Page({
         courseId = resData.courseId;
         //设置数据
         wx.setStorageSync('shareMemberId', resData.shareMemberId);
-        console.log('wx.getStorageSync shareMemberId0000000000000000')
-        console.log(wx.getStorageSync('shareMemberId'))
         //初始化数据
         this.init();
       }).catch((err) => {
@@ -118,19 +113,14 @@ Page({
   },
   //初始化数据
   init(){
-    //设置二维码图片地址+参数
-    let shareMemberId = wx.getStorageSync('userData').id;
-    let scene = { courseId, shareMemberId }
-    this.setData({
-      'cardData.qrCode': `${api.API_URI}getLiteQrcode?page=pages/course/courseDetail&&liteType=main&&scene=${encodeURI(JSON.stringify(scene))}`
-    })
-
     //检测登录 
     // 以防checkSessionFun方法的resolve回调回来一个错误用户，所以在内部页面用passIsLogin提前先拦住
     if (!app.passIsLogin()) {
+      wx.hideLoading();
       this.setData({ jurisdictionState: true })
     } else {
-      app.checkSessionFun().then(() => {
+      app.checkSessionFun().then(() => {        
+        //获取数据
         Promise.all([this.getCourse(), this.getMemberFollowState()]).then(() => {
           wx.hideLoading();
         })
@@ -199,6 +189,8 @@ Page({
       })
       //存储用户信息
       wx.setStorageSync('userData', res.msg);
+      //设置二维码地址
+      this.setQrCodeUrl();
     })
   },
   /**
@@ -322,4 +314,14 @@ Page({
       path: '/pages/course/courseDetail?courseId=' + courseId + '&shareMemberId=' + wx.getStorageSync('userData').id,
     }
   },
+
+  //设置二维码图片地址+参数
+  setQrCodeUrl(){
+    let shareMemberId = wx.getStorageSync('userData').id || '';
+    let scene = { courseId, shareMemberId }
+    this.setData({
+      'cardData.qrCode': `${api.API_URI}getLiteQrcode?page=pages/course/courseDetail&&liteType=main&&scene=${encodeURI(JSON.stringify(scene))}`
+    })
+  },  
+
 })

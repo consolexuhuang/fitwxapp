@@ -3,7 +3,7 @@ const app = getApp();
 const api = app.api;
 const util = require('../../utils/util.js');
 const ui = require('../../utils/ui.js');
-let firstObservers = true;//是否第一次监听
+let firstObservers = true; //是否第一次监听
 Component({
   /**
    * 组件的属性列表
@@ -19,18 +19,18 @@ Component({
   },
   /* 监听 */
   observers: {
-    'isShow':function(val){
-      if(val){
+    'isShow': function(val) {
+      if (val) {
         ui.hideLoading();
       }
     },
-    'cardData': function (val) {
+    'cardData': function(val) {
       console.log('000')
       //生成图片        第二个memberHeadImg要改为二维码
       if (val.pic && val.memberHeadImg && val.qrCode && firstObservers) {
         console.log('66666666666666666')
         this.generateCardPic();
-        firstObservers=false;
+        firstObservers = false;
       }
     }
   },
@@ -59,7 +59,7 @@ Component({
     addressWidth: 0, //真实地址宽度
     addressRowMaxWidth: 550 - 60 * 3, //可装地址的行宽
     addressIsTwoRow: false, //地址是否是2行
-    generateFilePath:'',//canvas生成的图片
+    generateFilePath: '', //canvas生成的图片
   },
   lifetimes: {
     ready: function() {
@@ -76,8 +76,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    init() {
-    },
+    init() {},
 
     //关闭弹层
     clickClose() {
@@ -86,29 +85,24 @@ Component({
 
     //保存卡片
     saveCard() {
-      //loading
-      ui.showLoadingMask();
-      let generateFilePath = this.data.generateFilePath;
-      
-      if (generateFilePath){
-        console.log('generateFilePath001')
-        console.log(generateFilePath)
-        this.saveImageToPhotosAlbum(generateFilePath)
-        /* .then(()=>{
-          ui.hideLoading()
-        }); */
-      }else{
-        this.generateCardPic()
-          .then((resTempFilePath)=>{
-            generateFilePath = resTempFilePath;
-          console.log('generateFilePath002')
-          console.log(generateFilePath)
-          return this.saveImageToPhotosAlbum(generateFilePath);
-        })
-        /* .then(() => {
-          ui.hideLoading()
-        }); */
+      if (this.data.cardData.memberHeadImg && this.data.cardData.qrCode && this.data.cardData.pic) {
+        //loading
+        ui.showLoadingMask();
+        let generateFilePath = this.data.generateFilePath;
+        if (generateFilePath) {
+          this.saveImageToPhotosAlbum(generateFilePath)
+        } else {
+          this.generateCardPic()
+            .then((resTempFilePath) => {
+              generateFilePath = resTempFilePath;
+              return this.saveImageToPhotosAlbum(generateFilePath);
+            })
+        }
       }
+      else{
+        ui.showToast('图片素材下载异常，稍后重新尝试！')
+      }
+
     },
 
     //生成卡片图片
@@ -133,7 +127,7 @@ Component({
           return this.drawCanvas(pic, memberHeadImg, qrCode)
         }).then(() => {
           //生成图片
-         return this.canvasToPic()
+          return this.canvasToPic()
         })
         .catch((err) => {
           ui.showToast(err);
@@ -279,7 +273,7 @@ Component({
       ctx.drawImage('/images/icon/clock.png', 0, 0, 56, 56, infoSpaceLeft, picHeight + infoSpaceTop, canvasWidth / iconScale, canvasWidth / iconScale);
       //绘制文本
       ctx.setFontSize(28);
-      ctx.setFillStyle('#999999');
+      ctx.setFillStyle('#333333');
       ctx.fillText(dateTime, infoSpaceLeft + canvasWidth / iconScale + infoSpaceTop, picHeight + infoSpaceTop + 25);
 
       //地址
@@ -287,7 +281,7 @@ Component({
       ctx.drawImage('/images/icon/address.png', 0, 0, 56, 56, infoSpaceLeft, picHeight + infoSpaceTop + infoRowHeight, canvasWidth / iconScale, canvasWidth / iconScale);
       //绘制文本
       ctx.setFontSize(28);
-      ctx.setFillStyle('#999999');
+      ctx.setFillStyle('#333333');
       let address = this.data.cardData.address;
       let row_address = this.textRow(ctx, address, addressRowMaxWidth);
       //1行
@@ -309,7 +303,7 @@ Component({
       ctx.drawImage('/images/icon/people.png', 0, 0, 56, 56, infoSpaceLeft, picHeight + infoSpaceTop + infoRowHeight * 2 + addRowHeight, canvasWidth / iconScale, canvasWidth / iconScale);
       //绘制文本
       ctx.setFontSize(28);
-      ctx.setFillStyle('#999999');
+      ctx.setFillStyle('#333333');
       ctx.fillText(this.data.cardData.coachName + '·教练', infoSpaceLeft + canvasWidth / iconScale + infoSpaceTop, picHeight + infoSpaceTop + infoRowHeight * 2 + 25 + addRowHeight);
 
       /* 底部分享信息 */
@@ -326,15 +320,15 @@ Component({
       ctx.restore();
       //会员昵称
       ctx.setFontSize(32);
-      ctx.setFillStyle('#333333');
+      ctx.setFillStyle('#999999');
       ctx.fillText(this.data.cardData.memberNickName, infoSpaceLeft + headImgWidth, headImgY);
       //提示语
       ctx.setFontSize(22);
-      ctx.setFillStyle('#333333');
+      ctx.setFillStyle('#999999');
       ctx.fillText(this.data.tipText, infoSpaceLeft + headImgWidth, headImgY + 30);
 
       //二维码   图片尺寸缩放
-      let dwQrcode = qrCodeWidth/sQrCodeWidth;
+      let dwQrcode = qrCodeWidth / sQrCodeWidth;
       ctx.drawImage(qrCode, 0, 0, sQrCodeWidth, qrCodeWidth / dwQrcode, canvasWidth - qrCodeWidth - 30, headImgY - headImgR, qrCodeWidth, qrCodeWidth)
 
       /* 返回 */
@@ -396,7 +390,7 @@ Component({
 
     //生成图片
     canvasToPic() {
-      return new Promise((resolve,reject)=>{
+      return new Promise((resolve, reject) => {
         wx.canvasToTempFilePath({
           x: 0,
           y: 0,
@@ -427,7 +421,7 @@ Component({
           }
         }, this)
       })
-      
+
     },
     //远程图片转本地图片
     remoteToLocal(url) {
@@ -448,24 +442,24 @@ Component({
         })
       })
     },
-   //保存图片到系统相册
-    saveImageToPhotosAlbum(url){
+    //保存图片到系统相册
+    saveImageToPhotosAlbum(url) {
       console.log('保存图片到系统相册')
       console.log(url)
-     return new Promise((resolve,reject)=>{
-       wx.saveImageToPhotosAlbum({
-         filePath: url,
-         success: () => {
-           ui.showToast('卡片已保存到相册')
-           resolve();
-         },
-         fail: (err) => {
-           console.error(err)
-           ui.showToast('卡片保存失败')
-           reject('卡片保存失败')
-         }
-       })
-     })  
+      return new Promise((resolve, reject) => {
+        wx.saveImageToPhotosAlbum({
+          filePath: url,
+          success: () => {
+            ui.showToast('卡片已保存到相册')
+            resolve();
+          },
+          fail: (err) => {
+            console.error(err)
+            ui.showToast('卡片保存失败')
+            reject('卡片保存失败')
+          }
+        })
+      })
     }
   }
 })
