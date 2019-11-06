@@ -44,9 +44,10 @@
 
 <!-- footer -->
 <view class="foot" wx:if='{{isShow}}'>
-  <view class="btn download analysis_courseDetail_download" bindtap="saveCard">
+  <view class="btn download analysis_courseDetail_download" bindtap="{{cardData.memberHeadImg ? 'saveCard' : ''}}">
     <text class="icon iconfont iconfenzu1"></text>
     <text>保存卡片</text>
+    <button wx:if='{{!cardData.memberHeadImg}}' class="buttonGetUserInfo" open-type="getUserInfo" bindgetuserinfo='bindgetuserinfo'></button>
   </view>
   <view class="btn share analysis_courseDetail_sharebtns">
     <text class="icon iconfont iconfenzucopy"></text>

@@ -1,6 +1,7 @@
 // components/shareMain/shareMain.js
 const app = getApp();
 const api = app.api;
+import Store from '../../utils/store.js';
 const util = require('../../utils/util.js');
 const ui = require('../../utils/ui.js');
 let firstObservers = true; //是否第一次监听
@@ -83,9 +84,32 @@ Component({
       this.triggerEvent('closecard')
     },
 
+    //保存卡片授权头像信息
+    bindgetuserinfo(ev){
+      let userInfo = ev.detail.userInfo;
+      let memberHeadImg = userInfo.avatarUrl;
+      console.log('env000')
+      console.log(ev)
+      //设置头像
+      this.setData({
+        'cardData.memberHeadImg': userInfo.avatarUrl,
+        'cardData.memberNickName': userInfo.nickName
+      });
+      //保存卡片信息完整
+      this.cardInfoRight();
+      //缓存数据
+      Store.setItem('wx_userInfo', userInfo)
+    },
+
     //保存卡片
-    saveCard() {
+    saveCard() {   
+      //保存卡片信息完整
+      this.cardInfoRight();
+    },
+    //保存卡片信息完整
+    cardInfoRight(){
       if (this.data.cardData.memberHeadImg && this.data.cardData.qrCode && this.data.cardData.pic) {
+        console.log('card0009')
         //loading
         ui.showLoadingMask();
         let generateFilePath = this.data.generateFilePath;
@@ -99,10 +123,9 @@ Component({
             })
         }
       }
-      else{
+      else {
         ui.showToast('图片素材下载异常，稍后重新尝试！')
       }
-
     },
 
     //生成卡片图片
