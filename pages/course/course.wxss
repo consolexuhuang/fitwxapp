@@ -78,7 +78,7 @@
 }
 
 .search-bar-text text {
-  width: 500rpx;
+  width: 490rpx;
   margin-left: 19rpx;
   font-size: 26rpx;
   color: #b4b4b4;
