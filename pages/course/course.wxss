@@ -90,6 +90,7 @@
 
 .search-bar .iconclose-circle {
   margin-right: 39rpx;
+  margin-left: 10rpx;
   color:#D6D6D6;
 }
 
