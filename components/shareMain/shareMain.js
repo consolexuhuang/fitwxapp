@@ -86,19 +86,38 @@ Component({
 
     //保存卡片授权头像信息
     bindgetuserinfo(ev){
-      let userInfo = ev.detail.userInfo;
+
+      //同意授权
+      if (ev.detail.userInfo) {
+        this.agreeGetUserInfo(ev)
+      }
+      //拒绝,再次弹层
+      else{
+        wx.getUserInfo({
+          success: (res) => {
+            this.agreeGetUserInfo(res)
+          },
+          fail: () => {
+            console.log('拒绝授权')
+          }
+        })
+      }
+      
+    },
+    //同意授权
+    agreeGetUserInfo(res){
+      let userInfo = res.detail.userInfo;
       let memberHeadImg = userInfo.avatarUrl;
-      console.log('env000')
-      console.log(ev)
-      //设置头像
-      this.setData({
-        'cardData.memberHeadImg': userInfo.avatarUrl,
-        'cardData.memberNickName': userInfo.nickName
-      });
-      //保存卡片信息完整
-      this.cardInfoRight();
-      //缓存数据
-      Store.setItem('wx_userInfo', userInfo)
+        //设置头像
+        this.setData({
+          'cardData.memberHeadImg': userInfo.avatarUrl,
+          'cardData.memberNickName': userInfo.nickName
+        });
+        //保存卡片信息完整
+        this.cardInfoRight();
+        //缓存数据
+        Store.setItem('wx_userInfo', userInfo)
+      
     },
 
     //保存卡片
