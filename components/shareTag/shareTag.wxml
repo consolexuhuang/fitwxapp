@@ -1,6 +1,6 @@
 <!--components/shareTag/shareTag.wxml-->
 <view class='shareBox'>
-   <view  class='shareImg' bindtap="shareHandle">
+   <view  class='shareImg analysis_sharetag' bindtap="shareHandle">
      <text class="icon iconfont iconfenxiang"></text>
      <text class="txt">分享</text>
    </view>
