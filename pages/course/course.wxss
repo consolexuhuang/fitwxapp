@@ -78,9 +78,14 @@
 }
 
 .search-bar-text text {
+  width: 500rpx;
   margin-left: 19rpx;
   font-size: 26rpx;
   color: #b4b4b4;
+  overflow: hidden;
+	  text-overflow:ellipsis;
+	  white-space: nowrap;
+
 }
 
 .search-bar .iconclose-circle {
