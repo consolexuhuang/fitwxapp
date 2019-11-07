@@ -27,10 +27,10 @@ Page({
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
     swiperHeight: getApp().globalData.systemInfo.screenHeight - (getApp().globalData.tab_height * 2 + 20) - 75,
     // officialData: '', //获取当前场景值对象
-    memberFollowState: 1, //当前关注状态
-    bottomStyle: 0,
-    officialDataState: false,
-    pageShowNoticeState: false,
+    // memberFollowState: 1, //当前关注状态
+    // bottomStyle: 0,
+    // officialDataState: false,
+    // pageShowNoticeState: false,
     memberInfo:'',
 
     jurisdictionSmallState: false, //授权显示
@@ -58,10 +58,8 @@ Page({
 
     //检测登录 
     app.checkSessionFun().then(() => {
-    //this.getMemberFollowState()
     this.getCoach()
     this.getDateList()
-    // this.getOfficialDataState()
     }, () => {
       this.setData({ jurisdictionState: true })
     })
@@ -70,46 +68,8 @@ Page({
     //检测登录
     app.checkSessionFun().then(() => {
       this.setData({ jurisdictionSmallState: false })
-      this.getMemberFollowState()
     })
   },
-  /**
-   * write@xuhuang  start
-   */
-  // 获取当前用户关注状态
-  getMemberFollowState() {
-    if (app.passIsLogin()) {
-      api.post('v2/member/memberInfo').then(res => {
-        console.log('getMemberFollowState', res)
-        this.setData({
-          memberFollowState: res.msg.sub_flag,
-          officialDataState: res.msg.sub_flag == 1 ? false : true,
-          memberInfo: res.msg
-        })
-        //存储用户信息
-        wx.setStorageSync('userData', res.msg);
-      })
-    }
-  },
-  // getOfficialDataState() {
-  //   // sub_flag 1:关注 0:未关注
-  //   if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
-  //     this.setData({ officialDataState: true })
-  //   } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
-  //     this.setData({ officialDataState: false })
-  //   }
-  // },
-  // bindload(e) {
-  //   console.log('official-account_success', e.detail)
-  //   this.setData({ officialData: e.detail })
-  // },
-  // binderror(e) {
-  //   console.log('official-account_fail', e.detail)
-  //   this.setData({ officialData: e.detail })
-  // },
-  /**
-   * write@xuhuang  end
-   */
   // 表单阻止冒泡
   noop() {
     console.log('noop')

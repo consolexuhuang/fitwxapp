@@ -25,10 +25,10 @@ Page({
     coachWxCodeState: false,
     courseShareData:'', //分享课程文案
     // officialData: '', //获取当前场景值对象
-    memberFollowState: 1, //当前关注状态
+    // memberFollowState: 1, //当前关注状态
     bottomStyle: 0,
-    officialDataState:false,
-    memberInfo:'',
+    // officialDataState:false,
+    // memberInfo:'',
     jurisdictionState: false, //授权显示
     hasPhoto:false,//是否有照片
     // courseData: '',//课程详情
@@ -55,8 +55,6 @@ Page({
     } else {
       app.checkSessionFun().then(() => {
         this.getOrderDetail()
-        //this.getMemberFollowState()
-        // this.getOfficialDataState()
       },()=>{
         this.setData({ jurisdictionState: true })
       })
@@ -66,8 +64,6 @@ Page({
     app.wx_AuthUserLogin().then(() => {
       this.setData({ jurisdictionState: false })
       this.getOrderDetail()
-      this.getMemberFollowState()
-      // this.getOfficialDataState()
     }, () => {
       this.setData({ jurisdictionState: true })
     })
@@ -75,27 +71,6 @@ Page({
   /**
    * write@xuhuang  start
    */
-  // 获取当前用户关注状态
-  getMemberFollowState() {
-    api.post('v2/member/memberInfo').then(res => {
-      console.log('getMemberFollowState', res)
-      this.setData({
-        memberFollowState: res.msg.sub_flag,
-        officialDataState: res.msg.sub_flag == 1 ? false : true,
-        memberInfo: res.msg
-      })
-      //存储用户信息
-      wx.setStorageSync('userData', res.msg);
-    })
-  },
-  // getOfficialDataState(){
-  //   // sub_flag 1:关注 0:未关注
-  //   if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
-  //     this.setData({ officialDataState: true })
-  //   } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
-  //     this.setData({ officialDataState: false })
-  //   }
-  // },
   getCourseInfo(courseId){
     const data = {
       id: courseId,

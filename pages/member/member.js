@@ -25,7 +25,7 @@ Page({
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
     memberFollowState: 1, //当前关注状态
     officialDataState: false,
-    memberInfo: '',
+    // memberInfo: '',
     jurisdictionSmallState: false,
     showAuthModel: false,
     isPlus: 0, //是否是Plus会员，0：否，1：是
@@ -89,28 +89,13 @@ Page({
         wx_userInfo: Store.getItem('wx_userInfo') || '',
         showAuthModel: !app.passIsLogin()
       })
-      Promise.all([this.getMemberFollowState(), this.getUserInfo(), this.getOrderCount()])
+      Promise.all([this.getUserInfo(), this.getOrderCount()])
         .then(() => {
           //关闭loading
           ui.hideLoading();
         })
     })
   },
-  // 获取当前用户关注状态
-  getMemberFollowState() {
-    if (app.passIsLogin()) {
-      return api.post('v2/member/memberInfo').then(res => {
-        this.setData({
-          memberFollowState: res.msg.sub_flag,
-          officialDataState: res.msg.sub_flag == 1 ? false : true,
-          memberInfo: res.msg
-        })
-        //存储用户信息
-        wx.setStorageSync('userData', res.msg);
-      })
-    }
-  },
-
   getUserInfo() {
     if (app.passIsLogin()) {
       return api.post('v2/member/liteMyInfo').then(res => {

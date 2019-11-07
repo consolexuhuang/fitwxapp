@@ -82,10 +82,3 @@
     <image src='{{orderDetailData.coach.wxQrCodeUrl}}' class='coachWxImg' show-menu-by-longpress bindtap='showPrevICoachWxImg' data-imgSrc='{{orderDetailData.coach.wxQrCodeUrl}}'></image>
     <view class='coachWxCont'>长按保存教练微信二维码</view>
 </van-popup>
-
-<!-- <officalAccount memberFollowState='{{memberFollowState}}' 
-                bottomStyle='{{bottomStyle}}'
-                officialDataState='{{officialDataState}}'
-                pageShowNoticeState='{{memberInfo.sub_flag == 0 ? true : false}}'
-                forcedEjection='{{memberInfo.sub_flag == 0 ? true : false}}'>
-</officalAccount> -->

@@ -28,9 +28,9 @@ Page({
     // 此页面 页面内容距最顶部的距离
     // contMargin_height: getApp().globalData.tab_height * 2 + 20,
     // officialData: '', //获取当前场景值对象
-    memberFollowState: 1, //当前关注状态
-    bottomStyle: 100,
-    officialDataState: false,
+    // memberFollowState: 1, //当前关注状态
+    // bottomStyle: 100,
+    // officialDataState: false,
 
     // forcedEjection:false, //是否强制弹出
     // pageShowNoticeState:false
@@ -53,7 +53,6 @@ Page({
         //检测登录
         app.checkSessionFun().then(() => {
           //this.checkPromotion()
-          this.getMemberFollowState()
           this.getOrderDetail()
           this.getMemberInfo(options.orderId)
           // this.getOfficialDataState()
@@ -145,35 +144,6 @@ Page({
       }
     })
   },
-  /**
-   * write@xuhuang  start
-   */
-  // 获取当前用户关注状态
-  getMemberFollowState() {
-    api.post('v2/member/memberInfo').then(res => {
-      console.log('getMemberFollowState', res)
-      this.setData({ 
-        memberFollowState: res.msg.sub_flag ,
-        officialDataState: res.msg.sub_flag == 1 ? false : true,
-        memberInfo: res.msg
-        })
-
-      //存储用户信息
-      wx.setStorageSync('userData', res.msg);
-    })
-  },
-  //获取用户实时数据
-  // getOfficialDataState() {
-  //   // sub_flag 1:关注 0:未关注
-  //   if (store.getItem('userData') && store.getItem('userData').sub_flag === 0) {
-  //     this.setData({ officialDataState: true })
-  //   } else if (store.getItem('userData') && store.getItem('userData').sub_flag === 1) {
-  //     this.setData({ officialDataState: false })
-  //   }
-  // },
-  /**
-   * write@xuhuang  end
-   */
   onclose(){
     this.setData({ paySuccessShow: false, coachWxCodeState: false})
   },
