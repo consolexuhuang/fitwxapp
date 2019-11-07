@@ -51,6 +51,7 @@ Page({
     swiperCurrent:0,//banner但前显示index
     swiperBtnCurrent: 0,//0:当前显示视频，1：当前显示图片
     isShowVideo:false,//是否显示播放视频
+    isFirstPlay:true,//是否是从页面头部点击播放播放
     isShareButton:false,//分享是否通过点击自定义按钮
 
     statementContent:`<p>1、参与Justin&Julie健身服务的用户，具有完全的民事行为能力，同意遵守Justin&Julie的相关管理规章制度，已接受Justin&Julie的相关服务协议，并已知晓有关的健身规则与警示，承诺遵守Justin&Julie的相关健身规则与警示规定。</p>
@@ -225,12 +226,27 @@ Page({
   },
   //点击播放视频
   handleShowVideo(){
+    ui.showLoading();
     this.setData({
-      isShowVideo:true
+      isShowVideo:true,
+      isFirstPlay: true
     })
+  },
+  //视频播放
+  bindplay(){
+    if(this.data.isFirstPlay){
+      //hide loading
+      ui.hideLoading();
+      //设置为不是第一次播放
+      this.setData({
+        isFirstPlay: false
+      })
+    }
+    
   },
   //关闭播放弹层
   handleCloseVideo(){
+    ui.hideLoading();
     this.setData({
       isShowVideo: false
     })
