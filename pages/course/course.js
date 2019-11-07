@@ -52,19 +52,19 @@ Page({
     swiperHeight: {},
 
     officialDataState: false,
-    searchIn:false,//是否是搜素进来的
-    activityPopupState:{
+    searchIn: false, //是否是搜素进来的
+    activityPopupState: {
       state: false,
-      bottomText:'送出祝福',
-      width:580, //rpx
-      height:769,
-      imgSrc:'',
-      url:''
-    },//活动弹窗
-    nowGetTime:'',
-    jurisdictionSmallState:false,
+      bottomText: '送出祝福',
+      width: 580, //rpx
+      height: 769,
+      imgSrc: '',
+      url: ''
+    }, //活动弹窗
+    nowGetTime: '',
+    jurisdictionSmallState: false,
     // checkPromotion_course:{}, //首页的活动促销
-    isHasData:false,//隐藏结束是否有数据
+    isHasData: false, //隐藏结束是否有数据
   },
 
   /**
@@ -74,13 +74,13 @@ Page({
   onLoad: function(options) {
     console.log('course option')
     console.log(options)
-   /*
-   //训练小红点引导 后面需要删除
-     if (!wx.getStorageSync('hideTabBarRedDot')){
-      wx.showTabBarRedDot({
-        index: 2,
-      })
-    } */
+    /*
+    //训练小红点引导 后面需要删除
+      if (!wx.getStorageSync('hideTabBarRedDot')){
+       wx.showTabBarRedDot({
+         index: 2,
+       })
+     } */
 
     if (options.shareMemberId) {
       wx.setStorageSync('shareMemberId', options.shareMemberId)
@@ -95,32 +95,48 @@ Page({
     })
   },
   onShow() {
-    this.setData({ nowGetTime: new Date().getTime()})
+    this.setData({
+      nowGetTime: new Date().getTime()
+    })
     //判断用户是否关注公众号
     app.checkSessionFun().then(() => {
       //避免错误用户调用getMemberFollowState
       if (app.passIsLogin()) {
         //是否到显示时间
-        if (app.showIsTimeEnd(this.data.nowGetTime, 'closeNoticeTime', 86400000)){
-           this.getMemberFollowState()
+        if (app.showIsTimeEnd(this.data.nowGetTime, 'closeNoticeTime', 86400000)) {
+          this.getMemberFollowState()
         } else {
-          this.setData({ officialDataState: false})
+          this.setData({
+            officialDataState: false
+          })
         }
       }
       //this.checkPromotion()
     })
     // this.getOfficialDataState()
     //搜索进来的
-    if (getApp().globalData.courseConfig) {
+    console.log('getApp().globalData.courseConfig11111')
+    console.log(getApp().globalData.courseConfig)
+    let getAppCourseConfig = getApp().globalData.courseConfig;
+    if (getAppCourseConfig) {
       //初始化    
       this.initFun();
-      //设置是否是搜索页进入
-      this.setData({
-        searchIn:true
-      })
-      return;
+      let getAppCourseConfigSearchText = getAppCourseConfig.hasOwnProperty('searchText') ? getAppCourseConfig.searchText : '';
+      if (getAppCourseConfigSearchText || getAppCourseConfig.selectedLabel.length > 0 || getAppCourseConfig.selectedStore.length > 0 || getAppCourseConfig.selectedTimeInterval.length > 0) {
+        console.log('getApp().globalData.courseConfig000000')
+        console.log(getApp().globalData.courseConfig)        
+        //设置是否是搜索页进入
+        this.setData({
+          searchIn: true
+        })
+        return;
+      } else {
+        //设置是否是搜索页进入
+        this.setData({
+          searchIn: false
+        })
+      }
     }
-
     /* 设置刷新时间 */
     let startMilliseconds = wx.getStorageSync('startMilliseconds');
     let interval = 10 * 60 * 1000; //间隔设为10分钟
@@ -143,9 +159,9 @@ Page({
     //初始化    
     this.initFun();
   },
-  onShareAppMessage(){
-    return{
-      title:"Justin&Julie Fitness 课表",
+  onShareAppMessage() {
+    return {
+      title: "Justin&Julie Fitness 课表",
       path: `/pages/index/index?shareMemberId=${wx.getStorageSync('userData').id}`,
     }
   },
@@ -176,24 +192,24 @@ Page({
       wx.setStorageSync('userData', res.msg);
     })
   },
-/*   checkPromotion() {
-    let data = {
-      location: 'course'
-    }
-    api.post('v2/member/checkPromotion', data).then(res => {
-      if(Object.keys(res.msg).length > 0){
-        this.setData({
-          ['activityPopupState.imgSrc']: res.msg.image,
-          ['activityPopupState.url']: res.msg.url,
-          ['activityPopupState.state']: (this.data.nowGetTime - store.getItem('closeTime') || new Date().getTime()) > 86400000 ? true : false
-        })
-      } else {
-        this.setData({
-          ['activityPopupState.state']: false
-        })
+  /*   checkPromotion() {
+      let data = {
+        location: 'course'
       }
-    })
-  }, */
+      api.post('v2/member/checkPromotion', data).then(res => {
+        if(Object.keys(res.msg).length > 0){
+          this.setData({
+            ['activityPopupState.imgSrc']: res.msg.image,
+            ['activityPopupState.url']: res.msg.url,
+            ['activityPopupState.state']: (this.data.nowGetTime - store.getItem('closeTime') || new Date().getTime()) > 86400000 ? true : false
+          })
+        } else {
+          this.setData({
+            ['activityPopupState.state']: false
+          })
+        }
+      })
+    }, */
   /**
    * write@xuhuang  end
    */
@@ -272,7 +288,7 @@ Page({
 
     const dateList = this.data.dateList
     const active = this.data.active
-    const date = dateList ? dateList[active].date:'';
+    const date = dateList ? dateList[active].date : '';
     if (this.data.endLine[date]) {
       return;
     }
@@ -401,7 +417,7 @@ Page({
       })
 
     }
-    
+
     //清除缓存
     wx.removeStorage({
       key: 'courseData',
@@ -649,11 +665,9 @@ Page({
     //loading
     ui.showLoading();
     this.setData({
-      searchText: ''
+      searchText: '',
+      searchIn: false
     })
-    /* CourseCom.getDateList(this).then(() => {
-      this.getCourseList()
-    }) */
     CourseCom.getConfig(this).then(() => {
       this.getCourseList()
     })
@@ -750,8 +764,8 @@ Page({
   // 课程预约
   handleAppointBtnTap: function(event) {
     console.log('formID-------', event.detail)
-    if (event.detail.formId !== 'the formId is a mock one'){
-       store.setItem('formId', [...(store.getItem('formId') || ''), event.detail.formId])    
+    if (event.detail.formId !== 'the formId is a mock one') {
+      store.setItem('formId', [...(store.getItem('formId') || ''), event.detail.formId])
     }
     if (app.passIsLogin()) {
       const courseId = event.currentTarget.dataset.courseId
@@ -765,7 +779,7 @@ Page({
     }
   },
   // 表单阻止冒泡
-  noop(){
+  noop() {
     console.log('noop')
   },
 
@@ -796,7 +810,7 @@ Page({
     });
   },
   //活地图跳转
-  giveGiftCard(){
+  giveGiftCard() {
     store.setItem('closeTime', new Date().getTime())
     this.setData({
       ['activityPopupState.state']: false,
