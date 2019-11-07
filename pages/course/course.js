@@ -115,16 +115,12 @@ Page({
     })
     // this.getOfficialDataState()
     //搜索进来的
-    console.log('getApp().globalData.courseConfig11111')
-    console.log(getApp().globalData.courseConfig)
     let getAppCourseConfig = getApp().globalData.courseConfig;
     if (getAppCourseConfig) {
       //初始化    
       this.initFun();
       let getAppCourseConfigSearchText = getAppCourseConfig.hasOwnProperty('searchText') ? getAppCourseConfig.searchText : '';
       if (getAppCourseConfigSearchText || getAppCourseConfig.selectedLabel.length > 0 || getAppCourseConfig.selectedStore.length > 0 || getAppCourseConfig.selectedTimeInterval.length > 0) {
-        console.log('getApp().globalData.courseConfig000000')
-        console.log(getApp().globalData.courseConfig)        
         //设置是否是搜索页进入
         this.setData({
           searchIn: true
