@@ -1,0 +1,64 @@
+/* pages/subPackages_needLoad/tpExchange/tpExchange.wxss */
+page{
+  height: 100%;
+}
+.contain{
+  background-image: url('https://img.cdn.powerpower.net/5dc92d76e4b07d650ea014b9.jpg');
+   /* background-image: url('https://img.cdn.powerpower.net/5dc27bb4e4b04bee5a1b6b1c.png'); */
+  background-size: 100% 100%;
+  background-repeat:no-repeat;
+  background-attachment: fixed;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  width: 100%;
+  height: 100%;
+  text-align: center
+}
+.logo{
+  width: 566rpx;
+  height: 258rpx;
+  margin-top: 40%;
+}
+.tpExchangeBox{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  bottom: 80rpx;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+.tpExchangeInput{
+  width:660rpx;
+  height:100rpx;
+  background:rgba(255,255,255,1);
+  border-radius:12rpx;
+  border:4rpx solid rgba(137,109,255,1);
+  text-align: center;
+  font-size:40rpx;
+  color: #000;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+.placeholderClass{
+  font-size:40rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(204,204,204,1);
+  line-height:100rpx;
+}
+.tpExchangeBtn{
+  width:660rpx;
+  /* height:100rpx; */
+  background:rgba(137,109,255,1);
+  border-radius:12rpx;
+  text-align: center;
+  font-size:40rpx;
+  font-family:PingFangSC-Medium,PingFang SC;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  line-height:100rpx;
+  margin-top: 40rpx;
+}

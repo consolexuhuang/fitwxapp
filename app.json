@@ -49,7 +49,8 @@
         "editorCard/editorCard",
         "memberTransfer/memberTransfer",
         "refundCardServer/refundCardServer",
-        "compensateCoupon/compensateCoupon"
+        "compensateCoupon/compensateCoupon",
+        "tpExchange/tpExchange"
       ]
     }
   ],
@@ -105,6 +106,7 @@
     }
   },
   "navigateToMiniProgramAppIdList": [
-    "wxec1fe04fad9d4e02","wx7527dd9e3bee0ecd"
+    "wxec1fe04fad9d4e02",
+    "wx7527dd9e3bee0ecd"
   ]
 }
