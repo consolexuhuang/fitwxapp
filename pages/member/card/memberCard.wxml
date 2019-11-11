@@ -3,7 +3,7 @@
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
 <view style='margin-top:{{marginTopBar+20}}px;'>
   <block wx:for="{{cardList}}" wx:if='{{cardList.length != 0}}' wx:key="_PK_">
-    <block wx:if="{{item.card_type===3 && item.balance>0}}">
+    <block wx:if="{{item.card_type===3}}">
       <view class="myCard_moneyRecord fadeIn animated">
         <view class="myCard_moneyRecord_title"  bindtap="handleTransactionRecordTap">交易记录</view>
         <view class="myCard_moneyRecord_cont"  bindtap="handleRechargeTap" >
@@ -24,9 +24,9 @@
         </view>
       </view>
     </block>
-    <!-- <view class="line" wx:if='{{index == 1}}'></view> -->
-    <block wx:if='{{index >= 1}}'>
-      <view class="line" wx:if='{{index == 1 && cardList[0].card_type === 3}}'></view>
+    <view class="line" wx:if='{{item.card_type===3 && cardList.length > 1}}'></view>
+    <block wx:if='{{item.card_type!==3}}'>
+      <!-- <view class="line" wx:if='{{index == 1 && cardList[0].card_type === 3}}'></view> -->
       <view class="buyCardRecord myCard_moneyRecord fadeIn animated" data-card-id="{{item._PK_}}" bindtap="handleCardRecordTap">
         <view class="buyCardRecord_cont">
           <image src="{{item.background_img}}" class="myCard_moneyRecordImg {{item.card_left_count===0 ? 'greyStyle' : ''}}"></image>
@@ -65,7 +65,7 @@
       </view>
     </block>
   </block>
-  <view wx:if='{{cardList.length == 0 || (cardList.length ==1 && cardList[0].card_type===3 && cardList[0].balance==0)}}' style='overflow:hidden;text-align:center'>
+  <view wx:if='{{cardList.length == 0}}' style='overflow:hidden;text-align:center'>
      <view class='noCardBox'>
         <text class='iconicon-test12 iconfont noCardImg'></text>
         <text class='noCardCont'>暂无充值记录</text>
