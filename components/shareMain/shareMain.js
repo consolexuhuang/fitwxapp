@@ -57,9 +57,9 @@ Component({
     tipText: '分享课程，长按查看',
     sQrCodeWidth: '', //源二维码宽度
     qrCodeWidth: 88, //二维码宽度
-    addressWidth: 0, //真实地址宽度
-    addressRowMaxWidth: 550 - 60 * 3, //可装地址的行宽
-    addressIsTwoRow: false, //地址是否是2行
+    storeNameWidth: 0, //真实地址宽度
+    storeNameRowMaxWidth: 550 - 60 * 3, //可装地址的行宽
+    storeNameIsTwoRow: false, //地址是否是2行
     generateFilePath: '', //canvas生成的图片
   },
   lifetimes: {
@@ -151,11 +151,11 @@ Component({
     generateCardPic() {
       /* //测试
       this.setData({
-        'cardData.address':'远程图片转本地图片后面只需要把第三个参数改为二维码就行了',
+        'cardData.storeName':'远程图片转本地图片后面只需要把第三个参数改为二维码就行了',
          'cardData.courseName':'barbie我们只能设置文本的最大宽度，这就产生一定的了问题'
       }) */
       //远程图片转本地图片（banner、头像、二维码）     后面只需要把第三个参数改为二维码就行了
-      return Promise.all([this.remoteToLocal(this.data.cardData.pic), this.remoteToLocal(`${api.API_URI}redirect?url=${encodeURI(this.data.cardData.memberHeadImg)}`), this.remoteToLocal(this.data.cardData.qrCode), this.calAddressWidth(this.data.cardData.address)])
+      return Promise.all([this.remoteToLocal(this.data.cardData.pic), this.remoteToLocal(`${api.API_URI}redirect?url=${encodeURI(this.data.cardData.memberHeadImg)}`), this.remoteToLocal(this.data.cardData.qrCode), this.calStoreNameWidth(this.data.cardData.storeName)])
         .then((resArrImg) => {
           //banner
           let pic = resArrImg[0].path;
@@ -197,10 +197,10 @@ Component({
       let infoRowHeight = this.data.infoRowHeight;
       let headImgScale = this.data.headImgScale;
       let qrCodeWidth = this.data.qrCodeWidth;
-      let addressWidth = this.data.addressWidth; //真实地址宽度
-      let addressRowMaxWidth = this.data.addressRowMaxWidth; //可装地址的行宽
-      let addressIsTwoRow = this.data.addressIsTwoRow;
-      let addRowHeight = addressIsTwoRow ? infoSpaceTop : 0;
+      let storeNameWidth = this.data.storeNameWidth; //真实地址宽度
+      let storeNameRowMaxWidth = this.data.storeNameRowMaxWidth; //可装地址的行宽
+      let storeNameIsTwoRow = this.data.storeNameIsTwoRow;
+      let addRowHeight = storeNameIsTwoRow ? infoSpaceTop : 0;
       let sQrCodeWidth = this.data.sQrCodeWidth;
 
       /* canvas draw */
@@ -324,16 +324,16 @@ Component({
       //绘制文本
       ctx.setFontSize(28);
       ctx.setFillStyle('#333333');
-      let address = this.data.cardData.address;
-      let row_address = this.textRow(ctx, address, addressRowMaxWidth);
+      let storeName = this.data.cardData.storeName;
+      let row_storeName = this.textRow(ctx, storeName, storeNameRowMaxWidth);
       //1行
-      if (row_address.length == 1) {
-        ctx.fillText(row_address[0], infoSpaceLeft + canvasWidth / iconScale + infoSpaceTop, picHeight + infoSpaceTop + infoRowHeight + 25);
+      if (row_storeName.length == 1) {
+        ctx.fillText(row_storeName[0], infoSpaceLeft + canvasWidth / iconScale + infoSpaceTop, picHeight + infoSpaceTop + infoRowHeight + 25);
       }
       //2行
       else {
-        ctx.fillText(row_address[0], infoSpaceLeft + canvasWidth / iconScale + infoSpaceTop, picHeight + infoSpaceTop + infoRowHeight + 25);
-        ctx.fillText(row_address[1], infoSpaceLeft + canvasWidth / iconScale + infoSpaceTop, picHeight + infoSpaceTop + infoRowHeight + 60);
+        ctx.fillText(row_storeName[0], infoSpaceLeft + canvasWidth / iconScale + infoSpaceTop, picHeight + infoSpaceTop + infoRowHeight + 25);
+        ctx.fillText(row_storeName[1], infoSpaceLeft + canvasWidth / iconScale + infoSpaceTop, picHeight + infoSpaceTop + infoRowHeight + 60);
       }
 
 
@@ -404,26 +404,26 @@ Component({
       return row;
     },
     //计算地址的宽度
-    calAddressWidth(address) {
+    calStoreNameWidth(storeName) {
       return new Promise((resolve, reject) => {
-        let ctxAddress = wx.createCanvasContext('addressCanvas', this);
+        let ctxStoreName = wx.createCanvasContext('storeNameCanvas', this);
         //绘制文本
-        ctxAddress.setFontSize(28);
-        ctxAddress.fillText(address, 0, 0);
+        ctxStoreName.setFontSize(28);
+        ctxStoreName.fillText(storeName, 0, 0);
         //获取宽度
-        let addressWidth = ctxAddress.measureText(address).width;
-        if (addressWidth > this.data.addressRowMaxWidth) {
+        let storeNameWidth = ctxStoreName.measureText(storeName).width;
+        if (storeNameWidth > this.data.storeNameRowMaxWidth) {
           this.setData({
-            addressWidth,
+            storeNameWidth,
             height: 828,
-            addressIsTwoRow: true
+            storeNameIsTwoRow: true
           })
         } else {
           this.setData({
-            addressWidth
+            storeNameWidth
           })
         }
-        console.log('calAddressWidth')
+        console.log('calStoreNameWidth')
         console.log(this.data)
         resolve();
       })

@@ -22,7 +22,7 @@
     </view>
     <view class="info-row">
       <text class="icon iconfont iconicon-test40"></text>
-      <text class="text">{{cardData.address}}</text>
+      <text class="text">{{cardData.storeName}}</text>
     </view>
     <view class="info-row">
       <text class="icon iconfont iconfenzu2"></text>
@@ -61,6 +61,6 @@
 <!-- canvas -->
 <view class="canvas-box">
   <canvas style="width:{{width}}px; height:{{height}}px;" canvas-id="cardCanvas"></canvas>
-  <!-- 用来装地址，以便用来计算地址的宽度 -->
-  <canvas style="width:600px; height:100px;" canvas-id="addressCanvas"></canvas>
+  <!-- 用来装店铺名称，以便用来计算店铺名称的宽度 -->
+  <canvas style="width:600px; height:100px;" canvas-id="storeNameCanvas"></canvas>
 </view>

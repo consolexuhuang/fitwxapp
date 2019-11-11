@@ -42,6 +42,7 @@ Page({
       courseName:'',
       beginDate:'',
       address:'',
+      storeName:'',
       coachName:'',
       memberHeadImg:'',
       memberNickName:'',
@@ -212,6 +213,7 @@ Page({
           'cardData.beginDate': courseData.beginDate,
           'cardData.beginTime': courseData.beginTime,
           'cardData.address': courseData.store.address,
+          'cardData.storeName': courseData.store.storeName,
           'cardData.coachName': courseData.coach.coachName
         })
       }
