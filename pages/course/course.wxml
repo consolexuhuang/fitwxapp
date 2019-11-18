@@ -23,9 +23,13 @@
             <image src="{{util.imageParam(item.image)}}" lazy-load data-path="{{item.path}}" bindtap="handleBannerTap" class="analysis_course_banner" />
           </swiper-item>
         </block>
-      </swiper>
+      </swiper>      
+    </view>
+  </view>
 
-      <view class="screen-wrapper">
+  <view class="date-wrapper" style='top:{{marginTopBar -1 }}px'>
+  <!-- 筛选 -->
+  <view class="screen-wrapper">
 
         <view class="select-wrapper">
           <view class="store-select-wrapper analysis_course_stores" bindtap="handleStoreScreenTap">
@@ -44,10 +48,7 @@
           </view>
         </view>
       </view>
-    </view>
-  </view>
-
-  <view class="date-wrapper" style='top:{{marginTopBar -1 }}px'>
+  <!-- 日历 -->
     <view class="date-list">
       <block wx:for="{{dateList}}" wx:key="index">
         <view class="date-item {{index==active?'date-item-active':''}}" data-index="{{index}}" bindtap="handleDateTap">
