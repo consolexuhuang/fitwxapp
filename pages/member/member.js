@@ -39,10 +39,10 @@ Page({
 
   },
   onShow() {
-    this.setData({
-      showAuthModel: !app.passIsLogin()
-    })
     app.checkSessionFun().then(() => {
+      this.setData({
+        showAuthModel: !app.passIsLogin()
+      })
       let liteMyInfo = wx.getStorageSync('liteMyInfo');
       if (liteMyInfo !== '') {
         this.setData({

@@ -1,4 +1,5 @@
 <!--pages/subPackages_needLoad/tpExchange/tpExchange.wxml-->
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
 <view class="contain">
     <image class="logo fadeIn animated" src="https://img.cdn.powerpower.net/5dc930aee4b07d650ea014ba.png"></image>
     <view class="tpExchangeBox fadeIn animated" wx:if='{{userData}}'>

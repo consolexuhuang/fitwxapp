@@ -7,6 +7,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+    navbarData: {
+      title: '',
+      showCapsule: 1,
+      isShowBackHome: false,
+      titleColor: "#000",
+      tab_topBackground: ''
+    },
     code:'',
     userData:'',
     submitCodeCont:''
