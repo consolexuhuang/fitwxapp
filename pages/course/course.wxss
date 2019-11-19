@@ -303,16 +303,14 @@ page{ background:#fff;}
 }
 
 .store-none-course {
-  margin-left: 33rpx;
   height: 100rpx;
   border-top: 1rpx solid rgba(240, 240, 240, 1);
   text-align: center;
 }
 
 .store-none-course text {
-  margin-top: 24rpx;
   display: block;
-  line-height: 37rpx;
+  line-height: 100rpx;
   font-size: 26rpx;
   color: #a2a2a2;
 }
@@ -330,7 +328,7 @@ page{ background:#fff;}
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 225rpx;
+  height: 222rpx;
   border-top: 1rpx solid rgba(240, 240, 240, 1);
 }
 
@@ -650,8 +648,8 @@ color:#BEBEBE;
 }
 
 .load-more {
-  height: 80rpx;
-  line-height: 80rpx;
+  height: 120rpx;
+  line-height: 120rpx;
   text-align: center;
   font-size: 24rpx;
   color: #aaa;
@@ -671,12 +669,13 @@ color:#BEBEBE;
   top: 280rpx;
   padding-left: 33rpx;
   right: 0;
-  height: 112rpx;
+  height: 80rpx;
   display: flex;
   align-items: center;
   background: #fff;
   z-index: 9;
   animation: storenameInOout 1s ease;
+  border-bottom: 1rpx solid rgba(240, 240, 240, 1);
 }
 @keyframes storenameInOout{
   from{opacity: 0}

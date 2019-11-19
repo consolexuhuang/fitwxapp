@@ -527,10 +527,10 @@ Page({
   setSwiperHeight: function(courseList) { //courseList为7天的日期对象
     let swiperHeight = this.data.swiperHeight;
     let courses = courseList;
-    let titleHeight = 80 + 1,//1是门店底部线的高度
+    let titleHeight = 80 + 2,//1是门店底部线的高度
       noneHeight = 100 + 1,//1是每个课程下面的线
-      itemHeight = 224 + 1,//1是每个课程下面的线
-      loadingHeight = 80,
+      itemHeight = 222 + 1,//1是每个课程下面的线
+      loadingHeight = 120,
       noneStoreHeight = 500; //当天所有门店都没有课程时候提示的没有课程模块的高度
     for (let item in courses) {
       let storeArr = Object.keys(courses[item]);
