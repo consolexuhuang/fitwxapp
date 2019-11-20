@@ -48,8 +48,10 @@ Page({
     showStoreName: false, //是否显示固定的店铺名称
     currentStoreInfo: {}, //当前显示的店铺信息
     IsshowNetStatus: true, //网络显示状态
-    calendarHeight: '',
+    stickyTopHeight: '',//粘在顶部内容的高度
     swiperHeight: {},
+    storeNameBoxHeight:'',//店铺名称行高度
+    courseItemHeight:'',//一个课程信息块高度
 
     officialDataState: false,
     searchIn: false, //是否是搜素进来的
@@ -72,8 +74,6 @@ Page({
    */
 
   onLoad: function(options) {
-    console.log('course option')
-    console.log(options)
     /*
     //训练小红点引导 后面需要删除
       if (!wx.getStorageSync('hideTabBarRedDot')){
@@ -111,9 +111,7 @@ Page({
           })
         }
       }
-      //this.checkPromotion()
     })
-    // this.getOfficialDataState()
     //搜索进来的
     let getAppCourseConfig = getApp().globalData.courseConfig;
     if (getAppCourseConfig) {
@@ -246,8 +244,14 @@ Page({
     //选择店铺名称class 
     query.selectAll(`#swiperItem${this.data.active} .store-wrapper`).boundingClientRect();
     query.exec((res) => {
+      console.log('this.data.stickyTopHeight')
+      console.log(this.data.stickyTopHeight)
       app.worker.postMessage({
-        res: res
+        res: res,
+        marginTopBar: this.data.marginTopBar,
+        stickyTopHeight: this.data.stickyTopHeight,
+        storeNameBoxHeight: this.data.storeNameBoxHeight,
+        courseItemHeight: this.data.courseItemHeight
       })
     })
     app.worker.onMessage((res) => {
@@ -376,10 +380,6 @@ Page({
     let courseData = wx.getStorageSync('courseData');
     //有缓存
     if (courseData && courseData.dateList && courseData.courseList && courseData.config && courseData.city) { //缓存的courseData里缺少数据
-
-      console.log('courseData')
-
-      console.log(courseData)
       //赋值缓存里数据
       this.setData({
         dateList: courseData.dateList || '',
@@ -395,7 +395,11 @@ Page({
         'activityPopupState.imgSrc': courseData.activityPopupState.imgSrc,
         'activityPopupState.url': courseData.activityPopupState.url,
         'activityPopupState.state': courseData.activityPopupState.state
-      }, function() {
+      }, function() {  
+        //获取店铺名称高度px
+        this.getStoreNameHeight();
+        //一个课程信息块高度px
+        this.getCourseItemHeight();      
         //设置当前数据的高度
         this.setCourseSwiperHeight();
         //获取日历列表高度
@@ -405,9 +409,6 @@ Page({
       })
     } else {
       //获取数据
-      /* CourseCom.getDateList(this).then(() => {
-        this.getCourseList()
-      }) */
       CourseCom.getConfig(this).then(() => {
         this.getCourseList()
       })
@@ -440,7 +441,30 @@ Page({
       }
     }
   },
-
+//获取店铺名称高度px
+getStoreNameHeight(){
+  //创建节点选择器
+  query = wx.createSelectorQuery();
+  //选择店铺名称class 
+  query.selectAll(`.store-name-wrapper`).boundingClientRect();
+  query.exec((res) => {
+    this.setData({
+      storeNameBoxHeight:res[0].height
+    })    
+  })
+},
+  //一个课程信息块高度px
+  getCourseItemHeight() {
+    //创建节点选择器
+    query = wx.createSelectorQuery();
+    //选择店铺名称class 
+    query.selectAll(`.course-item`).boundingClientRect();
+    query.exec((res) => {
+      this.setData({
+        courseItemHeight: res[0].height
+      })
+    })
+  },
   // 获取课程列表
   getCourseList: function(event) {
     const city = this.data.city
@@ -463,6 +487,10 @@ Page({
       longitude
     }
     CourseCom.getCourseList(data, this).then(() => {
+      //获取店铺名称高度px
+      this.getStoreNameHeight(); 
+      //一个课程信息块高度px
+      this.getCourseItemHeight();
       //设置当前数据的高度
       this.setCourseSwiperHeight();
     });
@@ -793,6 +821,7 @@ Page({
       })
     }
   },
+ 
   //获取日历列表高度
   dateBoxHeight: function() {
     const query = wx.createSelectorQuery();
@@ -800,7 +829,7 @@ Page({
     query.exec((res) => {
       if (res) {
         this.setData({
-          calendarHeight: res[0] ? res[0].height : 0
+          stickyTopHeight: res[0] ? res[0].height : 0
         })
       };
     });
