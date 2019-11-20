@@ -249,16 +249,16 @@ page {
   background: none !important;
 }
 .paySuccessShowImg_good{
-   width: 534rpx;
-   height: 687rpx
+   width: 500rpx;
+   height: 600rpx
 }
 .paySuccessShowImg_charge{
-   width: 734rpx;
-   height: 643rpx
+   width: 500rpx;
+   height: 600rpx
 }
 .paySuccessShowImg_share{
-   width: 552rpx;
-   height: 710rpx
+   width: 500rpx;
+   height: 600rpx
 }
 .coachWxCodepaySuccessShowStyle{
   /* width: 550rpx;

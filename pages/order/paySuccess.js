@@ -181,7 +181,7 @@ Page({
   },
   jumpToCourseBag(){
     wx.navigateTo({
-      url: '/pages/good' + this.data.checkPromotion.url,
+      url: this.data.checkPromotion.url,
     })
   }, 
   jumpToRechange(){

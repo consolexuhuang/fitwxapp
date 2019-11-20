@@ -451,7 +451,7 @@ Page({
     return new Promise(resolve => {
       wx.getLocation({
         type: 'gcj02',
-        isHighAccuracy: true,
+        // isHighAccuracy: true,
         success(res) {
           // console.log('sssss', res)
           that.setData({ orderLocation: res })
