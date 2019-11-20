@@ -403,10 +403,10 @@ Page({
         //设置当前数据的高度
         this.setCourseSwiperHeight();
         //获取日历列表高度
-        this.dateBoxHeight();
-        //关闭loading
-        ui.hideLoading();
+        this.dateBoxHeight();        
       })
+      //关闭loading
+      ui.hideLoading();
     } else {
       //获取数据
       CourseCom.getConfig(this).then(() => {
