@@ -170,15 +170,15 @@ Page({
       scale: 18
     })
   },
-  //预览图
-  showPrevICoachWxImg(e) {
-    //需要http列表图片
-    console.log(e)
-    current: e.currentTarget.dataset.imgsrc
-    wx.previewImage({
-      urls: [e.currentTarget.dataset.imgsrc],
-    })
-  },
+  // //预览图
+  // showPrevICoachWxImg(e) {
+  //   //需要http列表图片
+  //   console.log(e)
+  //   current: e.currentTarget.dataset.imgsrc
+  //   wx.previewImage({
+  //     urls: [e.currentTarget.dataset.imgsrc],
+  //   })
+  // },
   jumpToCourseBag(){
     wx.navigateTo({
       url: this.data.checkPromotion.url,
@@ -187,6 +187,34 @@ Page({
   jumpToRechange(){
     wx.navigateTo({
       url: '/pages/card/recharge',
+    })
+  },
+  // 查看预约
+  lookMyAppointment(){
+    wx.switchTab({
+      url: `/pages/member/order/memberOrder`,
+    })
+  },
+  backHome(){
+    wx.switchTab({
+      url: `/pages/course/course`,
+    })
+  },
+  //复制微信号
+  pasteWx_code() {
+    wx.setClipboardData({
+      data: this.data.orderDetailData.coach.wxId || 'JJfitness',
+      success: res => {
+        wx.vibrateShort()
+        wx.getClipboardData({
+          success: res => {
+            wx.showToast({
+              title: `${this.data.orderDetailData.coach.coachName}教练微信号已复制成功`,
+              icon: 'none'
+            })
+          }
+        })
+      }
     })
   },
   //分享

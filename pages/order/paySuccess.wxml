@@ -17,25 +17,26 @@
       <image class="coach-wechat" src="{{imgUrl}}icon/wx_logo.png" />
     </view>
     <view class="QR-code-wrapper">
-      <view class="QR-code-label">{{orderDetailData.order.wait ? "已加入等待" : "入场二维码"}}</view>
+      <!-- <view class="QR-code-label">{{orderDetailData.order.wait ? "已加入等待" : ""}}</view> -->
       <image wx:if='{{orderDetailData.qrPath && !orderDetailData.order.wait}}' src="{{orderDetailData.qrPath}}" />
-      <text wx:if='{{!orderDetailData.qrPath && !orderDetailData.order.wait}}' >开课前 1 小时显示</text>
+      <!-- <text wx:if='{{!orderDetailData.qrPath && !orderDetailData.order.wait}}' >开课前 1 小时显示</text> -->
       <view class='waitBox' wx:if='{{orderDetailData.order.wait}}'>
         <text class='waitImg iconxingzhuang iconfont'></text>
         <view class='waitCont'>当前等候{{orderDetailData.waiCount}}人，您是第{{orderDetailData.beforeWaiCount}}位呦</view>
-        <text class='waitImg2 iconfont iconxingzhuang-'></text>
+        <text class='waitImg2 iconfont iconxingzhuang'></text>
       </view>
     </view>
   </view>
   <view class="footer">
     <view class="column-list">
       <view class="column-item">
-        <view class="column-item-label">课程：</view>
-        <view class="column-item-content">{{orderDetailData.course.courseName}}</view>
+        <view class="column-item-label">教练：</view>
+        <view class="column-item-content">{{orderDetailData.coach.coachName}}</view>
+        <view class="column-item-contentCopy analysis_paysuccess_copyWx" bindtap="pasteWx_code">点击复制教练微信</view>
       </view>
       <view class="column-item">
-        <view class="column-item-label">人数：</view>
-        <view class="column-item-content">{{orderDetailData.order.pCount}}人</view>
+        <view class="column-item-label">课程：</view>
+        <view class="column-item-content">{{orderDetailData.course.courseName}}</view>
       </view>
       <view class="column-item">
         <view class="column-item-label">时间：</view>
@@ -46,12 +47,14 @@
         <view class="column-item-content2">{{orderDetailData.store.address}}</view>
       </view>
     </view>
-    <view class="btn-wrapper">
-      <view class="return-course-btn" wx:if='{{!orderDetailData.order.wait && courseShareData}}'>
-      <button class='shareBtn analysis_paysuccess_share' open-type='share'></button>
-      邀请好友，一起上课</view>
-      <!-- <view class="invite-btn {{orderDetailData.order.wait ? 'invite-btnStyle' :''}}" >邀请好友，惊喜连连</view> -->
+  </view>
+  <view class="btn-wrapper fadeIn animated">
+     <view class="return-course-btn" wx:if='{{!orderDetailData.order.wait && courseShareData}}'>
+        邀请好友，一起上课
+        <button class='shareBtn analysis_paysuccess_share' open-type='share'></button>
     </view>
+    <view class="lookMyAppointment analysis_paysuccess_Jumptrain" bindtap="lookMyAppointment">查看我的预约</view>
+    <view class="backHome analysis_paysuccess_BackContinue" bindtap="backHome">返回继续约课</view>
   </view>
 </view>
 <tabBar_top navbarData='{{nvabarData}}'>
@@ -79,6 +82,6 @@
            bind:close='onclose'
            class='coachWxCodepaySuccessShowStyle'>
     
-    <image src='{{orderDetailData.coach.wxQrCodeUrl}}' class='coachWxImg' show-menu-by-longpress bindtap='showPrevICoachWxImg' data-imgSrc='{{orderDetailData.coach.wxQrCodeUrl}}'></image>
+    <image src='{{orderDetailData.coach.wxQrCodeUrl}}' class='coachWxImg' show-menu-by-longpress></image>
     <view class='coachWxCont'>长按保存教练微信二维码</view>
 </van-popup>
