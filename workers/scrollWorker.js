@@ -16,8 +16,6 @@ worker.onMessage(function ({ res, marginTopBar, stickyTopHeight, storeNameBoxHei
   };
   //当前显示的店铺
   nodeRefArr.map((item) => {
-    console.log('item')
-    console.log(item)
     //设置高度
     item.height = storeNameBoxHeight + courseItemHeight * item.dataset.storeNum;
     //店铺名称显示的对应店铺区域

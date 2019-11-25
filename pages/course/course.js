@@ -118,7 +118,7 @@ Page({
       //初始化    
       this.initFun();
       let getAppCourseConfigSearchText = getAppCourseConfig.hasOwnProperty('searchText') ? getAppCourseConfig.searchText : '';
-      if (getAppCourseConfigSearchText || getAppCourseConfig.selectedLabel.length > 0 || getAppCourseConfig.selectedStore.length > 0 || getAppCourseConfig.selectedTimeInterval.length > 0) {
+      if (getAppCourseConfigSearchText || (getAppCourseConfig.selectedLabel && getAppCourseConfig.selectedLabel.length > 0) || (getAppCourseConfig.selectedStore && getAppCourseConfig.selectedStore.length > 0) || (getAppCourseConfig.selectedTimeInterval && getAppCourseConfig.selectedTimeInterval.length > 0)) {
         //设置是否是搜索页进入
         this.setData({
           searchIn: true
@@ -177,8 +177,6 @@ Page({
   // 获取当前用户关注状态
   getMemberFollowState() {
     api.post('v2/member/memberInfo').then(res => {
-      console.log('memberInfo')
-      console.log(res)
       this.setData({
         officialDataState: res.msg.sub_flag == 1 ? false : true,
       })
@@ -244,8 +242,6 @@ Page({
     //选择店铺名称class 
     query.selectAll(`#swiperItem${this.data.active} .store-wrapper`).boundingClientRect();
     query.exec((res) => {
-      console.log('this.data.stickyTopHeight')
-      console.log(this.data.stickyTopHeight)
       app.worker.postMessage({
         res: res,
         marginTopBar: this.data.marginTopBar,
@@ -787,7 +783,6 @@ getStoreNameHeight(){
   },
   // 课程预约
   handleAppointBtnTap: function(event) {
-    console.log('formID-------', event.detail)
     if (event.detail.formId !== 'the formId is a mock one') {
       store.setItem('formId', [...(store.getItem('formId') || ''), event.detail.formId])
     }
