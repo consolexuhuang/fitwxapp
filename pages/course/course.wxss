@@ -112,7 +112,7 @@ page{ background:#fff;}
 }
 
 .screen-wrapper {
-  height: 65rpx;
+  height: 88rpx;
   border-bottom: 1rpx solid rgba(241, 241, 241, 1);
   display: flex;
   align-items: center;
@@ -288,7 +288,7 @@ page{ background:#fff;}
 }
 
 .store-distance text {
-  margin-right: 11rpx;
+  margin-right: 20rpx;
   font-size: 24rpx;
   color: #aaa;
 }
