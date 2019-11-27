@@ -15,7 +15,7 @@
   <!-- <scroll-view class="store-scroll" scroll-y bindscrolltoupper='bindscrolltoupper'> -->
     <view class="store-list fadeIn animated" style="margin-top:{{marginTopBar + 80 / 750 * screenWidth}}px">
       <block wx:for="{{storeList}}" wx:key="id">
-        <view class="store-item fadeIn animated" data-store-id="{{item.id}}" bindtap="handleStoreTap">
+        <view class="store-item fadeIn animated analysis_store_store_item_card" data-store-id="{{item.id}}" bindtap="handleStoreTap">
           <image class="store-image" src="{{item.storeUrl}}" lazy-load show-menu-by-longpress/>
           <view class="store-name-wrapper">
             <view class="store-name">{{item.storeName}}</view>
@@ -29,8 +29,8 @@
             <text class='store-addressCont'>{{item.address}}</text>
           </view>
           <view class="store-top-icon" data-store-id="{{item.id}}" data-is-top="{{item.isTop}}" catchtap="handleTopTap">
-            <image wx:if="{{item.isTop}}" src="{{imgUrl}}store/icon_top_solid.png" />
-            <image wx:else src="{{imgUrl}}store/icon_top_hollow.png" />
+            <image wx:if="{{item.isTop}}" src="{{imgUrl}}store/icon_top_solid.png" class="analysis_store_icon_top" />
+            <image wx:else src="{{imgUrl}}store/icon_top_hollow.png"  class="analysis_store_icon_top" />
           </view>
         </view>
       </block>

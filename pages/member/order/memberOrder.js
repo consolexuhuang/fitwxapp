@@ -211,9 +211,10 @@ Page({
     })
   },
   handleOrderItemTap: function(event) {
-    const orderNum = event.currentTarget.dataset.orderNum
+    const orderNum = event.currentTarget.dataset.orderNum;
+    const orderStatus = event.currentTarget.dataset.orderStatus;
     wx.navigateTo({
-      url: '/pages/member/order/orderDetail?orderNum=' + orderNum
+      url: `/pages/member/order/orderDetail?orderNum=${orderNum}&orderStatus=${orderStatus}`
     })
   },
   // 跳转教练课程列表

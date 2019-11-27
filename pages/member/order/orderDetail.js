@@ -10,6 +10,7 @@ Page({
    */
   data: {
     orderNum: '',
+    orderStatus:'',
     orderData: '',
     content: '',
     isMoreContentShow: false,
@@ -41,11 +42,14 @@ Page({
     if (options.shareMemberId) {
       wx.setStorageSync('shareMemberId', options.shareMemberId)
     }
-    
     const orderNum = options.orderNum
+    const orderStatus = options.orderStatus
     this.setData({
-      orderNum
+      orderNum,
+      orderStatus
     })
+    console.log('orderStatus')
+    console.log(orderStatus)
     // this.getOrderDetail()
   },
   onShow(){
