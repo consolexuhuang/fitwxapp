@@ -49,7 +49,8 @@
         "editorCard/editorCard",
         "memberTransfer/memberTransfer",
         "refundCardServer/refundCardServer",
-        "compensateCoupon/compensateCoupon"
+        "compensateCoupon/compensateCoupon",
+        "tpExchange/tpExchange"
       ]
     }
   ],

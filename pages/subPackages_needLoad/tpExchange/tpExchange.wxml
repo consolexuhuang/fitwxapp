@@ -1,0 +1,12 @@
+<!--pages/subPackages_needLoad/tpExchange/tpExchange.wxml-->
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view class="contain">
+    <image class="logo fadeIn animated" src="https://img.cdn.powerpower.net/5dc930aee4b07d650ea014ba.png"></image>
+    <view class="tpExchangeBox fadeIn animated" wx:if='{{userData}}'>
+       <input class="tpExchangeInput" placeholder='请输入兑换码' placeholder-class="placeholderClass" bindinput='bindinput' value="{{submitCodeCont}}"></input>
+       <view class="tpExchangeBtn" wx:if='{{!userData.cellphone}}'>确认提交
+          <button open-type="getPhoneNumber" bindgetphonenumber='submitCode' class="phoneBtn"></button>
+       </view>
+       <view class="tpExchangeBtn" wx:else bindtap="submitCode">确认提交</view>
+    </view>
+</view>

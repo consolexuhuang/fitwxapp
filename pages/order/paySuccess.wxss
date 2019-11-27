@@ -3,10 +3,12 @@
 page {
   background-color: #fff;
   width: 100%;
+  height: 100%;
   /* overflow-x: hidden; */
 }
 .wrapper{
   width: 100%;
+  height: 100%;
   overflow-x: hidden;
 }
 .header-backgroundBox{
@@ -23,7 +25,7 @@ page {
   height: 540rpx;
   border-radius: 70%;
   background: #826AFE;
-  top: -100rpx;
+  top: -130rpx;
   left: -30%;
 }
 
@@ -33,7 +35,7 @@ page {
 }
 
 .header {
-  padding-top: 115rpx;
+  padding-top: 70rpx;
   text-align: center;
 }
 
@@ -95,7 +97,7 @@ page {
   display: flex;
   flex-direction: column;
   width: 60%;
-  margin: 40rpx auto;
+  margin: 0 auto 20rpx;
 }
 .waitBox .waitImg{
   font-size: 26rpx !important;
@@ -104,7 +106,7 @@ page {
   margin: 0 !important;
   align-self: flex-start;
   padding-bottom: 0;
-  color: #e3e3e3
+  color: #8C8C8C
 }
 .waitBox .waitImg2{
   font-size: 26rpx !important;
@@ -113,7 +115,9 @@ page {
   margin: 0 !important;
   align-self: flex-end;
   padding-bottom: 0;
-  color: #e3e3e3
+  color: #8C8C8C;
+  transform: rotate(-180deg);
+
 }
 .waitCont{
   font-size:30rpx;
@@ -143,23 +147,35 @@ page {
   /* position: absolute; */
   /* bottom: 0; */
   width: 100%;
-  padding-bottom: 120rpx;
+  padding-bottom: 40rpx;
+}
+.column-list{
+  width:690rpx;
+  min-height:476rpx;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 0px 8rpx 0px rgba(179,179,179,0.3);
+  border-radius:24rpx;
+  margin: 0 auto;
 }
 
 .column-item {
   margin-left: 34rpx;
+  margin-right: 34rpx;
   /* width: 100%; */
   min-height: 88rpx;
-  border-bottom: 1rpx solid #e9e9e9;
+  border-bottom: 1rpx solid #E9E9E9;
   display: flex;
   align-items: center;
-  padding: 30rpx 60rpx 30rpx 20rpx;
+  padding: 30rpx 30rpx 30rpx 0;
   box-sizing: border-box
+}
+.column-item:last-child{
+  border: none;
 }
 
 .column-item-label {
   font-size: 28rpx;
-  color: #969696;
+  color: #787878;
   flex-shrink: 0;
   flex-grow: 0;
   /* align-self: flex-start */
@@ -175,12 +191,28 @@ page {
 
 .column-item-content {
   font-size: 28rpx;
-  color: #141414;
+  font-weight:400;
+  color:rgba(51,51,51,1);
+  font-family:PingFangSC-Regular,PingFang SC;
 }
 .column-item-content2 {
   font-size: 28rpx;
-  color: #141414;
+  color:rgba(51,51,51,1);
   /* text-decoration: underline; */
+}
+.column-item-contentCopy{
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  font-size:26rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(137,111,255,1);
+  line-height:60rpx;
+  text-align: center;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 0px 8rpx 0px rgba(137,111,255,0.3);
+  border-radius:12rpx;
+  margin-left: 20rpx;
 }
 .admissionCodeNext{
   position: relative
@@ -193,42 +225,59 @@ page {
   width: 14rpx;
   height: 14rpx;
   transform: rotate(-45deg);
-  right: 30rpx;
+  right: 10rpx;
   top: 0;
   bottom: 0;
   margin: auto;
 }
 
 .btn-wrapper {
-  /* margin-top: 50rpx;
-  padding-bottom: 46rpx;
+  /* margin-top: 50rpx; */
   display: flex;
   align-items: center;
-  justify-content: center; */
+  flex-direction: column;
+  /* justify-content: center; */
 }
 
 .return-course-btn {
-  width: 100%;
-  /* height: 70rpx; */
-  position: fixed;
-  line-height: 110rpx;
+  width:690rpx;
+  background:rgba(137,111,255,1);
+  box-shadow:0px 0px 8rpx 0px rgba(179,179,179,0.3);
+  border-radius:20rpx;
+  line-height: 96rpx;
   text-align: center;
   font-size: 30rpx;
   color: #fff;
-  background: #896dff;
-  font-weight: bold;
-  bottom: 0;
-  left: 0;
+  margin-bottom: 30rpx;
+  position: relative;
 }
 .shareBtn{
   position: absolute;
   opacity: 0;
   width: 100%;
-  height: 110rpx;
+  height: 96rpx;
   left: 0;
   top: 0;
 }
-
+.lookMyAppointment{
+  width:690rpx;
+  background:rgba(255,255,255,1);
+  border:3rpx solid rgba(137,111,255,1);
+  border-radius:20rpx;
+  line-height: 96rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #896FFF;
+  margin-bottom: 30rpx;
+}
+.backHome{
+  font-size:28rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(51,51,51,1);
+  line-height:28rpx;
+  text-align: center
+}
 .invite-btn {
   margin-left: 22rpx;
   width: 302rpx;
@@ -249,16 +298,16 @@ page {
   background: none !important;
 }
 .paySuccessShowImg_good{
-   width: 534rpx;
-   height: 687rpx
+   width: 500rpx;
+   height: 600rpx
 }
 .paySuccessShowImg_charge{
-   width: 734rpx;
-   height: 643rpx
+   width: 500rpx;
+   height: 600rpx
 }
 .paySuccessShowImg_share{
-   width: 552rpx;
-   height: 710rpx
+   width: 500rpx;
+   height: 600rpx
 }
 .coachWxCodepaySuccessShowStyle{
   /* width: 550rpx;

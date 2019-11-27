@@ -39,6 +39,7 @@ Page({
       dialogCancleBtn: '',
       dialogImg: 'member/icon-top-blue.png'
     },
+    orderLocation:''
   },
   /**
    * 生命周期函数--监听页面加载
@@ -85,8 +86,11 @@ Page({
     //   this.setData({ isShowJurisdiction: true })
     // }
     this.getCourse().then(() => {
-      Promise.all([this.getMemberInfo(), this.getWaitCount(), this.checkOrder()]).then(() => {
-        ui.hideLoading()
+      let that = this
+      this.getOrderLocation().then(() => {
+        Promise.all([this.getMemberInfo(), this.getWaitCount(), this.checkOrder()]).then(() => {
+          ui.hideLoading()
+        })
       })
     })
     // Promise.all([this.getMemberInfo(), this.getCourse(), this.getWaitCount(), this.checkOrder()]).then(()=>{
@@ -99,20 +103,20 @@ Page({
       id: courseId,
       picType: 1
     }
-      return new Promise((resolve,reject)=>{
-        api.post('course/getCourse', data).then(res => {
-          if (res.code === 0) {
-            const courseData = res.msg
-            this.setData({
-              courseData
-            })
-          }
-          resolve();
-        }).catch((err)=>{
-          console.log(err)
-          reject()
-        })
-      }) 
+    return new Promise((resolve,reject)=>{
+      api.post('course/getCourse', data).then(res => {
+        if (res.code === 0) {
+          const courseData = res.msg
+          this.setData({
+            courseData
+          })
+        }
+        resolve();
+      }).catch((err)=>{
+        console.log(err)
+        reject()
+      })
+    }) 
     
   },
   getWaitCount: function (event) {
@@ -322,7 +326,9 @@ Page({
     const payMode = 'wxlite'
     const data = {
       courseId,
-      payMode
+      payMode,
+      latitude: that.data.orderLocation.latitude || '',
+      longitude: that.data.orderLocation.longitude || ''
     }
     if (timeCardId) {
       data.count = 1
@@ -437,6 +443,30 @@ Page({
   goBackHome(){
     wx.switchTab({
       url: '/pages/course/course',
+    })
+  },
+  // 获取当前订单经纬度
+  getOrderLocation(){
+    let that = this
+    return new Promise(resolve => {
+      wx.getLocation({
+        type: 'gcj02',
+        // isHighAccuracy: true,
+        success(res) {
+          // console.log('sssss', res)
+          that.setData({ orderLocation: res })
+          resolve()
+        },
+        fail(err) {
+          //默认值
+          let location = {
+            latitude: '31.24916171',
+            longitude: '121.487899486'
+          }
+          that.setData({ orderLocation: location })
+          resolve()
+        }
+      })
     })
   }
 })
