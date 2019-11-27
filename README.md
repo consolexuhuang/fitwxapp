@@ -31,6 +31,9 @@ API接口： 'https://dev.jlife.vip/wx/api/'
       envVersion: 'trial' //develop:开发版   trial：体验版  release：正式版
     }
 
+##第三方APPID
+1. 悦木之源圣诞新月球    AppID:wx63b823471458aa0a
+
 ##使用第三方组件
 1、sliderBar : https://github.com/ZhngCai/double-sided-slider
 
