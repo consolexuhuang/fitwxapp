@@ -51,6 +51,8 @@ App({
         if (res.model.indexOf('iPhone X') > -1) {
           this.globalData.isIpX = true
         }
+        console.log('getSystemInfo success')
+        console.log(res)
       },
     })
     this.getLocation();
