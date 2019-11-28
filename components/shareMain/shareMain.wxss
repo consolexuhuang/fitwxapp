@@ -81,7 +81,7 @@
   color:#333333;
 }
 .card .info-row .icon{
-  margin-top:10rpx;
+  margin-top:7rpx;
   margin-right: 28rpx;  
   font-size:26rpx;
 }
