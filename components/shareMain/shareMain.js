@@ -307,10 +307,13 @@ Component({
 
       //时间
       let beginDate = this.data.cardData.beginDate;
+      let beginDay = this.data.cardData.beginDay;
       let beginTime = this.data.cardData.beginTime;
+      let endTime = this.data.cardData.endTime;
       let date = beginDate ? util.formatTime(beginDate).replace(/\//g, '-').split(' ')[0] : '';
-      let time = beginTime ? util.formatTime3(beginTime).replace(/\//g, '-').split(' ')[0] : '';
-      let dateTime = date + ' ' + time;
+      let beginTimeFormat = beginTime ? util.formatTime3(beginTime).replace(/\//g, '-').split(' ')[0] : '';
+      let endTimeFormat = endTime ? util.formatTime3(endTime).replace(/\//g, '-').split(' ')[0] : '';
+      let dateTime = date + ' 周' + beginDay + ' ' + beginTimeFormat + '-' + endTimeFormat;
       //绘制图标
       ctx.drawImage('/images/icon/clock.png', 0, 0, 56, 56, infoSpaceLeft, picHeight + infoSpaceTop, canvasWidth / iconScale, canvasWidth / iconScale);
       //绘制文本
