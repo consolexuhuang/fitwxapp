@@ -445,7 +445,7 @@ getStoreNameHeight(){
   query.selectAll(`.store-name-wrapper`).boundingClientRect();
   query.exec((res) => {
     this.setData({
-      storeNameBoxHeight:res[0].height
+      storeNameBoxHeight:res[0].height || 0
     })    
   })
 },
@@ -457,7 +457,7 @@ getStoreNameHeight(){
     query.selectAll(`.course-item`).boundingClientRect();
     query.exec((res) => {
       this.setData({
-        courseItemHeight: res[0].height
+        courseItemHeight: res[0].height || 0
       })
     })
   },
