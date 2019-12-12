@@ -59,12 +59,19 @@ const getUrlParam = (url, paraName) => {
     return "";
   }
 }
-
+//判断活动是否在有效期时间内
+const getActiveRestTime = date => {
+  let currentTime = new Date().getTime()
+  let endTime = new Date(date).getTime()
+  if (endTime - currentTime > 0) return true
+  else return false
+}
 
 module.exports = {
   formatTime: formatTime,
   formatTime2,
   formatTime3,
   getQueryString,
-  getUrlParam
+  getUrlParam,
+  getActiveRestTime
 }

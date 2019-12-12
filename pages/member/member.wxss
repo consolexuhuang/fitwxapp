@@ -229,7 +229,45 @@ page {
   flex-direction: row;
   align-items: center;
 }
-
+.valueBox{
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.activeIcon{
+  width: 29rpx;
+  height: 44rpx;
+  margin-right: 20rpx;
+  animation: sdBg .8s linear;
+  animation-fill-mode: forwards;
+}
+@keyframes sdBg{
+  0%{
+    transform: translateY(50rpx) scale(0)
+  }
+  100%{
+    transform: translateY(0) scale(1)
+  }
+}
+.valueBox::after{
+  background-color: rgba(255, 255, 255, 0.5);
+  content: "";
+  height: 44rpx;
+  left: 0;
+  position: absolute;
+  top: 0;
+  animation: lightBg 2s ease infinite;
+  width: 20rpx;
+}
+@keyframes lightBg{
+  0%{
+    transform: translateX(-20rpx) skewX(30deg)
+  }
+  100%{
+    transform: translateX(170rpx) skewX(30deg)
+  }
+}
 .menu .item .right .value {
   font-size: 24rpx;
   color: #787878;
