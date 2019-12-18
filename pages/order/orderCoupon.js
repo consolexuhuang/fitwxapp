@@ -21,12 +21,45 @@ Page({
       titleColor: "#000",
       tab_topBackground: '#fff'
     },
-    marginTopBar: getApp().globalData.tab_height * 2 + 20
+    marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    tipText: '666'
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
+    /* 
+    couponUsable枚举值：
+    1：全部可用
+    2：立减至可用
+    3：不可用
+    4：非立减可用
+ */
+    let tipText = 'uuu';
+    switch (options.couponUsable) {
+      case '1':
+        tipText = '当前课程支持使用所有类型代金券';
+        console.log(11)
+        break;
+      case '2':
+        tipText = `当前课程为促销类型[${options.priceLabel}]，无法使用"立减券"`;
+        console.log(12)
+        break;
+      case '3':
+        tipText = '当前课程不支持使用代金券';
+        console.log(13)
+        break;
+      case '4':
+        tipText = '当前课程无法使用"立减券"';
+        console.log(14)
+        break;
+      default:
+        tipText = '888';
+        break;
+    }
+    this.setData({
+      tipText
+    })
     try {
       const orderCoupon = wx.getStorageSync('orderCoupon')
       if (orderCoupon) {
@@ -71,7 +104,7 @@ Page({
 
 
   },
-  handleCouponTap: function (event) {
+  handleCouponTap: function(event) {
     const couponId = event.currentTarget.dataset.couponId
     this.setData({
       couponId
@@ -88,18 +121,22 @@ Page({
     })
     try {
       wx.setStorageSync('orderConfig', orderConfig)
-    } catch (e) { }
+    } catch (e) {}
     // wx.redirectTo({
     //   url: '/pages/order/payOrder?courseId=' + courseId
     // })
     wx.navigateBack()
   },
   //弹窗显示
-  showCouponRule(){
-    this.setData({ couponRuleShow: true })
+  showCouponRule() {
+    this.setData({
+      couponRuleShow: true
+    })
   },
   //关闭弹窗
-  onclose(){
-    this.setData({ couponRuleShow : false })
+  onclose() {
+    this.setData({
+      couponRuleShow: false
+    })
   }
 })

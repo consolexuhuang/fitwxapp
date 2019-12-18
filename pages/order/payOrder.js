@@ -256,7 +256,7 @@ Page({
       wx.setStorageSync('orderCoupon', orderCoupon)
     } catch (e) { }
     wx.navigateTo({
-      url: '/pages/order/orderCoupon'
+      url: `/pages/order/orderCoupon?couponUsable=${this.data.courseData.couponUsable}&priceLabel=${this.data.courseData.priceLabel}`
     })
   },
    getMemberInfo() {
