@@ -2,7 +2,7 @@
 <van-popup show='{{activityPopupState.state}}' 
            custom-class='activityPopupStyle'
            z-index = '1001'>
-    <image class='activityImg' style='width:{{activityPopupState.width}}rpx;height:{{activityPopupState.height}}rpx' src='{{activityPopupState.imgSrc}}' bindtap='giveGiftCard'></image>
+    <image class='activityImg analysis_course_give_gift_card' style='width:{{activityPopupState.width}}rpx;height:{{activityPopupState.height}}rpx' src='{{activityPopupState.imgSrc}}' bindtap='giveGiftCard'></image>
     <text class='colseBtn iconicon-test18 iconfont' bindtap='_onclose'></text>
     <!-- <view class='btn' 
           wx:if='{{activityPopupState.bottomText}}'
