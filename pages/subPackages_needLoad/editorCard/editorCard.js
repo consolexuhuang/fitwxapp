@@ -98,7 +98,7 @@ Page({
     return {
       title: this.data.sendMessage || this.data.giftCardInfo.gift_memo,
       path: 'pages/subPackages_needLoad/giftCard/giftCard?cardId=' + this.data.cardId + '&shareMemberId=' + wx.getStorageSync('userData').id,
-      imageUrl: 'https://img.cdn.powerpower.net/5d77812ce4b08938d4b46c4e.jpg',
+      imageUrl: 'https://img.cdn.powerpower.net/5df0bacae4b05795c0c8b63a.png',
     }
   }
 })

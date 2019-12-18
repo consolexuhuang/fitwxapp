@@ -3,6 +3,7 @@ const app = getApp();
 const api = app.api
 import Store from '../../utils/store.js'
 const ui = require('../../utils/ui.js');
+const utils = require('../../utils/util.js');
 const store = getApp().store;
 Page({
 
@@ -29,14 +30,22 @@ Page({
     jurisdictionSmallState: false,
     showAuthModel: false,
     isPlus: 0, //是否是Plus会员，0：否，1：是
+
+    isShowTimeActiveMode:false, //是否显示活动文案
+  },
+  // 是否显示菜单活动内容 时间格式 xxxx/xx/xx xx:xx:xx
+  whethershowActive(){
+    if (utils.getActiveRestTime('2019/12/25 12:00:00')) {
+      this.setData({ isShowTimeActiveMode: true })
+    } else this.setData({ isShowTimeActiveMode: false })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.whethershowActive()
     //loading
     ui.showLoading();
-
   },
   onShow() {
     app.checkSessionFun().then(() => {
