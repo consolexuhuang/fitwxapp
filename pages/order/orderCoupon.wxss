@@ -34,10 +34,10 @@ page{
 .nonuse-coupon{
   margin: 10rpx auto 0;
   width: 685rpx;
-  height: 66rpx;
-  border-radius: 3rpx;
+  height: 80rpx;
+  border-radius: 8rpx;
   border: 2rpx solid #896EFF;
-  line-height: 66rpx;
+  line-height:80rpx;
   text-align: center;
   font-size: 28rpx;
   color: #896EFF;
@@ -155,7 +155,7 @@ page{
 .coupon-term{
   line-height: 37rpx;
   font-size: 26rpx;
-  color: #808080;
+  color: #666666;
 }
 
 .coupon-item-available .coupon-title-wrapper{
