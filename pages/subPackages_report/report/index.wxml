@@ -1,0 +1,116 @@
+<!--pages/subPackages_report/report/index.wxml-->
+<swiper 
+  vertical
+  easing-function='easeOutCubic'
+  duration='1000'
+  bindchange='bindchange'
+>
+   
+   <!-- page1 -->
+   <swiper-item class='item item1'>
+      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
+     <image class="item_bg_middle_around2 fadeInUp animated " src="https://img.cdn.powerpower.net/5dfb2ac8e4b06c67254853c4.png"></image>
+     <image class="item_bg_middle_build fadeInUp animated delay-05s" src="https://img.cdn.powerpower.net/5dfb2acfe4b06c67254853c5.png"></image>
+       <image class="item_bg_middle_bird2 fadeInUp animated" src="https://img.cdn.powerpower.net/5dfb30d2e4b06c67254853cd.png"></image>
+       <!-- <view class="item_bg_cloudBox"> -->
+         <image class="item_bg_cloud bounceIn animated delay-1s" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+       <!-- </view> -->
+       
+       <!-- <image class="item_bg_cloud2" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image> -->
+      
+      <!-- <view class="cont contAnimate delay1">是伟大的味道酸酸的</view>
+
+      <view class="cont2 contAnimate delay12">是伟大的味道是伟大的味道酸酸的酸酸的</view> -->
+   </swiper-item>
+
+   <!-- page2 -->
+   <swiper-item class='item item2'>
+    <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
+    <image class="item_bg_middle" src="https://img.cdn.powerpower.net/5dfb2c98e4b06c67254853c7.png"></image>
+      <!-- <view class="cont {{current == 1 ? (isDownLoad ? 'contAnimate delay04' : 'contAnimateOutDowm') : 'contAnimateDowm'}}">是伟大的味是伟大的味道酸酸的是伟大的味道酸酸的是伟大的味</view> -->
+   </swiper-item>
+
+   <!-- page3 -->
+   <swiper-item class='item item3'>
+      <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb1519e4b06c67254853b0.jpg"></image>
+      <image class="item_bg_middle_arrowBig" src="https://img.cdn.powerpower.net/5dfb1551e4b06c67254853b1.png"></image>
+      <image class="item_bg_middle_arrowSmall" src="https://img.cdn.powerpower.net/5dfb1558e4b06c67254853b2.png"></image>
+      <!-- <view  class="cont {{current == 2 ? (isDownLoad ? 'contAnimate delay04' : 'contAnimateOutDowm') : 'contAnimateDowm'}}">是伟大的味道酸酸的</view> -->
+   </swiper-item>
+
+   <!-- page4 -->
+   <swiper-item class='item item3'>
+      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
+      <image class="item_bg_middle_around" src="https://img.cdn.powerpower.net/5dfb2ce7e4b06c67254853ca.png"></image>
+      <image class="item_bg_middle_bridge" src="https://img.cdn.powerpower.net/5dfb2cb5e4b06c67254853c8.png"></image>
+   </swiper-item>
+
+   <!-- page5 -->
+   <swiper-item class='item item3'>
+      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
+      <image class="item_bg_middle_Oriental" src="https://img.cdn.powerpower.net/5dfb2d13e4b06c67254853cb.png"></image>
+      <image class="item_bg_middle_OrientalBottom" src="https://img.cdn.powerpower.net/5dfb2d31e4b06c67254853cc.png"></image>
+      <image class="item_bg_cloud" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+   </swiper-item>
+
+   <!-- page6 -->
+   <swiper-item class='item item3'>
+      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
+      <image class="item_bg_middle_city" src="https://img.cdn.powerpower.net/5dfb2160e4b06c67254853b9.png"></image>
+      <image class="item_bg_cloud" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+   </swiper-item>
+
+    <!-- page7 -->
+   <swiper-item class='item item3'>
+      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
+      <image class="item_bg_middle_elevated" src="https://img.cdn.powerpower.net/5dfb21bee4b06c67254853ba.png"></image>
+      <image class="item_bg_cloud" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+   </swiper-item>
+
+   <!-- page8 -->
+   <swiper-item class='item item3'>
+      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
+      <image class="item_bg_middle_Museum" src="https://img.cdn.powerpower.net/5dfb227be4b06c67254853bc.png"></image>
+       <image class="item_bg_middle_bird" src="https://img.cdn.powerpower.net/5dfb239be4b06c67254853bd.png"></image>
+      <image class="item_bg_cloud" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+   </swiper-item>
+
+   <!-- page9 -->
+   <swiper-item class='item item3'>
+      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
+      <image class="item_bg_middle_company" src="https://img.cdn.powerpower.net/5dfb2567e4b06c67254853be.png"></image>
+      <image class="item_bg_cloud" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+   </swiper-item>
+
+   <!-- page10 -->
+   <swiper-item class='item item3'>
+      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
+      <image class="item_bg_middle_Wujiaochang" src="https://img.cdn.powerpower.net/5dfb26b1e4b06c67254853bf.png"></image>
+   </swiper-item>
+
+   <!-- page11 -->
+   <swiper-item class='item item3'>
+      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
+      <view class="around_sun"></view>
+      <image class="item_bg_middle_Train" src="https://img.cdn.powerpower.net/5dfb2769e4b06c67254853c0.png"></image>
+   </swiper-item>
+
+   <!-- page12 -->
+   <swiper-item class='item item3'>
+      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
+      <image class="item_bg_middle_Xintiandi" src="https://img.cdn.powerpower.net/5dfb28d0e4b06c67254853c1.png"></image>
+   </swiper-item>
+
+    <!-- page13 -->
+   <swiper-item class='item item3'>
+      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
+      <image class="item_bg_middle_tower" src="https://img.cdn.powerpower.net/5dfb2983e4b06c67254853c2.png"></image>
+   </swiper-item>
+
+   <!-- page14 -->
+   <swiper-item class='item item3'>
+      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
+      <image class="item_bg_middle_Lakeside" src="https://img.cdn.powerpower.net/5dfb2a43e4b06c67254853c3.png"></image>
+       <image class="item_bg_cloud" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+   </swiper-item>
+</swiper>

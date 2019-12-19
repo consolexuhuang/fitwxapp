@@ -52,6 +52,12 @@
         "compensateCoupon/compensateCoupon",
         "tpExchange/tpExchange"
       ]
+    },
+    {
+      "root": "pages/subPackages_report/",
+      "pages": [
+        "report/index"
+      ]
     }
   ],
   "workers": "workers",
@@ -106,6 +112,8 @@
     }
   },
   "navigateToMiniProgramAppIdList": [
-    "wxec1fe04fad9d4e02","wx7527dd9e3bee0ecd","wx63b823471458aa0a"
+    "wxec1fe04fad9d4e02",
+    "wx7527dd9e3bee0ecd",
+    "wx63b823471458aa0a"
   ]
 }

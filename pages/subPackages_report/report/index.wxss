@@ -1,0 +1,348 @@
+/* pages/subPackages_report/report/index.wxss */
+page{
+  width: 100%;
+  height: 100%;
+  background-image: url('https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg');
+  background-size: 100% 100%;
+  background-repeat:no-repeat;
+  background-attachment: fixed;
+}
+swiper{
+  width: 100%;
+  height: 100%;
+}
+.item{
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+/* 第一页图片 */
+.item_bg_bottom{
+  width: 100%;
+  height: 100%;
+}
+.item_bg_cloudBox{
+  position: absolute;
+  bottom: -40rpx;
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: 200%;
+  height: 300rpx;
+}
+.item_bg_cloud{
+  position: absolute;
+  bottom: -40rpx;
+  right: 0;
+  left: -100rpx;
+  margin: auto;
+  width: 140%;
+  height: 255rpx;
+  /* animation: motionleft 5s linear infinite; */
+}
+/* .item_bg_cloud2{
+  position: absolute;
+  bottom: -40rpx;
+  left: -100%;
+  width: 300%;
+  height: 300rpx;
+  animation: motionleft 10s linear 1s infinite;
+} */
+.item_bg_middle_around2{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 444rpx
+}
+.item_bg_middle_build{
+  position: absolute;
+  bottom: 0;
+  right: 60rpx;
+  width: 307rpx;
+  height: 622rpx;
+}
+.item_bg_middle_bird2{
+  position: absolute;
+  bottom: 0;
+  right: -120rpx;
+  width:555rpx;
+  height:431rpx;
+}
+/* ************************** */
+
+/* 第2页图片 */
+.item_bg_middle{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 100%;
+  height: 1400rpx
+}
+.item_bg_middle_arrowBig{
+  position: absolute;
+  bottom: -100rpx;
+  left: -60rpx;
+  width: 360rpx;
+  height: 790rpx
+}
+.item_bg_middle_arrowSmall{
+  position: absolute;
+  /* bottom: -100rpx; */
+  left: 110rpx;
+  top: 40rpx;
+  width: 600rpx;
+  height: 300rpx
+}
+/* ************************** */
+
+/* 第3页图片 */
+.item_bg_middle_bridge{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 100%;
+  height: 1120rpx;
+}
+.item_bg_middle_around{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 100%;
+  height: 524rpx;
+}
+
+/* ************************** */
+/* 第4页图片 */
+.item_bg_middle_bridge2{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+/* ************************** */
+/* 第5页图片 */
+.item_bg_middle_OrientalBottom{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 480rpx;
+}
+.item_bg_middle_Oriental{
+  position: absolute;
+  bottom: 100rpx;
+  right: 80rpx;
+  width: 220rpx;
+  height: 1000rpx;
+}
+/* ************************** */
+/* 第6页图片 */
+.item_bg_middle_city{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 800rpx;
+}
+/* ************************** */
+/* 第7页图片 */
+.item_bg_middle_elevated{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 860rpx;
+}
+/* ************************** */
+/* 第8页图片 */
+.item_bg_middle_Museum{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 760rpx;
+}
+.item_bg_middle_bird{
+  position: absolute;
+  bottom: 255rpx;
+  right: -356rpx;
+  width: 100%;
+  height: 370rpx;
+  transform: rotate(-30deg)
+}
+/* ************************** */
+/* 第9页图片 */
+.item_bg_middle_company{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 760rpx;
+}
+/* ************************** */
+/* 第10页图片 */
+.item_bg_middle_Wujiaochang{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 800rpx;
+}
+/* ************************** */
+
+/* 第11页图片 */
+.item_bg_middle_Train{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 800rpx;
+}
+.around_sun{
+  position: absolute;
+  bottom: 100rpx;
+  left: -40rpx;
+  width: 422rpx;
+  height: 422rpx;
+  border-radius: 50%;
+  background:linear-gradient(0deg,rgba(198,70,53,1),rgba(28,24,153,1));
+}
+/* ************************** */
+/* 第12页图片 */
+.item_bg_middle_Xintiandi{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 1100rpx;
+}
+/* ************************** */
+/* 第13页图片 */
+.item_bg_middle_tower{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 1010rpx;
+}
+/* ************************** */
+/* 第14页图片 */
+.item_bg_middle_Lakeside{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 600rpx;
+}
+/* ************************** */
+.cont{
+  /* position: absolute; */
+  width: 300rpx;
+  font-size: 60rpx;
+  text-align: center;
+  animation: fadeInUp 1s ease;
+  animation-fill-mode: both;
+}
+.cont2{
+  width: 500rpx;
+  font-size: 40rpx;
+  text-align: right;
+  margin-top: 500rpx;
+}
+/* 升 显 */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+/* 降 显 */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+/* 降 消 */
+@keyframes fadeOutDown {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+}
+@keyframes motionleft{
+  0%{
+    transform: translateX(0);
+    opacity: 1;
+  }
+  90%{
+    opacity: 1;
+  }
+    
+  100%{
+    transform: translateX(900rpx);
+    opacity: 0;
+  }
+}
+/* @keyframes motionleft2{
+  0%{
+    transform: translateX(0);
+    opacity: 0;
+  }
+  100%{
+    transform: translateX(900rpx);
+    opacity: 1;
+  } */
+/* } */
+.countAminate{
+  animation: fadeInUp .5s ease;
+  animation-fill-mode: both;
+}
+.contAnimate.delay04{
+  animation: fadeInUp 1s ease .4s;
+  animation-fill-mode: both;
+}
+.contAnimate.delay1{
+  animation: fadeInUp 1s ease .8s;
+  animation-fill-mode: both;
+}
+.contAnimate.delay12{
+  animation: fadeInUp 2s ease 1.2s;
+  animation-fill-mode: both;
+}
+.contAnimateDowm{
+  animation: fadeOutDown .5s ease;
+  animation-fill-mode: both;
+}
+.contAnimateOutDowm{
+  animation: fadeInDown .5s ease;
+  animation-fill-mode: both;
+}
