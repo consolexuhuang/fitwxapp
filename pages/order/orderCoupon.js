@@ -22,7 +22,7 @@ Page({
       tab_topBackground: '#fff'
     },
     marginTopBar: getApp().globalData.tab_height * 2 + 20,
-    tipText: '666'
+    tipText: ''
   },
   /**
    * 生命周期函数--监听页面加载
@@ -35,26 +35,26 @@ Page({
     3：不可用
     4：非立减可用
  */
-    let tipText = 'uuu';
+    let tipText = '';
     switch (options.couponUsable) {
       case '1':
         tipText = '当前课程支持使用所有类型代金券';
-        console.log(11)
         break;
       case '2':
-        tipText = `当前课程为促销类型[${options.priceLabel}]，无法使用"立减券"`;
-        console.log(12)
+        if (options.priceLabel){
+          tipText = `当前课程为促销类型[${options.priceLabel}]，无法使用"立减券"`;
+        }else{
+          tipText = `当前课程为促销类型，无法使用"立减券"`;
+        }
         break;
       case '3':
         tipText = '当前课程不支持使用代金券';
-        console.log(13)
         break;
       case '4':
-        tipText = '当前课程无法使用"立减券"';
-        console.log(14)
+        tipText = '当前课程无法使用"立减至券"';
         break;
       default:
-        tipText = '888';
+        tipText = '';
         break;
     }
     this.setData({
