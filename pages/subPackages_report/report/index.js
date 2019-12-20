@@ -6,7 +6,8 @@ Page({
    */
   data: {
     current: 0,
-    isDownLoad: false
+    isDownLoad: false,
+    isStartState: false
   },
 
   /**
@@ -31,13 +32,19 @@ Page({
   },
   // 轮播改变
   bindchange(e) {
-    console.log(this.data.current, e.detail.current)
     //下滑
     if (this.data.current < e.detail.current) {
       this.setData({ isDownLoad: true })
     } else {
       this.setData({ isDownLoad: false })
     }
+    console.log(this.data.current, e.detail.current, this.data.isDownLoad)
     this.setData({ current: e.detail.current })
+  },
+  startReport(){
+    this.setData({ isStartState: true})
+    this.setData({
+      current: this.data.current + 1
+    })
   }
 })
