@@ -7,14 +7,17 @@ Page({
   data: {
     current: 0,
     isDownLoad: false,
-    isStartState: false
+    isStartState: false,
+    jurisdictionSmallState: false,
+    isLoadOverState: true,
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    getApp().checkSessionFun().then(() => {
 
+    })
   },
 
   /**
@@ -30,6 +33,15 @@ Page({
   onShow: function () {
 
   },
+  // 点击授权
+  bindgetuserinfo() {
+    getApp().wx_AuthUserLogin().then(() => {
+      this.setData({
+        jurisdictionSmallState: false,
+      })
+      // this.getMemberFollowState()
+    })
+  },
   // 轮播改变
   bindchange(e) {
     //下滑
@@ -41,10 +53,17 @@ Page({
     console.log(this.data.current, e.detail.current, this.data.isDownLoad)
     this.setData({ current: e.detail.current })
   },
+  // 查看报告
   startReport(){
-    this.setData({ isStartState: true})
-    this.setData({
-      current: this.data.current + 1
-    })
-  }
+    if (this.data.isLoadOverState && getApp().passIsLogin()){
+      this.setData({ isStartState: true})
+      this.setData({
+        current: this.data.current + 1
+      })
+    } else {
+      this.setData({
+        jurisdictionSmallState: true
+      })
+    }
+  },
 })

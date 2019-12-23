@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+     "jurisdictionSmallPopup": "/components/jurisdictionSmallPopup/jurisdictionSmallPopup"
+  }
 }

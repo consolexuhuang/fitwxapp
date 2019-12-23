@@ -468,7 +468,56 @@
     opacity: 1;
   }
 }
+@keyframes lightSliverAnimate{
+  from,
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+  
+  /* 15%,
+  25%,
+  35%,
+  45%,
+  55%,
+  65%,
+  75%,
+  85%,
+  95%{
+    opacity: 0
+  } */
+  0%{
+    opacity: 0
+  }
+  50%{
+     opacity: 1
+  }
+    
+  100%{
+     opacity: 0
+  }
 
+  10%
+  /* 30%,
+  70%,
+  50%,
+  90%  */
+  {
+    /* opacity: 0; */
+    transform: translate3d(-40rpx, 0, 0);
+  }
+
+  /* 20%,
+  40%,
+  60%, */
+  80% {
+    /* opacity: 1; */
+    transform: translate3d(40rpx, 0, 0);
+  }
+}
+.lightSliverAnimate {
+  -webkit-animation-name: lightSliverAnimate;
+  animation-name: lightSliverAnimate;
+}
 .zoomIn {
   -webkit-animation-name: zoomIn;
   animation-name: zoomIn;
@@ -516,7 +565,9 @@
 .animated.delay-6s {
   animation-delay: 6s;
 }
-
+.animated.fast1 {
+  animation-duration: 1000ms;
+}
 .animated.fast {
   animation-duration: 800ms;
 }
@@ -531,6 +582,9 @@
 
 .animated.slower {
   animation-duration: 3s;
+}
+.animated.slower6 {
+  animation-duration: 6s;
 }
 
 @media (prefers-reduced-motion) {

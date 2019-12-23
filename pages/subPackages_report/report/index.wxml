@@ -6,11 +6,26 @@
   bindchange='bindchange'
   current='{{current}}'
 >
-  <swiper-item class='item item0'>
-      <image class="item_bg_bottom_scale" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image>
-        <image class="item_bg_load_bottom fadeInUp animated slow delay-5s" src="https://img.cdn.powerpower.net/5dfc788ee4b019075f3f2f64.png"></image>
+  <swiper-item  class='item item0'>
+      <!-- <image class="item_bg_bottom_scale" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
+        <!-- <image class="item_bg_load_bottom fadeInUp animated slow delay-5s" src="https://img.cdn.powerpower.net/5dfc788ee4b019075f3f2f64.png"></image>
         <image class="item_bg_load_star" src="https://img.cdn.powerpower.net/5dfc74cae4b0629156e56905.png"></image>
-        <image class="item_bg_load_city fadeInUp animated delay-5_5s" src="https://img.cdn.powerpower.net/5dfc7b09e4b019075f3f2f65.png"></image>
+        <image class="item_bg_load_city fadeInUp animated delay-5_5s" src="https://img.cdn.powerpower.net/5dfc7b09e4b019075f3f2f65.png"></image> -->
+        <view class="item_bg_load_contBox fadeIn animated slow delay-6s">
+           <view class="item_bg_load_title">我和J&J的2019</view>
+           <image class="item_bg_load_cont" src="https://img.cdn.powerpower.net/5e002c43e4b0f23075b0745d.png"></image>
+           <view class="lightSliver1 lightSliverAnimate animated slow infinite"></view>
+           <view class="lightSliver2 lightSliverAnimate animated fast infinite"></view>
+           <view class="lightSliver3 lightSliverAnimate animated slow infinite"></view>
+           <view class="lightSliver4 lightSliverAnimate animated slower infinite"></view>
+           <view class="lightSliver5 lightSliverAnimate animated fast1 infinite"></view>
+           <view class="lightSliver6 lightSliverAnimate animated slow infinite"></view>
+           <view class="lightSliver7 lightSliverAnimate animated slower infinite"></view>
+           <view class="lightSliver8 lightSliverAnimate animated fast infinite"></view>
+           <view class="lightSliver9 lightSliverAnimate animated slow infinite"></view>
+           <view class="lightSliver10 lightSliverAnimate animated fast infinite"></view>
+           <view class="lightSliver11 lightSliverAnimate animated faster infinite"></view>
+        </view>
 
         <view class="loadCont fadeOut animated delay-6s">
             <text>loading</text>
@@ -20,7 +35,8 @@
                 <text class="demo1"></text>
               </text>
         </view>
-        <view class="btn fadeIn animated delay-6s" bindtap="startReport">查看</view>
+
+        <view class="btn fadeIn animated" bindtap="startReport">查看我的年度报告</view>
   </swiper-item>
 
    <!-- page1 -->
@@ -28,9 +44,21 @@
       <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
      <image class="item_bg_middle_around2 {{current == 1 ? 'fadeInUp animated' : 'fadeOutLeft animated'}}" src="https://img.cdn.powerpower.net/5dfb2ac8e4b06c67254853c4.png"></image>
      <image class="item_bg_middle_build {{current == 1 ? 'fadeInUp animated delay-05s' : 'fadeOutRight animated'}} " src="https://img.cdn.powerpower.net/5dfb2acfe4b06c67254853c5.png"></image>
-       <image class="item_bg_middle_bird2 {{current == 1 ? 'fadeInRight animated' : 'fadeOutLeft animated'}}  " src="https://img.cdn.powerpower.net/5dfb30d2e4b06c67254853cd.png"></image>
-       <image class="item_bg_cloud {{current == 1 ? 'bounceIn animated delay-1s' : 'fadeOutRight animated'}} " src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+     <image class="item_bg_middle_bird2 {{current == 1 ? 'fadeInRight animated' : 'fadeOutLeft animated'}}  " src="https://img.cdn.powerpower.net/5dfb30d2e4b06c67254853cd.png"></image>
+     <image class="item_bg_cloud {{current == 1 ? 'bounceIn animated delay-1s' : 'fadeOutRight animated'}} " src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
       
+      <view class="content">
+         <text class="iconfont iconfenzu-10 logo">\n</text>
+         <view class="commonText">2019年，你一共在3家门店</view>
+         <view class="commonText">遇见了 <text class="lightText">7</text> 位老师和 <text class="lightText">321</text> 位伙伴</view>
+
+         <view class="commonText" style="margin-top:120rpx">其中，你最喜欢</view>
+         <view class="lightText" style="margin-top:40rpx">东方路旗舰店</view>
+
+         <view class="commonText">在这里你一共训练了<text class="lightText"> 21 </text>次</view>
+
+         <text class="commonText famousWord">“一定是也别的缘分，\n才能一路走来变成一家人”</text>
+      </view>
       <!-- <view class="cont contAnimate delay1">是伟大的味道酸酸的</view>
 
       <view class="cont2 contAnimate delay12">是伟大的味道是伟大的味道酸酸的酸酸的</view> -->
@@ -56,6 +84,19 @@
       <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
       <image class="item_bg_middle_around {{current == 4 ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb2ce7e4b06c67254853ca.png"></image>
       <image class="item_bg_middle_bridge" src="https://img.cdn.powerpower.net/5dfb2cb5e4b06c67254853c8.png"></image>
+
+      <view class="content">
+         <text class="iconfont iconfenzu-10 logo">\n</text>
+         <view class="commonText">2019年9月1日9:00</view>
+         <view class="commonText">你尝试了第一次单车课</view>
+         <view class="lightText">FAT BURNING</view>
+         <view class="commonText" style="margin-bottom:40rpx">从此，爱上了用舞蹈表达灵魂</view>
+
+         <view class="commonText"> 2019年，你一共参与了<text class="lightText">7</text>次舞蹈类课程</view>
+         <view class="commonText">Fat Burning <text class="lightText">1</text>次</view>
+         <view class="commonText">Fat Burning <text class="lightText">1</text>次</view>
+         <view class="commonText">Fat Burning <text class="lightText">1</text>次</view>
+      </view>
    </swiper-item>
 
    <!-- page5 -->
@@ -127,3 +168,5 @@
        <image class="item_bg_cloud {{current == 14 ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
    </swiper-item>
 </swiper>
+
+<jurisdictionSmallPopup state='{{jurisdictionSmallState}}' bindmyevent='bindgetuserinfo'></jurisdictionSmallPopup>
