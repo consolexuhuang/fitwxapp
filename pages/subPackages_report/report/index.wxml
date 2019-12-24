@@ -1,4 +1,5 @@
 <!--pages/subPackages_report/report/index.wxml-->
+<wxs src="../../../utils/util.wxs" module="util" />
 <swiper 
   vertical
   easing-function='easeOutCubic'
@@ -6,7 +7,7 @@
   bindchange='bindchange'
   current='{{current}}'
 >
-  <swiper-item  class='item item0'>
+   <swiper-item  class='item item0'>
       <!-- <image class="item_bg_bottom_scale" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
         <!-- <image class="item_bg_load_bottom fadeInUp animated slow delay-5s" src="https://img.cdn.powerpower.net/5dfc788ee4b019075f3f2f64.png"></image>
         <image class="item_bg_load_star" src="https://img.cdn.powerpower.net/5dfc74cae4b0629156e56905.png"></image>
@@ -37,17 +38,37 @@
         </view>
 
         <view class="btn fadeIn animated" bindtap="startReport">查看我的年度报告</view>
-  </swiper-item>
-
+   </swiper-item>
+  
    <!-- page1 -->
+   <swiper-item  wx:if='{{isStartState}}' class='item item3'>
+      <!-- 箭头 -->
+      <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb1519e4b06c67254853b0.jpg"></image>
+      <image class="item_bg_middle_arrowBig {{current == 1 ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb1551e4b06c67254853b1.png"></image>
+      <image class="item_bg_middle_arrowSmall {{current == 1 ? 'fadeInLeft animated' : 'fadeOutLeft animated'}}" src="https://img.cdn.powerpower.net/5dfb1558e4b06c67254853b2.png"></image>
+      <view class="content {{current == 1 ? 'fadeIn animated' : 'fadeOut animated'}}">
+         <text class="iconfont iconfenzu-10 logo">\n</text>
+         <view class="commonText" style="margin-bottom:30rpx">{{util.timeFormat(userYearReport.reg_date, 'YYYY年MM月DD日')}}</view>
+         <view class="commonText" style="margin-bottom:30rpx">在茫茫人海中</view>
+         <view class="commonText" style="margin-bottom:30rpx">你第一次和我相遇</view>
+
+         <view class="commonText" style="margin-bottom:30rpx;margin-top:70rpx">今天是我们相识的第<text class="lightText"> {{userYearReport.reg_days}} </text>天</view>
+         <view class="commonText" style="margin-bottom:30rpx;margin-top:70rpx">春去冬来</view>
+         <view class="commonText" style="margin-bottom:30rpx">在上海未来城里</view>
+         <view class="commonText" style="margin-bottom:30rpx">我们的故事开始了...</view>
+
+      </view>
+   </swiper-item>
+   
+   <!-- page2 -->
    <swiper-item  wx:if='{{isStartState}}' class='item item1'>
-      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
-     <image class="item_bg_middle_around2 {{current == 1 ? 'fadeInUp animated' : 'fadeOutLeft animated'}}" src="https://img.cdn.powerpower.net/5dfb2ac8e4b06c67254853c4.png"></image>
-     <image class="item_bg_middle_build {{current == 1 ? 'fadeInUp animated delay-05s' : 'fadeOutRight animated'}} " src="https://img.cdn.powerpower.net/5dfb2acfe4b06c67254853c5.png"></image>
-     <image class="item_bg_middle_bird2 {{current == 1 ? 'fadeInRight animated' : 'fadeOutLeft animated'}}  " src="https://img.cdn.powerpower.net/5dfb30d2e4b06c67254853cd.png"></image>
-     <image class="item_bg_cloud {{current == 1 ? 'bounceIn animated delay-1s' : 'fadeOutRight animated'}} " src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+     <!-- 世贸大厦 -->
+     <image class="item_bg_middle_around2 {{current == 2 ? 'fadeInUp animated' : 'fadeOutLeft animated'}}" src="https://img.cdn.powerpower.net/5dfb2ac8e4b06c67254853c4.png"></image>
+     <image class="item_bg_middle_build {{current == 2 ? 'fadeInUp animated delay-05s' : 'fadeOutRight animated'}} " src="https://img.cdn.powerpower.net/5dfb2acfe4b06c67254853c5.png"></image>
+     <image class="item_bg_middle_bird2 {{current == 2 ? 'fadeInRight animated' : 'fadeOutLeft animated'}}  " src="https://img.cdn.powerpower.net/5dfb30d2e4b06c67254853cd.png"></image>
+     <image class="item_bg_cloud {{current == 2 ? 'bounceIn animated delay-1s' : 'fadeOutRight animated'}} " src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
       
-      <view class="content">
+      <view class="content {{current == 2 ? 'fadeIn animated' : 'fadeOut animated'}}">
          <text class="iconfont iconfenzu-10 logo">\n</text>
          <view class="commonText">2019年，你一共在3家门店</view>
          <view class="commonText">遇见了 <text class="lightText">7</text> 位老师和 <text class="lightText">321</text> 位伙伴</view>
@@ -57,35 +78,151 @@
 
          <view class="commonText">在这里你一共训练了<text class="lightText"> 21 </text>次</view>
 
-         <text class="commonText famousWord">“一定是也别的缘分，\n才能一路走来变成一家人”</text>
+         <text class="commonText famousWord fadeInUp animated slow delay-1s">“一定是也别的缘分，\n才能一路走来变成一家人”</text>
       </view>
-      <!-- <view class="cont contAnimate delay1">是伟大的味道酸酸的</view>
-
-      <view class="cont2 contAnimate delay12">是伟大的味道是伟大的味道酸酸的酸酸的</view> -->
-   </swiper-item>
-
-   <!-- page2 -->
-   <swiper-item  wx:if='{{isStartState}}' class='item item2'>
-    <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
-    <image class="item_bg_middle {{current == 2 ? 'scaleIn animated' : 'scaleOut animated'}}" src="https://img.cdn.powerpower.net/5dfb2c98e4b06c67254853c7.png"></image>
-      <!-- <view class="cont {{current == 1 ? (isDownLoad ? 'contAnimate delay04' : 'contAnimateOutDowm') : 'contAnimateDowm'}}">是伟大的味是伟大的味道酸酸的是伟大的味道酸酸的是伟大的味</view> -->
    </swiper-item>
 
    <!-- page3 -->
-   <swiper-item  wx:if='{{isStartState}}' class='item item3'>
-      <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb1519e4b06c67254853b0.jpg"></image>
-      <image class="item_bg_middle_arrowBig {{current == 3 ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb1551e4b06c67254853b1.png"></image>
-      <image class="item_bg_middle_arrowSmall {{current == 3 ? 'fadeInLeft animated' : 'fadeOutLeft animated'}}" src="https://img.cdn.powerpower.net/5dfb1558e4b06c67254853b2.png"></image>
-      <!-- <view  class="cont {{current == 2 ? (isDownLoad ? 'contAnimate delay04' : 'contAnimateOutDowm') : 'contAnimateDowm'}}">是伟大的味道酸酸的</view> -->
+   <!-- de16 -->
+   <swiper-item  wx:if='{{isStartState}}' class='item item1'>
+     <!-- <image class="item_bg_middle_around2 {{current == 3 ? 'fadeInUp animated' : 'fadeOutLeft animated'}}" src="https://img.cdn.powerpower.net/5dfb2ac8e4b06c67254853c4.png"></image> -->
+     <image class="item_bg_middle_RangeCoach {{current == 3 ? 'fadeInUp animated delay-05s' : 'fadeOutRight animated'}} " src="https://img.cdn.powerpower.net/5e01c667e4b0527895544369.png"></image>
+      <image class="item_bg_middle_RangeCoachIcon1 {{current == 3 ? 'coachIconAnimate delay-05s' : 'fadeOutDown animated'}} " src="https://img.cdn.powerpower.net/5e01c807e4b052789554436e.png"></image>
+      <image class="item_bg_middle_RangeCoachIcon2 {{current == 3 ? 'coachIconAnimate delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5e01c806e4b052789554436b.png"></image>
+      <image class="item_bg_middle_RangeCoachIcon3 {{current == 3 ? 'coachIconAnimate' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5e01c807e4b052789554436d.png"></image>
+      <image class="item_bg_middle_RangeCoachIcon4 {{current == 3 ? 'coachIconAnimate delay-2s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5e01c806e4b052789554436c.png"></image>
+      <view class="content {{current == 3 ? 'fadeIn animated' : 'fadeOut animated'}}">
+         <text class="iconfont iconfenzu-10 logo">\n</text>
+         <view class="commonText">2019年你最爱的教练是</view>
+         <view class="coachFirstBox">
+            <view class="coachFirst {{current == 3 ? 'fadeInLeft animated delay-05s': 'fadeOutLeft animated'}} ">
+                    <image class="coachFirstBg" src="https://img.cdn.powerpower.net/5e01c073e4b0527895544368.png"></image>
+                    <image class="coachHeadImgFirst" src="https://thirdwx.qlogo.cn/mmopen/icsHOQ0SZDwSdAqIc3jINJWavkejt0vkRj0sKgb47E4xOHWakOiaHzkrJrRMvicWiciaKPDMib2NvFXnkII0cSFlhyBx8QIjq2ewjj/132"></image>
+              </view>
+            <view class="commonText lightText {{current == 3 ? 'fadeInLeft animated delay-1s': 'fadeOutLeft animated'}}">Laura</view>
+         </view>
+
+         <view class="commonText" style="margin-top:20rpx">你一共参加了TA的<text class="lightText"> 21次 </text>课程</view>
+         <view class="commonText">一共<text class="lightText"> 210 </text>分钟</view>
+    
+         <view class="coachList">
+            <view class="coachSecend">
+               <view class="coachHeadImgBox coachHeadImgBox2">
+                  <image class="coachHeadImg" src="https://thirdwx.qlogo.cn/mmopen/icsHOQ0SZDwSdAqIc3jINJWavkejt0vkRj0sKgb47E4xOHWakOiaHzkrJrRMvicWiciaKPDMib2NvFXnkII0cSFlhyBx8QIjq2ewjj/132"></image>
+               </view>
+               <view class="coachCont">
+                  <view class="coachOrder">第二名</view>
+                  <view class="lightText"> 赵小帅 3<text class="commonText">次课程</text>180 <text class="commonText">分钟</text></view>
+               </view>
+            </view>
+            <view class="coachSecend">
+               <view class="coachHeadImgBox coachHeadImgBox3">
+                  <image class="coachHeadImg" src="https://thirdwx.qlogo.cn/mmopen/icsHOQ0SZDwSdAqIc3jINJWavkejt0vkRj0sKgb47E4xOHWakOiaHzkrJrRMvicWiciaKPDMib2NvFXnkII0cSFlhyBx8QIjq2ewjj/132"></image>
+               </view>
+               <view class="coachCont">
+                  <view class="coachOrder">第二名</view>
+                  <view class="lightText"> 赵小帅 3<text class="commonText">次课程</text>180 <text class="commonText">分钟</text></view>
+               </view>
+            </view>
+         </view>
+      </view>
    </swiper-item>
 
    <!-- page4 -->
    <swiper-item  wx:if='{{isStartState}}' class='item item3'>
-      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
-      <image class="item_bg_middle_around {{current == 4 ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb2ce7e4b06c67254853ca.png"></image>
+      <!-- 湖边 -->
+      <image class="item_bg_middle_Lakeside {{current == 4 ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb2a43e4b06c67254853c3.png"></image>
+       <image class="item_bg_cloud {{current == 4 ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+       <view class="content {{current == 4 ? 'fadeIn animated' : 'fadeOut animated'}}">
+         <text class="iconfont iconfenzu-10 logo">\n</text>
+         <view class="commonText" style="margin-bottom:30rpx">这一年，你一共邀请了<text class="lightText"> 28 </text>位同伴</view>
+         <view class="commonText" style="margin-bottom:30rpx">今年邀请的第一个好友</view>
+         <text class="commonText famousWord fadeInUp animated slow delay-1s">“社交有时也是一种能力”</text>
+      </view>  
+   </swiper-item>
+
+   <!-- page5 -->
+   <swiper-item  wx:if='{{isStartState}}' class='item item3'>
+      <!-- 钟楼 -->
+      <image class="item_bg_middle_tower {{current == 5 ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb2983e4b06c67254853c2.png"></image>
+      <view class="content {{current == 5 ? 'fadeIn animated' : 'fadeOut animated'}}">
+         <text class="iconfont iconfenzu-10 logo">\n</text>
+         <view class="commonText" style="margin-bottom:30rpx">2019年,勤俭持家的你</view>
+         <view class="commonText" style="margin-bottom:30rpx">一共使用了<text class="lightText"> 30 </text>张优惠券节约了<text class="lightText"> 600 </text>元</view>
+         <text class="commonText famousWord fadeInUp animated slow delay-1s">“省下的钱，\n值得给自己买点好的。”</text>
+      </view>  
+   </swiper-item>
+
+   <!-- page6 -->
+   <swiper-item  wx:if='{{isStartState}}' class='item item3'>
+      <!-- 新天地 -->
+      <image class="item_bg_middle_Xintiandi {{current == 6 ? 'scaleIn animated' : 'scaleOut animated'}}" src="https://img.cdn.powerpower.net/5dfb28d0e4b06c67254853c1.png"></image>
+      <view class="content {{current == 6 ? 'fadeIn animated' : 'fadeOut animated'}}">
+         <text class="iconfont iconfenzu-10 logo">\n</text>
+         <view class="commonText" style="margin-bottom:30rpx">2019年有一个熟人，你应该认识TA</view>
+         <view class="commonText lightText" style="margin-bottom:30rpx">李佳琪</view>
+         <view class="commonText" style="margin-bottom:30rpx">2019年，TA和你一共上了<text class="lightText"> 5 </text>节课</view>
+
+         <text class="commonText famousWord fadeInUp animated slow delay-1s">“如果你们还不是好朋友\n下次再见记得打个招呼。”</text>
+      </view>  
+   </swiper-item>
+
+   <!-- page7 -->
+   <swiper-item  wx:if='{{isStartState}}' class='item item3'>
+      <!-- 东方明珠 -->
+      <image class="item_bg_middle_Oriental {{current == 7 ? '' : 'fadeOut animated'}}" src="https://img.cdn.powerpower.net/5dfb2d13e4b06c67254853cb.png"></image>
+      <image class="item_bg_middle_OrientalBottom {{current == 7 ? 'fadeIn animated' : 'fadeOut animated'}}" src="https://img.cdn.powerpower.net/5dfb2d31e4b06c67254853cc.png"></image>
+      <image class="item_bg_cloud {{current == 7 ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+      <view class="content {{current == 7 ? 'fadeIn animated' : 'fadeOut animated'}}">
+         <text class="iconfont iconfenzu-10 logo">\n</text>
+         <view class="commonText" style="margin-bottom:30rpx">2019年8月</view>
+         <view class="commonText" style="margin-bottom:30rpx">是你一整年里最坚持的一个月</view>
+         <view class="commonText" style="margin-bottom:30rpx">一共上了<text class="lightText"> 5 </text>次课，训练了 <text class="lightText"> 500 </text> 分钟节课</view>
+
+         <text class="commonText famousWord fadeInUp animated slow delay-1s">这样的坚持，\n一定是因为某种热爱。”</text>
+      </view> 
+   </swiper-item>
+
+    <!-- page8 -->
+   <swiper-item  wx:if='{{isStartState}}' class='item item3'>
+      <!-- 携程 -->
+      <image class="item_bg_middle_company {{current == 8 ? 'item_bg_middle_company_animate' : 'fadeOut animated'}}" src="https://img.cdn.powerpower.net/5dfb2567e4b06c67254853be.png"></image>
+      <image class="item_bg_cloud {{current == 8 ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+      <view class="content {{current == 8 ? 'fadeIn animated' : 'fadeOut animated'}}">
+         <text class="iconfont iconfenzu-10 logo">\n</text>
+         <view class="commonText" style="margin-bottom:30rpx">2019年11月3日21:30</view>
+         <view class="commonText" style="margin-bottom:30rpx">今年第一次尝试晚课</view>
+         <view class="commonText lightText" style="margin-bottom:30rpx">BODYPUMP塑形杠铃-45分钟</view>
+         <view class="commonText" style="margin-bottom:30rpx">在<text class="lightText"> Justin&Julie新天地旗舰店 </text></view>
+        <view class="commonText" style="margin-bottom:30rpx">你结识了一群志同道合的朋友</view>
+         <text class="commonText famousWord fadeInUp animated slow delay-1s">“课后的路灯和夜宵，\n见证了你运动后的快乐。”</text>
+      </view> 
+   </swiper-item>
+
+   <!-- page9 -->
+   <swiper-item  wx:if='{{isStartState}}' class='item item3'>
+      <!-- 铁桥 -->
+      <image class="item_bg_middle_elevated {{current == 9 ? 'scaleIn animated' : 'scaleOut animated'}}" src="https://img.cdn.powerpower.net/5dfb21bee4b06c67254853ba.png"></image>
+      <image class="item_bg_cloud {{current == 9 ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+      <view class="content {{current == 9 ? 'fadeIn animated' : 'fadeOut animated'}}">
+         <text class="iconfont iconfenzu-10 logo">\n</text>
+         <view class="commonText" style="margin-bottom:30rpx">2019年11月3日21:30</view>
+         <view class="commonText" style="margin-bottom:30rpx">今年第一次尝试早课</view>
+         <view class="commonText lightText" style="margin-bottom:30rpx">BODYPUMP塑形杠铃-45分钟</view>
+         <view class="commonText" style="margin-bottom:30rpx">洒在<text class="lightText"> Justin&Julie新天地旗舰店 </text>的阳光</view>
+        <view class="commonText" style="margin-bottom:30rpx">见证了你早起的勇气</view>
+         <text class="commonText famousWord fadeInUp animated slow delay-1s">“朝露和初阳，\n都不如你的美丽。”</text>
+      </view> 
+   </swiper-item>
+  
+
+   <!-- page10  （4，9，11，2，5，12，2）-->
+   <swiper-item  wx:if='{{true}}' class='item item3'>
+      <!-- 高架桥 -->
+      <image class="item_bg_middle_around {{current == 10 ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb2ce7e4b06c67254853ca.png"></image>
       <image class="item_bg_middle_bridge" src="https://img.cdn.powerpower.net/5dfb2cb5e4b06c67254853c8.png"></image>
 
-      <view class="content">
+      <view class="content {{current == 10 ? 'fadeIn animated' : 'fadeOut animated'}}">
          <text class="iconfont iconfenzu-10 logo">\n</text>
          <view class="commonText">2019年9月1日9:00</view>
          <view class="commonText">你尝试了第一次单车课</view>
@@ -96,77 +233,45 @@
          <view class="commonText">Fat Burning <text class="lightText">1</text>次</view>
          <view class="commonText">Fat Burning <text class="lightText">1</text>次</view>
          <view class="commonText">Fat Burning <text class="lightText">1</text>次</view>
+         <text class="commonText famousWord fadeInUp animated slow delay-1s">“朝露和初阳，\n都不如你的美丽。”</text>
       </view>
    </swiper-item>
 
-   <!-- page5 -->
-   <swiper-item  wx:if='{{isStartState}}' class='item item3'>
-      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
-      <image class="item_bg_middle_Oriental {{current == 5 ? '' : 'fadeOut animated'}}" src="https://img.cdn.powerpower.net/5dfb2d13e4b06c67254853cb.png"></image>
-      <image class="item_bg_middle_OrientalBottom {{current == 5 ? 'fadeIn animated' : 'fadeOut animated'}}" src="https://img.cdn.powerpower.net/5dfb2d31e4b06c67254853cc.png"></image>
-      <image class="item_bg_cloud {{current == 5 ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+   <swiper-item  wx:if='{{false}}' class='item item3'>
+      <!-- 博物馆 -->
+      <image class="item_bg_middle_Museum {{current == 10 ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb227be4b06c67254853bc.png"></image>
+       <image class="item_bg_middle_bird {{current == 10 ? 'fadeIn animated' : 'fadeOutRight animated'}}" src="https://img.cdn.powerpower.net/5dfb239be4b06c67254853bd.png"></image>
+      <image class="item_bg_cloud {{current == 10 ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
    </swiper-item>
 
-   <!-- page6 -->
-   <swiper-item  wx:if='{{isStartState}}' class='item item3'>
-      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
-      <image class="item_bg_middle_city {{current == 6 ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb2160e4b06c67254853b9.png"></image>
-      <image class="item_bg_cloud {{current == 6 ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
-   </swiper-item>
-
-    <!-- page7 -->
-   <swiper-item  wx:if='{{isStartState}}' class='item item3'>
-      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
-      <image class="item_bg_middle_elevated {{current == 7 ? 'scaleIn animated' : 'scaleOut animated'}}" src="https://img.cdn.powerpower.net/5dfb21bee4b06c67254853ba.png"></image>
-      <image class="item_bg_cloud {{current == 7 ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
-   </swiper-item>
-
-   <!-- page8 -->
-   <swiper-item  wx:if='{{isStartState}}' class='item item3'>
-      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
-      <image class="item_bg_middle_Museum {{current == 8 ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb227be4b06c67254853bc.png"></image>
-       <image class="item_bg_middle_bird {{current == 8 ? 'fadeIn animated' : 'fadeOutRight animated'}}" src="https://img.cdn.powerpower.net/5dfb239be4b06c67254853bd.png"></image>
-      <image class="item_bg_cloud {{current == 8 ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
-   </swiper-item>
-
-   <!-- page9 -->
-   <swiper-item  wx:if='{{isStartState}}' class='item item3'>
-      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
-      <image class="item_bg_middle_company {{current == 9 ? 'item_bg_middle_company_animate' : 'fadeOut animated'}}" src="https://img.cdn.powerpower.net/5dfb2567e4b06c67254853be.png"></image>
-      <image class="item_bg_cloud {{current == 9 ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
-   </swiper-item>
-
-   <!-- page10 -->
-   <swiper-item  wx:if='{{isStartState}}' class='item item3'>
-      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
+   <swiper-item  wx:if='{{false}}' class='item item3'>
+       <!-- 五角场 -->
       <image class="item_bg_middle_Wujiaochang {{current == 10 ? 'scaleIn animated' : 'scaleOut animated'}}" src="https://img.cdn.powerpower.net/5dfb26b1e4b06c67254853bf.png"></image>
    </swiper-item>
 
-   <!-- page11 -->
-   <swiper-item  wx:if='{{isStartState}}' class='item item3'>
+   <swiper-item  wx:if='{{false}}' class='item item2'>
+      <!-- 铁架 -->
+      <image class="item_bg_middle {{current == 10 ? 'scaleIn animated' : 'scaleOut animated'}}" src="https://img.cdn.powerpower.net/5dfb2c98e4b06c67254853c7.png"></image>
+   </swiper-item>
+
+   <swiper-item  wx:if='{{false}}' class='item item2'>
+      <!-- 天桥 -->
+      <image class="item_bg_middle_Skybridge {{current == 10 ? 'scaleIn animated' : 'scaleOut animated'}}" src="https://img.cdn.powerpower.net/5e01a7aee4b052789554435d.png"></image>
+   </swiper-item>
+   
+   <swiper-item  wx:if='{{false}}' class='item item3'>
       <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
+      <!-- 火车站 -->
       <view class="around_sun {{current == 11 ? 'fadeInLeft animated' : 'fadeOutLeft animated'}}"></view>
       <image class="item_bg_middle_Train {{current == 11 ? 'fadeInRight animated' : 'fadeOutRight animated'}}" src="https://img.cdn.powerpower.net/5dfb2769e4b06c67254853c0.png"></image>
    </swiper-item>
 
-   <!-- page12 -->
+   <!-- page11 -->
    <swiper-item  wx:if='{{isStartState}}' class='item item3'>
-      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
-      <image class="item_bg_middle_Xintiandi {{current == 12 ? 'scaleIn animated' : 'scaleOut animated'}}" src="https://img.cdn.powerpower.net/5dfb28d0e4b06c67254853c1.png"></image>
-   </swiper-item>
-
-    <!-- page13 -->
-   <swiper-item  wx:if='{{isStartState}}' class='item item3'>
-      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
-      <image class="item_bg_middle_tower {{current == 13 ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb2983e4b06c67254853c2.png"></image>
-   </swiper-item>
-
-   <!-- page14 -->
-   <swiper-item  wx:if='{{isStartState}}' class='item item3'>
-      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
-      <image class="item_bg_middle_Lakeside {{current == 14 ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb2a43e4b06c67254853c3.png"></image>
-       <image class="item_bg_cloud {{current == 14 ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
-   </swiper-item>
+      <!-- 城市 -->
+      <image class="item_bg_middle_city {{current == 11 ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb2160e4b06c67254853b9.png"></image>
+      <image class="item_bg_cloud {{current == 11 ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+     </swiper-item>
 </swiper>
 
 <jurisdictionSmallPopup state='{{jurisdictionSmallState}}' bindmyevent='bindgetuserinfo'></jurisdictionSmallPopup>

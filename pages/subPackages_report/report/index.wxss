@@ -284,8 +284,10 @@ swiper{
 .content{
   position: absolute;
   top: 100rpx;
-  left: 66rpx;
+  /* left: 66rpx; */
   text-align: left;
+  padding: 0 66rpx;
+  box-sizing: border-box;
 }
 .logo{
   font-size: 40rpx;
@@ -298,6 +300,7 @@ swiper{
   font-family:PingFang SC;
   font-weight:500;
   color:rgba(255,255,255,1);
+  position: relative;
   /* line-height:55rpx; */
 }
 .lightText{
@@ -309,9 +312,9 @@ swiper{
   font-size:32rpx;
   font-family:PingFang SC;
   font-weight:500;
-  color:rgba(212,205,255,1);
+  color:rgba(212,205,255,.5);
   line-height:47rpx;
-  opacity:0.5;
+  /* opacity:0.5; */
   margin-top: 120rpx;
 }
 /* ************************** */
@@ -343,7 +346,120 @@ swiper{
   height: 300rpx
 }
 /* ************************** */
+/* 第页图片 */
+.item_bg_middle_RangeCoach{
+  position: absolute;
+  left: 0;
+  bottom:0;
+  width: 100%;
+  height: 720rpx;
+}
+.coachFirst{
+  /* position: absolute; */
+  /* top: 0;
+  right: -30rpx; */
+  width: 220rpx;
+  height: 220rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 30rpx;
+}
+.coachFirstBox{
+  display: flex;
+  align-items: center;
+  margin-top: 40rpx;
+}
+.coachFirstBg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: coachHeadAnimate 20s linear infinite
+}
+.coachHeadImgFirst{
+   position: absolute;
+   width: 120rpx;
+   height: 120rpx;
+   border-radius: 50%
+}
+.coachList{
+  margin-top: 80rpx;
+}
+.coachSecend{
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx; 
+}
+.coachHeadImgBox{
+  width:141rpx;
+  height:141rpx;
+  border-radius:50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+  /* position: relative; */
+  
+}
+.coachHeadImgBox2{
+  background-image: url('https://img.cdn.powerpower.net/5e01bd7ae4b0527895544364.png');
+  background-size: 100% 100%;
+}
+.coachHeadImgBox3{
+  background-image: url('https://img.cdn.powerpower.net/5e01bd71e4b0527895544363.png');
+  background-size: 100% 100%;
+}
+.coachHeadImg{
+  width:100rpx;
+  height:100rpx;
+  border-radius:50%;
+  /* position: absolute; */
+  /* left: 0;
+  right: 0;
+  margin: auto */
+}
 
+.coachCont{
+  text-align: left;
+  font-size:32rpx;
+  font-family:PingFang SC;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  line-height:50rpx;
+}
+.item_bg_middle_RangeCoachIcon1{
+  width: 137rpx;
+  height: 107rpx;
+  position: absolute;
+  right: 63rpx;
+  bottom: 454rpx;
+}
+.item_bg_middle_RangeCoachIcon2{
+  width: 80rpx;
+  height: 73rpx;
+  position: absolute;
+  right: 260rpx;
+  bottom: 645rpx;
+}
+.item_bg_middle_RangeCoachIcon3{
+  width: 120rpx;
+  height: 97rpx;
+  position: absolute;
+  left: 227rpx;
+  bottom: 270rpx;
+}
+.item_bg_middle_RangeCoachIcon4{
+  width: 277rpx;
+  height: 220rpx;
+  position: absolute;
+  right: 97rpx;
+  bottom: 63rpx;
+}
+.coachIconAnimate{
+  animation: coachIconAnimate 2s ease-out, coachIconAnimateJump 4s linear 2s infinite;
+}
+/* ************************** */
 /* 第3页图片 */
 .item_bg_middle_bridge{
   position: absolute;
@@ -458,6 +574,10 @@ swiper{
   right: 0;
   width: 100%;
   height: 800rpx;
+}
+.item_bg_middle_Skybridge{
+  width: 100%;
+  height: 100%;
 }
 /* ************************** */
 
@@ -651,6 +771,36 @@ swiper{
     100% {
         text-shadow: 2rpx 2rpx 0 #ff0048,-2rpx -2rpx 0 #3234ff
     }
+}
+@keyframes coachIconAnimate {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 400%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes coachIconAnimateJump{
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50%{
+    transform: translate3d(0, -30%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes coachHeadAnimate{
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 .countAminate{
   animation: fadeInUp .5s ease;
