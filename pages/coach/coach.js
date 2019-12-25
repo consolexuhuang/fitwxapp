@@ -3,7 +3,7 @@ const app = getApp();
 const api = app.api;
 const ui = require('../../utils/ui.js');
 const store = app.store;
-
+let coachId;
 Page({
 
   /**
@@ -12,7 +12,6 @@ Page({
   data: {
     dateList: '',
     courseList: '',
-    coachId: '',
     coachData: '',
     active: 0,
     isDescriptionShow: true,
@@ -44,7 +43,7 @@ Page({
     if (options.shareMemberId){
       wx.setStorageSync('shareMemberId', options.shareMemberId)
     }
-    const coachId = options.coachId;
+    coachId = options.coachId ? options.coachId : '';
     //从课程页面过来的
     let active = options.active;
     if (active){
@@ -52,17 +51,34 @@ Page({
         active
       })
     };
-    this.setData({
-      coachId
-    })
-
+    //识别二维码过来的
+    if (options.scene) {
+      //把编译后的二维码参数转成需要的参数
+      this.getSeneBycode(options.scene).then((res) => {
+        let resData = JSON.parse(res.msg);
+        coachId = resData.coachId;
+        //设置数据
+        wx.setStorageSync('shareMemberId', resData.shareMemberId);
+        //初始化数据
+        this.init();        
+      }).catch((err) => {
+        console.error('二维码参数转换错误：' + err);
+      })
+    }
+    else {
+      this.init();
+    };      
+  },
+  //初始化数据
+  init() {
     //检测登录 
     app.checkSessionFun().then(() => {
-    this.getCoach()
-    this.getDateList()
+      this.getCoach()
+      this.getDateList()
     }, () => {
       this.setData({ jurisdictionState: true })
     })
+
   },
   bindgetuserinfo(){
     //检测登录
@@ -76,7 +92,6 @@ Page({
   },
   // 教练详情
   getCoach: function(event) {
-    let coachId = this.data.coachId
     let data = {
       id: coachId
     }
@@ -110,7 +125,6 @@ Page({
   },
   // 获取课程列表
   getCourseList: function(event) {
-    let coachId = this.data.coachId
     let latitude = getApp().globalData.location.latitude
     let longitude = getApp().globalData.location.longitude
     let data = {
@@ -144,20 +158,7 @@ Page({
       active
     })
   },
-  // // 点击位置展示地图
-  // handleLocationTap: function(event) {
-  //   const name = event.currentTarget.dataset.name
-  //   const address = event.currentTarget.dataset.address
-  //   const latitude = Number(event.currentTarget.dataset.latitude)
-  //   const longitude = Number(event.currentTarget.dataset.longitude)
-  //   wx.openLocation({
-  //     name,
-  //     address,
-  //     latitude,
-  //     longitude,
-  //     scale: 18
-  //   })
-  // },
+
   // 点击店铺跳转
   handleStoreTap: function(event) {
     const storeId = event.currentTarget.dataset.storeId
@@ -214,8 +215,15 @@ Page({
     }
     return {
       title: `Justin&Julie教练- ${this.data.coachData.coachName}`,
-      path: '/pages/coach/coach?coachId=' + this.data.coachId + '&shareMemberId=' + wx.getStorageSync('userData').id,
+      path: '/pages/coach/coach?coachId=' + coachId + '&shareMemberId=' + wx.getStorageSync('userData').id,
       imageUrl: coachHeadUrl,
     }
+  },
+  //获取小程序场景码获取实际的参数信息
+  getSeneBycode(code) {
+    let params = {
+      code: code
+    }
+    return api.post('getSeneBycode', params);
   },
 })
