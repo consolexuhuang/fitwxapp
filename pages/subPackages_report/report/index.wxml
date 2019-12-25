@@ -7,12 +7,13 @@
   bindchange='bindchange'
   current='{{current}}'
 >
+   <!-- page0 0-->
    <swiper-item  class='item item0'>
       <!-- <image class="item_bg_bottom_scale" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
-        <!-- <image class="item_bg_load_bottom fadeInUp animated slow delay-5s" src="https://img.cdn.powerpower.net/5dfc788ee4b019075f3f2f64.png"></image>
-        <image class="item_bg_load_star" src="https://img.cdn.powerpower.net/5dfc74cae4b0629156e56905.png"></image>
-        <image class="item_bg_load_city fadeInUp animated delay-5_5s" src="https://img.cdn.powerpower.net/5dfc7b09e4b019075f3f2f65.png"></image> -->
-        <view class="item_bg_load_contBox fadeIn animated slow delay-6s">
+        <image class="item_bg_load_bottom fadeInUp animated slow delay-1s" src="https://img.cdn.powerpower.net/5dfc788ee4b019075f3f2f64.png"></image>
+        <!-- <image class="item_bg_load_star" src="https://img.cdn.powerpower.net/5dfc74cae4b0629156e56905.png"></image> -->
+        <image class="item_bg_load_city fadeInUp animated delay-05s" src="https://img.cdn.powerpower.net/5dfc7b09e4b019075f3f2f65.png"></image>
+        <view class="item_bg_load_contBox fadeIn animated slow delay-2s">
            <view class="item_bg_load_title">我和J&J的2019</view>
            <image class="item_bg_load_cont" src="https://img.cdn.powerpower.net/5e002c43e4b0f23075b0745d.png"></image>
            <view class="lightSliver1 lightSliverAnimate animated slow infinite"></view>
@@ -28,7 +29,7 @@
            <view class="lightSliver11 lightSliverAnimate animated faster infinite"></view>
         </view>
 
-        <view class="loadCont fadeOut animated delay-6s">
+        <view class="loadCont {{isStartState? 'fadeOut animated' : 'fadeIn animated'}}">
             <text>loading</text>
             <text id="loading1">
                 <text class="demo1"></text>
@@ -37,16 +38,16 @@
               </text>
         </view>
 
-        <view class="btn fadeIn animated" bindtap="startReport">查看我的年度报告</view>
+        <view wx:if='{{isStartState}}' class="btn {{!isStartState? 'fadeOut animated' : 'fadeIn animated'}}" bindtap="startReport">查看我的年度报告</view>
    </swiper-item>
   
-   <!-- page1 -->
+   <!-- page1 1-->
    <swiper-item  wx:if='{{isStartState}}' class='item item3'>
       <!-- 箭头 -->
       <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb1519e4b06c67254853b0.jpg"></image>
-      <image class="item_bg_middle_arrowBig {{current == 1 ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb1551e4b06c67254853b1.png"></image>
-      <image class="item_bg_middle_arrowSmall {{current == 1 ? 'fadeInLeft animated' : 'fadeOutLeft animated'}}" src="https://img.cdn.powerpower.net/5dfb1558e4b06c67254853b2.png"></image>
-      <view class="content {{current == 1 ? 'fadeIn animated' : 'fadeOut animated'}}">
+      <image class="item_bg_middle_arrowBig {{current == pageList[1] ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb1551e4b06c67254853b1.png"></image>
+      <image class="item_bg_middle_arrowSmall {{current == pageList[1] ? 'fadeInLeft animated' : 'fadeOutLeft animated'}}" src="https://img.cdn.powerpower.net/5dfb1558e4b06c67254853b2.png"></image>
+      <view class="content {{current == pageList[1] ? 'fadeIn animated' : 'fadeOut animated'}}">
          <text class="iconfont iconfenzu-10 logo">\n</text>
          <view class="commonText" style="margin-bottom:30rpx">{{util.timeFormat(userYearReport.reg_date, 'YYYY年MM月DD日')}}</view>
          <view class="commonText" style="margin-bottom:30rpx">在茫茫人海中</view>
@@ -60,218 +61,297 @@
       </view>
    </swiper-item>
    
-   <!-- page2 -->
+   <!-- page2 2-->
    <swiper-item  wx:if='{{isStartState}}' class='item item1'>
      <!-- 世贸大厦 -->
-     <image class="item_bg_middle_around2 {{current == 2 ? 'fadeInUp animated' : 'fadeOutLeft animated'}}" src="https://img.cdn.powerpower.net/5dfb2ac8e4b06c67254853c4.png"></image>
-     <image class="item_bg_middle_build {{current == 2 ? 'fadeInUp animated delay-05s' : 'fadeOutRight animated'}} " src="https://img.cdn.powerpower.net/5dfb2acfe4b06c67254853c5.png"></image>
-     <image class="item_bg_middle_bird2 {{current == 2 ? 'fadeInRight animated' : 'fadeOutLeft animated'}}  " src="https://img.cdn.powerpower.net/5dfb30d2e4b06c67254853cd.png"></image>
-     <image class="item_bg_cloud {{current == 2 ? 'bounceIn animated delay-1s' : 'fadeOutRight animated'}} " src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+     <image class="item_bg_middle_around2 {{current == pageList[2] ? 'fadeInUp animated' : 'fadeOutLeft animated'}}" src="https://img.cdn.powerpower.net/5dfb2ac8e4b06c67254853c4.png"></image>
+     <image class="item_bg_middle_build {{current == pageList[2] ? 'fadeInUp animated delay-05s' : 'fadeOutRight animated'}} " src="https://img.cdn.powerpower.net/5dfb2acfe4b06c67254853c5.png"></image>
+     <image class="item_bg_middle_bird2 {{current == pageList[2] ? 'fadeInRight animated' : 'fadeOutLeft animated'}}  " src="https://img.cdn.powerpower.net/5dfb30d2e4b06c67254853cd.png"></image>
+     <image class="item_bg_cloud {{current == pageList[2] ? 'bounceIn animated delay-1s' : 'fadeOutRight animated'}} " src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
       
-      <view class="content {{current == 2 ? 'fadeIn animated' : 'fadeOut animated'}}">
+      <view class="content {{current == pageList[2] ? 'fadeIn animated' : 'fadeOut animated'}}">
          <text class="iconfont iconfenzu-10 logo">\n</text>
-         <view class="commonText">2019年，你一共在3家门店</view>
-         <view class="commonText">遇见了 <text class="lightText">7</text> 位老师和 <text class="lightText">321</text> 位伙伴</view>
+         <view class="commonText">2019年，你一共在 <text class="lightText">{{userYearReport.total_store}}</text> 家门店</view>
+         <view class="commonText">遇见了 <text class="lightText">{{userYearReport.total_coach}}</text> 位老师和 <text class="lightText">{{userYearReport.total_co_member}}</text> 位伙伴</view>
 
          <view class="commonText" style="margin-top:120rpx">其中，你最喜欢</view>
-         <view class="lightText" style="margin-top:40rpx">东方路旗舰店</view>
+         <view class="lightText" style="margin-top:40rpx">{{userYearReport.love_store_name}}</view>
 
-         <view class="commonText">在这里你一共训练了<text class="lightText"> 21 </text>次</view>
+         <view class="commonText">在这里你一共训练了<text class="lightText"> {{userYearReport.total_count}} </text>次</view>
 
          <text class="commonText famousWord fadeInUp animated slow delay-1s">“一定是也别的缘分，\n才能一路走来变成一家人”</text>
       </view>
    </swiper-item>
 
-   <!-- page3 -->
-   <!-- de16 -->
+   <!-- page3 3-->
    <swiper-item  wx:if='{{isStartState}}' class='item item1'>
-     <!-- <image class="item_bg_middle_around2 {{current == 3 ? 'fadeInUp animated' : 'fadeOutLeft animated'}}" src="https://img.cdn.powerpower.net/5dfb2ac8e4b06c67254853c4.png"></image> -->
-     <image class="item_bg_middle_RangeCoach {{current == 3 ? 'fadeInUp animated delay-05s' : 'fadeOutRight animated'}} " src="https://img.cdn.powerpower.net/5e01c667e4b0527895544369.png"></image>
-      <image class="item_bg_middle_RangeCoachIcon1 {{current == 3 ? 'coachIconAnimate delay-05s' : 'fadeOutDown animated'}} " src="https://img.cdn.powerpower.net/5e01c807e4b052789554436e.png"></image>
-      <image class="item_bg_middle_RangeCoachIcon2 {{current == 3 ? 'coachIconAnimate delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5e01c806e4b052789554436b.png"></image>
-      <image class="item_bg_middle_RangeCoachIcon3 {{current == 3 ? 'coachIconAnimate' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5e01c807e4b052789554436d.png"></image>
-      <image class="item_bg_middle_RangeCoachIcon4 {{current == 3 ? 'coachIconAnimate delay-2s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5e01c806e4b052789554436c.png"></image>
-      <view class="content {{current == 3 ? 'fadeIn animated' : 'fadeOut animated'}}">
+     <image class="item_bg_middle_RangeCoach {{current == pageList[3] ? 'fadeInUp animated delay-05s' : 'fadeOutRight animated'}} " src="https://img.cdn.powerpower.net/5e01c667e4b0527895544369.png"></image>
+      <image class="item_bg_middle_RangeCoachIcon1 {{current == pageList[3] ? 'coachIconAnimate delay-05s' : 'fadeOutDown animated'}} " src="https://img.cdn.powerpower.net/5e01c807e4b052789554436e.png"></image>
+      <image class="item_bg_middle_RangeCoachIcon2 {{current == pageList[3] ? 'coachIconAnimate delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5e01c806e4b052789554436b.png"></image>
+      <image class="item_bg_middle_RangeCoachIcon3 {{current == pageList[3] ? 'coachIconAnimate' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5e01c807e4b052789554436d.png"></image>
+      <image class="item_bg_middle_RangeCoachIcon4 {{current == pageList[3] ? 'coachIconAnimate delay-2s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5e01c806e4b052789554436c.png"></image>
+      <view class="content {{current == pageList[3] ? 'fadeIn animated' : 'fadeOut animated'}}">
          <text class="iconfont iconfenzu-10 logo">\n</text>
          <view class="commonText">2019年你最爱的教练是</view>
          <view class="coachFirstBox">
-            <view class="coachFirst {{current == 3 ? 'fadeInLeft animated delay-05s': 'fadeOutLeft animated'}} ">
+            <view class="coachFirst {{current == pageList[3] ? 'fadeInLeft animated delay-05s': 'fadeOutLeft animated'}} ">
                     <image class="coachFirstBg" src="https://img.cdn.powerpower.net/5e01c073e4b0527895544368.png"></image>
-                    <image class="coachHeadImgFirst" src="https://thirdwx.qlogo.cn/mmopen/icsHOQ0SZDwSdAqIc3jINJWavkejt0vkRj0sKgb47E4xOHWakOiaHzkrJrRMvicWiciaKPDMib2NvFXnkII0cSFlhyBx8QIjq2ewjj/132"></image>
+                    <image class="coachHeadImgFirst" src="{{userYearReport.love_coach_img}}"></image>
               </view>
-            <view class="commonText lightText {{current == 3 ? 'fadeInLeft animated delay-1s': 'fadeOutLeft animated'}}">Laura</view>
+            <view class="commonText lightText {{current == pageList[3] ? 'fadeInLeft animated delay-1s': 'fadeOutLeft animated'}}">{{userYearReport.love_coach_name}}</view>
          </view>
 
-         <view class="commonText" style="margin-top:20rpx">你一共参加了TA的<text class="lightText"> 21次 </text>课程</view>
-         <view class="commonText">一共<text class="lightText"> 210 </text>分钟</view>
+         <view class="commonText" style="margin-top:20rpx">你一共参加了TA的<text class="lightText"> {{userYearReport.love_coach_count || 0}}次 </text>课程</view>
+         <view class="commonText">一共<text class="lightText"> {{userYearReport.love_coach_minutes || 0}} </text>分钟</view>
     
          <view class="coachList">
-            <view class="coachSecend">
+            <view class="coachSecend" wx:if='{{userYearReport.love_coach_name2}}'>
                <view class="coachHeadImgBox coachHeadImgBox2">
-                  <image class="coachHeadImg" src="https://thirdwx.qlogo.cn/mmopen/icsHOQ0SZDwSdAqIc3jINJWavkejt0vkRj0sKgb47E4xOHWakOiaHzkrJrRMvicWiciaKPDMib2NvFXnkII0cSFlhyBx8QIjq2ewjj/132"></image>
+                  <image class="coachHeadImg" src="{{userYearReport.love_coach_img2}}"></image>
                </view>
                <view class="coachCont">
                   <view class="coachOrder">第二名</view>
-                  <view class="lightText"> 赵小帅 3<text class="commonText">次课程</text>180 <text class="commonText">分钟</text></view>
+                  <view class="lightText">{{userYearReport.love_coach_name2}} {{userYearReport.love_coach_count2 || 0}}<text class="commonText">次课程</text> {{userYearReport.love_coach_minutes2 || 0}} <text class="commonText">分钟</text></view>
                </view>
             </view>
-            <view class="coachSecend">
+            <view class="coachSecend" wx:if='{{userYearReport.love_coach_name2}}'>
                <view class="coachHeadImgBox coachHeadImgBox3">
-                  <image class="coachHeadImg" src="https://thirdwx.qlogo.cn/mmopen/icsHOQ0SZDwSdAqIc3jINJWavkejt0vkRj0sKgb47E4xOHWakOiaHzkrJrRMvicWiciaKPDMib2NvFXnkII0cSFlhyBx8QIjq2ewjj/132"></image>
+                  <image class="coachHeadImg" src="{{userYearReport.love_coach_img3}}"></image>
                </view>
                <view class="coachCont">
-                  <view class="coachOrder">第二名</view>
-                  <view class="lightText"> 赵小帅 3<text class="commonText">次课程</text>180 <text class="commonText">分钟</text></view>
+                  <view class="coachOrder">第三名</view>
+                  <view class="lightText">{{userYearReport.love_coach_name3}} {{userYearReport.love_coach_count3 || 0}}<text class="commonText">次课程</text>{{userYearReport.love_coach_minutes3 || 0}} <text class="commonText">分钟</text></view>
                </view>
             </view>
          </view>
       </view>
    </swiper-item>
 
-   <!-- page4 -->
-   <swiper-item  wx:if='{{isStartState}}' class='item item3'>
+   <!-- page4 3-->
+   <swiper-item  wx:if='{{isStartState && userYearReport.total_invite > 0}}' class='item item3'>
       <!-- 湖边 -->
-      <image class="item_bg_middle_Lakeside {{current == 4 ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb2a43e4b06c67254853c3.png"></image>
-       <image class="item_bg_cloud {{current == 4 ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
-       <view class="content {{current == 4 ? 'fadeIn animated' : 'fadeOut animated'}}">
+      <image class="item_bg_middle_Lakeside {{current == pageList[4] ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb2a43e4b06c67254853c3.png"></image>
+       <image class="item_bg_cloud {{current == pageList[4] ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+       <view class="content {{current == pageList[4] ? 'fadeIn animated' : 'fadeOut animated'}}">
          <text class="iconfont iconfenzu-10 logo">\n</text>
-         <view class="commonText" style="margin-bottom:30rpx">这一年，你一共邀请了<text class="lightText"> 28 </text>位同伴</view>
+         <view class="commonText" style="margin-bottom:30rpx">这一年，你一共邀请了<text class="lightText"> {{userYearReport.total_invite || 0}} </text>位同伴</view>
          <view class="commonText" style="margin-bottom:30rpx">今年邀请的第一个好友</view>
+         <view class="firstFriendBox" wx:if='{{userYearReport.total_invite > 0}}'>
+            <image class="firstFriendImg" src="{{userYearReport.first_invite_head_img || 'https://img.cdn.powerpower.net/5e02c909e4b0af41a19eaca9.png'}}"></image>
+            <view class="firstFriendName">{{userYearReport.first_invite_nick_name || "神秘好友"}}</view>
+         </view>
          <text class="commonText famousWord fadeInUp animated slow delay-1s">“社交有时也是一种能力”</text>
       </view>  
    </swiper-item>
 
-   <!-- page5 -->
-   <swiper-item  wx:if='{{isStartState}}' class='item item3'>
+   <!-- page5 3-->
+   <swiper-item  wx:if='{{isStartState && userYearReport.total_coupon_count > 0}}' class='item item3'>
       <!-- 钟楼 -->
-      <image class="item_bg_middle_tower {{current == 5 ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb2983e4b06c67254853c2.png"></image>
-      <view class="content {{current == 5 ? 'fadeIn animated' : 'fadeOut animated'}}">
+      <image class="item_bg_middle_tower {{current == pageList[5] ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb2983e4b06c67254853c2.png"></image>
+      <view class="content {{current == pageList[5] ? 'fadeIn animated' : 'fadeOut animated'}}">
          <text class="iconfont iconfenzu-10 logo">\n</text>
          <view class="commonText" style="margin-bottom:30rpx">2019年,勤俭持家的你</view>
-         <view class="commonText" style="margin-bottom:30rpx">一共使用了<text class="lightText"> 30 </text>张优惠券节约了<text class="lightText"> 600 </text>元</view>
+         <view class="commonText" style="margin-bottom:30rpx">一共使用了<text class="lightText"> {{userYearReport.total_coupon_count}} </text>张优惠券节约了<text class="lightText"> {{userYearReport.total_coupon_amount}} </text>元</view>
          <text class="commonText famousWord fadeInUp animated slow delay-1s">“省下的钱，\n值得给自己买点好的。”</text>
       </view>  
    </swiper-item>
 
-   <!-- page6 -->
-   <swiper-item  wx:if='{{isStartState}}' class='item item3'>
+   <!-- page6 4-->
+   <swiper-item  wx:if='{{isStartState && userYearReport.love_co_member}}' class='item item3'>
       <!-- 新天地 -->
-      <image class="item_bg_middle_Xintiandi {{current == 6 ? 'scaleIn animated' : 'scaleOut animated'}}" src="https://img.cdn.powerpower.net/5dfb28d0e4b06c67254853c1.png"></image>
-      <view class="content {{current == 6 ? 'fadeIn animated' : 'fadeOut animated'}}">
+      <image class="item_bg_middle_Xintiandi {{current == pageList[6] ? 'scaleIn animated' : 'scaleOut animated'}}" src="https://img.cdn.powerpower.net/5dfb28d0e4b06c67254853c1.png"></image>
+      <view class="content {{current == pageList[6] ? 'fadeIn animated' : 'fadeOut animated'}}">
          <text class="iconfont iconfenzu-10 logo">\n</text>
          <view class="commonText" style="margin-bottom:30rpx">2019年有一个熟人，你应该认识TA</view>
-         <view class="commonText lightText" style="margin-bottom:30rpx">李佳琪</view>
-         <view class="commonText" style="margin-bottom:30rpx">2019年，TA和你一共上了<text class="lightText"> 5 </text>节课</view>
+         <view class="commonText lightText" style="margin-bottom:30rpx">{{userYearReport.love_co_member}}</view>
+         <view class="commonText" style="margin-bottom:30rpx">2019年，TA和你一共上了<text class="lightText"> {{userYearReport.love_co_member_count}} </text>节课</view>
 
          <text class="commonText famousWord fadeInUp animated slow delay-1s">“如果你们还不是好朋友\n下次再见记得打个招呼。”</text>
       </view>  
    </swiper-item>
 
-   <!-- page7 -->
+   <!-- page7 5-->
    <swiper-item  wx:if='{{isStartState}}' class='item item3'>
       <!-- 东方明珠 -->
-      <image class="item_bg_middle_Oriental {{current == 7 ? '' : 'fadeOut animated'}}" src="https://img.cdn.powerpower.net/5dfb2d13e4b06c67254853cb.png"></image>
-      <image class="item_bg_middle_OrientalBottom {{current == 7 ? 'fadeIn animated' : 'fadeOut animated'}}" src="https://img.cdn.powerpower.net/5dfb2d31e4b06c67254853cc.png"></image>
-      <image class="item_bg_cloud {{current == 7 ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
-      <view class="content {{current == 7 ? 'fadeIn animated' : 'fadeOut animated'}}">
+      <image class="item_bg_middle_Oriental {{current == pageList[7] ? '' : 'fadeOut animated'}}" src="https://img.cdn.powerpower.net/5dfb2d13e4b06c67254853cb.png"></image>
+      <image class="item_bg_middle_OrientalBottom {{current == pageList[7] ? 'fadeIn animated' : 'fadeOut animated'}}" src="https://img.cdn.powerpower.net/5dfb2d31e4b06c67254853cc.png"></image>
+      <image class="item_bg_cloud {{current == pageList[7] ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+      <view class="content {{current == pageList[7] ? 'fadeIn animated' : 'fadeOut animated'}}">
          <text class="iconfont iconfenzu-10 logo">\n</text>
-         <view class="commonText" style="margin-bottom:30rpx">2019年8月</view>
+         <view class="commonText" style="margin-bottom:30rpx">2019年<text class="lightText"> {{userYearReport.love_month}} </text>月</view>
          <view class="commonText" style="margin-bottom:30rpx">是你一整年里最坚持的一个月</view>
-         <view class="commonText" style="margin-bottom:30rpx">一共上了<text class="lightText"> 5 </text>次课，训练了 <text class="lightText"> 500 </text> 分钟节课</view>
+         <view class="commonText" style="margin-bottom:30rpx">一共上了<text class="lightText"> {{userYearReport.love_month_count}} </text>次课，训练了 <text class="lightText"> {{userYearReport.love_month_minutes}} </text> 分钟</view>
 
          <text class="commonText famousWord fadeInUp animated slow delay-1s">这样的坚持，\n一定是因为某种热爱。”</text>
       </view> 
    </swiper-item>
 
-    <!-- page8 -->
-   <swiper-item  wx:if='{{isStartState}}' class='item item3'>
+    <!-- page8 5-->
+   <swiper-item  wx:if='{{isStartState && userYearReport.first_evening_course_name}}' class='item item3'>
       <!-- 携程 -->
-      <image class="item_bg_middle_company {{current == 8 ? 'item_bg_middle_company_animate' : 'fadeOut animated'}}" src="https://img.cdn.powerpower.net/5dfb2567e4b06c67254853be.png"></image>
-      <image class="item_bg_cloud {{current == 8 ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
-      <view class="content {{current == 8 ? 'fadeIn animated' : 'fadeOut animated'}}">
+      <image class="item_bg_middle_company {{current == pageList[8] ? 'item_bg_middle_company_animate' : 'fadeOut animated'}}" src="https://img.cdn.powerpower.net/5dfb2567e4b06c67254853be.png"></image>
+      <image class="item_bg_cloud {{current == pageList[8] ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+      <view class="content {{current == pageList[8] ? 'fadeIn animated' : 'fadeOut animated'}}">
          <text class="iconfont iconfenzu-10 logo">\n</text>
-         <view class="commonText" style="margin-bottom:30rpx">2019年11月3日21:30</view>
+         <view class="commonText" style="margin-bottom:30rpx">{{userYearReport.first_evening_course_date}}</view>
          <view class="commonText" style="margin-bottom:30rpx">今年第一次尝试晚课</view>
-         <view class="commonText lightText" style="margin-bottom:30rpx">BODYPUMP塑形杠铃-45分钟</view>
-         <view class="commonText" style="margin-bottom:30rpx">在<text class="lightText"> Justin&Julie新天地旗舰店 </text></view>
+         <view class="commonText lightText" style="margin-bottom:30rpx">{{userYearReport.first_evening_course_name}}</view>
+         <view class="commonText" style="margin-bottom:30rpx">在<text class="lightText"> {{userYearReport.first_evening_store_name}} </text></view>
         <view class="commonText" style="margin-bottom:30rpx">你结识了一群志同道合的朋友</view>
          <text class="commonText famousWord fadeInUp animated slow delay-1s">“课后的路灯和夜宵，\n见证了你运动后的快乐。”</text>
       </view> 
    </swiper-item>
 
-   <!-- page9 -->
-   <swiper-item  wx:if='{{isStartState}}' class='item item3'>
+   <!-- page9 5-->
+   <swiper-item  wx:if='{{isStartState && userYearReport.first_morning_course_name}}' class='item item3'>
       <!-- 铁桥 -->
-      <image class="item_bg_middle_elevated {{current == 9 ? 'scaleIn animated' : 'scaleOut animated'}}" src="https://img.cdn.powerpower.net/5dfb21bee4b06c67254853ba.png"></image>
-      <image class="item_bg_cloud {{current == 9 ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
-      <view class="content {{current == 9 ? 'fadeIn animated' : 'fadeOut animated'}}">
+      <image class="item_bg_middle_elevated {{current == pageList[9] ? 'scaleIn animated' : 'scaleOut animated'}}" src="https://img.cdn.powerpower.net/5dfb21bee4b06c67254853ba.png"></image>
+      <image class="item_bg_cloud {{current == pageList[9] ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+      <view class="content {{current == pageList[9] ? 'fadeIn animated' : 'fadeOut animated'}}">
          <text class="iconfont iconfenzu-10 logo">\n</text>
-         <view class="commonText" style="margin-bottom:30rpx">2019年11月3日21:30</view>
+         <view class="commonText" style="margin-bottom:30rpx">{{userYearReport.first_morning_course_date}}</view>
          <view class="commonText" style="margin-bottom:30rpx">今年第一次尝试早课</view>
-         <view class="commonText lightText" style="margin-bottom:30rpx">BODYPUMP塑形杠铃-45分钟</view>
-         <view class="commonText" style="margin-bottom:30rpx">洒在<text class="lightText"> Justin&Julie新天地旗舰店 </text>的阳光</view>
+         <view class="commonText lightText" style="margin-bottom:30rpx">{{userYearReport.first_morning_course_name}}</view>
+         <view class="commonText" style="margin-bottom:30rpx">洒在<text class="lightText"> {{userYearReport.first_morning_store_name}} </text>的阳光</view>
         <view class="commonText" style="margin-bottom:30rpx">见证了你早起的勇气</view>
          <text class="commonText famousWord fadeInUp animated slow delay-1s">“朝露和初阳，\n都不如你的美丽。”</text>
       </view> 
    </swiper-item>
   
-
-   <!-- page10  （4，9，11，2，5，12，2）-->
-   <swiper-item  wx:if='{{true}}' class='item item3'>
-      <!-- 高架桥 -->
-      <image class="item_bg_middle_around {{current == 10 ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb2ce7e4b06c67254853ca.png"></image>
+   <!-- page10  （4，9，11，2，5，12，2）6-->
+   <swiper-item  wx:if='{{isStartState && newCourseList.keyWord == "单车类"}}' class='item item3'>
+      <!-- 高架桥 单车-->
+      <image class="item_bg_middle_around {{current == pageList[10] ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb2ce7e4b06c67254853ca.png"></image>
       <image class="item_bg_middle_bridge" src="https://img.cdn.powerpower.net/5dfb2cb5e4b06c67254853c8.png"></image>
 
-      <view class="content {{current == 10 ? 'fadeIn animated' : 'fadeOut animated'}}">
+      <view class="content {{current == pageList[10] ? 'fadeIn animated' : 'fadeOut animated'}}">
          <text class="iconfont iconfenzu-10 logo">\n</text>
-         <view class="commonText">2019年9月1日9:00</view>
-         <view class="commonText">你尝试了第一次单车课</view>
-         <view class="lightText">FAT BURNING</view>
-         <view class="commonText" style="margin-bottom:40rpx">从此，爱上了用舞蹈表达灵魂</view>
+         <view class="commonText" style="margin-bottom:40rpx">{{util.timeFormat(newCourseList.tagCourseList[0].first_date, 'YYYY年MM月DD日')}}</view>
+         <view class="commonText" style="margin-bottom:40rpx">你尝试了第一次 {{newCourseList.keyWord}} 课</view>
+         <view class="commonText" style="margin-bottom:100rpx;color: #FFC000;">{{newCourseList.tagCourseList[0].course_name}}</view>
+         <view class="commonText" style="margin-bottom:20rpx">2019年</view>
+         <view class="commonText">你一共参与了<text class="lightText"> {{newCourseList.tagCount}} </text>次{{newCourseList.keyWord}}课程</view>
 
-         <view class="commonText"> 2019年，你一共参与了<text class="lightText">7</text>次舞蹈类课程</view>
-         <view class="commonText">Fat Burning <text class="lightText">1</text>次</view>
-         <view class="commonText">Fat Burning <text class="lightText">1</text>次</view>
-         <view class="commonText">Fat Burning <text class="lightText">1</text>次</view>
-         <text class="commonText famousWord fadeInUp animated slow delay-1s">“朝露和初阳，\n都不如你的美丽。”</text>
+         <view class="commonText" style="margin-bottom:34rpx" wx:if='{{newCourseList.tagCourseList[0]}}'>{{newCourseList.tagCourseList[0].course_name}} <text class="lightText"> {{newCourseList.tagCourseList[0].order_count}} </text>次</view>
+         <view class="commonText" style="margin-bottom:34rpx" wx:if='{{newCourseList.tagCourseList[1]}}'>{{newCourseList.tagCourseList[1].course_name}} <text class="lightText"> {{newCourseList.tagCourseList[1].order_count}} </text>次</view>
+         <view class="commonText" style="margin-bottom:34rpx" wx:if='{{newCourseList.tagCourseList[2]}}'>{{newCourseList.tagCourseList[2].course_name}} <text class="lightText"> {{newCourseList.tagCourseList[2].order_count}} </text>次</view>
+         <text class="commonText famousWord fadeInUp animated slow delay-1s">{{newCourseList.describe}}</text>
       </view>
    </swiper-item>
 
-   <swiper-item  wx:if='{{false}}' class='item item3'>
+   <swiper-item  wx:if='{{isStartState && newCourseList.keyWord == "舞蹈类"}}' class='item item3'>
       <!-- 博物馆 -->
-      <image class="item_bg_middle_Museum {{current == 10 ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb227be4b06c67254853bc.png"></image>
-       <image class="item_bg_middle_bird {{current == 10 ? 'fadeIn animated' : 'fadeOutRight animated'}}" src="https://img.cdn.powerpower.net/5dfb239be4b06c67254853bd.png"></image>
-      <image class="item_bg_cloud {{current == 10 ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+      <image class="item_bg_middle_Museum {{current == pageList[10] ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb227be4b06c67254853bc.png"></image>
+       <image class="item_bg_middle_bird {{current == pageList[10] ? 'fadeIn animated' : 'fadeOutRight animated'}}" src="https://img.cdn.powerpower.net/5dfb239be4b06c67254853bd.png"></image>
+      <image class="item_bg_cloud {{current == pageList[10] ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+      <view class="content {{current == pageList[10] ? 'fadeIn animated' : 'fadeOut animated'}}">
+         <text class="iconfont iconfenzu-10 logo">\n</text>
+         <view class="commonText" style="margin-bottom:40rpx">{{util.timeFormat(newCourseList.tagCourseList[0].first_date, 'YYYY年MM月DD日')}}</view>
+         <view class="commonText" style="margin-bottom:40rpx">你尝试了第一次 {{newCourseList.keyWord}} 课</view>
+         <view class="commonText" style="margin-bottom:100rpx;color: #FFC000;">{{newCourseList.tagCourseList[0].course_name}}</view>
+         <view class="commonText" style="margin-bottom:20rpx">2019年</view>
+         <view class="commonText">你一共参与了<text class="lightText"> {{newCourseList.tagCount}} </text>次{{newCourseList.keyWord}}课程</view>
+
+         <view class="commonText" style="margin-bottom:34rpx" wx:if='{{newCourseList.tagCourseList[0]}}'>{{newCourseList.tagCourseList[0].course_name}} <text class="lightText"> {{newCourseList.tagCourseList[0].order_count}} </text>次</view>
+         <view class="commonText" style="margin-bottom:34rpx" wx:if='{{newCourseList.tagCourseList[1]}}'>{{newCourseList.tagCourseList[1].course_name}} <text class="lightText"> {{newCourseList.tagCourseList[1].order_count}} </text>次</view>
+         <view class="commonText" style="margin-bottom:34rpx" wx:if='{{newCourseList.tagCourseList[2]}}'>{{newCourseList.tagCourseList[2].course_name}} <text class="lightText"> {{newCourseList.tagCourseList[2].order_count}} </text>次</view>
+         <text class="commonText famousWord fadeInUp animated slow delay-1s">{{newCourseList.describe}}</text>
+      </view>
    </swiper-item>
 
-   <swiper-item  wx:if='{{false}}' class='item item3'>
+   <swiper-item  wx:if='{{isStartState && newCourseList.keyWord == "燃脂类"}}' class='item item3'>
        <!-- 五角场 -->
-      <image class="item_bg_middle_Wujiaochang {{current == 10 ? 'scaleIn animated' : 'scaleOut animated'}}" src="https://img.cdn.powerpower.net/5dfb26b1e4b06c67254853bf.png"></image>
+      <image class="item_bg_middle_Wujiaochang {{current == pageList[10] ? 'scaleIn animated' : 'scaleOut animated'}}" src="https://img.cdn.powerpower.net/5dfb26b1e4b06c67254853bf.png"></image>
+      <view class="content {{current == pageList[10] ? 'fadeIn animated' : 'fadeOut animated'}}">
+         <text class="iconfont iconfenzu-10 logo">\n</text>
+         <view class="commonText" style="margin-bottom:40rpx">{{util.timeFormat(newCourseList.tagCourseList[0].first_date, 'YYYY年MM月DD日')}}</view>
+         <view class="commonText" style="margin-bottom:40rpx">你尝试了第一次 {{newCourseList.keyWord}} 课</view>
+         <view class="commonText" style="margin-bottom:100rpx;color: #FFC000;">{{newCourseList.tagCourseList[0].course_name}}</view>
+         <view class="commonText" style="margin-bottom:20rpx">2019年</view>
+         <view class="commonText">你一共参与了<text class="lightText"> {{newCourseList.tagCount}} </text>次{{newCourseList.keyWord}}课程</view>
+
+         <view class="commonText" style="margin-bottom:34rpx" wx:if='{{newCourseList.tagCourseList[0]}}'>{{newCourseList.tagCourseList[0].course_name}} <text class="lightText"> {{newCourseList.tagCourseList[0].order_count}} </text>次</view>
+         <view class="commonText" style="margin-bottom:34rpx" wx:if='{{newCourseList.tagCourseList[1]}}'>{{newCourseList.tagCourseList[1].course_name}} <text class="lightText"> {{newCourseList.tagCourseList[1].order_count}} </text>次</view>
+         <view class="commonText" style="margin-bottom:34rpx" wx:if='{{newCourseList.tagCourseList[2]}}'>{{newCourseList.tagCourseList[2].course_name}} <text class="lightText"> {{newCourseList.tagCourseList[2].order_count}} </text>次</view>
+         <text class="commonText famousWord fadeInUp animated slow delay-1s">{{newCourseList.describe}}</text>
+      </view>
    </swiper-item>
 
-   <swiper-item  wx:if='{{false}}' class='item item2'>
+   <swiper-item  wx:if='{{isStartState && newCourseList.keyWord == "塑型类"}}' class='item item2'>
       <!-- 铁架 -->
-      <image class="item_bg_middle {{current == 10 ? 'scaleIn animated' : 'scaleOut animated'}}" src="https://img.cdn.powerpower.net/5dfb2c98e4b06c67254853c7.png"></image>
+      <image class="item_bg_middle {{current == pageList[10] ? 'scaleIn animated' : 'scaleOut animated'}}" src="https://img.cdn.powerpower.net/5dfb2c98e4b06c67254853c7.png"></image>
+      <view class="content {{current == pageList[10] ? 'fadeIn animated' : 'fadeOut animated'}}">
+         <text class="iconfont iconfenzu-10 logo">\n</text>
+         <view class="commonText" style="margin-bottom:40rpx">{{util.timeFormat(newCourseList.tagCourseList[0].first_date, 'YYYY年MM月DD日')}}</view>
+         <view class="commonText" style="margin-bottom:40rpx">你尝试了第一次 {{newCourseList.keyWord}} 课</view>
+         <view class="commonText" style="margin-bottom:100rpx;color: #FFC000;">{{newCourseList.tagCourseList[0].course_name}}</view>
+         <view class="commonText" style="margin-bottom:20rpx">2019年</view>
+         <view class="commonText">你一共参与了<text class="lightText"> {{newCourseList.tagCount}} </text>次{{newCourseList.keyWord}}课程</view>
+
+         <view class="commonText" style="margin-bottom:34rpx" wx:if='{{newCourseList.tagCourseList[0]}}'>{{newCourseList.tagCourseList[0].course_name}} <text class="lightText"> {{newCourseList.tagCourseList[0].order_count}} </text>次</view>
+         <view class="commonText" style="margin-bottom:34rpx" wx:if='{{newCourseList.tagCourseList[1]}}'>{{newCourseList.tagCourseList[1].course_name}} <text class="lightText"> {{newCourseList.tagCourseList[1].order_count}} </text>次</view>
+         <view class="commonText" style="margin-bottom:34rpx" wx:if='{{newCourseList.tagCourseList[2]}}'>{{newCourseList.tagCourseList[2].course_name}} <text class="lightText"> {{newCourseList.tagCourseList[2].order_count}} </text>次</view>
+         <text class="commonText famousWord fadeInUp animated slow delay-1s">{{newCourseList.describe}}</text>
+      </view>
    </swiper-item>
 
-   <swiper-item  wx:if='{{false}}' class='item item2'>
+   <swiper-item  wx:if='{{isStartState && newCourseList.keyWord == "拳击类"}}' class='item item2'>
       <!-- 天桥 -->
-      <image class="item_bg_middle_Skybridge {{current == 10 ? 'scaleIn animated' : 'scaleOut animated'}}" src="https://img.cdn.powerpower.net/5e01a7aee4b052789554435d.png"></image>
+      <image class="item_bg_middle_Skybridge {{current == pageList[10] ? 'scaleIn animated' : 'scaleOut animated'}}" src="https://img.cdn.powerpower.net/5e01a7aee4b052789554435d.png"></image>
+      <view class="content {{current == pageList[10] ? 'fadeIn animated' : 'fadeOut animated'}}">
+         <text class="iconfont iconfenzu-10 logo">\n</text>
+         <view class="commonText" style="margin-bottom:40rpx">{{util.timeFormat(newCourseList.tagCourseList[0].first_date, 'YYYY年MM月DD日')}}</view>
+         <view class="commonText" style="margin-bottom:40rpx">你尝试了第一次 {{newCourseList.keyWord}} 课</view>
+         <view class="commonText" style="margin-bottom:100rpx;color: #FFC000;">{{newCourseList.tagCourseList[0].course_name}}</view>
+         <view class="commonText" style="margin-bottom:20rpx">2019年</view>
+         <view class="commonText">你一共参与了<text class="lightText"> {{newCourseList.tagCount}} </text>次{{newCourseList.keyWord}}课程</view>
+
+         <view class="commonText" style="margin-bottom:34rpx" wx:if='{{newCourseList.tagCourseList[0]}}'>{{newCourseList.tagCourseList[0].course_name}} <text class="lightText"> {{newCourseList.tagCourseList[0].order_count}} </text>次</view>
+         <view class="commonText" style="margin-bottom:34rpx" wx:if='{{newCourseList.tagCourseList[1]}}'>{{newCourseList.tagCourseList[1].course_name}} <text class="lightText"> {{newCourseList.tagCourseList[1].order_count}} </text>次</view>
+         <view class="commonText" style="margin-bottom:34rpx" wx:if='{{newCourseList.tagCourseList[2]}}'>{{newCourseList.tagCourseList[2].course_name}} <text class="lightText"> {{newCourseList.tagCourseList[2].order_count}} </text>次</view>
+         <text class="commonText famousWord fadeInUp animated slow delay-1s">{{newCourseList.describe}}</text>
+      </view>
    </swiper-item>
    
-   <swiper-item  wx:if='{{false}}' class='item item3'>
-      <!-- <image class="item_bg_bottom" src="https://img.cdn.powerpower.net/5dfb13e5e4b02f008c7702d1.jpg"></image> -->
+   <swiper-item  wx:if='{{isStartState && newCourseList.keyWord == "瑜伽类"}}' class='item item3'>
       <!-- 火车站 -->
-      <view class="around_sun {{current == 11 ? 'fadeInLeft animated' : 'fadeOutLeft animated'}}"></view>
-      <image class="item_bg_middle_Train {{current == 11 ? 'fadeInRight animated' : 'fadeOutRight animated'}}" src="https://img.cdn.powerpower.net/5dfb2769e4b06c67254853c0.png"></image>
+      <view class="around_sun {{current == pageList[10] ? 'fadeInLeft animated' : 'fadeOutLeft animated'}}"></view>
+      <image class="item_bg_middle_Train {{current == pageList[10] ? 'fadeInRight animated' : 'fadeOutRight animated'}}" src="https://img.cdn.powerpower.net/5dfb2769e4b06c67254853c0.png"></image>
+      <view class="content {{current == pageList[10] ? 'fadeIn animated' : 'fadeOut animated'}}">
+         <text class="iconfont iconfenzu-10 logo">\n</text>
+         <view class="commonText" style="margin-bottom:40rpx">{{util.timeFormat(newCourseList.tagCourseList[0].first_date, 'YYYY年MM月DD日')}}</view>
+         <view class="commonText" style="margin-bottom:40rpx">你尝试了第一次 {{newCourseList.keyWord}} 课</view>
+         <view class="commonText" style="margin-bottom:100rpx;color: #FFC000;">{{newCourseList.tagCourseList[0].course_name}}</view>
+         <view class="commonText" style="margin-bottom:20rpx">2019年</view>
+         <view class="commonText">你一共参与了<text class="lightText"> {{newCourseList.tagCount}} </text>次{{newCourseList.keyWord}}课程</view>
+
+         <view class="commonText" style="margin-bottom:34rpx" wx:if='{{newCourseList.tagCourseList[0]}}'>{{newCourseList.tagCourseList[0].course_name}} <text class="lightText"> {{newCourseList.tagCourseList[0].order_count}} </text>次</view>
+         <view class="commonText" style="margin-bottom:34rpx" wx:if='{{newCourseList.tagCourseList[1]}}'>{{newCourseList.tagCourseList[1].course_name}} <text class="lightText"> {{newCourseList.tagCourseList[1].order_count}} </text>次</view>
+         <view class="commonText" style="margin-bottom:34rpx" wx:if='{{newCourseList.tagCourseList[2]}}'>{{newCourseList.tagCourseList[2].course_name}} <text class="lightText"> {{newCourseList.tagCourseList[2].order_count}} </text>次</view>
+         <text class="commonText famousWord fadeInUp animated slow delay-1s">{{newCourseList.describe}}</text>
+      </view>
    </swiper-item>
 
-   <!-- page11 -->
+   <!-- page11 6-->
    <swiper-item  wx:if='{{isStartState}}' class='item item3'>
       <!-- 城市 -->
-      <image class="item_bg_middle_city {{current == 11 ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb2160e4b06c67254853b9.png"></image>
-      <image class="item_bg_cloud {{current == 11 ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
-     </swiper-item>
+      <image class="item_bg_middle_city {{current == pageList[11] ? 'fadeInUp animated' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb2160e4b06c67254853b9.png"></image>
+      <image class="item_bg_cloud {{current == pageList[11] ? 'bounceIn animated delay-1s' : 'fadeOutDown animated'}}" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+      <view class="content {{current == pageList[11] ? 'fadeIn animated' : 'fadeOut animated'}}">
+         <text class="iconfont iconfenzu-10 logo">\n</text>
+         <view class="commonText" style="margin-bottom: 20rpx;">2019年，我的Justin&Julie成绩单</view>
+         <view class="commonText">训练次数：<text class="lightText"> {{userYearReport.total_count || 0}} </text>次</view>
+         <view class="commonText">训练时常：<text class="lightText"> {{userYearReport.total_minutes || 0}} </text>分钟</view>
+         <view class="commonText">消耗热量：<text class="lightText"> {{userYearReport.total_calories || 0}} </text>kcal</view>
+         <view class="commonText">邀请好友：<text class="lightText"> {{userYearReport.total_co_member || 0}} </text>人</view>
+         <view class="achievementBox">
+            <image class="achievemenImg" src="{{userYearReport.head_img}}"></image>
+            <view class="achievementName">{{userYearReport.nick_name}}</view>
+            <view class="commonText" style="margin-top: 60rpx;">击败了 <text class="achievemen lightText">{{userYearReport.total_rank}}</text> % 的会员</view>
+         </view>
+      </view>
+   </swiper-item>
+
 </swiper>
 
 <jurisdictionSmallPopup state='{{jurisdictionSmallState}}' bindmyevent='bindgetuserinfo'></jurisdictionSmallPopup>

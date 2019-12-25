@@ -199,9 +199,9 @@ swiper{
   margin-left: 4rpx;
   display:flex; 
   align-items: baseline;
-  justify-content:flex-end;
+  justify-content:center;
   position: absolute;
-  bottom: 40rpx;
+  bottom: 180rpx;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -288,6 +288,7 @@ swiper{
   text-align: left;
   padding: 0 66rpx;
   box-sizing: border-box;
+  width: 100%
 }
 .logo{
   font-size: 40rpx;
@@ -460,6 +461,59 @@ swiper{
   animation: coachIconAnimate 2s ease-out, coachIconAnimateJump 4s linear 2s infinite;
 }
 /* ************************** */
+/* 第页图片 */
+.firstFriendBox{
+  display: flex;
+  align-items: center;
+  margin-top: 130rpx;
+}
+.firstFriendImg{
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  margin-right: 40rpx;
+}
+.firstFriendName{
+  font-size:32rpx;
+  font-family:PingFang SC;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  line-height:47rpx;
+}
+
+/* ************************** */
+/* 第页图片 */
+.achievementBox{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 50rpx;
+}
+.achievemenImg{
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  margin-bottom: 10rpx;
+}
+.achievementName{
+  font-size:32rpx;
+  font-family:PingFang SC;
+  font-weight:500;
+  color:rgba(212,205,255,1);
+  line-height:47rpx;
+}
+.achievemen{
+  font-size:90rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  color:rgba(255,192,0,1);
+  line-height:47rpx;
+  margin-top: 40rpx;
+}
+/* ************************** */
+
+
 /* 第3页图片 */
 .item_bg_middle_bridge{
   position: absolute;

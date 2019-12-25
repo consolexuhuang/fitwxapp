@@ -66,12 +66,20 @@ const getActiveRestTime = date => {
   if (endTime - currentTime > 0) return true
   else return false
 }
-
+// 对象排序 倒序
+const sortList = (targetArr, key) => {
+  return targetArr.sort((a, b) => {
+    var val1 = a[key]
+    var val2 = b[key]
+    return val2 - val1
+  })
+}
 module.exports = {
   formatTime: formatTime,
   formatTime2,
   formatTime3,
   getQueryString,
   getUrlParam,
-  getActiveRestTime
+  getActiveRestTime,
+  sortList
 }
