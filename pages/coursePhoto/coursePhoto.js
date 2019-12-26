@@ -179,7 +179,7 @@ Page({
           }
         },
         complete: () => {
-          ui.hideLoading();
+          //ui.hideLoading();
         }
 /*         fail(err) {
           ui.showToast('保存失败：' + err)

@@ -535,7 +535,7 @@ Component({
             }
           },
           complete:()=>{
-            ui.hideLoading();
+            //ui.hideLoading();
           }
           /* fail: (err) => {
             console.error(err)
