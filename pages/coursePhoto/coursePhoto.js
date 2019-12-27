@@ -140,13 +140,51 @@ Page({
         filePath: tempFilePath,
         success(res) {
           ui.showToast('图片保存成功')
-
           resolve();
         },
-        fail(err) {
+        fail: (err) => {
+          if (err.errMsg === "saveImageToPhotosAlbum:fail:auth denied" || err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
+            // 这边微信做过调整，必须要在按钮中触发，因此需要在弹框回调中进行调用
+            wx.showModal({
+              title: '提示',
+              content: '需要您授权保存相册',
+              showCancel: false,
+              success: modalSuccess => {
+                wx.openSetting({
+                  success: (settingdata) => {
+                    console.log("settingdata", settingdata)
+                    if (settingdata.authSetting['scope.writePhotosAlbum']) {
+                      wx.showModal({
+                        title: '提示',
+                        content: '获取权限成功,再次点击保存按钮即可保存',
+                        showCancel: false,
+                      })
+                    } else {
+                      wx.showModal({
+                        title: '提示',
+                        content: '获取权限失败，将无法保存到相册哦~',
+                        showCancel: false,
+                      })
+                    }
+                  },
+                  fail: (failData) => {
+                    console.log("failData", failData)
+                  },
+                  complete: (finishData) => {
+                    console.log("finishData", finishData)
+                  }
+                })
+              }
+            })
+          }
+        },
+        complete: () => {
+          //ui.hideLoading();
+        }
+/*         fail(err) {
           ui.showToast('保存失败：' + err)
           reject();
-        }
+        } */
       })
     })
   },
