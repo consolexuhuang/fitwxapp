@@ -1,0 +1,20 @@
+<!--pages/subPackages_report/newUseReport/newUseReport.wxml-->
+<wxs src="../../../utils/util.wxs" module="util" />
+<view class='item item3'>
+      <!-- 湖边 -->
+      <image class="item_bg_middle_Lakeside fadeInUp animated" src="https://img.cdn.powerpower.net/5dfb2a43e4b06c67254853c3.png"></image>
+       <image class="item_bg_cloud bounceIn animated delay-1s" src="https://img.cdn.powerpower.net/5dfb11e7e4b02f008c7702cf.png"></image>
+       <view class="content fadeIn animated">
+          <text class="iconfont iconfenzu-10 logo">\n</text>
+          <view class="commonText" style="margin-bottom:30rpx">Hi, <text class="lightText"> {{userYearReport.nick_name || 'JJ会员'}} </text></view>
+          <view class="commonText" style="margin-bottom:30rpx">我们第一次相遇是在</view>
+          <view class="commonText" style="margin-bottom:60rpx">{{util.timeFormat(userYearReport.reg_date, 'YYYY年MM月DD日')}}</view>
+
+          <view class="commonText" wx:if='{{userYearReport.reg_days > 0}}' style="margin-bottom:60rpx">我们已经认识了 <text class="lightText"> {{userYearReport.reg_days}} </text> 天</view>
+          <view class="commonText" style="margin-bottom:30rpx">2019年，你没有任何训练记录</view>
+          <view class="commonText" style="margin-bottom:60rpx">我们在比肩继踵的人群中匆匆错过 </view>
+          <view class="commonText" style="margin-bottom:30rpx">新的一年</view>
+          <view class="commonText" style="margin-bottom:30rpx">期待属于我们的故事 </view>
+       </view> 
+       <view class="openBtn" bindtap="openNewYear">开启2020</view> 
+</view>
