@@ -1,5 +1,6 @@
 {
   "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": false,
   "usingComponents": {
      "jurisdictionSmallPopup": "/components/jurisdictionSmallPopup/jurisdictionSmallPopup"
   }

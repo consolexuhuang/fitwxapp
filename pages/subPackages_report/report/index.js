@@ -1,6 +1,16 @@
 // pages/subPackages_report/report/index.js
 const util = require('../../../utils/util.js')
+import reportJson from '../../../utils/reportJson.js'
+import NumberAnimate from "../../../utils/NumberAnimate";
+const store = getApp().store;
 const api = getApp().api;
+// console.log(reportJson.existenceRule)
+/**
+ * 一直loadIng原因
+ * 1：没有 COURSE_LIST 或者 COURSE_LIST数据异常，
+ * 2: 获取2019年度账单失败（getYearReport2019）
+ * 3: 生成账单失败 （generateYearReport）
+ */
 Page({
 
   /**
@@ -8,120 +18,19 @@ Page({
    */
   data: {
     current: 0,
-    index:0,
     isDownLoad: false,
     isStartState: false,
     jurisdictionSmallState: false,
     userYearReport:'',
 
+    shareReportImg:'',//导出分享图
+
     pageList:[], //页码
-    //正式计算规则
-    // existenceRule: [
-    //   {
-    //     keyWord: '单车类',
-    //     describe: '“从此， \n爱上用骑行丈量世界。”',
-    //     tagCount: 0,
-    //     tagCourseList: [],
-    //     list: ['5b7fe442e4b020e7940475ca', '5d26f712e4b05d87ac1aa85a', '74f9df65760111e893ed525400f93313', '5b29d624e4b0e404afb48891']
-    //   },
-    //   {
-    //     keyWord: '舞蹈类',
-    //     describe: '“从此，\n爱上用舞蹈表达灵魂。”',
-    //     tagCount: 0,
-    //     tagCourseList: [],
-    //     list: ['5c132958e4b082a790d59f9d', 'b3ec4d2b487111e8919c525400f93313', '5be5a33ce4b0f3160ef67708', '5bf797abe4b03b5eabbc9713', '5bf79b7ee4b03b5eabbc9747', '5c7cd0d5e4b022178cb43d0c', '5d1334b6e4b0a7e68e64b912', '5bee53ace4b0ce06978a587e', '5b9a2b13e4b00802651c3a69', '5daff827e4b0f0f3c44fbdef', '5dc27d30e4b09d620bbd2185', '5de76e0be4b07e6283de904d', '9488f4f9602311e8919c525400f93313', '5bc861a9e4b033bad91e1d71', '371e2ee7487711e8919c525400f93313','5c12256be4b082a790d59c07']
-    //   },
-    //   {
-    //     keyWord: '燃脂类',
-    //     describe: '“爱上挑战的你，\n是如此与众不同。”',
-    //     tagCount: 0,
-    //     tagCourseList: [],
-    //     list: ['0fff05c6867711e893ed525400f93313', '5b8902e9e4b04852bc3688de', '57bc076a487411e8919c525400f93313', '5bf79a4fe4b03b5eabbc972b', '5bc84dd9e4b033bad91e1d26', '328ebb4c483d11e8919c525400f93313', '5bc8676ce4b033bad91e1d79', '5c6e82dee4b07af5637e2e58', 'ba62ec03487311e8919c525400f93313', '5b7fbe37e4b020e79404758b', '5d415903e4b0a4a324f1aa3e', '5d833b92e4b0305cf270620a', 'a55e8b70487211e8919c525400f93313', '5b8fb80fe4b0482cdfdb80e6', 'c18e7ae1487411e8919c525400f93313', '5c132a28e4b082a790d59fa3', '5bc85cbce4b033bad91e1d65', '5ed8a687602011e8919c525400f93313', '5bb70cf6e4b076339e0031ef', '5bc840a6e4b033bad91e1d16','5c419d96e4b0a753d81a4b85'],
-    //   },
-    //   {
-    //     keyWord: '塑型类',
-    //     describe: '“从此，\n迷恋上肌肉酸痛带来的多巴胺。”',
-    //     tagCount: 0,
-    //     tagCourseList: [],
-    //     list: ['1c749123551311e8919c525400f93313', '5c417d17e4b0a753d81a4b28', '5c417dd8e4b0a753d81a4b2e', 'aa36b66b483a11e8919c525400f93313', '5c36d8fee4b0cfce49a48d5d', '5c417fcce4b0a753d81a4b3a', 'f09b527d80c711e893ed525400f93313', '5d5bd9c2e4b0188648633124', '5c417e68e4b0a753d81a4b34', '5d258fb3e4b0417ec2e5f816', '5d410931e4b0a4a324f1a010', '5bc84188e4b033bad91e1d1c', '5bc85eeee4b033bad91e1d6e', '5bf79a4fe4b03b5eabbc972c', '8df7f353476d11e8919c525400f93313', '5d6f6456e4b099e347cf8ab2', 'fe8dc56d483711e8919c525400f93313', '5d416ac6e4b03e99b041beeb', '5b7fbbdee4b020e794047586', '5b890206e4b04852bc3688dc', '5cbdaaf7e4b029d0e9d9c526'],
-    //   },
-    //   {
-    //     keyWord: '拳击类',
-    //     describe: '“从此，\n爱上了用拳头表达情绪。”',
-    //     tagCount: 0,
-    //     tagCourseList: [],
-    //     list: ['5c36eb2ce4b0cfce49a48d80', '5d01db11e4b0c1f4403e286f', '5d133424e4b0a7e68e64b90f', ],
-    //   },
-    //   {
-    //     keyWord: '瑜伽类',
-    //     describe: '“生命是如此柔软，\n而又充满力量。”',
-    //     tagCount: 0,
-    //     tagCourseList: [],
-    //     list: ['5be3ebf6e4b0c1c7cde97b9b', '5d157c1be4b06b4295b8f64c', '5d355efae4b07e9ef837d7b2', 'c0e03308551311e8919c525400f93313', '5d4bd391e4b047832f52ef75', '5d5e3822e4b043a8776cb88a', '88a4b888551311e8919c525400f93313', '5d2580e6e4b0417ec2e5f509', '5d258a99e4b0417ec2e5f6cc', '5bed3105e4b0620ead482414','5df9fc2ee4b0e7bf07bc2a00'],
-    //   },
-    //   {
-    //     keyWord: '拉伸类',
-    //     describe: '“从此，\n爱上身心平衡的快乐。”',
-    //     tagCount: 0,
-    //     tagCourseList: [],
-    //     list: ['36e1be4f4f7711e8919c525400f93313', '3d5d878c487111e8919c525400f93313', '5bc85a2ce4b033bad91e1d5c', '5d258e34e4b0417ec2e5f805',],
-    //   },
-    //   //...
-    // ],
-    //测试计算规则
-    existenceRule: [
-      {
-        keyWord: '单车类',
-        describe: '“从此， \n爱上用骑行丈量世界。”',
-        tagCount: 0,
-        tagCourseList: [],
-        list: ['5b29d624e4b0e404afb48891', '74f9df65760111e893ed525400f93313',]
-      },
-      {
-        keyWord: '舞蹈类',
-        describe: '“从此，\n爱上用舞蹈表达灵魂。”',
-        tagCount: 0,
-        tagCourseList: [],
-        list: ['371e2ee7487711e8919c525400f93313', '5b890206e4b04852bc3688dc', '5b9a2b13e4b00802651c3a69', '5bc861a9e4b033bad91e1d71', '5be5a33ce4b0f3160ef67708', '5bee53ace4b0ce06978a587e', '5bf797abe4b03b5eabbc9713', '5bf79b7ee4b03b5eabbc9747', '5c12256be4b082a790d59c07', '5c132958e4b082a790d59f9d', '5c7cd0d5e4b022178cb43d0c', '9488f4f9602311e8919c525400f93313', 'b3ec4d2b487111e8919c525400f93313',]
-      },
-      {
-        keyWord: '燃脂类',
-        describe: '“爱上挑战的你，\n是如此与众不同。”',
-        tagCount: 0,
-        tagCourseList: [],
-        list: ['0fff05c6867711e893ed525400f93313', '328ebb4c483d11e8919c525400f93313', '57bc076a487411e8919c525400f93313', '5b7fbe37e4b020e79404758b', '5b7fe442e4b020e7940475ca', '5b8902e9e4b04852bc3688de', '5b8fb80fe4b0482cdfdb80e6', '5b921676e4b0482cdfdb8d5f', '5b9d0dd18d6af9448d220229', '5bb70cf6e4b076339e0031ef', '5bc840a6e4b033bad91e1d16', '5bc84dd9e4b033bad91e1d26', '5bc85cbce4b033bad91e1d65', '5bc8676ce4b033bad91e1d79', '5bf79a4fe4b03b5eabbc972b', '5bf79a4fe4b03b5eabbc972c', '5c132a28e4b082a790d59fa3', '5c417fcce4b0a753d81a4b3a', '5c419d96e4b0a753d81a4b85', '5c6e82dee4b07af5637e2e58', '5ed8a687602011e8919c525400f93313', 'a55e8b70487211e8919c525400f93313', 'ba62ec03487311e8919c525400f93313','c18e7ae1487411e8919c525400f93313'],
-      },
-      {
-        keyWord: '塑型类',
-        describe: '“从此，\n迷恋上肌肉酸痛带来的多巴胺。”',
-        tagCount: 0,
-        tagCourseList: [],
-        list: ['1c749123551311e8919c525400f93313', '5b7fbbdee4b020e794047586', '5bc84188e4b033bad91e1d1c', '5bc85eeee4b033bad91e1d6e', '5c36d8fee4b0cfce49a48d5d', '5c417d17e4b0a753d81a4b28', '5c417dd8e4b0a753d81a4b2e', '5c417e68e4b0a753d81a4b34', '8df7f353476d11e8919c525400f93313', 'aa36b66b483a11e8919c525400f93313', 'f09b527d80c711e893ed525400f93313', 'fe8dc56d483711e8919c525400f93313',],
-      },
-      {
-        keyWord: '拳击类',
-        describe: '“从此，\n爱上了用拳头表达情绪。”',
-        tagCount: 0,
-        tagCourseList: [],
-        list: ['5c36eb2ce4b0cfce49a48d80', '5c36eb2ce4b0cfce49a48d80',],
-      },
-      {
-        keyWord: '瑜伽类',
-        describe: '“生命是如此柔软，\n而又充满力量。”',
-        tagCount: 0,
-        tagCourseList: [],
-        list: ['5be3ebf6e4b0c1c7cde97b9b', '5be3ebf6e4b0c1c7cde97b9b', '5cbdaaf7e4b029d0e9d9c526', '5cbdaaf7e4b029d0e9d9c526', 'c0e03308551311e8919c525400f93313'],
-      },
-      {
-        keyWord: '拉伸类',
-        describe: '“从此，\n爱上身心平衡的快乐。”',
-        tagCount: 0,
-        tagCourseList: [],
-        list: ['36e1be4f4f7711e8919c525400f93313', '36e1be4f4f7711e8919c525400f93313', '5bc85a2ce4b033bad91e1d5c'],
-      },
-      //...
-    ],
-    newCourseList: []
+    //报告规则
+    existenceRule: reportJson.existenceTestRule, //正式：existenceRule，测试：existenceTestRule
+    newCourseList: [],
+
+    invitedcodeUrl:'', //邀请二维码
   },
   //累计存在值key的tagCount
   getExistenceKey(value) {
@@ -145,7 +54,7 @@ Page({
         //获取最高次数标签对象
         let heighestTagCourse = util.sortList(this.data.existenceRule, 'tagCount')[0]
         //获取最高标签最高课程
-        let firstCourse = util.sortList(heighestTagCourse.tagCourseList, 'count')[0]
+        let firstCourse = util.sortList(heighestTagCourse.tagCourseList, 'order_count')[0]
 
         console.log(firstCourse, heighestTagCourse)
         this.setData({ 
@@ -155,19 +64,41 @@ Page({
         resolve()
     })
   },
+  remoteToLocal(url) {
+    console.log('远程图片转本地图片')
+    return new Promise((resolve, reject) => {
+      wx.getImageInfo({
+        src: url,
+        success: (res) => {
+          console.log('res 远程图片转本地图片成功')
+          console.log(res)
+          resolve(res);
+        },
+        fail: (err) => {
+          console.error(err)
+          reject('远程图片转本地图片错误！')
+        }
+      })
+    })
+  },
   //配置邀请二维码
   getCodeConfig() {
-    return new Promise(resolve => {
-      let data = {
-        scene: store.getItem('userData').id,
-        liteType: 'main',
-        page: 'pages/report/index'
-      }
-      console.log(util.formatUrlParams(`${getApp().globalData.API_URI}getLiteQrcode`, data))
-      // this.setData({
-      //   invitedcodeUrl: util.formatUrlParams(`${getApp().globalData.API_URI}getLiteQrcode`, data)
-      // })
-      resolve()
+    let data = {
+      scene: store.getItem('userData').id,
+      liteType: 'main',
+      page: 'pages/subPackages_report/report/index'
+      // page: 'pages/index/index'
+    }
+    console.log(util.formatUrlParams(`${api.API_URI}getLiteQrcode`, data))
+    let distURL = util.formatUrlParams(`${api.API_URI}getLiteQrcode`, data)
+    this.remoteToLocal(distURL).then(res => {
+      // console.log(res.path)
+      res.path ?
+      this.setData({
+          invitedcodeUrl: res.path
+      })
+      // srore.setItem('invitedcodeUrl' res.path)
+      : ''
     })
   },
   // 生产年度账单
@@ -175,8 +106,15 @@ Page({
     api.post('v2/member/generateYearReport2019').then(res => {
       console.log('生成2019账单', res)
       this.setData({ userYearReport: res.msg })
-      if (res.msg.id) {
-        this.getYearReport(res.msg.id)
+      res.msg ? store.setItem('userYearReport', res.msg) : ''
+      store.getItem('canvasReportObj') ? this.sharePosteCanvas(store.getItem('canvasReportObj')) : this.getBgImg() //下载素材
+      // if (res.msg.id) this.getYearReport(res.msg.id)
+      if (res.msg.total_count > 0){
+        if (res.msg.id) this.getYearReport(res.msg.id)
+      } else {
+        wx.redirectTo({
+          url: '/pages/subPackages_report/newUseReport/newUseReport',
+        })
       }
     })
   },
@@ -237,20 +175,55 @@ Page({
     this.setData({ pageList: pageList})
     console.log('页码数：', pageNum, pageList)
   },
+  // 设置数字跳变
+  setNumStep(stepName, stepNum, decimals = 0){
+    let a = stepName
+    let _this = this
+    let numberAnimate = new NumberAnimate({
+      from: stepNum,//开始时的数字
+      speed: 800,// 总时间
+      refreshTime: 45,//  刷新一次的时间
+      decimals: 2,//小数点后的位数
+      onUpdate: () => {//更新回调函数
+        console.log(stepNum)
+        _this.setData({
+          a: numberAnimate.tempValue
+        });
+      },
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu()
+    console.log('options----index', options)
+    if (options.scene) {
+      //小程序码参数
+      console.log('scene-index', options.scene)
+      store.setItem('shareMemberId', options.scene)
+    } else if (options.shareMemberId) {
+      //分享链接参数
+      console.log('shareMemberId-index', options.shareMemberId)
+      store.setItem('shareMemberId', options.shareMemberId)
+    }
+
+    // wx.onUserCaptureScreen(function (res) {
+    //   wx.showToast({
+    //     title: '用户截屏了',
+    //   })
+    //   console.log('用户截屏了')
+    // })
     getApp().checkSessionFun().then(() => {
+      this.getCodeConfig()
       this.generateYearReport()
     })
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.stopPullDownRefresh()
   },
   // 点击授权
   bindgetuserinfo() {
@@ -262,29 +235,249 @@ Page({
   },
   // 轮播改变
   bindchange(e) {
+    let _this = this
     //下滑
     if (this.data.current < e.detail.current) {
       this.setData({ isDownLoad: true })
     } else {
       this.setData({ isDownLoad: false })
     }
-    console.log(e,this.data.current, e.detail.current, this.data.isDownLoad)
-    this.setData({ 
+    // console.log(e,this.data.current, e.detail.current)
+    this.setData({
       current: e.detail.current,
-      // index:
     })
+
+    console.log(e.detail.current, this.data.pageList[this.data.pageList.length - 1])
+    if (e.detail.current == this.data.pageList[this.data.pageList.length - 1]) {
+      let numberAnimate = new NumberAnimate({
+        from: this.data.userYearReport.total_rank,//开始时的数字
+        speed: 800,// 总时间
+        refreshTime: 45,//  刷新一次的时间
+        decimals: 2,//小数点后的位数
+        onUpdate: () => {//更新回调函数
+          _this.setData({
+            ['userYearReport.total_rank']: numberAnimate.tempValue
+          });
+        },
+      });
+    }
   },
   // 查看报告
   startReport(){
     if (this.data.isStartState && getApp().passIsLogin()){
       // this.setData({ isStartState: true})
       this.setData({
-        current: this.data.current+1
+        current: this.data.current + 1
       })
+      // if (this.data.userYearReport.total_count > 0){
+      //     this.setData({
+      //       current: this.data.current + 1
+      //     })
+      // } else {
+      //   wx.redirectTo({
+      //     url: '/pages/subPackages_report/newUseReport/newUseReport',
+      //   })
+      // }
     } else {
       this.setData({
         jurisdictionSmallState: true
       })
     }
   },
+  backHome(){
+    wx.switchTab({
+      url: '/pages/course/course',
+    })
+  },
+  onShareAppMessage() {
+    return {
+      title: "",
+      imageUrl: this.data.shareReportImg || '',
+      path: `/pages/subPackages_report/report/index?shareMemberId=${wx.getStorageSync('userData').id}`,
+    }
+  },
+  // ================canvas
+  //下载背景图片
+  getBgImg: function () {
+    var that = this;
+    console.log('背景图片下载中......')
+    wx.downloadFile({
+      url: 'https://img.cdn.powerpower.net/5e0574e4e4b0ce7e90868015.png', //图片路径
+      success: function (res) {
+        // wx.hideLoading();
+        if (res.statusCode === 200) {
+          console.log('背景图片下载完毕----')
+          var BgImg = res.tempFilePath; //下载成功返回结果
+          that.getSourceMaterial1(BgImg); //继续下载二维码图片
+        } else {
+          var BgImg = "";
+          that.getSourceMaterial1(BgImg);
+        }
+      }
+    })
+  },
+  // 下载素材1
+  getSourceMaterial1: function (BgImg) {
+    console.log('下载素材1......')
+    var that = this;
+    wx.downloadFile({
+      url: 'https://img.cdn.powerpower.net/5e0574e5e4b0ce7e90868016.png', //二维码路径
+      success: function (res) {
+        console.log('下载素材1下载完毕------')
+        if (res.statusCode === 200) {
+          var SourceMaterial1 = res.tempFilePath;
+          that.getSourceMaterial2(BgImg, SourceMaterial1)
+        } else {
+          var SourceMaterial1 = "";
+          that.getSourceMaterial2(BgImg, SourceMaterial1)
+        }
+      }
+    })
+  },
+  //素材2
+  getSourceMaterial2(BgImg, SourceMaterial1) {
+    var that = this;
+    console.log('素材2......')
+    wx.downloadFile({
+      url: 'https://img.cdn.powerpower.net/5e0574ebe4b0ce7e90868017.png', 
+      success: function (res) {
+        console.log('素材2下载完毕-----')
+        if (res.statusCode === 200) {
+          var SourceMaterial2 = res.tempFilePath;
+          let obj = {
+            BgImg: BgImg,
+            SourceMaterial1: SourceMaterial1,
+            SourceMaterial2: SourceMaterial2
+          }
+          that.setData({ canvasObj: obj })
+          // 只有下载成功后再存缓存
+          store.setItem('canvasReportObj', obj)
+          that.sharePosteCanvas(obj)
+        } else {
+          that.setData({ canvasObj: {} })
+          // that.sharePosteCanvas(obj)
+        }
+      },
+    })
+
+  },
+  /**
+   * 开始用canvas绘制分享海报
+   * @param BgImg 下载的背景图片路径
+   * @param SourceMaterial1 SourceMaterial2   下载的素材1，2
+   * @以width： 500rpx height： 400rpx   比例计算
+   */
+  sharePosteCanvas: function (canvasObj) {
+    var that = this;
+    // wx.showLoading({ title: '生成中...', mask: true, })
+    const ctx = wx.createCanvasContext('myCanvas'); //创建画布
+    wx.createSelectorQuery().select('#canvas-container').boundingClientRect(function (rect) {
+      // console.log(rect, canvasObj)
+      var height = rect.height;
+      var width = rect.width;
+      var right = rect.right;
+
+      if (canvasObj.BgImg) {
+        ctx.drawImage(canvasObj.BgImg, 0, 0, rect.width, rect.height);
+      }
+      if (canvasObj.SourceMaterial1) {
+        ctx.drawImage(canvasObj.SourceMaterial1, (rect.width - rect.width / 2) / 2, 0, rect.width / 2, rect.height * 0.32);
+      }
+      if (canvasObj.SourceMaterial2) {
+        ctx.drawImage(canvasObj.SourceMaterial2, (rect.width - rect.width / 1.11) / 2, rect.height * 0.64, rect.width / 1.11, rect.height * 0.28);
+      }
+      // //绘制文本
+      ctx.setFontSize(height / 9);
+      ctx.setFillStyle('#F4C11C');
+      var activeoOneLengthHalf = ctx.measureText(`我击败了`).width / 2
+      var activeoTwoLengthHalf = ctx.measureText(`全上海${parseInt(that.data.userYearReport.total_rank) || 0} % 的小伙伴`).width / 2
+
+      ctx.fillText(`我击败了`, rect.width / 2 - activeoOneLengthHalf, (rect.height * 0.32) + (rect.height / 7));
+      ctx.fillText(`全上海${parseInt(that.data.userYearReport.total_rank) || 0}%的小伙伴`, rect.width / 2 - activeoTwoLengthHalf, rect.height * 0.32 + height / 7 + height / 9 + 6);
+
+      setTimeout(function () {
+        ctx.draw(false, function(){
+          wx.canvasToTempFilePath({
+            canvasId: 'myCanvas',
+            fileType: 'jpg',
+            success: function (res) {
+              console.log('导出shareReportImg----', res.tempFilePath)
+              // that.setData({ a: res.tempFilePath })
+              that.getUploadToken(res.tempFilePath)
+            }
+          })
+        })
+      }, 100)
+    }).exec()
+  },
+  //获取七牛上传令牌
+  getUploadToken(tempFilePath) {
+    let form = {}
+    api.post('coach/getUploadToken', form).then(res => {
+      console.log('getUploadToken',res)
+      this.uploadQiniu(tempFilePath, res.msg.uploadToken).then(resolve => {
+        console.log('图片上传七牛成功----', resolve)
+        let imgInfo = JSON.parse(resolve.data);
+        let qiniuImgName = imgInfo.key;
+        this.saveUploadFiles(qiniuImgName || '')
+      }, reject => {})
+    })
+  },
+  //上传七牛返回key
+  uploadQiniu(tempFilePath, token) {
+    return new Promise((resolve, reject) => {
+      wx.uploadFile({
+        url: 'https://up-z0.qiniup.com',
+        filePath: tempFilePath,
+        name: 'file',
+        header: {
+          "Content-Type": "multipart/form-data"
+        },
+        formData: {
+          key: store.getItem('userData').id + Math.floor(Math.random() * 100000000) + (new Date().getTime()) + '.' + tempFilePath.split('.')[tempFilePath.split('.').length - 1], //标识图片的唯一
+          token: token,
+        },
+        success: (res) => {
+          resolve(res)
+        },
+        fail: (err) => {
+          console.log('图片上传七牛失败')
+          // ui.showToast('图片上传失败')
+          reject()
+        }
+      })
+    }).catch(err => {
+      // ui.showToast('上传到七牛错误！')
+      reject()
+    })
+
+  },
+  //保存上传的文件
+  saveUploadFiles(tempFilePath) {
+      let form = {
+        files: tempFilePath,
+        serviceId: 'YEAR_REPORT_2019',
+        dataId: this.data.userYearReport.id
+      };
+       api.post('v2/member/saveUploadFiles', form).then(res => {
+         console.log('saveUploadFiles', res.msg)
+         this.setData({ shareReportImg: res.msg[0] || '' })
+         wx.showShareMenu()
+      })
+  },
+  //获取上传的文件
+  // getUploadFiles(tempFilePath) {
+  //   let form = {
+  //     files: tempFilePath,
+  //   };
+  //   api.post('v2/course/getCourseFiles', form).then(res => {
+  //     let photoUrls = res.msg;
+  //     let photoUrl = photoUrls ? photoUrls[photoUrls.length - 1] : '';
+  //     console.log('获取上传七牛地址：----', photoUrl)
+  //     this.setData({ shareReportImg: photoUrl })
+  //     wx.showShareMenu()
+  //   },rej => {
+  //     this.setData({ shareReportImg: '' })
+  //   })
+  // },
 })

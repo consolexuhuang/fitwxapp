@@ -56,7 +56,8 @@
     {
       "root": "pages/subPackages_report/",
       "pages": [
-        "report/index"
+        "report/index",
+        "newUseReport/newUseReport"
       ]
     }
   ],
