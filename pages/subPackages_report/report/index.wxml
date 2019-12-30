@@ -82,7 +82,7 @@
             <view class="commonText">遇见了 <text class="lightText">{{userYearReport.total_coach}}</text> 位老师和 <text class="lightText">{{userYearReport.total_co_member}}</text> 位伙伴</view>
          <view class="commonText" style="margin-top:120rpx">其中，你最喜欢</view>
          <view class="lightText" style="margin-top:40rpx;font-size:32rpx">{{userYearReport.love_store_name}}</view>
-         <view class="commonText">在这里你一共训练了<text class="lightText"> {{userYearReport.total_count}} </text>次</view>
+         <view class="commonText">在这里你一共训练了<text class="lightText"> {{userYearReport.love_store_order}} </text>次</view>
          <text class="commonText famousWord {{current == pageList[2] ? 'fadeInUp animated slow delay-1s' : 'fadeOutLeft animated'}}">“ 一定是也别的缘分，\n才能一路走来变成一家人。”</text>
       </view>
    </swiper-item>
