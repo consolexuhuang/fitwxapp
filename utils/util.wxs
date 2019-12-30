@@ -125,7 +125,7 @@ var imageParam = function(url,param){
   if(!param){
     return url;
   }else{
-    return url.split('?')[0]+param
+    return url?url.split('?')[0]+param:'';
   }
 }
 
