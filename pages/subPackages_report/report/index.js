@@ -4,6 +4,7 @@ import reportJson from '../../../utils/reportJson.js'
 import NumberAnimate from "../../../utils/NumberAnimate";
 const store = getApp().store;
 const api = getApp().api;
+var screenshotcount = 0
 // console.log(reportJson.existenceRule)
 /**
  * 一直loadIng原因
@@ -27,7 +28,7 @@ Page({
 
     pageList:[], //页码
     //报告规则
-    existenceRule: reportJson.existenceTestRule, //正式：existenceRule，测试：existenceTestRule
+    existenceRule: reportJson.existenceRule, //正式：existenceRule，测试：existenceTestRule
     newCourseList: [],
 
     invitedcodeUrl:'', //邀请二维码
@@ -99,6 +100,10 @@ Page({
       })
       // srore.setItem('invitedcodeUrl' res.path)
       : ''
+    },()=> {
+      this.setData({
+        invitedcodeUrl: 'https://img.cdn.powerpower.net/5e099c15e4b069cb29532c50.png'
+      })
     })
   },
   // 生产年度账单
@@ -108,6 +113,7 @@ Page({
       this.setData({ userYearReport: res.msg })
       res.msg ? store.setItem('userYearReport', res.msg) : ''
       store.getItem('canvasReportObj') ? this.sharePosteCanvas(store.getItem('canvasReportObj')) : this.getBgImg() //下载素材
+      store.getItem('canvasReportObj') ? console.log('canvasReportObj存在----', store.getItem('canvasReportObj')) : console.log('canvasReportObj不存在----')
       // if (res.msg.id) this.getYearReport(res.msg.id)
       if (res.msg.total_count > 0){
         if (res.msg.id) this.getYearReport(res.msg.id)
@@ -208,12 +214,10 @@ Page({
       store.setItem('shareMemberId', options.shareMemberId)
     }
 
-    // wx.onUserCaptureScreen(function (res) {
-    //   wx.showToast({
-    //     title: '用户截屏了',
-    //   })
-    //   console.log('用户截屏了')
-    // })
+    wx.onUserCaptureScreen(function (res) {
+      console.log('用户截屏了')
+      ++screenshotcount
+    })
     getApp().checkSessionFun().then(() => {
       this.getCodeConfig()
       this.generateYearReport()
@@ -223,7 +227,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    screenshotcount = 0
     wx.stopPullDownRefresh()
+  },
+  onHide(){
+    console.log('screenshotcount', screenshotcount)
+    if (screenshotcount > 0){
+      wx.reportAnalytics('year_report_2019_screenshot', {
+        screenshotcount: screenshotcount,
+      })
+    } else {
+      console.log('用户未截屏！')
+    }
   },
   // 点击授权
   bindgetuserinfo() {
