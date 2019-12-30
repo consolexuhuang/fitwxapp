@@ -53,39 +53,45 @@ var timeFormat = function(time, format) {
 }
 
 var timeStampFormat = function(timeStamp, format) {
-  var regYear = getRegExp("(Y+)", "i")
-  if (!format) {
-    format = "yyyy-MM-dd hh:mm:ss"
-  }
-  timeStamp = parseInt(timeStamp)
-  // 通过getDate()方法获取date类型的时间
-  var realDate = getDate(timeStamp)
-
-  function timeFormat(num) {
-    return num < 10 ? '0' + num : num
-  }
-  var date = [
-    ["M+", timeFormat(realDate.getMonth() + 1)],
-    ["D+", timeFormat(realDate.getDate())],
-    ["h+", timeFormat(realDate.getHours())],
-    ["m+", timeFormat(realDate.getMinutes())],
-    ["s+", timeFormat(realDate.getSeconds())]
-  ]
-  var reg1 = regYear.exec(format)
-  if (reg1) {
-    format = format.replace(reg1[1], (realDate.getFullYear() + '').substring(4 - reg1[1].length))
-  }
-  for (var i = 0; i < date.length; i++) {
-    var k = date[i][0];
-    var v = date[i][1];
-    // getRegExp初始化一个正则表达式对象
-    var reg2 = getRegExp("(" + k + ")").exec(format)
-    if (reg2) {
-      format = format.replace(reg2[1], reg2[1].length == 1 ?
-        v : ("00" + v).substring(("" + v).length))
+  if ((typeof timeStamp) =='number'){
+    var regYear = getRegExp("(Y+)", "i")
+    if (!format) {
+      format = "yyyy-MM-dd hh:mm:ss"
     }
+    timeStamp = parseInt(timeStamp)
+    // 通过getDate()方法获取date类型的时间
+    var realDate = getDate(timeStamp)
+
+    function timeFormat(num) {
+      return num < 10 ? '0' + num : num
+    }
+    var date = [
+      ["M+", timeFormat(realDate.getMonth() + 1)],
+      ["D+", timeFormat(realDate.getDate())],
+      ["h+", timeFormat(realDate.getHours())],
+      ["m+", timeFormat(realDate.getMinutes())],
+      ["s+", timeFormat(realDate.getSeconds())]
+    ]
+    var reg1 = regYear.exec(format)
+    if (reg1) {
+      format = format.replace(reg1[1], (realDate.getFullYear() + '').substring(4 - reg1[1].length))
+    }
+    for (var i = 0; i < date.length; i++) {
+      var k = date[i][0];
+      var v = date[i][1];
+      // getRegExp初始化一个正则表达式对象
+      var reg2 = getRegExp("(" + k + ")").exec(format)
+      if (reg2) {
+        format = format.replace(reg2[1], reg2[1].length == 1 ?
+          v : ("00" + v).substring(("" + v).length))
+      }
+    }
+    return format
   }
-  return format
+  else{
+    return timeStamp
+  }
+  
 }
 var numberFormat = function(number, count) {
   return number.toFixed(count)
