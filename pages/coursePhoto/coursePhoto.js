@@ -143,7 +143,7 @@ Page({
           resolve();
         },
         fail: (err) => {
-          if (err.errMsg === "saveImageToPhotosAlbum:fail:auth denied" || err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
+          if (err.errMsg === "saveImageToPhotosAlbum:fail:auth denied" || err.errMsg === "saveImageToPhotosAlbum:fail auth deny" || err.errMsg === "saveImageToPhotosAlbum:fail authorize no response") {
             // 这边微信做过调整，必须要在按钮中触发，因此需要在弹框回调中进行调用
             wx.showModal({
               title: '提示',
