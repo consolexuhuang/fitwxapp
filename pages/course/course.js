@@ -74,6 +74,7 @@ Page({
    */
 
   onLoad: function(options) {
+
     /*
     //训练小红点引导 后面需要删除
       if (!wx.getStorageSync('hideTabBarRedDot')){

@@ -25,6 +25,7 @@ Page({
     coachWxCodeState: false,
     memberInfo:'', //用户数据
     courseShareData:'', //课程分享文案
+    SubscribeMessage:'' //订单订阅状态
     // 此页面 页面内容距最顶部的距离
     // contMargin_height: getApp().globalData.tab_height * 2 + 20,
     // officialData: '', //获取当前场景值对象
@@ -40,16 +41,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('options-paySusess', options)
+    // 获取该订单订阅状态
+    if (options.omsg){
+      this.setData({ SubscribeMessage: decodeURIComponent(options.omsg)})
+    }
     //分享过来的参数
     if (options.shareMemberId) {
       wx.setStorageSync('shareMemberId', options.shareMemberId)
     }
-
     if (options.orderId)
       this.setData({
         orderId: options.orderId
       }, () => {
-
+        
         //检测登录
         app.checkSessionFun().then(() => {
           //this.checkPromotion()
@@ -66,6 +71,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+  },
+  // 发送订阅状态
+  subLliteMessageResult(){
+    let data = {
+      orderNum: this.data.orderDetailData.order.orderNum,
+      status: this.data.orderDetailData.order.status,
+      result: this.data.SubscribeMessage
+    }
+    api.post('payOrder/subLliteMessageResult', data).then(res => {
+      console.log('subLliteMessageResult----',res)
+    })
   },
   // 订单详情
   getOrderDetail(){
@@ -89,6 +105,7 @@ Page({
         paySuccessShow: paySuccessShow
       })
       this.getCourseInfo(res.msg.course.id)
+      this.subLliteMessageResult()
     })
   },
   /* getMemberFollowData() {

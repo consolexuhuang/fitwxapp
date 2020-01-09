@@ -43,6 +43,7 @@ Page({
       wx.setStorageSync('shareMemberId', options.shareMemberId)
     }
     const orderNum = options.orderNum
+    
     const orderStatus = options.orderStatus
     this.setData({
       orderNum,
