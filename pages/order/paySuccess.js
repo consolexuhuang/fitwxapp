@@ -25,7 +25,6 @@ Page({
     coachWxCodeState: false,
     memberInfo:'', //用户数据
     courseShareData:'', //课程分享文案
-    SubscribeMessage:'' //订单订阅状态
     // 此页面 页面内容距最顶部的距离
     // contMargin_height: getApp().globalData.tab_height * 2 + 20,
     // officialData: '', //获取当前场景值对象
@@ -42,10 +41,6 @@ Page({
    */
   onLoad: function (options) {
     console.log('options-paySusess', options)
-    // 获取该订单订阅状态
-    if (options.omsg){
-      this.setData({ SubscribeMessage: decodeURIComponent(options.omsg)})
-    }
     //分享过来的参数
     if (options.shareMemberId) {
       wx.setStorageSync('shareMemberId', options.shareMemberId)
@@ -72,17 +67,6 @@ Page({
    */
   onShow: function () {
   },
-  // 发送订阅状态
-  subLliteMessageResult(){
-    let data = {
-      orderNum: this.data.orderDetailData.order.orderNum,
-      status: this.data.orderDetailData.order.status,
-      result: this.data.SubscribeMessage
-    }
-    api.post('payOrder/subLliteMessageResult', data).then(res => {
-      console.log('subLliteMessageResult----',res)
-    })
-  },
   // 订单详情
   getOrderDetail(){
     wx.showLoading({ title: '加载中...'})
@@ -105,7 +89,6 @@ Page({
         paySuccessShow: paySuccessShow
       })
       this.getCourseInfo(res.msg.course.id)
-      this.subLliteMessageResult()
     })
   },
   /* getMemberFollowData() {

@@ -163,6 +163,7 @@ Page({
         success(res) {
           console.log('requestSubscribeMessage=====', res)
           that.setData({ SubscribeMessage: res })
+          that.subLliteMessageResult(res_order.msg)
         },
         fail(res) {
           console.log('requestSubscribeMessagefail', res)
@@ -184,7 +185,7 @@ Page({
       success(res) {
         const orderNum = obj.orderNum
         wx.navigateTo({
-          url: `/pages/order/paySuccess?orderId=${orderNum}&omsg=${encodeURIComponent(JSON.stringify(that.data.SubscribeMessage))}`,
+          url: `/pages/order/paySuccess?orderId=${orderNum}`,
         })
       },
       fail(res) {
@@ -194,6 +195,18 @@ Page({
           duration: 2000
         })
       }
+    })
+  },
+  // 发送订阅状态
+  subLliteMessageResult(orderData) {
+    let that = this
+    let data = {
+      orderNum: orderData.orderNum,
+      status: orderData.status,
+      result: JSON.stringify(that.data.SubscribeMessage)
+    }
+    api.post('payOrder/subLliteMessageResult', data).then(res => {
+      console.log('subLliteMessageResult----', res)
     })
   },
   handleTabTap(event) {

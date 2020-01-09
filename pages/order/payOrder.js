@@ -302,7 +302,7 @@ Page({
       success(res) {
         const orderNum = obj.orderNum
         wx.redirectTo({
-          url: `/pages/order/paySuccess?orderId=${orderNum}&omsg=${encodeURIComponent(JSON.stringify(that.data.SubscribeMessage))}`,
+          url: `/pages/order/paySuccess?orderId=${orderNum}`,
         })
       },
       fail(res) {
@@ -382,6 +382,7 @@ Page({
             success(res) {
               console.log('requestSubscribeMessage=====', res)
               that.setData({ SubscribeMessage: res })
+              that.subLliteMessageResult(orderData)
             },
             fail(res) {
               console.log('requestSubscribeMessagefail', res)
@@ -393,7 +394,7 @@ Page({
               } else {
                 const orderId = orderData.orderNum
                 wx.redirectTo({
-                  url: `/pages/order/paySuccess?orderId=${orderId}&omsg=${encodeURIComponent(JSON.stringify(that.data.SubscribeMessage))}`,
+                  url: `/pages/order/paySuccess?orderId=${orderId}`,
                 })
               }
             }
@@ -406,6 +407,18 @@ Page({
         }
       })
     }
+  },
+  // 发送订阅状态
+  subLliteMessageResult(orderData) {
+    let that = this
+    let data = {
+      orderNum: orderData.orderNum,
+      status: orderData.status,
+      result: JSON.stringify(that.data.SubscribeMessage)
+    }
+    api.post('payOrder/subLliteMessageResult', data).then(res => {
+      console.log('subLliteMessageResult----', res)
+    })
   },
   //关闭免责声明
   agreeDisclaimer() {

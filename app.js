@@ -59,6 +59,7 @@ App({
 
   },
   onShow(options) {
+    // console.log(options.scene)
     let _this = this
     this.globalData.scene = options.scene,
       this.globalData.sceneOptions = options
