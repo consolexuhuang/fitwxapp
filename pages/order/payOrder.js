@@ -39,7 +39,7 @@ Page({
       dialogCancleBtn: '',
       dialogImg: 'member/icon-top-blue.png'
     },
-    orderLocation:''
+    orderLocation:'',
   },
   /**
    * 生命周期函数--监听页面加载
@@ -268,10 +268,11 @@ Page({
        api.post('member/getMemberByMemberId', data).then(res => {
          this.setData({ memberInfo: res.msg });
          if (this.data.memberInfo.cellphone) {
-           this.setData({ isShowJurisdiction: false })
+           this.setData({ isShowJurisdiction: false})
          }
          else {
-           this.setData({ isShowJurisdiction: true })
+
+           this.setData({ isShowJurisdiction: true})
          }
          resolve()
        }).catch((err) => {
@@ -344,11 +345,12 @@ Page({
       let errMsg = e.detail.errMsg
       console.log(e.detail, getApp().globalData)
       if (iv == null || ency == null) {
+        that.setData({ isShowJurisdiction : true})//如果拒绝，继续打开订单人口
         wx.showToast({
           title: "授权失败,请重新授权！",
           icon: 'none',
         })
-        return false
+        // return false
       } else {
         let data = {
           code: that.data.code,
