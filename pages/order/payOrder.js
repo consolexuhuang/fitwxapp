@@ -345,7 +345,7 @@ Page({
       let errMsg = e.detail.errMsg
       console.log(e.detail, getApp().globalData)
       if (iv == null || ency == null) {
-        that.setData({ isShowJurisdiction : true})//如果拒绝，继续打开订单人口
+        that.setData({ isShowJurisdiction : false})//如果拒绝，继续打开订单人口
         wx.showToast({
           title: "授权失败,请重新授权！",
           icon: 'none',

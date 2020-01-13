@@ -9,7 +9,7 @@
     <view class='guideLoginBox'>
        <view class='guideLoginText'>更多教练课程信息，限时福利不再错过</view>
     </view>
-    <view class="openNotice">开启通知</view>
+    <view class="openNotice">立即关注</view>
   </view>
 </view>
 
@@ -20,7 +20,7 @@
     <view class='showNoticeBox'>
        <image class='showNoticeImg'         
           src="https://img.cdn.powerpower.net/5dbfc3a8e4b0d8cb1b041566.png?imageView/1/w/330/h/210"></image>
-       <view class="showNoticeCont">点击“ <text class="importCont">去回复</text> ”，发送“ <text class="importCont">1</text> ”收到二维码后长按关注公众号</view>
+       <view class="showNoticeCont">点击“ <text class="importCont">去回复</text> ”，发送“ <text class="importCont">1</text> ”<text>\n收到二维码后长按关注公众号</text></view>
         <view class='showNoticeBtn'>去回复
           <button class='showNoticeBtn2' open-type='contact' bindcontact="_handleContact"></button>
         </view>     
