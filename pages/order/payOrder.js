@@ -347,7 +347,7 @@ Page({
       if (iv == null || ency == null) {
         that.setData({ isShowJurisdiction : false})//如果拒绝，继续打开订单人口
         wx.showToast({
-          title: "授权失败,请重新授权！",
+          title: "手机号授权失败！",
           icon: 'none',
         })
         // return false
