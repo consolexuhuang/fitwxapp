@@ -41,6 +41,10 @@
       <label class="label">使用期限</label>
       <text class="value" decode="true">{{util.timeFormat(goodData.begin_date, 'MM月DD日')}}-{{util.timeFormat(goodData.end_date, 'MM月DD日')}}(共{{goodData.validity_days}}天)</text>
     </view>
+    <view class="row">
+      <label class="label">活动截止</label>
+      <text class="value" decode="true">{{util.timeFormat(goodData.sale_end_time, 'YYYY年MM月DD日')}}</text>
+    </view>
   </view>
   <!-- pay -->
   <view class="pay-title fadeIn animated">支付方式</view>

@@ -93,12 +93,13 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage () {
+    // console.log('sharesssssss-', this.data.giftCardInfo.share_img)
     this.upDataGiveInfo()
     this.setData({ tipsState: false, textValue: this.data.sendMessage })
     return {
       title: this.data.sendMessage || this.data.giftCardInfo.gift_memo,
       path: 'pages/subPackages_needLoad/giftCard/giftCard?cardId=' + this.data.cardId + '&shareMemberId=' + wx.getStorageSync('userData').id,
-      imageUrl: 'https://img.cdn.powerpower.net/5df0bacae4b05795c0c8b63a.png',
+      imageUrl: this.data.giftCardInfo.share_img || 'https://img.cdn.powerpower.net/5e202c1ae4b0e8c8916c0773.png',
     }
   }
 })

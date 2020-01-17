@@ -35,7 +35,7 @@ Page({
   },
   // 是否显示菜单活动内容 时间格式 xxxx/xx/xx xx:xx:xx
   whethershowActive(){
-    if (utils.getActiveRestTime('2019/12/25 12:00:00')) {
+    if (utils.getActiveRestTime('2020/01/30 12:00:00')) {
       this.setData({ isShowTimeActiveMode: true })
     } else this.setData({ isShowTimeActiveMode: false })
   },

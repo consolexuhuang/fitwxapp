@@ -100,8 +100,8 @@
         <view class="right">
           <text class="value blue" wx:if='{{!isShowTimeActiveMode}}'>查看</text>
           <view class="valueBox" wx:if='{{isShowTimeActiveMode}}'>
-             <image src="https://img.cdn.powerpower.net/5df1f4c0e4b05795c0c8b649.png" class="activeIcon"></image>
-             <text class="value blue">圣诞心意卡</text>
+             <image src="https://img.cdn.powerpower.net/5e212212e4b0e8c8916c0786.png" class="activeIcon"></image>
+             <text class="value red">新春福气卡</text>
           </view>
           <text class="icon iconfont iconicon-test42"></text>
         </view>
