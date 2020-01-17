@@ -236,8 +236,8 @@ page {
   overflow: hidden;
 }
 .activeIcon{
-  width: 29rpx;
-  height: 44rpx;
+  width: 46rpx;
+  height: 46rpx;
   margin-right: 20rpx;
   animation: sdBg .8s linear;
   animation-fill-mode: forwards;
@@ -273,8 +273,8 @@ page {
   color: #787878;
 }
 
-.menu .item .right .value.blue {
-  color: #8970ff;
+.menu .item .right .value.red {
+  color: #E6442D;
 }
 
 .menu .item .right .icon {
