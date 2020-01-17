@@ -40,16 +40,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('options-paySusess', options)
     //分享过来的参数
     if (options.shareMemberId) {
       wx.setStorageSync('shareMemberId', options.shareMemberId)
     }
-
     if (options.orderId)
       this.setData({
         orderId: options.orderId
       }, () => {
-
+        
         //检测登录
         app.checkSessionFun().then(() => {
           //this.checkPromotion()

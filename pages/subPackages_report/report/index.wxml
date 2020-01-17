@@ -81,8 +81,8 @@
             <view class="commonText">2019年，你一共在 <text class="lightText">{{userYearReport.total_store}}</text> 家门店</view>
             <view class="commonText">遇见了 <text class="lightText">{{userYearReport.total_coach}}</text> 位老师和 <text class="lightText">{{userYearReport.total_co_member}}</text> 位伙伴</view>
          <view class="commonText" style="margin-top:120rpx">其中，你最喜欢</view>
-         <view class="lightText" style="margin-top:40rpx">{{userYearReport.love_store_name}}</view>
-         <view class="commonText">在这里你一共训练了<text class="lightText"> {{userYearReport.total_count}} </text>次</view>
+         <view class="lightText" style="margin-top:40rpx;font-size:32rpx">{{userYearReport.love_store_name}}</view>
+         <view class="commonText">在这里你一共训练了<text class="lightText"> {{userYearReport.love_store_order}} </text>次</view>
          <text class="commonText famousWord {{current == pageList[2] ? 'fadeInUp animated slow delay-1s' : 'fadeOutLeft animated'}}">“ 一定是也别的缘分，\n才能一路走来变成一家人。”</text>
       </view>
    </swiper-item>
@@ -320,7 +320,7 @@
    <swiper-item  wx:if='{{isStartState && newCourseList.keyWord == "瑜伽类"}}' class='item item3'>
       <!-- 火车站 -->
       <view class="around_sun {{current == pageList[10] ? 'fadeInLeft animated' : 'fadeOutLeft animated'}}"></view>
-      <image class="item_bg_middle_Train {{current == pageList[10] ? 'fadeInRight animated' : 'fadeOutRight animated'}}" src="https://img.cdn.powerpower.net/5dfb2769e4b06c67254853c0.png"></image>
+      <image class="item_bg_middle_Train {{current == pageList[10] ? 'fadeInRight animated' : 'fadeOutRight animated'}}" src="https://img.cdn.powerpower.net/5dfb2769e4b06c67254853c0.png?imageView/1/w/750/h/800"></image>
       <view class="content {{current == pageList[10] ? 'fadeIn animated' : 'fadeOut animated'}}">
          <text class="iconfont iconfenzu-10 logo">\n</text>
          <view class="commonText" style="margin-bottom:40rpx">{{util.timeFormat(newCourseList.tagCourseList[0].first_date, 'YYYY年MM月DD日')}}</view>
@@ -391,9 +391,9 @@
 
 </swiper>
 
-<view class="invitedImgBox fadeIn animated" wx:if="{{current != 0 && current != pageList[pageList.length - 1] && invitedcodeUrl}}">
-  <image src="{{invitedcodeUrl}}" class="invitedImg"></image>
-</view>
+<!-- <view class="invitedImgBox fadeIn animated" wx:if="{{current != 0 && current != pageList[pageList.length - 1] && invitedcodeUrl}}"> -->
+  <image wx:if="{{current != 0 && current != pageList[pageList.length - 1] && invitedcodeUrl}}" src="{{invitedcodeUrl}}" class="invitedImgBox fadeIn animated"></image>
+<!-- </view> -->
 
 <jurisdictionSmallPopup state='{{jurisdictionSmallState}}' bindmyevent='bindgetuserinfo'/>
 

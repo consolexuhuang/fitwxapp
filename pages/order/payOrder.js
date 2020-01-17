@@ -39,7 +39,7 @@ Page({
       dialogCancleBtn: '',
       dialogImg: 'member/icon-top-blue.png'
     },
-    orderLocation:''
+    orderLocation:'',
   },
   /**
    * 生命周期函数--监听页面加载
@@ -268,10 +268,11 @@ Page({
        api.post('member/getMemberByMemberId', data).then(res => {
          this.setData({ memberInfo: res.msg });
          if (this.data.memberInfo.cellphone) {
-           this.setData({ isShowJurisdiction: false })
+           this.setData({ isShowJurisdiction: false})
          }
          else {
-           this.setData({ isShowJurisdiction: true })
+
+           this.setData({ isShowJurisdiction: true})
          }
          resolve()
        }).catch((err) => {
@@ -292,6 +293,7 @@ Page({
   },
 
   wxPay: function (obj) {
+    let that = this
     wx.requestPayment({
       timeStamp: obj.timeStamp,
       nonceStr: obj.nonceStr,
@@ -301,7 +303,7 @@ Page({
       success(res) {
         const orderNum = obj.orderNum
         wx.redirectTo({
-          url: '/pages/order/paySuccess?orderId=' + orderNum
+          url: `/pages/order/paySuccess?orderId=${orderNum}`,
         })
       },
       fail(res) {
@@ -317,7 +319,7 @@ Page({
   //   console.log('formID-------', e.detail)
   // },
   getPhoneNumber(e) {//这个事件同样需要拿到
-    console.log('formID-------', e.detail)
+    // console.log('formID-------', e.detail)
     let that = this
     const courseId = this.data.courseId
     const timeCardId = this.data.timeCardId
@@ -337,87 +339,88 @@ Page({
       data.count = count
       data.couponId = couponId
     }
-    wx.showLoading({ title: '预约中...', })
-    api.post('payOrder/takeOrder', data).then(res => {
-      wx.hideLoading()
-      console.log(res)
-      if (res.code === 0) {
-        const orderData = res.msg
-        if (orderData.payType === 'wx') {
-          if (this.data.isShowJurisdiction) {
-            let ency = e.detail.encryptedData;
-            let iv = e.detail.iv;
-            let errMsg = e.detail.errMsg
-            console.log(e.detail, getApp().globalData)
-            if (iv == null || ency == null) {
-              wx.showToast({
-                title: "授权失败,请重新授权！",
-                icon: 'none',
-              })
-              return false
-            } else {
-              let data = {
-                code: this.data.code,
-                encryptedData: ency,
-                iv: iv,
-              }
-              api.post('v2/member/liteMobile', data).then(res => {
-                this.getMemberInfo()
-                console.log('后台电话解密授权', res)
-              })
-            }
+    if (that.data.isShowJurisdiction) {  //授权电话
+      let ency = e.detail.encryptedData;
+      let iv = e.detail.iv;
+      let errMsg = e.detail.errMsg
+      console.log(e.detail, getApp().globalData)
+      if (iv == null || ency == null) {
+        that.setData({ isShowJurisdiction : false})//如果拒绝，继续打开订单人口
+        wx.showToast({
+          title: "手机号授权失败！",
+          icon: 'none',
+        })
+        // return false
+      } else {
+        let data = {
+          code: that.data.code,
+          encryptedData: ency,
+          iv: iv,
+        }
+        wx.showLoading({
+          title: '授权中...',
+          icon:'none'
+        })
+        api.post('v2/member/liteMobile', data).then(res => {
+          wx.hideLoading()
+          that.getMemberInfo()
+          console.log('后台电话解密授权', res)
+          if (res.code == 0) {
+            wx.showToast({
+              title: res.msg || '授权成功！',
+            })
           }
-          this.wxPay(orderData)
-        } else {
-          const orderId = orderData.orderNum
-          wx.redirectTo({
-            url: '/pages/order/paySuccess?orderId=' + orderId,
-            success: () => {
-              if (this.data.isShowJurisdiction) {
-                let ency = e.detail.encryptedData;
-                let iv = e.detail.iv;
-                let errMsg = e.detail.errMsg
-                console.log(e.detail, getApp().globalData)
-                if (iv == null || ency == null) {
-                  wx.showToast({
-                    title: "授权失败,请重新授权！",
-                    icon: 'none',
-                  })
-                  return false
-                } else {
-                  let data = {
-                    code: this.data.code,
-                    encryptedData: ency,
-                    iv: iv,
-                  }
-                  api.post('v2/member/liteMobile', data).then(res => {
-                    this.getMemberInfo()
-                    console.log('后台电话解密授权', res)
-                  })
-                }
+        })
+      }
+    } else {
+      wx.showLoading({ title: '预约中...', })
+      api.post('payOrder/takeOrder', data).then(res => {
+        wx.hideLoading()
+        console.log(res)
+        if (res.code === 0) {
+          const orderData = res.msg
+          wx.requestSubscribeMessage({
+            tmplIds: orderData.liteMessageIds || [],
+            success(res) {
+              console.log('requestSubscribeMessage=====', res)
+              that.setData({ SubscribeMessage: res })
+              that.subLliteMessageResult(orderData)
+            },
+            fail(res) {
+              console.log('requestSubscribeMessagefail', res)
+              // that.setData({ SubscribeMessage: res })
+            },
+            complete() {
+              if (orderData.payType === 'wx') {
+                that.wxPay(orderData)
+              } else {
+                const orderId = orderData.orderNum
+                wx.redirectTo({
+                  url: `/pages/order/paySuccess?orderId=${orderId}`,
+                })
               }
             }
           })
+        } else {
+          wx.showToast({
+            title: res.msg || '预约失败！',
+            icon: 'none'
+          })
         }
-        
-      } else {
-        wx.showToast({
-          title: res.msg || '预约失败！',
-          icon: 'none'
-        })
-      }
+      })
+    }
+  },
+  // 发送订阅状态
+  subLliteMessageResult(orderData) {
+    let that = this
+    let data = {
+      orderNum: orderData.orderNum,
+      status: orderData.status,
+      result: JSON.stringify(that.data.SubscribeMessage)
+    }
+    api.post('payOrder/subLliteMessageResult', data).then(res => {
+      console.log('subLliteMessageResult----', res)
     })
-
-
-
-    // //把获取手机号需要的参数取到，然后存到头部data里面
-    // that.setData({
-    //   ency: ency,
-    //   iv: iv,
-    //   errMsg: errMsg
-    // })
-
-    // that.zhuce();//调用手机号授权事件
   },
   //关闭免责声明
   agreeDisclaimer() {

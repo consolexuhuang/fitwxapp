@@ -33,16 +33,25 @@ Page({
     jurisdictionState: false, //授权显示
     hasPhoto:false,//是否有照片
     // courseData: '',//课程详情
+
+    orderentersensekey: parseInt(app.globalData.scene)
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+
+    // parseInt(app.globalData.scene)
+    // wx.reportAnalytics('orderdetail_enter_scene', {
+    //   orderentersense: 1,
+    //   orderentersense2: 'aaa',
+    // });
     //分享过来的参数
     if (options.shareMemberId) {
       wx.setStorageSync('shareMemberId', options.shareMemberId)
     }
     const orderNum = options.orderNum
+    
     const orderStatus = options.orderStatus
     this.setData({
       orderNum,

@@ -52,7 +52,7 @@
             </block>
           </view>
           <view class="coupon_item_left_tag" wx:if="{{item.couponType===1}}">— 立减券 —</view>
-          <view class="coupon_item_left_tag" wx:elif="{{item.couponType===2}}">— 约课券 —</view>
+          <view class="coupon_item_left_tag" wx:elif="{{item.couponType===2}}">— 立减至券 —</view>
           <view class="coupon_item_left_tag" wx:elif="{{item.couponType===3}}">— 折扣券 —</view>
         </view>
         <view class="coupon_item_right">
@@ -81,20 +81,24 @@
            custom-class='couponRuleStyle'>
   <view class='couponRuleTitle'>使用规则</view>
   <view class='couponRuleCont'>
-     <text class='point' style='background:#896EFF'></text>
-     <text class='couponRuleItem'>提示兑换成功后，可在“分享礼券”中查看</text>
+     <text class='point'></text>
+     <text class='couponRuleItem'>用户每次预约课程，仅限使用1张代金券</text>
   </view>
   <view class='couponRuleCont'>
-     <text class='point' style='background:#2AB282'></text>
-     <text class='couponRuleItem'>用户每次约课支付仅限使用一张券</text>
+     <text class='point'></text>
+     <text class='couponRuleItem'>代金券分为“立减券”“立减至券”“折扣券”三种类型</text>
   </view>
   <view class='couponRuleCont'>
-     <text class='point' style='background:#896EFF'></text>
-     <text class='couponRuleItem'>代金券有效期均以实际获得有效期说明为准</text>
+     <text class='point'></text>
+     <text class='couponRuleItem'>“立减券”只能用于原价课程，无法与其他促销活动叠加使用</text>
   </view>
   <view class='couponRuleCont'>
-     <text class='point' style='background:#D47972'></text>
-     <text class='couponRuleItem'>J&J对兑换码使用拥有最终解释权</text>
+     <text class='point'></text>
+     <text class='couponRuleItem'>J&代金券有效期均以实际获得有效期说明为准</text>
+  </view>
+  <view class='couponRuleCont'>
+     <text class='point'></text>
+     <text class='couponRuleItem'>J&J&J对代金券的使用规则拥有最终解释权</text>
   </view>
   <view class='makeSureBtn' bindtap='onclose'>我知道了</view>
 </van-popup>

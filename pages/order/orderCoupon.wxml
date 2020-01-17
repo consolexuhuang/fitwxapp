@@ -22,7 +22,7 @@
                 <view class="coupon-type-wrapper">
                   <view class="coupon-type-line"></view>
                   <view class="coupon-type-text" wx:if="{{item.coupon_type===1}}">立减券</view>
-                  <view class="coupon-type-text" wx:elif="{{item.coupon_type===2}}">约课券</view>
+                  <view class="coupon-type-text" wx:elif="{{item.coupon_type===2}}">立减至券</view>
                   <view class="coupon-type-text" wx:elif="{{item.coupon_type===3}}">折扣券</view>
                   <view class="coupon-type-line"></view>
                 </view>
@@ -54,7 +54,7 @@
                 <view class="coupon-type-wrapper">
                   <view class="coupon-type-line"></view>
                   <view class="coupon-type-text" wx:if="{{item.coupon_type===1}}">立减券</view>
-                  <view class="coupon-type-text" wx:elif="{{item.coupon_type===2}}">约课券</view>
+                  <view class="coupon-type-text" wx:elif="{{item.coupon_type===2}}">立减至券</view>
                   <view class="coupon-type-text" wx:elif="{{item.coupon_type===3}}">折扣券</view>
                   <view class="coupon-type-line"></view>
                 </view>

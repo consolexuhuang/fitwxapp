@@ -31,6 +31,7 @@ Page({
     swiperHeight: getApp().globalData.systemInfo.screenHeight - getApp().globalData.tab_height - 100,
     showAuthModel: false,
     jurisdictionSmallState: false,
+    SubscribeMessage:''
   },
   /**
    * 生命周期函数--监听页面加载
@@ -151,12 +152,27 @@ Page({
 
   //付款
   goPay(e) {
+    let that = this
     let orderId = e.currentTarget.dataset.orderid;
     let param = {
       orderId
     }
-    api.post('payOrder/payForOrder', param).then(res => {
-      this.wxPay(res.msg);
+    api.post('payOrder/payForOrder', param).then(res_order=> {
+      wx.requestSubscribeMessage({
+        tmplIds: res_order.msg.liteMessageIds || [],
+        success(res) {
+          console.log('requestSubscribeMessage=====', res)
+          that.setData({ SubscribeMessage: res })
+          that.subLliteMessageResult(res_order.msg)
+        },
+        fail(res) {
+          console.log('requestSubscribeMessagefail', res)
+          // that.setData({ SubscribeMessage: res })
+        },
+        complete() {
+          that.wxPay(res_order.msg);
+        }
+      })
     });
   },
   wxPay: function(obj) {
@@ -168,8 +184,8 @@ Page({
       paySign: obj.paySign,
       success(res) {
         const orderNum = obj.orderNum
-        wx.redirectTo({
-          url: '/pages/order/paySuccess?orderId=' + orderNum
+        wx.navigateTo({
+          url: `/pages/order/paySuccess?orderId=${orderNum}`,
         })
       },
       fail(res) {
@@ -179,6 +195,18 @@ Page({
           duration: 2000
         })
       }
+    })
+  },
+  // 发送订阅状态
+  subLliteMessageResult(orderData) {
+    let that = this
+    let data = {
+      orderNum: orderData.orderNum,
+      status: orderData.status,
+      result: JSON.stringify(that.data.SubscribeMessage)
+    }
+    api.post('payOrder/subLliteMessageResult', data).then(res => {
+      console.log('subLliteMessageResult----', res)
     })
   },
   handleTabTap(event) {
