@@ -450,6 +450,9 @@ align-items: center;
   font-size:28rpx;
   color:#fff;
 }
+.broadcast .content .down-btn.disabled{
+  background:#ccc;
+}
 .broadcast .content .icon-close{
   position: absolute;
   left:50%;

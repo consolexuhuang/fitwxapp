@@ -44,8 +44,8 @@
     <view class="orderDetail_data orderDetail_startShow">请至前台扫码入场</view> 
   </view>
   <!-- 直播提示 -->
-  <view class="admissionCode">
-    <text class="orderDetail_icon iconicon-test13 iconfont"></text>
+  <view class="admissionCode" bindtap="handleBroadcast">
+    <text class="orderDetail_icon iconicon-test13 iconfont"></text> 
     <text class="orderDetail_text">入场方式：</text>
     <view class="orderDetail_data orderDetail_startShow">保存二维码，微信内识别进入</view> 
   </view>
@@ -131,8 +131,8 @@
                    bindmyevent='bindgetuserinfo'></jurisdictionPopup>
 
 <!-- 直播弹层 -->
-<view class="broadcast">
-   <view class="mask"></view>
+<view class="broadcast" wx:if='{{broadcastIsShow}}'>
+   <view class="mask" bindtap="broadcastClose"></view>
    <view class="content">
      <view class="coach-info">
        <image class="header" src="../../../images/card/plus-first.png"></image>
@@ -151,7 +151,7 @@
         <span class="text">长按识别二维码，</span>
         <span class="text">或在“微信-扫一扫-相册”中打开，进入直播间</span>
      </view>
-     <view class="down-btn"> <text class="icon iconfont iconfenzu1"></text><span class="text">保存图片</span></view>
-     <view class="icon-close icon iconfont iconicon-test18 "></view>
+     <view class="down-btn {{saveQrcodeBtnDisabled?'disabled':''}}" bindtap="{{saveQrcodeBtnDisabled?'':'saveBroadcastQrcode'}}"> <text class="icon iconfont iconfenzu1"></text><span class="text">保存图片</span></view>
+     <view class="icon-close icon iconfont iconicon-test18 "  bindtap="broadcastClose"></view>
    </view>
 </view>
