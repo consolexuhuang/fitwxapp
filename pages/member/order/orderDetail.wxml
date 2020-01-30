@@ -43,6 +43,12 @@
     <text class="orderDetail_text">入场方式：</text>
     <view class="orderDetail_data orderDetail_startShow">请至前台扫码入场</view> 
   </view>
+  <!-- 直播提示 -->
+  <view class="admissionCode">
+    <text class="orderDetail_icon iconicon-test13 iconfont"></text>
+    <text class="orderDetail_text">入场方式：</text>
+    <view class="orderDetail_data orderDetail_startShow">保存二维码，微信内识别进入</view> 
+  </view>
   <!-- 二维码生效 -->
   <view class="admissionCodeShow" wx:if="{{orderData.qrPath && orderData.store.banPwd}}">
     <image src="{{orderData.qrPath}}" class="admissionCodeShowImg"></image>
@@ -123,3 +129,29 @@
 
 <jurisdictionPopup state = '{{jurisdictionState}}'
                    bindmyevent='bindgetuserinfo'></jurisdictionPopup>
+
+<!-- 直播弹层 -->
+<view class="broadcast">
+   <view class="mask"></view>
+   <view class="content">
+     <view class="coach-info">
+       <image class="header" src="../../../images/card/plus-first.png"></image>
+       <span class="name">barbib</span>
+     </view>
+     <view class="course-info">
+       <view class="row">
+         <span class="title">课程：</span><span class="text">BODYBALANCE身心平衡</span>
+       </view>
+       <view class="row">
+         <span class="title">时间：</span><span class="text">04月11日 星期四 20:35-21:35</span>
+       </view>
+     </view>
+     <view class="qrcode-info">
+        <image class="qrcode-img" src="../../../images/card/plus-first.png"></image>
+        <span class="text">长按识别二维码，</span>
+        <span class="text">或在“微信-扫一扫-相册”中打开，进入直播间</span>
+     </view>
+     <view class="down-btn"> <text class="icon iconfont iconfenzu1"></text><span class="text">保存图片</span></view>
+     <view class="icon-close icon iconfont iconicon-test18 "></view>
+   </view>
+</view>
