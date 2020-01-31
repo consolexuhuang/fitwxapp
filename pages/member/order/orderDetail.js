@@ -150,14 +150,13 @@ Page({
   },
   //保存图片
   saveBroadcastQrcode(){
-    console.log(111)
     //loading
     ui.showLoadingMask();
     //设置按钮为不可点
     this.setData({
       saveQrcodeBtnDisabled: true
     })
-    this.remoteToLocal(this.data.cardData.qrCode)//这里url需要改
+    this.remoteToLocal(this.data.orderData.onlineImg)
       .then((resLocalUrl) => {
         this.saveImageToPhotosAlbum(resLocalUrl.path, '二维码已保存到相册', '二维码保存失败');
       })

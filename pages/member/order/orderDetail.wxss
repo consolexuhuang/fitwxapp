@@ -413,7 +413,7 @@ height: 106rpx;
   border:4rpx solid #fff;
 }
 .broadcast .content .coach-info .name{
-  margin-top: 93rpx;
+  margin-top: 83rpx;
   font-size: 36rpx;
   color:#141414;
   font-weight: bold;
