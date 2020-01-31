@@ -44,7 +44,7 @@
     <view class="orderDetail_data orderDetail_startShow">请至前台扫码入场</view> 
   </view>
   <!-- 直播提示 -->
-  <view class="admissionCode" bindtap="handleBroadcast" wx:if='{{orderData.onlineImg}}'>
+  <view class="admissionCode admissionCodeNext" bindtap="handleBroadcast" wx:if='{{orderData.onlineImg}}'>
     <text class="orderDetail_icon iconicon-test13 iconfont"></text> 
     <text class="orderDetail_text">入场方式：</text>
     <view class="orderDetail_data orderDetail_startShow">保存二维码，微信内识别进入</view> 

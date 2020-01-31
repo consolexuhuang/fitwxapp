@@ -151,7 +151,6 @@ page {
 }
 .column-list{
   width:690rpx;
-  min-height:426rpx;
   background:rgba(255,255,255,1);
   box-shadow:0px 0px 8rpx 0px rgba(179,179,179,0.3);
   border-radius:24rpx;

@@ -446,7 +446,7 @@ align-items: center;
 .broadcast .content .qrcode-img{
   width: 192rpx;
   height: 192rpx;
-  margin-bottom:40rpx;
+  margin-bottom:20rpx;
 }
 .broadcast .content .qrcode-info .text{
   margin-bottom:10rpx;
