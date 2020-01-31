@@ -59,7 +59,7 @@
     <text class="orderDetail_text">预约人数：</text>
     <view class="orderDetail_data">{{orderData.order.pCount || 0}}人</view>
   </view>
-  <view class="admissionCode admissionCodeNext analysis_orderdetail_address" data-name="{{orderData.store.storeName}}" data-address="{{orderData.store.address}}" data-latitude="{{orderData.store.latitude}}" data-longitude="{{orderData.store.longitude}}" bindtap="handleLocationTap">
+  <view class="admissionCode {{orderData.onlineImg?'':'admissionCodeNext'}} analysis_orderdetail_address" data-name="{{orderData.store.storeName}}" data-address="{{orderData.store.address}}" data-latitude="{{orderData.store.latitude}}" data-longitude="{{orderData.store.longitude}}" bindtap="{{orderData.onlineImg?'':'handleLocationTap'}}">
     <text class="orderDetail_icon2 iconfont iconicon-test39"></text>
     <text class="orderDetail_text">地点：</text>
     <view class="orderDetail_data">{{orderData.store.address}}</view>
