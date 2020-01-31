@@ -134,6 +134,9 @@
 <view class="broadcast" wx:if='{{broadcastIsShow}}'>
    <view class="mask" bindtap="broadcastClose"></view>
    <view class="content">
+     <image class="bg-left" src="../../../images/broadcast/bg_left.png"></image>
+     <image class="bg-right" src="../../../images/broadcast/bg_right.png"></image>
+     <image class="bg-bottom" src="../../../images/broadcast/bg_bottom.png"></image>
      <view class="coach-info">
        <image class="header" src="../../../images/card/plus-first.png"></image>
        <span class="name">barbib</span>

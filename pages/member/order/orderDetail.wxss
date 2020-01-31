@@ -373,6 +373,31 @@ page{
   border-radius:16rpx;
   background:#fff;
 }
+.broadcast .content .bg-left{
+position: absolute;
+left:0;
+top:453rpx;
+z-index: 0;
+width: 159rpx;
+height: 68rpx;
+}
+.broadcast .content .bg-right{
+  position: absolute;
+right:0;
+top:61rpx;
+z-index: 0;
+width: 103rpx;
+height: 142rpx;
+}
+.broadcast .content .bg-bottom{
+position: absolute;
+left:0;
+right:0;
+bottom:0;
+z-index: 0;
+width: 650rpx;
+height: 106rpx;
+}
 .broadcast .content .coach-info{
   display: flex;
   flex-direction: row;
