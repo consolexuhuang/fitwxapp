@@ -152,19 +152,19 @@
       <view class="fitness-step-list">
         <view class="fitness-step-item">
           <view class="fitness-step-item-number">1</view>
-          <view class="fitness-step-item-text">约课成功</view>
+          <view class="fitness-step-item-text">预约课程</view>
         </view>
         <view class="fitness-step-item">
           <view class="fitness-step-item-number">2</view>
-          <view class="fitness-step-item-text">{{courseData.store.ownerType == 1 ? '获得密码' : (courseData.store.ownerType == 2 || courseData.store.ownerType == 3 ? "到达门店" : "获得密码")}}</view>
+          <view class="fitness-step-item-text">查看订单</view>
         </view>
         <view class="fitness-step-item">
           <view class="fitness-step-item-number">3</view>
-          <view class="fitness-step-item-text">{{courseData.store.ownerType == 1 ? '扫码开门' : (courseData.store.ownerType == 2 || courseData.store.ownerType == 3 ? "前台扫码":"扫码开门")}}</view>
+          <view class="fitness-step-item-text">保存二维码</view>
         </view>
         <view class="fitness-step-item">
           <view class="fitness-step-item-number">4</view>
-          <view class="fitness-step-item-text">签到上课</view>
+          <view class="fitness-step-item-text">进入直播间</view>
         </view>
       </view>
     </view>
