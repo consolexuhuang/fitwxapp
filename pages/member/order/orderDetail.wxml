@@ -32,27 +32,34 @@
 
 <view class="orderDetail_content fadeIn animated">
   <!-- 扫码进门 -->
-  <view class="admissionCode" wx:if='{{orderData.store.banPwd && !orderData.qrPath && !orderData.onlineImg}}'>
+  <view class="admissionCode" wx:if='{{orderData.store.banPwd && !orderData.qrPath && !orderData.onlineImg && !orderData.onlineAppid}}'>
     <text class="orderDetail_icon iconicon-test13 iconfont"></text>
     <text class="orderDetail_text">入场二维码：</text>
     <view class="orderDetail_data orderDetail_startShow">开课前1小时显示</view> 
   </view>
   <!-- 前台扫码 -->
-  <view class="admissionCode" wx:if='{{orderData.store &&!orderData.store.banPwd && !orderData.onlineImg}}'>
+  <view class="admissionCode" wx:if='{{orderData.store &&!orderData.store.banPwd && !orderData.onlineImg && !orderData.onlineAppid}}'>
     <text class="orderDetail_icon iconicon-test13 iconfont"></text>
     <text class="orderDetail_text">入场方式：</text>
     <view class="orderDetail_data orderDetail_startShow">请至前台扫码入场</view> 
+  </view>  
+  <!-- 二维码生效 -->
+  <view class="admissionCodeShow" wx:if="{{orderData.qrPath && orderData.store.banPwd && !orderData.onlineImg && !orderData.onlineAppid}}">
+    <image src="{{orderData.qrPath}}" class="admissionCodeShowImg"></image>
+    <view class="admissionCodeShowText">入场二维码</view>
   </view>
-  <!-- 直播提示 -->
-  <view class="admissionCode admissionCodeNext" bindtap="handleBroadcast" wx:if='{{orderData.onlineImg}}'>
+
+<!-- 直播提示 弹层显示二维码 -->
+  <view class="admissionCode admissionCodeNext" bindtap="handleBroadcast" wx:if='{{orderData.onlineImg && !orderData.onlineAppid}}'>
     <text class="orderDetail_icon iconicon-test13 iconfont"></text> 
     <text class="orderDetail_text">入场方式：</text>
     <view class="orderDetail_data orderDetail_startShow">保存二维码，微信内识别进入</view> 
   </view>
-  <!-- 二维码生效 -->
-  <view class="admissionCodeShow" wx:if="{{orderData.qrPath && orderData.store.banPwd}}">
-    <image src="{{orderData.qrPath}}" class="admissionCodeShowImg"></image>
-    <view class="admissionCodeShowText">入场二维码</view>
+  <!-- 直播提示 进入直播间 -->
+  <view class="admissionCode admissionCodeNext" bindtap="handleRoom" wx:if='{{orderData.onlineAppid}}'>
+    <text class="orderDetail_icon iconicon-test13 iconfont"></text> 
+    <text class="orderDetail_text">入场方式：</text>
+    <view class="orderDetail_data orderDetail_startShow">点击前往直播间</view> 
   </view>
   <view class="admissionCode">
     <text class="orderDetail_icon iconicon-test15 iconfont"></text>
