@@ -147,7 +147,7 @@
                               <block wx:else>
                                 <view class="course-card-price">¥{{courseItem.price}}</view>
                                 <!-- <image class="course-price-icon" src="{{imgUrl}}course/icon_original_price.png" /> -->
-                                <text class='course-price-icon iconfont iconfenzu-5'></text>
+                                <text class='course-price-icon iconfont iconbiaoqian-mianfei'></text>
                               </block>
                             </view>
                           </view>
