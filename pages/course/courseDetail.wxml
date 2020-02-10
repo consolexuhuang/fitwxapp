@@ -156,11 +156,11 @@
         </view>
         <view class="fitness-step-item">
           <view class="fitness-step-item-number">2</view>
-          <view class="fitness-step-item-text">查看订单</view>
+          <view class="fitness-step-item-text">收到通知</view>
         </view>
         <view class="fitness-step-item">
           <view class="fitness-step-item-number">3</view>
-          <view class="fitness-step-item-text">保存二维码</view>
+          <view class="fitness-step-item-text">查看订单</view>
         </view>
         <view class="fitness-step-item">
           <view class="fitness-step-item-number">4</view>
