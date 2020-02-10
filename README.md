@@ -15,8 +15,7 @@ API接口： 'https://dev.jlife.vip/wx/api/'
 1.master分支
 2.project.config.json文件里"appid": "wx29946485f206d315"；
 3.api.js里 API_URI = 'https://fit.jlife.vip/wx/api/'；
-4.app.json里"navigateToMiniProgramAppIdList": [ "wxec1fe04fad9d4e02","wx7527dd9e3bee0ecd","wx63b823471458aa0a",
-    "wxc4f812079fc9ff0d", "wx60d176f873ca2d67" ]；
+4.app.json里"navigateToMiniProgramAppIdList": [ "wxec1fe04fad9d4e02","wx7527dd9e3bee0ecd","wx63b823471458aa0a","wxc4f812079fc9ff0d", "wx60d176f873ca2d67" ]；
 5.app.js 里 JumpAppId: {          
       appid: 'wxec1fe04fad9d4e02',
       envVersion: 'release' //正式版
