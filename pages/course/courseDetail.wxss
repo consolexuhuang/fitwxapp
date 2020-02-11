@@ -494,7 +494,7 @@ text-align: center;
   background-color: #FFFFFF;
   display: flex;
   z-index: 10;
-  box-shadow:0rpx 8rpx 40rpx 0rpx rgba(0,0,0,0.1);
+  box-shadow:0rpx -8rpx 40rpx 0rpx rgba(0,0,0,0.1);
   border-radius:24rpx 24rpx 0rpx 0rpx;
 }
 .discount-price{
@@ -530,6 +530,7 @@ border-radius:24rpx 24rpx 0rpx 0rpx;
 .appoint-btnOver{
   background: #DADADA !important;
   color: #8C8C8C !important;
+  box-shadow:none !important;
 }
 .modal-video{
   display: flex;
