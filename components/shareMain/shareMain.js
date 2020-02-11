@@ -42,8 +42,8 @@ Component({
     width: 550, //canvas宽
     height: 786, //canvas高  2行地址高度828
     addlessByteLen: 0, //地址字节数
-    sPicWidth: 690, //源图片宽度      后面确定好图片的尺寸后需要改sPicWidth、sPicHeight的值
-    sPicHeight: 330, //源图片高度
+    sPicWidth: 750, //源图片宽度      后面确定好图片的尺寸后需要改sPicWidth、sPicHeight的值
+    sPicHeight: 360, //源图片高度
     picHeight: 450, //绘制图片高度450
     borderRadius: 32, //矩形背景圆角
     picBorderRadius: 60, //矩形背景圆角

@@ -7,7 +7,17 @@
   color: #000;
   z-index: 1000;
   background: rgba(0, 0, 0, 0);
-  overflow: hidden
+  overflow: hidden;
+}
+@keyframes backgroundhas
+{
+from {background: none;}
+to {background: #fff;}
+}
+@keyframes backgroundnone
+{
+from {background: #fff;}
+to {background: none;}
 }
 /* 标题要居中 */
 .nav-title {

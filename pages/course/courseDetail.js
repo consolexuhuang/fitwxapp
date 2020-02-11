@@ -6,6 +6,7 @@ const format = require('../../utils/util.js');
 const store = app.store;
 const txvContext = requirePlugin("tencentvideo");
 let courseId;
+let bannerHeightPX;//banner高度
 
 Page({
 
@@ -15,11 +16,11 @@ Page({
   data: {
     height: getApp().globalData.tab_height,
     navbarData: {
-      title: '课程详情',
+     // title: '课程详情',
       showCapsule: 1,
       isShowBackHome: true,
       titleColor: "#000",
-      tab_topBackground: '#fff'
+      tab_topBackground: ''
     },
     shareConfig:{
       toTop:320, //px
@@ -117,6 +118,30 @@ Page({
         isShareButton: false
       })
     }
+    
+  },
+  // 滚动过程中的监听
+  onPageScroll(event){
+    if (!bannerHeightPX){
+      //获取bannner高度
+      this.bannerHeight();
+    }
+    console.log('eventsssssssssssss')
+    console.log(event)
+    //滚动的高度
+    let scrollTop = event.scrollTop;
+    if ((bannerHeightPX - scrollTop) <= this.data.marginTopBar){
+       this.setData({
+         'navbarData.tab_topBackground': '#fff'
+       })
+      console.log(333333333)
+      console.log(this.data.navbarData.tab_topBackground)
+    }else{
+      this.setData({        
+         'navbarData.tab_topBackground': ''
+      })
+    }
+    
   },
   //初始化数据
   init(){
@@ -162,7 +187,19 @@ Page({
       swiperBtnCurrent: swiperBtnCurrent
     });
   },
-
+  //获取banner高度
+  bannerHeight () {
+    const query = wx.createSelectorQuery().in(this);
+    query.select('.banner-swiper').boundingClientRect()
+    query.exec((res) => {
+      if (res) {
+        bannerHeightPX = res[0] ? res[0].height : 0;
+        console.log('res000000')
+        console.log(res)
+        console.log('bannerHeightPX:' + bannerHeightPX)
+      };
+    });
+  },
   // 点击授权
   bindgetuserinfo(){
     //loading
@@ -222,6 +259,9 @@ Page({
           'cardData.address': courseData.store.address,
           'cardData.storeName': courseData.store.storeName,
           'cardData.coachName': courseData.coach.coachName
+        },()=>{
+          //获取bannner高度
+          this.bannerHeight();
         })
       }
     })

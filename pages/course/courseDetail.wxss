@@ -18,24 +18,21 @@
 .header{
   width: 100%;
   background-color: #FFFFFF;
-  padding-bottom: 20rpx;
   position: relative;
 }
 .banner-swiper{
-  padding-top: 10rpx;
-  height: 330rpx;
+  width: 100%;
+  height: 360rpx;
 }
 .banner-item{
   margin: 0 auto;
-  width: 690rpx;
-  height: 330rpx;
-  border-radius: 12rpx;
+  width: 750rpx;
+  height: 360rpx;
   overflow: hidden;
 }
 .banner-item image{
   width: 100%;
   height: 100%;
-  border-radius: 12rpx;
 }
 .banner-item.videoblock{
   position: relative;
@@ -86,20 +83,35 @@ text-align: center;
   color:#fff;
   opacity:0.8;
 }
-.course-info{
-  
-  margin-top: 30rpx;
+.course-top{
+  position: relative;
+  margin-top:-32rpx;  
+  padding-top: 30rpx;
+  background:#fff;
+  border-radius: 32rpx 32rpx 0px 0px;
+}
+.course-name-share{
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
 }
-.course-name{
-  margin-top: 20rpx;
+.course-name-share .course-name{
   margin-left: 37rpx;
   font-weight:600;
   font-size: 40rpx;
   color: #141414;
+}
+.course-name-share .course-share{
+  margin-right: 20rpx;
+}
+.course-info{  
+  padding-bottom: 30rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 .course-time{
   display: flex;
@@ -124,9 +136,7 @@ text-align: center;
   height: 30rpx;
   background-color: #896DFF;
 }
-.course-info-right{
-  margin-right:60rpx;
-}
+
 #line_wx{
   width:2rpx;
   height:30rpx;
@@ -199,9 +209,9 @@ text-align: center;
   position: absolute;
   top: 35rpx;
   left: 49rpx;
-  font-weight:500;
-  font-size: 30rpx;
-  color: #141414;
+  font-weight:bold;
+  font-size: 36rpx;
+  color: #333333FF;
   z-index: 2;
 }
 .coach-avatar-wrapper{
@@ -480,11 +490,12 @@ text-align: center;
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 120rpx;
+  height: 110rpx;
   background-color: #FFFFFF;
-  box-shadow:0 -2rpx 4rpx 0 rgba(228,228,228,0.5);
   display: flex;
   z-index: 10;
+  box-shadow:0rpx 8rpx 40rpx 0rpx rgba(0,0,0,0.1);
+  border-radius:24rpx 24rpx 0rpx 0rpx;
 }
 .discount-price{
   flex: 1;
@@ -507,12 +518,14 @@ text-align: center;
 }
 .appoint-btn{
   width: 436rpx;
-  height: 120rpx;
-  background-color: #896DFF;
-  line-height: 120rpx;
+  height: 110rpx;
+  line-height: 110rpx;
   text-align: center;
   font-size: 34rpx;
   color: #FFFFFF;
+  background:linear-gradient(360deg,rgba(155,133,252,1) 0%,rgba(114,87,251,1) 100%);
+box-shadow:0rpx 0rpx 16rpx 0rpx rgba(184,168,255,1);
+border-radius:24rpx 24rpx 0rpx 0rpx;
 }
 .appoint-btnOver{
   background: #DADADA !important;

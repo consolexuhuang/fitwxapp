@@ -2,13 +2,13 @@
 <wxs src="../../utils/util.wxs" module="util" />
 <tabBar_top navbarData='{{navbarData}}'></tabBar_top>
 
-<view class="wrapper" wx:if='{{courseData}}' style='margin-top:{{marginTopBar}}px'>
+<view class="wrapper" wx:if='{{courseData}}'>
   <view class="header">
-    <swiper class="banner-swiper" current='{{swiperCurrent}}' bindchange="swiperChange">
+    <swiper class="banner-swiper"  current='{{swiperCurrent}}' bindchange="swiperChange">
 
       <!-- 视频 -->
       <block wx:if="{{courseData.mediaUrl && util.include(courseData.mediaUrl, 'v.qq.com') && util.getUrlParams(courseData.mediaUrl).vid}}">
-        <swiper-item>
+        <swiper-item class="swiper-item">
           <view class="banner-item videoblock">
             <image src="{{courseData.bannerList[0]}}" />
             <view class="circle" bindtap="handleShowVideo">
@@ -19,7 +19,7 @@
       </block>
       <!-- 图片 -->
       <block wx:if="{{courseData.bannerList.length>0}}" wx:for="{{courseData.bannerList}}" wx:key="index">
-        <swiper-item>
+        <swiper-item class="swiper-item">
           <view class="banner-item fadeIn animated">
             <image src="{{item}}" />
           </view>
@@ -33,8 +33,15 @@
       <view class="btn {{swiperBtnCurrent==1?'current':''}}" data-type='pic' bindtap="handleSwitch">照片</view>
     </view>
   </view>
-  <view>
-    <view class="course-name fadeIn animated">{{courseData.courseName}}</view>
+  <view class="course-top">
+  <view class="course-name-share">
+    <view class="course-name fadeIn animated">{{courseData.courseName}}</view>    
+    <view class="course-share">        
+      <share_tag shareButton='{{false}}' bindsharehandle="handleShare" ></share_tag>
+    </view>
+    </view>
+    
+
     <view class="course-info">
       <view class="course-info-left">
         <view class="course-time fadeIn animated">
@@ -51,10 +58,6 @@
           <!-- 获取元素高度用的，页面上不做显示 -->
           <!-- <text id="store-address" style="display:none;font-size:28rpx;">{{courseData.store.address}}</text> -->
         </view>
-      </view>
-      <view class="course-info-middle"></view>
-      <view class="course-info-right">        
-        <share_tag shareButton='{{false}}' bindsharehandle="handleShare" ></share_tag>
       </view>
     </view>
   </view>
