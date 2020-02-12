@@ -1,5 +1,5 @@
 <!--components/tabBar_top/tabBar.wxml-->
-<view class='nav-wrap' style='height: {{height*2 + 20}}px; animation:{{navbarData.tab_topBackground?"backgroundhas 500ms ease 0 1 normal":"backgroundnone 500ms ease 0 1 normal"}}; background: {{navbarData.tab_topBackground || none}}'>
+<view class='nav-wrap' style='height: {{height*2 + 20}}px; animation:{{navbarData.tab_topBackground?"backgroundhas 500ms ease":"backgroundnone 500ms ease"}}; background: {{navbarData.tab_topBackground || none}}'>
   <view class='nav-title' style='line-height: {{height*2 + 44}}px; color:{{navbarData.titleColor ? navbarData.titleColor : "#000"}}'>{{navbarData.title}}</view>
   <view style='display: flex; justify-content: space-around;flex-direction: column'>
     <view class='nav-capsule' style='height: {{height*2 + 44}}px;' wx:if='{{navbarData.showCapsule}}'>
