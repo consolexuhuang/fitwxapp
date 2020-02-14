@@ -364,7 +364,7 @@ page{
 .broadcast .mask{position: absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8)}
 .broadcast .content{
   width: 650rpx;
-  height: 745rpx;
+  height: 825rpx;
   position: absolute;
   top:50%;
   left:50%;
@@ -376,7 +376,7 @@ page{
 .broadcast .content .bg-left{
 position: absolute;
 left:0;
-top:453rpx;
+top:403rpx;
 z-index: 0;
 width: 159rpx;
 height: 68rpx;
@@ -421,17 +421,15 @@ height: 106rpx;
 .broadcast .content .course-info{
 display: flex;
 flex-direction: column;
-padding:42rpx;
+padding:42rpx 0 0 0;
 }
 .broadcast .content .course-info .row{
   display: flex;
 flex-direction: row;
+justify-content: center;
 margin-bottom:20rpx;
 }
-.broadcast .content .course-info .title{
-  font-size: 28rpx;
-  color:#969696;
-}
+
 .broadcast .content .course-info .text{
   margin-left: 16rpx;
   font-size:28rpx;
@@ -440,13 +438,53 @@ margin-bottom:20rpx;
 .broadcast .content .qrcode-info{
   display: flex;
 flex-direction: column;
-justify-content: center;
 align-items: center;
 }
 .broadcast .content .qrcode-img{
   width: 192rpx;
   height: 192rpx;
-  margin-bottom:20rpx;
+  margin-top:10rpx;
+  margin-bottom:30rpx;
+}
+.broadcast .content .qrcode-explanation{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height:120rpx;
+  background:#F8F8F8FF;
+}
+.broadcast .content .qrcode-explanation .left{
+  margin-left: 40rpx;
+}
+.broadcast .content .qrcode-explanation .right{
+  margin-right: 40rpx;
+}
+.broadcast .content .qrcode-explanation .left,
+.broadcast .content .qrcode-explanation .right{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.broadcast .content .qrcode-explanation .left .txt,
+.broadcast .content .qrcode-explanation .right .txt{
+   display: flex;
+  flex-direction: column;
+font-size:22rpx;
+color:#666666FF;
+}
+.broadcast .content .qrcode-explanation .left .down-pic{
+  width: 120rpx;
+  height: 120rpx;
+}
+.broadcast .content .qrcode-explanation .arrow{
+  width: 44rpx;
+  height: 45rpx;
+}
+.broadcast .content .qrcode-explanation .mobile{
+  width: 120rpx;
+  height: 120rpx;
 }
 .broadcast .content .qrcode-info .text{
   margin-bottom:10rpx;

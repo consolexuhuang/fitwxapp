@@ -146,17 +146,34 @@
      </view>
      <view class="course-info">
        <view class="row">
-         <span class="title">课程：</span><span class="text">{{orderData.course.courseName}}</span>
+         <span class="text">{{orderData.course.courseName}}</span>
        </view>
        <view class="row">
-         <span class="title">时间：</span><span class="text"wx:if='{{orderData.course.beginDate}}'>{{util.timeStampFormat(orderData.course.beginDate, 'MM月DD日')}} 星期{{orderData.course.beginDay}}
+         <span class="text"wx:if='{{orderData.course.beginDate}}'>{{util.timeStampFormat(orderData.course.beginDate, 'MM月DD日')}} 星期{{orderData.course.beginDay}}
         {{util.timeStampFormat(orderData.course.beginTime, 'hh:mm')}}-{{util.timeStampFormat(orderData.course.endTime, 'hh:mm')}}</span>
        </view>
      </view>
      <view class="qrcode-info">
         <image class="qrcode-img" src="{{orderData.onlineImg}}"></image>
-        <span class="text">保存图片后，</span>
-        <span class="text">在“微信-扫一扫-相册”中打开，进入直播间</span>
+        <view class="qrcode-explanation">
+          <view class="left">
+            <image class="down-pic" src="../../../images/broadcast/down-pic.png"></image>
+            <view class="txt">            
+             <text>保存图片</text><text>到相册</text>
+            </view>
+          </view>
+          <view class="middle">
+            <image class="arrow" src="../../../images/broadcast/arrow.png"></image>
+          </view>
+          <view class="right">
+            <image class="mobile" src="../../../images/broadcast/mobile.png"></image>
+            <view class="txt"> 
+            <text class="txt">打开抖音</text><text>立即看到</text>
+            </view>
+          </view>
+        </view>
+        <span class="text">或</span>
+        <span class="text">下载“一直播”app，搜索“JJFitness”进入直播间</span>
      </view>
      <view class="down-btn {{saveQrcodeBtnDisabled?'disabled':''}}" bindtap="{{saveQrcodeBtnDisabled?'':'saveBroadcastQrcode'}}"> <text class="icon iconfont iconfenzu1"></text><span class="text">保存图片</span></view>
      <view class="icon-close icon iconfont iconicon-test18 "  bindtap="broadcastClose"></view>
