@@ -136,17 +136,7 @@ Page({
       this.getCourseFiles()
     })
   },
-  //点击直播  进入直播间
-  handleRoom(){
-    wx.navigateToMiniProgram({
-      appId: this.data.orderData.onlineAppid,
-      path: this.data.orderData.onlinePath,
-      success(res) {
-        // 打开成功
-        console.log('打开成功')
-      }
-    })
-  },
+
   //点击直播  弹层显示二维码
   handleBroadcast(){
     this.setData({
