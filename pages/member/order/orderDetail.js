@@ -35,7 +35,16 @@ Page({
     hasPhoto:false,//是否有照片
     // courseData: '',//课程详情
     broadcastIsShow:false,//直播弹层是否显示
-    saveQrcodeBtnDisabled: false,//直播按钮可点
+    cardData: {
+      coachHeadImg: '',
+      coachName: '',
+      courseName: '',
+      beginDate: '',
+      beginDay: '',
+      beginTime: '',
+      endTime: '',
+      qrCode: ''
+    },//保存直播卡片需要的信息
 
     orderentersensekey: parseInt(app.globalData.scene)
   },
@@ -129,7 +138,15 @@ Page({
       wx.hideLoading()
       const orderData = res.msg
       this.setData({
-        orderData
+        orderData,
+        'cardData.coachHeadImg': orderData.coach.headUrl,
+        'cardData.coachName': orderData.coach.coachName,
+        'cardData.courseName': orderData.course.courseName,
+        'cardData.beginDate': orderData.course.beginDate,
+        'cardData.beginDay': orderData.course.beginDay,
+        'cardData.beginTime': orderData.course.beginTime,
+        'cardData.endTime': orderData.course.endTime,
+        'cardData.qrCode': orderData.onlineImg,
       })
       this.getCourseInfo(res.msg.course.id)
       this.getContent()
@@ -144,99 +161,12 @@ Page({
     })
   },  
   //关闭直播弹层
-  broadcastClose(){
+  closecard() {
     this.setData({
       broadcastIsShow: false
     })
   },
-  //保存图片
-  saveBroadcastQrcode(){
-    //loading
-    ui.showLoadingMask();
-    //设置按钮为不可点
-    this.setData({
-      saveQrcodeBtnDisabled: true
-    })
-    this.remoteToLocal(this.data.orderData.onlineImg)
-      .then((resLocalUrl) => {
-        this.saveImageToPhotosAlbum(resLocalUrl.path, '二维码已保存到相册', '二维码保存失败');
-      })
-  },
-  //保存图片到系统相册
-  saveImageToPhotosAlbum(url, successTipText = '已保存到相册', failTipText = '保存失败') {
-    return new Promise((resolve, reject) => {
-      wx.saveImageToPhotosAlbum({
-        filePath: url,
-        success: () => {
-          ui.showToast(successTipText)
-          resolve();
-        },
-        fail: (err) => {
-          if (err.errMsg === "saveImageToPhotosAlbum:fail:auth denied" || err.errMsg === "saveImageToPhotosAlbum:fail auth deny" || err.errMsg === "saveImageToPhotosAlbum:fail authorize no response") {
-            // 这边微信做过调整，必须要在按钮中触发，因此需要在弹框回调中进行调用
-            wx.showModal({
-              title: '提示',
-              content: '需要您授权保存相册',
-              showCancel: false,
-              success: modalSuccess => {
-                wx.openSetting({
-                  success: (settingdata) => {
-                    if (settingdata.authSetting['scope.writePhotosAlbum']) {
-                      wx.showModal({
-                        title: '提示',
-                        content: '获取权限成功,再次点击保存按钮即可保存',
-                        showCancel: false,
-                      })
-                    } else {
-                      wx.showModal({
-                        title: '提示',
-                        content: '获取权限失败，将无法保存到相册哦~',
-                        showCancel: false,
-                      })
-                    }
-                  },
-                  fail: (failData) => {
-                    console.log("failData", failData)
-                  },
-                  complete: (finishData) => {
-                    console.log("finishData", finishData)
-                  }
-                })
-              }
-            })
-          }
-        },
-        complete: () => {
-          //ui.hideLoading();
-          //设置按钮为可点
-          this.setData({
-            broadcastIsShow:false,
-            saveQrcodeBtnDisabled: false,
-          })
-        }
-        /* fail: (err) => {
-          console.error(err)
-          ui.showToast(failTipText)
-          reject(failTipText)
-        } */
-      })
-    })
-  },
-  //远程图片转本地图片
-  remoteToLocal(url) {
-    return new Promise((resolve, reject) => {
-      wx.getImageInfo({
-        src: url,
-        success: (res) => {
-          resolve(res);
-        },
-        fail: (err) => {
-          console.error(err)
-          reject('远程图片转本地图片错误！')
-        }
-      })
-    })
-  },
+  
   //处理显示更多
   getContent() {
     const strCont = this.data.orderData.course.needingAttention
