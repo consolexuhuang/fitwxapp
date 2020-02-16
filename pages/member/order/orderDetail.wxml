@@ -32,35 +32,30 @@
 
 <view class="orderDetail_content fadeIn animated">
   <!-- 扫码进门 -->
-  <view class="admissionCode" wx:if='{{orderData.store.banPwd && !orderData.qrPath && !orderData.onlineImg && !orderData.onlineAppid}}'>
+  <view class="admissionCode" wx:if='{{orderData.store.banPwd && !orderData.qrPath && !orderData.onlineImg}}'>
     <text class="orderDetail_icon iconicon-test13 iconfont"></text>
     <text class="orderDetail_text">入场二维码：</text>
     <view class="orderDetail_data orderDetail_startShow">开课前1小时显示</view> 
   </view>
   <!-- 前台扫码 -->
-  <view class="admissionCode" wx:if='{{orderData.store &&!orderData.store.banPwd && !orderData.onlineImg && !orderData.onlineAppid}}'>
+  <view class="admissionCode" wx:if='{{orderData.store &&!orderData.store.banPwd && !orderData.onlineImg}}'>
     <text class="orderDetail_icon iconicon-test13 iconfont"></text>
     <text class="orderDetail_text">入场方式：</text>
     <view class="orderDetail_data orderDetail_startShow">请至前台扫码入场</view> 
   </view>  
   <!-- 二维码生效 -->
-  <view class="admissionCodeShow" wx:if="{{orderData.qrPath && orderData.store.banPwd && !orderData.onlineImg && !orderData.onlineAppid}}">
+  <view class="admissionCodeShow" wx:if="{{orderData.qrPath && orderData.store.banPwd && !orderData.onlineImg}}">
     <image src="{{orderData.qrPath}}" class="admissionCodeShowImg"></image>
     <view class="admissionCodeShowText">入场二维码</view>
   </view>
 
 <!-- 直播提示 弹层显示二维码 -->
-  <view class="admissionCode admissionCodeNext" bindtap="handleBroadcast" wx:if='{{orderData.onlineImg && !orderData.onlineAppid}}'>
+  <view class="admissionCode admissionCodeNext" bindtap="handleBroadcast" wx:if='{{orderData.onlineImg}}'>
     <text class="orderDetail_icon iconicon-test13 iconfont"></text> 
     <text class="orderDetail_text">入场方式：</text>
-    <view class="orderDetail_data orderDetail_startShow">保存二维码，微信内识别进入</view> 
+    <view class="orderDetail_data orderDetail_startShow">保存图片，进入直播间</view> 
   </view>
-  <!-- 直播提示 进入直播间 -->
-  <view class="admissionCode admissionCodeNext" bindtap="handleRoom" wx:if='{{orderData.onlineAppid}}'>
-    <text class="orderDetail_icon iconicon-test13 iconfont"></text> 
-    <text class="orderDetail_text">入场方式：</text>
-    <view class="orderDetail_data orderDetail_startShow">点击前往直播间</view> 
-  </view>
+
   <view class="admissionCode">
     <text class="orderDetail_icon iconicon-test15 iconfont"></text>
     <text class="orderDetail_text">预约人数：</text>
@@ -138,32 +133,4 @@
                    bindmyevent='bindgetuserinfo'></jurisdictionPopup>
 
 <!-- 直播弹层 -->
-<view class="broadcast" wx:if='{{broadcastIsShow}}'>
-   <view class="mask" bindtap="broadcastClose"></view>
-   <view class="content">
-   <!-- 背景图片 -->
-     <image class="bg-left" src="../../../images/broadcast/bg_left.png"></image>
-     <image class="bg-right" src="../../../images/broadcast/bg_right.png"></image>
-     <image class="bg-bottom" src="../../../images/broadcast/bg_bottom.png"></image>
-     <view class="coach-info">
-       <image class="header" src="{{orderData.coach.headUrl}}"></image>
-       <span class="name">{{orderData.coach.coachName}}</span>
-     </view>
-     <view class="course-info">
-       <view class="row">
-         <span class="title">课程：</span><span class="text">{{orderData.course.courseName}}</span>
-       </view>
-       <view class="row">
-         <span class="title">时间：</span><span class="text"wx:if='{{orderData.course.beginDate}}'>{{util.timeStampFormat(orderData.course.beginDate, 'MM月DD日')}} 星期{{orderData.course.beginDay}}
-        {{util.timeStampFormat(orderData.course.beginTime, 'hh:mm')}}-{{util.timeStampFormat(orderData.course.endTime, 'hh:mm')}}</span>
-       </view>
-     </view>
-     <view class="qrcode-info">
-        <image class="qrcode-img" src="{{orderData.onlineImg}}"></image>
-        <span class="text">保存图片后，</span>
-        <span class="text">在“微信-扫一扫-相册”中打开，进入直播间</span>
-     </view>
-     <view class="down-btn {{saveQrcodeBtnDisabled?'disabled':''}}" bindtap="{{saveQrcodeBtnDisabled?'':'saveBroadcastQrcode'}}"> <text class="icon iconfont iconfenzu1"></text><span class="text">保存图片</span></view>
-     <view class="icon-close icon iconfont iconicon-test18 "  bindtap="broadcastClose"></view>
-   </view>
-</view>
+<broadcast cardData='{{cardData}}' isShow='{{broadcastIsShow}}' bindclosecard='closecard'></broadcast>
