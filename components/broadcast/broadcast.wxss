@@ -53,7 +53,7 @@ height: 106rpx;
   border:4rpx solid #fff;
 }
 .broadcast .content .coach-info .name{
-  margin-top: 78rpx;
+  margin-top: 75rpx;
   font-size: 36rpx;
   color:#141414;
   font-weight: bold;
@@ -61,13 +61,13 @@ height: 106rpx;
 .broadcast .content .course-info{
 display: flex;
 flex-direction: column;
-padding:34rpx 0 0 0;
+padding:20rpx 0 0 0;
 }
 .broadcast .content .course-info .row{
   display: flex;
 flex-direction: row;
 justify-content: center;
-margin-bottom:18rpx;
+margin-bottom:10rpx;
 }
 
 .broadcast .content .course-info .text{
