@@ -1,0 +1,34 @@
+<!--pages/member/card/invalidCard/invalidCard.wxml-->
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view style='padding-top:{{marginTopBar}}px'>
+    <!-- 失效次卡 -->
+    <view class="cardType cardType_2" >
+        <view wx:for="{{invalidCard}}" wx:if='{{invalidCard.length != 0}}' wx:key="_PK_">
+          <view wx:if='{{item.card_type == 1}}'>
+            <view class="buyCardRecord myCard_moneyRecord fadeIn animated" data-card-id="{{item._PK_}}" bindtap="handleCardRecordTap">
+              <view class="buyCardRecord_cont">
+                <image src="{{item.background_img}}" class="myCard_moneyRecordImg greyStyle"></image>
+                <view class="buyCardWidBox">
+                  <view class="buyCardBox">
+                    <view class="buyCardType">{{item.card_title}}</view>
+                    <view class="buyCardRest_num">剩余次数:{{item.card_left_count}}/{{item.card_total_count}}次</view>
+                  </view>
+                  <view class="buyCardBottomBox">
+                    <view class="buyCardRestTime">截止日期:{{item.validity_date}}</view>
+                    <view class="buyCardBtn" wx:if='{{item.card_left_count!==0}}'>
+                      <view class="use">查看</view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view wx:if='{{invalidCard.length == 0}}' style='overflow:hidden;text-align:center'>
+          <view class='noCardBox'>
+              <text class='iconicon-test12 iconfont noCardImg'></text>
+              <text class='noCardCont'>暂无失效次卡</text>
+          </view>
+        </view>
+    </view>
+</view>

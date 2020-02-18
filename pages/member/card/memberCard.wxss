@@ -2,6 +2,56 @@
 page{
   background: #fff;
 }
+/* tab -----*/
+.tab{
+  width: 100%;
+  display: flex;
+  position: relative;
+  border-bottom: 2rpx solid rgb(233, 233, 233, .5)
+}
+.tabItem{
+  text-align: center;
+  color: #808080;
+  font-size: 30rpx;
+  line-height: 110rpx;
+  width: 33.33%;
+  position: relative;
+}
+.chooseItem{
+  color: #896eff
+}
+.chooseItem2 ~.downLine{
+  transform: translateX(100%);
+}
+.chooseItem3 ~.downLine{
+  transform: translateX(200%);
+}
+.downLine {
+  height: 2rpx;
+  width: 33.33%;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: all 0.2s ease-in-out;
+}
+.downLine::after{
+  content: '';
+  height: 100%;
+  width: 30%;
+  display: block;
+  /* position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0; */
+  margin: 0 auto;
+  background: #896eff;
+  transform: all 0.2s ease-in-out
+}
+/* tab -----*/
+.cardType{
+  margin-top: 30rpx
+}
 .myCard_moneyRecord{
   background: #fff;
   width: 100%;
@@ -233,17 +283,26 @@ page{
   line-height:60rpx;
   text-align: center;
 }
+.InvalidEnter{
+  font-size:28rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(137,110,255,1);
+  line-height:28rpx;
+  text-align: center;
+  margin: 40rpx auto 0
+}
 /* -----------缺省图 */
 .noCardBox{
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 330rpx auto 100rpx;
+  margin: 330rpx auto 0;
 }
 .noCardImg{
   width: 217rpx;
   height: 142rpx;
-  color: #C4C4C4;
+  color: #BEBEBE;
   font-size: 142rpx;
   margin-bottom: 30rpx;
 }
@@ -261,8 +320,9 @@ page{
   color:rgba(130,106,254,1);
   line-height:40rpx;
   text-align: center;
-  margin: 100rpx auto 0;
-  border-bottom: 1rpx solid rgba(130,106,254,1);
+  margin: 20rpx auto 0;
+  letter-spacing: 1rpx;
+  /* border-bottom: 1rpx solid rgba(130,106,254,1); */
 }
 .officialAccount{
   position: fixed;
