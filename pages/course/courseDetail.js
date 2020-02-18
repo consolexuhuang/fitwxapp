@@ -110,7 +110,6 @@ Page({
  * 生命周期函数--监听页面加载
  */
   onShow() {
-    console.log('courseDetail 00000')
     if (this.data.isShareButton){
       //隐藏弹层
       this.setData({
@@ -126,16 +125,12 @@ Page({
       //获取bannner高度
       this.bannerHeight();
     }
-    console.log('eventsssssssssssss')
-    console.log(event)
     //滚动的高度
     let scrollTop = event.scrollTop;
     if ((bannerHeightPX - scrollTop) <= this.data.marginTopBar){
        this.setData({
          'navbarData.tab_topBackground': '#fff'
        })
-      console.log(333333333)
-      console.log(this.data.navbarData.tab_topBackground)
     }else{
       this.setData({        
          'navbarData.tab_topBackground': ''
@@ -194,9 +189,6 @@ Page({
     query.exec((res) => {
       if (res) {
         bannerHeightPX = res[0] ? res[0].height : 0;
-        console.log('res000000')
-        console.log(res)
-        console.log('bannerHeightPX:' + bannerHeightPX)
       };
     });
   },
@@ -214,12 +206,7 @@ Page({
       this.setData({ jurisdictionState: true })
     })
   },
-  /**
-   * write@xuhuang  start
-   */
-  // submitFormId: function(e) {
-  //   console.log('formID-------', e.detail)
-  // },
+  
   // 获取当前用户关注状态
   getMemberFollowState() {
     api.post('v2/member/memberInfo').then(res => {
@@ -314,8 +301,6 @@ Page({
     })
   },
   handleAppointBtnTap: function(event) {
-    // console.log(event)
-    console.log('formID-------', event.detail)
     if (event.detail.formId !== 'the formId is a mock one') {
       store.setItem('formId', [...(store.getItem('formId') || ''), event.detail.formId])
     }
@@ -329,7 +314,7 @@ Page({
   },
   //点我分享
   handleShare(){
-    ui.showLoading();
+    ui.showLoadingMask();
     //版本校验
     app.compareVersionPromise('2.6.1').then((res) => {
       if (res == 0) {

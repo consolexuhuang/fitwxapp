@@ -22,14 +22,14 @@ Component({
   observers: {
     'isShow': function(val) {
       if (val) {
-        ui.hideLoading();
+        //ui.hideLoading();
       }
     },
     'cardData': function(val) {
-      console.log('000')
-      //生成图片        第二个memberHeadImg要改为二维码
-      if (val.pic && val.memberHeadImg && val.qrCode && firstObservers) {
-        console.log('66666666666666666')
+      console.log('shareMain 000000')
+      console.log(val.qrCode)
+      //生成图片
+      if (this.data.isShow && val.pic && val.memberHeadImg && val.qrCode && firstObservers) {
         this.generateCardPic();
         firstObservers = false;
       }
@@ -77,7 +77,20 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    init() {},
+    init() {
+      
+    },
+    //二维码加载成功
+    qrCodeLoadedSuccess(){
+      //隐藏loading
+      ui.hideLoading();
+    },
+    //二维码加载失败
+    qrCodeLoadError(){
+      ui.showToast('二维码渲染失败！');
+      //隐藏loading
+      ui.hideLoading();
+    },
 
     //关闭弹层
     clickClose() {
@@ -128,7 +141,6 @@ Component({
     //保存卡片信息完整
     cardInfoRight(){
       if (this.data.cardData.memberHeadImg && this.data.cardData.qrCode && this.data.cardData.pic) {
-        console.log('card0009')
         //loading
         ui.showLoadingMask();
         let generateFilePath = this.data.generateFilePath;
@@ -179,8 +191,6 @@ Component({
 
     //绘制canvas
     drawCanvas(pic, memberHeadImg, qrCode) {
-      console.log('setData000')
-      console.log(this.data)
       let canvasWidth = this.data.width;
       let canvasHeight = this.data.height;
       let borderRadius = this.data.borderRadius;
@@ -339,10 +349,6 @@ Component({
         ctx.fillText(row_storeName[1], infoSpaceLeft + canvasWidth / iconScale + infoSpaceTop, picHeight + infoSpaceTop + infoRowHeight + 60);
       }
 
-
-      console.log('addRowHeight')
-      console.log(addRowHeight)
-
       //教练
       //绘制图标
       ctx.drawImage('/images/icon/people.png', 0, 0, 56, 56, infoSpaceLeft, picHeight + infoSpaceTop + infoRowHeight * 2 + addRowHeight, canvasWidth / iconScale, canvasWidth / iconScale);
@@ -426,8 +432,6 @@ Component({
             storeNameWidth
           })
         }
-        console.log('calStoreNameWidth')
-        console.log(this.data)
         resolve();
       })
 
@@ -447,8 +451,6 @@ Component({
           fileType: 'png',
           quality: 1,
           success: (res) => {
-            console.log('canvasToTempFilePath')
-            console.log(res)
             let tempFilePath = res.tempFilePath;
             this.setData({
               generateFilePath: tempFilePath
@@ -470,14 +472,10 @@ Component({
     },
     //远程图片转本地图片
     remoteToLocal(url) {
-      console.log('远程图片转本地图片')
-      console.log(url)
       return new Promise((resolve, reject) => {
         wx.getImageInfo({
           src: url,
           success: (res) => {
-            console.log('res getimageinfo')
-            console.log(res)
             resolve(res);
           },
           fail: (err) => {
@@ -489,8 +487,6 @@ Component({
     },
     //保存图片到系统相册
     saveImageToPhotosAlbum(url) {
-      console.log('保存图片到系统相册')
-      console.log(url)
       return new Promise((resolve, reject) => {
         wx.saveImageToPhotosAlbum({
           filePath: url,
@@ -508,7 +504,6 @@ Component({
                 success: modalSuccess => {
                   wx.openSetting({
                     success: (settingdata) => {
-                      console.log("settingdata", settingdata)
                       if (settingdata.authSetting['scope.writePhotosAlbum']) {
                         wx.showModal({
                           title: '提示',

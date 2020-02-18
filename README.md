@@ -35,6 +35,7 @@ API接口： 'https://dev.jlife.vip/wx/api/'
 2. 薇姿vichy            AppID:wx847c448281a94341
 3. 一直播               AppID:wxc4f812079fc9ff0d
 4. 腾讯直播             AppID:wx60d176f873ca2d67
+5. 雅虎直播             AppID:wx74767bf0b684f7d3
 
 ##使用第三方组件
 1、sliderBar : https://github.com/ZhngCai/double-sided-slider
