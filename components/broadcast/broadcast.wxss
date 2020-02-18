@@ -55,6 +55,7 @@ height: 106rpx;
 .broadcast .content .coach-info .name{
   margin-top: 78rpx;
   font-size: 36rpx;
+  line-height: 36rpx;
   color:#141414;
   font-weight: bold;
 }
@@ -73,6 +74,7 @@ margin-bottom:18rpx;
 .broadcast .content .course-info .text{
   margin-left: 16rpx;
   font-size:28rpx;
+  line-height: 28rpx;
   color:#141414;
 }
 .broadcast .content .qrcode-info{

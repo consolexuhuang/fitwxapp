@@ -364,7 +364,9 @@ Component({
             }
           },
           complete: () => {
-            //ui.hideLoading();
+            setTimeout(() => {
+              ui.hideLoading();
+            }, 3000)
             //设置按钮为可点
             this.setData({
               saveQrcodeBtnDisabled: false,

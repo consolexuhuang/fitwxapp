@@ -179,7 +179,9 @@ Page({
           }
         },
         complete: () => {
-          //ui.hideLoading();
+          setTimeout(() => {
+            ui.hideLoading();
+          }, 3000)
         }
 /*         fail(err) {
           ui.showToast('保存失败：' + err)

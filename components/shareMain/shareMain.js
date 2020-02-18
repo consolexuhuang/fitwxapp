@@ -20,11 +20,11 @@ Component({
   },
   /* 监听 */
   observers: {
-    'isShow': function(val) {
+    /* 'isShow': function(val) {
       if (val) {
-        //ui.hideLoading();
+        ui.hideLoading();
       }
-    },
+    }, */
     'cardData': function(val) {
       console.log('shareMain 000000')
       console.log(val.qrCode)
@@ -161,11 +161,6 @@ Component({
 
     //生成卡片图片
     generateCardPic() {
-      /* //测试
-      this.setData({
-        'cardData.storeName':'远程图片转本地图片后面只需要把第三个参数改为二维码就行了',
-         'cardData.courseName':'barbie我们只能设置文本的最大宽度，这就产生一定的了问题'
-      }) */
       //远程图片转本地图片（banner、头像、二维码）     后面只需要把第三个参数改为二维码就行了
       return Promise.all([this.remoteToLocal(this.data.cardData.pic), this.remoteToLocal(`${api.API_URI}redirect?url=${encodeURI(this.data.cardData.memberHeadImg)}`), this.remoteToLocal(this.data.cardData.qrCode), this.calStoreNameWidth(this.data.cardData.storeName)])
         .then((resArrImg) => {
@@ -530,7 +525,10 @@ Component({
             }
           },
           complete:()=>{
-            //ui.hideLoading();
+            setTimeout(()=>{
+              ui.hideLoading();
+            },3000)
+            
           }
           /* fail: (err) => {
             console.error(err)
