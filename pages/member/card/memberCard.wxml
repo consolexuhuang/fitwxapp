@@ -1,77 +1,117 @@
 <!--pages/member/card/memberCard.wxml-->
 <wxs src="../../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view style='margin-top:{{marginTopBar+20}}px;'>
-  <block wx:for="{{cardList}}" wx:if='{{cardList.length != 0}}' wx:key="_PK_">
-    <block wx:if="{{item.card_type===3}}">
-      <view class="myCard_moneyRecord fadeIn animated">
-        <view class="myCard_moneyRecord_title"  bindtap="handleTransactionRecordTap">交易记录</view>
-        <view class="myCard_moneyRecord_cont"  bindtap="handleRechargeTap" >
-          <image src="{{item.background_img}}" class="myCard_moneyRecordImg"></image>
-          <!-- <image src="{{imgUrl}}card/cardNameLogo.png" class="cardNameImg"></image> -->
-          <view class="myCardBox">
-            <view class="memberCardNumber">{{util.cardNumber(item.card_no)}}</view>
-            <view class="currentState">
-                <view class="currentStateBox">
-                  <view class="currentState_title" wx:if='{{item.balance}}'>当前余额</view>
-                  <view class="currentState_momey" wx:if='{{item.balance}}'>¥{{item.balance || '0.00'}}</view>
+<view style='padding-top:{{marginTopBar}}px;'>
+  <view class="tabBox" style="top:{{marginTopBar}}px">
+    <view class="tab">
+        <view class="tabItem {{index == 0 ? 'chooseItem' : ''}}" bindtap="clickItem" data-index="0">次卡</view>
+        <view class="tabItem {{index == 1 ? 'chooseItem chooseItem2' : ''}}" bindtap="clickItem" data-index="1">训练营</view>
+        <view class="tabItem {{index == 2? 'chooseItem chooseItem3' : ''}}" bindtap="clickItem" data-index="2">PLUS会员卡</view>
+        <view class="downLine"></view>
+    </view>
+  </view>
+    <!-- 次卡 -->
+  <view class="cardType cardType_2" wx:if='{{index == 0}}'>
+     <view wx:for="{{cardList}}" wx:if='{{cardList.length != 0}}' wx:key="_PK_">
+        <view wx:if='{{item.card_type == 1}}'>
+          <view class="buyCardRecord myCard_moneyRecord fadeIn animated" data-card-id="{{item._PK_}}" bindtap="handleCardRecordTap">
+            <view class="buyCardRecord_cont">
+              <image src="{{item.background_img}}" class="myCard_moneyRecordImg {{item.card_left_count===0 ? 'greyStyle' : ''}}"></image>
+              <view class="buyCardWidBox">
+                <view class="buyCardBox">
+                  <view class="buyCardType">{{item.card_title}}</view>
+                  <view class="buyCardRest_num">剩余次数:{{item.card_left_count}}/{{item.card_total_count}}次</view>
                 </view>
-                <view class="currentState_rechargeBox">
-                  <view class="currentState_recharge">立即充值</view>
+                <view class="buyCardBottomBox">
+                  <view class="buyCardRestTime">截止日期:{{item.validity_date}}</view>
+                  <view class="buyCardBtn" wx:if='{{item.card_left_count!==0}}'>
+                    <view class="gift" wx:if='{{item.gift_flag == 1}}' catchtap='giveToCard' data-cardid='{{item.id}}'>赠送</view>
+                    <view class="use">查看</view>
+                  </view>
                 </view>
-            </view>
-          </view>
-        </view>
-      </view>
-    </block>
-    <view class="line" wx:if='{{item.card_type===3 && cardList.length > 1}}'></view>
-    <block wx:if='{{item.card_type!==3}}'>
-      <!-- <view class="line" wx:if='{{index == 1 && cardList[0].card_type === 3}}'></view> -->
-      <view class="buyCardRecord myCard_moneyRecord fadeIn animated" data-card-id="{{item._PK_}}" bindtap="handleCardRecordTap">
-        <view class="buyCardRecord_cont">
-          <image src="{{item.background_img}}" class="myCard_moneyRecordImg {{item.card_left_count===0 ? 'greyStyle' : ''}}"></image>
-
-          <view class="buyCardWidBox">
-            <view class="buyCardBox">
-              <view class="buyCardType">{{item.card_title}}</view>
-              <view class="buyCardRest_num">剩余次数:{{item.card_left_count}}/{{item.card_total_count}}次</view>
-            </view>
-            <view class="buyCardBottomBox">
-              <view class="buyCardRestTime">截止日期:{{item.validity_date}}</view>
-              <view class="buyCardBtn" wx:if='{{item.card_left_count!==0}}'>
-                <view class="gift" wx:if='{{item.gift_flag == 1}}' catchtap='giveToCard' data-cardid='{{item.id}}'>赠送</view>
-                <view class="use" catchtap='jumpToCourse'>使用</view>
               </view>
             </view>
           </view>
-          <!-- <view class="buyCardRecord_numBox">
-            <view class='buyCardRecord_numBox2'>
-                <text class="buyCardRecord_num">¥{{item.discount_price}}/{{item.card_total_count}}次</text>
-                <text class="buyCardRest_num">(剩余{{item.card_left_count}}次)</text>
-            </view>
-          </view> -->
-          <!-- <view class='cardbottonBg'>
-             <view class="buyCardRecord_time">{{util.timeFormat(item.create_time, 'MM月DD日')}}-{{util.timeFormat(item.validity_date, 'MM月DD日')}}<text wx:if="{{item.status===2}}">(已过期)</text></view>
-             <view class='CardBtnBox'>
-                <view class='giftCardBtn giftCardBtn2 {{item.gift_flag != 1 ? "giftCardBtnCourse" : ""}}' catchtap='jumpToCourse'>立即约课</view>
-                <view class='giftCardBtn {{item.gift_flag == 1 ? "giftCardBtnCourse" : ""}}' 
-                    wx:if='{{item.gift_flag == 1}}'
-                    data-cardid='{{item.id}}'
-                    catchtap='giveToCard'>赠送好友</view>
-             </view>
-          </view> -->
+        </view>
+     </view>
+     <view wx:if='{{cardList.length == 0}}' style='overflow:hidden;text-align:center'>
+        <view class='noCardBox'>
+            <text class='iconicon-test12 iconfont noCardImg'></text>
+            <text class='noCardCont'>尚未购买过次卡</text>
+        </view>
+     </view>
+     <view class="InvalidEnter" bindtap="invaildEnter">
+        <text>查看已失效次卡</text>
+     </view>
+  </view>
   
+  <!-- 训练营 -->
+  <view class="cardType cardType_3" wx:if='{{index == 1}}'>
+      <block wx:for="{{courseList}}" wx:if='{{courseList.length != 0}}' wx:key="_PK_">
+        <view class="buyCardRecord myCard_moneyRecord fadeIn animated" data-orderId='{{item.id}}' bindtap='gotoDiscountDetail'>
+            <view class="buyCardRecord_cont">
+              <image src="{{item.index_img}}" class="myCard_moneyRecordImg}}"></image>
+              <view class="buyCardWidBox">
+                <view class="buyCardBox">
+                  <view class="buyCardType">{{item.good_title}}</view>
+                  <view class="buyCardRest_num">{{item.store_ids__NAME}}</view>
+                </view>
+                <view class="buyCardBottomBox">
+                  <view class="buyCardRestTime">购买时间:{{item.pay_time}}</view>
+                  <view class="buyCardBtn">
+                    <view class="use">查看</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+     </block>
+     <view wx:if='{{courseList.length == 0}}' style='overflow:hidden;text-align:center'>
+        <view class='noCardBox'>
+            <text class='iconicon-test12 iconfont noCardImg'></text>
+            <text class='noCardCont'>尚未购买过训练营</text>
+        </view>
+     </view>
+  </view>
+  <!-- 储值卡 -->
+  <view class="cardType cardType_1" wx:if='{{index == 2}}'>
+    <view wx:if="{{cardList[0].card_type===3}}">
+      <view class="myCard_moneyRecord fadeIn animated">
+        <view class="myCard_moneyRecord_cont" >
+          <image src="{{cardList[0].background_img}}" class="myCard_moneyRecordImg"></image>
+          <view class="myCardBox">
+            <view class="memberCardNumber">{{util.cardNumber(cardList[0].card_no)}}</view>
+            <view class="currentState">
+                <view class="currentStateBox">
+                  <view class="currentState_title" wx:if='{{cardList[0].balance}}'>当前余额</view>
+                  <view class="currentState_momey" wx:if='{{cardList[0].balance}}'>¥{{cardList[0].balance || '0.00'}}</view>
+                </view>
+                <view class="currentState_rechargeBox" bindtap="handleTransactionRecordTap">
+                  <view class="currentState_recharge">查看</view>
+                </view>
+            </view>
+          </view>
         </view>
       </view>
-    </block>
-  </block>
-  <view wx:if='{{cardList.length == 0}}' style='overflow:hidden;text-align:center'>
+    </view>
+    <view wx:else style='overflow:hidden;text-align:center'>
+        <view class='noCardBox'>
+            <text class='iconicon-test12 iconfont noCardImg'></text>
+            <text class='noCardCont'>尚未开通PLUS会员卡</text>
+        </view>
+        <view class='openCard' bindtap='jumpToRechange'>点击开通</view>
+     </view>
+  </view>
+
+ 
+  <!-- <view wx:if='{{cardList.length == 0}}' style='overflow:hidden;text-align:center'>
      <view class='noCardBox'>
         <text class='iconicon-test12 iconfont noCardImg'></text>
         <text class='noCardCont'>暂无充值记录</text>
      </view>
      <text class='openCard' bindtap='jumpToRechange'>立即开通 ></text>
-  </view>
+  </view> -->
 </view>
+
+
 <jurisdictionPopup state='{{jurisdictionState}}' bindmyevent='bindgetuserinfo'></jurisdictionPopup>
-  <!-- <official-account class='officialAccount'></official-account> -->

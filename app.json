@@ -39,7 +39,8 @@
     "pages/coach/signInCode/signInCode",
     "pages/coursePhoto/coursePhoto",
     "pages/test/test",
-    "pages/openLocation/openLocation"
+    "pages/openLocation/openLocation",
+    "pages/member/card/invalidCard/invalidCard"
   ],
   "subPackages": [
     {

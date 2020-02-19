@@ -237,7 +237,7 @@ Page({
               wx.showToast({ title: '支付成功', icon: 'none', mask: true })
               setTimeout(() => {
                 wx.redirectTo({
-                  url: '/pages/member/card/memberCard',
+                  url: '/pages/member/card/memberCard?paramsType=CARD',
                 })
               }, 1000)
             }

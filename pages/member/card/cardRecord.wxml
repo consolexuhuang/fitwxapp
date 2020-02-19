@@ -71,7 +71,8 @@
           </view>
         </view>
       </view>
-      <view class='btnCourseBox'>
+      <!-- status :1有效 2失效 -->
+      <view class='btnCourseBox' wx:if='{{cardBuyRecord.status == 1}}'>
           <view class='btnCourse' bindtap='jumpToCourse'>立即约课</view>
       </view>
     </swiper-item>
