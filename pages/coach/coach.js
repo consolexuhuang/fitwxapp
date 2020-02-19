@@ -179,7 +179,6 @@ Page({
   },
   // 课程预约
   handleAppointBtnTap: function(event) {
-    console.log('formID-------', event.detail)
     if (event.detail.formId !== 'the formId is a mock one') {
       store.setItem('formId', [...(store.getItem('formId') || ''), event.detail.formId])
     }
@@ -206,7 +205,6 @@ Page({
   onShareAppMessage() {
     const storeId = this.data.storeId
     let coachHeadUrl = ''
-    // console.log('aa', this.data.coachData.headUrl.indexOf('?'))
     if (this.data.coachData && this.data.coachData.headUrl && this.data.coachData.headUrl.indexOf('?') !== -1){
       const idx = this.data.coachData.headUrl.indexOf('?')
       coachHeadUrl = this.data.coachData.headUrl.substring(0, idx)
