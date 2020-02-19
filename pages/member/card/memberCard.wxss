@@ -3,11 +3,18 @@ page{
   background: #fff;
 }
 /* tab -----*/
+.tabBox{
+  position: sticky;
+  z-index: 100;
+  background: #fff;
+  box-shadow: 0 4rpx 15rpx rgba(0, 0, 0, 0.03);
+
+}
 .tab{
   width: 100%;
   display: flex;
   position: relative;
-  border-bottom: 2rpx solid rgb(233, 233, 233, .5)
+  border-bottom: 2rpx solid rgb(233, 233, 233, .5);
 }
 .tabItem{
   text-align: center;
@@ -50,7 +57,8 @@ page{
 }
 /* tab -----*/
 .cardType{
-  margin-top: 30rpx
+  margin-top: 30rpx;
+  padding-bottom: 30rpx;
 }
 .myCard_moneyRecord{
   background: #fff;
@@ -290,7 +298,24 @@ page{
   color:rgba(137,110,255,1);
   line-height:28rpx;
   text-align: center;
-  margin: 40rpx auto 0
+  margin: 40rpx auto 0;
+}
+.InvalidEnter text{
+  position: relative;
+}
+.InvalidEnter text::after{
+  content: '';
+  display: block;
+  width: 10rpx;
+  height: 10rpx;
+  border-right: 2rpx solid #896eff;
+  border-top: 2rpx solid #896eff;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -14rpx;
+  margin: auto;
 }
 /* -----------缺省图 */
 .noCardBox{

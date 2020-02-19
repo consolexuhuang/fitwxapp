@@ -26,7 +26,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    if (options.paramsType){
+      console.log(options.paramsType)
+      if (options.paramsType == "CARD") {
+        this.setData({ index: 0 })
+      }
+    }
   },
   onShow(){
 

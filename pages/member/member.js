@@ -15,7 +15,6 @@ Page({
     userData: '', //用户信息
     liteMyInfo: {}, // 用户首页数据
     wx_userInfo: '', // 微信账户信息
-    orderCount: 0,
     navbarData: {
       title: '我的',
       showCapsule: 0,
@@ -58,7 +57,7 @@ Page({
           liteMyInfo
         })
       }
-      Promise.all([this.getUserInfo(), this.getOrderCount()])
+      Promise.all([this.getUserInfo()])
         .then(() => {
           //关闭loading
           ui.hideLoading();
@@ -98,7 +97,7 @@ Page({
         wx_userInfo: Store.getItem('wx_userInfo') || '',
         showAuthModel: !app.passIsLogin()
       })
-      Promise.all([this.getUserInfo(), this.getOrderCount()])
+      Promise.all([this.getUserInfo()])
         .then(() => {
           //关闭loading
           ui.hideLoading();
@@ -126,24 +125,24 @@ Page({
     }
   },
   //课程包
-  getOrderCount: function (event) {
-    return new Promise((resolve, reject) => {
-      if (app.passIsLogin()) {
-        api.post('v2/good/getOrderCount').then(res => {
-          wx.stopPullDownRefresh()
-          const orderCount = Number(res.msg)
-          this.setData({
-            orderCount
-          })
-          resolve()
-        })
-      } else {
-        wx.stopPullDownRefresh()
-        resolve()
-      }
-    })
+  // getOrderCount: function (event) {
+  //   return new Promise((resolve, reject) => {
+  //     if (app.passIsLogin()) {
+  //       api.post('v2/good/getOrderCount').then(res => {
+  //         wx.stopPullDownRefresh()
+  //         const orderCount = Number(res.msg)
+  //         this.setData({
+  //           orderCount
+  //         })
+  //         resolve()
+  //       })
+  //     } else {
+  //       wx.stopPullDownRefresh()
+  //       resolve()
+  //     }
+  //   })
 
-  },
+  // },
 
   handleRechargeTap: function (event) {
     let isPlus = event.currentTarget.dataset.isPlus;
