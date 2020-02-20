@@ -34,7 +34,8 @@
           </view>
         </view>
      </view>
-     <view wx:if='{{cardList.length == 0}}' style='overflow:hidden;text-align:center'>
+     <!-- cardList长度为1 且第一个是储存卡  ||  cardList不存在-->
+     <view wx:if='{{(cardList.length == 1 && cardList[0].card_type == 3 ) || !cardList}}' style='overflow:hidden;text-align:center'>
         <view class='noCardBox'>
             <text class='iconicon-test12 iconfont noCardImg'></text>
             <text class='noCardCont'>尚未购买过次卡</text>
