@@ -1,0 +1,158 @@
+/* pages/member/card/invalidCard/invalidCard.wxss */
+page{
+  background: #fff;
+}
+.cardType{
+  margin-top: 30rpx
+}
+.myCard_moneyRecord{
+  background: #fff;
+  width: 100%;
+  margin-bottom: 34rpx;
+  /* border-bottom: 20rpx solid #FAFAFA; */
+}
+.myCard_moneyRecord:last-child{
+  /* border-bottom: 20rpx solid #fff; */
+}
+.myCard_moneyRecord_title{
+  padding: 0 56rpx;
+  box-sizing: border-box;
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(128,128,128,1);
+  line-height:72rpx;
+  letter-spacing:2rpx;
+  position: relative;
+}
+.myCard_moneyRecord_title::after{
+  content: '';
+  position: absolute;
+  border-bottom: 2rpx solid #787878;
+  border-right: 2rpx solid #787878;
+  width: 15rpx;
+  height: 15rpx;
+  transform: rotate(-45deg);
+  bottom: 0;
+  top: 0;
+  right: 56rpx;
+  margin: auto
+}
+.myCard_moneyRecord_cont{
+  width: 690rpx;
+  height: 320rpx;
+  position: relative;
+  margin: 0 auto;
+  overflow:hidden;
+  display: flex;
+  flex-direction: column;
+}
+.myCard_moneyRecordImg{
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+  position: absolute;
+}
+.greyStyle{
+  filter: grayscale(100%) opacity(40%)
+}
+.cardNameImg{
+  z-index: 100;
+  width: 247rpx;
+  height: 37rpx;
+  margin: 45rpx 0 0 40rpx;
+}
+.buyCardRecord_cont{
+  width: 690rpx;
+  height: 220rpx;
+  position: relative;
+  margin: 0 auto;
+  overflow:hidden;
+}
+.buyCardWidBox{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 30rpx 40rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between
+}
+.buyCardBox{
+  
+}
+.buyCardType{
+  font-size:44rpx;
+  font-family:PingFangSC;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  line-height:48rpx;
+}
+.buyCardRest_num{
+  font-size:26rpx;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:40rpx;
+}
+.buyCardBottomBox{
+  display: flex;
+  /* align-content: flex-end; */
+  justify-content: space-between
+}
+.buyCardRestTime{
+  font-size:24rpx;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(255,255,255,.5);
+  line-height:33rpx;
+  align-self: flex-end
+}
+.buyCardBtn{
+  display: flex;
+  justify-content: space-between;
+}
+.use{
+  width:134rpx;
+  border-radius:30rpx;
+  background: #fff;
+  font-size:28rpx;
+  font-family:PingFangSC;
+  font-weight:500;
+  color:#895EF4;
+  line-height:60rpx;
+  text-align: center;
+}
+/* -----------缺省图 */
+.noCardBox{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 330rpx auto 0;
+}
+.noCardImg{
+  width: 217rpx;
+  height: 142rpx;
+  color: #BEBEBE;
+  font-size: 142rpx;
+  margin-bottom: 30rpx;
+}
+.noCardCont{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(190,190,190,1);
+  line-height:33rpx;
+}
+.openCard{
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(130,106,254,1);
+  line-height:40rpx;
+  text-align: center;
+  margin: 20rpx auto 0;
+  letter-spacing: 1rpx;
+  /* border-bottom: 1rpx solid rgba(130,106,254,1); */
+}
