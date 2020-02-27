@@ -8,7 +8,7 @@
 </view>
 <view class="header">
     <image class="order-icon" src="{{imgUrl}}order/icon_success.png" />
-    <view class="order-tips">预约成功</view>
+    <view class="order-tips">购买成功</view>
     <view class="pay-mode">{{orderData.pay_type == 2 ? "PLUS卡支付" : (orderData.pay_type == 1 ? "微信支付" : "已购买")}}：¥{{orderData.pay_amount}}</view>
 </view>
 
@@ -29,4 +29,9 @@
 <view class="tip">
       <text class="icon-tip iconicon-test5 iconfont"></text>
       <rich-text class="text" decode="true" nodes='{{goodData.needing_attention}}'></rich-text>
+</view>
+
+<view class="nextbtn animated fadeIn" wx:if='{{goodData}}'>
+   <view class="jumptoNext" bindtap="jumptoCoupon" wx:if='{{goodData.type == "COUPON"}}'>查看我的礼券</view>
+   <view class="backHome" bindtap="backHome">返回首页</view>
 </view>

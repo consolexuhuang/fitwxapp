@@ -36,10 +36,7 @@ page{
 .good_type_Box{
 
 }
-.chooseType{
-  border:6rpx solid rgba(137,110,255,1);
-  border-radius:20rpx;
-}
+
 .good_type_list{
   margin-top: 30rpx;
   margin-bottom: 10rpx;
@@ -48,11 +45,16 @@ page{
   background:rgba(255,255,255,1);
   box-shadow:0px 0px 14rpx 0px rgba(235,235,235,1);
   border-radius:20rpx;
-  padding: 0 30rpx;
+  padding: 10rpx 30rpx;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border:6rpx solid rgba(255, 255, 255, 0);
+}
+.chooseType{
+  border:6rpx solid rgba(137,110,255,1) !important;
+  border-radius:20rpx;
 }
 .good_type_itemleft{
   text-align: left;
@@ -62,7 +64,7 @@ page{
   font-family:PingFangSC-Semibold,PingFang SC;
   font-weight:600;
   color:rgba(51,51,51,1);
-  line-height:32rpx;
+  line-height:40rpx;
 }
 .cont{
   font-size:26rpx;
@@ -73,11 +75,13 @@ page{
   margin: 20rpx 0;
 }
 .subName{
-  font-size:22rpx;
+  font-size:24rpx;
   font-family:PingFangSC-Regular,PingFang SC;
   font-weight:400;
   color:rgba(153,153,153,1);
-  line-height:22rpx;
+  line-height:28rpx;
+  display: block;
+  margin: 20rpx 0;
 }
 .good_type_itemright{
   text-align: right;
@@ -92,10 +96,10 @@ page{
 
 /* 支付 */
 .pay-title {
-  padding: 20rpx 0;
+  padding: 20rpx 0 0;
   font-size: 24rpx;
   color: #828282;
-  background: #fafafa;
+  /* background: #fafafa; */
 }
 
 .pay-type {
@@ -173,7 +177,7 @@ page{
   align-self: center;
 }
 
-.pay-type .item .tip {
+.tip {
   display: flex;
   flex-direction: row;
   padding: 20rpx 30rpx;
@@ -183,7 +187,7 @@ page{
   width: 100%
 }
 
-.pay-type .item .tip .icon-tip {
+.tip .icon-tip {
   /* width: 24rpx;
   height: 24rpx; */
   flex-shrink: 0;
@@ -192,7 +196,7 @@ page{
   color: #aaa
 }
 
-.pay-type .item .tip .text {
+.tip .text {
   font-size: 24rpx;
   color: #787878;
 }
@@ -232,4 +236,9 @@ page{
   font-size: 22rpx;
   color: #fff;
   margin-right: 14rpx;
+  
+}
+.handlePayBtnTapLock{
+  background: #C5C5C5 !important;
+  box-shadow: none !important;
 }
