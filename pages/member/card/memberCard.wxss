@@ -41,6 +41,7 @@ page{
   bottom: 0;
   left: 0;
   transition: all 0.2s ease-in-out;
+  /* -webkit-transition: -webkit-transform 0.2s ease-in-out;   */
 }
 .downLine::after{
   content: '';
@@ -53,7 +54,8 @@ page{
   right: 0; */
   margin: 0 auto;
   background: #896eff;
-  transform: all 0.2s ease-in-out
+  transition: all 0.2s ease-in-out;
+  /* -webkit-transition: all 0.2s ease-in-out; */
 }
 /* tab -----*/
 .cardType{
@@ -238,11 +240,15 @@ page{
   
 }
 .buyCardType{
-  font-size:44rpx;
+  font-size:40rpx;
   font-family:PingFangSC;
   font-weight:500;
   color:rgba(255,255,255,1);
   line-height:48rpx;
+  /* width: 610rpx; */
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .buyCardRest_num{
   font-size:26rpx;
