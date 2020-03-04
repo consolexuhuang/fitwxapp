@@ -42,12 +42,13 @@ page {
 }
 
 .title .right .icon {
-  margin-left:10rpx;
+  margin-left: 10rpx;
   font-size: 22rpx;
   color: rgba(153, 153, 153, 1);
 }
-.scrollview-box{
-  margin:0 30rpx;
+
+.scrollview-box {
+  margin: 0 30rpx;
 }
 
 .promotion-scrollview .list {
@@ -81,9 +82,8 @@ page {
   color: #fff;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
 }
-
 
 .coach-scrollview .list {
   display: flex;
@@ -103,13 +103,34 @@ page {
   border-radius: 20rpx;
 }
 
-.coach-scrollview .item .name {    
+.coach-scrollview .item .name {
   width: 130rpx;
-  margin-top:17rpx;
+  margin-top: 17rpx;
   font-size: 30rpx;
-  color: #333333;
+  color: #333;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
   text-align: center;
+}
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  
+}
+
+.category-list .item {  
+  width: 690rpx;
+  height: 150rpx;
+  margin:0 0 20rpx 0;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0rpx 0rpx 14rpx 0rpx rgba(235, 235, 235, 1);
+  border-radius: 24rpx;
+}
+
+.category-pic {
+  width: 690rpx;
+  height: 150rpx;
 }

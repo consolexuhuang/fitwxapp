@@ -5,7 +5,6 @@ const util = require('../../utils/util.js')
 const app = getApp();
 const api = app.api;
 const store = app.store;
-
 //计算
 //第一个店铺的top小于这个值时，固定标题显示；
 const topInit = (120 + 160 + 112) / 2;
@@ -36,6 +35,7 @@ Page({
     selectedLabel: [],
     isOver: false,
     searchText: '',
+    tempIds:'',
     imgUrl: getApp().globalData.imgUrl,
     navbarData: {
       title: 'Justin&Julie',
@@ -74,7 +74,7 @@ Page({
    */
 
   onLoad: function(options) {
-
+    console.log('onload course')
     /*
     //训练小红点引导 后面需要删除
       if (!wx.getStorageSync('hideTabBarRedDot')){
@@ -115,6 +115,8 @@ Page({
     })
     //搜索进来的
     let getAppCourseConfig = getApp().globalData.courseConfig;
+    console.log('getApp().globalData.courseConfig0000')
+    console.log(getApp().globalData.courseConfig)
     if (getAppCourseConfig) {
       //初始化    
       this.initFun();
@@ -217,6 +219,7 @@ Page({
     const searchText = ''
     const active = 0
     const searchIn = false
+    const tempIds=''
     this.setData({
       selectedStore,
       selectedTimeInterval,
@@ -224,12 +227,10 @@ Page({
       isOver,
       searchText,
       active,
-      searchIn
+      searchIn,
+      tempIds
     })
     //获取数据
-    /* CourseCom.getDateList(this).then(()=>{
-      this.getCourseList();
-    }) */
     CourseCom.getConfig(this).then(() => {
       this.getCourseList();
     })
@@ -360,6 +361,7 @@ Page({
       const isOver = courseConfig.isOver || false
       const searchText = courseConfig.searchText || ''
       const active = courseConfig.active || 0
+      const tempIds = courseConfig.tempIds || '';
       this.setData({
         city,
         selectedStore,
@@ -367,7 +369,8 @@ Page({
         selectedLabel,
         isOver,
         searchText,
-        active
+        active,
+        tempIds
       })
       getApp().globalData.courseConfig = '';
     }
@@ -472,7 +475,8 @@ getStoreNameHeight(){
     const isOver = this.data.isOver ? 1 : 0
     const searchText = this.data.searchText
     const latitude = getApp().globalData.location && getApp().globalData.location.latitude || '31.24916171'
-    const longitude = getApp().globalData.location && getApp().globalData.location.longitude || '121.487899486'
+    const longitude = getApp().globalData.location && getApp().globalData.location.longitude || '121.487899486';
+    const tempIds = this.data.tempIds;
     const data = {
       city,
       storeIds,
@@ -481,7 +485,8 @@ getStoreNameHeight(){
       isOver,
       searchText,
       latitude,
-      longitude
+      longitude,
+      tempIds
     }
     CourseCom.getCourseList(data, this).then(() => {
       //获取店铺名称高度px
@@ -703,9 +708,6 @@ getStoreNameHeight(){
     this.setData({
       isOver
     })
-    /* CourseCom.getDateList(this).then(() => {
-      this.getCourseList();
-    }) */
     CourseCom.getConfig(this).then(() => {
       this.getCourseList();
     })

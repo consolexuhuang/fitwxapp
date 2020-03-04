@@ -30,6 +30,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    //loading
+    ui.showLoading();
     //获取config里banner
     this.getConfig();
     //获取限时优惠列表
@@ -37,7 +39,10 @@ Page({
     //获取教练列表
     this.getCoachList();
     //获取课程分类
-    this.getCategoryList();
+    this.getCategoryList().then(()=>{
+      //关闭loading
+      ui.hideLoading();
+    });
   },
 
   /**
@@ -53,10 +58,32 @@ Page({
   onShow: function () {
 
   },
+  //下拉刷新
+  onPullDownRefresh() {
+    //loading
+    ui.showLoading();
+    //获取config里banner
+    this.getConfig();
+    //获取限时优惠列表
+    this.getGoodList();
+    //获取教练列表
+    this.getCoachList();
+    //获取课程分类
+    this.getCategoryList().then(() => {
+      //关闭loading
+      ui.hideLoading();
+      //停止下拉刷新
+      wx.stopPullDownRefresh();
+    });
+  },
 
   /**
    * 自定义函数
-   */  
+   */ 
+  //初始化
+  initFun(){
+    
+  },
   // 点击banner跳转
   handleBannerTap: function (event) {
     const path = event.currentTarget.dataset.path;
@@ -125,6 +152,19 @@ Page({
       url: '/pages/course/course',
     })
   },
+  //点击课程类别
+  handleTempTap: function (event) {
+    const tempIds = event.currentTarget.dataset.temp;
+    const courseConfig = {
+      tempIds
+    }
+    getApp().globalData.courseConfig = courseConfig;
+    console.log('getApp().globalData.courseConfig66666')
+    console.log(getApp().globalData.courseConfig)
+    wx.switchTab({
+      url: `/pages/course/course`,
+    })
+  },
   // 点击授权
   bindgetuserinfo() {
     getApp().wx_AuthUserLogin().then(() => {
@@ -165,7 +205,7 @@ Page({
   },
   //获取课程分类
   getCategoryList() {
-    api.post('v2/course/getCategoryList').then(ret => {
+    return api.post('v2/course/getCategoryList').then(ret => {
       this.setData({
         categoryList: ret.msg
       })

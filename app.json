@@ -78,8 +78,8 @@
     "backgroundColor": "#fff",
     "list": [
       {
-        "pagePath": "pages/store/store",
-        "text": "门店",
+        "pagePath": "pages/home/home",
+        "text": "首页",
         "iconPath": "/images/tabBar/icon_store.png",
         "selectedIconPath": "/images/tabBar/icon_store_selected.png"
       },
