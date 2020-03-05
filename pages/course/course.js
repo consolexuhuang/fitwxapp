@@ -740,7 +740,7 @@ getStoreNameHeight(){
       showStoreName: false
     })
   },
-  // 点击banner跳转
+  /* // 点击banner跳转
   handleBannerTap: function(event) {
     const path = event.currentTarget.dataset.path;
     //如果地址里面有‘storeId=’就筛选出当前页面里的门店  util
@@ -755,7 +755,7 @@ getStoreNameHeight(){
     wx.navigateTo({
       url: path
     })
-  },
+  }, */
 
   // 点击店铺跳转
   handleStoreTap: function(event) {

@@ -2,11 +2,12 @@
 <wxs src="../../utils/util.wxs" module="util" />
 <tabBar_top navbarData="{{navbarData}}"></tabBar_top>
 <view class="wrapper" style="margin-top:{{marginTopBar}}px;position:relative;z-index:11">
+<view class="space"></view>
   <!-- banner -->
   <swiper class="banner-swiper" indicator-dots indicator-color="#8B6FF1" indicator-active-color="#FFFFFF" autoplay circular interval="3000" wx:if="{{config.bannerList.length>0}}">
     <block wx:for="{{config.bannerList}}" wx:key="index">
       <swiper-item class="banner-item">
-        <image src="{{util.imageParam(item.image,'?imageView/0/w/690/h/280')}}" lazy-load data-path="{{item.path}}" bindtap="handleBannerTap" class="analysis_course_banner" />
+        <image src="{{util.imageParam(item.image,'?imageView/0/w/690/h/220')}}" lazy-load data-path="{{item.path}}" bindtap="handleBannerTap" class="analysis_course_banner" />
       </swiper-item>
     </block>
   </swiper>
@@ -55,7 +56,7 @@
   <view class="title" bindtap="gotoCourse">
     <view class="left">课程分类</view>
     <view class="right">
-      <text class="more">查看更多课程</text>
+      <text class="more">查看全部课程</text>
       <text class="icon iconfont iconShape-"></text>
     </view>
   </view>
