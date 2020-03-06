@@ -1,75 +1,89 @@
 <!--pages/good/goodDetail.wxml-->
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
 <view class='wrapper' style='margin-top:{{marginTopBar}}px'>
-  <view class='top'>
-    <image class='pic' src='{{goodData.banner_img}}'></image>
-    <text class='name'>{{ goodData.title }}</text>
-    <text class='indate'>有效期：{{ goodData.validity_days }}天</text>
-    <text class='shope'>适用门店：{{ goodData.store_ids__NAME }}</text>
+
+  <image class='pic' src='{{goodData.good_group_list[goodTypeId].banner_img || goodData.banner_img}}'></image>
+
+  <view class="good_menu">
+     <view class="good_menu_title">商品简介</view>
+     <rich-text class="good_menu_cont" nodes='{{goodData.good_intro}}'></rich-text>
   </view>
-  <view class='info' wx:if="{{goodData.good_intro}}">
-    <view class='title'>
-      <!-- <text class='icon'></text> -->
-      <text class='text'>课程简介</text>
-    </view>
-    <rich-text nodes="{{goodData.good_intro}}"  class='introduce'></rich-text>
-  </view>
-  <view class='info'  wx:if="{{goodData.training_effect}}">
-    <view class='title'>
-      <!-- <text class='icon'></text> -->
-      <text class='text'>训练效果</text>
-    </view>
-    <rich-text nodes="{{goodData.training_effect}}" class='introduce'></rich-text>
-  </view>
-  <view class='info' wx:if="{{goodData.suit_crowds}}">
-    <view class='title'>
-      <!-- <text class='icon'></text> -->
-      <text class='text'>适合人群</text>
-    </view>
-    <rich-text nodes="{{goodData.suit_crowds}}" class='introduce'></rich-text>
-  </view>
-  <view class='info'>
-    <view class='title'>
-      <!-- <text class='icon'></text> -->
-      <text class='text'>健身步骤</text>
-    </view>
-    <view class='step-box'>
-      <text class='line'></text>
-      <view class='step-row'>
-        <view class='col'>
-          <text class='number'>1</text>
-          <text class='text'>约课成功</text>
+
+  <view class="good_type_Box">
+     <view wx:for='{{goodData.good_group_list}}' wx:key='index' class="good_type_list {{goodTypeId == index ? 'chooseType':''}}" bindtap="chooseGoodType" data-id="{{index}}">
+        <view class="good_type_itemleft">
+           <view class="name">{{item.title}}</view>
+           <!-- <view class="cont">{{item.title}}</view> -->
+           <rich-text class="subName" nodes='{{item.sub_title}}'></rich-text>
+           <!-- <view class="subName">{{item.sub_title}}</view> -->
         </view>
-        <view class='col'>
-          <text class='number'>2</text>
-          <text class='text'>获得密码</text>
+        <view class="good_type_itemright">
+            <view class="price">¥{{item.discount_price}}</view>
         </view>
-        <view class='col'>
-          <text class='number'>3</text>
-          <text class='text'>扫码开门</text>
+     </view>
+     <!-- <view class="good_type_list {{goodTypeId == index ? 'chooseType':''}}" bindtap="chooseGoodType" data-id="index">
+        <view class="good_type_itemleft">
+           <view class="name">早课大作战礼包 A</view>
+           <view class="cont">共包含4张早课立减券</view>
+           <view class="subName">(早课满69可用,有效期10年)</view>
         </view>
-        <view class='col'>
-          <text class='number'>4</text>
-          <text class='text'>签到上课</text>
+        <view class="good_type_itemright">
+            <view class="price">¥200</view>
+        </view>
+     </view> -->
+  </view>
+
+  <!-- pay Way-->
+  <view class="pay-type fadeIn animated" wx:if='{{orderData}}'>
+    <view class="pay-title fadeIn animated">支付方式</view>
+    <view class="item">
+      <view class="item-play-type fadeIn animated" 
+            wx:for="{{currentPayWayState}}" 
+            wx:key="index"
+            wx:if="{{item.payType}}">
+        <view class="left">
+          <text class='icon_plus iconfont iconhuiyuanqiagoumai-3' wx:if="{{item.type == 1 ? true : false}}" ></text>
+          <text class="icon iconicon-test28 iconfont" 
+                 wx:if="{{item.type == 2 ? true : false}}"
+                 ></text>
+          <text class="name">{{item.type == 1 ? "卡支付" : (item.type == 2 ? "微信支付" : "支付")}}</text>
+        </view>
+        <text class='creditNone' 
+              wx:if="{{item.type == 1 && !item.isOpening}}"
+              bindtap='jumpTocashMoney'>还未开通，立即开通</text>
+        <text class='creditNone' 
+              wx:if="{{item.type == 1 && !item.momeyCreditState && item.isOpening}}"
+              bindtap='jumpTocashMoney'>余额{{orderData.card_amount}}元，立即充值</text>
+        <view class='choosePayWayBox' 
+              wx:if="{{item.state || (item.isOpening && item.momeyCreditState)}}"
+              data-ind='{{index}}'
+              >
+          <image wx:if="{{item.state && item.isOpening && item.momeyCreditState}}" 
+                src='/images/icon/chooseState.png' 
+                class='choosePayWay'></image>
+          <image wx:if="{{!item.state && item.isOpening && item.momeyCreditState}}" 
+                src='/images/icon/noneChooseState.png' 
+                class='choosePayWay'></image>
         </view>
       </view>
     </view>
   </view>
-  <view class='info' wx:if="{{goodData.needing_attention}}">
-    <view class='title'>
-      <!-- <text class='icon'></text> -->
-      <text class='text'>注意事项</text>
-    </view>
-     <rich-text nodes="{{goodData.needing_attention}}" class='introduce'></rich-text>
+  <view class="tip">
+    <!-- <text class="icon-tip iconicon-test10 iconfont"></text> -->
+    <rich-text class="text" decode="true" nodes='{{goodData.needing_attention}}'></rich-text>
   </view>
-</view>
 
-<view class='foot'>
-  <view class='left'>
-    <text class='label'>总价：</text>
-    <text class='price-current'>¥{{ goodData.discount_price }}</text>
-    <text class='price-origin'>¥{{ goodData.price }}</text>
+  <!-- footer -->
+  <view class="footer fadeIn animated">
+    <button class="btn cardOver" wx:if='{{orderData.pay_type == "0"}}'>{{orderData.error_tip}}</button>
+    <button class="btn {{paylock ? 'handlePayBtnTapLock' : ''}}" bindtap="handlePayBtnTap" wx:elif='{{ orderData.pay_type == "1" || orderData.pay_type == "2" || orderData.pay_type == "5"}}'>
+        立即支付 ¥{{orderData.pay_amount}}
+    </button>
+    <button class="btn" bindtap='jumpTocashMoney' wx:elif='{{orderData.pay_type == "3"}}'>
+        需支付¥{{orderData.pay_amount}}，点击充值
+    </button>
+    <button class="btn" bindtap='jumpTocashMoney' wx:elif='{{orderData.pay_type == "3" && orderData.has_card}}'>
+        余额不足，点击充值
+    </button>
   </view>
-  <button class='btn' wx:if="{{goodData.status}}" bindtap='payGood'>立即预约</button>
-  <button class='btn end' wx:else>{{ goodData.status__NAME }}</button>
 </view>

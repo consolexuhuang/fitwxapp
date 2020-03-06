@@ -72,4 +72,14 @@ Page({
   onShow: function () {
 
   },
+  jumptoCoupon(){
+    wx.redirectTo({
+      url: '/pages/member/coupon/memberCoupon',
+    })
+  },
+  backHome(){
+    wx.switchTab({
+      url: '/pages/course/course',
+    })
+  }
 })
