@@ -125,3 +125,35 @@
   font-size: 24rpx;
   color: #b4b4b4;
 }
+
+.nextbtn{
+  margin-top: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.jumptoNext{
+  width:690rpx;
+  background:rgba(137,111,255,1);
+  box-shadow:0px 0px 8rpx 0px rgba(179,179,179,0.3);
+  border-radius:20rpx;
+  line-height: 96rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #fff;
+  margin-bottom: 30rpx;
+  position: relative;
+  
+}
+.backHome {
+  width:690rpx;
+  background:rgba(255,255,255,1);
+  border:3rpx solid rgba(137,111,255,1);
+  border-radius:20rpx;
+  line-height: 96rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #896FFF;
+  margin-bottom: 30rpx;
+}
