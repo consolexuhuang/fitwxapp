@@ -115,7 +115,13 @@ Page({
   goodView(event) {
     if (getApp().passIsLogin()) {
       let item = event.currentTarget.dataset.item;
-      let goodId = item.id
+      let goodId = item.id;
+
+      //自定义分析
+      wx.reportAnalytics('home_goodlist_item', {
+        goodid: goodId,
+      });
+      
       if (item.type === 'COUPON') {
         wx.navigateTo({
           url: `/pages/good/goodDetail?goodId=${goodId}`
@@ -142,6 +148,12 @@ Page({
   // 跳转教练课程列表
   handleCoachTap: function (event) {
     const coachId = event.currentTarget.dataset.coachId
+
+    //自定义分析
+    wx.reportAnalytics('home_coach_item', {
+      coachid: coachId,
+    });
+
     wx.navigateTo({
       url: `/pages/coach/coach?coachId=${coachId}`
     })
@@ -155,6 +167,12 @@ Page({
   //点击课程类别
   handleTempTap: function (event) {
     const tempIds = event.currentTarget.dataset.temp;
+
+    //自定义分析
+    wx.reportAnalytics('home_course_item', {
+      temp: tempIds,
+    });
+
     const courseConfig = {
       tempIds
     }

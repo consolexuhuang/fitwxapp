@@ -13,7 +13,7 @@
   </swiper>
   <!-- 限时促销 -->
   <!-- 标题 -->
-  <view class="title" bindtap="handleGoodList">
+  <view class="title analysis_home_goodlist_more" bindtap="handleGoodList">
     <view class="left">限时优惠</view>
     <view class="right">
       <text class="more">更多</text>
@@ -24,7 +24,7 @@
   <view class="scrollview-box">
   <scroll-view class="promotion-scrollview" scroll-x="true">
     <view class="list">
-      <view class="item" wx:for="{{goodListData}}" wx:key="id"  data-item="{{item}}" bindtap='goodView'>
+      <view class="item analysis_home_goodlist_item" wx:for="{{goodListData}}" wx:key="id"  data-item="{{item}}" bindtap='goodView'>
         <image class="pic" src="{{util.imageParam(item.share_img,'?imageView/0/w/335/h/268')}}"></image>
         <text class="name">{{item.title}}</text>
       </view>
@@ -44,7 +44,7 @@
   <view class="scrollview-box">
   <scroll-view class="coach-scrollview" scroll-x="true">
     <view class="list">
-      <view class="item" wx:for="{{coachList}}" wx:key="id"  data-coach-id="{{item.id}}" bindtap='handleCoachTap'>
+      <view class="item analysis_home_coach_item" wx:for="{{coachList}}" wx:key="id"  data-coach-id="{{item.id}}" bindtap='handleCoachTap'>
         <image class="pic" src="{{util.imageParam(item.head_url,'?imageView/0/w/130/h/130')}}"></image>
         <text class="name">{{item.coach_name}}</text>
       </view>
@@ -53,7 +53,7 @@
 </view>
 <!-- 课程分类 -->
   <!-- 标题 -->
-  <view class="title" bindtap="gotoCourse">
+  <view class="title analysis_home_course_more" bindtap="gotoCourse">
     <view class="left">课程分类</view>
     <view class="right">
       <text class="more">查看全部课程</text>
@@ -62,7 +62,7 @@
   </view>
   <!-- 内容 -->
   <view class="category-list">
-    <view class="item" wx:for="{{categoryList}}" wx:key="temp" data-temp="{{item.temp}}" bindtap="handleTempTap">
+    <view class="item analysis_home_course_item" wx:for="{{categoryList}}" wx:key="temp" data-temp="{{item.temp}}" bindtap="handleTempTap">
      <image class="category-pic" src="{{util.imageParam(item.img,'?imageView/0/w/690/h/150')}}"></image>
     </view>
   </view>

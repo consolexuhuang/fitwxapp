@@ -67,6 +67,7 @@ Page({
     jurisdictionSmallState: false,
     // checkPromotion_course:{}, //首页的活动促销
     isHasData: false, //隐藏结束是否有数据
+    isFromHome:false,//是否是从首页课程分类进来
   },
 
   /**
@@ -115,8 +116,6 @@ Page({
     })
     //搜索进来的
     let getAppCourseConfig = getApp().globalData.courseConfig;
-    console.log('getApp().globalData.courseConfig0000')
-    console.log(getApp().globalData.courseConfig)
     if (getAppCourseConfig) {
       //初始化    
       this.initFun();
@@ -220,6 +219,7 @@ Page({
     const active = 0
     const searchIn = false
     const tempIds=''
+    const isFromHome=false
     this.setData({
       selectedStore,
       selectedTimeInterval,
@@ -228,7 +228,8 @@ Page({
       searchText,
       active,
       searchIn,
-      tempIds
+      tempIds,
+      isFromHome
     })
     //获取数据
     CourseCom.getConfig(this).then(() => {
@@ -370,7 +371,8 @@ Page({
         isOver,
         searchText,
         active,
-        tempIds
+        tempIds,
+        isFromHome: tempIds?true:false
       })
       getApp().globalData.courseConfig = '';
     }
