@@ -254,7 +254,7 @@ Component({
       //'或'
       ctx.fillText(tipText5, (canvasWidth-20)/2, userInfoY +150);
       //下边文字
-      ctx.fillText(tipText6,75, userInfoY + 180);
+      ctx.fillText(tipText6,150, userInfoY + 180);
 
       //底部修饰图片
       ctx.drawImage('/images/broadcast/bg_bottom.png',0,0, 1300, 212,0,canvasHeight-106,650,106);
