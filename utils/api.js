@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 const API_URI = 'https://fit.jlife.vip/wx/api/'
+=======
+ const API_URI = 'https://fit.jlife.vip/wx/api/'
+>>>>>>> master
 //const API_URI = 'https://dev.jlife.vip/wx/api/'
 
 import Store from './store.js'

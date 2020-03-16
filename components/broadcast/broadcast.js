@@ -47,7 +47,7 @@ Component({
     tipText3: '打开抖音',
     tipText4: '立即看到',
     tipText5: '或',
-    tipText6: '下载“一直播”app，搜索“JJFitness”进入直播间',
+    tipText6: '在抖音搜索“JJFitness”进入直播间',
     sQrCodeWidth: '', //源二维码宽度
     qrCodeWidth: 230, //二维码宽度
     generateFilePath: '', //canvas生成的图片
@@ -254,7 +254,7 @@ Component({
       //'或'
       ctx.fillText(tipText5, (canvasWidth-20)/2, userInfoY +150);
       //下边文字
-      ctx.fillText(tipText6,75, userInfoY + 180);
+      ctx.fillText(tipText6,150, userInfoY + 180);
 
       //底部修饰图片
       ctx.drawImage('/images/broadcast/bg_bottom.png',0,0, 1300, 212,0,canvasHeight-106,650,106);
