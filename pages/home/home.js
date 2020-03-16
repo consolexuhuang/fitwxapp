@@ -87,8 +87,14 @@ Page({
   // 点击banner跳转
   handleBannerTap: function (event) {
     const path = event.currentTarget.dataset.path;
+    //底部tabbar页面
+    if ((path.indexOf('storeId=') == -1 && path.indexOf('pages/course/course') != -1) || path.indexOf('pages/member/order/memberOrder') != -1 || path.indexOf('pages/member/member') != -1 || path.indexOf('pages/home/home') != -1){
+      wx.switchTab({
+        url: path,
+      })
+    }
     //如果地址里面有‘storeId=’就筛选出当前页面里的门店  util
-    if (path.indexOf('storeId=') != -1) {
+    if (path.indexOf('storeId=') != -1 && path.indexOf('pages/course/course') != -1) {
       //获取店铺id
       let storeId = util.getUrlParam(path, 'storeId').split(',');
       const selectedStore = []
