@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "tabBar_top": "/components/tabBar_top/tabBar",
+    "jurisdictionSmallPopup": "/components/jurisdictionSmallPopup/jurisdictionSmallPopup"
+  }
 }

@@ -35,7 +35,16 @@ page{ background:#fff;}
   color: rgba(120, 120, 120, 1);
   line-height: 88rpx;
 }
-
+.hometip{
+  width:750rpx;
+height:50rpx;
+line-height: 50rpx;
+background:rgba(137,110,255,0.3);
+text-align: center;
+font-size:24rpx;
+font-weight:bold;
+color:rgba(137,110,255,1);
+}
 .date-wrapper {
   box-shadow: 0 4rpx 15rpx rgba(0, 0, 0, 0.03);
   position: sticky;

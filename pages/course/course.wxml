@@ -8,6 +8,8 @@
       <text class='iconicon-test5 iconfont netWorkImg'></text>
       <text class='netWorkCont'>当前网络不可用，请检查你的网络设置</text>
     </view>
+    <!-- 首页课程分类 进来的提示-->
+  <view class="hometip" wx:if="{{isFromHome}}">已为您展示分类课程，下拉刷新查看全部</view>
     <view class="header">
       <view class="search-bar fadeIn animated analysis_course_search" bindtap="handleCourseSearchTap">
         <text class='iconicon-test43 iconfont icon1' />
@@ -17,17 +19,18 @@
         <text class='iconfont iconclose-circle' wx:if="{{searchText}}" catchtap='clearSearch'></text>
       </view>
 
-      <swiper class="banner-swiper fadeIn animated" indicator-dots indicator-color="#8B6FF1" indicator-active-color="#FFFFFF" autoplay circular interval="3000" wx:if="{{config.bannerList.length>0}}">
+      <!-- <swiper class="banner-swiper fadeIn animated" indicator-dots indicator-color="#8B6FF1" indicator-active-color="#FFFFFF" autoplay circular interval="3000" wx:if="{{config.bannerList.length>0}}">
         <block wx:for="{{config.bannerList}}" wx:key="index">
           <swiper-item class="banner-item">
             <image src="{{util.imageParam(item.image)}}" lazy-load data-path="{{item.path}}" bindtap="handleBannerTap" class="analysis_course_banner" />
           </swiper-item>
         </block>
-      </swiper>      
+      </swiper>   -->    
     </view>
   </view>
 
   <view class="date-wrapper" style='top:{{marginTopBar -1 }}px'>
+  
   <!-- 筛选 -->
   <view class="screen-wrapper">
 

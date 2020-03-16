@@ -1,2 +1,72 @@
 <!--pages/home/home.wxml-->
-<text>pages/home/home.wxml</text>
+<wxs src="../../utils/util.wxs" module="util" />
+<tabBar_top navbarData="{{navbarData}}"></tabBar_top>
+<view class="wrapper" style="margin-top:{{marginTopBar}}px;position:relative;z-index:11">
+<view class="space"></view>
+  <!-- banner -->
+  <swiper class="banner-swiper" indicator-dots indicator-color="#8B6FF1" indicator-active-color="#FFFFFF" autoplay circular interval="3000" wx:if="{{config.bannerList.length>0}}">
+    <block wx:for="{{config.bannerList}}" wx:key="index">
+      <swiper-item class="banner-item">
+        <image src="{{util.imageParam(item.image,'?imageView/0/w/690/h/220')}}" lazy-load data-path="{{item.path}}" bindtap="handleBannerTap" class="analysis_home_banner" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 限时促销 -->
+  <!-- 标题 -->
+  <view class="title analysis_home_goodlist_more" bindtap="handleGoodList">
+    <view class="left">限时优惠</view>
+    <view class="right">
+      <text class="more">更多</text>
+      <text class="icon iconfont iconShape-"></text>
+    </view>
+  </view>
+  <!-- 内容 -->
+  <view class="scrollview-box">
+  <scroll-view class="promotion-scrollview" scroll-x="true">
+    <view class="list">
+      <view class="item analysis_home_goodlist_item" wx:for="{{goodListData}}" wx:key="id"  data-item="{{item}}" bindtap='goodView'>
+        <image class="pic" src="{{util.imageParam(item.share_img,'?imageView/0/w/335/h/268')}}"></image>
+        <text class="name">{{item.title}}</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<!-- 教练 -->
+  <!-- 标题 -->
+  <view class="title" bindtap="">
+    <view class="left">教练</view>
+    <view class="right">
+      <!-- <text class="more">更多</text>
+      <text class="icon iconfont iconShape-"></text> -->
+    </view>
+  </view>
+  <!-- 内容 -->
+  <view class="scrollview-box">
+  <scroll-view class="coach-scrollview" scroll-x="true">
+    <view class="list">
+      <view class="item analysis_home_coach_item" wx:for="{{coachList}}" wx:key="id"  data-coach-id="{{item.id}}" bindtap='handleCoachTap'>
+        <image class="pic" src="{{util.imageParam(item.head_url,'?imageView/0/w/130/h/130')}}"></image>
+        <text class="name">{{item.coach_name}}</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<!-- 课程分类 -->
+  <!-- 标题 -->
+  <view class="title analysis_home_course_more" bindtap="gotoCourse">
+    <view class="left">课程分类</view>
+    <view class="right">
+      <text class="more">查看全部课程</text>
+      <text class="icon iconfont iconShape-"></text>
+    </view>
+  </view>
+  <!-- 内容 -->
+  <view class="category-list">
+    <view class="item analysis_home_course_item" wx:for="{{categoryList}}" wx:key="temp" data-temp="{{item.temp}}" bindtap="handleTempTap">
+     <image class="category-pic" src="{{util.imageParam(item.img,'?imageView/0/w/690/h/150')}}"></image>
+    </view>
+  </view>
+</view>
+
+<jurisdictionSmallPopup state='{{jurisdictionSmallState}}' bindmyevent='bindgetuserinfo'></jurisdictionSmallPopup>
+
