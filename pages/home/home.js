@@ -20,9 +20,9 @@ Page({
     },
     marginTopBar: app.globalData.tab_height * 2 + 20,
     config: '',
-    goodListData:'',
-    coachList:'',
-    categoryList:'',
+    goodListData: '',
+    coachList: '',
+    categoryList: '',
     jurisdictionSmallState: false,
   },
 
@@ -39,7 +39,7 @@ Page({
     //获取教练列表
     this.getCoachList();
     //获取课程分类
-    this.getCategoryList().then(()=>{
+    this.getCategoryList().then(() => {
       //关闭loading
       ui.hideLoading();
     });
@@ -79,18 +79,24 @@ Page({
 
   /**
    * 自定义函数
-   */ 
+   */
   //初始化
-  initFun(){
-    
+  initFun() {
+
   },
   // 点击banner跳转
   handleBannerTap: function (event) {
     const path = event.currentTarget.dataset.path;
+    //底部tabbar页面
+    if ((path.indexOf('storeId=') == -1 && path.indexOf('pages/course/course') != -1) || path.indexOf('pages/member/order/memberOrder') != -1 || path.indexOf('pages/member/member') != -1 || path.indexOf('pages/home/home') != -1){
+      wx.switchTab({
+        url: path,
+      })
+    }
     //如果地址里面有‘storeId=’就筛选出当前页面里的门店  util
-    if (path.indexOf('storeId=') != -1) {
+    if (path.indexOf('storeId=') != -1 && path.indexOf('pages/course/course') != -1) {
       //获取店铺id
-      let storeId = util.getUrlParam(path, 'storeId').split(',');      
+      let storeId = util.getUrlParam(path, 'storeId').split(',');
       const selectedStore = []
       selectedStore.push(storeId)
       const courseConfig = {
@@ -121,7 +127,7 @@ Page({
       wx.reportAnalytics('home_goodlist_item', {
         goodid: goodId,
       });
-      
+
       if (item.type === 'COUPON') {
         wx.navigateTo({
           url: `/pages/good/goodDetail?goodId=${goodId}`
@@ -159,7 +165,7 @@ Page({
     })
   },
   //跳转到课程列表页面
-  gotoCourse(){
+  gotoCourse() {
     wx.switchTab({
       url: '/pages/course/course',
     })
