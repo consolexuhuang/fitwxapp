@@ -15,8 +15,8 @@ Page({
       title: '首页',
       showCapsule: 0,
       isShowBackHome: false,
-      titleColor: "#000",
-      tab_topBackground: '#fff'
+      titleColor: "#fff",
+      tab_topBackground: '#896EFF'
     },
     marginTopBar: app.globalData.tab_height * 2 + 20,
     config: '',
