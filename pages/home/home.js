@@ -12,7 +12,7 @@ Page({
    */
   data: {
     navbarData: {
-      title: '首页',
+      title: 'Justin&Julie',
       showCapsule: 0,
       isShowBackHome: false,
       titleColor: "#fff",
