@@ -146,7 +146,7 @@
       </view>
     </view>
   </view>
-  <!-- <view class="module-wrapper">
+  <view class="module-wrapper">
     <view class="module-title-wrapper">
       <view class="module-title">健身步骤</view>
     </view>
@@ -155,23 +155,23 @@
       <view class="fitness-step-list">
         <view class="fitness-step-item">
           <view class="fitness-step-item-number">1</view>
-          <view class="fitness-step-item-text">预约课程</view>
+          <view class="fitness-step-item-text">约课成功</view>
         </view>
         <view class="fitness-step-item">
           <view class="fitness-step-item-number">2</view>
-          <view class="fitness-step-item-text">收到通知</view>
+          <view class="fitness-step-item-text">到达门店</view>
         </view>
         <view class="fitness-step-item">
           <view class="fitness-step-item-number">3</view>
-          <view class="fitness-step-item-text">查看订单</view>
+          <view class="fitness-step-item-text">前台扫码</view>
         </view>
         <view class="fitness-step-item">
           <view class="fitness-step-item-number">4</view>
-          <view class="fitness-step-item-text">进入直播间</view>
+          <view class="fitness-step-item-text">签到上课</view>
         </view>
       </view>
     </view>
-  </view> -->
+  </view>
   <view class="module-wrapper">
     <view class="module-title-wrapper">
       <view class="module-title">注意事项</view>
