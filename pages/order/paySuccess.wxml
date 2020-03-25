@@ -18,7 +18,7 @@
     </view>
     <view class="QR-code-wrapper">
       <!-- <view class="QR-code-label">{{orderDetailData.order.wait ? "已加入等待" : ""}}</view> -->
-      <image wx:if='{{orderDetailData.qrPath && !orderDetailData.order.wait}}' src="{{orderDetailData.qrPath}}" />
+      <!-- <image wx:if='{{orderDetailData.qrPath && !orderDetailData.order.wait}}' src="{{orderDetailData.qrPath}}" /> -->
       <!-- <text wx:if='{{!orderDetailData.qrPath && !orderDetailData.order.wait}}' >开课前 1 小时显示</text> -->
       <view class='waitBox' wx:if='{{orderDetailData.order.wait}}'>
         <text class='waitImg iconxingzhuang iconfont'></text>
