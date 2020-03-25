@@ -100,7 +100,7 @@
     </view>
     <view class="tips-wrapper">
       <view class="tips-label">温馨提示：</view>
-      <rich-text class="tips-content" nodes="{{'开课前10分钟更新直播间链接，<br/>在小程序内直接观看直播。'}}"></rich-text>
+      <rich-text class="tips-content" nodes="{{'1.开课前6小时取消，券在有效期内全额退款，<br/>2.开课6小时内取消，不支持退款,<br/>3.直播课程开始前10分钟更新直播间链接。'}}"></rich-text>
     </view>
   </view>
   <view class="pay-mode-wrapper" wx:if='{{orderData}}'>
