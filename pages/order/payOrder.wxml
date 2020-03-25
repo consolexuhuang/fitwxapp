@@ -225,7 +225,7 @@
       <view class="pay-btn analysis_payorder_btn_recharge" bindtap="handleRechargeTap">余额不足，请充值</view>
     </block>
     <block wx:elif="{{orderData.pay_type===3}}">
-      <view class="pay-btn analysis_payorder_btn_openplus" bindtap="handleRechargeTap">PLUS卡用户可等侯，点击开通（随时可退）</view>
+      <view class="pay-btn analysis_payorder_btn_openplus" bindtap="handleRechargeTap">PLUS卡用户可{{orderData.is_wait?'等侯':'预约'}}，点击开通（随时可退）</view>
     </block>
 </view>
 <!-- 免责声明 -->
