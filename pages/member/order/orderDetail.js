@@ -23,7 +23,7 @@ Page({
       titleColor: "#000",
       tab_topBackground: '#fff'
     },
-    marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    marginTopBar: getApp().globalData.header_bar_height,
     coachWxCodeState: false,
     courseShareData:'', //分享课程文案
     // officialData: '', //获取当前场景值对象

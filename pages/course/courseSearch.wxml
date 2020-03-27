@@ -1,6 +1,6 @@
 <!--pages/course/courseSearch.wxml-->
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class="wrapper" style='margin-top:{{marginTopBar}}px'>
+<view class="wrapper" style='margin-top:{{marginTopBar}}rpx'>
   <view class="header">
     <view class="search-bar-wrapper">
       <view class="search-bar">

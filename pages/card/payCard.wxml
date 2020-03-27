@@ -1,7 +1,7 @@
 <!--pages/card/payCard.wxml-->
 <wxs src="../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class="wrapper" wx:if="{{goodData}}" style='padding-bottom:140rpx;margin-top:{{marginTopBar+10}}px'>
+<view class="wrapper" wx:if="{{goodData}}" style='padding-bottom:140rpx;margin-top:{{marginTopBar+10}}rpx'>
   <!-- card -->
   <swiper class='cardBanner' 
           wx:if='{{optional_imgList && optional_imgList.length>1}}'
@@ -13,7 +13,7 @@
           current='{{current_banner}}'
           bindchange='bindchangeBanner'
           circular="{{true}}"
-          style='margin-top:{{marginTopBar+25}}px'
+          style='margin-top:{{marginTopBar+25}}rpx'
           >
       <swiper-item wx:for='{{optional_imgList}}' wx:key='{{index}}' class='bannerItem'>
         <image class='cardImg {{current_banner == index ? "sacleInStyle" : "sacleOutStyle"}}' src='{{item}}'></image>

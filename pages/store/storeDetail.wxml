@@ -1,7 +1,7 @@
 <!--pages/store/storeDetail.wxml-->
 <wxs src="../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class="wrapper" wx:if="{{storeData}}" style='margin-top:{{marginTopBar}}px'>
+<view class="wrapper" wx:if="{{storeData}}" style='margin-top:{{marginTopBar}}rpx'>
   <view class="header">
     <swiper autoplay="{{true}}" wx:if="{{picList.length}}" style='height:300rpx'>
       <block wx:for="{{picList}}" wx:key="index">

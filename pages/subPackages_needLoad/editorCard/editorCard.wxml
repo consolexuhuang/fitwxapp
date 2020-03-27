@@ -1,6 +1,6 @@
 <!--pages/subPackages_needLoad/editorCard/editorCard.wxml-->
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<image class='cardBanner fadeIn animated' style='margin-top:{{marginTopBar+25}}px' src='{{optional_imgList[currentIndex]}}'></image>
+<image class='cardBanner fadeIn animated' style='margin-top:{{marginTopBar+25}}rpx' src='{{optional_imgList[currentIndex]}}'></image>
 
 <view class='chooseBannerImg'>
    <view class='imgBox {{currentIndex == index ? "chooseImgBox" : ""}}' 

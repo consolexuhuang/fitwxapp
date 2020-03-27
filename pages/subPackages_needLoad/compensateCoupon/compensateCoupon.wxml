@@ -1,5 +1,5 @@
 <!--pages/subPackages_needLoad/compensateCoupon/compensateCoupon.wxml-->
-<view class='compensateCoupon' style='margin-top:{{marginTopBar+20}}px'>
+<view class='compensateCoupon' style='margin-top:{{marginTopBar+20}}rpx'>
    <view class='compensateCoupon_title'>来自技术小哥的歉意</view>
    <view class='couponBox fadeInUp animated'>
       <image class='compensateCoupon_img' src='https://img.cdn.powerpower.net/5d5ca557e4b080af90b8a605.png'></image>

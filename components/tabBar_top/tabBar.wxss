@@ -27,10 +27,9 @@ to {background: none;}
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 20rpx;
   margin: auto;
   font-size: 36rpx;
   color: #2c2b2b;
@@ -39,7 +38,7 @@ to {background: none;}
 
 .nav-capsule {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   margin-left: 30rpx;
   min-width: 140rpx;
   justify-content: space-between;
@@ -48,6 +47,7 @@ to {background: none;}
 .nav-capsuleBox{
   display: flex;
   align-items: center;
+  margin-bottom:15rpx;
   /* margin-left: 30rpx; */
   min-width: 140rpx;
   justify-content: space-between;

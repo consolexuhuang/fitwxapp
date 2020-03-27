@@ -1,7 +1,7 @@
 <!--pages/member/card/transactionRecord.wxml-->
 <wxs src="../../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class="wrapper" style='margin-top:{{marginTopBar}}px'>
+<view class="wrapper" style='margin-top:{{marginTopBar}}rpx'>
   <view class="tab-title">
     <view class="title {{active===0?'active':''}}" data-active="{{0}}" bindtap="handleTabTap">
       <text class="txt">充值记录</text>

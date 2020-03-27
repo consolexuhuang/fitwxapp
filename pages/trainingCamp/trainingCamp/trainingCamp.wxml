@@ -1,7 +1,7 @@
 <!--pages/trainingCamp/trainingCamp/trainingCamp.wxml-->
 <wxs src="../../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class='content' style='margin-top:{{marginTopBar}}px'>
+<view class='content' style='margin-top:{{marginTopBar}}rpx'>
    <image class='trainingCamp_topDataImg fadeIn animated' src='{{trainingCampData.banner_img}}'></image>
    <view class='trainingCamp_top'>
      <view class='trainingCamp_topName'>

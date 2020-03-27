@@ -1,7 +1,7 @@
 <!--pages/order/orderCoupon.wxml-->
 <wxs src="../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class="wrapper" style='margin-top:{{marginTopBar}}px'>
+<view class="wrapper" style='margin-top:{{marginTopBar}}rpx'>
   <view class="rule" bindtap='showCouponRule'>
     <text class='iconicon-test20 iconfont icon1'/>
     <text>使用规则</text>

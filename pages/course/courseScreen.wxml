@@ -1,7 +1,7 @@
 <!--pages/course/courseScreen.wxml-->
 <wxs src="../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = "{{navbarData}}"></tabBar_top>
-<view class="course-screen-wrapper" style="margin-top:{{marginTopBar}}px" wx:if="{{typeLabelList}}">
+<view class="course-screen-wrapper" style="margin-top:{{marginTopBar}}rpx" wx:if="{{typeLabelList}}">
   <scroll-view scroll-y class="course-screen-scroll">
     <view class="course-screen-list">
       

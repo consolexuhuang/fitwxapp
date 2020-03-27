@@ -1,7 +1,7 @@
 <!--pages/member/member.wxml-->
 <wxs src="../../utils/util.wxs" module="util" />
 <tabBar_top navbarData='{{navbarData}}'></tabBar_top>
-<view  wx:if='{{!showAuthModel}}' style='margin-top:{{marginTopBar}}px'>
+<view  wx:if='{{!showAuthModel}}' style='margin-top:{{marginTopBar}}rpx'>
 
   <!-- 未充值 头部 -->
   <view class="top-none-plus" wx:if="{{!liteMyInfo.isPlus}}">

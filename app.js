@@ -46,8 +46,16 @@ App({
     //获取不同设备高度
     wx.getSystemInfo({
       success: res => {
-        this.globalData.tab_height = res.statusBarHeight
-        this.globalData.systemInfo = res
+        let tab_height = res.statusBarHeight;
+        this.globalData.tab_height = tab_height;//机器状态栏高度,单位px
+        this.globalData.systemInfo = res;
+        //头部导航栏的高度
+        //px与rpx的比例 rpx=px*pxToRpxScale
+        let pxToRpxScale = 750 / res.windowWidth;
+        let tab_height_rpx = tab_height * pxToRpxScale; //将高度乘以换算后的该设备的rpx与px的比例
+        this.globalData.header_bar_height = tab_height_rpx + 90;//单位是rpx
+        this.globalData.pxToRpxScale = pxToRpxScale;//px转rpx比例 rpx=px*pxToRpxScale
+        
         if (res.model.indexOf('iPhone X') > -1) {
           this.globalData.isIpX = true
         }
@@ -97,6 +105,8 @@ App({
     systemInfo: '',
     share: false,
     tab_height: 0,
+    header_bar_height:0,//顶部功能条高度
+    pxToRpxScale:1,//px转rpx比例 rpx=px*pxToRpxScale
     code: '',
     // openid:'',
     location: '',

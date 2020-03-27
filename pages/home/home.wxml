@@ -1,7 +1,7 @@
 <!--pages/home/home.wxml-->
 <wxs src="../../utils/util.wxs" module="util" />
 <tabBar_top navbarData="{{navbarData}}"></tabBar_top>
-<view class="wrapper" style="margin-top:{{marginTopBar}}px;position:relative;z-index:11">
+<view class="wrapper" style="margin-top:{{marginTopBar}}rpx;position:relative;z-index:11">
 
   <!-- 背景样式 -->
   <view class="bg-view">

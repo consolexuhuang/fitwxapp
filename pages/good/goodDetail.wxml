@@ -1,6 +1,6 @@
 <!--pages/good/goodDetail.wxml-->
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class='wrapper' style='margin-top:{{marginTopBar}}px'>
+<view class='wrapper' style='margin-top:{{marginTopBar}}rpx'>
 
   <image class='pic' src='{{goodData.good_group_list[goodTypeId].banner_img || goodData.banner_img}}'></image>
 

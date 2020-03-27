@@ -1,6 +1,6 @@
 <!--pages/subPackages_gift/giftCard/giftCard.wxml-->
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class='givePeople' style='padding-top:{{marginTopBar}}px'>
+<view class='givePeople' style='padding-top:{{marginTopBar}}rpx'>
    <view class='givePeopleBox fadeIn animated'>
       <image class='givePeopleImg' wx:if='{{!giftCardInfo.gift_head_img}}' src='{{imgUrl}}icon/default_header.png'></image>
       <image class='givePeopleImg' wx:else src='{{giftCardInfo.gift_head_img}}'></image>

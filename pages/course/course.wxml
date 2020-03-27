@@ -3,7 +3,7 @@
 <tabBar_top navbarData="{{navbarData}}"></tabBar_top>
 <view class="wrapper">
 
-  <view style="margin-top:{{marginTopBar}}px;position:relative;z-index:11">
+  <view style="margin-top:{{marginTopBar}}rpx;position:relative;z-index:11">
     <view class='netWork fadeIn animated' wx:if='{{!IsshowNetStatus}}'>
       <text class='iconicon-test5 iconfont netWorkImg'></text>
       <text class='netWorkCont'>当前网络不可用，请检查你的网络设置</text>
@@ -29,7 +29,7 @@
     </view>
   </view>
 
-  <view class="date-wrapper" style='top:{{marginTopBar -1 }}px'>
+  <view class="date-wrapper" style='top:{{marginTopBar -1 }}rpx'>
   
   <!-- 筛选 -->
   <view class="screen-wrapper">
@@ -65,7 +65,7 @@
 
   <view class='store-block'>
     <!-- 店铺名称固定   -->
-    <view class='store-name-postion analysis_course_storename' hidden='{{!showStoreName}}' style="top:{{marginTopBar + stickyTopHeight -3}}px" data-store-id="{{currentStoreInfo.storeId}}" bindtap="handleStoreTap">
+    <view class='store-name-postion analysis_course_storename' hidden='{{!showStoreName}}' style="top:{{marginTopBar + stickyTopHeight -3}}rpx" data-store-id="{{currentStoreInfo.storeId}}" bindtap="handleStoreTap">
       <view class="store-name">
         <view class="store-name-icon"></view>
         <text>{{currentStoreInfo.storeName}}</text>

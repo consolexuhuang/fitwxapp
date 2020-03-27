@@ -26,7 +26,7 @@ Page({
     coachShow: false, //教练弹窗
     showLookMore: false, //课程简介more
     showLookCarefulMore: false, //注意more
-    marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    marginTopBar: getApp().globalData.header_bar_height,
     goodCoachsList:'',
   },
 

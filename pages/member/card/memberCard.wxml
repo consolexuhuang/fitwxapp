@@ -1,8 +1,8 @@
 <!--pages/member/card/memberCard.wxml-->
 <wxs src="../../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view style='padding-top:{{marginTopBar}}px;'>
-  <view class="tabBox" style="top:{{marginTopBar}}px">
+<view style='padding-top:{{marginTopBar}}rpx;'>
+  <view class="tabBox" style="top:{{marginTopBar}}rpx">
     <view class="tab">
         <view class="tabItem {{index == 0 ? 'chooseItem' : ''}}" bindtap="clickItem" data-index="0">次卡</view>
         <view class="tabItem {{index == 1 ? 'chooseItem chooseItem2' : ''}}" bindtap="clickItem" data-index="1">训练营</view>

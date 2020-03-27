@@ -16,7 +16,7 @@ Page({
       tab_topBackground: '#fff'
     },
     evaluateShow:false, //评价完成弹窗
-    marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    marginTopBar: getApp().globalData.header_bar_height,
     evaluateData:'', //课程教练评价信息，
     remark:'', //评价内容
     textAreaIsStop:false, //是否禁用

@@ -18,7 +18,7 @@ Page({
       titleColor: "#fff",
       tab_topBackground: '#896EFF'
     },
-    marginTopBar: app.globalData.tab_height * 2 + 20,
+    marginTopBar: getApp().globalData.header_bar_height,
     config: '',
     goodListData: '',
     coachList: '',

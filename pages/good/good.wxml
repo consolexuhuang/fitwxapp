@@ -1,6 +1,6 @@
 <!--pages/good/good.wxml-->
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class='list' style='margin-top:{{marginTopBar+20}}px' wx:if="{{goodListData.length}}">
+<view class='list' style='margin-top:{{marginTopBar+20}}rpx' wx:if="{{goodListData.length}}">
 <!-- 1 -->
    <view class='item' wx:for="{{goodListData}}" data-item="{{item}}" bindtap='goodView'>
       <image class='pic fadeIn animated' src='{{item.index_img}}'></image>

@@ -2,7 +2,7 @@
 <wxs src="../../../utils/util.wxs" module="util" />
 <tabBar_top navbarData='{{navbarData}}'></tabBar_top>
 
-<view class="wrapper" style='margin-top:{{marginTopBar}}px;' wx:if='{{!showAuthModel}}'>
+<view class="wrapper" style='margin-top:{{marginTopBar}}rpx;' wx:if='{{!showAuthModel}}'>
   <!-- 累计 -->
   <view class="acount analysis_train_detail" bindtap="handleMoreTap">
     <view class="title">
@@ -28,7 +28,7 @@
     </view>
   </view>
 
-  <view class='myOrderNavBox' style='top:{{marginTopBar}}px'>
+  <view class='myOrderNavBox' style='top:{{marginTopBar}}rpx'>
     <view class="myOrderNav" id="DomNav">
       <view class="myOrderNav_item analysis_train_wait {{active === 0 ? 'click_this' : ''}}" data-index="{{0}}" bindtap="handleTabTap">
         <view class="line">

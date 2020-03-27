@@ -21,7 +21,7 @@ Page({
       titleColor: "#fff",
       tab_topBackground: '#896DFF'
     },
-    marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    marginTopBar: getApp().globalData.header_bar_height,
     lineUpState:false, 
   },
   //校验当前余额状态

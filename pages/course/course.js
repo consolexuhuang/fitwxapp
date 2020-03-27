@@ -44,7 +44,7 @@ Page({
       titleColor: "#000",
       tab_topBackground: '#fff'
     },
-    marginTopBar: app.globalData.tab_height * 2 + 20,
+    marginTopBar: getApp().globalData.header_bar_height,
     showStoreName: false, //是否显示固定的店铺名称
     currentStoreInfo: {}, //当前显示的店铺信息
     IsshowNetStatus: true, //网络显示状态
@@ -245,10 +245,11 @@ Page({
     //选择店铺名称class 
     query.selectAll(`#swiperItem${this.data.active} .store-wrapper`).boundingClientRect();
     query.exec((res) => {
+      //这里的值都是px,如有rpx的需要转成px
       app.worker.postMessage({
         res: res,
-        marginTopBar: this.data.marginTopBar,
-        stickyTopHeight: this.data.stickyTopHeight,
+        marginTopBar: this.data.marginTopBar/getApp().globalData.pxToRpxScale,
+        stickyTopHeight: this.data.stickyTopHeight / getApp().globalData.pxToRpxScale,
         storeNameBoxHeight: this.data.storeNameBoxHeight,
         courseItemHeight: this.data.courseItemHeight
       })
@@ -829,7 +830,7 @@ getStoreNameHeight(){
     query.exec((res) => {
       if (res) {
         this.setData({
-          stickyTopHeight: res[0] ? res[0].height : 0
+          stickyTopHeight: res[0] ? res[0].height * getApp().globalData.pxToRpxScale : 0
         })
       };
     });

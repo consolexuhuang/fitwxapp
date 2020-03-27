@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    marginTopBar: getApp().globalData.header_bar_height,
     couponData:'',
     jurisdictionState: false,
   },
