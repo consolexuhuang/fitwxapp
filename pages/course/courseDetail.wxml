@@ -9,9 +9,9 @@
       <!-- 视频 -->
       <block wx:if="{{courseData.mediaUrl && util.include(courseData.mediaUrl, 'v.qq.com') && util.getUrlParams(courseData.mediaUrl).vid}}">
         <swiper-item class="swiper-item">
-          <view class="banner-item videoblock">
+          <view class="banner-item videoblock" bindtap="handleShowVideo">
             <image src="{{courseData.bannerList[0]}}" />
-            <view class="circle" bindtap="handleShowVideo">
+            <view class="circle">
               <text class="icon iconfont iconbofang"></text>
             </view>
           </view>          
