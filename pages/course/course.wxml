@@ -7,51 +7,44 @@
     <view class='netWork fadeIn animated' wx:if='{{!IsshowNetStatus}}'>
       <text class='iconicon-test5 iconfont netWorkImg'></text>
       <text class='netWorkCont'>当前网络不可用，请检查你的网络设置</text>
-    </view>
-    <!-- 首页课程分类 进来的提示-->
-  <view class="hometip" wx:if="{{isFromHome}}">已为您展示分类课程，下拉刷新查看全部</view>
+    </view>    
+  </view>
+
+  <view class="date-wrapper" style='top:{{marginTopBar -1 }}px'>
+  <!-- 首页课程分类 进来的提示-->
+    <view class="hometip" wx:if="{{isFromHome}}">已为您展示分类课程，下拉刷新查看全部</view>
+    <!-- 搜索 -->
     <view class="header">
       <view class="search-bar fadeIn animated analysis_course_search" bindtap="handleCourseSearchTap">
         <text class='iconicon-test43 iconfont icon1' />
         <view class="search-bar-text">
           <text style='color:{{searchText ? "#000" : "#b4b4b4"}}'>{{searchText? searchText: '搜索您喜欢的课程及教练'}}</text>
         </view>
-        <text class='iconfont iconclose-circle' wx:if="{{searchText}}" catchtap='clearSearch'></text>
-      </view>
-
-      <!-- <swiper class="banner-swiper fadeIn animated" indicator-dots indicator-color="#8B6FF1" indicator-active-color="#FFFFFF" autoplay circular interval="3000" wx:if="{{config.bannerList.length>0}}">
-        <block wx:for="{{config.bannerList}}" wx:key="index">
-          <swiper-item class="banner-item">
-            <image src="{{util.imageParam(item.image)}}" lazy-load data-path="{{item.path}}" bindtap="handleBannerTap" class="analysis_course_banner" />
-          </swiper-item>
-        </block>
-      </swiper>   -->    
-    </view>
-  </view>
-
-  <view class="date-wrapper" style='top:{{marginTopBar -1 }}px'>
-  
-  <!-- 筛选 -->
-  <view class="screen-wrapper">
-
-        <view class="select-wrapper">
-          <view class="store-select-wrapper analysis_course_stores" bindtap="handleStoreScreenTap">
-            <text class="store-select-title">{{city}}门店</text>
-            <text class="store-select-count" wx:if="{{selectedStore.length}}">({{selectedStore.length}})</text>
-            <text class="store-select-arrow iconicon-test36 iconfont" />
-          </view>
-          <view class="course-select-wrapper analysis_course_courses" bindtap="handleCourseScreenTap">
-            <text class="course-select-title">课程筛选</text>
-            <text class="course-select-count" wx:if="{{selectedLabel.length + selectedTimeInterval.length}}">({{selectedLabel.length + selectedTimeInterval.length}})</text>
-            <text class="course-select-arrow iconicon-test36 iconfont" />
-          </view>
-          <view class="switch-wrapper">
-            <van-switch size="34rpx" checked="{{isOver}}" bind:change="handleSwitchChange" active-color='#8b6ff1' class="analysis_course_hide" />
-            <text class="switch-text">隐藏已结束</text>
-          </view>
+        <view class="close-area" wx:if="{{searchText}}" catchtap='clearSearch'>
+          <text class='iconfont iconclose-circle'></text>
         </view>
       </view>
-  <!-- 日历 -->
+    </view>
+    <!-- 筛选 -->
+    <view class="screen-wrapper">
+      <view class="select-wrapper">
+        <view class="store-select-wrapper analysis_course_stores" bindtap="handleStoreScreenTap">
+          <text class="store-select-title">{{city}}门店</text>
+          <text class="store-select-count" wx:if="{{selectedStore.length}}">({{selectedStore.length}})</text>
+          <text class="store-select-arrow iconicon-test36 iconfont" />
+        </view>
+        <view class="course-select-wrapper analysis_course_courses" bindtap="handleCourseScreenTap">
+          <text class="course-select-title">课程筛选</text>
+          <text class="course-select-count" wx:if="{{selectedLabel.length + selectedTimeInterval.length}}">({{selectedLabel.length + selectedTimeInterval.length}})</text>
+          <text class="course-select-arrow iconicon-test36 iconfont" />
+        </view>
+        <view class="switch-wrapper">
+          <van-switch size="34rpx" checked="{{isOver}}" bind:change="handleSwitchChange" active-color='#8b6ff1' class="analysis_course_hide" />
+          <text class="switch-text">隐藏已结束</text>
+        </view>
+      </view>
+    </view>
+    <!-- 日历 -->
     <view class="date-list">
       <block wx:for="{{dateList}}" wx:key="index">
         <view class="date-item {{index==active?'date-item-active':''}}" data-index="{{index}}" bindtap="handleDateTap">
@@ -156,33 +149,33 @@
                           </view>
                         </view>
 
-                      <block wx:if="{{courseItem.good_id}}">
-                        <view class="course-appoint-btn btn-detail">详情</view>
-                      </block>
-                      <block wx:elif="{{courseItem.status === 1}}">
+                        <block wx:if="{{courseItem.good_id}}">
+                          <view class="course-appoint-btn btn-detail">详情</view>
+                        </block>
+                        <block wx:elif="{{courseItem.status === 1}}">
                           <view class="course-appoint-btn">立即预约
-                            <form report-submit='true' data-course-id="{{courseItem.id}}" catchsubmit="handleAppointBtnTap" catchtap="noop"  class="formIdBtnBox analysis_course_btnbuy">
-                                <button form-type='submit' class='formIdBtn'/>
-                            </form> 
+                            <form report-submit='true' data-course-id="{{courseItem.id}}" catchsubmit="handleAppointBtnTap" catchtap="noop" class="formIdBtnBox analysis_course_btnbuy">
+                              <button form-type='submit' class='formIdBtn' />
+                            </form>
                           </view>
-                      </block>
-                      <block wx:elif="{{courseItem.status === 2}}">
+                        </block>
+                        <block wx:elif="{{courseItem.status === 2}}">
                           <view class="course-wait-btn">等位
                             <form report-submit='true' data-course-id="{{courseItem.id}}" catchsubmit="handleAppointBtnTap" catchtap="noop" class="formIdBtnBox analysis_course_btnwait">
-                                  <button form-type='submit' class='formIdBtn'/>
-                            </form> 
+                              <button form-type='submit' class='formIdBtn' />
+                            </form>
                           </view>
-                      </block>
-                      
-                      <block wx:elif="{{courseItem.status === 3}}">
-                        <view class="course-end-btn">已结束</view>
-                      </block>
+                        </block>
+
+                        <block wx:elif="{{courseItem.status === 3}}">
+                          <view class="course-end-btn">已结束</view>
+                        </block>
 
                       </view>
 
 
                       <text wx:if="{{courseItem.status !== 3 && courseItem.num_status === 1}}" class='course-status course-status2 iconfont iconfenzu'></text>
-                      <text wx:elif="{{courseItem.status !== 3 && courseItem.num_status === 2}}" class='course-status iconfont iconxingzhuangjiehe'></text>    
+                      <text wx:elif="{{courseItem.status !== 3 && courseItem.num_status === 2}}" class='course-status iconfont iconxingzhuangjiehe'></text>
                     </view>
 
                   </block>
@@ -249,6 +242,4 @@
 
 <jurisdictionSmallPopup state='{{jurisdictionSmallState}}' bindmyevent='bindgetuserinfo'></jurisdictionSmallPopup>
 
-<officalAccount
-   officialDataState='{{officialDataState}}'
-></officalAccount>
+<officalAccount officialDataState='{{officialDataState}}'></officalAccount>

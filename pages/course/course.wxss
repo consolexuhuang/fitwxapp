@@ -53,10 +53,9 @@ color:rgba(137,110,255,1);
 
 .search-bar {
   margin: 12rpx auto 0;
-  width: 690rpx;
+  width: 750rpx;
   height: 70rpx;
   background-color: #f5f5f5;
-  border-radius: 38rpx;
   display: flex;
   align-items: center;
 }
@@ -96,6 +95,13 @@ color:rgba(137,110,255,1);
 
 }
 
+.search-bar .close-area{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 30rpx;
+  height: 70rpx;
+}
 .search-bar .iconclose-circle {
   margin-right: 39rpx;
   margin-left: 10rpx;
