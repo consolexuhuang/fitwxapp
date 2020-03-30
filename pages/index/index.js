@@ -21,7 +21,7 @@ Page({
     active: 0,
     complete: {},
     imgUrl: app.globalData.imgUrl,
-    everyPageNum: 7, //每页显示店铺数量
+    everyPageNum: 6, //每页显示店铺数量
     swiperHeight: {},
     navbarData: {
       title: '',

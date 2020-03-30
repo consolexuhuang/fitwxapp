@@ -10,10 +10,10 @@
     </view>    
   </view>
 
-  <view class="date-wrapper" style='top:{{marginTopBar -1 }}px'>
   <!-- 首页课程分类 进来的提示-->
-    <view class="hometip" wx:if="{{isFromHome}}">已为您展示分类课程，下拉刷新查看全部</view>
-    <!-- 搜索 -->
+    <view class="hometip" style='top:{{marginTopBar -1 }}px' wx:if="{{isFromHome}}">已为您展示分类课程，下拉刷新查看全部</view>
+
+  <!-- 搜索 -->
     <view class="header">
       <view class="search-bar fadeIn animated analysis_course_search" bindtap="handleCourseSearchTap">
         <text class='iconicon-test43 iconfont icon1' />
@@ -25,6 +25,9 @@
         </view>
       </view>
     </view>
+
+  <view class="date-wrapper" style='top:{{marginTopBar -1 }}px'>
+    
     <!-- 筛选 -->
     <view class="screen-wrapper">
       <view class="select-wrapper">
