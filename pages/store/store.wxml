@@ -2,7 +2,7 @@
 <wxs src="../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = "{{navbarData}}"></tabBar_top>
 <view class="wrapper">
-  <view class="select-list" catchtouchmove="true" style="top:{{marginTopBar}}px">
+  <view class="select-list" catchtouchmove="true" style="top:{{marginTopBar}}rpx">
     <view class="{{isScreanShow===1?'select-item select-item-active':'select-item'}} analysis_store_city" data-is-screan-show="{{1}}" bindtap="handleSelectTap">
       <text>{{isScreanShow===1?'城市选择':city+'全城'}}</text>
       <text class='iconicon-test36 iconfont icon2'/>
@@ -13,7 +13,7 @@
     </view>
   </view>
   <!-- <scroll-view class="store-scroll" scroll-y bindscrolltoupper='bindscrolltoupper'> -->
-    <view class="store-list fadeIn animated" style="margin-top:{{marginTopBar + 80 / 750 * screenWidth}}px">
+    <view class="store-list fadeIn animated" style="margin-top:{{marginTopBar + 80 / 750 * screenWidth}}rpx">
       <block wx:for="{{storeList}}" wx:key="id">
         <view class="store-item fadeIn animated analysis_store_store_item_card" data-store-id="{{item.id}}" bindtap="handleStoreTap">
           <image class="store-image" src="{{item.storeUrl}}" lazy-load show-menu-by-longpress/>
@@ -37,7 +37,7 @@
     </view>
   <!-- </scroll-view> -->
 </view>
-<view class="screen-wrapper" style="top:{{marginTopBar + 80 / 750 * screenWidth}}px" wx:if="{{isScreanShow}}" bindtap="handleShadeTap" catchtouchmove="{{true}}">
+<view class="screen-wrapper" style="top:{{marginTopBar + 80 / 750 * screenWidth}}rpx" wx:if="{{isScreanShow}}" bindtap="handleShadeTap" catchtouchmove="{{true}}">
   <view class="screen-content" wx:if="{{isScreanShow===1}}" catchtap="handleContentTap">
     <view class="screen-city-list">
       <block wx:for="{{cityList}}" wx:for-index="key" wx:key="key">

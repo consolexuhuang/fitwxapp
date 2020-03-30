@@ -1,7 +1,7 @@
 <!--pages/coursePhoto/coursePhoto.wxml-->
 <wxs src="../../utils/util.wxs" module="util" />
 <tabBar_top navbarData='{{navbarData}}'></tabBar_top>
-<view class='wrapper {{imgHeightScale < 800 ? "bottom0" : ""}}' style='margin-top:{{marginTopBar}}px;'>
+<view class='wrapper {{imgHeightScale < 800 ? "bottom0" : ""}}' style='margin-top:{{marginTopBar}}rpx;'>
 
   <image wx:if="{{photoUrl}}" src='{{util.imageParam(photoUrl,"?imageView/2/w/"+windowWidth-20)}}' mode='widthFix' style="width:{{windowWidth-20}}px"></image>
 

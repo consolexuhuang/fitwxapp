@@ -1,7 +1,7 @@
 <!--pages/order/order.wxml-->
 <wxs src="../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class="wrapper"  style='margin-top:{{marginTop}}px' wx:if="{{courseData}}">
+<view class="wrapper"  style='margin-top:{{marginTop}}rpx' wx:if="{{courseData}}">
   <view class="content">
     <view class="left-circle"></view>
     <view class="right-circle"></view>

@@ -1,6 +1,6 @@
 <!--pages/order/orderTimeCard.wxml-->
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view style='margin-top:{{marginTopBar + 10}}px'>
+<view style='margin-top:{{marginTopBar + 10}}rpx'>
     <view wx:for="{{timeCardList}}" wx:key="_PK_" >
       <view class="orderCard_item" wx:if="{{item.card_reduce_count > 0}}" data-time-card-id="{{item.id}}" bindtap="handleTimeCardTap">
         <image src="{{item.background_img}}" class="orderCard_itemImg"></image>

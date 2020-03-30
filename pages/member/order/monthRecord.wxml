@@ -1,6 +1,6 @@
 <!--pages/member/order/monthRecord.wxml-->
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view style='margin-top:{{marginTopBar+10}}px'>
+<view style='margin-top:{{marginTopBar+10}}rpx'>
 <!-- 累计 -->
 <view class="acount">
    <view class="title">累计训练记录</view>

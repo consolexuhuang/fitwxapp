@@ -1,7 +1,7 @@
 <!--pages/openLocation/openLocation.wxml-->
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
 
-<image src='https://img.cdn.powerpower.net/5d37d357e4b08a7f65c04526.png' class='openLocationLogo'  style='margin-top:{{marginTopBar+22}}px'></image>
+<image src='https://img.cdn.powerpower.net/5d37d357e4b08a7f65c04526.png' class='openLocationLogo'  style='margin-top:{{marginTopBar+22}}rpx'></image>
 <view class='openLocationCont'>
    <view class='openLocationTitle' >{{storeData.storeName}}</view>
    <view class='openLocation_item'>

@@ -30,7 +30,7 @@ Page({
       titleColor: "#fff",
       tab_topBackground: '#826AFE'
     },
-    marginTopBar: getApp().globalData.tab_height * 2 + 20
+    marginTopBar: getApp().globalData.header_bar_height
   },
 
   /**

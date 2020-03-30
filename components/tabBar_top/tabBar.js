@@ -20,7 +20,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    height: '',
+    height: getApp().globalData.header_bar_height,
     //默认值  默认显示左上角
     navbarData: {
       showCapsule: 1
@@ -33,10 +33,6 @@ Component({
     this.setData({
       share: getApp().globalData.share,
       // share: false
-    })
-    // 定义导航栏的高度   方便对齐
-    this.setData({
-      height: getApp().globalData.tab_height
     })
   },
   /**

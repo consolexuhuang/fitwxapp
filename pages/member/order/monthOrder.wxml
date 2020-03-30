@@ -1,9 +1,9 @@
 <!--pages/member/order/monthOrder.wxml-->
 <wxs src="../../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class="wrapper" style='padding-top:{{marginTopBar}}px; box-sizing:border-box;'>
+<view class="wrapper" style='padding-top:{{marginTopBar}}rpx; box-sizing:border-box;'>
   <view class="myOrder">
-    <view class="myOrderNav" id="DomNav" style='top:{{marginTopBar}}px'>
+    <view class="myOrderNav" id="DomNav" style='top:{{marginTopBar}}rpx'>
       <view class="myOrderNav_item {{active === 0 ? 'click_this' : ''}}" data-index="{{0}}" bindtap="handleTabTap">
         已完成({{orderComplateNum || 0}})
         <view class="{{active === 0 ? 'myOrderNav_itemBottom' : ''}}}"></view>

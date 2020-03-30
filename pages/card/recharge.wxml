@@ -1,6 +1,6 @@
 <!--pages/card/recharge.wxml-->
 <tabBar_top navbarData='{{navbarData}}'></tabBar_top>
-<view class="main" style='margin-top:{{marginTopBar}}px'>
+<view class="main" style='margin-top:{{marginTopBar}}rpx'>
 
   <!-- first -->
   <view class="first" wx:if="{{isPlus==0}}">

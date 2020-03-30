@@ -1,7 +1,7 @@
 <!--pages/trainingCamp/trainingCampOrder/trainingCampOrder.wxml-->
 <wxs src="../../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class="wrapper" style='margin-top:{{marginTopBar}}px' wx:if="{{goodData}}">
+<view class="wrapper" style='margin-top:{{marginTopBar}}rpx' wx:if="{{goodData}}">
   <view class="content">
     <view class="content-footer-shadow"></view>
     <view class="course-name">{{goodData.title}}</view>

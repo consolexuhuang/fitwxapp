@@ -1,6 +1,6 @@
 <!--pages/coach/evaluate/evaluate.wxml-->
 <tabBar_top navbarData = "{{navbarData}}"></tabBar_top>
-<view class='evaluate_cont' style='margin-top:{{marginTopBar}}px'>
+<view class='evaluate_cont' style='margin-top:{{marginTopBar}}rpx'>
    <view class='coach'>
       <image class='coachImg' wx:if='{{!evaluateData.coach_head_url}}' src='{{imgUrl}}icon/default_header.png'></image>
       <image class='coachImg' wx:if='{{evaluateData.coach_head_url}}' src='{{evaluateData.coach_head_url}}'></image>

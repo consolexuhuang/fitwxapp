@@ -2,7 +2,7 @@
 <wxs src="../../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
 
-<view class="orderDetail_statusData fadeIn animated" style='margin-top:{{marginTopBar}}px'>
+<view class="orderDetail_statusData fadeIn animated" style='margin-top:{{marginTopBar}}rpx'>
   <view class="orderDetail_headImgBox">
 
     <image bindtap='handleCoachTap' data-coachId='{{orderData.coach.id}}' class="orderDetail_headImg analysis_orderdetail_coachheader" src="{{orderData.coach.headUrl}}"></image>

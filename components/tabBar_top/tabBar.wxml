@@ -1,8 +1,8 @@
 <!--components/tabBar_top/tabBar.wxml-->
-<view class='nav-wrap' style='height: {{height*2 + 20}}px; animation:{{navbarData.tab_topBackground?"backgroundhas 500ms ease":"backgroundnone 500ms ease"}}; background: {{navbarData.tab_topBackground || none}}'>
-  <view class='nav-title' style='line-height: {{height*2 + 44}}px; color:{{navbarData.titleColor ? navbarData.titleColor : "#000"}}'>{{navbarData.title}}</view>
+<view class='nav-wrap' style='height: {{height}}rpx; animation:{{navbarData.tab_topBackground?"backgroundhas 500ms ease":"backgroundnone 500ms ease"}}; background: {{navbarData.tab_topBackground || none}}'>
+  <view class='nav-title' style='color:{{navbarData.titleColor ? navbarData.titleColor : "#000"}}'>{{navbarData.title}}</view>
   <view style='display: flex; justify-content: space-around;flex-direction: column'>
-    <view class='nav-capsule' style='height: {{height*2 + 44}}px;' wx:if='{{navbarData.showCapsule}}'>
+    <view class='nav-capsule' style='height: {{height}}rpx;' wx:if='{{navbarData.showCapsule}}'>
        <!-- 左上角的返回按钮，wx:if='{{!share}}'空制返回按钮显示
        从分享进入小程序时 返回上一级按钮不应该存在 -->
       <view class='nav-capsuleBox {{navbarData.isShowBackHome &&  navbarData.tab_topBackground != "#fff" ? "nav-capsuleBoxBorder" : (navbarData.isShowBackHome &&  navbarData.tab_topBackground == "#fff" ? "nav-capsuleBoxBorder2" : "")}}'>

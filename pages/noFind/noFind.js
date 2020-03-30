@@ -13,7 +13,7 @@ Page({
       tab_topBackground: '#fff'
     },
     imgUrl: getApp().globalData.imgUrl,
-    marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    marginTopBar: getApp().globalData.header_bar_height,
     serverCont:''
   },
 

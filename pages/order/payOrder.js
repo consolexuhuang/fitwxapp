@@ -27,7 +27,7 @@ Page({
       tab_topBackground: '#896DFF',
       titleColor: '#fff'
     },
-    marginTop: getApp().globalData.tab_height * 2 + 20,
+    marginTop: getApp().globalData.header_bar_height,
     isShowJurisdiction: false, //电话授权功能
     lineUpState: false,
     dialogConfig: {

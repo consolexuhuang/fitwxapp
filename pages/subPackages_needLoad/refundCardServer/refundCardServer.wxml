@@ -1,7 +1,7 @@
 <!--pages/subPackages_needLoad/refundCardServer/refundCardServer.wxml-->
 <wxs src="../../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class='banner' style='margin-top:{{marginTopBar}}px'>
+<view class='banner' style='margin-top:{{marginTopBar}}rpx'>
    <image src='https://img.cdn.powerpower.net/5d525dd9e4b0b1ac63d88aa0.png?imageView/1/w/750/h/340' class='bannerImg fadeIn animated'></image>
     <view class='refundCardBoxContent' wx:if='{{getRefundConfig}}'>
         <view class='refundCardBox fadeIn animated'>

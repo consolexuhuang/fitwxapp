@@ -24,9 +24,9 @@ Page({
     },
     shareConfig:{
       toTop:320, //px
-      marginTopBar: getApp().globalData.tab_height * 2 + 20
+      marginTopBar: getApp().globalData.header_bar_height
     }, //悬浮分享组件配置
-    marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    marginTopBar: getApp().globalData.header_bar_height,
     courseData: '',
     imgUrl: getApp().globalData.imgUrl,
     isShowStatement:false,
@@ -127,7 +127,8 @@ Page({
     }
     //滚动的高度
     let scrollTop = event.scrollTop;
-    if ((bannerHeightPX - scrollTop) <= this.data.marginTopBar){
+    let marginTopBarPx = this.data.marginTopBar/getApp().globalData.pxToRpxScale;
+    if ((bannerHeightPX - scrollTop) <= marginTopBarPx){
        this.setData({
          'navbarData.tab_topBackground': '#fff'
        })

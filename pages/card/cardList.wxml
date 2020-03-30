@@ -1,7 +1,7 @@
 <!--pages/card/cardList.wxml-->
 <wxs src="../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class="list fadeIn animated" style='margin-top:{{marginTopBar}}px'>
+<view class="list fadeIn animated" style='margin-top:{{marginTopBar}}rpx'>
   <block wx:for="{{cardList}}" wx:key="_PK_">
     <view class="item" data-card-id="{{item._PK_}}" bindtap="handleCardTap">
       <image class="card-bg" src="{{util.dealOptionImg(item.optional_img)}}"></image>

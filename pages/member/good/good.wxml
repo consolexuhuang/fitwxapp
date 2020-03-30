@@ -1,7 +1,7 @@
 <!--pages/member/good/good.wxml-->
 <wxs src="../../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class='list' style='margin-top:{{marginTopBar}}px'>
+<view class='list' style='margin-top:{{marginTopBar}}rpx'>
 <!-- 1 -->
  <view class='item fadeIn aminated' bindtap='gotoDiscountDetail' wx:for='{{courseList}}' wx:key='{{index}}' data-orderId='{{item.id}}'>
    <view class='left'>

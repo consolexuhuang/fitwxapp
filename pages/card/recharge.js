@@ -20,7 +20,7 @@ Page({
       titleColor: "#000",
       tab_topBackground: '#fff'
     },
-    marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    marginTopBar: getApp().globalData.header_bar_height,
     isPlus:0,//是否已经是plus,0:否 1：是
     active:0,//选择的充值项
     amount:0,

@@ -1,6 +1,6 @@
 <!--pages/member/card/invalidCard/invalidCard.wxml-->
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view style='padding-top:{{marginTopBar}}px'>
+<view style='padding-top:{{marginTopBar}}rpx'>
     <!-- 失效次卡 -->
     <view class="cardType cardType_2" >
         <view wx:for="{{invalidCard}}" wx:if='{{invalidCard.length != 0}}' wx:key="_PK_">

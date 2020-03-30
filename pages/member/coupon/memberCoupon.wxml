@@ -1,7 +1,7 @@
 <!--pages/member/coupon/memberCoupon.wxml-->
 <wxs src="../../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class="top" style='margin-top:{{marginTopBar}}px'>
+<view class="top" style='margin-top:{{marginTopBar}}rpx'>
   <view class="top-coupon">
     <image class="coupon-bg" src="{{imgUrl}}member/coupon-bg.png"></image>
     <view class="coupon-info">

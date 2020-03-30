@@ -1,7 +1,7 @@
 <!--pages/member/good//goodDetail.wxml-->
 <wxs src="../../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view wx:if="{{orderData}}" style='margin-top:{{marginTopBar}}px'>
+<view wx:if="{{orderData}}" style='margin-top:{{marginTopBar}}rpx'>
   <view class='info'>
 
     <label class='label'>名称</label>

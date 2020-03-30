@@ -1,6 +1,6 @@
 <!--pages/noFind/noFind.wxml-->
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class='serverBox' style='padding-top:{{marginTopBar}}px'>
+<view class='serverBox' style='padding-top:{{marginTopBar}}rpx'>
    <!-- <text class='serverImg iconfont iconicon-test49'></text> -->
    <image src='https://img.cdn.powerpower.net/5d26a61fe4b0de3806934056.png' class='serverImg'></image>
    <view class='serverCont'>{{serverCont}}</view>

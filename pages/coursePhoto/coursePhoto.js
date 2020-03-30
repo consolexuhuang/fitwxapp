@@ -16,7 +16,7 @@ Page({
       titleColor: "#000",
       tab_topBackground: '#fff'
     },
-    marginTopBar: getApp().globalData.tab_height * 2 + 20,
+    marginTopBar: getApp().globalData.header_bar_height,
     photoUrl: '', //单张图片地址
     imgWidthScale: '750', //屏幕盒子宽度rpx
     scale: '', //屏幕和canvas缩放比例
