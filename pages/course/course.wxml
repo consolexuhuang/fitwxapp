@@ -27,7 +27,7 @@
     </view>
 
 
-  <view class="date-wrapper" style='top:{{marginTopBar -1 }}rpx'>
+  <view class="date-wrapper" style='top:{{marginTopBar + (isFromHome?50:0) -1}}rpx'>
     
     <!-- 筛选 -->
     <view class="screen-wrapper">
