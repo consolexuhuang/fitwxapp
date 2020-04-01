@@ -18,7 +18,7 @@
           <view class="circle">
             <text class="icon iconfont iconmiandan"></text>
           </view>
-          <text class="txt">首充免单券</text>
+          <text class="txt">充送优惠</text>
         </view>
         <view class="item">
           <view class="circle">
@@ -40,7 +40,7 @@
             <text class="number">¥{{item.amount || 0}}</text>
             <text class="txt">到账:{{item.amount + item.gift}}元</text>
           </view>
-          <view class="sheets" wx:if="{{item.tip}}">{{item.tip}}</view>
+          <!-- <view class="sheets" wx:if="{{item.tip}}">{{item.tip}}</view> -->
         </view>
       </block>
     </view>
