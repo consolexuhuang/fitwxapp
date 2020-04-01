@@ -829,8 +829,6 @@ getStoreNameHeight(){
     query.select('.hometip').boundingClientRect()
     query.select('.date-wrapper').boundingClientRect()
     query.exec((res) => {
-      console.log('dateBoxHeight')
-      console.log(res)
       let hometipHeight = res[0] ? res[0].height * getApp().globalData.pxToRpxScale : 0;
       let dateWrapperHeight = res[1] ? res[1].height * getApp().globalData.pxToRpxScale : 0;
       if (res) {

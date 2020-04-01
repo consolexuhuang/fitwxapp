@@ -59,8 +59,6 @@ App({
         if (res.model.indexOf('iPhone X') > -1) {
           this.globalData.isIpX = true
         }
-        console.log('getSystemInfo success')
-        console.log(res)
       },
     })
     this.getLocation();
@@ -388,8 +386,6 @@ App({
 
   compareVersion: function (v2) { //v2:需要的微信版本
     let v1 = wx.getSystemInfoSync().SDKVersion;
-    console.log('wx.getSystemInfoSync().SDKVersion')
-    console.log(wx.getSystemInfoSync())
     v1 = v1.split('.')
     v2 = v2.split('.')
     const len = Math.max(v1.length, v2.length)
