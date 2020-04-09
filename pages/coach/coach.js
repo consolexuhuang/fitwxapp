@@ -33,6 +33,8 @@ Page({
     memberInfo:'',
 
     jurisdictionSmallState: false, //授权显示
+    tabIndex:0,//默认显示第一个tab
+    personalList:'',//私教列表
   },
 
   /**
@@ -120,7 +122,8 @@ Page({
           active
         })
       };      
-      this.getCourseList()
+      this.getCourseList();
+      this.getPersonalList();
     })
   },
   // 获取课程列表
@@ -143,6 +146,36 @@ Page({
         ui.hideLoading();
       })
     })
+  },
+  // 获取私教列表
+  getPersonalList: function (event) {
+    let latitude = getApp().globalData.location.latitude
+    let longitude = getApp().globalData.location.longitude
+    let data = {
+      coachId,
+      latitude,
+      longitude
+    }
+    //loading
+    ui.showLoadingMask();
+    api.post('v2/good/getPersonalList', data).then(res => {
+      console.log('personal list')
+      console.log(res)
+
+      let personalList = res.msg
+      this.setData({
+        personalList
+      }, function () {
+        ui.hideLoading();
+      })
+    })
+  },
+  //切换tab
+  handleSwithTab(e){
+    let tabIndex = Number(e.currentTarget.dataset.index);
+   this.setData({
+     tabIndex
+   })
   },
   // 点击切换日期
   handleDateTap: function(event) {
@@ -223,5 +256,16 @@ Page({
       code: code
     }
     return api.post('getSeneBycode', params);
+  },
+  // 跳转私教课程详情
+  handlePCourseTap: function (event) {
+    if (app.passIsLogin()) {
+      const courseId = event.currentTarget.dataset.courseId
+      wx.navigateTo({
+        url: '/pages/course/courseDetailPersonal?courseId=' + courseId
+      })
+    } else {
+      this.setData({ jurisdictionSmallState: true })
+    }
   },
 })

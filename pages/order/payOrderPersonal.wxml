@@ -1,0 +1,90 @@
+<!--pages/order/order.wxml-->
+<wxs src="../../utils/util.wxs" module="util" />
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+<view class="wrapper"  style='margin-top:{{marginTop}}rpx' wx:if="{{courseData}}">
+  <view class="content">
+    <view class="left-circle"></view>
+    <view class="right-circle"></view>
+    <view class="dashed-line"></view>
+    <view class="content-footer-shadow"></view>
+    <view class="course-name">{{courseData.title}}</view>
+    <view class="course-time">
+      <text>教练：</text>
+      <text class='course-timeCont'>{{courseData.coach_ids__NAME}}</text>
+    </view>
+    <view class="course-position">
+      <text>门店：</text>
+      <text class='course-positionCont'>{{courseData.store_ids__NAME}}</text>
+    </view>
+    <view class="column-list">
+        <view class="column-item">
+          <view class="column-item-label">课时</view>
+          <view class="count-list">
+            <view class="count-item count-item-active">1</view>
+          </view>
+        </view>
+        <view class="column-item">
+          <view class="column-item-label">课程价</view>
+          <view class="card-count">￥{{courseData.discount_price}}</view>
+        </view>
+    </view>
+    <view class="tips-wrapper">
+      <view class="tips-label">温馨提示：</view>
+      <rich-text class="tips-content" nodes="{{courseData.needing_attention}}"></rich-text>
+    </view>
+  </view>
+    <!-- pay Way-->
+<!--   <view class="pay-type fadeIn animated" wx:if='{{orderData}}'>
+    <view class="pay-title fadeIn animated">支付方式</view>
+    <view class="item">
+      <view class="item-play-type fadeIn animated" 
+            wx:for="{{currentPayWayState}}" 
+            wx:key="index"
+            wx:if="{{item.payType}}">
+        <view class="left">
+          <text class='icon_plus iconfont iconhuiyuanqiagoumai-3' wx:if="{{item.type == 1 ? true : false}}" ></text>
+          <text class="icon iconicon-test28 iconfont" 
+                 wx:if="{{item.type == 2 ? true : false}}"
+                 ></text>
+          <text class="name">{{item.type == 1 ? "卡支付" : (item.type == 2 ? "微信支付" : "支付")}}</text>
+        </view>
+        <text class='creditNone' 
+              wx:if="{{item.type == 1 && !item.isOpening}}"
+              bindtap='jumpTocashMoney'>还未开通，立即开通</text>
+        <text class='creditNone' 
+              wx:if="{{item.type == 1 && !item.momeyCreditState && item.isOpening}}"
+              bindtap='jumpTocashMoney'>余额{{orderData.card_amount}}元，立即充值</text>
+        <view class='choosePayWayBox' 
+              wx:if="{{item.state || (item.isOpening && item.momeyCreditState)}}"
+              data-ind='{{index}}'
+              >
+          <image wx:if="{{item.state && item.isOpening && item.momeyCreditState}}" 
+                src='/images/icon/chooseState.png' 
+                class='choosePayWay'></image>
+          <image wx:if="{{!item.state && item.isOpening && item.momeyCreditState}}" 
+                src='/images/icon/noneChooseState.png' 
+                class='choosePayWay'></image>
+        </view>
+      </view>
+    </view>
+  </view> -->
+</view>
+
+<!-- footer -->
+<!--   <view class="footer fadeIn animated">
+    <button class="btn cardOver" wx:if='{{orderData.pay_type == "0"}}'>{{orderData.error_tip}}</button>
+    <button class="btn {{paylock ? 'handlePayBtnTapLock' : ''}}" bindtap="handlePayBtnTap" wx:elif='{{ orderData.pay_type == "1" || orderData.pay_type == "2" || orderData.pay_type == "5"}}'>
+        立即支付 ¥{{orderData.pay_amount}}
+    </button>
+    <button class="btn" bindtap='jumpTocashMoney' wx:elif='{{orderData.pay_type == "3"}}'>
+        需支付¥{{orderData.pay_amount}}，点击充值
+    </button>
+    <button class="btn" bindtap='jumpTocashMoney' wx:elif='{{orderData.pay_type == "3" && orderData.has_card}}'>
+        余额不足，点击充值
+    </button>
+  </view> -->
+<!-- 免责声明 -->
+<statement show="{{!!disclaimer}}" content="{{disclaimer}}" btnText="已阅读并同意" bind:statementEvent="agreeDisclaimer"></statement>
+
+<!-- 弹层 -->
+<dialogComp show="{{orderData.pay_type===0}}" maskIsClose="{{false}}" dialogConfig="{{dialogConfig}}" imgUrl="{{imgUrl}}" bindcomfirmEventComp="goBackHome"></dialogComp>

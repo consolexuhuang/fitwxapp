@@ -16,7 +16,19 @@
   </view>
   <view class=''></view>
   <rich-text class="coach-description fadeIn animated" wx:if="{{isDescriptionShow}}" nodes='{{coachData.intro}}'></rich-text>
-  <view class="course-group">
+  <!-- tab -->
+  <view class="tab">
+  <view class="tab-item {{tabIndex==0?'action':''}}" data-index='0' bindtap="handleSwithTab">
+   <text class="txt">团课</text>
+   <text class="line"></text>
+  </view>
+  <view class="tab-item {{tabIndex==1?'action':''}}" data-index='1' bindtap="handleSwithTab">
+  <text class="txt">私教课</text>
+   <text class="line"></text>
+  </view>
+  </view>
+  <!-- 团课 -->
+  <view class="course-group" wx:if="{{tabIndex==0}}">
     <!-- 周 日期 -->
     <view class="date-wrapper">
       <view class="date-list">
@@ -100,6 +112,77 @@
               </block>
             </view>
           </block>
+        </view>
+      </block>
+
+      <!-- 当天无课程 -->
+      <block wx:else>
+        <view class="none-course">
+          <text class='none-courseIcon iconfont iconicon-test46' />
+          <text>J&J排课中</text>
+          <text>每周五21:30发布</text>
+        </view>
+      </block>
+    </view>
+  </view>
+  <!-- 私教课 -->
+  <view class="course-personal" wx:if="{{tabIndex==1}}">
+  <!-- 课程列表 -->
+    <view class="store-list">
+      <!-- 当天有课程 -->
+      <block wx:if="{{personalList}}">
+        <view class="store-item"  wx:for="{{personalList}}" wx:for-item="pStoreItem" wx:for-index="pStoreKey" wx:key="pStoreKey">
+          <!-- 门店有课程 -->
+            <view class="store-wrapper" data-store-id="{{pStoreItem.id}}" bindtap="handleStoreTap">
+              <view class="store-name-wrapper">
+                <view class="store-name">
+                  <view class="store-name-icon"></view>
+                  <text>{{personalList[pStoreKey].store_name}}</text>
+                </view>
+                <view class="store-distance" wx:if="{{personalList[pStoreKey].DIST>=0}}">
+                  <text>距您{{util.numberFormat(personalList[pStoreKey].DIST/1000, 0)}}km</text>
+                  <text class='iconicon-test40 iconfont' />
+                </view>
+              </view>
+            </view>
+
+            <view class="course-list">
+              <block wx:for="{{personalList[pStoreKey].good_list}}"  wx:for-item="pCourseItem" wx:key="id">
+                <view class="course-item" data-course-id="{{pCourseItem.id}}" bindtap="handlePCourseTap">
+
+                  <view class="course-left">
+                    <view class="course-time">与教练确认上课时间</view>
+                    <view class="course-name">{{pCourseItem.title || ''}}</view>
+                    <view class="course-label">{{util.preLabel(pCourseItem.LABELS || '')}}</view>
+                    <view class="course-price-wrapper">
+                      <view class="course-discount-price">¥{{pCourseItem.discount_price}}</view>
+                      <view class="course-price-line"></view>
+                        <view class="course-card-price">¥{{pCourseItem.price}}</view>
+                    </view>
+                  </view>
+
+                  <block wx:if="{{pCourseItem.status === 1}}">
+                    <view class="course-appoint-btn">立即预约
+                      <form report-submit='true' data-course-id="{{pCourseItem.id}}" catchsubmit="handleAppointBtnTap" catchtap="noop" class="formIdBtnBox">
+                        <button form-type='submit' class='formIdBtn' />
+                      </form>
+                    </view>
+                  </block>
+                  <block wx:elif="{{pCourseItem.status === 2}}">
+                    <view class="course-wait-btn">等位
+                      <form report-submit='true' data-course-id="{{courseItem.id}}" catchsubmit="handleAppointBtnTap" catchtap="noop" class="formIdBtnBox">
+                        <button form-type='submit' class='formIdBtn' />
+                      </form>
+                    </view>
+                  </block>
+                  <block wx:elif="{{pCourseItem.status === 3}}">
+                    <view class="course-end-btn">结束</view>
+                  </block>
+                  <text wx:if="{{pCourseItem.status !== 3 && pCourseItem.num_status === 1}}" class='course-status course-status2 iconfont iconfenzu'></text>
+                  <text wx:elif="{{pCourseItem.status !== 3 && courseItem.num_status === 2}}" class='course-status iconfont iconxingzhuangjiehe'></text>
+                </view>
+              </block>
+            </view>
         </view>
       </block>
 

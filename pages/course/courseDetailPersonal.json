@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "课程详情",
+  "usingComponents": {
+    "statement": "/components/statement/statement",
+    "txv-video": "plugin://tencentvideo/video",
+    "tabBar_top": "/components/tabBar_top/tabBar",
+    "share_tag": "/components/shareTag/shareTag",
+    "officalAccount": "/components/officalAccount/officalAccount",
+    "jurisdictionPopup": "/components/jurisdictionPopup/jurisdictionPopup",
+    "shareMain": "/components/shareMain/shareMain"
+  }
+}

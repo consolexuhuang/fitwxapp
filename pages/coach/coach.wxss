@@ -404,3 +404,38 @@
   bottom: 0;
   width: 100%;
 }
+
+.tab{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 2rpx;
+  align-items: center;
+  padding:0 145rpx;
+  background-color: #fff;
+}
+.tab-item{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top:13rpx;
+  height: 65rpx;
+  font-size:32rpx;
+  color:#999;
+}
+.tab-item.action .txt{
+  font-size:36rpx;
+  color:#896FFF;
+  font-weight: bold;
+}
+.tab-item.action .line{
+  width:50rpx;
+height:10rpx;
+background:rgba(137,111,255,1);
+border-radius:6rpx;
+}
+
+.course-personal .course-time{
+  width: 320rpx;
+}
