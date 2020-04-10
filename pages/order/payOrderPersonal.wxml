@@ -1,20 +1,20 @@
 <!--pages/order/order.wxml-->
 <wxs src="../../utils/util.wxs" module="util" />
 <tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class="wrapper"  style='margin-top:{{marginTop}}rpx' wx:if="{{courseData}}">
+<view class="wrapper"  style='margin-top:{{marginTop}}rpx' wx:if="{{goodInfo}}">
   <view class="content">
     <view class="left-circle"></view>
     <view class="right-circle"></view>
     <view class="dashed-line"></view>
     <view class="content-footer-shadow"></view>
-    <view class="course-name">{{courseData.title}}</view>
-    <view class="course-time">
-      <text>教练：</text>
-      <text class='course-timeCont'>{{courseData.coach_ids__NAME}}</text>
+    <view class="course-name">{{goodInfo.title}}</view>
+    <view class="course-info">
+      <text class="label">教练：</text>
+      <text class='value'>{{goodInfo.coach_ids__NAME}}</text>
     </view>
-    <view class="course-position">
-      <text>门店：</text>
-      <text class='course-positionCont'>{{courseData.store_ids__NAME}}</text>
+    <view class="course-info store">
+      <text class="label">门店：</text>
+      <text class='value'>{{goodInfo.store_ids__NAME}}</text>
     </view>
     <view class="column-list">
         <view class="column-item">
@@ -25,17 +25,19 @@
         </view>
         <view class="column-item">
           <view class="column-item-label">课程价</view>
-          <view class="card-count">￥{{courseData.discount_price}}</view>
+          <view class="card-price">￥{{goodInfo.discount_price}}</view>
         </view>
     </view>
     <view class="tips-wrapper">
       <view class="tips-label">温馨提示：</view>
-      <rich-text class="tips-content" nodes="{{courseData.needing_attention}}"></rich-text>
+      <rich-text class="tips-content" nodes="{{goodInfo.needing_attention}}"></rich-text>
     </view>
   </view>
+
     <!-- pay Way-->
-<!--   <view class="pay-type fadeIn animated" wx:if='{{orderData}}'>
+  <view wx:if='{{orderData}}'>
     <view class="pay-title fadeIn animated">支付方式</view>
+    <view class="pay-type fadeIn animated" >
     <view class="item">
       <view class="item-play-type fadeIn animated" 
             wx:for="{{currentPayWayState}}" 
@@ -67,11 +69,12 @@
         </view>
       </view>
     </view>
-  </view> -->
+    </view>
+  </view>
 </view>
 
 <!-- footer -->
-<!--   <view class="footer fadeIn animated">
+  <view class="footer fadeIn animated">
     <button class="btn cardOver" wx:if='{{orderData.pay_type == "0"}}'>{{orderData.error_tip}}</button>
     <button class="btn {{paylock ? 'handlePayBtnTapLock' : ''}}" bindtap="handlePayBtnTap" wx:elif='{{ orderData.pay_type == "1" || orderData.pay_type == "2" || orderData.pay_type == "5"}}'>
         立即支付 ¥{{orderData.pay_amount}}
@@ -82,9 +85,4 @@
     <button class="btn" bindtap='jumpTocashMoney' wx:elif='{{orderData.pay_type == "3" && orderData.has_card}}'>
         余额不足，点击充值
     </button>
-  </view> -->
-<!-- 免责声明 -->
-<statement show="{{!!disclaimer}}" content="{{disclaimer}}" btnText="已阅读并同意" bind:statementEvent="agreeDisclaimer"></statement>
-
-<!-- 弹层 -->
-<dialogComp show="{{orderData.pay_type===0}}" maskIsClose="{{false}}" dialogConfig="{{dialogConfig}}" imgUrl="{{imgUrl}}" bindcomfirmEventComp="goBackHome"></dialogComp>
+  </view>

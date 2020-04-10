@@ -163,14 +163,14 @@
 
                   <block wx:if="{{pCourseItem.status === 1}}">
                     <view class="course-appoint-btn">立即预约
-                      <form report-submit='true' data-course-id="{{pCourseItem.id}}" catchsubmit="handleAppointBtnTap" catchtap="noop" class="formIdBtnBox">
+                      <form data-good-id="{{pCourseItem.id}}" catchsubmit="handleAppointBtnTapPersonal" catchtap="noop" class="formIdBtnBox">
                         <button form-type='submit' class='formIdBtn' />
                       </form>
                     </view>
                   </block>
                   <block wx:elif="{{pCourseItem.status === 2}}">
                     <view class="course-wait-btn">等位
-                      <form report-submit='true' data-course-id="{{courseItem.id}}" catchsubmit="handleAppointBtnTap" catchtap="noop" class="formIdBtnBox">
+                      <form data-good-id="{{pCourseItem.id}}" catchsubmit="handleAppointBtnTapPersonal" catchtap="noop" class="formIdBtnBox">
                         <button form-type='submit' class='formIdBtn' />
                       </form>
                     </view>
@@ -179,7 +179,7 @@
                     <view class="course-end-btn">结束</view>
                   </block>
                   <text wx:if="{{pCourseItem.status !== 3 && pCourseItem.num_status === 1}}" class='course-status course-status2 iconfont iconfenzu'></text>
-                  <text wx:elif="{{pCourseItem.status !== 3 && courseItem.num_status === 2}}" class='course-status iconfont iconxingzhuangjiehe'></text>
+                  <text wx:elif="{{pCourseItem.status !== 3 && pCourseItem.num_status === 2}}" class='course-status iconfont iconxingzhuangjiehe'></text>
                 </view>
               </block>
             </view>

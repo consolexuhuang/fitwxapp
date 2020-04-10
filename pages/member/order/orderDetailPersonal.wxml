@@ -1,0 +1,97 @@
+<!--pages/member/order/orderDetail.wxml-->
+<wxs src="../../../utils/util.wxs" module="util" />
+<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
+
+<view class="orderDetail_statusData fadeIn animated" style='margin-top:{{marginTopBar}}rpx'>
+  <view class="orderDetail_headImgBox">
+
+    <image bindtap='handleCoachTap' data-coachId='{{orderData.coach_ids}}' class="orderDetail_headImg analysis_orderdetail_coachheader" src="{{orderData.coach_head_url}}"></image>
+    <image class="orderDetail_headWxTag analysis_orderdetail_qrcode" src="{{imgUrl}}icon/wx_logo.png" bindtap='showCoachWxCode'></image>
+  </view>
+  <view class="orderDetail_statusInfo">
+  <view class="status-box">
+  <view class="orderDetail_status">{{orderData.status__NAME}} </view>
+    <view class="signIn">{{orderData.use_status__NAME}}</view>
+  </view>
+    
+    <view class="orderDetail_titleBox">
+      <view class="orderDetail_title" style="width:360rpx;">{{orderData.good_title}}</view>
+      <view class="orderDetail_time fadeIn animated">与教练确认上课时间</view>
+    </view>
+  </view>
+  
+  <view class="share-tag-line"></view>
+  <view class="share-tag">
+  <share_tag ></share_tag>
+  </view>
+  
+</view>
+
+<view class="orderDetail_content fadeIn animated">
+  <!-- 扫码进门 -->
+  <!-- <view class="admissionCode" wx:if='{{orderData.store.banPwd && !orderData.qrPath && !orderData.onlineImg}}'>
+    <text class="orderDetail_icon iconicon-test13 iconfont"></text>
+    <text class="orderDetail_text">入场二维码：</text>
+    <view class="orderDetail_data orderDetail_startShow">开课前1小时显示</view> 
+  </view> -->
+  <!-- 前台扫码 -->
+ <!--  <view class="admissionCode" wx:if='{{orderData.store &&!orderData.store.banPwd && !orderData.onlineImg}}'>
+    <text class="orderDetail_icon iconicon-test13 iconfont"></text>
+    <text class="orderDetail_text">入场方式：</text>
+    <view class="orderDetail_data orderDetail_startShow">请至前台扫码入场</view> 
+  </view>   -->
+  <!-- 二维码生效 -->
+  <!-- <view class="admissionCodeShow" wx:if="{{orderData.qrPath && orderData.store.banPwd && !orderData.onlineImg}}">
+    <image src="{{orderData.qrPath}}" class="admissionCodeShowImg"></image>
+    <view class="admissionCodeShowText">入场二维码</view>
+  </view> -->
+
+  <view class="admissionCode">
+    <text class="orderDetail_icon iconicon-test15 iconfont"></text>
+    <text class="orderDetail_text">预约人数：</text>
+    <view class="orderDetail_data">1人</view>
+  </view>
+  <view class="admissionCode admissionCodeNext" data-name="{{orderData.store_ids__NAME}}" data-address="{{orderData.store.address}}" data-latitude="{{orderData.store.latitude}}" data-longitude="{{orderData.store.longitude}}" bindtap="{{orderData.onlineImg?'':'handleLocationTap'}}">
+    <text class="orderDetail_icon2 iconfont iconicon-test39"></text>
+    <text class="orderDetail_text">地点：</text>
+    <view class="orderDetail_data">{{orderData.store.address}}</view>
+  </view>
+   <view class="admissionCode admissionCodeNext analysis_orderdetail_route" bindtap='handleRouteGuidanceTap' wx:if='{{orderData.store.mapPic}}'>
+    <text class="orderDetail_icon2 iconfont iconluxian-luxianfenlei"></text>
+    <text class="orderDetail_text">线路指引</text>
+  </view>
+</view>
+<view class="orderPriceBox fadeIn animated">
+  <view class="orderPrice">
+    <view class="admissionCode2">
+      <text class="orderDetail_icon iconicon-test22 iconfont"></text>
+      <text class="orderDetail_text">课程价</text>
+      <view class="orderDetail_payData">¥{{orderData.discount_price}}</view>
+    </view>
+    <view class="admissionCode2" wx:if="{{orderData.pay_type == 1 || orderData.pay_type == 4}}">
+      <text class="orderDetail_icon iconcardPay iconicon-test7 iconfont"></text>
+      <text class="orderDetail_text">{{orderData.pay_type == 1 ? '微信支付' : '免支付'}}</text>
+      <view class="orderDetail_payData">¥{{orderData.pay_type == 1 ? orderData.pay_amount : '0'}}</view>
+    </view>
+    <view class="admissionCode2" wx:if="{{orderData.pay_type == 2}}">
+      <text class='orderDetail_icon iconfont iconhuiyuanqiagoumai-4'></text>
+      <text class="orderDetail_text">卡支付</text>
+      <view class="orderDetail_payData">¥{{orderData.pay_amount}}</view>
+    </view>
+  </view>
+</view>
+<view class="tip">
+      <text class="icon-tip iconicon-test5 iconfont"></text>
+      <rich-text class="text" decode="true" nodes='{{orderData.needing_attention}}'></rich-text>
+    </view>
+
+<van-popup show='{{coachWxCodeState}}' 
+           bind:close='onclose'
+           class='coachWxCodepaySuccessShowStyle'>
+    
+    <image src='{{orderData.coach_qr_code}}' class='coachWxImg' show-menu-by-longpress data-imgSrc='{{orderData.coach_qr_code}}'></image>
+    <view class='coachWxCont'>长按保存教练微信二维码</view>
+</van-popup>
+
+
+

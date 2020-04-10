@@ -43,7 +43,9 @@
     "pages/member/card/invalidCard/invalidCard",
     "pages/home/home",
     "pages/course/courseDetailPersonal",
-    "pages/order/payOrderPersonal"
+    "pages/order/payOrderPersonal",
+    "pages/order/paySuccessPersonal",
+    "pages/member/order/orderDetailPersonal"
   ],
   "subPackages": [
     {

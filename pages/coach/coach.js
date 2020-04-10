@@ -212,9 +212,6 @@ Page({
   },
   // 课程预约
   handleAppointBtnTap: function(event) {
-    if (event.detail.formId !== 'the formId is a mock one') {
-      store.setItem('formId', [...(store.getItem('formId') || ''), event.detail.formId])
-    }
     if (app.passIsLogin()) {
       const courseId = event.currentTarget.dataset.courseId
       wx.navigateTo({
@@ -263,6 +260,17 @@ Page({
       const courseId = event.currentTarget.dataset.courseId
       wx.navigateTo({
         url: '/pages/course/courseDetailPersonal?courseId=' + courseId
+      })
+    } else {
+      this.setData({ jurisdictionSmallState: true })
+    }
+  },
+  // 私教课程预约
+  handleAppointBtnTapPersonal: function (event) {
+    if (app.passIsLogin()) {
+      const goodId = event.currentTarget.dataset.goodId
+      wx.navigateTo({
+        url: '/pages/order/payOrderPersonal?goodId=' + goodId
       })
     } else {
       this.setData({ jurisdictionSmallState: true })

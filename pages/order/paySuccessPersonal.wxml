@@ -1,0 +1,50 @@
+<!--pages/order/paySuccess.wxml-->
+<wxs src="../../utils/util.wxs" module="util" />
+<tabBar_top navbarData='{{nvabarData}}'></tabBar_top>
+<view class="wrapper">
+  <view class='header-backgroundBox'>
+    <view class="header-background">
+    </view>
+  </view>
+  <view class="header">
+    <image class="order-icon" src="{{imgUrl}}order/icon_success.png" />
+    <view class="order-tips">预约成功</view>
+    <view class="pay-mode">
+    {{orderData.pay_type == 2 ? "PLUS卡支付" : (orderData.pay_type == 1 ? "微信支付" : "已购买")}}：¥{{orderData.pay_amount}}
+    </view>
+    <view class="coach-wrapper">
+      <image class="coach-avatar" src="{{goodData.caoche_head_url}}" />
+    </view>
+   <!--  <view class="QR-code-wrapper">
+      <view class='waitBox' wx:if='{{orderDetailData.order.wait}}'>
+        <text class='waitImg iconxingzhuang iconfont'></text>
+        <view class='waitCont'>当前等候{{orderDetailData.waiCount}}人，您是第{{orderDetailData.beforeWaiCount}}位呦</view>
+        <text class='waitImg2 iconfont iconxingzhuang'></text>
+      </view>
+    </view> -->
+  </view>
+  <view class="footer">
+    <view class="column-list">
+      <view class="column-item">
+        <view class="column-item-label">教练：</view>
+        <view class="column-item-content">{{goodData.coach_ids__NAME}}</view>
+      </view>
+      <view class="column-item">
+        <view class="column-item-label">课程：</view>
+        <view class="column-item-content">{{goodData.title}}</view>
+      </view>
+      <view class="column-item">
+        <view class="column-item-label">时间：</view>
+        <view class="column-item-content">与教练确认上课时间</view>
+      </view>
+      <view class="column-item admissionCodeNext" data-name="{{goodData.store_ids__NAME}}" data-address="{{goodData.store_address}}" data-latitude="{{goodData.store_latitude}}" data-longitude="{{goodData.store_longitude}}" bindtap="handleLocationTap">
+        <view class="column-item-label2">地点：</view>
+        <view class="column-item-content2">{{goodData.store_address}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="btn-wrapper fadeIn animated">
+    <view class="lookMyAppointment" bindtap="lookMyAppointment">查看我的预约</view>
+    <view class="backHome" bindtap="backHome">返回继续约课</view>
+  </view>
+</view>

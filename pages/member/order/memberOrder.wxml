@@ -56,6 +56,33 @@
 
   <!-- 待进行 -->
   <view class="tab_content" wx:if="{{active==0}}">
+
+  <!-- 私教课 -->
+  <block wx:if="{{orderList.length}}">
+      <block wx:for="{{orderList}}" wx:key="index" wx:for-item="itemPersonal">
+        <view class="myOrder_listItem" data-order-id="{{itemPersonal.id}}" bindtap="handleOrderItemTapPersnal">
+          <view class="item-content">
+            <image catchtap='handleCoachTap' data-coachId='{{itemPersonal.coach_ids}}' class="item_headerImg" src="{{itemPersonal.coach_head_url}}"></image>
+            <view class="item_info">
+              <view class="item_info_title">{{itemPersonal.good_title}}</view>
+              <view class="item_info_title_detail">
+                <text class="item_info_shopImg iconicon-test23 iconfont"></text> {{itemPersonal.store_ids__NAME}}
+              </view>
+              <view class="item_info_title_detail">
+                <text class="item_info_shopImg iconfont iconicon-test17"></text> 与教练确认上课时间
+              </view>
+            </view>
+            <view class="item_info_seeBox">
+              <view class="item_info_see ">
+                详情
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </block>
+
+  <!-- 团课 -->
     <block wx:if="{{goingList.length}}">
       <block wx:for="{{goingList}}" wx:key="index">
         <view class="myOrder_listItem" data-order-num="{{item.order_num}}" data-order-status="2" bindtap="handleOrderItemTap">

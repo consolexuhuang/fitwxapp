@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "订单详情",
+  "usingComponents": {
+    "tabBar_top": "/components/tabBar_top/tabBar",
+    "share_tag": "/components/shareTag/shareTag",
+    "van-popup": "/libs/vant-weapp/dist/popup/index",
+    "officalAccount": "/components/officalAccount/officalAccount",
+    "jurisdictionPopup": "/components/jurisdictionPopup/jurisdictionPopup",
+    "broadcast": "/components/broadcast/broadcast"
+  }
+}

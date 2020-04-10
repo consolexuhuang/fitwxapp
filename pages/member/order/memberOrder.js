@@ -31,7 +31,8 @@ Page({
     swiperHeight: getApp().globalData.systemInfo.screenHeight - getApp().globalData.tab_height - 100,
     showAuthModel: false,
     jurisdictionSmallState: false,
-    SubscribeMessage:''
+    SubscribeMessage:'',
+    orderList:'',//私教列表
   },
   /**
    * 生命周期函数--监听页面加载
@@ -51,7 +52,7 @@ Page({
           wx.setStorageSync('hideTabBarRedDot', true)
         }
       },
-    }) */
+    }) */   
 
     //检测登录
     this.setData({
@@ -128,7 +129,7 @@ Page({
       payingList: '',
       completedList: ''
     })
-    return Promise.all([this.getUserInfo(), this.loadMoreOrder(1)]).then(() => {
+    return Promise.all([this.getUserInfo(), this.loadMoreOrder(1), this.getOrderList()]).then(() => {
       //hideLoading
       this.setData({
         isLoaded: true
@@ -252,6 +253,30 @@ Page({
       url: '/pages/coach/coach?coachId=' + coachId
     })
   },
+  //私教跳转
+  handleOrderItemTapPersnal: function (event) {
+    const orderId = event.currentTarget.dataset.orderId;
+    wx.navigateTo({
+      url: `/pages/member/order/orderDetailPersonal?orderId=${orderId}`
+    })
+  },
+
+  //私教订单列表
+  getOrderList(){
+    let data={
+      goodType:'PERSONAL',
+      useStatus:0
+    }
+    return new Promise((resolve, reject) => {
+      api.post('v2/good/getOrderList', data).then(res => {
+        this.setData({
+          orderList:res.msg
+        })
+        resolve()
+      })
+    })
+  },
+
 
   //分页
   loadMoreOrder(pageNum) {

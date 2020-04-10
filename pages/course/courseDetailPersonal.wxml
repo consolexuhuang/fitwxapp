@@ -171,10 +171,10 @@
   <view class="price-wrapper fadeIn animated">
     <text class="discount-price">¥{{courseData.discount_price || '0.00'}}</text>
     <text class="origin-price" wx:if='{{courseData.discount_price != courseData.price && courseData.price != 0}}'>¥{{courseData.price || '0.00'}}</text>
-    <view class="appoint-btn analysis_courseDetail_btnbuy" wx:if='{{courseData.status === 1}}'>立即预约
+    <view class="appoint-btn" wx:if='{{courseData.status === 1}}'>立即预约
       <button form-type='submit' class='formIdBtn' />
     </view>
-    <view class="appoint-btn analysis_courseDetail_btnwait" wx:if='{{courseData.status === 2}}'>等位
+    <view class="appoint-btn" wx:if='{{courseData.status === 2}}'>等位
       <button form-type='submit' class='formIdBtn' />
     </view>
     <view class="appoint-btn appoint-btnOver" wx:if='{{courseData.status === 3}}'>课程结束
