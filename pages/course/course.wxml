@@ -157,18 +157,10 @@
                           <view class="course-appoint-btn btn-detail">详情</view>
                         </block>
                         <block wx:elif="{{courseItem.status === 1}}">
-                          <view class="course-appoint-btn">立即预约
-                            <form report-submit='true' data-course-id="{{courseItem.id}}" catchsubmit="handleAppointBtnTap" catchtap="noop" class="formIdBtnBox analysis_course_btnbuy">
-                              <button form-type='submit' class='formIdBtn' />
-                            </form>
-                          </view>
+                        <view class="course-appoint-btn analysis_course_btnbuy" data-course-id="{{courseItem.id}}" catchtap="handleAppointBtnTap">立即预约</view>  
                         </block>
                         <block wx:elif="{{courseItem.status === 2}}">
-                          <view class="course-wait-btn">等位
-                            <form report-submit='true' data-course-id="{{courseItem.id}}" catchsubmit="handleAppointBtnTap" catchtap="noop" class="formIdBtnBox analysis_course_btnwait">
-                              <button form-type='submit' class='formIdBtn' />
-                            </form>
-                          </view>
+                        <view class="course-wait-btn analysis_course_btnwait" data-course-id="{{courseItem.id}}" catchtap="handleAppointBtnTap">等位</view>    
                         </block>
 
                         <block wx:elif="{{courseItem.status === 3}}">

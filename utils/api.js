@@ -13,7 +13,6 @@ function request(path, data, method) {
       header: {
         'content-type': 'application/x-www-form-urlencoded',
         '_token': Store.getItem('userData').token,
-        'formId': Store.getItem('formId') ? Store.getItem('formId').join(',') : ''
         // 'content-type': 'application/json',
       },
       data: data,

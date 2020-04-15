@@ -167,20 +167,15 @@
     </view>
   </view>
 </view>
-<form style="position:static" bindsubmit="handleAppointBtnTap" class="formIdBtnBox">
+
   <view class="price-wrapper fadeIn animated">
     <text class="discount-price">¥{{goodInfo.discount_price || '0.00'}}</text>
     <text class="origin-price" wx:if='{{goodInfo.discount_price != goodInfo.price && goodInfo.price != 0}}'>¥{{goodInfo.price || '0.00'}}</text>
-    <view class="appoint-btn" wx:if='{{goodInfo.status === 1}}'>立即预约
-      <button form-type='submit' class='formIdBtn' />
-    </view>
-    <view class="appoint-btn" wx:if='{{goodInfo.status === 2}}'>等位
-      <button form-type='submit' class='formIdBtn' />
-    </view>
+    <view class="appoint-btn" wx:if='{{goodInfo.status === 1}}' bindtap="handleAppointBtnTap">立即预约</view>
+    <view class="appoint-btn" wx:if='{{goodInfo.status === 2}}' bindtap="handleAppointBtnTap">等位</view>
     <view class="appoint-btn appoint-btnOver" wx:if='{{goodInfo.status === 3}}'>课程结束
     </view>
   </view>
-</form>
 
 <!-- 视频播放 -->
 <view class="modal-video" wx:if="{{isShowVideo}}">

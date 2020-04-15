@@ -4,7 +4,7 @@
 
 <view class="wrapper" wx:if='{{courseData}}'>
   <view class="header">
-    <swiper class="banner-swiper"  current='{{swiperCurrent}}' bindchange="swiperChange">
+    <swiper class="banner-swiper" current='{{swiperCurrent}}' bindchange="swiperChange">
 
       <!-- 视频 -->
       <block wx:if="{{courseData.mediaUrl && util.include(courseData.mediaUrl, 'v.qq.com') && util.getUrlParams(courseData.mediaUrl).vid}}">
@@ -14,7 +14,7 @@
             <view class="circle">
               <text class="icon iconfont iconbofang"></text>
             </view>
-          </view>          
+          </view>
         </swiper-item>
       </block>
       <!-- 图片 -->
@@ -34,13 +34,13 @@
     </view>
   </view>
   <view class="course-top">
-  <view class="course-name-share">
-    <view class="course-name fadeIn animated">{{courseData.courseName}}</view>    
-    <view class="course-share">        
-      <share_tag shareButton='{{false}}' bindsharehandle="handleShare" ></share_tag>
+    <view class="course-name-share">
+      <view class="course-name fadeIn animated">{{courseData.courseName}}</view>
+      <view class="course-share">
+        <share_tag shareButton='{{false}}' bindsharehandle="handleShare"></share_tag>
+      </view>
     </view>
-    </view>
-    
+
 
     <view class="course-info">
       <view class="course-info-left">
@@ -186,27 +186,21 @@
     </view>
   </view>
 </view>
-<form report-submit='true' style="position:static" bindsubmit="handleAppointBtnTap" class="formIdBtnBox">
-  <view class="price-wrapper fadeIn animated">
-    <text class="discount-price">¥{{courseData.discountPrice || '0.00'}}</text>
-    <text class="origin-price" wx:if='{{courseData.discountPrice != courseData.price && courseData.price != 0}}'>¥{{courseData.price || '0.00'}}</text>
-    <view class="appoint-btn analysis_courseDetail_btnbuy" wx:if='{{courseData.status === 1}}'>立即预约
-      <button form-type='submit' class='formIdBtn' />
-    </view>
-    <view class="appoint-btn analysis_courseDetail_btnwait" wx:if='{{courseData.status === 2}}'>等位
-      <button form-type='submit' class='formIdBtn' />
-    </view>
-    <view class="appoint-btn appoint-btnOver" wx:if='{{courseData.status === 3}}'>课程结束
-    </view>
+<view class="price-wrapper fadeIn animated">
+  <text class="discount-price">¥{{courseData.discountPrice || '0.00'}}</text>
+  <text class="origin-price" wx:if='{{courseData.discountPrice != courseData.price && courseData.price != 0}}'>¥{{courseData.price || '0.00'}}</text>
+  <view class="appoint-btn analysis_courseDetail_btnbuy" wx:if='{{courseData.status === 1}}' bindtap="handleAppointBtnTap">立即预约</view>
+  <view class="appoint-btn analysis_courseDetail_btnwait" wx:if='{{courseData.status === 2}}' bindtap="handleAppointBtnTap">等位</view>
+  <view class="appoint-btn appoint-btnOver" wx:if='{{courseData.status === 3}}'>课程结束
   </view>
-</form>
+</view>
 
 <!-- 视频播放 -->
 <view class="modal-video" wx:if="{{isShowVideo}}">
-<view class="icon-close iconfont iconguanbi" style='top: {{height}}px;' bindtap="handleCloseVideo"></view>
-<view class="video">
-  <txv-video vid="{{util.getUrlParams(courseData.mediaUrl).vid}}" playerid="{{util.getUrlParams(courseData.mediaUrl).vid}}" width="{{'100%'}}" height="{{'100%'}}" autoplay="{{true}}" objectFit='cover' defn='高清' controls='{{true}}' bindplay="bindplay"></txv-video>  
-  <cover-view class="black" wx:if='{{isFirstPlay}}'></cover-view>
+  <view class="icon-close iconfont iconguanbi" style='top: {{height}}px;' bindtap="handleCloseVideo"></view>
+  <view class="video">
+    <txv-video vid="{{util.getUrlParams(courseData.mediaUrl).vid}}" playerid="{{util.getUrlParams(courseData.mediaUrl).vid}}" width="{{'100%'}}" height="{{'100%'}}" autoplay="{{true}}" objectFit='cover' defn='高清' controls='{{true}}' bindplay="bindplay"></txv-video>
+    <cover-view class="black" wx:if='{{isFirstPlay}}'></cover-view>
   </view>
 </view>
 

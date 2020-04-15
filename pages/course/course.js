@@ -789,9 +789,6 @@ getStoreNameHeight(){
   },
   // 课程预约
   handleAppointBtnTap: function(event) {
-    if (event.detail.formId !== 'the formId is a mock one') {
-      store.setItem('formId', [...(store.getItem('formId') || ''), event.detail.formId])
-    }
     if (app.passIsLogin()) {
       const courseId = event.currentTarget.dataset.courseId
       wx.navigateTo({
