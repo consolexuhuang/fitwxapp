@@ -86,7 +86,7 @@
 }
 
 .column-list {
-  margin-top: 19rpx;
+  margin-top: 42rpx;
 }
 .column-item {
   margin: 0 auto;

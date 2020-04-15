@@ -17,7 +17,7 @@
   <view class=''></view>
   <rich-text class="coach-description fadeIn animated" wx:if="{{isDescriptionShow}}" nodes='{{coachData.intro}}'></rich-text>
   <!-- tab -->
-  <view class="tab">
+  <view class="tab" wx:if="{{coachData.personalFlag==1}}">
   <view class="tab-item {{tabIndex==0?'action':''}}" data-index='0' bindtap="handleSwithTab">
    <text class="txt">团课</text>
    <text class="line"></text>
@@ -148,7 +148,7 @@
 
             <view class="course-list">
               <block wx:for="{{personalList[pStoreKey].good_list}}"  wx:for-item="pCourseItem" wx:key="id">
-                <view class="course-item" data-course-id="{{pCourseItem.id}}" bindtap="handlePCourseTap">
+                <view class="course-item" data-good-id="{{pCourseItem.id}}" bindtap="handlePCourseTap">
 
                   <view class="course-left">
                     <view class="course-time">与教练确认上课时间</view>

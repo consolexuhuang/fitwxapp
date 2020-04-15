@@ -2,23 +2,23 @@
 <wxs src="../../utils/util.wxs" module="util" />
 <tabBar_top navbarData='{{navbarData}}'></tabBar_top>
 
-<view class="wrapper" wx:if='{{courseData}}'>
+<view class="wrapper" wx:if='{{goodInfo}}'>
   <view class="header">
     <swiper class="banner-swiper"  current='{{swiperCurrent}}' bindchange="swiperChange">
 
       <!-- 视频 -->
-      <block wx:if="{{courseData.mediaUrl && util.include(courseData.mediaUrl, 'v.qq.com') && util.getUrlParams(courseData.mediaUrl).vid}}">
+      <!-- <block wx:if="{{goodInfo.mediaUrl && util.include(goodInfo.mediaUrl, 'v.qq.com') && util.getUrlParams(goodInfo.mediaUrl).vid}}">
         <swiper-item class="swiper-item">
           <view class="banner-item videoblock" bindtap="handleShowVideo">
-            <image src="{{courseData.banner_list[0]}}" />
+            <image src="{{goodInfo.banner_list[0]}}" />
             <view class="circle">
               <text class="icon iconfont iconbofang"></text>
             </view>
           </view>          
         </swiper-item>
-      </block>
+      </block> -->
       <!-- 图片 -->
-      <block wx:if="{{courseData.banner_list.length>0}}" wx:for="{{courseData.banner_list}}" wx:key="index">
+      <block wx:if="{{goodInfo.banner_list.length>0}}" wx:for="{{goodInfo.banner_list}}" wx:key="index">
         <swiper-item class="swiper-item">
           <view class="banner-item fadeIn animated">
             <image src="{{item}}" />
@@ -28,14 +28,14 @@
 
     </swiper>
     <!-- 按钮 -->
-    <view class="btn-group" wx:if="{{courseData.banner_list.length>0 && courseData.mediaUrl && util.include(courseData.mediaUrl, 'v.qq.com') && util.getUrlParams(courseData.mediaUrl).vid}}">
+    <view class="btn-group" wx:if="{{goodInfo.banner_list.length>0 && goodInfo.mediaUrl && util.include(goodInfo.mediaUrl, 'v.qq.com') && util.getUrlParams(goodInfo.mediaUrl).vid}}">
       <view class="btn {{swiperBtnCurrent==0?'current':''}}" data-type='video' bindtap="handleSwitch">视频</view>
       <view class="btn {{swiperBtnCurrent==1?'current':''}}" data-type='pic' bindtap="handleSwitch">照片</view>
     </view>
   </view>
   <view class="course-top">
   <view class="course-name-share">
-    <view class="course-name fadeIn animated">{{courseData.title}}</view>    
+    <view class="course-name fadeIn animated">{{goodInfo.title}}</view>    
     <view class="course-share">        
       <share_tag shareButton='{{false}}' bindsharehandle="handleShare" ></share_tag>
     </view>
@@ -47,16 +47,16 @@
         <view class="course-time fadeIn animated">
           <view class='beginTimeBox'>
             <text class='iconicon-test35 iconfont icon1' />
-            <text wx:if='{{courseData}}'>与教练确认上课时间</text>
+            <text wx:if='{{goodInfo}}'>与教练确认上课时间</text>
           </view>
           <view class='icon_wx_shareBigBox'>
           </view>
         </view>
-        <view class="course-address" data-name="{{courseData.store_ids__NAME}}" data-address="{{courseData.store_address}}" data-latitude="{{courseData.store_latitude}}" data-longitude="{{courseData.store_longitude}}" bindtap="handleLocationTap">
+        <view class="course-address" data-name="{{goodInfo.store_ids__NAME}}" data-address="{{goodInfo.store_address}}" data-latitude="{{goodInfo.store_latitude}}" data-longitude="{{goodInfo.store_longitude}}" bindtap="handleLocationTap">
           <text class='iconfont iconicon-test40 icon1' />
-          <text>{{courseData.store_address}}</text>
+          <text>{{goodInfo.store_address}}</text>
           <!-- 获取元素高度用的，页面上不做显示 -->
-          <!-- <text id="store-address" style="display:none;font-size:28rpx;">{{courseData.store_address}}</text> -->
+          <!-- <text id="store-address" style="display:none;font-size:28rpx;">{{goodInfo.store_address}}</text> -->
         </view>
       </view>
     </view>
@@ -68,12 +68,12 @@
     </view>
     <view class="coach-avatar-wrapper">
       <view class='coach-avatarOneBox'>
-        <image class="coach-avatar fadeIn animated" src="{{courseData.caoche_head_url}}" bindtap='jumpToCoachDetail' data-coachId='{{courseData.coach_ids}}' />
-        <view class="coach-name">{{courseData.coach_ids__NAME}}</view>
+        <image class="coach-avatar fadeIn animated" src="{{goodInfo.caoche_head_url}}" bindtap='jumpToCoachDetail' data-coachId='{{goodInfo.coach_ids}}' />
+        <view class="coach-name">{{goodInfo.coach_ids__NAME}}</view>
       </view>
       <view class="coach-name-wrapper fadeIn animated">
         <view class="coach-description">
-          <rich-text nodes="{{courseData.coach_intro}}"></rich-text>
+          <rich-text nodes="{{goodInfo.coach_intro}}"></rich-text>
         </view>
       </view>
     </view>
@@ -84,11 +84,11 @@
       <view class="module-title">课程简介</view>
     </view>
     <view class="course-description">
-      <rich-text nodes="{{courseData.good_intro}}"></rich-text>
+      <rich-text nodes="{{goodInfo.good_intro}}"></rich-text>
     </view>
     <!-- labels -->
     <view class="labels">
-      <text class="item" wx:for="{{util.labelStringToArr(courseData.course_labe)}}" wx:key="{{index}}">{{item}}</text>
+      <text class="item" wx:for="{{util.labelStringToArr(goodInfo.course_labe)}}" wx:key="index">{{item}}</text>
     </view>
 
     <view class="course-column-list">
@@ -99,7 +99,7 @@
         </view>
         <view class='trainingCamp_introduction_item'>
           <view class='trainingCamp_introduction_itemTitle'>训练效果</view>
-          <rich-text class='trainingCamp_introduction_itemCont' nodes='{{courseData.training_effect}}'>
+          <rich-text class='trainingCamp_introduction_itemCont' nodes='{{goodInfo.training_effect}}'>
           </rich-text>
         </view>
       </view>
@@ -110,7 +110,7 @@
         </view>
         <view class='trainingCamp_introduction_item'>
           <view class='trainingCamp_introduction_itemTitle'>适合人群</view>
-          <rich-text class='trainingCamp_introduction_itemCont' nodes='{{courseData.suit_crowds}}'>
+          <rich-text class='trainingCamp_introduction_itemCont' nodes='{{goodInfo.suit_crowds}}'>
           </rich-text>
         </view>
       </view>
@@ -121,7 +121,7 @@
         </view>
         <view class='trainingCamp_introduction_item'>
           <view class='trainingCamp_introduction_itemTitle'>FAQ</view>
-          <rich-text class='trainingCamp_introduction_itemCont' nodes='{{courseData.faq_id__NAME}}'>
+          <rich-text class='trainingCamp_introduction_itemCont' nodes='{{goodInfo.faq_id__NAME}}'>
           </rich-text>
         </view>
       </view>
@@ -159,7 +159,7 @@
     </view>
     <view class="tips-wrapper">
       <view class="tips-content">
-        <rich-text nodes="{{courseData.needing_attention}}"></rich-text>
+        <rich-text nodes="{{goodInfo.needing_attention}}"></rich-text>
       </view>
       <view class="tips-text">成功预约即表示已阅读并同意
         <text bindtap='showStatement'>《J&J注意事项及免责声明》</text>
@@ -169,15 +169,15 @@
 </view>
 <form style="position:static" bindsubmit="handleAppointBtnTap" class="formIdBtnBox">
   <view class="price-wrapper fadeIn animated">
-    <text class="discount-price">¥{{courseData.discount_price || '0.00'}}</text>
-    <text class="origin-price" wx:if='{{courseData.discount_price != courseData.price && courseData.price != 0}}'>¥{{courseData.price || '0.00'}}</text>
-    <view class="appoint-btn" wx:if='{{courseData.status === 1}}'>立即预约
+    <text class="discount-price">¥{{goodInfo.discount_price || '0.00'}}</text>
+    <text class="origin-price" wx:if='{{goodInfo.discount_price != goodInfo.price && goodInfo.price != 0}}'>¥{{goodInfo.price || '0.00'}}</text>
+    <view class="appoint-btn" wx:if='{{goodInfo.status === 1}}'>立即预约
       <button form-type='submit' class='formIdBtn' />
     </view>
-    <view class="appoint-btn" wx:if='{{courseData.status === 2}}'>等位
+    <view class="appoint-btn" wx:if='{{goodInfo.status === 2}}'>等位
       <button form-type='submit' class='formIdBtn' />
     </view>
-    <view class="appoint-btn appoint-btnOver" wx:if='{{courseData.status === 3}}'>课程结束
+    <view class="appoint-btn appoint-btnOver" wx:if='{{goodInfo.status === 3}}'>课程结束
     </view>
   </view>
 </form>
@@ -186,7 +186,7 @@
 <view class="modal-video" wx:if="{{isShowVideo}}">
 <view class="icon-close iconfont iconguanbi" style='top: {{height}}px;' bindtap="handleCloseVideo"></view>
 <view class="video">
-  <txv-video vid="{{util.getUrlParams(courseData.mediaUrl).vid}}" playerid="{{util.getUrlParams(courseData.mediaUrl).vid}}" width="{{'100%'}}" height="{{'100%'}}" autoplay="{{true}}" objectFit='cover' defn='高清' controls='{{true}}' bindplay="bindplay"></txv-video>  
+  <txv-video vid="{{util.getUrlParams(goodInfo.mediaUrl).vid}}" playerid="{{util.getUrlParams(goodInfo.mediaUrl).vid}}" width="{{'100%'}}" height="{{'100%'}}" autoplay="{{true}}" objectFit='cover' defn='高清' controls='{{true}}' bindplay="bindplay"></txv-video>  
   <cover-view class="black" wx:if='{{isFirstPlay}}'></cover-view>
   </view>
 </view>

@@ -5,8 +5,8 @@
 <view class="orderDetail_statusData fadeIn animated" style='margin-top:{{marginTopBar}}rpx'>
   <view class="orderDetail_headImgBox">
 
-    <image bindtap='handleCoachTap' data-coachId='{{orderData.coach_ids}}' class="orderDetail_headImg analysis_orderdetail_coachheader" src="{{orderData.coach_head_url}}"></image>
-    <image class="orderDetail_headWxTag analysis_orderdetail_qrcode" src="{{imgUrl}}icon/wx_logo.png" bindtap='showCoachWxCode'></image>
+    <image bindtap='handleCoachTap' data-coachId='{{orderData.coach_ids}}' class="orderDetail_headImg" src="{{orderData.coach_head_url}}"></image>
+    <image class="orderDetail_headWxTag" src="{{imgUrl}}icon/wx_logo.png" bindtap='showCoachWxCode'></image>
   </view>
   <view class="orderDetail_statusInfo">
   <view class="status-box">
@@ -51,14 +51,10 @@
     <text class="orderDetail_text">预约人数：</text>
     <view class="orderDetail_data">1人</view>
   </view>
-  <view class="admissionCode admissionCodeNext" data-name="{{orderData.store_ids__NAME}}" data-address="{{orderData.store.address}}" data-latitude="{{orderData.store.latitude}}" data-longitude="{{orderData.store.longitude}}" bindtap="{{orderData.onlineImg?'':'handleLocationTap'}}">
+  <view class="admissionCode admissionCodeNext" data-name="{{orderData.store_ids__NAME}}" data-address="{{orderData.store_address}}" data-latitude="{{orderData.store_latitude}}" data-longitude="{{orderData.store_longitude}}" bindtap="handleLocationTap">
     <text class="orderDetail_icon2 iconfont iconicon-test39"></text>
     <text class="orderDetail_text">地点：</text>
-    <view class="orderDetail_data">{{orderData.store.address}}</view>
-  </view>
-   <view class="admissionCode admissionCodeNext analysis_orderdetail_route" bindtap='handleRouteGuidanceTap' wx:if='{{orderData.store.mapPic}}'>
-    <text class="orderDetail_icon2 iconfont iconluxian-luxianfenlei"></text>
-    <text class="orderDetail_text">线路指引</text>
+    <view class="orderDetail_data">{{orderData.store_address}}</view>
   </view>
 </view>
 <view class="orderPriceBox fadeIn animated">

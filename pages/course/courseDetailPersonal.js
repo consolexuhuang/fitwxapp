@@ -5,7 +5,7 @@ const ui = require('../../utils/ui.js');
 const format = require('../../utils/util.js');
 const store = app.store;
 const txvContext = requirePlugin("tencentvideo");
-let courseId;
+let goodId;
 let bannerHeightPX;//banner高度
 
 Page({
@@ -27,7 +27,7 @@ Page({
       marginTopBar: getApp().globalData.header_bar_height
     }, //悬浮分享组件配置
     marginTopBar: getApp().globalData.header_bar_height,
-    courseData: '',
+    goodInfo: '',
     imgUrl: getApp().globalData.imgUrl,
     isShowStatement: false,
 
@@ -39,12 +39,10 @@ Page({
 
     jurisdictionState: false, //授权显示
     cardData: {
+      type:'PERSONAL',//私教课
       pic: '',
       courseName: '',
-      beginDate: '',
-      beginDay: '',
-      beginTime: '',
-      endTime: '',
+      timeTip: '与教练确认上课时间',
       address: '',
       storeName: '',
       coachName: '',
@@ -86,14 +84,14 @@ Page({
       wx.setStorageSync('shareMemberId', options.shareMemberId)
     };
     //从上页面过来的
-    courseId = options.courseId
+    goodId = options.goodId
 
     //识别二维码过来的
     if (options.scene) {
       //把编译后的二维码参数转成需要的参数
       this.getSeneBycode(options.scene).then((res) => {
         let resData = JSON.parse(res.msg);
-        courseId = resData.courseId;
+        goodId = resData.goodId;
         //设置数据
         wx.setStorageSync('shareMemberId', resData.shareMemberId);
         //初始化数据
@@ -149,7 +147,7 @@ Page({
     } else {
       app.checkSessionFun().then(() => {
         //获取数据
-        Promise.all([this.getCourse(), this.getMemberFollowState()]).then(() => {
+        Promise.all([this.getGoodInfo(), this.getMemberFollowState()]).then(() => {
           wx.hideLoading();
         })
         // this.getOfficialDataState()
@@ -199,7 +197,7 @@ Page({
     wx.showLoading({ title: '加载中...' })
     app.wx_AuthUserLogin().then(() => {
       this.setData({ jurisdictionState: false })
-      Promise.all([this.getCourse(), this.getMemberFollowState()]).then(() => {
+      Promise.all([this.getGoodInfo(), this.getMemberFollowState()]).then(() => {
         wx.hideLoading()
       })
       // this.getOfficialDataState()
@@ -228,24 +226,20 @@ Page({
   /**
    * write@xuhuang  end
    */
-  getCourse: function (event) {
+  getGoodInfo: function (event) {
     const data = {
-      goodId: courseId,
+      goodId: goodId,
     }
     api.post('v2/good/getGoodInfo', data).then(res => {
       if (res.code === 0) {
-        const courseData = res.msg
+        const goodInfo = res.msg
         this.setData({
-          courseData,
-          'cardData.pic': courseData.banner_list[0],
-          'cardData.courseName': courseData.title,
-          'cardData.beginDate': '与教练确认上课时间',
-          'cardData.beginDay': '',
-          'cardData.beginTime': '',
-          'cardData.endTime': '',
-          'cardData.address': courseData.store_address,
-          'cardData.storeName': courseData.store_ids__NAME,
-          'cardData.coachName': courseData.coach_ids__NAME
+          goodInfo,
+          'cardData.pic': goodInfo.banner_list[0],
+          'cardData.courseName': goodInfo.title,
+          'cardData.address': goodInfo.store_address,
+          'cardData.storeName': goodInfo.store_ids__NAME,
+          'cardData.coachName': goodInfo.coach_ids__NAME
         }, () => {
           //获取bannner高度
           this.bannerHeight();
@@ -303,7 +297,7 @@ Page({
   handleAppointBtnTap: function () {
     if (app.passIsLogin()) {
       wx.navigateTo({
-        url: '/pages/order/payOrderPersonal?goodId=' + courseId
+        url: '/pages/order/payOrderPersonal?goodId=' + goodId
       })
     } else {
       this.setData({ jurisdictionSmallState: true })
@@ -357,17 +351,17 @@ Page({
     }
     const storeId = this.data.storeId;
     return {
-      title: `${this.data.courseData.courseName}（周${this.data.courseData.beginDay}）`,
-      path: '/pages/course/courseDetail?courseId=' + courseId + '&shareMemberId=' + wx.getStorageSync('userData').id,
+      title: `${this.data.goodInfo.title}`,
+      path: '/pages/course/courseDetailPersonal?goodId=' + goodId + '&shareMemberId=' + wx.getStorageSync('userData').id,
     }
   },
 
   //设置二维码图片地址+参数
   setQrCodeUrl() {
     let shareMemberId = wx.getStorageSync('userData').id || '';
-    let scene = { courseId, shareMemberId }
+    let scene = { goodId, shareMemberId }
     this.setData({
-      'cardData.qrCode': `${api.API_URI}getLiteQrcode?page=pages/course/courseDetail&&liteType=main&&scene=${encodeURI(JSON.stringify(scene))}`
+      'cardData.qrCode': `${api.API_URI}getLiteQrcode?page=pages/course/courseDetailPersonal&&liteType=main&&scene=${encodeURI(JSON.stringify(scene))}`
     })
   },
 

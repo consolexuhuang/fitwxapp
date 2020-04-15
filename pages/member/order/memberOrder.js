@@ -281,7 +281,7 @@ Page({
   //分页
   loadMoreOrder(pageNum) {
     let data = {
-      status: this.data.active == 0 ? '2' : (this.data.active == 1 ? '1' : this.data.active == 2 ? '3' : '2'),
+      status: this.data.active == 0 ? '2' : (this.data.active == 1 ? '1' : this.data.active == 2 ? '3' : '2'),//1-未支付 2-进行中 3-已完成 4-已取消
       date1: '', //开始时间
       date2: '', //结束时间
       page: pageNum,

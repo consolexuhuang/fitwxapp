@@ -18,7 +18,7 @@
   <view class="info">
     <view class="info-row">
       <text class="icon iconfont iconicon-test35"></text>
-      <text class="text">{{util.timeStampFormat(cardData.beginDate, 'YYYY-MM-DD')}} 周{{cardData.beginDay}} {{util.timeStampFormat(cardData.beginTime, 'hh:mm')}}-{{util.timeStampFormat(cardData.endTime, 'hh:mm')}}</text>
+      <text class="text">{{cardData.type=="PERSONAL" ? cardData.timeTip : util.timeStampFormat(cardData.beginDate, 'YYYY-MM-DD')+" 周"+cardData.beginDay +util.timeStampFormat(cardData.beginTime, 'hh:mm')+"-"+util.timeStampFormat(cardData.endTime, 'hh:mm')}}</text>
     </view>
     <view class="info-row">
       <text class="icon iconfont iconicon-test40"></text>

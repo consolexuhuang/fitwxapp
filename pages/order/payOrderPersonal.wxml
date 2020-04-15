@@ -1,7 +1,7 @@
 <!--pages/order/order.wxml-->
 <wxs src="../../utils/util.wxs" module="util" />
-<tabBar_top navbarData = '{{navbarData}}'></tabBar_top>
-<view class="wrapper"  style='margin-top:{{marginTop}}rpx' wx:if="{{goodInfo}}">
+<tabBar_top navbarData='{{navbarData}}'></tabBar_top>
+<view class="wrapper" style='margin-top:{{marginTop}}rpx' wx:if="{{goodInfo}}">
   <view class="content">
     <view class="left-circle"></view>
     <view class="right-circle"></view>
@@ -17,16 +17,16 @@
       <text class='value'>{{goodInfo.store_ids__NAME}}</text>
     </view>
     <view class="column-list">
-        <view class="column-item">
-          <view class="column-item-label">课时</view>
-          <view class="count-list">
-            <view class="count-item count-item-active">1</view>
-          </view>
+      <view class="column-item">
+        <view class="column-item-label">课时</view>
+        <view class="count-list">
+          <view class="count-item count-item-active">1</view>
         </view>
-        <view class="column-item">
-          <view class="column-item-label">课程价</view>
-          <view class="card-price">￥{{goodInfo.discount_price}}</view>
-        </view>
+      </view>
+      <view class="column-item">
+        <view class="column-item-label">课程价</view>
+        <view class="card-price">￥{{goodInfo.discount_price}}</view>
+      </view>
     </view>
     <view class="tips-wrapper">
       <view class="tips-label">温馨提示：</view>
@@ -34,55 +34,47 @@
     </view>
   </view>
 
-    <!-- pay Way-->
+  <!-- pay Way-->
   <view wx:if='{{orderData}}'>
     <view class="pay-title fadeIn animated">支付方式</view>
-    <view class="pay-type fadeIn animated" >
-    <view class="item">
-      <view class="item-play-type fadeIn animated" 
-            wx:for="{{currentPayWayState}}" 
-            wx:key="index"
-            wx:if="{{item.payType}}">
-        <view class="left">
-          <text class='icon_plus iconfont iconhuiyuanqiagoumai-3' wx:if="{{item.type == 1 ? true : false}}" ></text>
-          <text class="icon iconicon-test28 iconfont" 
-                 wx:if="{{item.type == 2 ? true : false}}"
-                 ></text>
-          <text class="name">{{item.type == 1 ? "卡支付" : (item.type == 2 ? "微信支付" : "支付")}}</text>
-        </view>
-        <text class='creditNone' 
-              wx:if="{{item.type == 1 && !item.isOpening}}"
-              bindtap='jumpTocashMoney'>还未开通，立即开通</text>
-        <text class='creditNone' 
-              wx:if="{{item.type == 1 && !item.momeyCreditState && item.isOpening}}"
-              bindtap='jumpTocashMoney'>余额{{orderData.card_amount}}元，立即充值</text>
-        <view class='choosePayWayBox' 
-              wx:if="{{item.state || (item.isOpening && item.momeyCreditState)}}"
-              data-ind='{{index}}'
-              >
-          <image wx:if="{{item.state && item.isOpening && item.momeyCreditState}}" 
-                src='/images/icon/chooseState.png' 
-                class='choosePayWay'></image>
-          <image wx:if="{{!item.state && item.isOpening && item.momeyCreditState}}" 
-                src='/images/icon/noneChooseState.png' 
-                class='choosePayWay'></image>
+    <view class="pay-type fadeIn animated">
+      <view class="item">
+        <view class="item-play-type fadeIn animated" wx:for="{{currentPayWayState}}" wx:key="index" wx:if="{{item.payType}}">
+          <view class="left">
+            <text class='icon_plus iconfont iconhuiyuanqiagoumai-3' wx:if="{{item.type == 1 ? true : false}}"></text>
+            <text class="icon iconicon-test28 iconfont" wx:if="{{item.type == 2 ? true : false}}"></text>
+            <text class="name">{{item.type == 1 ? "卡支付" : (item.type == 2 ? "微信支付" : "支付")}}</text>
+          </view>
+          <text class='creditNone' wx:if="{{item.type == 1 && !item.isOpening}}" bindtap='jumpTocashMoney'>还未开通，立即开通</text>
+          <text class='creditNone' wx:if="{{item.type == 1 && !item.momeyCreditState && item.isOpening}}" bindtap='jumpTocashMoney'>余额{{orderData.card_amount}}元，立即充值</text>
+          <view class='choosePayWayBox' wx:if="{{item.state || (item.isOpening && item.momeyCreditState)}}" data-ind='{{index}}'>
+            <image wx:if="{{item.state && item.isOpening && item.momeyCreditState}}" src='/images/icon/chooseState.png' class='choosePayWay'></image>
+            <image wx:if="{{!item.state && item.isOpening && item.momeyCreditState}}" src='/images/icon/noneChooseState.png' class='choosePayWay'></image>
+          </view>
         </view>
       </view>
-    </view>
     </view>
   </view>
 </view>
 
 <!-- footer -->
-  <view class="footer fadeIn animated">
-    <button class="btn cardOver" wx:if='{{orderData.pay_type == "0"}}'>{{orderData.error_tip}}</button>
-    <button class="btn {{paylock ? 'handlePayBtnTapLock' : ''}}" bindtap="handlePayBtnTap" wx:elif='{{ orderData.pay_type == "1" || orderData.pay_type == "2" || orderData.pay_type == "5"}}'>
-        立即支付 ¥{{orderData.pay_amount}}
+<view class="footer fadeIn animated">
+  <button class="btn cardOver" wx:if='{{orderData.pay_type == "0"}}'>{{orderData.error_tip}}</button>
+
+  <block wx:elif='{{ orderData.pay_type == "1" || orderData.pay_type == "2" || orderData.pay_type == "5"}}'>
+    <button wx:if='{{isShowJurisdiction}}' open-type="getPhoneNumber" class="btn" bindgetphonenumber="handlePayBtnTap">
+      立即支付 ¥{{orderData.pay_amount}}
     </button>
-    <button class="btn" bindtap='jumpTocashMoney' wx:elif='{{orderData.pay_type == "3"}}'>
-        需支付¥{{orderData.pay_amount}}，点击充值
+    <button wx:if='{{!isShowJurisdiction}}' class="btn" bindtap="handlePayBtnTap">
+      立即支付 ¥{{orderData.pay_amount}}
     </button>
-    <button class="btn" bindtap='jumpTocashMoney' wx:elif='{{orderData.pay_type == "3" && orderData.has_card}}'>
-        余额不足，点击充值
-    </button>
-  </view>
+  </block>
+
+  <button class="btn" bindtap='jumpTocashMoney' wx:elif='{{orderData.pay_type == "3"}}'>
+    需支付¥{{orderData.pay_amount}}，点击充值
+  </button>
+
+  <button class="btn" bindtap='jumpTocashMoney' wx:elif='{{orderData.pay_type == "3" && orderData.has_card}}'>
+    余额不足，点击充值
+  </button>
+</view>

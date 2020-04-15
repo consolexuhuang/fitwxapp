@@ -21,8 +21,7 @@ Page({
     },
     marginTop: getApp().globalData.header_bar_height,
     orderLocation: '',
-
-    paylock: false, //支付锁
+    isShowJurisdiction: false, //电话授权功能
     orderData: '',
     currentPayWayState: [
       { type: 1, state: false, momeyCreditState: true, isOpening: true, payType: true },
@@ -33,7 +32,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
     goodId = options.goodId;
     wx.login({
       success: res_code => {
@@ -43,10 +41,31 @@ Page({
   },
   onShow() {
     ui.showLoadingMask();
-    this.getGoodInfo().then(()=>{
+    Promise.all([this.getMemberInfo(), this.getGoodInfo()])
+    .then(()=>{
       this.checkOrder()
     })
   },
+  //获取会员信息
+  getMemberInfo() {
+    let data = {
+      memberId: Store.getItem('userData').id
+    }
+    return new Promise((resolve, reject) => {
+      api.post('member/getMemberByMemberId', data).then(res => {
+        if (res.msg.cellphone) {
+          this.setData({ isShowJurisdiction: false })
+        }
+        else {
+          this.setData({ isShowJurisdiction: true })
+        }
+        resolve()
+      }).catch((err) => {
+        reject()
+      })
+    })
+  }, 
+  //获取商品信息
   getGoodInfo: function (event) {
     const data = {
       goodId
@@ -140,18 +159,48 @@ Page({
     })
   },
   //支付
-  handlePayBtnTap: function (event) {
-    let _this = this
-    if (!this.data.paylock) {
+  handlePayBtnTap (e) {   
+    if (this.data.isShowJurisdiction) {  //授权电话
+      let ency = e.detail.encryptedData;
+      let iv = e.detail.iv;
+      let errMsg = e.detail.errMsg
+      if (iv == null || ency == null) {
+        this.setData({ isShowJurisdiction: false })//如果拒绝，继续打开订单人口
+        wx.showToast({
+          title: "手机号授权失败！",
+          icon: 'none',
+        })
+      } else {
+        let data = {
+          code: this.data.code,
+          encryptedData: ency,
+          iv: iv,
+        }
+        wx.showLoading({
+          title: '授权中...',
+          icon: 'none'
+        })
+        api.post('v2/member/liteMobile', data).then(res => {
+          wx.hideLoading()
+          this.getMemberInfo()
+          console.log('后台电话解密授权', res)
+          if (res.code == 0) {
+            wx.showToast({
+              title: res.msg || '授权成功！',
+            })
+          }
+        })
+      }
+     }else{
       wx.showModal({
         title: '提示！',
         content: '是否确认支付？',
         success: res => {
           if (res.confirm) {
-            let currentPayType = _this.data.currentPayWayState.filter(val => {
+            let currentPayType = this.data.currentPayWayState.filter(val => {
               if (val.state) return val
             })
-            _this.createOrder().then((orderData) => {
+            this.createOrder().then((orderData) => {
               console.log(orderData)
               if (orderData.payType == 'card') {
                 wx.showToast({ title: '支付成功', icon: 'none', mask: true })
@@ -164,7 +213,7 @@ Page({
               // 微信支付
               // console.log(currentPayType[0].type)
               if (orderData.payType == 'wx') {
-                _this.wxPayAction().then(res => {
+                this.wxPayAction().then(res => {
                   wx.redirectTo({
                     url: '/pages/order/paySuccessPersonal?goodId=' +goodId,
                   })
@@ -176,6 +225,7 @@ Page({
           }
         }
       })
+    
     }
   },
   // 微信支付
@@ -193,7 +243,6 @@ Page({
         },
         fail: (res) => {
           console.log(res)
-          this.setData({ paylock: false })
           reject()
         }
       })
@@ -201,7 +250,6 @@ Page({
   },
   // 创建订单
   createOrder() {
-    this.setData({ paylock: true })
     return new Promise((resolve, reject) => {
       let data = {
         goodId,
@@ -210,7 +258,6 @@ Page({
       }
       wx.showLoading({ title: '加载中...', })
       api.post('v2/good/takeOrder', data).then(res => {
-        // this.setData({ paylock: false })
         wx.hideLoading()
         console.log('生成订单', res)
         if (res.code === 0) {
@@ -219,7 +266,6 @@ Page({
           }, () => { resolve(res.msg) })
         } else {
           reject(res)
-          this.setData({ paylock: false })
         }
       })
 

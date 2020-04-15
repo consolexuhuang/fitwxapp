@@ -76,15 +76,6 @@ Page({
     } catch (e) {
       // Do something when catch error
     }
-    //获取会员手机号（如果有手机号则支付不需要授权，否则需要授权手机号）
-    // let userData = wx.getStorageSync('userData');
-    // let memberMobile = userData ? userData.cellphone : '';
-    // if (memberMobile) {
-    //   this.setData({ isShowJurisdiction: false })
-    // }
-    // else {
-    //   this.setData({ isShowJurisdiction: true })
-    // }
     this.getCourse().then(() => {
       let that = this
       this.getOrderLocation().then(() => {
@@ -93,9 +84,6 @@ Page({
         })
       })
     })
-    // Promise.all([this.getMemberInfo(), this.getCourse(), this.getWaitCount(), this.checkOrder()]).then(()=>{
-    //   ui.hideLoading()
-    // })
   },
   getCourse: function (event) {
     const courseId = this.data.courseId

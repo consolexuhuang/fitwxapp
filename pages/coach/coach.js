@@ -257,9 +257,9 @@ Page({
   // 跳转私教课程详情
   handlePCourseTap: function (event) {
     if (app.passIsLogin()) {
-      const courseId = event.currentTarget.dataset.courseId
+      const goodId = event.currentTarget.dataset.goodId
       wx.navigateTo({
-        url: '/pages/course/courseDetailPersonal?courseId=' + courseId
+        url: '/pages/course/courseDetailPersonal?goodId=' + goodId
       })
     } else {
       this.setData({ jurisdictionSmallState: true })
