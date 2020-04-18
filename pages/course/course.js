@@ -75,7 +75,6 @@ Page({
    */
 
   onLoad: function(options) {
-    console.log('onload course')
     /*
     //训练小红点引导 后面需要删除
       if (!wx.getStorageSync('hideTabBarRedDot')){
@@ -303,7 +302,7 @@ Page({
     let displayedStoreLength = 0,
       dateCourseLength = 0;
 
-    const length = (page - 1) * 7 + 5
+    const length = (page - 1) * 7 + 5 //后面都加5个店铺
     if (displayedStore instanceof Object) {
       displayedStoreLength = displayedStore[date] ? displayedStore[date].length : 0;
     }
@@ -511,7 +510,7 @@ getStoreNameHeight(){
       for (let storeCode in dateCourse) {
         storeCodeArr.push(storeCode)
       }
-      displayedStore[date] = storeCodeArr.splice(0, 5) //初始加载五个店铺的数据
+      displayedStore[date] = storeCodeArr.splice(0, 6) //初始加载五个店铺的数据
       pageList[date] = 1
       if (displayedStore[date].length >= Object.keys(dateCourse).length) {
         const endLine = this.data.endLine

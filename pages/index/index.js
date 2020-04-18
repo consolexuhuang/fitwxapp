@@ -76,6 +76,8 @@ Page({
     const pageList = {}
     for (const date in courses) {
       const dateCourse = courses[date]
+      console.log('dateCourse')
+      console.log(dateCourse)
       displayedStore[date] = Object.keys(dateCourse).splice(0, this.data.everyPageNum) //初始加载五个店铺的数据
       pageList[date] = 1
       if (displayedStore[date].length >= Object.keys(dateCourse).length) {

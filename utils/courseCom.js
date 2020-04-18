@@ -52,28 +52,6 @@ var getConfig = function(_this) {
   })
 }
 
-/* // 获取日期列表
-var getDateList = function (_this) {
-  return api.post('course/getDateList').then(res => {
-    const dateList = res.msg.list
-    const active = _this.data.active || res.msg.active
-    //设置swiper
-    let swiperHeight={};
-    for (let item of dateList){
-      swiperHeight[item.date]=0
-    }
-    _this.setData({
-      dateList,
-      active,
-      swiperHeight
-    },function(){
-      //获取日历列表高度
-      if (_this.dateBoxHeight){
-        _this.dateBoxHeight();
-      }      
-    })
-  })
-} */
 
 // 获取课程列表
 var getCourseList = function(param, _this) {
