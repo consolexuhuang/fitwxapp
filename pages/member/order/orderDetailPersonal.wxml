@@ -48,8 +48,8 @@
 
   <view class="admissionCode">
     <text class="orderDetail_icon iconicon-test15 iconfont"></text>
-    <text class="orderDetail_text">预约人数：</text>
-    <view class="orderDetail_data">1人</view>
+    <text class="orderDetail_text">课时：</text>
+    <view class="orderDetail_data">{{orderData.good_count}}次</view>
   </view>
   <view class="admissionCode admissionCodeNext" data-name="{{orderData.store_ids__NAME}}" data-address="{{orderData.store_address}}" data-latitude="{{orderData.store_latitude}}" data-longitude="{{orderData.store_longitude}}" bindtap="handleLocationTap">
     <text class="orderDetail_icon2 iconfont iconicon-test39"></text>
@@ -73,6 +73,11 @@
       <text class='orderDetail_icon iconfont iconhuiyuanqiagoumai-4'></text>
       <text class="orderDetail_text">卡支付</text>
       <view class="orderDetail_payData">¥{{orderData.pay_amount}}</view>
+    </view>
+    <view class="admissionCode2">
+      <text class='orderDetail_icon iconfont iconicon-test35'></text>
+      <text class="orderDetail_text">购买时间</text>
+      <view class="orderDetail_payData">{{orderData.pay_time}}</view>
     </view>
   </view>
 </view>

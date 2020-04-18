@@ -95,11 +95,9 @@ Page({
       const orderData = res.msg
       this.setData({
         orderData
-      }, () => {
-        wx.hideLoading()
-        this.checkCardCredict()
-        // console.log(this.data.currentPayWayState)
       })
+      wx.hideLoading()
+      this.checkCardCredict()
     })
   },
   //校验当前余额状态

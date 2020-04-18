@@ -41,7 +41,7 @@
       <view class="item">
         <view class="item-play-type fadeIn animated" wx:for="{{currentPayWayState}}" wx:key="index" wx:if="{{item.payType}}">
           <view class="left">
-            <text class='icon_plus iconfont iconhuiyuanqiagoumai-3' wx:if="{{item.type == 1 ? true : false}}"></text>
+            <text class='icon iconfont iconhuiyuanqiagoumai-3' wx:if="{{item.type == 1 ? true : false}}"></text>
             <text class="icon iconicon-test28 iconfont" wx:if="{{item.type == 2 ? true : false}}"></text>
             <text class="name">{{item.type == 1 ? "卡支付" : (item.type == 2 ? "微信支付" : "支付")}}</text>
           </view>

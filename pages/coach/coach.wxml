@@ -147,9 +147,9 @@
                     <view class="course-name">{{pCourseItem.title || ''}}</view>
                     <view class="course-label">{{util.preLabel(pCourseItem.LABELS || '')}}</view>
                     <view class="course-price-wrapper">
-                      <view class="course-discount-price">¥{{pCourseItem.discount_price}}</view>
+                      <view class="course-discount-price">¥{{pCourseItem.price}}</view>
                       <view class="course-price-line"></view>
-                        <view class="course-card-price">¥{{pCourseItem.price}}</view>
+                        <view class="course-card-price">¥{{pCourseItem.discount_price}}</view>
                     </view>
                   </view>
 

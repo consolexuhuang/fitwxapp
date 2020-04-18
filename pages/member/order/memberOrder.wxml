@@ -111,7 +111,7 @@
       <view class='goBottom ' wx:if='{{goingList.length > 10}}'>{{goingList.length == userInfoData.order.going_count && goingList.length > 10 ? '-拉伸完成-' : '加载中...'}}</view>
     </block>
     <!-- 无数据 -->
-    <block wx:if="{{goingList.length==0 && isLoaded}}">
+    <block wx:if="{{goingList.length==0 && orderList.length==0 && isLoaded}}">
       <view class="none">
         <text class="none-img iconicon-test9 iconfont"></text>
         <text class="txt">暂无训练记录</text>

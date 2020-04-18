@@ -52,6 +52,20 @@ Page({
       url: '/pages/coach/coach?coachId=' + coachId
     })
   },
+  //查看地图
+  handleLocationTap: function (event) {
+    const name = event.currentTarget.dataset.name
+    const address = event.currentTarget.dataset.address
+    const latitude = Number(event.currentTarget.dataset.latitude)
+    const longitude = Number(event.currentTarget.dataset.longitude)
+    wx.openLocation({
+      name,
+      address,
+      latitude,
+      longitude,
+      scale: 18
+    })
+  },
   // 显示教练二维码
   showCoachWxCode() {
     app.compareVersionPromise('2.7.0').then((res) => {
@@ -84,8 +98,8 @@ Page({
   onShareAppMessage() {
     return {
       title: this.data.orderData.good_title,
-      imageUrl: this.data.orderData.banner_img,
-      path: '/pages/course/courseDetailPersonal?courseId=' + this.data.orderData.good_id + '&shareMemberId=' + wx.getStorageSync('userData').id,
+      imageUrl: this.data.orderData.share_img,
+      path: '/pages/course/courseDetailPersonal?goodId=' + this.data.orderData.good_id + '&shareMemberId=' + wx.getStorageSync('userData').id,
 
     }
   },
